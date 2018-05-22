@@ -56,8 +56,19 @@ abstract class  SerializableScene extends Scene {
       DivElement content = new DivElement();
       div.append(content);
       content.setInnerHtml(displayText);
-      doAction();
+      doEffects(); //automatic
+      doAction(); //specific to subclass
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
+  }
+
+  void doEffects() {
+      for(ActionEffect e in effectsForLands) {
+          e.applyEffect();
+      }
+
+      for(ActionEffect e in effectsForLiving) {
+          e.applyEffect();
+      }
   }
 
   List<GameEntity> get finalLivingTargets {
