@@ -154,6 +154,8 @@ class BigBadForm {
     TextAreaElement dataBox;
     TextAreaElement descElement;
     Element startSceneSection;
+    Element sceneSection;
+
 
     BigBadForm(BigBad this.bigBad, Element parentContainer) {
         container = new DivElement();
@@ -165,6 +167,7 @@ class BigBadForm {
         drawName();
         drawDesc();
         drawAddStartButton();
+        drawAddSceneButton();
     }
 
     void syncDataBoxToBigBad() {
@@ -202,6 +205,31 @@ class BigBadForm {
         //render the ones the big bad starts with
         for(SummonScene s in bigBad.startMechanisms) {
             s.renderForm(startSceneSection);
+        }
+
+    }
+
+    void drawAddSceneButton() {
+        sceneSection = new DivElement();
+        sceneSection.setInnerHtml("<h1>Action Scenes</h1><hr>Each Action Scene will have it's own flavor text and trigger conditions. As long as a BigBad is active (usually through a StartScene) they will do actions.");
+        sceneSection.style.border = "1px solid black";
+        sceneSection.style.padding = "10px";
+        ButtonElement button = new ButtonElement();
+        button.text = "Add An Action Scene";
+        container.append(sceneSection);
+        container.append(button);
+        button.onClick.listen((Event e)
+        {
+            SerializableScene scene = new SerializableScene(bigBad.session);
+            scene.gameEntity = bigBad;
+            bigBad.scenes.add(scene);
+            scene.renderForm(sceneSection);
+            syncDataBoxToBigBad();
+        });
+
+        //render the ones the big bad starts with
+        for(SerializableScene s in bigBad.scenes) {
+            s.renderForm(sceneSection);
         }
 
     }
