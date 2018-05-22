@@ -31,6 +31,7 @@ class BigBad extends NPC {
   BigBad(String name, Session session) : super(name, session);
 
   String toDataString() {
+      print("data is ${toJSON()}");
       return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
   }
 
@@ -57,7 +58,7 @@ class BigBad extends NPC {
      // print("copying from data: $data, looking for labelpattern: $labelPattern");
       String dataWithoutName = data.split("$labelPattern")[1];
       String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
-
+      print("big bad raw json is $rawJSON");
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
       name = json["name"];
       description = json["description"];
@@ -71,6 +72,7 @@ class BigBad extends NPC {
 
 
     void loadScenes(String weirdString) {
+      if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
@@ -181,6 +183,10 @@ class BigBadForm {
         for(SummonScene s in bigBad.startMechanisms) {
             s.renderForm(startSceneSection);
         }
+
+        for(SummonScene s in bigBad.scenes) {
+            s.renderForm(sceneSection);
+        }
         syncDataBoxToBigBad();
     }
 
@@ -229,6 +235,7 @@ class BigBadForm {
 
         //render the ones the big bad starts with
         for(SerializableScene s in bigBad.scenes) {
+            print("serializable scene $s");
             s.renderForm(sceneSection);
         }
 
