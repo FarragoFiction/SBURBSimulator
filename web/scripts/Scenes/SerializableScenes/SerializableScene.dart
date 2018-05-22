@@ -227,6 +227,7 @@ class SceneForm {
         drawFlavorText();
         drawTargetOne();
         drawAddTriggerConditionButton();
+        drawAddActionEffectButton();
 
     }
 
@@ -250,6 +251,13 @@ class SceneForm {
 
         TargetConditionLiving.drawSelectTriggerConditions(container, scene);
         TargetConditionLand.drawSelectTriggerConditions(container, scene);
+
+    }
+
+    void drawAddActionEffectButton() {
+        //action effects know how to add their own damn selves
+        EffectEntity.drawSelectTriggerConditions(container, scene);
+        EffectLand.drawSelectTriggerConditions(container, scene);
 
     }
 
