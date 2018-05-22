@@ -16,7 +16,6 @@ class TargetHasCrown extends TargetConditionLiving {
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
     TargetHasCrown(SerializableScene scene) : super(scene){
-        replacements[ITEMAME] = getItemName;
     }
 
     String getItemName() {

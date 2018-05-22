@@ -33,8 +33,6 @@ abstract class  SerializableScene extends Scene {
   //can include moons or the battlefield
   List<Land> landTargets = new List<Land>();
 
-  //prefers land to living, otherwise first in list
-  bool oneTarget;
 
 
   //a valid target has all these conditions

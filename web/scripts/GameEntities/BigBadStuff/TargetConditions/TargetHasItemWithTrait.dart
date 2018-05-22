@@ -36,8 +36,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
     TargetHasItemWithTrait(SerializableScene scene) : super(scene){
-        replacements[ITEMAME] = getItemName;
-        replacements[ITEMTRAITNAME] = getItemName;
+
 
     }
 

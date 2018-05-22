@@ -7,7 +7,6 @@ import "../../../SBURBSim.dart";
 import 'dart:html';
 abstract class TargetCondition {
     //need to do miins
-    static String BIGBADNAME = BigBad.BIGBADNAME;
     static String IMPORTANTWORD = "importantWord";
     //could just be a carapace or a player I don't care
     SerializableScene scene;
@@ -16,8 +15,7 @@ abstract class TargetCondition {
     String name = "Generic Trigger";
     TargetCondition(SerializableScene scene);
 
-    //the keys for this are used for the form builder and the actions are called when it's time to replace words
-    Map<String, Generator> replacements = new Map<String, Generator>();
+
 
     void renderForm(Element div);
     void syncToForm();
@@ -31,20 +29,7 @@ abstract class TargetCondition {
         return json;
     }
 
-    String replaceAll(String textWithShitToReplaceProbably) {
-        for(String key in replacements.keys) {
-            textWithShitToReplaceProbably = textWithShitToReplaceProbably.replaceAll("$key", "${replacements[key]()}");
-        }
-        return textWithShitToReplaceProbably;
-    }
-
-
     TargetCondition makeNewOfSameType();
-
-
-
-
-
 
 }
 
