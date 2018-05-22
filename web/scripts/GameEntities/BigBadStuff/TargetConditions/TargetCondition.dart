@@ -60,7 +60,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       }
 
       ButtonElement button = new ButtonElement();
-      button.text = "Add Trigger Condition";
+      button.text = "Add Living Target Condition";
       button.onClick.listen((e) {
           String type = select.options[select.selectedIndex].value;
           for(TargetCondition tc in conditions) {
@@ -158,7 +158,7 @@ abstract class TargetConditionLand extends TargetCondition {
       }
 
       ButtonElement button = new ButtonElement();
-      button.text = "Add Trigger Condition";
+      button.text = "Add Land Target Condition";
       button.onClick.listen((e) {
           String type = select.options[select.selectedIndex].value;
           for(TargetCondition tc in conditions) {

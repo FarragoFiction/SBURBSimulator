@@ -38,8 +38,8 @@ abstract class  SerializableScene extends Scene {
   //a valid target has all these conditions
   List<TargetConditionLiving> triggerConditionsLiving = new List<TargetConditionLiving>();
     List<TargetConditionLand> triggerConditionsLand = new List<TargetConditionLand>();
-  //TODO consider if i want a list of effects as well, might work to do things like "if summoned this way, have this effect"
-
+    List<EffectEntity> effectsForLiving = new List<EffectEntity>();
+    List<EffectLand> effectsForLands = new List<EffectLand>();
 
   String name = "Generic Scene";
 
@@ -256,8 +256,8 @@ class SceneForm {
 
     void drawAddActionEffectButton() {
         //action effects know how to add their own damn selves
-        EffectEntity.drawSelectTriggerConditions(container, scene);
-        EffectLand.drawSelectTriggerConditions(container, scene);
+        EffectEntity.drawSelectActionEffects(container, scene);
+        EffectLand.drawSelectActionEffects(container, scene);
 
     }
 

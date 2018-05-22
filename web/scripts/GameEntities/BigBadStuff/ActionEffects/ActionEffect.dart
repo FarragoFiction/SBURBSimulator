@@ -34,6 +34,60 @@ abstract class ActionEffect {
 abstract class EffectLand extends ActionEffect {
   EffectLand(SerializableScene scene) : super(scene);
 
+  static List<EffectLand> listPossibleEffects(SerializableScene scene) {
+      List<EffectLand> ret = new List<EffectLand>();
+      //ret.add(new InstaKill(scene));
+      return ret;
+  }
+
+
+  static SelectElement drawSelectActionEffects(Element div, SerializableScene owner) {
+      DivElement container = new DivElement();
+
+      DivElement triggersSection = new DivElement();
+      triggersSection.setInnerHtml("<h3>Action Effects:</h3>Effects Applied In Order<br>");
+      div.append(triggersSection);
+      div.append(container);
+      List<ActionEffect> effects;
+      effects = EffectLand.listPossibleEffects(owner);
+      SelectElement select = new SelectElement();
+      for(EffectLand sample in effects) {
+          OptionElement o = new OptionElement();
+          o.value = sample.name;
+          o.text = sample.name;
+          select.append(o);
+      }
+
+      ButtonElement button = new ButtonElement();
+      button.text = "Add Land Effect";
+      button.onClick.listen((e) {
+          String type = select.options[select.selectedIndex].value;
+          for(ActionEffect tc in effects) {
+              if(tc.name == type) {
+                  ActionEffect newCondition = tc.makeNewOfSameType();
+                  newCondition.scene = owner;
+                  owner.effectsForLands.add(newCondition);
+                  print("adding new condition to $owner");
+                  //bigBad.triggerConditions.add(newCondition);
+                  newCondition.renderForm(triggersSection);
+              }
+          }
+      });
+
+      container.append(select);
+      container.append(button);
+
+      //render the ones the big bad starts with
+      List<ActionEffect> all;
+      all = owner.effectsForLands;
+
+      for (ActionEffect s in all) {
+          s.renderForm(triggersSection);
+      }
+      return select;
+  }
+
+
   @override
   void applyEffect() {
         List<Land> targets = scene.finalLandTargets;
@@ -47,6 +101,63 @@ abstract class EffectLand extends ActionEffect {
 
 abstract class EffectEntity extends ActionEffect {
   EffectEntity(SerializableScene scene) : super(scene);
+
+
+  static List<EffectEntity> listPossibleEffects(SerializableScene scene) {
+      List<EffectEntity> ret = new List<EffectEntity>();
+      ret.add(new InstaKill(scene));
+      return ret;
+  }
+
+
+  static SelectElement drawSelectActionEffects(Element div, SerializableScene owner) {
+      DivElement container = new DivElement();
+
+      DivElement triggersSection = new DivElement();
+      triggersSection.setInnerHtml("<h3>Action Effects:</h3>Effects Applied In Order.<br>");
+      div.append(triggersSection);
+      div.append(container);
+      List<ActionEffect> effects;
+      effects = EffectEntity.listPossibleEffects(owner);
+      SelectElement select = new SelectElement();
+      for(EffectLand sample in effects) {
+          OptionElement o = new OptionElement();
+          o.value = sample.name;
+          o.text = sample.name;
+          select.append(o);
+      }
+
+      ButtonElement button = new ButtonElement();
+      button.text = "Add Entity Effect";
+      button.onClick.listen((e) {
+          String type = select.options[select.selectedIndex].value;
+          for(ActionEffect tc in effects) {
+              if(tc.name == type) {
+                  ActionEffect newCondition = tc.makeNewOfSameType();
+                  newCondition.scene = owner;
+                  owner.effectsForLiving.add(newCondition);
+                  print("adding new condition to $owner");
+                  //bigBad.triggerConditions.add(newCondition);
+                  newCondition.renderForm(triggersSection);
+              }
+          }
+      });
+
+      container.append(select);
+      container.append(button);
+
+      //render the ones the big bad starts with
+      List<ActionEffect> all;
+      all = owner.effectsForLiving;
+
+      for (ActionEffect s in all) {
+          s.renderForm(triggersSection);
+      }
+      return select;
+  }
+
+
+
   @override
   void applyEffect() {
       List<GameEntity> targets = scene.finalLivingTargets;
