@@ -45,7 +45,7 @@ abstract class EffectLand extends ActionEffect {
       DivElement container = new DivElement();
 
       DivElement triggersSection = new DivElement();
-      triggersSection.setInnerHtml("<h3>Action Effects:</h3>Effects Applied In Order<br>");
+      triggersSection.setInnerHtml("<h3>Land Effects:</h3>Effects Applied In Order<br>");
       div.append(triggersSection);
       div.append(container);
       List<ActionEffect> effects;
@@ -114,13 +114,13 @@ abstract class EffectEntity extends ActionEffect {
       DivElement container = new DivElement();
 
       DivElement triggersSection = new DivElement();
-      triggersSection.setInnerHtml("<h3>Action Effects:</h3>Effects Applied In Order.<br>");
+      triggersSection.setInnerHtml("<h3>Entity Effects:</h3>Effects Applied In Order.<br>");
       div.append(triggersSection);
       div.append(container);
       List<ActionEffect> effects;
       effects = EffectEntity.listPossibleEffects(owner);
       SelectElement select = new SelectElement();
-      for(EffectLand sample in effects) {
+      for(EffectEntity sample in effects) {
           OptionElement o = new OptionElement();
           o.value = sample.name;
           o.text = sample.name;
