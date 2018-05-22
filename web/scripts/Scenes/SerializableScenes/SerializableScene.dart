@@ -71,6 +71,7 @@ class  SerializableScene extends Scene {
       for(ActionEffect e in effectsForLiving) {
           e.applyEffect();
       }
+      gameEntity.available = false;
   }
 
   List<GameEntity> get finalLivingTargets {

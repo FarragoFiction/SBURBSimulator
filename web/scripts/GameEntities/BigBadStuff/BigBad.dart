@@ -222,7 +222,7 @@ class BigBadForm {
         sceneSection.style.border = "1px solid black";
         sceneSection.style.padding = "10px";
         ButtonElement button = new ButtonElement();
-        button.text = "Add An Action Scene";
+        button.text = "Add An Action Scene (order added is order priority)";
         container.append(sceneSection);
         container.append(button);
         button.onClick.listen((Event e)
