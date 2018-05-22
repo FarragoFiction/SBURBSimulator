@@ -66,7 +66,7 @@ class BigBad extends NPC {
       loadStartMechanisms(startScenesString);
 
       String scenesString = json["scenes"];
-      loadScenes(startScenesString);
+      loadScenes(scenesString);
   }
 
 
