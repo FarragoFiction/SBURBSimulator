@@ -40,6 +40,20 @@ abstract class EffectLand extends ActionEffect {
       return ret;
   }
 
+  //need to figure out what type of trigger condition it is.
+  static ActionEffect fromJSON(JSONObject json, SerializableScene scene) {
+      String name = json["name"];
+      List<EffectLand> allConditions = listPossibleEffects(scene);
+      for(ActionEffect tc in allConditions) {
+          if(tc.name == name) {
+              ActionEffect ret = tc.makeNewOfSameType();
+              ret.copyFromJSON(json);
+              ret.scene = scene;
+              return ret;
+          }
+      }
+  }
+
 
   static SelectElement drawSelectActionEffects(Element div, SerializableScene owner) {
       DivElement container = new DivElement();
@@ -107,6 +121,21 @@ abstract class EffectEntity extends ActionEffect {
       List<EffectEntity> ret = new List<EffectEntity>();
       ret.add(new InstaKill(scene));
       return ret;
+  }
+
+
+  //need to figure out what type of trigger condition it is.
+  static ActionEffect fromJSON(JSONObject json, SerializableScene scene) {
+      String name = json["name"];
+      List<EffectEntity> allConditions = listPossibleEffects(scene);
+      for(ActionEffect tc in allConditions) {
+          if(tc.name == name) {
+              ActionEffect ret = tc.makeNewOfSameType();
+              ret.copyFromJSON(json);
+              ret.scene = scene;
+              return ret;
+          }
+      }
   }
 
 

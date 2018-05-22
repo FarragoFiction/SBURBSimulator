@@ -119,6 +119,35 @@ void syncForm() {
 
         loadTriggerConditionsLiving(triggerContionsStringLiving);
         loadTriggerConditionsLand(triggerContionsStringLand);
+
+
+        String effectsStringLiving = json["effectsForLiving"];
+        String effectsStringLand = json["effectsForLands"];
+
+        loadEffectsLiving(triggerContionsStringLiving);
+        loadEffectsLand(triggerContionsStringLand);
+    }
+
+    void loadEffectsLiving(String weirdString) {
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            ActionEffect tc = EffectEntity.fromJSON(j, this);
+            effectsForLands.add(tc);
+        }
+    }
+
+    void loadEffectsLand(String weirdString) {
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            ActionEffect tc = EffectLand.fromJSON(j, this);
+            effectsForLands.add(tc);
+        }
     }
 
     void loadTriggerConditionsLand(String weirdString) {
