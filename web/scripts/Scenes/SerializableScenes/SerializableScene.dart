@@ -165,6 +165,21 @@ void syncForm() {
         json["triggerConditionsLiving"] = triggerCondtionsArrayLiving.toString();
         json["triggerConditionsLand"] = triggerCondtionsArrayLand.toString();
 
+
+        List<JSONObject> livingEffectsArray = new List<JSONObject>();
+        List<JSONObject> landEffectsArray = new List<JSONObject>();
+
+        for(ActionEffect s in effectsForLiving) {
+            livingEffectsArray.add(s.toJSON());
+        }
+
+        for(ActionEffect s in effectsForLands) {
+            landEffectsArray.add(s.toJSON());
+        }
+        //print("${triggerCondtionsArray.length} triggerConditions were serialized, ${triggerCondtionsArray}");
+        json["effectsForLiving"] = livingEffectsArray.toString();
+        json["effectsForLands"] = landEffectsArray.toString();
+
         print(json);
         return json;
     }
