@@ -44,6 +44,12 @@ class BigBad extends NPC {
           if(s is SerializableScene) startSceneArray.add(s.toJSON());
       }
       json["startMechanisms"] = startSceneArray.toString();
+
+      List<JSONObject> sceneArray = new List<JSONObject>();
+      for(Scene s in scenes) {
+          if(s is SerializableScene) sceneArray.add(s.toJSON());
+      }
+      json["scenes"] = sceneArray.toString();
       return json;
   }
 
