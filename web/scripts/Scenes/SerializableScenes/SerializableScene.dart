@@ -15,7 +15,7 @@ import "dart:convert";
  * if a sub class overrides the trigger, it should be to make sure the ACTION on a TARGET
  * is actually possible (i.e. there are any carapaces living remainging)
  */
-abstract class  SerializableScene extends Scene {
+class  SerializableScene extends Scene {
     static String TARGET = "TARGET_NAME_OR_NAMES";
 
     SceneForm form;
@@ -45,7 +45,9 @@ abstract class  SerializableScene extends Scene {
 
   SerializableScene(Session session) : super(session);
 
-  void doAction();
+  void doAction() {
+      //empty, subscenes can have complicated thigns here
+  }
 
   @override
   void renderContent(Element div) {

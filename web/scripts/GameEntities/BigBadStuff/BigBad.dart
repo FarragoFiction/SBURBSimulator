@@ -64,7 +64,24 @@ class BigBad extends NPC {
 
       String startScenesString = json["startMechanisms"];
       loadStartMechanisms(startScenesString);
+
+      String scenesString = json["scenes"];
+      loadScenes(startScenesString);
   }
+
+
+    void loadScenes(String weirdString) {
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            SerializableScene ss = new SerializableScene(session);
+            ss.gameEntity = this;
+            ss.copyFromJSON(j);
+            scenes.add(ss);
+        }
+    }
 
     void loadStartMechanisms(String weirdString) {
         List<dynamic> what = JSON.decode(weirdString);
