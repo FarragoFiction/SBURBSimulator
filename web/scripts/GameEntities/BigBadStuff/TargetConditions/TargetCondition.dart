@@ -67,6 +67,7 @@ abstract class TargetCondition {
 
         notElement.onChange.listen((e) {
             syncNotFlagToForm();
+            scene.syncForm();
         });
     }
 

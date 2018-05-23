@@ -73,7 +73,7 @@ class TargetIsClassPlayer extends TargetConditionLiving {
           o.value = aspect.toString();
           o.text = aspect.toString();
           select.append(o);
-          if(aspect.toString() == aspect.toString()) {
+          if(aspect == className) {
               print("selecting ${o.value}");
               o.selected = true;
           }else {
