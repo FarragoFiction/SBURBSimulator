@@ -6,7 +6,6 @@ class TargetIsPlayer extends TargetConditionLiving {
     @override
     String name = "IsPlayer";
 
-    Item crown;
 
     @override
     String get importantWord => "N/A";

@@ -3,8 +3,15 @@ import 'dart:html';
 
 class TargetIsAspectPlayer extends TargetConditionLiving {
   TargetIsAspectPlayer(SerializableScene scene) : super(scene);
+
+  Aspect aspect;
+
   @override
   String name = "isAspectPlayer";
+
+  @override
+  String get importantWord => "$aspect";
+
 
   @override
   void copyFromJSON(JSONObject json) {
@@ -13,12 +20,23 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
 
   @override
   List<GameEntity> filter(List<GameEntity> list) {
-    // TODO: implement filter
+      list.removeWhere((GameEntity entity) {
+          if (entity is Player) {
+              if((entity as Player).aspect == aspect) {
+                  return false; //don't remove if i'm this aspect
+              }else {
+                  return true;
+              }
+          }else {
+            return true;
+          }
+      });
+      return list;
   }
 
   @override
   TargetCondition makeNewOfSameType() {
-    // TODO: implement makeNewOfSameType
+    return new TargetIsAspectPlayer(scene);
   }
 
   @override
