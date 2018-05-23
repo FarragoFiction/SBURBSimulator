@@ -108,5 +108,7 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
   void syncToForm() {
       aspectName = select.options[select.selectedIndex].value;
       scene.syncForm();
+      syncNotFlagToForm();
+
   }
 }

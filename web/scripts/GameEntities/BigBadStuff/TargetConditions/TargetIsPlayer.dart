@@ -35,6 +35,7 @@ class TargetIsPlayer extends TargetConditionLiving {
 
     @override
     void syncToForm() {
+        syncNotFlagToForm();
         scene.syncForm();
     }
     @override

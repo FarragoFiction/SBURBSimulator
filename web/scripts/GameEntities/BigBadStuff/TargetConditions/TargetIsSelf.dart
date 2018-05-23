@@ -35,6 +35,7 @@ class TargetIsSelf extends TargetConditionLiving {
 
     @override
     void syncToForm() {
+        syncNotFlagToForm();
         scene.syncForm();
     }
     @override

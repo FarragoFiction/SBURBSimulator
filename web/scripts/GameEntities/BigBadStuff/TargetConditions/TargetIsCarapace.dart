@@ -92,6 +92,8 @@ class TargetIsCarapace extends TargetConditionLiving {
   void syncToForm() {
     carapaceInitials = select.options[select.selectedIndex].value;
     //keeps the data boxes synced up the chain
+    syncNotFlagToForm();
+
     scene.syncForm();
   }
   @override

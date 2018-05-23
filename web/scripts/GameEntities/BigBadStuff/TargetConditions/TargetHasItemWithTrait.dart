@@ -123,6 +123,8 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
         String traitName = select.options[select.selectedIndex].value;
         itemTrait = allTraits[traitName];
         //keeps the data boxes synced up the chain
+        syncNotFlagToForm();
+
         scene.syncForm();
     }
     @override

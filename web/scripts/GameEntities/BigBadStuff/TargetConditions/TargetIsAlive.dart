@@ -32,7 +32,7 @@ class TargetIsAlive extends TargetConditionLiving {
 
     @override
     void syncFormToMe() {
-            //does nothing
+        syncNotFlagToForm();
     }
 
     @override

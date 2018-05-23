@@ -32,6 +32,8 @@ class TargetHasCrown extends TargetConditionLiving {
     @override
     void syncFormToMe() {
             //does nothing
+        syncNotFlagToForm();
+
     }
 
     @override

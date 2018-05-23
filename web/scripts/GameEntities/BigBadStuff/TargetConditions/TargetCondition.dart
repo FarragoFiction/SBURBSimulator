@@ -67,12 +67,7 @@ abstract class TargetCondition {
         notElement.append(subContainer);
 
         notElement.onChange.listen((e) {
-            if(notElement.checked) {
-                not = true;
-            }else {
-                not = false;
-            }
-            syncDescToDiv();
+            syncNotFlagToForm();
         });
     }
 
@@ -80,11 +75,17 @@ abstract class TargetCondition {
         descElement.setInnerHtml(desc);
     }
 
-    void syncNotFlagToForm(Element div) {
-
+    void syncNotFlagToForm() {
+        if(notElement.checked) {
+            not = true;
+        }else {
+            not = false;
+        }
+        syncDescToDiv();
     }
 
     void syncFormToNotFlag(Element div) {
+        notElement.checked = not;
 
     }
 

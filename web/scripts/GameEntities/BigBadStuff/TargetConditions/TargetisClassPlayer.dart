@@ -100,6 +100,7 @@ class TargetIsClassPlayer extends TargetConditionLiving {
 
   @override
   void syncToForm() {
+      syncNotFlagToForm();
       className = select.options[select.selectedIndex].value;
       scene.syncForm();
   }
