@@ -37,9 +37,7 @@ Future<Null> start() async {
   todo("maybe a bool for all target conditions for NOT. is NOT carapace, is NOT time player, etc.");
   todo("big bads need 0 or more custom fraymotif names");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
-
   todo("make scene effects like kill, empower, drain, cause strife, order (add one new high priority scene), control (overwrite their ai to be my ai), spawn Savior (like troll kid rock)");
-  todo("isAspect Player (any just checks for is a player)");
   todo("target condition: isMe (just makes a new list only containing game entity)");
   todo("isClass Player (any just checks for is a player)");
   todo("hasInterest (if they aren't a player automatically false)");
@@ -54,8 +52,6 @@ Future<Null> start() async {
   todo("isFromDystopia (i.e. Troll Empress)");
   todo("land condition: has trait X (like type of consorts or smells or whatever? think about this more) (use case: if a planet with crocodiles is destroyed, Crocodile Guardian arrives, pissed at Big Bads)");
   todo("maybe has word in land name (like Angels)");
-  todo("isDead (would that even work?)");
-  todo("isAlive (would that even work?)");
   todo("hasQuirk"); //bbb that hates unreadable quirks
   todo("isGodTier");
   todo("hasRelationshipWithMe (either 'any' or list of relatinships types");
@@ -73,11 +69,7 @@ Future<Null> start() async {
   todo("scenes can have different outcome by being duplicated more or less with different triggers and effects ");
   todo("target based on 'recently broke up' or 'recently got together' with someone");
 
-
-
-
   todo("big bads have intro mod flavor text (like dystopic empire)");
-  todo("scenes should have effects, summon scenes all start with 'is active'");
   todo("teach AB to write bigBadSummaries to cache");
   todo("have anything flagged as a big bad be something players try to strife, if it seems defeatable");
   todo("any CROWNED CARAPACE that has killed a player is flagged as big bad");

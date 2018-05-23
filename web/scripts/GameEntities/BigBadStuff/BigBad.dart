@@ -193,6 +193,7 @@ class BigBadForm {
 
     void drawAddStartButton() {
         startSceneSection = new DivElement();
+        startSceneSection.classes.add("startSection");
         startSceneSection.setInnerHtml("<h1>Start Scenes</h1><hr>Each Start Scene will have it's own flavor text and trigger conditions. A BigBad can only be summoned once per session.");
         startSceneSection.style.border = "1px solid black";
         startSceneSection.style.padding = "10px";
@@ -218,6 +219,7 @@ class BigBadForm {
 
     void drawAddSceneButton() {
         sceneSection = new DivElement();
+        sceneSection.classes.add("actionSection");
         sceneSection.setInnerHtml("<h1>Action Scenes</h1><hr>Each Action Scene will have it's own flavor text and trigger conditions. As long as a BigBad is active (usually through a StartScene) they will do actions.");
         sceneSection.style.border = "1px solid black";
         sceneSection.style.padding = "10px";
