@@ -29,6 +29,9 @@ class TargetHasCrown extends TargetConditionLiving {
         descElement = new DivElement();
         div.append(descElement);
         syncDescToDiv();
+        DivElement me = new DivElement();
+        div.append(me);
+        renderNotFlag(me);
         syncToForm();
     }
 

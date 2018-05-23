@@ -68,6 +68,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
         syncDescToDiv();
         DivElement me = new DivElement();
         div.append(me);
+        renderNotFlag(me);
 
         select = new SelectElement();
         select.size = 13;

@@ -28,6 +28,8 @@ class TargetIsPlayer extends TargetConditionLiving {
         div.append(descElement);
         syncDescToDiv();
         DivElement me = new DivElement();
+        renderNotFlag(me);
+
         div.append(me);
         syncToForm();
     }

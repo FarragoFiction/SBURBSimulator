@@ -25,9 +25,11 @@ class TargetIsAlive extends TargetConditionLiving {
 
     @override
     void renderForm(Element div) {
+        descElement = new DivElement();
+        div.append(descElement);
         DivElement me = new DivElement();
         div.append(me);
-        me.setInnerHtml("<br><br><br><b>Is Alive:</b><br>Target Entity must be ALIVE (zombies count). <br><br>");
+        renderNotFlag(me);
         syncToForm();
     }
 

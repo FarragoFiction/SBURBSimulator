@@ -63,6 +63,8 @@ class TargetIsClassPlayer extends TargetConditionLiving {
       syncDescToDiv();
       DivElement me = new DivElement();
       div.append(me);
+      renderNotFlag(me);
+
 
       select = new SelectElement();
       me.append(select);

@@ -31,6 +31,8 @@ class TargetIsDead extends TargetConditionLiving {
 
         DivElement me = new DivElement();
         div.append(me);
+        renderNotFlag(me);
+
         syncToForm();
     }
 
