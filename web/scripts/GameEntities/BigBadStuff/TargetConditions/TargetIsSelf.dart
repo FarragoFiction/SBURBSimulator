@@ -21,7 +21,7 @@ class TargetIsSelf extends TargetConditionLiving {
 
     TargetIsSelf(SerializableScene scene) : super(scene){
     }
-    
+
 
     @override
     TargetCondition makeNewOfSameType() {

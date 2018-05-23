@@ -61,13 +61,16 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
       List<String> allAspectsKnown = new List<String>.from(allAspects);
       allAspectsKnown.sort((String a, String b) => a.toLowerCase().compareTo(b.toLowerCase()));
 
-      DivElement me = new DivElement();
-      div.append(me);
-      renderNotFlag(me);
 
       descElement = new DivElement();
       div.append(descElement);
       syncDescToDiv();
+      
+      DivElement me = new DivElement();
+      div.append(me);
+      renderNotFlag(me);
+
+
 
       select = new SelectElement();
       me.append(select);
