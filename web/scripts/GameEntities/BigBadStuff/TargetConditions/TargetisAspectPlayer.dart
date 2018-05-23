@@ -3,7 +3,8 @@ import 'dart:html';
 
 class TargetIsAspectPlayer extends TargetConditionLiving {
   TargetIsAspectPlayer(SerializableScene scene) : super(scene);
-
+  @override
+  String name = "isAspectPlayer";
 
   @override
   void copyFromJSON(JSONObject json) {
