@@ -55,7 +55,33 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
 
   @override
   void renderForm(Element div) {
-    // TODO: implement renderForm
+      List<String> allAspectsKnown = new List<String>.from(allAspects);
+      allAspectsKnown.sort((String a, String b) => a.toLowerCase().compareTo(b.toLowerCase()));
+
+      DivElement me = new DivElement();
+      div.append(me);
+      me.setInnerHtml("<br>Target Entity must be a Player With Aspect: <br>");
+
+      select = new SelectElement();
+      select.size = 13;
+      me.append(select);
+      for(String aspect in allAspectsKnown) {
+          OptionElement o = new OptionElement();
+          o.value = aspect.toString();
+          o.text = aspect.toString();
+          select.append(o);
+          if(aspect.toString() == aspect.toString()) {
+              print("selecting ${o.value}");
+              o.selected = true;
+          }else {
+              //print("selecting ${o.value} is not ${itemTrait.toString()}");
+          }
+
+      }
+      if(aspectName == null) select.selectedIndex = 0;
+      select.onChange.listen((Event e) => syncToForm());
+      syncToForm();
+
   }
 
   @override

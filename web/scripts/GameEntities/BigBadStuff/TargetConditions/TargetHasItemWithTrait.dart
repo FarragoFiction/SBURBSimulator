@@ -83,6 +83,8 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
         syncToForm();
 
     }
+
+
     @override
     TargetCondition makeNewOfSameType() {
         return new TargetHasItemWithTrait(scene);
