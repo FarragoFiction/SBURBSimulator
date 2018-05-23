@@ -8,3 +8,4 @@ export "TargetIsAlive.dart";
 export "TargetIsDead.dart";
 export "TargetIsPlayer.dart";
 export "TargetIsAspectPlayer.dart";
+export "TargetIsClassPlayer.dart";
