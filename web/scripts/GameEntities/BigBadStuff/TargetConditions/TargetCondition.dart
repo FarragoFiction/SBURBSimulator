@@ -13,7 +13,9 @@ abstract class TargetCondition {
     String importantWord;
     //definitely replace this.
     String name = "Generic Trigger";
+    bool not;
     TargetCondition(SerializableScene scene);
+
 
 
 
@@ -21,6 +23,8 @@ abstract class TargetCondition {
     void syncToForm();
     void syncFormToMe();
     void copyFromJSON(JSONObject json);
+
+
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
@@ -37,8 +41,18 @@ abstract class TargetCondition {
 //i filter living things
 abstract class TargetConditionLiving extends TargetCondition {
   TargetConditionLiving(SerializableScene scene) : super(scene);
+  bool conditionForFilter(GameEntity item);
 
-  List<GameEntity> filter(List<GameEntity> list);
+
+  List<GameEntity> filter(List<GameEntity> list) {
+      if(not) {
+          list.removeWhere((GameEntity item) => !conditionForFilter(item));
+
+      }else {
+          list.removeWhere((GameEntity item) => conditionForFilter(item));
+      }
+      return list;
+  }
 
   static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner, Element triggersSection) {
       triggersSection.setInnerHtml("<h3>Entity Filters:   Applied In Order </h3><br>");
@@ -121,7 +135,19 @@ abstract class TargetConditionLiving extends TargetCondition {
 abstract class TargetConditionLand extends TargetCondition {
   TargetConditionLand(SerializableScene scene) : super(scene);
 
-  List<Land> filter(List<Land> list);
+
+  bool conditionForFilter(Land item);
+
+
+  List<Land> filter(List<Land> list) {
+      if(not) {
+          list.removeWhere((Land item) => !conditionForFilter(item));
+
+      }else {
+          list.removeWhere((Land item) => conditionForFilter(item));
+      }
+      return list;
+  }
 
   //need to figure out what type of trigger condition it is.
   static TargetCondition fromJSON(JSONObject json, SerializableScene scene) {

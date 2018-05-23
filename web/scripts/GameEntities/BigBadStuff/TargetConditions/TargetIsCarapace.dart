@@ -87,13 +87,13 @@ class TargetIsCarapace extends TargetConditionLiving {
   void copyFromJSON(JSONObject json) {
     carapaceInitials = json[TargetCondition.IMPORTANTWORD];
   }
+
   @override
-  List<GameEntity> filter(List<GameEntity> list) {
+  bool conditionForFilter(GameEntity item) {
     if(carapaceInitials != ANY) {
-      list.removeWhere((GameEntity item) => !(item is Carapace) || item.initials != carapaceInitials);
+      return !(item is Carapace) || item.initials != carapaceInitials;
     }else {
-      list.removeWhere((GameEntity item) => !(item is Carapace));
+      return !(item is Carapace);
     }
-    return list;
   }
 }

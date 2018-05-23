@@ -122,10 +122,9 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
         //print("key is $key and itemTraits are ${allTraits}");
         itemTrait = allTraits[key];
     }
-  @override
-  List<GameEntity> filter(List<GameEntity> list) {
-        //scene.session.logger.info("TEST before filtering on $this list is ${list.length}");
-      list.removeWhere((GameEntity entity) {
+
+    @override
+    bool conditionForFilter(GameEntity entity) {
         for(Item i in entity.sylladex) {
             bool ret = (i.hasTrait(itemTrait));
             if(ret == true) {
@@ -138,13 +137,10 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
         }
         bool ret = (entity.specibus.hasTrait(itemTrait));
         if(ret == true) {
-           // scene.session.logger.info("$entity has specibus with trait $itemTrait");
+            // scene.session.logger.info("$entity has specibus with trait $itemTrait");
             return false;
         }
         return true;
-      });
-        //scene.session.logger.info("TEST: after filtering on $this list is ${list.length}");
-
-        return list;
     }
+
 }

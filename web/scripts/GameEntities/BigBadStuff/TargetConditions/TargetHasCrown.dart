@@ -45,9 +45,9 @@ class TargetHasCrown extends TargetConditionLiving {
     void copyFromJSON(JSONObject json) {
         //nothing to do
     }
+
     @override
-    List<GameEntity> filter(List<GameEntity> list) {
-        list.removeWhere((GameEntity item) => item.crowned == null);
-        return list;
+    bool conditionForFilter(GameEntity item) {
+        return item.crowned == null;
     }
 }

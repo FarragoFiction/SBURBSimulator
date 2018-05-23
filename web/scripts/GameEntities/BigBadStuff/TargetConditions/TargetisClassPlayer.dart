@@ -32,21 +32,19 @@ class TargetIsClassPlayer extends TargetConditionLiving {
       className = json[TargetCondition.IMPORTANTWORD];
   }
 
-  @override
-  List<GameEntity> filter(List<GameEntity> list) {
-      list.removeWhere((GameEntity entity) {
-          if (entity is Player) {
-              if((entity as Player).class_name.name == className) {
-                  return false; //don't remove if i'm this aspect
-              }else {
-                  return true;
-              }
-          }else {
+
+    @override
+    bool conditionForFilter(GameEntity item) {
+        if (item is Player) {
+            if((item as Player).class_name.name == className) {
+                return false; //don't remove if i'm this aspect
+            }else {
+                return true;
+            }
+        }else {
             return true;
-          }
-      });
-      return list;
-  }
+        }
+}
 
   @override
   TargetCondition makeNewOfSameType() {

@@ -32,20 +32,18 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
       aspectName = json[TargetCondition.IMPORTANTWORD];
   }
 
+
   @override
-  List<GameEntity> filter(List<GameEntity> list) {
-      list.removeWhere((GameEntity entity) {
-          if (entity is Player) {
-              if((entity as Player).aspect.name == aspectName) {
-                  return false; //don't remove if i'm this aspect
-              }else {
-                  return true;
-              }
+  bool conditionForFilter(GameEntity item) {
+      if (item is Player) {
+          if((item as Player).aspect.name == aspectName) {
+              return false; //don't remove if i'm this aspect
           }else {
-            return true;
+              return true;
           }
-      });
-      return list;
+      }else {
+          return true;
+      }
   }
 
   @override

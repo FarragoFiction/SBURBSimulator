@@ -43,9 +43,9 @@ class TargetIsPlayer extends TargetConditionLiving {
     void copyFromJSON(JSONObject json) {
         //nothing to do
     }
+
     @override
-    List<GameEntity> filter(List<GameEntity> list) {
-        list.removeWhere((GameEntity item) => !(item is Player));
-        return list;
+    bool conditionForFilter(GameEntity item) {
+        return !(item is Player);
     }
 }
