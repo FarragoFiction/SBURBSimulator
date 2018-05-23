@@ -241,7 +241,7 @@ void syncForm() {
       //TODO should i also get party members for those npcs? otherwise can't get brain ghosts and robots and the like
       livingTargets.addAll(session.players);
       landTargets = session.allLands;
-      
+
       livingTargets = shuffle(session.rand, livingTargets);
       landTargets = shuffle(session.rand, landTargets);
 
