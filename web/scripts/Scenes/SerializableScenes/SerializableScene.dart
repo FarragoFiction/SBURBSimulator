@@ -185,11 +185,9 @@ void syncForm() {
             JSONObject j = new JSONObject();
             j.json = d;
             TargetCondition tc = TargetConditionLiving.fromJSON(j, this);
-            print("TEST BULLSHIT: $gameEntity target condition for ${gameEntity} is $tc, j was $j");
             triggerConditionsLiving.add(tc);
         }
 
-        print("TEST BULLSHIT: $gameEntity loaded $triggerConditionsLiving from JSON");
     }
 
 
@@ -229,7 +227,6 @@ void syncForm() {
         json["effectsForLiving"] = livingEffectsArray.toString();
         json["effectsForLands"] = landEffectsArray.toString();
 
-        print(json);
         return json;
     }
 
@@ -251,7 +248,6 @@ void syncForm() {
 
 
       for(TargetConditionLiving tc in triggerConditionsLiving) {
-          print("checking target condition $tc in big bad $gameEntity");
           livingTargets = tc.filter(livingTargets);
       }
       if(triggerConditionsLiving.isEmpty) livingTargets.clear();

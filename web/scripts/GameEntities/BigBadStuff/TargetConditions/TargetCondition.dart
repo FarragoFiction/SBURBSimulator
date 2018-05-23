@@ -54,7 +54,6 @@ abstract class TargetCondition {
     void copyFromJSON(JSONObject json);
 
     void renderNotFlag(Element div) {
-        print("rendering a 'not' flag");
         DivElement subContainer = new DivElement();
         div.append(subContainer);
         LabelElement nameLabel = new LabelElement();
@@ -148,7 +147,6 @@ abstract class TargetConditionLiving extends TargetCondition {
                   TargetCondition newCondition = tc.makeNewOfSameType();
                   newCondition.scene = owner;
                   owner.triggerConditionsLiving.add(newCondition);
-                  print("adding new condition to $owner");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
               }
@@ -261,7 +259,6 @@ abstract class TargetConditionLand extends TargetCondition {
                   TargetCondition newCondition = tc.makeNewOfSameType();
                   newCondition.scene = owner;
                       owner.triggerConditionsLand.add(newCondition);
-                  print("adding new condition to $owner");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
               }
