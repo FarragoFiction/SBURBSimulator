@@ -22,7 +22,7 @@ class TargetIsPlayer extends TargetConditionLiving {
     void renderForm(Element div) {
         DivElement me = new DivElement();
         div.append(me);
-        me.setInnerHtml("<br><br><br><b>Is Alive:</b><br>Target Entity must be DEAD (zombies dont count). <br><br>");
+        me.setInnerHtml("<br><br><br><b>Is Player:</b><br>Target Entity must be a Player (or the clone of a Player). <br><br>");
         syncToForm();
     }
 
@@ -46,7 +46,7 @@ class TargetIsPlayer extends TargetConditionLiving {
     }
     @override
     List<GameEntity> filter(List<GameEntity> list) {
-        list.removeWhere((GameEntity item) => (item is Player));
+        list.removeWhere((GameEntity item) => !(item is Player));
         return list;
     }
 }
