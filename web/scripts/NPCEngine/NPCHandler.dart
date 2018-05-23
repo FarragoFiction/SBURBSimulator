@@ -101,7 +101,7 @@ class NPCHandler
     }
 
     void setupBigBads() {
-        //print("setting up big bads from ${bigBadsFromFile.length} data strings");
+        print("TEST BULLSHIT: setting up big bads from ${bigBadsFromFile.length} data strings");
         for(String line in bigBadsFromFile) {
             BigBad newBB = BigBad.fromDataString(line, session);
             //print("made a new BB ${newBB}");
