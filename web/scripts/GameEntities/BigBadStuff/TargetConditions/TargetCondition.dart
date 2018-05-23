@@ -35,7 +35,20 @@ abstract class TargetCondition {
 
 
 
-    void renderForm(Element div);
+    @override
+    void renderForm(Element div) {
+        descElement = new DivElement();
+        div.append(descElement);
+        syncDescToDiv();
+
+        DivElement me = new DivElement();
+        div.append(me);
+        renderNotFlag(me);
+
+        syncToForm();
+    }
+
+
     void syncToForm();
     void syncFormToMe();
     void copyFromJSON(JSONObject json);

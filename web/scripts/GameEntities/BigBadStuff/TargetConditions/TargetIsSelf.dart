@@ -21,20 +21,7 @@ class TargetIsSelf extends TargetConditionLiving {
 
     TargetIsSelf(SerializableScene scene) : super(scene){
     }
-
-
-    @override
-    void renderForm(Element div) {
-        descElement = new DivElement();
-        div.append(descElement);
-        DivElement me = new DivElement();
-        renderNotFlag(me);
-
-        div.append(me);
-
-        syncDescToDiv();
-        syncToForm();
-    }
+    
 
     @override
     TargetCondition makeNewOfSameType() {

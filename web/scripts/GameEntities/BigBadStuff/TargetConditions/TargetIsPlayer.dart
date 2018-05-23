@@ -22,17 +22,6 @@ class TargetIsPlayer extends TargetConditionLiving {
     }
 
 
-    @override
-    void renderForm(Element div) {
-        descElement = new DivElement();
-        div.append(descElement);
-        syncDescToDiv();
-        DivElement me = new DivElement();
-        renderNotFlag(me);
-
-        div.append(me);
-        syncToForm();
-    }
 
     @override
     TargetCondition makeNewOfSameType() {

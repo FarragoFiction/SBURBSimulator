@@ -23,15 +23,7 @@ class TargetIsAlive extends TargetConditionLiving {
     }
 
 
-    @override
-    void renderForm(Element div) {
-        descElement = new DivElement();
-        div.append(descElement);
-        DivElement me = new DivElement();
-        div.append(me);
-        renderNotFlag(me);
-        syncToForm();
-    }
+
 
     @override
     TargetCondition makeNewOfSameType() {
