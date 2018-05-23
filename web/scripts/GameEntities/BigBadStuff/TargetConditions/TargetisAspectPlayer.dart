@@ -4,6 +4,10 @@ import 'dart:html';
 class TargetIsAspectPlayer extends TargetConditionLiving {
   TargetIsAspectPlayer(SerializableScene scene) : super(scene);
 
+
+  SelectElement select;
+
+  
   String aspectName;
   List<String> _allAspects  = new List<String>();
 
@@ -61,6 +65,7 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
 
   @override
   void syncToForm() {
-    // TODO: implement syncToForm
+      aspectName = select.options[select.selectedIndex].value;
+      scene.syncForm();
   }
 }

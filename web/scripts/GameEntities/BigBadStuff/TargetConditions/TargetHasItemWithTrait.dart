@@ -53,8 +53,8 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
 
     @override
     void renderForm(Element div) {
-        List<ItemTrait> allTraitsKnown = new List.from(ItemTraitFactory.allTraits);
-        allTraitsKnown.sort((a, b) => a.toString().toLowerCase().compareTo(b.toString().toLowerCase()));
+        List<ItemTrait> allTraitsKnown = new List<ItemTrait>.from(ItemTraitFactory.allTraits);
+        allTraitsKnown.sort((ItemTrait a, ItemTrait b) => a.toString().toLowerCase().compareTo(b.toString().toLowerCase()));
 
         Session session = scene.session;
         DivElement me = new DivElement();
@@ -79,7 +79,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
 
         }
         if(itemTrait == null) select.selectedIndex = 0;
-        select.onChange.listen((e) => syncToForm());
+        select.onChange.listen((Event e) => syncToForm());
         syncToForm();
 
     }
