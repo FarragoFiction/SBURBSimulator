@@ -54,7 +54,9 @@ abstract class TargetCondition {
     void copyFromJSON(JSONObject json);
 
     void renderNotFlag(Element div) {
+        print("rendering a 'not' flag");
         DivElement subContainer = new DivElement();
+        div.append(subContainer);
         LabelElement nameLabel = new LabelElement();
         nameLabel.text = "Invert Target";
         notElement = new CheckboxInputElement();
