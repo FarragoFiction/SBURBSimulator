@@ -26,6 +26,11 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
   @override
   String get importantWord => "$aspectName";
 
+  @override
+  String descText = "<br>Target Entity must be a Player With Aspect: <br>";
+  @override
+  String notDescText = "<br>Target Entity must be a Player WithOUT Aspect: <br>";
+
 
   @override
   void copyFromJSON(JSONObject json) {
@@ -58,7 +63,9 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
 
       DivElement me = new DivElement();
       div.append(me);
-      me.setInnerHtml("<br>Target Entity must be a Player With Aspect: <br>");
+      descElement = new DivElement();
+      div.append(descElement);
+      syncDescToDiv();
 
       select = new SelectElement();
       me.append(select);

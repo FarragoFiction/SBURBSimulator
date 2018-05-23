@@ -6,6 +6,11 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     static String ITEMTRAITNAME = "ITEMTRAITNAME";
     static String ITEMAME = "ITEMNAME";
 
+    @override
+    String descText = "<br>Target Entity must have an item with Trait: <br>";
+    @override
+    String notDescText = "<br>Target Entity must NOT have an item with Trait: <br>";
+
     Map<String, ItemTrait> _allTraits  = new Map<String, ItemTrait>();
 
     Map<String, ItemTrait> get allTraits {
@@ -57,9 +62,12 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
         allTraitsKnown.sort((ItemTrait a, ItemTrait b) => a.toString().toLowerCase().compareTo(b.toString().toLowerCase()));
 
         Session session = scene.session;
+
+        descElement = new DivElement();
+        div.append(descElement);
+        syncDescToDiv();
         DivElement me = new DivElement();
         div.append(me);
-        me.setInnerHtml("<br>Target Entity must have an item with Trait: <br>");
 
         select = new SelectElement();
         select.size = 13;

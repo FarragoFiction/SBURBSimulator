@@ -13,7 +13,23 @@ abstract class TargetCondition {
     String importantWord;
     //definitely replace this.
     String name = "Generic Trigger";
-    bool not;
+    bool not = false;
+    CheckboxInputElement notElement;
+
+    DivElement descElement;
+
+    String descText = "is generic";
+    String notDescText = "is NOT generic";
+
+    String get desc {
+        if(not) {
+            return notDescText;
+        }else {
+            return descText;
+        }
+    }
+
+
     TargetCondition(SerializableScene scene);
 
 
@@ -24,11 +40,50 @@ abstract class TargetCondition {
     void syncFormToMe();
     void copyFromJSON(JSONObject json);
 
+    void renderNotFlag(Element div) {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Invert Target";
+        notElement = new CheckboxInputElement();
+        notElement.checked = scene.targetOne;
+
+        subContainer.append(nameLabel);
+        subContainer.append(notElement);
+        notElement.append(subContainer);
+
+        notElement.onChange.listen((e) {
+            if(notElement.checked) {
+                not = true;
+            }else {
+                not = false;
+            }
+            syncDescToDiv();
+        });
+    }
+
+    void syncDescToDiv() {
+        descElement.setInnerHtml(desc);
+    }
+
+    void syncNotFlagToForm(Element div) {
+
+    }
+
+    void syncFormToNotFlag(Element div) {
+
+    }
+
+    void copyNotFlagFromJSON(JSONObject json) {
+        String notString = json["NOT"];
+        if(notString == "true") not = true;
+    }
+
 
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json[IMPORTANTWORD] = importantWord;
+        json["NOT"] = not.toString();
         json["name"] = name;
         return json;
     }
@@ -106,6 +161,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       for(TargetCondition tc in allConditions) {
           if(tc.name == name) {
               TargetCondition ret = tc.makeNewOfSameType();
+              ret.copyNotFlagFromJSON(json);
               ret.copyFromJSON(json);
               ret.scene = scene;
               return ret;

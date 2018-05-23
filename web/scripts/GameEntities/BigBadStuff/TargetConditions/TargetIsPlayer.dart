@@ -6,6 +6,11 @@ class TargetIsPlayer extends TargetConditionLiving {
     @override
     String name = "IsPlayer";
 
+    @override
+    String descText = "<br><br><br><b>Is Player:</b><br>Target Entity must be a Player (or the clone of a player). <br><br>";
+    @override
+    String notDescText = "<br><br><br><b>Is NOT Player:</b><br>Target Entity must NOT be a Player (or the clone of a player). <br><br>";
+
 
     @override
     String get importantWord => "N/A";
@@ -19,9 +24,11 @@ class TargetIsPlayer extends TargetConditionLiving {
 
     @override
     void renderForm(Element div) {
+        descElement = new DivElement();
+        div.append(descElement);
+        syncDescToDiv();
         DivElement me = new DivElement();
         div.append(me);
-        me.setInnerHtml("<br><br><br><b>Is Player:</b><br>Target Entity must be a Player (or the clone of a Player). <br><br>");
         syncToForm();
     }
 

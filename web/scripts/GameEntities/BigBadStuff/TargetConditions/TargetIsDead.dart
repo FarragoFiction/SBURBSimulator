@@ -6,6 +6,11 @@ class TargetIsDead extends TargetConditionLiving {
     @override
     String name = "IsDead";
 
+    @override
+    String descText = "<br><br><br><b>Is Dead:</b><br>Target Entity must be DEAD (zombies dont count). <br><br>";
+    @override
+    String notDescText = "<br><br><br><b>Is NOT Dead:</b><br>Target Entity must be NOT DEAD (zombies count). <br><br>";
+
     Item crown;
 
     @override
@@ -20,9 +25,12 @@ class TargetIsDead extends TargetConditionLiving {
 
     @override
     void renderForm(Element div) {
+        descElement = new DivElement();
+        div.append(descElement);
+        syncDescToDiv();
+
         DivElement me = new DivElement();
         div.append(me);
-        me.setInnerHtml("<br><br><br><b>Is Alive:</b><br>Target Entity must be DEAD (zombies dont count). <br><br>");
         syncToForm();
     }
 

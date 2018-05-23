@@ -3,7 +3,10 @@ import 'dart:html';
 
 class TargetIsClassPlayer extends TargetConditionLiving {
     TargetIsClassPlayer(SerializableScene scene) : super(scene);
-
+    @override
+    String descText = "<br>Target Entity must be a Player With Class: <br>";
+    @override
+    String notDescText = "<br>Target Entity must be a Player WithOUT Class: <br>";
 
   SelectElement select;
 
@@ -55,10 +58,11 @@ class TargetIsClassPlayer extends TargetConditionLiving {
   void renderForm(Element div) {
       List<String> allClassesKnown = new List<String>.from(allClasses);
       allClassesKnown.sort((String a, String b) => a.toLowerCase().compareTo(b.toLowerCase()));
-
+      descElement = new DivElement();
+      div.append(descElement);
+      syncDescToDiv();
       DivElement me = new DivElement();
       div.append(me);
-      me.setInnerHtml("<br>Target Entity must be a Player With Aspect: <br>");
 
       select = new SelectElement();
       me.append(select);

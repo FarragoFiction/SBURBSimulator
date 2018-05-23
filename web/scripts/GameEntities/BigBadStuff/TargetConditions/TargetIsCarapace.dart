@@ -11,6 +11,11 @@ class TargetIsCarapace extends TargetConditionLiving {
   String name = "IsCarapace";
 
   @override
+  String descText = "<br><br><br><b>Is Carapace:</b><br>Target Entity must be a carapace. <br><br>";
+  @override
+  String notDescText = "<br><br><br><b>Is NOT Carapace:</b><br>Target Entity must NOT be a carapace. <br><br>";
+
+  @override
   String get importantWord => carapaceInitials;
 
   String carapaceInitials;
@@ -27,9 +32,13 @@ class TargetIsCarapace extends TargetConditionLiving {
     List<GameEntity> allCarapaces = new List.from(session.prospit.associatedEntities);
     allCarapaces.addAll(session.derse.associatedEntities);
     print("all carapaces is $allCarapaces");
+
+    descElement = new DivElement();
+    div.append(descElement);
+    syncDescToDiv();
+
     DivElement me = new DivElement();
     div.append(me);
-    me.setInnerHtml("<br>Target must be a carapace: <br>");
 
     select = new SelectElement();
     select.size = 13;
