@@ -57,12 +57,16 @@ class SessionForm {
                 if (isActive.checked) {
                     BigBad bigBad = new BigBad("N/A", session);
                     bigBad.copyFromDataString(badArea.value);
+                    NPCHandler.bigBadsFromFile.add(badArea.value);
                     bigBad.active = true;
                     session.activatedNPCS.add(bigBad);
                     window.alert("Added to active NPCs!!!");
 
                 }else {
                     NPCHandler.bigBadsFromFile.add(badArea.value);
+                    BigBad bigBad = new BigBad("N/A", session);
+                    bigBad.copyFromDataString(badArea.value);
+                    session.bigBads.add(bigBad);
                     window.alert("Added to potential Big Bads!!!");
                 }
 

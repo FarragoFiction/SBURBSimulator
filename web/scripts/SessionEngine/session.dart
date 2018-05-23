@@ -223,17 +223,14 @@ class Session {
 
     Session(int this.session_id) {
         globalInit();
+        logger = Logger.get("Session: $session_id", false);
+
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
         npcHandler.setupNpcs();
         mutator = new SessionMutator();
         stats.initialGameEntityId = GameEntity.getIDCopy();
-        ;
-        ////;
-
-        logger = Logger.get("Session: $session_id", false);
-
         mutator.syncToSession(this);
         logger.info("Session made with ${sessionHealth} health.");
        resetAvailableClasspects();
@@ -813,9 +810,9 @@ class Session {
                 //handles activation and rendering
                 g.summonTriggered();
             }
-            logger.info("done processing $g showing up, big bads is $bigBads");
+           // logger.info("done processing $g showing up, big bads is $bigBads");
         }
-        logger.info("done processing big bads showing up");
+        //logger.info("done processing big bads showing up");
 
         for (num i = 0; i < this.deathScenes.length; i++) {
             Scene s = this.deathScenes[i];

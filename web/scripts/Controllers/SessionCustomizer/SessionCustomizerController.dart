@@ -67,7 +67,7 @@ void makeStartButton() {
     container.append(startButton);
     startButton.onClick.listen((MouseEvent e){
         session.logger.info("DEBUG CUSTOM SESSION: starting session from button press");
-        container.appendHtml("Starting a session with ${session.bigBads.length} big bads.");
+        container.appendHtml("Starting a session with ${session.bigBads.length} possible big bads, like ${session.bigBads}, from file: ${NPCHandler.bigBadsFromFile}");
         session.startSession();
     });
 }

@@ -91,6 +91,7 @@ class NPCHandler
     }
 
    void setupNpcs() {
+        print("TEST BULLSHIT: setting up ncps");
         setupBigBads();
     }
 
@@ -101,10 +102,10 @@ class NPCHandler
     }
 
     void setupBigBads() {
-        print("TEST BULLSHIT: setting up big bads from ${bigBadsFromFile.length} data strings");
+        session.logger.info("TEST BULLSHIT: setting up big bads from ${bigBadsFromFile.length} data strings");
         for(String line in bigBadsFromFile) {
             BigBad newBB = BigBad.fromDataString(line, session);
-            //print("made a new BB ${newBB}");
+            print("made a new BB ${newBB}");
             bigBads.add(newBB);
         }
     }
