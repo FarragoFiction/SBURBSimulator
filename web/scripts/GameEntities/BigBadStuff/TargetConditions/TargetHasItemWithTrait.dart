@@ -111,6 +111,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
                 return;
             }
         }
+        syncFormToNotFlag();
     }
 
     @override

@@ -102,6 +102,8 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
               return;
           }
       }
+      syncFormToNotFlag();
+
   }
 
   @override

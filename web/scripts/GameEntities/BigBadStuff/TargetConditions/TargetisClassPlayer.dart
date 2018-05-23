@@ -96,6 +96,8 @@ class TargetIsClassPlayer extends TargetConditionLiving {
               return;
           }
       }
+      syncFormToNotFlag();
+
   }
 
   @override

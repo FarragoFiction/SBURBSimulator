@@ -84,7 +84,7 @@ abstract class TargetCondition {
         syncDescToDiv();
     }
 
-    void syncFormToNotFlag(Element div) {
+    void syncFormToNotFlag() {
         notElement.checked = not;
 
     }

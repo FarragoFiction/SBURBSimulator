@@ -31,13 +31,12 @@ class TargetHasCrown extends TargetConditionLiving {
 
     @override
     void syncFormToMe() {
-            //does nothing
-        syncNotFlagToForm();
-
+        syncFormToNotFlag();
     }
 
     @override
     void syncToForm() {
+        syncNotFlagToForm();
         scene.syncForm();
     }
     @override

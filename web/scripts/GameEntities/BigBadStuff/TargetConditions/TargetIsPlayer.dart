@@ -30,7 +30,7 @@ class TargetIsPlayer extends TargetConditionLiving {
 
     @override
     void syncFormToMe() {
-            //does nothing
+        syncFormToNotFlag();
     }
 
     @override

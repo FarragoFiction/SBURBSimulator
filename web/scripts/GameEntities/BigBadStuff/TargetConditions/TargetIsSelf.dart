@@ -30,7 +30,7 @@ class TargetIsSelf extends TargetConditionLiving {
 
     @override
     void syncFormToMe() {
-            //does nothing
+        syncFormToNotFlag();
     }
 
     @override

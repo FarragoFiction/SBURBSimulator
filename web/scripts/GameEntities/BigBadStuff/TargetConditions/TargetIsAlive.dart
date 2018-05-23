@@ -32,11 +32,12 @@ class TargetIsAlive extends TargetConditionLiving {
 
     @override
     void syncFormToMe() {
-        syncNotFlagToForm();
+        syncFormToNotFlag();
     }
 
     @override
     void syncToForm() {
+        syncNotFlagToForm();
         scene.syncForm();
     }
     @override

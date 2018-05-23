@@ -80,6 +80,8 @@ class TargetIsCarapace extends TargetConditionLiving {
         return;
       }
     }
+    syncFormToNotFlag();
+
     if(select.selectedIndex == -1) select.options[0].selected = true;
   }
 
