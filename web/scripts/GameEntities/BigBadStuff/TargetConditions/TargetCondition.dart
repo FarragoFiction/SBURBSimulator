@@ -41,10 +41,7 @@ abstract class TargetConditionLiving extends TargetCondition {
   List<GameEntity> filter(List<GameEntity> list);
 
   static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner, Element triggersSection) {
-      DivElement container = new DivElement();
-
-      triggersSection.setInnerHtml("<h3>Entity Filters:</h3>Filters Applied In Order (So i suggest you pick the most agressive condition first)<br>");
-      div.append(container);
+      triggersSection.setInnerHtml("<h3>Entity Filters:   Applied In Order </h3><br>");
       List<TargetCondition> conditions;
 
       conditions = TargetConditionLiving.listPossibleTriggers(owner);
@@ -73,8 +70,8 @@ abstract class TargetConditionLiving extends TargetCondition {
           }
       });
 
-      container.append(select);
-      container.append(button);
+      triggersSection.append(select);
+      triggersSection.append(button);
 
       //render the ones the big bad starts with
       List<TargetCondition> all;
@@ -107,6 +104,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsAlive(scene));
       ret.add(new TargetIsDead(scene));
       ret.add(new TargetIsPlayer(scene));
+      ret.add(new TargetIsAspectPlayer(scene));
       ret.add(new TargetHasItemWithTrait(scene));
       ret.add(new TargetHasCrown(scene));
       ret.add(new TargetIsCarapace(scene));
@@ -142,10 +140,8 @@ abstract class TargetConditionLand extends TargetCondition {
   }
 
   static SelectElement drawSelectTriggerConditions(Element div, SerializableScene owner, Element triggersSection) {
-      DivElement container = new DivElement();
 
-      triggersSection.setInnerHtml("<h3>Land Filters:</h3>Filters Applied In Order (So i suggest you pick the most agressive condition first)<br>");
-      div.append(container);
+      triggersSection.setInnerHtml("<h3>Land Filters: Applied In Order </h3><br>");
       List<TargetCondition> conditions;
       conditions = TargetConditionLand.listPossibleTriggers(owner);
       SelectElement select = new SelectElement();
@@ -172,8 +168,8 @@ abstract class TargetConditionLand extends TargetCondition {
           }
       });
 
-      container.append(select);
-      container.append(button);
+      triggersSection.append(select);
+      triggersSection.append(button);
 
       //render the ones the big bad starts with
       List<TargetCondition> all;

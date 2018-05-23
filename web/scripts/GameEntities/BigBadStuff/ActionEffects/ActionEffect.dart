@@ -56,10 +56,7 @@ abstract class EffectLand extends ActionEffect {
 
 
   static SelectElement drawSelectActionEffects(Element div, SerializableScene owner, Element triggersSection) {
-      DivElement container = new DivElement();
-
-      triggersSection.setInnerHtml("<h3>Land Effects:</h3>Effects Applied In Order<br>");
-      div.append(container);
+      triggersSection.setInnerHtml("<h3>Land Effects: Applied In Order<br></h3>");
       List<ActionEffect> effects;
       effects = EffectLand.listPossibleEffects(owner);
       SelectElement select = new SelectElement();
@@ -86,8 +83,8 @@ abstract class EffectLand extends ActionEffect {
           }
       });
 
-      container.append(select);
-      container.append(button);
+      triggersSection.append(select);
+      triggersSection.append(button);
 
       //render the ones the big bad starts with
       List<ActionEffect> all;
@@ -138,10 +135,7 @@ abstract class EffectEntity extends ActionEffect {
 
 
   static SelectElement drawSelectActionEffects(Element div, SerializableScene owner, Element triggersSection) {
-      DivElement container = new DivElement();
-
-      triggersSection.setInnerHtml("<h3>Entity Effects:</h3>Effects Applied In Order.<br>");
-      div.append(container);
+      triggersSection.setInnerHtml("<h3>Entity Effects: Applied In Order.</h3><br>");
       List<ActionEffect> effects;
       effects = EffectEntity.listPossibleEffects(owner);
       SelectElement select = new SelectElement();
@@ -168,8 +162,8 @@ abstract class EffectEntity extends ActionEffect {
           }
       });
 
-      container.append(select);
-      container.append(button);
+      triggersSection.append(select);
+      triggersSection.append(button);
 
       //render the ones the big bad starts with
       List<ActionEffect> all;

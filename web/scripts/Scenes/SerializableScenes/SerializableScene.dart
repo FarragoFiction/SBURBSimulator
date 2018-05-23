@@ -282,9 +282,8 @@ class SceneForm {
 
     SceneForm(SerializableScene this.scene, parentContainer) {
         container = new DivElement();
-        container.style.border = "2px solid black";
-        container.style.padding = "10px";
-        container.style.marginTop = "10px";
+        container.classes.add("SceneDiv");
+
         parentContainer.append(container);
 
     }
@@ -333,10 +332,13 @@ class SceneForm {
 
     void drawAddTriggerConditionButton() {
         //trigger conditions know how to add their own damn selves
+        DivElement tmp = new DivElement();
+        tmp.classes.add("filterSection");
         targetLandSection = new DivElement();
         targetLivingSection = new DivElement();
-        container.append(targetLivingSection);
-        container.append(targetLandSection);
+        tmp.append(targetLivingSection);
+        tmp.append(targetLandSection);
+        container.append(tmp);
 
         TargetConditionLiving.drawSelectTriggerConditions(container, scene, targetLivingSection);
         TargetConditionLand.drawSelectTriggerConditions(container, scene, targetLandSection);
@@ -344,10 +346,14 @@ class SceneForm {
     }
 
     void drawAddActionEffectButton() {
+        DivElement tmp = new DivElement();
+        tmp.classes.add("effectSection");
         effectLandSection = new DivElement();
         effectLivingSection = new DivElement();
-        container.append(effectLivingSection);
-        container.append(effectLandSection);
+
+        tmp.append(effectLivingSection);
+        tmp.append(effectLandSection);
+        container.append(tmp);
 
         //action effects know how to add their own damn selves
         EffectEntity.drawSelectActionEffects(container, scene,effectLivingSection);

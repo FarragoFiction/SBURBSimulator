@@ -14,7 +14,7 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
   List<String> get allAspects {
       //print("getting allTraits");
       if(_allAspects == null || _allAspects.isEmpty) {
-          _allAspects = Aspects.names;
+          _allAspects = new List<String>.from(Aspects.names);
       }
       return _allAspects;
   }
@@ -63,7 +63,6 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
       me.setInnerHtml("<br>Target Entity must be a Player With Aspect: <br>");
 
       select = new SelectElement();
-      select.size = 13;
       me.append(select);
       for(String aspect in allAspectsKnown) {
           OptionElement o = new OptionElement();
