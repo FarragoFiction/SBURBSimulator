@@ -6,6 +6,6 @@ export "TargetHasItemWithTrait.dart";
 export "TargetHasCrown.dart";
 export "TargetIsAlive.dart";
 export "TargetIsPlayer.dart";
-export "BLOWAWAY.dart";
+export "TargetIsAspectPlayer.dart";
 export "TargetIsClassPlayer.dart";
 export "TargetIsSelf.dart";
