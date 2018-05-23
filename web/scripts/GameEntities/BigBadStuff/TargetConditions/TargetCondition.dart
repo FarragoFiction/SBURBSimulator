@@ -55,7 +55,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       }
 
       ButtonElement button = new ButtonElement();
-      button.text = "Add Living Target Condition";
+      button.text = "Add Entity Target Condition";
       button.onClick.listen((e) {
           String type = select.options[select.selectedIndex].value;
           for(TargetCondition tc in conditions) {
