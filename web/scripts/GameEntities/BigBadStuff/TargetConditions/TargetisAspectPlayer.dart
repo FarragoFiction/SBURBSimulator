@@ -7,7 +7,7 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
 
   SelectElement select;
 
-  
+
   String aspectName;
   List<String> _allAspects  = new List<String>();
 
@@ -60,7 +60,13 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
 
   @override
   void syncFormToMe() {
-    // TODO: implement syncFormToMe
+      print("syncing isAspect form with aspect of $aspectName");
+      for(OptionElement o in select.options) {
+          if(o.value == aspectName) {
+              o.selected = true;
+              return;
+          }
+      }
   }
 
   @override
