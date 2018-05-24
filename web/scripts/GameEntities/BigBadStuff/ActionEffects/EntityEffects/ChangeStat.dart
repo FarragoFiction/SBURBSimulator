@@ -9,11 +9,10 @@ class ChangeStat extends EffectEntity {
 
 
 
-    int amountIndex = 0;
     List<int> amounts = <int>[-13000,-1300,-130, 130,1300,13000];
 
     @override
-    int get importantInt => amounts[amountIndex];
+    int  importantInt = 0;
 
     @override
     String name = "ChangeStat";
@@ -24,7 +23,7 @@ class ChangeStat extends EffectEntity {
   void copyFromJSON(JSONObject json) {
      // print("copying from json");
       importantWord = json[ActionEffect.IMPORTANTWORD];
-      amountIndex = amounts.indexOf(int.parse(json[ActionEffect.IMPORTANTINT]));
+      importantInt = (int.parse(json[ActionEffect.IMPORTANTINT]));
   }
 
   @override
@@ -37,7 +36,7 @@ class ChangeStat extends EffectEntity {
       }
 
       for(OptionElement o in selectAmount.options) {
-          if(int.parse(o.value) == amounts[amountIndex]) {
+          if(int.parse(o.value) == importantInt) {
               o.selected = true;
               return;
           }
@@ -80,7 +79,7 @@ class ChangeStat extends EffectEntity {
             o.value = "$amount";
             o.text = "$amount";
             selectAmount.append(o);
-            if(amount == amounts[amountIndex]) {
+            if(amount == importantInt) {
                 print("selecting ${o.value}");
                 o.selected = true;
             }else {
@@ -95,7 +94,7 @@ class ChangeStat extends EffectEntity {
   @override
   void syncToForm() {
       importantWord = selectStat.options[selectStat.selectedIndex].value;
-      amountIndex = amounts.indexOf(int.parse(selectAmount.options[selectStat.selectedIndex].value));
+      importantInt = (int.parse(selectAmount.options[selectStat.selectedIndex].value));
 
       scene.syncForm();
   }
