@@ -3,21 +3,21 @@ import 'dart:html';
 
 //no chance to survive, no strife no anything. it's a red miles situation
 //not really any details, or modifiers
-class RaiseStat extends EffectEntity {
+class ChangeStat extends EffectEntity {
     SelectElement selectStat;
     SelectElement selectAmount;
 
 
 
     int amountIndex = 0;
-    List<int> amounts = <int>[130,1300,13000];
+    List<int> amounts = <int>[-13000,-1300,-130, 130,1300,13000];
 
     @override
     int get importantInt => amounts[amountIndex];
 
     @override
     String name = "RaiseStat:";
-    RaiseStat(SerializableScene scene) : super(scene);
+    ChangeStat(SerializableScene scene) : super(scene);
 
 
   @override
@@ -49,7 +49,7 @@ class RaiseStat extends EffectEntity {
         div.append(me);
         List<String> allStatsKnown = new List.from(Stats.byName.values);
 
-        me.setInnerHtml("<br><br><b>Raise Stat:</b> <br>");
+        me.setInnerHtml("<br><br><b>Change Stat:</b> <br>");
         //stat time
 
         selectStat = new SelectElement();
@@ -113,6 +113,6 @@ class RaiseStat extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new RaiseStat(scene);
+    return new ChangeStat(scene);
   }
 }
