@@ -32,7 +32,8 @@ Future<Null> main() async
   querySelector("#button").onClick.listen((Event e) => renderURLToSendPlayersIntoSBURB());
   session = new Session(SimController.instance.initial_seed);
   checkEasterEgg(session);
-  session.startSession();
+  self.easterEggCallBack(session);
+  //session.startSession();
   loadFuckingEverything(session,"I really should stop doing this",renderPlayersForEditing );
 }
 
