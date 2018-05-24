@@ -94,7 +94,7 @@ class ChangeStat extends EffectEntity {
   @override
   void syncToForm() {
       importantWord = selectStat.options[selectStat.selectedIndex].value;
-      importantInt = (int.parse(selectAmount.options[selectStat.selectedIndex].value));
+      importantInt = (int.parse(selectAmount.options[selectAmount.selectedIndex].value));
 
       scene.syncForm();
   }
