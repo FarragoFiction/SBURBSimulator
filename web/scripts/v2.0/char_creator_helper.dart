@@ -617,7 +617,11 @@ class CharacterCreatorHelper {
         });
 
         dead.onChange.listen((Event e) {
-            player.dead = dead.checked;
+            if(!player.dead) {
+                player.makeDead("The Whims of the Observer", player);
+            }else {
+                player.makeAlive();
+            }
             that.redrawSinglePlayer(player);
             helpText.setInnerHtml(that.generateHelpText("dead", player.class_name.name));
         });
