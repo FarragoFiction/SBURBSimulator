@@ -36,7 +36,7 @@ abstract class EffectLand extends ActionEffect {
 
   static List<EffectLand> listPossibleEffects(SerializableScene scene) {
       List<EffectLand> ret = new List<EffectLand>();
-      //ret.add(new InstaKill(scene));
+      ret.add(new InstaBlowUp(scene));
       return ret;
   }
 
