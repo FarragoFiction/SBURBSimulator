@@ -105,7 +105,7 @@ class ChangeStat extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        text = "$text Changing ${e.htmlTitle()} $importantWord from ${e.getStat(Stats.byName[importantWord])} to";
+        text = "$text Changing ${e.htmlTitle()} $importantWord by ${importantInt}, from ${e.getStat(Stats.byName[importantWord])} to";
         e.addStat(Stats.byName[importantWord], importantInt);
         text = "$text ${e.getStat(Stats.byName[importantWord])}";
     });

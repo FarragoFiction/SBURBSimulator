@@ -295,6 +295,12 @@ class BigBadForm {
             syncFormToBigBad();
         });
         container.append(dataBox);
+        ButtonElement manualSync = new ButtonElement()..text = "Manual Sync For Accurate DataString";
+        manualSync.onClick.listen((e) {
+            syncDataBoxToBigBad();
+        });
+        container.append(manualSync);
+
     }
 
 }
