@@ -1,5 +1,5 @@
 library ActionEffectLib;
 
 export "ActionEffect.dart";
-export "InstaKill.dart";
-export "InstaBlowUp.dart";
+export "EntityEffects/InstaKill.dart";
+export "LandEffects/InstaBlowUp.dart";

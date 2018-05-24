@@ -1,4 +1,4 @@
-import "../../../SBURBSim.dart";
+import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //no chance to survive, no strife no anything. it's a red miles situation

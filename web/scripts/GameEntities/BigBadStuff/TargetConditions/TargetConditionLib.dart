@@ -1,11 +1,13 @@
 library TargetConditionLib;
 
 export "TargetCondition.dart";
-export "TargetIsCarapace.dart";
-export "TargetHasItemWithTrait.dart";
-export "TargetHasCrown.dart";
-export "TargetIsAlive.dart";
-export "TargetIsPlayer.dart";
-export "TargetIsAspectPlayer.dart";
-export "TargetIsClassPlayer.dart";
-export "TargetIsSelf.dart";
+export "EntityTargetConditions/TargetIsCarapace.dart";
+export "EntityTargetConditions/TargetHasItemWithTrait.dart";
+export "EntityTargetConditions/TargetHasCrown.dart";
+export "EntityTargetConditions/TargetIsAlive.dart";
+export "EntityTargetConditions/TargetIsPlayer.dart";
+export "EntityTargetConditions/TargetIsAspectPlayer.dart";
+export "EntityTargetConditions/TargetIsClassPlayer.dart";
+export "EntityTargetConditions/TargetIsSelf.dart";
+
+export "LandTargetConditions/TargetIsNotDestroyed.dart";

@@ -1,4 +1,4 @@
-import "../../../SBURBSim.dart";
+import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //todo use ItmeTraitTriggerCondition as a guide

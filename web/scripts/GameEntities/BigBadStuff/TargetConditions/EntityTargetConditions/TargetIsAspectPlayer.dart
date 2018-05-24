@@ -1,4 +1,4 @@
-import "../../../SBURBSim.dart";
+import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 class TargetIsAspectPlayer extends TargetConditionLiving {

@@ -1,32 +1,31 @@
-import "../../../SBURBSim.dart";
+import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class TargetHasCrown extends TargetConditionLiving {
-    static String ITEMAME = "CROWNNAME";
+class TargetIsPlayer extends TargetConditionLiving {
     @override
-    String name = "HasCrown";
+    String name = "IsPlayer";
 
-    Item crown;
+    @override
+    String descText = "<br><br><br><b>Is Player:</b><br>Target Entity must be a Player (or the clone of a player). <br><br>";
+    @override
+    String notDescText = "<br><br><br><b>Is NOT Player:</b><br>Target Entity must NOT be a Player (or the clone of a player). <br><br>";
+
 
     @override
     String get importantWord => "N/A";
 
-    @override
-    String descText = "<br><br><br><b>Has Crown:</b><br>Target Entity must be CROWNED (even if they can't use it). <br><br>";
-    @override
-    String notDescText = "<br><br><br><b>Has NO Crown:</b><br>Target Entity must NOT be CROWNED. <br><br>";
-
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    TargetHasCrown(SerializableScene scene) : super(scene){
+    TargetIsPlayer(SerializableScene scene) : super(scene){
     }
+
 
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetHasCrown(scene);
+        return new TargetIsPlayer(scene);
     }
 
     @override
@@ -46,6 +45,6 @@ class TargetHasCrown extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
-        return item.crowned == null;
+        return !(item is Player);
     }
 }

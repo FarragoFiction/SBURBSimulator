@@ -1,10 +1,10 @@
-import "../../../SBURBSim.dart";
+import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class TargetIsAlive extends TargetConditionLiving {
+class TargetIsSelf extends TargetConditionLiving {
     @override
-    String name = "IsAlive";
+    String name = "IsSelf";
 
     Item crown;
 
@@ -12,22 +12,20 @@ class TargetIsAlive extends TargetConditionLiving {
     String get importantWord => "N/A";
 
     @override
-    String descText = "<br><br><br><b>Is Alive:</b><br>Target Entity must be ALIVE (zombies count). <br><br>";
+    String descText = "<br><br><br><b>Is Self:</b><br>Target Entity must be myself (clones don't count). <br><br>";
     @override
-    String notDescText = "<br><br><br><b>Is NOT Alive:</b><br>Target Entity must be NOT ALIVE (zombies  don'tcount). <br><br>";
+    String notDescText = "<br><br><br><b>Is NOT Self:</b><br>Target Entity must NOT be myself (clones Scount). <br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    TargetIsAlive(SerializableScene scene) : super(scene){
+    TargetIsSelf(SerializableScene scene) : super(scene){
     }
-
-
 
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetIsAlive(scene);
+        return new TargetIsSelf(scene);
     }
 
     @override
@@ -45,8 +43,8 @@ class TargetIsAlive extends TargetConditionLiving {
         //nothing to do
     }
 
-    @override
-    bool conditionForFilter(GameEntity item) {
-        return item.dead;
-    }
+  @override
+  bool conditionForFilter(GameEntity item) {
+    return item != scene.gameEntity;
+  }
 }
