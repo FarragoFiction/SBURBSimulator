@@ -106,11 +106,30 @@ class ChangeStat extends EffectEntity {
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
         text = "$text Changing ${e.htmlTitle()} $importantWord by ${importantInt}, from ${e.getStat(Stats.byName[importantWord])} to";
+        if(Stats.byName[importantWord] == Stats.RELATIONSHIPS && e is Player) {
+            e.boostAllRelationshipsBy(importantInt);
+        }
         e.addStat(Stats.byName[importantWord], importantInt);
         text = "$text ${e.getStat(Stats.byName[importantWord])}";
     });
 
+    ButtonElement toggle = new ButtonElement()..text = "Show Details?";
+    scene.myElement.append(toggle);
+
     DivElement div = new DivElement()..setInnerHtml(text);
+    div.style.display = "none";
+
+      toggle.onClick.listen((Event e) {
+          if(div.style.display == "none") {
+              toggle.text = "Hide Details?";
+              div.style.display = "block";
+          }else {
+              toggle.text = "Show Details?";
+              div.style.display = "none";
+          }
+      });
+
+
     scene.myElement.append(div);
     if(renderableTargets.isNotEmpty) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
