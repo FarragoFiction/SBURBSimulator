@@ -262,11 +262,9 @@ class Land extends Object with FeatureHolder {
             (session as DeadSession).failed = true;
         }
         List<String> killed = new List<String>();
-        List<GameEntity> killedEntity = new List<GameEntity>();
-        bool atLeastOnePlayer = false;
+        List<GameEntity> renderableTargets = new List<GameEntity>();
         //KILL the associated player (unless they have reached skaia)
         for(GameEntity g in associatedEntities) {
-            if(g.renderable()) atLeastOnePlayer = true;
             if(g is Player && !g.dead) {
                 Player p = g as Player;
                 //land is gone, this should be only reference to it
@@ -276,13 +274,13 @@ class Land extends Object with FeatureHolder {
                 }
                 if(!p.canHelp()) { //you can't leave your planet yet, you're dead, and no one can get to your body to smooch it, so dream self dead, too
                     killed.add(p.htmlTitle());
-                    killedEntity.add(p);
+                    renderableTargets.add(p);
                     killPlayer(p, killer);
                 }else if(!thirdCompleted && session.rand.nextBool()) {
                     //you happened to be on your planet even though you could have been off
                     killed.add(p.htmlTitle());
                     killPlayer(p, killer);
-                    killedEntity.add(p);
+                    renderableTargets.add(p);
                 }
                 //if third IS completed, assume they are on skaia and so safe
             }
@@ -299,10 +297,10 @@ class Land extends Object with FeatureHolder {
         if(!doNotRender) {
             ImageElement image = new ImageElement(src: "images/Rewards/planetsplode.png");
             ret.append(image);
-            if(atLeastOnePlayer) {
+            if(renderableTargets.isNotEmpty) {
                 CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
                 ret.append(canvasDiv);
-                Drawing.poseAsATeam(canvasDiv, killedEntity);
+                Drawing.poseAsATeam(canvasDiv, renderableTargets);
             }
         }
 
