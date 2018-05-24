@@ -7,9 +7,12 @@ action effects decide what happens when a scene triggers.
 abstract class ActionEffect {
     SerializableScene scene;
     static String IMPORTANTWORD = "importantWord";
+    static String IMPORTANTINT = "importantNumber";
 
     String name = "Generic Effect";
-    String importantWord;
+
+    String  importantWord = "N/A";
+    int  importantInt = 0;
 
     ActionEffect(SerializableScene scene);
 
@@ -25,6 +28,7 @@ abstract class ActionEffect {
         JSONObject json = new JSONObject();
         json[IMPORTANTWORD] = importantWord;
         json["name"] = name;
+        json[IMPORTANTINT] = "$importantInt";
         return json;
     }
 }
