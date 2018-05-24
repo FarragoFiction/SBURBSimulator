@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math' as Math;
 import "../../SBURBSim.dart";
 
@@ -44,6 +45,8 @@ abstract class Stats {
 
         ALCHEMY = new Stat("Alchemy", "creative", "boring");
         SBURB_LORE = new Stat("SBURB Lore", "woke", "clueless", pickable: false);
+
+        byName = new Map<String,Stat>.unmodifiable(new Map<String,Stat>.fromIterable(all, key: (Stat s) => s.name, value: (Stat s) => s));
     }
     static bool _initialised = false;
 
@@ -52,6 +55,8 @@ abstract class Stats {
     static Iterable<Stat> get all => _list;
     static Iterable<Stat> get pickable => _list.where((Stat stat) => stat.pickable);
     static Iterable<Stat> get summarise => _list.where((Stat stat) => stat.summarise);
+
+    static Map<String, Stat> byName;
 }
 
 class Stat {
