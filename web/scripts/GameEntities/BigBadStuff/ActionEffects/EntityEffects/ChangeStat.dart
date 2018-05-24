@@ -101,11 +101,17 @@ class ChangeStat extends EffectEntity {
   }
   @override
   void effectEntities(List<GameEntity> entities) {
+      String text = "";
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
+        text = "$text Changing ${e.htmlTitle()} $importantWord from ${e.getStat(Stats.byName[importantWord])} to";
         e.addStat(Stats.byName[importantWord], importantInt);
+        text = "$text ${e.getStat(Stats.byName[importantWord])}";
     });
+
+    DivElement div = new DivElement()..setInnerHtml(text);
+    scene.myElement.append(div);
     if(renderableTargets.isNotEmpty) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);
