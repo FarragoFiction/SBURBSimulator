@@ -47,11 +47,15 @@ abstract class EffectLand extends ActionEffect {
   //need to figure out what type of trigger condition it is.
   static ActionEffect fromJSON(JSONObject json, SerializableScene scene) {
       String name = json["name"];
+      //print("name is $name");
       List<EffectLand> allConditions = listPossibleEffects(scene);
       for(ActionEffect tc in allConditions) {
+         // print("is ${tc.name} the same as $name");
           if(tc.name == name) {
               ActionEffect ret = tc.makeNewOfSameType();
+              //print("before i copy, ret is $ret");
               ret.copyFromJSON(json);
+              //print("after i copy, ret is $ret");
               ret.scene = scene;
               return ret;
           }
@@ -80,7 +84,7 @@ abstract class EffectLand extends ActionEffect {
                   ActionEffect newCondition = tc.makeNewOfSameType();
                   newCondition.scene = owner;
                   owner.effectsForLands.add(newCondition);
-                  print("adding new condition to $owner");
+                  //print("adding new condition to $owner");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
               }
@@ -128,15 +132,25 @@ abstract class EffectEntity extends ActionEffect {
   //need to figure out what type of trigger condition it is.
   static ActionEffect fromJSON(JSONObject json, SerializableScene scene) {
       String name = json["name"];
+      print("looking for name $name");
+
       List<EffectEntity> allConditions = listPossibleEffects(scene);
       for(ActionEffect tc in allConditions) {
+          print("is $name the same as ${tc.name}");
+
           if(tc.name == name) {
+              print("yes");
               ActionEffect ret = tc.makeNewOfSameType();
+              print("made new of same type");
+
               ret.copyFromJSON(json);
               ret.scene = scene;
+              print("ret is $ret for name $name");
               return ret;
           }
       }
+      print("unknown action found, $name");
+      throw("unknown action found, $name");
   }
 
 

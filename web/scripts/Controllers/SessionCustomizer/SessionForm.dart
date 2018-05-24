@@ -71,6 +71,7 @@ class SessionForm {
                 }
 
             }catch(e) {
+                print("Error: $e");
                 window.alert("Tried to load Big Bad but something went wrong. :( :( :( $e");
             }
         });

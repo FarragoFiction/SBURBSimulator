@@ -16,14 +16,15 @@ class ChangeStat extends EffectEntity {
     int get importantInt => amounts[amountIndex];
 
     @override
-    String name = "RaiseStat:";
+    String name = "ChangeStat";
     ChangeStat(SerializableScene scene) : super(scene);
 
 
   @override
   void copyFromJSON(JSONObject json) {
-      importantWord = json[TargetCondition.IMPORTANTWORD];
-      amountIndex = amounts.indexOf(int.parse(json["amount"]));
+     // print("copying from json");
+      importantWord = json[ActionEffect.IMPORTANTWORD];
+      amountIndex = amounts.indexOf(int.parse(json[ActionEffect.IMPORTANTINT]));
   }
 
   @override
@@ -47,7 +48,7 @@ class ChangeStat extends EffectEntity {
     void renderForm(Element div) {
         DivElement me = new DivElement();
         div.append(me);
-        List<String> allStatsKnown = new List.from(Stats.byName.values);
+        List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
 
         me.setInnerHtml("<br><br><b>Change Stat:</b> <br>");
         //stat time

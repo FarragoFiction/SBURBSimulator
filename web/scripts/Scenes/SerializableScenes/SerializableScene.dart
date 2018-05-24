@@ -68,6 +68,7 @@ class  SerializableScene extends Scene {
   }
 
   void doEffects() {
+      print("doing effect for $gameEntity, effects for living is $effectsForLiving, $effectsForLands");
       for(ActionEffect e in effectsForLands) {
           e.applyEffect();
       }
@@ -140,6 +141,7 @@ void syncForm() {
 
 
         String effectsStringLiving = json["effectsForLiving"];
+        print("effects string living is $effectsStringLiving");
         String effectsStringLand = json["effectsForLands"];
 
         loadEffectsLiving(effectsStringLiving);
@@ -148,12 +150,17 @@ void syncForm() {
 
     void loadEffectsLiving(String weirdString) {
       if(weirdString == null) return;
+      print('weird string is $weirdString');
         List<dynamic> what = JSON.decode(weirdString);
-        for(dynamic d in what) {
-            //print("dynamic json thing is  $d");
+      print('what is $what');
+
+      for(dynamic d in what) {
+            print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
+            print("about to tc");
             ActionEffect tc = EffectEntity.fromJSON(j, this);
+            print("action effect is $tc");
             effectsForLiving.add(tc);
         }
     }

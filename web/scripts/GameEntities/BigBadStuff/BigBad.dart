@@ -62,13 +62,18 @@ class BigBad extends NPC {
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
       name = json["name"];
       description = json["description"];
+      print("done with name and description");
 
       String startScenesString = json["startMechanisms"];
+
       loadStartMechanisms(startScenesString);
+      print("done loading start mechanisms");
 
       String scenesString = json["scenes"];
-      print("scenes string is $scenesString");
+      //print("scenes string is $scenesString");
       loadScenes(scenesString);
+      print("done loading scenes");
+
   }
 
 
@@ -87,6 +92,7 @@ class BigBad extends NPC {
     }
 
     void loadStartMechanisms(String weirdString) {
+      //print("weird string is $weirdString");
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
