@@ -307,6 +307,8 @@ class Player extends GameEntity{
             }
         }
         String ret = "${htmlTitle()} is dead. ";
+        bool alreadyDead = this.dead;
+
         this.dead = true;
         this.timesDied ++;
         this.stats.onDeath();
@@ -322,11 +324,13 @@ class Player extends GameEntity{
             prophecy = ProphecyState.FULLFILLED;
             ret += " The prophecy is fullfilled. ";
         }
-        if(canvas == null) initSpriteCanvas();
-        if(!Drawing.checkSimMode()) canvas.context2D.save(); //need to restore living state latr
-        this.renderSelf("makeDead");
-        this.triggerOtherPlayersWithMyDeath();
-        canvas.context2D.restore(); //only stay rotated long enough to render.
+        if(!alreadyDead) {
+            if(canvas == null) initSpriteCanvas();
+            if(!Drawing.checkSimMode()) canvas.context2D.save(); //need to restore living state latr
+            this.renderSelf("makeDead");
+            this.triggerOtherPlayersWithMyDeath();
+            canvas.context2D.restore(); //only stay rotated long enough to render.
+        }
         return ret;
     }
 

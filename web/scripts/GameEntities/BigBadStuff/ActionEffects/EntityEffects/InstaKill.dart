@@ -44,7 +44,7 @@ class InstaKill extends EffectEntity {
     if(renderableTargets.isNotEmpty) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);
-        Drawing.poseAsATeam(canvasDiv, entities);
+        Drawing.poseAsATeam(canvasDiv, renderableTargets);
     }
   }
   @override
