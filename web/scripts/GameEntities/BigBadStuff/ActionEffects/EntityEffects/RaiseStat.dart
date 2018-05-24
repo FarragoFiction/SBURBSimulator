@@ -8,22 +8,6 @@ class RaiseStat extends EffectEntity {
     SelectElement selectAmount;
 
 
-    Map<String, Stat> _allStats  = new Map<String, Stat>();
-
-
-    Map<String, Stat> get allStats {
-        //print("getting allTraits");
-        if(_allStats == null || _allStats.isEmpty) {
-            //print("Setting all traits");
-            Set<Stat> allTraitsKnown = Stats.all;
-            for(Stat s in allTraitsKnown) {
-                //print("setting trait $trait");
-                _allStats[s.name] = s;
-            }
-        }
-
-        return _allStats;
-    }
 
     int amountIndex = 0;
     List<int> amounts = <int>[130,1300,13000];
@@ -63,7 +47,7 @@ class RaiseStat extends EffectEntity {
     void renderForm(Element div) {
         DivElement me = new DivElement();
         div.append(me);
-        List<String> allStatsKnown = new List.from(allStats.values);
+        List<String> allStatsKnown = new List.from(Stats.byName.values);
 
         me.setInnerHtml("<br><br><b>Raise Stat:</b> <br>");
         //stat time
@@ -119,7 +103,7 @@ class RaiseStat extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        e.addStat(allStats[importantWord], importantInt);
+        e.addStat(Stats.byName[importantWord], importantInt);
     });
     if(renderableTargets.isNotEmpty) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
