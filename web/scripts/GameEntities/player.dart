@@ -306,7 +306,7 @@ class Player extends GameEntity{
                 killer.npcKillCount ++;
             }
         }
-        String ret = "";
+        String ret = "${htmlTitle()} is dead. ";
         this.dead = true;
         this.timesDied ++;
         this.stats.onDeath();

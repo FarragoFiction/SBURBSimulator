@@ -16,6 +16,10 @@ import "dart:convert";
  * is actually possible (i.e. there are any carapaces living remainging)
  */
 class  SerializableScene extends Scene {
+
+
+    Element myElement;
+
     static String TARGET = "TARGET_NAME_OR_NAMES";
 
     SceneForm form;
@@ -55,9 +59,9 @@ class  SerializableScene extends Scene {
 
       String displayText = "<br>>BigBadBullshit: $flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
-      DivElement content = new DivElement();
-      div.append(content);
-      content.setInnerHtml(displayText);
+      myElement = new DivElement();
+      div.append(myElement);
+      myElement.setInnerHtml(displayText);
       doEffects(); //automatic
       doAction(); //specific to subclass
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS

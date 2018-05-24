@@ -34,7 +34,7 @@ class InstaBlowUp extends EffectLand {
   @override
   void effectLands(List<Land> entities) {
     entities.forEach((Land e) {
-        e.planetsplode(scene.gameEntity);
+        scene.myElement.append(e.planetsplode(scene.gameEntity));
     });
   }
   @override

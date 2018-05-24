@@ -846,8 +846,8 @@ class GameEntity extends Object with StatOwner   {
 
     }
 
-    void makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
-        if(session.mutator.lifeField) return; //does fucking nothing.
+    String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
+        if(session.mutator.lifeField) return " Death has no meaning."; //does fucking nothing.
         this.dead = true;
         this.causeOfDeath = causeOfDeath;
         if(killer != null) {
@@ -858,6 +858,7 @@ class GameEntity extends Object with StatOwner   {
             }
             if(killer != null && allowLooting)  killer.lootCorpse(this);
         }
+        return "${htmlTitle()} is dead.";
     }
 
     void interactionEffect(GameEntity ge) {

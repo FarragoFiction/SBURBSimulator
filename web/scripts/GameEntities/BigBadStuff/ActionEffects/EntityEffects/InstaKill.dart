@@ -33,9 +33,19 @@ class InstaKill extends EffectEntity {
   }
   @override
   void effectEntities(List<GameEntity> entities) {
+      bool atLeastOnePlayer = false;
     entities.forEach((GameEntity e) {
-        e.makeDead("encountering ${scene.gameEntity}", scene.gameEntity);
+        if(e.renderable()) atLeastOnePlayer = true;
+        SpanElement death = new SpanElement();
+        String text = (e.makeDead("encountering ${scene.gameEntity}", scene.gameEntity));
+        death.setInnerHtml(text);
+        scene.myElement.append(death);
     });
+    if(atLeastOnePlayer) {
+        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+        scene.myElement.append(canvasDiv);
+        Drawing.poseAsATeam(canvasDiv, entities);
+    }
   }
   @override
   ActionEffect makeNewOfSameType() {
