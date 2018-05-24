@@ -29,6 +29,8 @@ class  SerializableScene extends Scene {
     String get labelPattern => ":___ ";
 
 
+    bool posedAsATeamAlready = false;
+
     //not all things have a target, subclasses without one won't bother
 
     //flavor text will not influence the actual actions going on, but will change how it is narratively
@@ -246,7 +248,7 @@ void syncForm() {
   @override
   bool trigger(List<Player> playerList) {
       //session.logger.info("TEST BIG BAD: checking triggers");
-
+      posedAsATeamAlready = false;
       landTargets.clear();
       livingTargets.clear();
       livingTargets = new List<GameEntity>.from(session.activatedNPCS); //not all, just active

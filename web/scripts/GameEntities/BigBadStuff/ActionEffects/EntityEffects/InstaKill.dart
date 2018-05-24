@@ -41,10 +41,11 @@ class InstaKill extends EffectEntity {
         death.setInnerHtml(text);
         scene.myElement.append(death);
     });
-    if(renderableTargets.isNotEmpty) {
+    if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);
         Drawing.poseAsATeam(canvasDiv, renderableTargets);
+        scene.posedAsATeamAlready = true;
     }
   }
   @override
