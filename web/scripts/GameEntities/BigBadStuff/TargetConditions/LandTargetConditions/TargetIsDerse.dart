@@ -45,6 +45,6 @@ class TargetIsDerse extends TargetConditionLand {
 
     @override
     bool conditionForFilter(Land item) {
-        return item == scene.session.derse;
+        return item != scene.session.derse;
     }
 }
