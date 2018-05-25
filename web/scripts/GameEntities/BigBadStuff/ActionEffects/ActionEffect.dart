@@ -124,7 +124,7 @@ abstract class EffectEntity extends ActionEffect {
       List<EffectEntity> ret = new List<EffectEntity>();
       ret.add(new InstaKill(scene));
       ret.add(new ChangeStat(scene));
-
+      ret.add(new GrimDarkCorruption(scene));
       return ret;
   }
 
