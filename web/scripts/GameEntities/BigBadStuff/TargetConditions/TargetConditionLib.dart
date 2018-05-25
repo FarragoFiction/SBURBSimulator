@@ -14,3 +14,5 @@ export "LandTargetConditions/TargetIsNotDestroyed.dart";
 export "LandTargetConditions/TargetIsMoon.dart";
 export "LandTargetConditions/TargetIsProspit.dart";
 export "LandTargetConditions/TargetIsDerse.dart";
+export "EntityTargetConditions/TargetIsRandom.dart";
+export "LandTargetConditions/TargetIsRandomLand.dart";

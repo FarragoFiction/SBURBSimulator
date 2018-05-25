@@ -8,11 +8,15 @@ import 'dart:html';
 abstract class TargetCondition {
     //need to do miins
     static String IMPORTANTWORD = "importantWord";
+    static String IMPORTANTINT = "importantInt";
+
     //could just be a carapace or a player I don't care
     SerializableScene scene;
     String importantWord;
+    int importantInt = 0;
     //definitely replace this.
     String name = "Generic Trigger";
+
     bool not = false;
     CheckboxInputElement notElement;
 
@@ -101,6 +105,8 @@ abstract class TargetCondition {
         json[IMPORTANTWORD] = importantWord;
         json["NOT"] = not.toString();
         json["name"] = name;
+        json[IMPORTANTINT] = "$importantInt";
+
         return json;
     }
 
@@ -195,6 +201,8 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsCarapace(scene));
       ret.add(new TargetIsGrimDark(scene));
       ret.add(new TargetIsSelf(scene));
+      ret.add(new TargetIsRandom(scene));
+
 
       return ret;
   }
@@ -240,6 +248,8 @@ abstract class TargetConditionLand extends TargetCondition {
       ret.add(new TargetIsMoon(scene));
       ret.add(new TargetIsProspit(scene));
       ret.add(new TargetIsDerse(scene));
+      ret.add(new TargetIsRandomLand(scene));
+
 
       return ret;
   }
