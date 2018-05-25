@@ -32,13 +32,14 @@ Future<Null> start() async {
    * Teach ShogunBot how to make cards for non Carapace Big Bads
    * Find sessions where the current Big Bads are being summoned
    */
+  todo("land condition: isMoon with prospit/derse drop down");
 
   todo("flavor text has a 'owner' tag after all, so that mind control can work (mind control is a list of scenes that an effect has, or a tag that it's a coy of the owner))");
+  todo("random target for land and player, each applicant has an x% chance of being selected (could still be all or none randomly)");
   todo("big bads need 0 or more custom fraymotif names");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("hasInterest (if they aren't a player automatically false)");
-  todo("land condition: isMoon");
-  todo("land condition: isLand");
+  todo("defeat system is list of scenes (like start or scenes) BUT the scenes are given to the player uppong summoning, not used by big bad");
   todo("defeat system that allows ironic defeats, like smokey killing himself when he realizes he's the cause of a fire or owns a flaming object");
   todo("land effect, rename land (can rename whole thing, reference original name, or parts of original name (first word, second word)");
   todo("hasSpritePrototypedWith (if they aren't a player automatically false)");
