@@ -8,6 +8,9 @@ class TargetIsRandom extends TargetConditionLiving {
     @override
     String name = "IsRandom";
 
+    @override
+    String get importantWord => "N/A";
+
     Item crown;
 
 

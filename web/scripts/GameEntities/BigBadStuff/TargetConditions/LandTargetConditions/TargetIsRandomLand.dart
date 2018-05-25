@@ -10,6 +10,8 @@ class TargetIsRandomLand extends TargetConditionLand {
 
     Item crown;
 
+    @override
+    String get importantWord => "N/A";
 
     @override
     String descText = "<br><br><br><b>Is Random:</b><br>Each potential target has an X% chance of being targeted. <br><br>";
@@ -68,7 +70,7 @@ class TargetIsRandomLand extends TargetConditionLand {
     }
     @override
     void copyFromJSON(JSONObject json) {
-        importantInt = (int.parse(json[ActionEffect.IMPORTANTINT]));
+        importantInt = (int.parse(json[TargetCondition.IMPORTANTINT]));
     }
 
     @override
