@@ -30,6 +30,7 @@ class TargetIsRandomLand extends TargetConditionLand {
 
     @override
     void renderForm(Element div) {
+        descElement = new DivElement();
         div.append(descElement);
         syncDescToDiv();
 

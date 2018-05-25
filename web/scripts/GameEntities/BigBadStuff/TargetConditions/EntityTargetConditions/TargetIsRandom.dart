@@ -30,6 +30,7 @@ class TargetIsRandom extends TargetConditionLiving {
 
     @override
     void renderForm(Element div) {
+        descElement = new DivElement();
         div.append(descElement);
         syncDescToDiv();
 
@@ -67,7 +68,7 @@ class TargetIsRandom extends TargetConditionLiving {
     }
     @override
     void copyFromJSON(JSONObject json) {
-        importantInt = (int.parse(json[ActionEffect.IMPORTANTINT]));
+        importantInt = (int.parse(json[TargetCondition.IMPORTANTINT]));
     }
 
     @override
