@@ -34,20 +34,13 @@ Future<Null> start() async {
    */
 
   todo("flavor text has a 'owner' tag after all, so that mind control can work (mind control is a list of scenes that an effect has, or a tag that it's a coy of the owner))");
-  todo("maybe a bool for all target conditions for NOT. is NOT carapace, is NOT time player, etc.");
   todo("big bads need 0 or more custom fraymotif names");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
-  todo("make scene effects like kill, empower, drain, cause strife, order (add one new high priority scene), control (overwrite their ai to be my ai), spawn Savior (like troll kid rock)");
-  todo("target condition: isMe (just makes a new list only containing game entity)");
-  todo("isClass Player (any just checks for is a player)");
   todo("hasInterest (if they aren't a player automatically false)");
-  todo("player effect, drain/add grist");
   todo("land condition: isMoon");
   todo("land condition: isLand");
-  todo("land condition: isDestroyed");
   todo("defeat system that allows ironic defeats, like smokey killing himself when he realizes he's the cause of a fire or owns a flaming object");
   todo("land effect, rename land (can rename whole thing, reference original name, or parts of original name (first word, second word)");
-  todo("figure out how effects will work (even summon scenes can have effects)");
   todo("hasSpritePrototypedWith (if they aren't a player automatically false)");
   todo("isPrototypedWith (for sprites or carapace with rings)");
   todo("isFromDystopia (i.e. Troll Empress)");

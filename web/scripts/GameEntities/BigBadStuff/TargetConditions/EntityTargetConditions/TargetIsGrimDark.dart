@@ -27,7 +27,7 @@ class TargetIsGrimDark extends TargetConditionLiving {
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetIsAlive(scene);
+        return new TargetIsGrimDark(scene);
     }
 
     @override
