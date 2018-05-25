@@ -193,6 +193,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetHasItemWithTrait(scene));
       ret.add(new TargetHasCrown(scene));
       ret.add(new TargetIsCarapace(scene));
+      ret.add(new TargetIsGrimDark(scene));
       ret.add(new TargetIsSelf(scene));
 
       return ret;

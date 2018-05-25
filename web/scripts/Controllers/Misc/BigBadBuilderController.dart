@@ -45,6 +45,7 @@ Future<Null> start() async {
   todo("land condition: isMoon");
   todo("land condition: isLand");
   todo("land condition: isDestroyed");
+  todo("defeat system that allows ironic defeats, like smokey killing himself when he realizes he's the cause of a fire or owns a flaming object");
   todo("land effect, rename land (can rename whole thing, reference original name, or parts of original name (first word, second word)");
   todo("figure out how effects will work (even summon scenes can have effects)");
   todo("hasSpritePrototypedWith (if they aren't a player automatically false)");

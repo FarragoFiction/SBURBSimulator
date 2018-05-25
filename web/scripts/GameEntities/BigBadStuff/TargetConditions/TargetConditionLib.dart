@@ -9,5 +9,5 @@ export "EntityTargetConditions/TargetIsPlayer.dart";
 export "EntityTargetConditions/TargetIsAspectPlayer.dart";
 export "EntityTargetConditions/TargetIsClassPlayer.dart";
 export "EntityTargetConditions/TargetIsSelf.dart";
-
+export "EntityTargetConditions/TargetIsGrimDark.dart";
 export "LandTargetConditions/TargetIsNotDestroyed.dart";
