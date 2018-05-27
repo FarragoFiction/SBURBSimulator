@@ -17,8 +17,6 @@ class Carapace extends NPC {
     double activationChance = 0.0;
     double companionChance = 0.01;
 
-    //TODO make it so when a carapace is crowned they get this scene as their highest priority
-    Scene crownedScene;
     //what is their normal goal
     List<String> goalFlavors = new List<String>();
     //what do they do with the ring?
@@ -181,6 +179,31 @@ class Carapace extends NPC {
         }else {
             name = "${session.rand.pickFrom(firstNames)} ${session.rand.pickFrom(lastNames)}";
         }
+    }
+
+    @override
+    void processScenes() {
+        //serializableSceneStrings
+        if(!addedSerializableScenes) {
+            if(crowned != null) {
+                for(String s in serializableSceneStrings) {
+                    scenes.add(new SerializableScene(session)..copyFromDataString(s));
+                }
+            }
+        }else {
+            //if not crowned lose scenes
+            if(crowned == null) {
+                List<SerializableScene> toRemove = new List<SerializableScene>();
+                for (Scene s in scenes) {
+                    if(s is SerializableScene) toRemove.add(s);
+                }
+
+                for(SerializableScene s in toRemove) {
+                    scenes.remove(s);
+                }
+            }
+        }
+        super.processScenes();
     }
 
     @override

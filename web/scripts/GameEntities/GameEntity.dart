@@ -13,7 +13,7 @@ enum ProphecyState {
 class GameEntity extends Object with StatOwner   {
 
     int playerKillCount = 0;
-
+    bool addedSerializableScenes = false;
     int npcKillCount = 0;
     bool usedMiles = false;
     int landKillCount  = 0;
