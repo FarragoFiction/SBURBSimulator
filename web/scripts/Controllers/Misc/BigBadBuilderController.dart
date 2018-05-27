@@ -32,8 +32,8 @@ Future<Null> start() async {
    * Teach ShogunBot how to make cards for non Carapace Big Bads
    * Find sessions where the current Big Bads are being summoned
    */
-  todo("land condition: isMoon with prospit/derse drop down");
-
+  todo("action effect: start strife (give big bads stats and flags for is strifable and is unconditionally immortal first)");
+  todo("target condition: winning players (purple frog, shogun etc pick this)");
   todo("flavor text has a 'owner' tag after all, so that mind control can work (mind control is a list of scenes that an effect has, or a tag that it's a coy of the owner))");
   todo("random target for land and player, each applicant has an x% chance of being selected (could still be all or none randomly)");
   todo("big bads need 0 or more custom fraymotif names");
@@ -50,6 +50,8 @@ Future<Null> start() async {
   todo("maybe has word in land name (like Angels)");
   todo("hasQuirk"); //bbb that hates unreadable quirks
   todo("isGodTier");
+  todo("put shogun in session 13");
+  todo("put shogun as a possible meta player big bad (or what happens if they kill FU)");
   todo("hasRelationshipWithMe (either 'any' or list of relatinships types");
   todo("land condition: isMeteored (i.e. reckoning is going)");
   todo("isGrimDark");

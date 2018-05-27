@@ -62,8 +62,8 @@ class Sauce extends Aspect {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Uno Reverse Card",<ItemTrait>[ItemTraitFactory.CARD, ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE]))
-            ..add(new Item("JR Body Pillow",<ItemTrait>[ItemTraitFactory.PILLOW, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.ASPECTAL]));
+            ..add(new Item("Uno Reverse Card",<ItemTrait>[ItemTraitFactory.CARD, ItemTraitFactory.ASPECTAL, ItemTraitFactory.FAKE,ItemTraitFactory.SAUCEY]))
+            ..add(new Item("JR Body Pillow",<ItemTrait>[ItemTraitFactory.PILLOW, ItemTraitFactory.COMFORTABLE, ItemTraitFactory.ASPECTAL,ItemTraitFactory.SAUCEY]));
 
     }
 

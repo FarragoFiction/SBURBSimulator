@@ -817,7 +817,7 @@ class ItemTraitFactory {
     ETCHED = new CombinedTrait("Etched",<String>["Etched"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[STONE,PAPER]);
     PAPYRUS = new CombinedTrait("Papyrus",<String>["Papyrus"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[PAPER,PLANT]);
     FILM = new CombinedTrait("Film",<String>["film"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,PLASTIC]);
-    SAUCEY = new CombinedTrait("Saucey",<String>["Saucey"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CORRUPT,ENRAGING,UGLY]);
+    SAUCEY = new CombinedTrait("Saucey",<String>["Saucey"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[CORRUPT,ENRAGING,EDIBLE]);
     LOTTERY = new CombinedTrait("Lottery",<String>["Lottery"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,LUCKY]);
     BLINDFOLDED = new CombinedTrait("Blindfolded",<String>["Blindfolded"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[OBSCURING,CLOTH]);
     POSSESED = new CombinedTrait("Possessed",<String>["Possessed"], 0.0,ItemTrait.CONDITION, <ItemTrait>[GHOSTLY,FLESH]);

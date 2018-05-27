@@ -63,7 +63,7 @@ class Waste extends SBURBClass {
         items = new WeightedList<Item>()
             ..add(new Item("Yardstick",<ItemTrait>[ItemTraitFactory.STICK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PLYWOOD, ItemTraitFactory.LEGENDARY],abDesc:"Wait. Did you beat LORAS?"))
             ..add(new Item("SBURBSim Hacking Guide",<ItemTrait>[ItemTraitFactory.BOOK, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.SMARTPHONE,ItemTraitFactory.PAPER],shogunDesc: "The Shoguns Guide to Winning",abDesc:"Hell no, you leave your grubby fucking mitts outta the code."))
-            ..add(new Item("Body Pillow of JR",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PILLOW, ItemTraitFactory.IRONICSHITTYFUNNY, ItemTraitFactory.COMFORTABLE],shogunDesc: "The Shoguns Vessel",abDesc:"...I would ask why, but I already calculated all possible responses at a million times the speed I could get an answer."))
+            ..add(new Item("Body Pillow of JR",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.PILLOW, ItemTraitFactory.IRONICSHITTYFUNNY, ItemTraitFactory.COMFORTABLE,ItemTraitFactory.SAUCEY],shogunDesc: "The Shoguns Vessel",abDesc:"...I would ask why, but I already calculated all possible responses at a million times the speed I could get an answer."))
             ..add(new Item("Nanobots",<ItemTrait>[ItemTraitFactory.ROBOTIC2, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.AI],shogunDesc: "NANOMACHINES SON, THEY HARDEN IN RESPONSE TO PHYSICAL TRAUMA",abDesc:"Oh look, a NON hacking way to fuck everything up, forever."));
     }
 //wastes comically suck at combat
