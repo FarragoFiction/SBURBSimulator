@@ -27,6 +27,8 @@ class GameEntity extends Object with StatOwner   {
     List<Scene> scenes = new List<Scene>();
     List<Scene> scenesToAdd = new List<Scene>();
 
+    List<String> serializableSceneStrings = new List<String>();
+
     //mostly for npcs, might not be the best way to do it but it's what i'm gonna do for now.
     //x starts flipping out about TAB soda
     List<String> distractions = new List<String>();

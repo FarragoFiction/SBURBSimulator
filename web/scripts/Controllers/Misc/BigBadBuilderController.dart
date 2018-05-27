@@ -32,13 +32,22 @@ Future<Null> start() async {
    * Teach ShogunBot how to make cards for non Carapace Big Bads
    * Find sessions where the current Big Bads are being summoned
    */
+  todo("<H1>PRIORITIES</H1>");
+  todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("action effect: start strife (give big bads stats and flags for is strifable and is unconditionally immortal first)");
-  todo("target condition: winning players (purple frog, shogun etc pick this)");
+  todo("target land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
+  todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
+  todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
+
+  todo("target condition: winning players (purple frog, shogun etc pick this) useful for big giant boss fights at the last minute, or big bads that change their behavior at the last minute");
+
+  todo("<H1>Lesser</H1>");
+  todo("<br>");
+
   todo("flavor text has a 'owner' tag after all, so that mind control can work (mind control is a list of scenes that an effect has, or a tag that it's a coy of the owner))");
   todo("random target for land and player, each applicant has an x% chance of being selected (could still be all or none randomly)");
   todo("big bads need 0 or more custom fraymotif names");
   todo("LAND EFFECT: set quests to done (pre, denizen or post) (doing this effectively skips them, no reward of any kind)");
-  todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("hasInterest (if they aren't a player automatically false)");
   todo("defeat system is list of scenes (like start or scenes) BUT the scenes are given to the player uppong summoning, not used by big bad");
   todo("defeat system that allows ironic defeats, like smokey killing himself when he realizes he's the cause of a fire or owns a flaming object");
