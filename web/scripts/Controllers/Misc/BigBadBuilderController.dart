@@ -37,6 +37,7 @@ Future<Null> start() async {
   todo("flavor text has a 'owner' tag after all, so that mind control can work (mind control is a list of scenes that an effect has, or a tag that it's a coy of the owner))");
   todo("random target for land and player, each applicant has an x% chance of being selected (could still be all or none randomly)");
   todo("big bads need 0 or more custom fraymotif names");
+  todo("LAND EFFECT: set quests to done (pre, denizen or post) (doing this effectively skips them, no reward of any kind)");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("hasInterest (if they aren't a player automatically false)");
   todo("defeat system is list of scenes (like start or scenes) BUT the scenes are given to the player uppong summoning, not used by big bad");
