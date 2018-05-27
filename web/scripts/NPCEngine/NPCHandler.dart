@@ -130,7 +130,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30})
             ..makeViolent(1000)
             ..makeCunning(1000)
-            ..serializableSceneStrings.addAll(<String>["Be Omnicidal:___ N4IgdghgtgpiBcIBCMAEB5KYCWBjbAJhADYgA0IAZsRAG4D2ATgCowAeALgiAMo+oAHPAGsAzqlTMAggCUA4gFFmAfQByUgLILl6GWs0L+uelAHEYHGMQCeqCB1SMIYAidQd6qUTQCuAcwALS0YAOlRyEA4IRj8LdDA4REoSUTgKDkZsP1jGAGF6F2wObALRABlsWmwwP24AbWAAHRBsUyYosA4AdSYCZvhm1QB6KWayQfRmfubk4lSx5shYaZAASVEpYkqYBZa2xg6OVc6VgAZmgF8yVCa9gXbnbt6V4dHyCamEGZSd9-BoX4DNaiGTOVxQXate4HR7HDgrABM5xAVxuzShD06PUYfS+IFeu1UkxWGR8v3G-2WePWPCslEh+0OcLOlwAuhEMlkcvlCsVSmUwfV2RQYJRKDBcBxRAAxJgVKo1eq3DEwrHPPEEv5LQHNY6iKIAaWwxGIDOhh1UPigACMYIwWSjhSBReLJTK5WDREKUUA"])
+            ..serializableSceneStrings.addAll(<String>["Be Omnicidal:___ N4IgdghgtgpiBcIBCMAEB5KYCWBjbAJhADYgA0IAZsRAG4D2ATgCowAeALgiAMo+oAHPAGsAzqlTMAggCUA4gFFmAfQByUgLILl6GWs0L+uelAHEYHGMQCeqCB1SMIYAidQd6qUTQCuAcwALS0YAOlRyEA4IRj8LdDA4RA5GHzgKZOw-WMYAYXoXbA5sfNEAGWxabDA-bgBtYAAdEGxTJiiwDgB1JgIm+CbVAHopJrIB9GY+psoSURhRpshYKZAASVEpYgr58iaWgTbnDlWOlYAGJoBfMlRG5tbGdq6elaGR3ZBVCZWZ4jmF8DQHb9NaiGTOVxQAH7Q4dE4cFYAJguIGutz2Dye3UYvQQA2GAK+kzxkRSOzGgOWJPWPCslGhmKO8POVwAuhEMlkYLl8gRCsUwGUIXV2RQYJRKDBcBxRAAxJjlSrVOp3GGPI7Y3Egt4ApbAponURRADS2GIxAZB3VHVUPigACNuSzUaKQOLJdK5QqIaIRaigA"])
             ..sylladex.add(new Item("Scottie Dogs",<ItemTrait>[ItemTraitFactory.CANDY]))
 
             ..active = true //jack needs to be on for every session
@@ -145,6 +145,7 @@ class NPCHandler
             ..distractions = <String>["is flipping the fuck out about a bull penis cane. What?","is trading everybody's hats in the session.","is eating black licorice gummy bears.","is collecting just. So many bombs. You don't even know.","is stopping arguments between carapaces.","having a tea party with some nice consorts and underlings."]
             ..description = "One of the Dersite Agents, CD is an incompetent buffoon with a taste for big explosions. He’s really lucky, though. Perhaps that’s why he’s still good at being an agent. He sometimes playing jazz music at the Liquid Negrocity."
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session), new GiveJackScepter(session), new GiveJackRing(session)] //order of scenes is order of priority
+            ..serializableSceneStrings.addAll(<String>["Be Incompetant:___ N4IgdghgtgpiBcIBCMAEBJMBjA9lADjAC4RhEgA0IAZgDYQBuOATgCowAe5irAFszgCuAc16oIqas1IBrWgE9UUAJZgAJqgBGOYcNqrhqAM4xmymEdQ5qqGAxhkjFVAGEAIuKxZlahyVoKWrQ4AO6WgvioqKwAggBKAOIAoqwA+gByMQCySakA8nEZ2UkAygB0qCWmykJGChUAmkKoajhgAOREtvZgqCGkXUQ4qDJgoWWUICTMwsR5YHCIRMyCcFTLyrqmLm1qykQ1YEYAMsoMBgggANoAupMbW8w76vuHJ6Rql1fAADogygQWCQyAB1FhqP7wP7pAD0MT+FGheVYkL+1AgtBMCL+kFgqJArAgM2I6CM6RwRDcFmWOHkMAhlD+APwQIGmCI+IADH8AL7OX7-QHMYFEMHMBlQkCw+GMqXI-HozEwbHgaDKhB-UlxD54FXM1lkdn4gBsvLuVBg1GoMCwRCMADEWKdzmBhF9zSBLdbbQ6nR8jF8BfrhQMxRLoXCVbj1ZLMEYSEhgiEAKr4PVCkXpQRQTSmLlmkA8oA"])
             ..sylladex.add(new Item("Licorice Gummy Bears",<ItemTrait>[ItemTraitFactory.CANDY]))
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
             ..makeLucky(1000)
