@@ -130,6 +130,7 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -500, Stats.MAX_LUCK: 10, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: -100, Stats.POWER: 30})
             ..makeViolent(1000)
             ..makeCunning(1000)
+            ..serializableSceneStrings.addAll(<String>["Be Omnicidal:___ N4IgdghgtgpiBcIBCMAEB5KYCWBjbAJhADYgA0IAZsRAG4D2ATgCowAeALgiAMo+oAHPAGsAzqlTMAggCUA4gFFmAfQByUgLILl6GWs0L+uelAHEYHGMQCeqCB1SMIYAidQd6qUTQCuAcwALS0YAOlRyEA4IRj8LdDA4REoSUTgKDkZsP1jGAGF6F2wObALRABlsWmwwP24AbWAAHRBsUyYosA4AdSYCZvhm1QB6KWayQfRmfubk4lSx5shYaZAASVEpYkqYBZa2xg6OVc6VgAZmgF8yVCa9gXbnbt6V4dHyCamEGZSd9-BoX4DNaiGTOVxQXate4HR7HDgrABM5xAVxuzShD06PUYfS+IFeu1UkxWGR8v3G-2WePWPCslEh+0OcLOlwAuhEMlkcvlCsVSmUwfV2RQYJRKDBcBxRAAxJgVKo1eq3DEwrHPPEEv5LQHNY6iKIAaWwxGIDOhh1UPigACMYIwWSjhSBReLJTK5WDREKUUA"])
             ..sylladex.add(new Item("Scottie Dogs",<ItemTrait>[ItemTraitFactory.CANDY]))
 
             ..active = true //jack needs to be on for every session
