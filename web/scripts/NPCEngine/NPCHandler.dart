@@ -163,7 +163,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 100, Stats.SANITY: 500, Stats.HEALTH: 20, Stats.FREE_WILL: 0, Stats.POWER: 20})
             ..makeCharming(1000)
             ..makeCunning(1000)
-                        ..activationChance = 0.1
+            ..activationChance = 0.1
+            ..serializableSceneStrings.addAll(<String>["Collect Finely Tailored Suits:___ N4IgdghgtgpiBcIDCB7ANmmBjALgAgDEBLMGNATzwBUIi0UAnGAEzwGUBXInAZxABoQAMzQQAboyowAHjgQgAIgrxMIGSmiIBrGDzw4AFjDwB3CJUPHqAQQBKAcQCiVAPoA5awFlHLgPK33L0c2AHI9FA4cIW48ehQtHgA6PAAJGBCMPAAjYxwILRIAc30DCBx+PDAUE2SAGRR4vU0dEphyDLQ8UrFclDw1LCMoIgAvY1ITPCx6SySBEDyGQpgcX1J5HAYOOEFNokLlhlQwZm4iFDAeWqIxIvkAbWAAHRAiKAAHRjywHAB1RmYL3gLzcAHprC9+CDfFQgS8hGoeDBIS9ILA4SAAJI8AAKonIMAYKNeHy+EB+mJ+GIADC8AL4VZ4kz4Mb5-AEYsEQgTQ2EIeGI5E88DQIXArE8Wzk5goKDEt4stmUnAYgAc9IAuvM9gdCcdTjhzpdatKHlrBDAhEJsLwCIxrrcwIUHkyFWSfv8GID+SB7AwiDx8LUYD00MS0WKXkhSk6YGw8irhW7WeScG4OFAckSfQBaACMAGZqbSQHTzSBLdbcDw7QwTSc+Ih7lq6UA"])
 
             ..description = "The most competent of the Midnight Crew, DD is the most classy gentlemen you will meet in your life. Unless you catch him with his gray ladies journal. Oh, and DD is probably the one you should talk to if you want to get rid of a troublesome...entity discreetly.Unless he’s Crowned. In this case, you are already fucked."
             ..sylladex.add(new Item("Swedish Fish",<ItemTrait>[ItemTraitFactory.CANDY]))
@@ -179,6 +180,7 @@ class NPCHandler
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session), new GiveJackScepter(session), new GiveJackRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is shipping just. All the things.","is reading RED CHEEKS magazine.","is protecting his wax lips candies. ","is updating his shipping grid.","is trying to get his OTP together already.","is demanding that this chump just KISS THE GIRL THIS INSTANT."]
             ..sylladex.add(new Item("Wax Lips",<ItemTrait>[ItemTraitFactory.CANDY]))
+            ..serializableSceneStrings.addAll(<String>["Demand You Kiss The Girl:___ N4IgdghgtgpiBcIAiMoTAEwAQE0D2ArlgNICWAzuVgCoAWMWA4qQE4A2IANCAGZsQA3PC2owAHgBcEIABIAhLOQIYMMMGwCeWFjAhtSALxhUJtCBKw0AggCVGAUWoB9AHJWAsvacB5G64-2AMpYYDAwGFT0bAAOWADupKZYpjCsWGx4Agz6PDAAdDT0WqYseHHJ9FBYABQAjgSJ2Y0sepoAlFikYBJ4WOhY4hJqqtgSLV1dAOZYUHjdEJMMXUOY4cm9aADWDClVszp90dG6+mDTPRWpLFjROrksOtilaN2kAMY3ECwSodcSGscClwQBIvosJN5QtIxgQ4NwxqRJosWABhOYYRKkObkAAypAEU2kAG1gAAdECkKDRYSg7oAdWEGHJ8HJLgA9FZyZxWd5qMzyTw9OQYFzyZBYPyQABJchWfRZUUUqk09ASKXdSUABnJAF9OFgyUrqd9VQyWEyEKyOYqXLzJYK2MLFeKRZbpeQAAr8DQwFiKynG2lqjVu7UgHUAXWBCKRvrRmEx2Jx6AwxKj3BgPFybwk5AAYsI8QSzsTDQGVfTGZKbDB+BIsWByLRSNFyM7oK6WSAUWYzjBAqCJP7lSbui4CFAAEa+yUARgAzGHI8DM9ncwWWMnMOQ0+GgA"])
             ..sylladex.add(new Item("Red Cheeks Magazine",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ROMANTIC]))
             ..description = "A simple carapacian of simple pleasures, HB is one of the strongest melee combatants one can encounter. He’s strong enough to punch through a safe door. That doesn’t mean he doesn’t have a softer side - he’s authored a few romantic novels as HB."
             ..sylladex.add(new Item("Regisword",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.LEGENDARY, ItemTraitFactory.EDGED, ItemTraitFactory.POINTY]))
