@@ -2,13 +2,17 @@ import "DescriptiveFeature.dart";
 import "../../SBURBSim.dart";
 
 class SoundFeature extends DescriptiveFeature {
+    static List<SoundFeature> allSounds = new List<SoundFeature>();
+
     ///flavor text, "is getting really tired of the sound of $soundsLike"
     /// a single string, not a list since sound is very specific
     /// p self explanatory.
 
 
     //most sounds are p annoying, lets face it
-    SoundFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality);
+    SoundFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality){
+        allSounds.add(this);
+    }
 
     @override
     String toHTML() {

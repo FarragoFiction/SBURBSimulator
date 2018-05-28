@@ -3,10 +3,14 @@ import "../../SBURBSim.dart";
 
 
 class SmellFeature extends DescriptiveFeature {
+    static List<SmellFeature> allSmells = new List<SmellFeature>();
+
     ///flavor text, "the smell of $smellsLike permeates the air"
 
 
-    SmellFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality);
+    SmellFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality){
+        allSmells.add(this);
+    }
 
     @override
     String toHTML() {

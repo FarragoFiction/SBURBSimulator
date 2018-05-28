@@ -40,6 +40,7 @@ class FeatureFactory {
 
     static Iterable<ConsortFeature> RANDOM_CONSORTS;
 
+
     /////////////////////SMELLS////////////////////////
     static SmellFeature SPICYSMELL;
     static SmellFeature BAKEDBREADSMELL;

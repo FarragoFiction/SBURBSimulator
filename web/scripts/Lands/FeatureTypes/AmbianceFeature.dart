@@ -2,8 +2,12 @@ import "DescriptiveFeature.dart";
 import "../../SBURBSim.dart";
 class AmbianceFeature extends DescriptiveFeature {
     ///flavor text, "you don't get it, my land feels really $feelsLike"  creepy, unsettling, vs peaceful, calm,
+    ///
+    static List<AmbianceFeature> allAmbiance = new List<AmbianceFeature>();
 
-    AmbianceFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality);
+    AmbianceFeature(String simpleDesc, [int quality = 0]):super(simpleDesc, quality) {
+        allAmbiance.add(this);
+    }
 
     @override
     String toHTML() {

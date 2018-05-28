@@ -33,13 +33,13 @@ Future<Null> start() async {
    * Find sessions where the current Big Bads are being summoned
    */
   todo("<H1>PRIORITIES</H1>");
-  todo("remove effect/target filter from scene");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("action effect: start strife (give big bads stats and flags for is strifable and is unconditionally immortal first)");
   todo("target land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("target condition: winning players (purple frog, shogun etc pick this) useful for big giant boss fights at the last minute, or big bads that change their behavior at the last minute");
+  todo("remove effect/target filter from scene");
 
   todo("<H1>Lesser</H1>");
   todo("<br>");
