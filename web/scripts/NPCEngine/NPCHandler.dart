@@ -210,6 +210,7 @@ class NPCHandler
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..distractions = <String>["is reading the gamefaqs for this section of his quest.","is brokering a peace treaty between the clowns, elves and pigs. This has NOTHING to do with SBURB.","is engaging SEPULCHRITU...wait no, never mind. False alarm."]
             ..royaltyOpinion = 10
+            ..serializableSceneStrings.addAll(<String>["Activate Sepulchritude:___ N4IgdghgtgpiBcICCBjALgSwG4TTABAMowAOArgDYoAWAThmmQCZwA0IAZhRFgPa0AVGAA80CEAAVC+COmy4YAZyKlKNeoxYywTfPkXUMYJfgDuDavjTUC9AObU8vMso4ZaBXh3w0I9RVAQAHQg7Gh+djBoAPLG4hwQFIpsIGj2kbQAwrw6DBg5igAy2EZ24gDawAA6IBhQJPzhYGgA6vxMNfA1AHIA9Eg1rD3RAp01CUkwgzWQsGMgAJKKAEoQOrxQ07X1jWtoC83zAIwAzDUAvqz41dsNtE2t7fN9A6HDowjjiclbs1OfixWayYGy2dTuDwOaGOAAYYRcrjdwbtmm1aB0AS8tt0RvMJj83uBoP8uoDiBQOGCdvc9lD5vCQOcALqhVLpGBZHJMPIFQrAios9gwDgcGDoRQAMX4xSwpQqSOpDzRGNJyxg3EwBUMJEUv2J80y1DWkUI4WhhORNOa3TIUAARhzjic4QzLtcapalU8AQBZXh2jAUBgATz1cwBhuNMFNuCpEL2NvtjoBpxdCPdtxRj3R8wkvFMyaGRPDpMjYBNZrjWcTDtoTrTjMRHsVe2V8x9RjqtvwhTIKAA1mGSTUyxXYxaW9bbbX63CLoKQMLReKpbQ+TpFALGUA"])
             ..description = "One of the top agents on Prospit, with numerous solicitations for services. Compensation is surprisingly adequate. "
             ..sideLoyalty = 10
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100, Stats.MAX_LUCK: 100, Stats.SANITY: -100, Stats.HEALTH: 20, Stats.FREE_WILL: 200, Stats.POWER: 15})
@@ -230,7 +231,7 @@ class NPCHandler
             ..sylladex.add(new Item("Tootsie Roll",<ItemTrait>[ItemTraitFactory.CANDY]))
             ..sylladex.add(new Item("Imaginary Fort",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.FAKE, ItemTraitFactory.PLYWOOD]))
             ..companionChance = 0.1
-
+            ..serializableSceneStrings.addAll(<String>["Become GodHead PIckleInspector:___ N4IgdghgtgpiBcIBCMDGB7WACA4ugJgBIwT5YAKAkqgNYA2MlYAzgA5oAu6ATiADQgAZnQgA3HgBUYADw4IQVLACM0mGMywQNEXAU1gyg9AboBPLNxgBzCN3za6dLOkFZUliBwCWxgHT8QDlsrGA4AeTA4REEIOmY4AQ5uLysQ7gBhY3wvb2NmABkvUS8wK3kAbWAAHRAvKFYeILAOAHUefBr4GoA5AHoAQRq+HrCJTpqYuJghmshYcZBKZgAlCANMGdr6xrWOJg4FgEYAZhqAXz4saq2G7ibW9oW+wf4RsYQJ2PjNuemPxZWa3wG1eNx2zX2RwADFDzpdrnVbvc2nYngNNt1RgtJt9Qb8FksAMowOiCTaI8F7ZoLWEgM4AXQCSRSaUyBhyPhY+SBFUZAhggkEnGYADEeIViqUKgjtnddiiOv9CWscqYftA-l0QOkABZrEKEoIHUEUuXNboAVygKm4R2OMNpFyuNVNyMe-xwyWYHCw+RgohJ6vm-11+pghs85Nl90t1pgtv+JwdcOdYLND1R-wAotJ2MkYGBUH9huANQtQ6Vw0ao0jdrGbXbk3T4S7o-L3Vr+nRUDqYFA1XiyyG9ZWI8aS6661aG4n7TCUzLa80FQtCUgAKrLJC+njF2ZDrUVg3Vk1t83T+ON+d0vkgAVC1AcUXioHMXl0oA"])
             ..bureaucraticBullshit = <String>["has to pay this fine for public oogling.","needs a permit to fondly regard creation.","has a ticket for excess imagination usage this month."]
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -100, Stats.MAX_LUCK: 100, Stats.SANITY: 100, Stats.HEALTH: 1, Stats.FREE_WILL: 500, Stats.POWER: 1})
