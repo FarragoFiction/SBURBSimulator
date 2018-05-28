@@ -53,7 +53,6 @@ class TargetHasLandFeature extends TargetConditionLand {
     void renderForm(Element div) {
         List<Feature> allFeaturesKnown = new List.from(allFeatures.values);
         allFeaturesKnown.sort((Feature a, Feature b){
-            print("comparing features $a (desc of ${a.simpleDesc}) and $b (desc of ${b.simpleDesc})");
             return a.simpleDesc.toLowerCase().compareTo(b.simpleDesc.toLowerCase());
         });
 
@@ -69,6 +68,7 @@ class TargetHasLandFeature extends TargetConditionLand {
         select = new SelectElement();
         select.size = 13;
         me.append(select);
+        if(feature == null) feature = allFeaturesKnown.first;
         for(Feature trait in allFeaturesKnown) {
             OptionElement o = new OptionElement();
             o.value = trait.simpleDesc;
