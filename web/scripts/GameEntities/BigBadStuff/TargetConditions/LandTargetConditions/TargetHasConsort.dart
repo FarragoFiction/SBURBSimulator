@@ -6,9 +6,9 @@ class TargetHasConsort extends TargetConditionLand {
 
 
     @override
-    String descText = "<br>Target Land must have Feature: <br>";
+    String descText = "<br>Target Land must have Consorts of type: <br>";
     @override
-    String notDescText = "<br>Target Land must NOT have Feature: <br>";
+    String notDescText = "<br>Target Land must NOT have Consorts of type: <br>";
 
     Map<String, Feature> _allFeatures = new Map<String, Feature>();
     Map<String, Feature> get allFeatures {
