@@ -10,12 +10,12 @@ class TargetHasLandFeature extends TargetConditionLand {
     @override
     String notDescText = "<br>Target Land must NOT have Feature: <br>";
 
-    Map<String, Feature> _allFeatures;
+    Map<String, Feature> _allFeatures = new Map<String, Feature>();
     Map<String, Feature> get allFeatures {
         //print("getting allTraits");
         if(_allFeatures == null || _allFeatures.isEmpty) {
             //print("Setting all traits");
-            List<Feature> allFeaturesKnown = ConsortFeature.allConsorts;
+            List<Feature> allFeaturesKnown = new List.from(ConsortFeature.allConsorts);
             allFeaturesKnown.addAll(SmellFeature.allSmells);
             allFeaturesKnown.addAll(AmbianceFeature.allAmbiance);
             allFeaturesKnown.addAll(SoundFeature.allSounds);
@@ -51,8 +51,11 @@ class TargetHasLandFeature extends TargetConditionLand {
 
     @override
     void renderForm(Element div) {
-        List<Feature> allFeaturesKnown = allFeatures.values;
-        allFeaturesKnown.sort((Feature a, Feature b) => a.simpleDesc.toLowerCase().compareTo(b.simpleDesc.toLowerCase()));
+        List<Feature> allFeaturesKnown = new List.from(allFeatures.values);
+        allFeaturesKnown.sort((Feature a, Feature b){
+            print("comparing features $a (desc of ${a.simpleDesc}) and $b (desc of ${b.simpleDesc})");
+            return a.simpleDesc.toLowerCase().compareTo(b.simpleDesc.toLowerCase());
+        });
 
         Session session = scene.session;
 

@@ -249,6 +249,7 @@ abstract class TargetConditionLand extends TargetCondition {
   static List<TargetConditionLand> listPossibleTriggers(SerializableScene scene) {
       List<TargetConditionLand> ret = new List<TargetConditionLand>();
       ret.add(new TargetIsNotDestroyed(scene));
+      ret.add(new TargetHasLandFeature(scene));
       ret.add(new TargetIsMoon(scene));
       ret.add(new TargetIsProspit(scene));
       ret.add(new TargetIsDerse(scene));
