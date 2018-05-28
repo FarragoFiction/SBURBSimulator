@@ -10,6 +10,8 @@ export "EntityTargetConditions/TargetIsAspectPlayer.dart";
 export "EntityTargetConditions/TargetIsClassPlayer.dart";
 export "EntityTargetConditions/TargetIsSelf.dart";
 export "EntityTargetConditions/TargetIsGrimDark.dart";
+export "EntityTargetConditions/TargetIsMurderMode.dart";
+
 export "LandTargetConditions/TargetIsNotDestroyed.dart";
 export "LandTargetConditions/TargetIsMoon.dart";
 export "LandTargetConditions/TargetIsProspit.dart";
