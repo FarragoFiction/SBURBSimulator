@@ -250,6 +250,7 @@ class NPCHandler
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 100, Stats.FREE_WILL: 100, Stats.POWER: 100})
             ..makeViolent(1000)
+            ..serializableSceneStrings.addAll(<String>["Become Fiesta Ace Dick:___ N4IgdghgtgpiBcIBCMDGB7WACAYgSxgGcAXCLAQVRiwBE9UBrEAGhADMAbCAN3QCcAKjAAexBCHI0sAIxgBzPGEJYMSgK5RFcrAHcIATyzF06LFDWoAFlkvpiWQhAvVFNvMqgQAJlj5rC1uhsWAAO6DowfFgQYD4QqMR43BDERLgEJGQAsuheMACELCCkfHIwxADyYHCIbBAchHCsxHx4cmV8AMLosXiJPYQAMkla4gDawAA6IHhQYXykYMQA6vxe0-DTAHIA9OTTzNsVAhvTdQ0wB9OQsKcgAJKEAEoxXphXM3P8i8T3S3cARgAzNMAL7MLBTT7zH6rPjrBDbPYfLbHO7nRofG6XREPZ6vd4saazGExX7-XEAgAMVLBEKhJO+ZLhCM2IF2+yJ7LRuIxOMO4GgOLZjwAyjAOGwPoyFmS-sQ7rSQKCALpFFptDrdXr9JSDV7jNWsGBsNhoYiEHD8YbcUaICbEr6ypYsu6imJ9fRYoV3TqWGJlUWkBVcmU-LYaWR8O4AWmBNKV4MhjtJLrWdwACuFIt7bri-QGYEGUtKneHIznKUCE3Tk9CmWn4XcctI8BxPbnhdMC2BA8HS6niBGoFHAdWabWGWXmencQAJGD1YiWTu+-29ov90PTpbD0dVmvK+kphsrWdszpqPh8GBLLALpcrrnYteF4shgVhsl7yts+MTo86y-RtWWmJ4JRSPABksPAQkIVd83XPsS23Qcf2jXE43HRMjRAE0zQSS1rVeQhDWVIA"])
             ..bureaucraticBullshit = <String>["has to pay this fine for public fiestaing.","has to post bail for public rowdyness."]
             ..makeLucky(1000)
         );
@@ -264,7 +265,7 @@ class NPCHandler
             ..companionChance = 0.1
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..bureaucraticBullshit = <String>["has to pay this fine for public hysteria.","needs a permit to open up a fine establishment for her new friends.","has to pay a fine for all this public damage."]
-
+            ..serializableSceneStrings.addAll(<String>["Be Hysterical:___ N4IgdghgtgpiBcIBCMAEAJAngZwC4wCcBLAYwgBsQAaEAM3IgDcB7AgFRgA9cEQB5ABaoA5swAmVDABFURbKgE58xMuQB0qAMoC0Jcs2wx5OgqhiYjqCGDGpsAdyIAHSwWtjmUcpiu5UqXB1UNgBBACUAcQBRNgB9ADkQgFko2L4whOSozQ1qEFwIAmEYXD4wOERcAgBXOBoqomFiggBhZhsiXCJ27AAZIkYiMGFeAG1gAB0QIignVgKwXAB1VjEp+Cn4gHoQqapNvjZ1qdoKQz2pyFhjkABJbBDyAZgL6dn561xbxZuABimAL6SSZvOYEBbLVY3ba7agHI4IE5nF5w8DQFEbO7YMLuTyvGZgiHfXA3ACMABZAQBdPINJqENodLo9XruMY0mgwWi0GAkXDYABirH6g2GYxBBI+ixWBDWiJAMNeVwxU2+eAgAGkiORyPj3uDPvFqlAAEaEP7UvJcnl8wXC9zYdkgAFAA"])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
             ..makeCharming(1000)
             ..makeViolent(1000)
@@ -281,7 +282,7 @@ class NPCHandler
 
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..bureaucraticBullshit = <String>["needs a permit for public fainting.","is trying to help out CI with getting an invention permit. "]
-
+            ..serializableSceneStrings.addAll(<String>["Have a Flamethrower:___ N4IgdghgtgpiBcIASEBuMAEEMDEA20MALgBYBOA9gO4xkgA0IAZgahWQCowAeRCIAeRIYA5hQAm9DFRIBPDAEsAzhlK1MSihigBXAMbCmCsphjoysmeoB0GAHIAhaRTAByIhiVEKAB1UlMACMdMjAFMBFrKOsGECIIMhFiATA4RCYIPCU4RiIyBREksgBhF3EFIgUXJQAZBVRwkX4AbWAAHRAFKB92eLAiAHV2cQ74DrsAegBBDvpxgQ5RjoysmFmOyFglkABJJSm8erWGDq6esj6iHf7tgAYOgF8pds7u3oh+obIRhHHp9ZAdgW2xW2QBm2OY12SgASh9xBQoACzu9+tciNsAGyPAC6sTyBSKpTA5Uq1Rq8JaeMYMCYTBgeiIShw7DqDQiLReKIuH0Gw22kxmJ3AhG21y8EAA0go8HhkW8ef07DooIFaHdcbFafTGczWfClFSQA8gA"])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: -500, Stats.HEALTH: 1, Stats.FREE_WILL: 100, Stats.POWER: 1})
             ..makeViolent(1000)
             ..makeCunning(1000)
