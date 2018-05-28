@@ -13,16 +13,16 @@ List<ArtCategory> categores = <ArtCategory>[
     new ArtCategory("Hair",                     "Hair Gallery", "hair",     action: drawHair),
     new ArtCategory("Horns",                    "Horn Gallery", "horns",    action: drawHorns),
     new ArtCategory("All Fanart",               "All Fanart",   "fanArt",   action: drawAllFanArt),
-    new ArtCategory("First Player",             "First Player Post Great Refactoring",  "firstPlayer",      url: "images/misc/fanArt/FirstPlayer/"),
-    new ArtCategory("GrimDark AB FanArt",       "GrimDark AB Gallery",                  "grimAB",           url: "images/misc/fanArt/ABFanArt/"),
-    new ArtCategory("star.eyes' Memes FanArt",  "star.eyes' memes",                     "stareyes",         url: "images/misc/fanArt/star.eyes/"),
-    new ArtCategory("Wranglers",              "Wranglers",                    "Wranglers",             url: "images/misc/fanArt/Wranglers/"),
-    new ArtCategory("Misc FanArt",              "Miscellaneous Art",                    "misc",             url: "images/misc/fanArt/miscFanArt/"),
-    new ArtCategory("Gif FanArt",               "Gif Gallery",                          "gifs",             url: "images/misc/fanArt/gifs/"),
-    new ArtCategory("Octobermas FanArt",        "Octobermas!",                          "octobermas",       url: "images/misc/fanArt/OctoberMas/"),
-    new ArtCategory("ShogunSim FanArt",         "ShogunSim Gallery",                    "shogunsim",        url: "images/misc/fanArt/ShogunSim/"),
-    new ArtCategory("Shogun vs JR",             "Shogun vs JR: <a href = 'https://drive.google.com/drive/folders/1dUSRkaW4zZD6r21gywPvR_YHcL7gvzUn?usp=sharing'>https://drive.google.com/drive/folders/1dUSRkaW4zZD6r21gywPvR_YHcL7gvzUn?usp=sharing PUT YOUR NAME IN THE FILE NAME SO WE KNOW WHO MADE IT</a>", "mascotCompetition",    url: "images/misc/fanArt/MascotCompetition/"),
-    new ArtCategory("oblivionSurfer's FanArt",  "oblivionSurfer's FanArt Gallery",      "oblivionSurfer",   url: "images/misc/fanArt/oblivionSurfer/"),
+    new ArtCategory("First Player",             "First Player Post Great Refactoring",  "firstPlayer",      url: "/FanArt/FirstPlayer/"),
+    new ArtCategory("GrimDark AB FanArt",       "GrimDark AB Gallery",                  "grimAB",           url: "/FanArt/ABFanArt/"),
+    new ArtCategory("star.eyes' Memes FanArt",  "star.eyes' memes",                     "stareyes",         url: "/FanArt/star.eyes/"),
+    new ArtCategory("Wranglers",              "Wranglers",                    "Wranglers",             url: "/FanArt/Wranglers/"),
+    new ArtCategory("Misc FanArt",              "Miscellaneous Art",                    "misc",             url: "/FanArt/miscFanArt/"),
+    new ArtCategory("Gif FanArt",               "Gif Gallery",                          "gifs",             url: "/FanArt/gifs/"),
+    new ArtCategory("Octobermas FanArt",        "Octobermas!",                          "octobermas",       url: "/FanArt/OctoberMas/"),
+    new ArtCategory("ShogunSim FanArt",         "ShogunSim Gallery",                    "shogunsim",        url: "/FanArt/ShogunSim/"),
+    new ArtCategory("Shogun vs JR",             "Shogun vs JR: <a href = 'https://drive.google.com/drive/folders/1dUSRkaW4zZD6r21gywPvR_YHcL7gvzUn?usp=sharing'>https://drive.google.com/drive/folders/1dUSRkaW4zZD6r21gywPvR_YHcL7gvzUn?usp=sharing PUT YOUR NAME IN THE FILE NAME SO WE KNOW WHO MADE IT</a>", "mascotCompetition",    url: "/FanArt/MascotCompetition/"),
+    new ArtCategory("oblivionSurfer's FanArt",  "oblivionSurfer's FanArt Gallery",      "oblivionSurfer",   url: "/FanArt/oblivionSurfer/"),
 ];
 
 List<String> extensions = <String>[
@@ -42,7 +42,7 @@ Element imageContainer = querySelector("#images");
 List<Element> imageTiles = <Element>[];
 
 class ArtCategory {
-    static const String testPath = "http://farragofiction.com/SBURBSimE/";
+    static const String testPath = "http://farragofiction.com";
     static const bool testMode = true;
 
     String name;
