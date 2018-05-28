@@ -87,7 +87,10 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
             }
 
         }
-        if(itemTrait == null) select.selectedIndex = 0;
+        if(itemTrait == null) {
+            itemTrait = allTraitsKnown.first;
+            select.selectedIndex = 0;
+        }
         select.onChange.listen((Event e) => syncToForm());
         syncToForm();
 
