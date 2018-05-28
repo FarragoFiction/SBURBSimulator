@@ -1,3 +1,4 @@
+2018-05-28: I made Deathos way less likely to spawn. You're welcome.
 2018-05-27: More AI work, slightly less behind the scenes because Crowned Carapaces are slowly being wired into the system.
 2018-05-24: More AI work behind the scenes.
 2018-05-24: Oh hey, corpses stopped flipping the fuck out when they die and doing amazing headstands.<br><br>I also buffed Smokey the Bear to make up for Carapace Hater being gone. Still place holders, of course.<br><br>Uh. Okay. So. Smokey the Bear is no longer killing himself for the crime of picking up a firey object from teh corpse of the arsonist he killed.
