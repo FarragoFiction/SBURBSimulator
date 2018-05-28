@@ -201,6 +201,9 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsCarapace(scene));
       ret.add(new TargetIsGrimDark(scene));
       ret.add(new TargetIsMurderMode(scene));
+      ret.add(new TargetIsGodTier(scene));
+      ret.add(new TargetHasGodDestiny(scene));
+
       ret.add(new TargetIsSelf(scene));
       ret.add(new TargetIsRandom(scene));
 
