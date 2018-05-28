@@ -2,23 +2,20 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has 4 types of features, consorts, smells, sounds, ambiance that it checks for
-class TargetHasLandFeature extends TargetConditionLand {
+class TargetHasSound extends TargetConditionLand {
 
 
     @override
-    String descText = "<br>Target Land must have Feature: <br>";
+    String descText = "<br>Target Land must sound like: <br>";
     @override
-    String notDescText = "<br>Target Land must NOT have Feature: <br>";
+    String notDescText = "<br>Target Land must NOT sound like: <br>";
 
     Map<String, Feature> _allFeatures = new Map<String, Feature>();
     Map<String, Feature> get allFeatures {
         //print("getting allTraits");
         if(_allFeatures == null || _allFeatures.isEmpty) {
             //print("Setting all traits");
-            List<Feature> allFeaturesKnown = new List.from(ConsortFeature.allConsorts);
-            allFeaturesKnown.addAll(SmellFeature.allSmells);
-            allFeaturesKnown.addAll(AmbianceFeature.allAmbiance);
-            allFeaturesKnown.addAll(SoundFeature.allSounds);
+            List<Feature> allFeaturesKnown = new List.from(SoundFeature.allSounds);
 
             for(Feature trait in allFeaturesKnown) {
                 //print("setting trait $trait");
@@ -32,7 +29,7 @@ class TargetHasLandFeature extends TargetConditionLand {
     SelectElement select;
 
     @override
-    String name = "hasLandFeature";
+    String name = "soundsLike";
 
     Feature feature;
 
@@ -43,7 +40,7 @@ class TargetHasLandFeature extends TargetConditionLand {
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    TargetHasLandFeature(SerializableScene scene) : super(scene){
+    TargetHasSound(SerializableScene scene) : super(scene){
 
 
     }
@@ -94,7 +91,7 @@ class TargetHasLandFeature extends TargetConditionLand {
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetHasLandFeature(scene);
+        return new TargetHasSound(scene);
     }
 
 
@@ -136,14 +133,8 @@ class TargetHasLandFeature extends TargetConditionLand {
     @override
     bool conditionForFilter(Land land) {
         //remember if you have the feature, return false;
-        if(feature is SmellFeature) {
-            if(land.smells.contains(feature)) return false;
-        }else if (feature is ConsortFeature) {
-            if(land.consortFeature == feature) return false;
-        }else if(feature is SoundFeature) {
+        if(feature is SoundFeature) {
             if(land.sounds.contains(feature)) return false;
-        }else if(feature is AmbianceFeature) {
-            if(land.feels.contains(feature)) return false;
         }
 
         return true;

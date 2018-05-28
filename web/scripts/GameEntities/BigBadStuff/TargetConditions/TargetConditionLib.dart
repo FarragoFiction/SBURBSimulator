@@ -19,4 +19,7 @@ export "LandTargetConditions/TargetIsProspit.dart";
 export "LandTargetConditions/TargetIsDerse.dart";
 export "EntityTargetConditions/TargetIsRandom.dart";
 export "LandTargetConditions/TargetIsRandomLand.dart";
-export "LandTargetConditions/TargetHasLandFeature.dart";
+export "LandTargetConditions/TargetHasConsort.dart";
+export "LandTargetConditions/TargetHasFeel.dart";
+export "LandTargetConditions/TargetHasSmell.dart";
+export "LandTargetConditions/TargetHasSound.dart";
