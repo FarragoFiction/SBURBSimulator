@@ -36,6 +36,7 @@ Future<Null> start() async {
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("action effect: start strife (give big bads stats and flags for is strifable and is unconditionally immortal first)");
   todo("target land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
+  todo("change stats of player who owns land/carapaces on moon (associated players)");
   todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
 
