@@ -56,6 +56,7 @@ abstract class EffectLand extends ActionEffect {
           if(tc.name == name) {
               ActionEffect ret = tc.makeNewOfSameType();
               //print("before i copy, ret is $ret");
+              ret.importantWord = json[ActionEffect.IMPORTANTWORD];
               ret.copyFromJSON(json);
               //print("after i copy, ret is $ret");
               ret.scene = scene;
