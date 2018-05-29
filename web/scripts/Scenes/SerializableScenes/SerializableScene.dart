@@ -124,8 +124,10 @@ void syncForm() {
     void copyFromDataString(String data) {
         print("copying from data: $data, looking for labelpattern: $labelPattern");
         String dataWithoutName = data.split("$labelPattern")[1];
-        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        print("data without name is $dataWithoutName");
 
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        print("raw json is $rawJSON");
         JSONObject json = new JSONObject.fromJSONString(rawJSON);
         copyFromJSON(json);
     }
@@ -461,8 +463,13 @@ class SceneForm {
         dataBox.rows = 10;
         dataBox.onChange.listen((e) {
             print("syncing template to data box");
-            scene.copyFromDataString(dataBox.value);
-            syncFormToScene();
+            try {
+                scene.copyFromDataString(dataBox.value);
+                syncFormToScene();
+            }catch(e) {
+                scene.session.logger.info(e);
+                window.alert("something went wrong! $e");
+            }
         });
         container.append(dataBox);
     }
