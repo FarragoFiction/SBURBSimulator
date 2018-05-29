@@ -59,6 +59,7 @@ Future<Null> start() async {
   todo("maybe has word in land name (like Angels)");
   todo("hasQuirk"); //bbb that hates unreadable quirks
   todo("isGodTier");
+  todo("land effect: make consorts say X");
   todo("put shogun in session 13");
   todo("put shogun as a possible meta player big bad (or what happens if they kill FU)");
   todo("hasRelationshipWithMe (either 'any' or list of relatinships types");
@@ -68,7 +69,10 @@ Future<Null> start() async {
   todo("isDoomed");
   todo("isWasted");
   todo("isTrickster");
+  todo("effect: add fraymotif named x");
+  todo("land target based on planet health");
   todo("isDreamSelf");
+  todo("effect: set god destiny to false (put this on lands means they destroyed quest bed)");
   todo("isMurderMode/effect go murdermode");
   todo("isRobot");
   todo("isBrainGhost");
