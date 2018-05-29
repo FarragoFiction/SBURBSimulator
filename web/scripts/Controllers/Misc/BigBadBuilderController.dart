@@ -69,7 +69,7 @@ Future<Null> start() async {
   todo("isWasted");
   todo("isTrickster");
   todo("isDreamSelf");
-  todo("isMurderMode");
+  todo("isMurderMode/effect go murdermode");
   todo("isRobot");
   todo("isBrainGhost");
   todo("magical item that grants unconditional immortality to the wearer???");
