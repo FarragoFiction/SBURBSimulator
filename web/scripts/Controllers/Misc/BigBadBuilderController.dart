@@ -35,6 +35,7 @@ Future<Null> start() async {
   todo("<H1>PRIORITIES</H1>");
   todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun");
   todo("action effect: start strife (give big bads stats and flags for is strifable and is unconditionally immortal first)");
+  todo("action effect alter 'is strifable' modifier");
   todo("target land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
@@ -55,6 +56,8 @@ Future<Null> start() async {
   todo("hasSpritePrototypedWith (if they aren't a player automatically false)");
   todo("isPrototypedWith (for sprites or carapace with rings)");
   todo("isFromDystopia (i.e. Troll Empress)");
+  todo("target condition for blood color");
+  todo("target condition of isTroll or isHuman");
   todo("land condition: has trait X (like type of consorts or smells or whatever? think about this more) (use case: if a planet with crocodiles is destroyed, Crocodile Guardian arrives, pissed at Big Bads)");
   todo("maybe has word in land name (like Angels)");
   todo("hasQuirk"); //bbb that hates unreadable quirks
