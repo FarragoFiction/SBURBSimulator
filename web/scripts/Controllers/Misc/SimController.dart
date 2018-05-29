@@ -17,7 +17,7 @@ import "dart:async";
 //care about other controllers later.
 abstract class SimController {
     Session currentSessionForErrors;
-    int maxTicks = 300;
+    int maxTicks = 100;
     static bool shogun = false;  //sim goes into shogun mode
     static int spriteTemplateWidth = 400;
     static int spriteTemplateHeight = 300;
