@@ -11,8 +11,9 @@ import "dart:convert";
 class BigBad extends NPC {
     static String BIGBADNAME = "BIGBADNAME";
 
+    ///okay YES they are something CALLED a big bad, but until they wreck shit no venegence
   @override
-  bool bigBad = true;
+  bool bigBad = false;
   BigBadForm form;
 
   //if any of these are true, the big bad is triggered. proccessed even if not active

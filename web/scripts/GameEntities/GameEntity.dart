@@ -864,7 +864,7 @@ class GameEntity extends Object with StatOwner   {
         }else if(npcKillCount > 12) {
             reason = "because npcs or not, the ${htmlTitle()} is on a murderous rampage. ";
             bigBad = true;
-        }else if(landKillCount >1 ) {
+        }else if(landKillCount >=1 ) {
             reason = "because you can't just go around blowing up planets!";
             bigBad = true;
         }else if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players)) {
@@ -872,9 +872,10 @@ class GameEntity extends Object with StatOwner   {
             bigBad = true;
         }
 
-        if(bigBad) {
+        if(!reason.isEmpty) {
             return "The Players vow revenge against the killer, ${htmlTitle()} $reason";
         }
+        return "";
     }
 
     String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
