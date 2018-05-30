@@ -14,6 +14,13 @@ class StrifeBigBad extends Scene {
 		possibleTargets.addAll(session.players);
 		//get rid of targets that aren't big bads or targets who are dead
 		possibleTargets.removeWhere((GameEntity item) => !item.bigBad || item.dead);
+		possibleTargets.removeWhere((GameEntity item){
+			Relationship r = gameEntity.getRelationshipWith(item);
+			if(r == null) return false;
+			if(r.value > Relationship.CRUSHVALUE/2) return true; //i like you too much to target you.
+			return false;
+		});
+
 		bigBad = session.rand.pickFrom(possibleTargets);
 		return bigBad != null;
 	}
@@ -22,6 +29,19 @@ class StrifeBigBad extends Scene {
 	List<GameEntity> getGoodGuys(){
 		List<GameEntity> living = findLiving(this.session.players);
 		List<GameEntity> allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
+		//for the love of all that is sane, don't join the team meant to defeat you. please.
+		living.remove(bigBad);
+
+		//if they like you, they won't join the angry mob hunting you down
+		List<GameEntity> friendsToRemove = new List<GameEntity>();
+		for(GameEntity g in living) {
+			Relationship r = g.getRelationshipWith(bigBad);
+			if(r != null && r.value > Relationship.CRUSHVALUE/2) friendsToRemove.add(g);
+		}
+
+		for(GameEntity friend in friendsToRemove) {
+			living.remove(friend);
+		}
 
 		for(num i = 0; i<allPlayers.length; i++){
 			living.addAll(allPlayers[i].doomedTimeClones);
@@ -30,8 +50,6 @@ class StrifeBigBad extends Scene {
 			}
 
 		}
-		//for the love of all that is sane, don't join the team meant to defeat you. please.
-		living.remove(bigBad);
 		return living;
 	}
 	void renderGoodguys(Element div){
@@ -74,7 +92,7 @@ class StrifeBigBad extends Scene {
 		String flavor = "";
 		if(bigBad is BigBad) flavor = (bigBad as BigBad).textIfYesStrife;
 		if(bigBad is Player) flavor = "It hurts to have to fight a former friend, but this has to be done.";
-		div.setInnerHtml("The ${gameEntity.htmlTitle()} has had enough of the tyranny of the ${bigBad.htmlTitle()}.  $flavor");
+		div.setInnerHtml("The ${gameEntity.htmlTitle()} has had enough of the tyranny of the ${bigBad.htmlTitle()}. They rally as many of the other players against the villain as they can.  $flavor");
 
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
 		pTeam.canAbscond = true;
