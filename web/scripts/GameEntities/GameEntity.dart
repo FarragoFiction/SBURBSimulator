@@ -890,7 +890,8 @@ class GameEntity extends Object with StatOwner   {
             }
             if(killer != null && allowLooting)  killer.lootCorpse(this);
         }
-        String bb = killer.makeBigBad();
+        String bb = "";
+        if(killer != null) bb = killer.makeBigBad();
         return "${htmlTitle()} is dead. $bb";
     }
 

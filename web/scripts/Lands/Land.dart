@@ -292,7 +292,8 @@ class Land extends Object with FeatureHolder {
         String are = "are";
         if(killed.length == 1) are = "is";
         if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} $are now dead.";
-        String bb = killer.makeBigBad();
+        String bb = "";
+        if(killer != null) bb = killer.makeBigBad();
 
         ret.setInnerHtml( "The ${name} is now destroyed. $killedString $bb");
         //render explosion graphic and text. text should describe if anyone died.

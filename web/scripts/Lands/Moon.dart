@@ -100,10 +100,13 @@ class Moon extends Land {
 
       Element ret = new DivElement();
       String killedString  = "";
+      String bb = "";
+      if(killer != null) bb = killer.makeBigBad();
+
       String are = "are";
       if(killed.length == 1) are = "is";
       if(killed.isNotEmpty) killedString = "The ${turnArrayIntoHumanSentence(killed)} $are now dead.";
-      ret.setInnerHtml("${name} is now destroyed. $killedString");
+      ret.setInnerHtml("${name} is now destroyed. $killedString $bb");
       //render explosion graphic and text. text should describe if anyone died.
       //Rewards/planetsplode.png
 

@@ -330,7 +330,8 @@ class Player extends GameEntity{
             canvas.context2D.restore(); //only stay rotated long enough to render.
         }
 
-        String bb = killer.makeBigBad();
+        String bb = "";
+        if(killer != null) bb = killer.makeBigBad();
 
         return "$ret $bb";
     }
