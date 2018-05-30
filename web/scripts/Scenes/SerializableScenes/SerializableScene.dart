@@ -86,7 +86,7 @@ class  SerializableScene extends Scene {
   }
 
   List<GameEntity> get finalLivingTargets {
-      if(livingTargets == null) return new List<GameEntity>();
+      if(livingTargets == null || livingTargets.isEmpty) return new List<GameEntity>();
       if(targetOne) {
           return <GameEntity>[livingTargets.first];
       }else {
@@ -95,7 +95,7 @@ class  SerializableScene extends Scene {
   }
 
     List<Land> get finalLandTargets {
-      if(landTargets == null) return new List<Land>();
+      if(landTargets == null || landTargets.isEmpty) return new List<Land>();
         if(targetOne) {
             return <Land>[landTargets.first];
         }else {
