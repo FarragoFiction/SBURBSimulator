@@ -45,6 +45,9 @@ class BigBad extends NPC {
       JSONObject json = new JSONObject();
       json["name"] = name;
       json["description"] = description;
+      json["canStrife"] = canStrife.toString();
+      json["textIfNoStrife"] = textIfNoStrife;
+      json["textIfYesStrife"] = textIfYesStrife;
 
       List<JSONObject> startSceneArray = new List<JSONObject>();
       for(Scene s in startMechanisms) {
@@ -68,18 +71,29 @@ class BigBad extends NPC {
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
       name = json["name"];
       description = json["description"];
-      print("done with name and description");
+
+      if(json["canStrife"] != "true") {
+          canStrife = false;
+      }
+
+      if(json["textIfNoStrife"] != null) {
+          textIfNoStrife = json["textIfNoStrife"];
+      }
+
+      if(json["textIfYesStrife"] != null) {
+          textIfYesStrife = json["textIfYesStrife"];
+      }
+     // print("done with name and description");
 
       String startScenesString = json["startMechanisms"];
 
       loadStartMechanisms(startScenesString);
-      print("done loading start mechanisms");
+     // print("done loading start mechanisms");
 
       String scenesString = json["scenes"];
       //print("scenes string is $scenesString");
       loadScenes(scenesString);
-      print("done loading scenes");
-
+      //print("done loading scenes");
   }
 
 
