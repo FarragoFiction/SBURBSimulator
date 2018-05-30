@@ -212,6 +212,10 @@ class BigBadForm {
     void syncFormToBigBad() {
         nameElement.value = bigBad.name;
         descElement.value = bigBad.description;
+        strifableYesElement.value = bigBad.textIfYesStrife;
+        strifableNoElement.value = bigBad.textIfNoStrife;
+        strifableElement.checked = bigBad.canStrife;
+
 
         for(SummonScene s in bigBad.startMechanisms) {
             s.renderForm(startSceneSection);
