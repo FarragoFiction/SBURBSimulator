@@ -21,6 +21,7 @@ Future<Null> start() async {
   todoElement = new UListElement();
   todoElement.style.border = "1px";
   div.append(todoElement);
+  todo("button to add scene owner's name in, too");
   todo("ability to remove triggers/actions");
   todo("loaded scenes not fucking up if there were already triggers/actions");
 

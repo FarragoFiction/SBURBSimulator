@@ -21,6 +21,8 @@ class  SerializableScene extends Scene {
     Element myElement;
 
     static String TARGET = "TARGET_NAME_OR_NAMES";
+    static String SCENE_OWNER = "SCENE_OWNER_NAME";
+
 
     SceneForm form;
     //if this is set i only poke at the first valid target, not all valid targets
@@ -61,6 +63,8 @@ class  SerializableScene extends Scene {
 
       String displayText = "<br>>BigBadBullshit: $flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
+      displayText =   displayText.replaceAll("$SCENE_OWNER", "${gameEntity.htmlTitle()}");
+
       myElement = new DivElement();
       div.append(myElement);
       myElement.setInnerHtml(displayText);
@@ -450,6 +454,15 @@ class SceneForm {
             syncDataBoxToScene();
         });
         buttonDiv.append(button);
+
+        ButtonElement button2 = new ButtonElement();
+        button2.text = "Append Scene Owner Name";
+        button2.onClick.listen((e) {
+            flavorText.value = "${flavorText.value} ${SerializableScene.SCENE_OWNER}";
+            scene.flavorText = flavorText.value;
+            syncDataBoxToScene();
+        });
+        buttonDiv.append(button2);
         container.append(flavorText);
         container.append(buttonDiv);
     }
