@@ -73,6 +73,7 @@ class StrifeBigBad extends Scene {
 		List<GameEntity> fighting = this.getGoodGuys();
 		String flavor = "";
 		if(bigBad is BigBad) flavor = (bigBad as BigBad).textIfYesStrife;
+		if(bigBad is Player) flavor = "It hurts to have to fight a former friend, but this has to be done.";
 		div.setInnerHtml("The ${gameEntity.htmlTitle()} has had enough of the tyranny of the ${bigBad.htmlTitle()}.  $flavor");
 
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
