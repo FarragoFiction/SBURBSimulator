@@ -293,18 +293,25 @@ class BigBadForm {
             syncDataBoxToBigBad();
         });
 
-        LabelElement label2 = new LabelElement()..setInnerHtml("When a Strife can't happen, what text is displayed as the reason? (You can leave this unmodified if the BB is expected to always be strifable). ");
+        LabelElement label2 = new LabelElement()..setInnerHtml("<br>When a Strife can't happen, what text is displayed as the reason? (You can leave this unmodified if the BB is expected to always be strifable).<br> ");
         strifableNoElement = new TextAreaElement();
+        strifableNoElement.value = bigBad.textIfNoStrife;
+
         subContainer.append(label2);
         subContainer.append(strifableNoElement);
+        strifableNoElement.cols = 60;
+        strifableNoElement.rows = 10;
         strifableNoElement.onInput.listen((Event e) {
             bigBad.textIfNoStrife = strifableNoElement.value;
             syncDataBoxToBigBad();
         });
 
 
-        LabelElement label3 = new LabelElement()..setInnerHtml("When a Strife does happen, what text is displayed? (i.e. the BB is now tangible, slowed down by their weakenss, etc). ");
+        LabelElement label3 = new LabelElement()..setInnerHtml("<br>When a Strife does happen, what text is displayed? (i.e. the BB is now tangible, slowed down by their weakenss, etc).<br> ");
         strifableYesElement = new TextAreaElement();
+        strifableYesElement.value = bigBad.textIfYesStrife;
+        strifableYesElement.cols = 60;
+        strifableYesElement.rows = 10;
         subContainer.append(label3);
         subContainer.append(strifableYesElement);
         strifableYesElement.onInput.listen((Event e) {
