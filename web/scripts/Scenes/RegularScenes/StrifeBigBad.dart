@@ -30,6 +30,8 @@ class StrifeBigBad extends Scene {
 			}
 
 		}
+		//for the love of all that is sane, don't join the team meant to defeat you. please.
+		living.remove(bigBad);
 		return living;
 	}
 	void renderGoodguys(Element div){
