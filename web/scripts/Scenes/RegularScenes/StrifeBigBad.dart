@@ -64,6 +64,7 @@ class StrifeBigBad extends Scene {
 	}
 
 	void doFight(Element div) {
+		bigBad.heal();
 		DivElement container = new DivElement();
 		div.append(container);
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.

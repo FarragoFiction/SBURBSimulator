@@ -32,8 +32,8 @@ class BigBad extends NPC {
   String description = "What shows up in ShogunBot's BigBadBinder?";
 
   BigBad(String name, Session session) : super(name, session) {
-        textIfNoStrife = "They search for $name, but they are no where to be found.";
-        textIfYesStrife = "This ends, now.  It is not hard to track down the $name. ";
+        textIfNoStrife = "They search for them, but the villain is no where to be found.";
+        textIfYesStrife = "This ends, now.  It is not hard to track down the villain. ";
   }
 
   String toDataString() {

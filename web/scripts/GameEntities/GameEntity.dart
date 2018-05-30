@@ -910,6 +910,8 @@ class GameEntity extends Object with StatOwner   {
         }
     }
 
+
+
     void boostAllRelationshipsWithMeBy(num amount) {}
     void boostAllRelationshipsBy(num amount) {}
     List<GameEntity> getFriendsFromList(List<GameEntity> list) {
