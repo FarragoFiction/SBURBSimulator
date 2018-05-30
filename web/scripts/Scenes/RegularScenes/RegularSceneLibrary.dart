@@ -12,7 +12,7 @@ export "DisengageMurderMode.dart";
 export "DoEctobiology.dart";
 export "QuestsAndStuff.dart";
 export "EngageMurderMode.dart";
-
+export "StrifeBigBad.dart";
 export "FightQueen.dart";
 export "FreeWillStuff.dart";
 export "GetTiger.dart";

@@ -15,6 +15,8 @@ class BigBad extends NPC {
   @override
   bool bigBad = false;
   BigBadForm form;
+  String textIfNoStrife = "";
+  String textIfYesStrife = "";
 
   //if any of these are true, the big bad is triggered. proccessed even if not active
   List<SerializableScene> startMechanisms = new List<SerializableScene>();
@@ -29,7 +31,10 @@ class BigBad extends NPC {
   @override
   String description = "What shows up in ShogunBot's BigBadBinder?";
 
-  BigBad(String name, Session session) : super(name, session);
+  BigBad(String name, Session session) : super(name, session) {
+        textIfNoStrife = "They search for $name, but they are no where to be found.";
+        textIfYesStrife = "This ends, now.  It is not hard to track down the $name. ";
+  }
 
   String toDataString() {
       print("data is ${toJSON()}");

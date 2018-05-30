@@ -13,7 +13,8 @@ enum ProphecyState {
 class GameEntity extends Object with StatOwner   {
     //for players it effects god tier revive, for others it works like life gnosis
     bool unconditionallyImmortal = false;
-
+    //only a few big bads can't even be fought in the first place
+    bool canStrife = true;
     int playerKillCount = 0;
     bool addedSerializableScenes = false;
     int npcKillCount = 0;
@@ -858,14 +859,14 @@ class GameEntity extends Object with StatOwner   {
         if(unconditionallyImmortal) {
             reason = " because if they don't stop them, who will?";
             bigBad = true;
+        }else if(landKillCount >=1 ) {
+            reason = "because you can't just go around blowing up planets!";
+            bigBad = true;
         }else if(playerKillCount > session.players.length/4) {
             reason = "because they have killed so many already.";
             bigBad = true;
         }else if(npcKillCount > 12) {
             reason = "because npcs or not, the ${htmlTitle()} is on a murderous rampage. ";
-            bigBad = true;
-        }else if(landKillCount >=1 ) {
-            reason = "because you can't just go around blowing up planets!";
             bigBad = true;
         }else if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players)) {
             reason = "no one being should have all that power and use it to kill."; //hums along
