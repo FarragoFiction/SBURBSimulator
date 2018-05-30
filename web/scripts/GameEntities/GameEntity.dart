@@ -11,6 +11,8 @@ enum ProphecyState {
 //fully replacing old GameEntity that was also an unholy combo of strife engine
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
+    //for players it effects god tier revive, for others it works like life gnosis
+    bool unconditionallyImmortal = false;
 
     int playerKillCount = 0;
     bool addedSerializableScenes = false;
@@ -38,7 +40,7 @@ class GameEntity extends Object with StatOwner   {
     //why are they pestering Jack?
     List<String> bureaucraticBullshit = new List<String>();
 
-    //not there yet, but putting down foundation.
+    //if you have been flagged as a big bad, the players will try to stop you
     bool bigBad = false;
     //players activate when they enter session, npcs activate when they encounter a player.
     bool active  = false;
@@ -848,6 +850,22 @@ class GameEntity extends Object with StatOwner   {
 
     }
 
+    //generally called from makeDead
+    //if  you kill someone while being too stronk
+    //the players try to stop you
+    String makeBigBad() {
+
+        if(unconditionallyImmortal) bigBad = true;
+        if(playerKillCount > session.players.length/4) bigBad = true;
+        if(npcKillCount > 12) bigBad = true;
+        if(landKillCount >1 ) bigBad = true;
+        if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players)) bigBad = true;
+
+        if(bigBad) {
+            return "The Players vow revenge against the killer, ${htmlTitle()}";
+        }
+    }
+
     String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
         if(session.mutator.lifeField) return " Death has no meaning."; //does fucking nothing.
         this.dead = true;
@@ -860,7 +878,8 @@ class GameEntity extends Object with StatOwner   {
             }
             if(killer != null && allowLooting)  killer.lootCorpse(this);
         }
-        return "${htmlTitle()} is dead.";
+        String bb = killer.makeBigBad();
+        return "${htmlTitle()} is dead. $bb";
     }
 
     void interactionEffect(GameEntity ge) {

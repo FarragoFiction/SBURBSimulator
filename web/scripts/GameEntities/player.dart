@@ -25,8 +25,6 @@ class Player extends GameEntity{
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
     num timesDied = 0;
-    //mostly for dead sessions.
-    bool unconditionallyImmortal = false;
    static num maxHornNumber = 73; //don't fuck with this
     static num maxHairNumber = 74; //same
     Sprite sprite = null; //gets set to a blank sprite when character is created.
@@ -331,7 +329,10 @@ class Player extends GameEntity{
             this.triggerOtherPlayersWithMyDeath();
             canvas.context2D.restore(); //only stay rotated long enough to render.
         }
-        return ret;
+
+        String bb = killer.makeBigBad();
+
+        return "$ret $bb";
     }
 
     void triggerOtherPlayersWithMyDeath() {
