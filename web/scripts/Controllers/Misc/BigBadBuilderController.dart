@@ -37,8 +37,6 @@ Future<Null> start() async {
   todo("action effect: start strife (give big bads stats and flags for is strifable and is unconditionally immortal first)");
   todo("action effect alter 'is strifable' modifier");
   todo("target land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
-  todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
-  todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("target condition: winning players (purple frog, shogun etc pick this) useful for big giant boss fights at the last minute, or big bads that change their behavior at the last minute");
   todo("remove effect/target filter from scene");
 
@@ -46,7 +44,8 @@ Future<Null> start() async {
   todo("<br>");
 
   todo("flavor text has a 'owner' tag after all, so that mind control can work (mind control is a list of scenes that an effect has, or a tag that it's a coy of the owner))");
-  todo("random target for land and player, each applicant has an x% chance of being selected (could still be all or none randomly)");
+  todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
+  todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)");
   todo("big bads need 0 or more custom fraymotif names");
   todo("LAND EFFECT: set quests to done (pre, denizen or post) (doing this effectively skips them, no reward of any kind)");
   todo("hasInterest (if they aren't a player automatically false)");

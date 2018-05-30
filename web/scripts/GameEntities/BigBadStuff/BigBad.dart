@@ -168,6 +168,11 @@ class BigBadForm {
     TextInputElement nameElement;
     TextAreaElement dataBox;
     TextAreaElement descElement;
+
+    CheckboxInputElement strifableElement;
+    TextAreaElement strifableYesElement;
+    TextAreaElement strifableNoElement;
+
     Element startSceneSection;
     Element sceneSection;
 
@@ -181,6 +186,7 @@ class BigBadForm {
         drawDataBox();
         drawName();
         drawDesc();
+        drawStrifable();
         drawAddStartButton();
         drawAddSceneButton();
     }
@@ -270,6 +276,42 @@ class BigBadForm {
             bigBad.name = nameElement.value;
             syncDataBoxToBigBad();
         });
+    }
+
+    //check box for canStrife and then two text areas for text on strife or strife avoidance
+    void drawStrifable() {
+        DivElement subContainer = new DivElement();
+        container.append(subContainer);
+
+        LabelElement label1 = new LabelElement()..setInnerHtml("Can BB be strifed at all? (Is it intangible, not yet here, too fast, etc)");
+        strifableElement = new CheckboxInputElement();
+        subContainer.append(label1);
+        subContainer.append(strifableElement);
+        strifableElement.checked = bigBad.canStrife;
+        strifableElement.onChange.listen((Event e) {
+            bigBad.canStrife = strifableElement.checked;
+            syncDataBoxToBigBad();
+        });
+
+        LabelElement label2 = new LabelElement()..setInnerHtml("When a Strife can't happen, what text is displayed as the reason? (You can leave this unmodified if the BB is expected to always be strifable). ");
+        strifableNoElement = new TextAreaElement();
+        subContainer.append(label2);
+        subContainer.append(strifableNoElement);
+        strifableNoElement.onInput.listen((Event e) {
+            bigBad.textIfNoStrife = strifableNoElement.value;
+            syncDataBoxToBigBad();
+        });
+
+
+        LabelElement label3 = new LabelElement()..setInnerHtml("When a Strife does happen, what text is displayed? (i.e. the BB is now tangible, slowed down by their weakenss, etc). ");
+        strifableYesElement = new TextAreaElement();
+        subContainer.append(label3);
+        subContainer.append(strifableYesElement);
+        strifableYesElement.onInput.listen((Event e) {
+            bigBad.textIfYesStrife = strifableYesElement.value;
+            syncDataBoxToBigBad();
+        });
+
     }
 
     void drawDesc() {
