@@ -307,7 +307,7 @@ class MailSideQuest extends Scene {
 
       Land currentLand = findLandToBeOn();
       Land detour = findLandToBeOn(currentLand);
-      List<String> frustrations = <String>["Of course.","For fucks sake.","Why don't they just let the mail go through!?","The ${gameEntity.htmlTitle()} tries not to get too frustrated."];
+      List<String> frustrations = <String>["Of course.","For fucks sake.","Why don't they just let the mail go through!?","The ${gameEntity.htmlTitle()} tries not to get too frustrated.", "The The ${gameEntity.htmlTitle()} idly wishes they were doing the OTHER kind of shipping instead."];
 
       List<String> bullshit = <String>["The ${gameEntity.htmlTitle()} realizes that to get to the ${recipient.htmlTitle()}, they need to get a key for a bridge on the ${currentLand} and the key is only kept on the ${detour}. ","A ${currentLand.consortFeature.sound}ing ${currentLand.consortFeature.name} won't let the ${gameEntity.htmlTitle()} past without a rare item that is only kept on the ${detour}. ","The ${gameEntity.htmlTitle()} has to bribe the worlds worst ${currentLand.consortFeature.name} with a delicacy that you can only find on the ${detour}.  "];
       DivElement ret = new DivElement();
