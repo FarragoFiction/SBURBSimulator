@@ -53,7 +53,7 @@ class TargetIsRandomLand extends TargetConditionLand {
             syncToForm();
             label.text = "Odds of Targeting Individual: $importantInt%";
         });
-        syncToForm();
+        syncFormToMe();
     }
 
     @override

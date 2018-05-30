@@ -54,7 +54,7 @@ class TargetIsRandom extends TargetConditionLiving {
             syncToForm();
             label.text = "Odds of Targeting Individual: $importantInt%";
         });
-        syncToForm();
+        syncFormToMe();
     }
 
     @override

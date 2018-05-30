@@ -92,7 +92,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
             select.selectedIndex = 0;
         }
         select.onChange.listen((Event e) => syncToForm());
-        syncToForm();
+        syncFormToMe();
 
     }
 

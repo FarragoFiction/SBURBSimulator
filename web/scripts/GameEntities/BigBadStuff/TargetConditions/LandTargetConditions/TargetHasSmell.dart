@@ -81,10 +81,12 @@ class TargetHasSmell extends TargetConditionLand {
         }
         if(feature == null) {
             feature = allFeaturesKnown.first;
-            select.selectedIndex = 0;
+            select.options.first.selected = true;
         }
+
+
         select.onChange.listen((Event e) => syncToForm());
-        syncToForm();
+        syncFormToMe();
 
     }
 

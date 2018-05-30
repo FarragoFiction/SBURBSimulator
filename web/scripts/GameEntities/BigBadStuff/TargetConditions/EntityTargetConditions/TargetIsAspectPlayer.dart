@@ -91,7 +91,7 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
       }
       if(aspectName == null) select.selectedIndex = 0;
       select.onChange.listen((Event e) => syncToForm());
-      syncToForm();
+      syncFormToMe();
 
   }
 

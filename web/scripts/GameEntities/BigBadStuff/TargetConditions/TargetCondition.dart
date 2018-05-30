@@ -49,7 +49,7 @@ abstract class TargetCondition {
         div.append(me);
         renderNotFlag(me);
 
-        syncToForm();
+        syncFormToMe();
     }
 
 
@@ -90,12 +90,13 @@ abstract class TargetCondition {
 
     void syncFormToNotFlag() {
         notElement.checked = not;
-
+        print("after loading not for $this, it is $not and checked is ${notElement.checked}");
     }
 
     void copyNotFlagFromJSON(JSONObject json) {
         String notString = json["NOT"];
         if(notString == "true") not = true;
+        print("after loading not for $this, it is $not");
     }
 
 

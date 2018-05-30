@@ -66,7 +66,7 @@ class TargetIsCarapace extends TargetConditionLiving {
 
     if(select.selectedIndex == -1) select.options[0].selected = true;
     select.onChange.listen((e) => syncToForm());
-    syncToForm();
+    syncFormToMe();
   }
   @override
   TargetCondition makeNewOfSameType() {
