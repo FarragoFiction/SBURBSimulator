@@ -128,6 +128,8 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new InstaKill(scene));
       ret.add(new ChangeStat(scene));
       ret.add(new GrimDarkCorruption(scene));
+      ret.add(new MakeStrifable(scene));
+
       return ret;
   }
 

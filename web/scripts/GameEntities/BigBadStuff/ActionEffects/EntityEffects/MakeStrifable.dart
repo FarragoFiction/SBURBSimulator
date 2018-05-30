@@ -37,7 +37,13 @@ class MakeStrifable extends EffectEntity {
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
         SpanElement death = new SpanElement();
-        String text = (e.makeDead("encountering ${scene.gameEntity}", scene.gameEntity));
+        String text  = "";
+        if(e.canStrife) {
+            text = "${e.htmlTitle()} can now be strifed.";
+        }else {
+            text = "Nothing actually seems to happen to ${e.htmlTitle()}";
+        }
+        e.canStrife = true;
         death.setInnerHtml(text);
         scene.myElement.append(death);
     });
