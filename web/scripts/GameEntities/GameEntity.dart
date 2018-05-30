@@ -854,15 +854,26 @@ class GameEntity extends Object with StatOwner   {
     //if  you kill someone while being too stronk
     //the players try to stop you
     String makeBigBad() {
-
-        if(unconditionallyImmortal) bigBad = true;
-        if(playerKillCount > session.players.length/4) bigBad = true;
-        if(npcKillCount > 12) bigBad = true;
-        if(landKillCount >1 ) bigBad = true;
-        if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players)) bigBad = true;
+        String reason = "";
+        if(unconditionallyImmortal) {
+            reason = " because if they don't stop them, who will?";
+            bigBad = true;
+        }else if(playerKillCount > session.players.length/4) {
+            reason = "because they have killed so many already.";
+            bigBad = true;
+        }else if(npcKillCount > 12) {
+            reason = "because npcs or not, the ${htmlTitle()} is on a murderous rampage. ";
+            bigBad = true;
+        }else if(landKillCount >1 ) {
+            reason = "because you can't just go around blowing up planets!";
+            bigBad = true;
+        }else if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players)) {
+            reason = "no one being should have all that power and use it to kill."; //hums along
+            bigBad = true;
+        }
 
         if(bigBad) {
-            return "The Players vow revenge against the killer, ${htmlTitle()}";
+            return "The Players vow revenge against the killer, ${htmlTitle()} $reason";
         }
     }
 
