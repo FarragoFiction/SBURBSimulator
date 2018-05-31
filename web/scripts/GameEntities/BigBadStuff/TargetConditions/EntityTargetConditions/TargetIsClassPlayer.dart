@@ -58,8 +58,8 @@ class TargetIsClassPlayer extends TargetConditionLiving {
   void renderForm(Element div) {
       List<String> allClassesKnown = new List<String>.from(allClasses);
       allClassesKnown.sort((String a, String b) => a.toLowerCase().compareTo(b.toLowerCase()));
-      descElement = new DivElement();
-      div.append(descElement);
+      container = new DivElement();
+      div.append(container);
       syncDescToDiv();
       DivElement me = new DivElement();
       div.append(me);

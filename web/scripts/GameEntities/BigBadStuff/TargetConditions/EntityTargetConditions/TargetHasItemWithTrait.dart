@@ -63,8 +63,8 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
 
         Session session = scene.session;
 
-        descElement = new DivElement();
-        div.append(descElement);
+        container = new DivElement();
+        div.append(container);
         syncDescToDiv();
         DivElement me = new DivElement();
         div.append(me);

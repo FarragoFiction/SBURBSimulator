@@ -187,6 +187,33 @@ void syncForm() {
         }
     }
 
+    void removeCondition(TargetCondition c) {
+        String jsonString = c.toJSON().toString();
+        List<TargetCondition> allConditions = new List<TargetCondition>.from(triggerConditionsLiving);
+        allConditions.addAll(triggerConditionsLand);
+        for(TargetCondition s in allConditions) {
+            if (s.toJSON().toString() == jsonString) {
+                triggerConditionsLand.remove(s);
+                triggerConditionsLiving.remove(s);
+                return;
+            }
+        }
+    }
+
+    void removeEffect(ActionEffect e) {
+        String jsonString = e.toJSON().toString();
+        List<ActionEffect> allEffects = new List<ActionEffect>.from(effectsForLands);
+        allEffects.addAll(effectsForLiving);
+        for(ActionEffect s in allEffects) {
+            if (s.toJSON().toString() == jsonString) {
+                effectsForLands.remove(s);
+                effectsForLiving.remove(s);
+                return;
+            }
+        }
+    }
+
+
     void loadTriggerConditionsLand(String weirdString) {
         List<dynamic> what = JSON.decode(weirdString);
 
@@ -198,6 +225,8 @@ void syncForm() {
             triggerConditionsLand.add(tc);
         }
     }
+
+
 
     void loadTriggerConditionsLiving(String weirdString) {
         List<dynamic> what = JSON.decode(weirdString);
@@ -336,20 +365,25 @@ class SceneForm {
         targetOneElement.checked = scene.targetOne;
 
         for (TargetCondition s in scene.triggerConditionsLiving) {
+            print("rendering form for living condition ${s.name}");
             s.renderForm(targetLivingSection);
         }
 
         for (TargetCondition s in scene.triggerConditionsLand) {
+            print("rendering form for land condition ${s.name}");
             s.renderForm(targetLandSection);
         }
 
         for (ActionEffect s in scene.effectsForLiving) {
+            print("rendering form for living effect ${s.name}");
             s.renderForm(effectLivingSection);
         }
 
         for (ActionEffect s in scene.effectsForLands) {
+            print("rendering form for land effect ${s.name}");
             s.renderForm(effectLandSection);
         }
+        print("syncing data box to scene");
         syncDataBoxToScene();
     }
 
@@ -384,6 +418,7 @@ class SceneForm {
         EffectLand.drawSelectActionEffects(container, scene,effectLandSection);
 
     }
+
 
 
     void drawDeleteButton() {
@@ -484,7 +519,9 @@ class SceneForm {
             print("syncing template to data box");
             try {
                 scene.copyFromDataString(dataBox.value);
+                print("loaded scene");
                 syncFormToScene();
+                print("synced form to scene");
             }catch(e) {
                 scene.session.logger.info(e);
                 window.alert("something went wrong! $e");

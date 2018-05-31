@@ -20,7 +20,7 @@ abstract class TargetCondition {
     bool not = false;
     CheckboxInputElement notElement;
 
-    DivElement descElement;
+    DivElement container;
 
     String descText = "is generic";
     String notDescText = "is NOT generic";
@@ -42,12 +42,12 @@ abstract class TargetCondition {
     @override
     void renderForm(Element div) {
         print("rendering target condition");
-        descElement = new DivElement();
-        div.append(descElement);
+        container = new DivElement();
+        div.append(container);
         syncDescToDiv();
 
         DivElement me = new DivElement();
-        div.append(me);
+        container.append(me);
         renderNotFlag(me);
 
         syncFormToMe();
@@ -58,6 +58,20 @@ abstract class TargetCondition {
     void syncToForm();
     void syncFormToMe();
     void copyFromJSON(JSONObject json);
+
+    void drawDeleteButton() {
+        if(scene != null) {
+            ButtonElement delete = new ButtonElement();
+            delete.text = "Remove Condition";
+            delete.onClick.listen((e) {
+                //don't bother knowing where i am, just remove from all
+                scene.removeConditon();
+                container.remove();
+                scene.syncForm();
+            });
+            container.append(delete);
+        }
+    }
 
     void renderNotFlag(Element div) {
         DivElement subContainer = new DivElement();
@@ -78,7 +92,7 @@ abstract class TargetCondition {
     }
 
     void syncDescToDiv() {
-        descElement.setInnerHtml(desc);
+        container.setInnerHtml(desc);
     }
 
     void syncNotFlagToForm() {

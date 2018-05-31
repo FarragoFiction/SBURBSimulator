@@ -33,8 +33,8 @@ class TargetIsCarapace extends TargetConditionLiving {
     allCarapaces.addAll(session.derse.associatedEntities);
     print("all carapaces is $allCarapaces");
 
-    descElement = new DivElement();
-    div.append(descElement);
+    container = new DivElement();
+    div.append(container);
     syncDescToDiv();
 
     DivElement me = new DivElement();
