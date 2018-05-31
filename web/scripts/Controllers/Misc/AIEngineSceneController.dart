@@ -25,7 +25,7 @@ Future<Null> start() async {
   div.append(todoElement);
 
   setUpForm();
-  FAQHandler faqHandler = new FAQHandler("AI Engine FAQ", div);
+  FAQHandler faqHandler = new FAQHandler(FAQHandler.SCENEFAQ, div);
   TodoHandler todoHandler = new TodoHandler(TodoHandler.BIGBADTODO, div);
 }
 

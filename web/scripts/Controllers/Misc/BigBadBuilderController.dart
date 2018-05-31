@@ -17,7 +17,7 @@ Future<Null> start() async {
   await globalInit();
   bigBad.session.setupMoons("BigBad setup");
   div = querySelector("#story");
-  TodoHandler todoHandler = new TodoHandler(TodoHandler.BIGBADTODO, div);
+
 
 
   /**
@@ -35,6 +35,8 @@ Future<Null> start() async {
 
 
   setUpForm();
+  FAQHandler faqHandler = new FAQHandler(FAQHandler.BIGBADFAQ, div);
+  TodoHandler todoHandler = new TodoHandler(TodoHandler.BIGBADTODO, div);
 }
 
 void setUpForm() {
