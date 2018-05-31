@@ -158,6 +158,8 @@ class BigBad extends NPC {
           if(s is SerializableScene) {
               if (s.toJSON().toString() == jsonString) {
                   startMechanisms.remove(s);
+                  scenes.remove(s);
+                  stopMechanisms.remove(s);
                   return;
               }
           }
