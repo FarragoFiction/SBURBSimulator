@@ -7,6 +7,8 @@ class TodoHandler {
   static String SESSIONCUSTOMIZERTODO = "Session Customizer TODO";
   static String BUGFIXTODO = "Bug Fix TODO";
 
+  static List<String> get allTODOs => <String>[BIGBADTODO, SESSIONCUSTOMIZERTODO, BUGFIXTODO];
+
    String header;
    Element container;
    UListElement highPriority;
@@ -54,6 +56,20 @@ class TodoHandler {
      todo("ability to load a scene into a player/carapace for testing in the sessionCustomizer.", highPriority);
      todo("ability to serialize a game entity.",highPriority);
      todo("ability to serialize a session",highPriority);
+
+     todo("Sylladex Section lets you remove the selected item from the sylladex", highPriority);
+     todo("can serialize a sylladex (just item numbers in allItems list, assume is stable)", highPriority);
+     todo("can save a session to a .txt file", highPriority);
+     todo("can load a session from a .txt file", highPriority);
+     todo("if only one player, use dead session controller", mediumPriority);
+     todo("make sure it works for special sessions like 13 or 413! (fix bugs in AB this caused)", highPriority);
+     todo("Each Player has a QuirkSection that lets  you modify quirks.", mediumPriority);
+     todo("players/carapaces get one custom fraymotif name (all custom fraymotifs just do everything at once)", mediumPriority);
+     todo("PlayerSection lets you pick initial relationships. (drop down of types, drop down of targets)", highPriority);
+     todo("Can give a session a Name.", lowPriority);
+     todo("Can choose 13 sessions to save to localStorage (if they aren't too big? Only have 2.2 mb)", lowPriority);
+     todo("can view list of your saved sessions, load them into this page, etc", lowPriority);
+     todo("pretty everything up??? ask PL for help???", lowPriority);
   }
 
   void setupBigBadTODO() {
@@ -114,25 +130,17 @@ class FAQHandler {
 
   static String SCENEFAQ = "AI Engine FAQ";
   static String BIGBADFAQ = "Big Bad FAQ";
-
-  DivElement faqElement;
    Element container;
    String header;
 
    FAQHandler(String this.header, DivElement div) {
      container = new DivElement();
      container.setInnerHtml("<h1>$header</h1>");
+     div.append(container);
      setup();
    }
 
    void setup() {
-
-    container = querySelector("#story");
-
-    faqElement = new DivElement();
-    faqElement.style.border = "1px solid black";
-    faqElement.setInnerHtml("<h1>FAQ</h1>");
-    container.append(faqElement);
     if(header == SCENEFAQ) setupSceneFAQ();
     if(header == BIGBADFAQ) setupBBFAQ();
   }
@@ -177,7 +185,7 @@ class FAQHandler {
 
     tmp.append(question);
     tmp.append(answer);
-    faqElement.append(tmp);
+    container.append(tmp);
   }
 
 
