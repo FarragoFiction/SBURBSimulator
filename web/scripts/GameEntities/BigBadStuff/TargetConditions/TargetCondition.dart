@@ -40,16 +40,13 @@ abstract class TargetCondition {
 
 
     @override
-    void renderForm(Element div) {
+    void renderForm(Element divbluh) {
+        setupContainer(divbluh);
         print("rendering target condition");
-        container = new DivElement();
-        div.append(container);
         syncDescToDiv();
 
         DivElement me = new DivElement();
         container.append(me);
-        renderNotFlag(me);
-
         syncFormToMe();
         scene.syncForm();
     }
@@ -58,6 +55,13 @@ abstract class TargetCondition {
     void syncToForm();
     void syncFormToMe();
     void copyFromJSON(JSONObject json);
+
+    void setupContainer(DivElement div) {
+        container = new DivElement();
+        div.append(container);
+        drawDeleteButton();
+        renderNotFlag(container);
+    }
 
     void drawDeleteButton() {
         if(scene != null) {
@@ -74,7 +78,6 @@ abstract class TargetCondition {
     }
 
     void renderNotFlag(Element div) {
-        drawDeleteButton();
         DivElement subContainer = new DivElement();
         div.append(subContainer);
         LabelElement nameLabel = new LabelElement();

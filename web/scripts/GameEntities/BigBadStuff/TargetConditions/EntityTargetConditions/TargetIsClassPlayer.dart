@@ -55,15 +55,14 @@ class TargetIsClassPlayer extends TargetConditionLiving {
   }
 
   @override
-  void renderForm(Element div) {
+  void renderForm(Element divbluh) {
       List<String> allClassesKnown = new List<String>.from(allClasses);
       allClassesKnown.sort((String a, String b) => a.toLowerCase().compareTo(b.toLowerCase()));
-      container = new DivElement();
-      div.append(container);
+      setupContainer(divbluh);
+
       syncDescToDiv();
       DivElement me = new DivElement();
-      div.append(me);
-      renderNotFlag(me);
+      container.append(me);
 
 
       select = new SelectElement();

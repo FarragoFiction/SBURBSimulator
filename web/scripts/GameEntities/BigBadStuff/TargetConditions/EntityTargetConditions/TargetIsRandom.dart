@@ -32,14 +32,13 @@ class TargetIsRandom extends TargetConditionLiving {
     }
 
     @override
-    void renderForm(Element div) {
-        container = new DivElement();
-        div.append(container);
+    void renderForm(Element divbluh) {
+        setupContainer(divbluh);
+
         syncDescToDiv();
 
         DivElement me = new DivElement();
-        div.append(me);
-        renderNotFlag(me);
+        container.append(me);
 
 
         LabelElement label = new LabelElement()..text = "Odds of Targeting Individual: $importantInt%";

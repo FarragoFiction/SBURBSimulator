@@ -27,19 +27,18 @@ class TargetIsCarapace extends TargetConditionLiving {
   }
 
   @override
-  void renderForm(Element div) {
+  void renderForm(Element divbluh) {
     Session session = scene.session;
     List<GameEntity> allCarapaces = new List.from(session.prospit.associatedEntities);
     allCarapaces.addAll(session.derse.associatedEntities);
     print("all carapaces is $allCarapaces");
 
-    container = new DivElement();
-    div.append(container);
+    setupContainer(divbluh);
+
     syncDescToDiv();
 
     DivElement me = new DivElement();
-    div.append(me);
-    renderNotFlag(me);
+    container.append(me);
 
 
     select = new SelectElement();

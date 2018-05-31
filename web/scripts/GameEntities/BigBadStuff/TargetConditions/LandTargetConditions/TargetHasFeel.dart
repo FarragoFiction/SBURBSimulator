@@ -47,7 +47,7 @@ class TargetHasFeel extends TargetConditionLand {
 
 
     @override
-    void renderForm(Element div) {
+    void renderForm(Element divbluh) {
         List<Feature> allFeaturesKnown = new List.from(allFeatures.values);
         allFeaturesKnown.sort((Feature a, Feature b){
             return a.simpleDesc.toLowerCase().compareTo(b.simpleDesc.toLowerCase());
@@ -55,12 +55,11 @@ class TargetHasFeel extends TargetConditionLand {
 
         Session session = scene.session;
 
-        container = new DivElement();
-        div.append(container);
+        setupContainer(divbluh);
+
         syncDescToDiv();
         DivElement me = new DivElement();
-        div.append(me);
-        renderNotFlag(me);
+        container.append(me);
 
         select = new SelectElement();
         select.size = 13;

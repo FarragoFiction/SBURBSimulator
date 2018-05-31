@@ -10,6 +10,8 @@ abstract class ActionEffect {
     static String IMPORTANTINT = "importantNumber";
 
     String name = "Generic Effect";
+    //what gets deleted
+    Element container;
 
     String  importantWord = "N/A";
     int  importantInt = 0;
@@ -22,6 +24,26 @@ abstract class ActionEffect {
     void copyFromJSON(JSONObject json);
     void applyEffect();
     ActionEffect makeNewOfSameType();
+
+    void setupContainer(DivElement div) {
+        container = new DivElement();
+        div.append(container);
+        drawDeleteButton();
+    }
+
+    void drawDeleteButton() {
+        if(scene != null) {
+            ButtonElement delete = new ButtonElement();
+            delete.text = "Remove Effect";
+            delete.onClick.listen((e) {
+                //don't bother knowing where i am, just remove from all
+                scene.removeEffect(this);
+                container.remove();
+                scene.syncForm();
+            });
+            container.append(delete);
+        }
+    }
 
 
     JSONObject toJSON() {

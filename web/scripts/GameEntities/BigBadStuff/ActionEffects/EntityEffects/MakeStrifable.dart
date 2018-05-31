@@ -20,9 +20,10 @@ class MakeStrifable extends EffectEntity {
   }
 
     @override
-    void renderForm(Element div) {
+    void renderForm(Element divbluh) {
+        setupContainer(divbluh);
         DivElement me = new DivElement();
-        div.append(me);
+        container.append(me);
         me.setInnerHtml("<br><br><b>MakeStrifable:</b> <br>now the BB can be strifed normally (if it couldn't before). Will not trigger a strife on its own, though. <br><br>");
         syncToForm();
     }

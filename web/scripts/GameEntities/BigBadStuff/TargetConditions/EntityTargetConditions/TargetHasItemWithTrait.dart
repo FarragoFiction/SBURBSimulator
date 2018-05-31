@@ -57,18 +57,17 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
 
 
     @override
-    void renderForm(Element div) {
+    void renderForm(Element divbluh) {
         List<ItemTrait> allTraitsKnown = new List<ItemTrait>.from(ItemTraitFactory.allTraits);
         allTraitsKnown.sort((ItemTrait a, ItemTrait b) => a.toString().toLowerCase().compareTo(b.toString().toLowerCase()));
 
         Session session = scene.session;
 
-        container = new DivElement();
-        div.append(container);
+        setupContainer(divbluh);
+
         syncDescToDiv();
         DivElement me = new DivElement();
-        div.append(me);
-        renderNotFlag(me);
+        container.append(me);
 
         select = new SelectElement();
         select.size = 13;

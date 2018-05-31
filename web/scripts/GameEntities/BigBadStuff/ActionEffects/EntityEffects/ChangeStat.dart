@@ -44,9 +44,10 @@ class ChangeStat extends EffectEntity {
   }
 
     @override
-    void renderForm(Element div) {
+    void renderForm(Element divbluh) {
+        setupContainer(divbluh);
         DivElement me = new DivElement();
-        div.append(me);
+        container.append(me);
         List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
 
         me.setInnerHtml("<br><br><b>Change Stat:</b> <br>");
