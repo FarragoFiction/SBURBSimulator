@@ -292,8 +292,13 @@ void syncForm() {
       livingTargets.clear();
       livingTargets = new List<GameEntity>.from(session.activatedNPCS); //not all, just active
       //TODO should i also get party members for those npcs? otherwise can't get brain ghosts and robots and the like
-      livingTargets.addAll(session.players);
-      landTargets = session.allLands;
+      for(Player p in session.players) {
+            if(p.active) {
+                livingTargets.add(p);
+                landTargets.add(p.land);
+            }
+      }
+      landTargets.addAll(session.moons);
 
       livingTargets = shuffle(session.rand, livingTargets);
       landTargets = shuffle(session.rand, landTargets);
