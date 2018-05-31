@@ -105,8 +105,8 @@ class NPCHandler
         session.logger.info("TEST BULLSHIT: setting up big bads from ${bigBadsFromFile.length} data strings");
         for(String line in bigBadsFromFile) {
             BigBad newBB = BigBad.fromDataString(line, session);
-            newBB.setStat(Stats.HEALTH, 1300);
-            newBB.setStat(Stats.POWER, 1300);
+            newBB.setStat(Stats.HEALTH, 130);
+            newBB.setStat(Stats.POWER, 130);
 
             print("made a new BB ${newBB}");
             bigBads.add(newBB);
