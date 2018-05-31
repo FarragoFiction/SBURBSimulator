@@ -21,6 +21,7 @@ abstract class TargetCondition {
     CheckboxInputElement notElement;
 
     DivElement container;
+    DivElement descElement;
 
     String descText = "is generic";
     String notDescText = "is NOT generic";
@@ -96,7 +97,11 @@ abstract class TargetCondition {
     }
 
     void syncDescToDiv() {
-        container.setInnerHtml(desc);
+        if(descElement == null) {
+            descElement  = new DivElement();
+            container.append(descElement);
+        }
+        descElement.setInnerHtml(desc);
     }
 
     void syncNotFlagToForm() {
