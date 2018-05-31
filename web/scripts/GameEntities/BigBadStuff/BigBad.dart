@@ -144,7 +144,7 @@ class BigBad extends NPC {
   }
 
   void syncForm() {
-      print("going to sync with ${startMechanisms.length} start scenes");
+      print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes");
      form.syncDataBoxToBigBad();
 
   }
@@ -154,7 +154,7 @@ class BigBad extends NPC {
       List<Scene> allScenes = new List<Scene>.from(startMechanisms);
       allScenes.addAll(scenes);
       allScenes.addAll(stopMechanisms);
-      for(Scene s in startMechanisms) {
+      for(Scene s in allScenes) {
           if(s is SerializableScene) {
               if (s.toJSON().toString() == jsonString) {
                   startMechanisms.remove(s);
