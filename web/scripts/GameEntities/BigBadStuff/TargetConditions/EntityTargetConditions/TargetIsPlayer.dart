@@ -7,9 +7,9 @@ class TargetIsPlayer extends TargetConditionLiving {
     String name = "IsPlayer";
 
     @override
-    String descText = "<br><br><br><b>Is Player:</b><br>Target Entity must be a Player (or the clone of a player). <br><br>";
+    String descText = "<b>Is Player:</b><br>Target Entity must be a Player (or the clone of a player). <br><br>";
     @override
-    String notDescText = "<br><br><br><b>Is NOT Player:</b><br>Target Entity must NOT be a Player (or the clone of a player). <br><br>";
+    String notDescText = "<b>Is NOT Player:</b><br>Target Entity must NOT be a Player (or the clone of a player). <br><br>";
 
 
     @override

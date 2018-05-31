@@ -27,6 +27,7 @@ abstract class ActionEffect {
 
     void setupContainer(DivElement div) {
         container = new DivElement();
+        container.classes.add("conditionOrEffect");
         div.append(container);
         drawDeleteButton();
     }

@@ -15,9 +15,9 @@ class TargetIsRandom extends TargetConditionLiving {
 
 
     @override
-    String descText = "<br><br><br><b>Is Random:</b><br>Each potential target has an X% chance of being targeted. <br><br>";
+    String descText = "<b>Is Random:</b><br>Each potential target has an X% chance of being targeted. <br><br>";
     @override
-    String notDescText = "<br><br><br><b>Is NOT Random???:</br> Each potential target has an X% chance of being NOT targeted.  (why didn't you just change the number???)<br><br>";
+    String notDescText = "<b>Is NOT Random???:</br> Each potential target has an X% chance of being NOT targeted.  (why didn't you just change the number???)<br><br>";
 
 
     TargetIsRandom(SerializableScene scene) : super(scene){

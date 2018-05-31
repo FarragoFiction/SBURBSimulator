@@ -59,6 +59,7 @@ abstract class TargetCondition {
 
     void setupContainer(DivElement div) {
         container = new DivElement();
+        container.classes.add("conditionOrEffect");
         div.append(container);
         drawDeleteButton();
         renderNotFlag(container);
