@@ -41,6 +41,7 @@ abstract class TargetCondition {
 
     @override
     void renderForm(Element div) {
+        print("rendering target condition");
         descElement = new DivElement();
         div.append(descElement);
         syncDescToDiv();
@@ -50,6 +51,7 @@ abstract class TargetCondition {
         renderNotFlag(me);
 
         syncFormToMe();
+        scene.syncForm();
     }
 
 

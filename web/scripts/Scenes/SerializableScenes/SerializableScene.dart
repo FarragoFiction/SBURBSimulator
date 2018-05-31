@@ -311,6 +311,7 @@ class SceneForm {
     }
 
     void drawForm() {
+        print("drawing new scene form");
         drawDataBox();
         drawDeleteButton();
         drawName();
@@ -329,6 +330,7 @@ class SceneForm {
     }
 
     void syncFormToScene() {
+        print("syncing form to scene");
         nameElement.value = scene.name;
         flavorText.value = scene.flavorText;
         targetOneElement.checked = scene.targetOne;
@@ -472,6 +474,7 @@ class SceneForm {
 
 
     void drawDataBox() {
+        print("drawing data box");
         dataBox = new TextAreaElement();
         dataBox.value = scene.toDataString();
         dataBox.cols = 60;
