@@ -42,8 +42,8 @@ abstract class TargetCondition {
 
     @override
     void renderForm(Element divbluh) {
-        setupContainer(divbluh);
         print("rendering target condition");
+        setupContainer(divbluh);
         syncDescToDiv();
 
         DivElement me = new DivElement();
@@ -58,11 +58,15 @@ abstract class TargetCondition {
     void copyFromJSON(JSONObject json);
 
     void setupContainer(DivElement div) {
+        print("setting up container for $name");
         container = new DivElement();
         container.classes.add("conditionOrEffect");
         div.append(container);
+        print("appended container");
         drawDeleteButton();
+        print("drew delete button");
         renderNotFlag(container);
+        print("rendered not flag");
     }
 
     void drawDeleteButton() {
@@ -89,7 +93,7 @@ abstract class TargetCondition {
 
         subContainer.append(nameLabel);
         subContainer.append(notElement);
-        notElement.append(subContainer);
+        container.append(subContainer);
 
         notElement.onChange.listen((e) {
             syncNotFlagToForm();
@@ -181,6 +185,7 @@ abstract class TargetConditionLiving extends TargetCondition {
                   TargetCondition newCondition = tc.makeNewOfSameType();
                   newCondition.scene = owner;
                   owner.triggerConditionsLiving.add(newCondition);
+                  print("adding new entity condition to $owner");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
               }

@@ -203,7 +203,7 @@ abstract class EffectEntity extends ActionEffect {
                   ActionEffect newCondition = tc.makeNewOfSameType();
                   newCondition.scene = owner;
                   owner.effectsForLiving.add(newCondition);
-                  print("adding new condition to $owner");
+                  print("adding new effect to $owner");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
               }

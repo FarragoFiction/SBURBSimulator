@@ -50,12 +50,15 @@ class TodoHandler {
   
   void setupBugFixTODO() {
      todo("make AB sane",highPriority);
+     todo("make sure custom sessions work both in general and with session customiser",highPriority);
   }
   
   void setupSessionCustomizerTODO() {
      todo("ability to load a scene into a player/carapace for testing in the sessionCustomizer.", highPriority);
      todo("ability to serialize a game entity.",highPriority);
      todo("ability to serialize a session",highPriority);
+     todo("create/destroy players", highPriority);
+     todo("load old session url maybe?",mediumPriority);
 
      todo("Sylladex Section lets you remove the selected item from the sylladex", highPriority);
      todo("can serialize a sylladex (just item numbers in allItems list, assume is stable)", highPriority);
@@ -73,6 +76,7 @@ class TodoHandler {
   }
 
   void setupBigBadTODO() {
+     todo("Make sure players not yet in the session (or their lands) can't be targetted.",highPriority);
     todo("fuck the world, make game entities serializable first before i modify big bads too much.", highPriority);
     todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun", highPriority);
     todo("target land feature (smells like sweet, has consorts, etc, has strong denizen, etc)", highPriority);
