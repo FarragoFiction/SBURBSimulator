@@ -50,7 +50,7 @@ class ChangeInhabitantsStat extends EffectLand {
         container.append(me);
         List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
 
-        me.setInnerHtml("<br><br><b>Change Inhabitants Stats:</b> <br>");
+        me.setInnerHtml("<b>Change Inhabitants Stats:</b> <br>");
         //stat time
 
         selectStat = new SelectElement();

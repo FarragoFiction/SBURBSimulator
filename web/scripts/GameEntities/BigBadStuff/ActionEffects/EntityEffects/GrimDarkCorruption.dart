@@ -24,7 +24,7 @@ class GrimDarkCorruption extends EffectEntity {
         setupContainer(divbluh);
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<br><br><b>GrimDarkCorruption:</b> <br>sets GrimDark to max. <br><br>");
+        me.setInnerHtml("<b>GrimDarkCorruption:</b> <br>sets GrimDark to max. <br><br>");
         syncToForm();
     }
 

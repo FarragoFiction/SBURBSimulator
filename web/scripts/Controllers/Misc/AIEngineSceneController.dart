@@ -23,7 +23,6 @@ Future<Null> start() async {
   todoElement.style.border = "1px solid black";
   div.append(todoElement);
 
-  todo("ability to remove triggers/actions");
   todo("loaded scenes not fucking up if there were already triggers/actions");
   todo("ability to load a scene into a player/carapace for testing in the sessionCustomizer.");
 

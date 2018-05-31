@@ -25,7 +25,7 @@ class InstaKill extends EffectEntity {
 
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<br><br><b>InstaKill:</b> <br>No way to dodge this, doesn't trigger a strife <br><br>");
+        me.setInnerHtml("<b>InstaKill:</b> <br>No way to dodge this, doesn't trigger a strife <br><br>");
         syncToForm();
     }
 

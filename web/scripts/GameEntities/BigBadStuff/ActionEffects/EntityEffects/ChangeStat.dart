@@ -50,7 +50,7 @@ class ChangeStat extends EffectEntity {
         container.append(me);
         List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
 
-        me.setInnerHtml("<br><br><b>Change Stat:</b> <br>");
+        me.setInnerHtml("<b>Change Stat:</b> <br>");
         //stat time
 
         selectStat = new SelectElement();

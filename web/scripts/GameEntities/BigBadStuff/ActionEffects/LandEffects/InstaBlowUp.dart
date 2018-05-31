@@ -25,7 +25,7 @@ class InstaBlowUp extends EffectLand {
 
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<br><br><b>InstaBlowUp:</b> <br>Nuke it from orbit, it's the only way to be sure. <br><br>");
+        me.setInnerHtml("<b>InstaBlowUp:</b> <br>Nuke it from orbit, it's the only way to be sure. <br><br>");
         syncToForm();
     }
 

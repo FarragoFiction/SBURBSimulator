@@ -27,7 +27,7 @@ class MakeConsortsSay extends EffectLand {
 
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<br><br><b>MakeConsortsSay:</b> ");
+        me.setInnerHtml("<b>MakeConsortsSay:</b> ");
         input = new TextInputElement();
         input.value = importantWord;
         input.onChange.listen((Event e) {
