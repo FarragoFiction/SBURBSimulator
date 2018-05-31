@@ -25,7 +25,7 @@ class StartStrife extends EffectEntity {
 
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>InstaKill:</b> <br>No way to dodge this, doesn't trigger a strife <br><br>");
+        me.setInnerHtml("<b>Start Strife:</b> <br>Starts a regular strife. (i.e. you could lose this, unless you are unconditionally immortal). <br><br>");
         syncToForm();
     }
 
@@ -48,26 +48,13 @@ class StartStrife extends EffectEntity {
 
   @override
   void effectEntities(List<GameEntity> entities) {
-      List<GameEntity> renderableTargets = new List<GameEntity>();
-      entities.forEach((GameEntity e) {
-        if(e.renderable()) renderableTargets.add(e);
-    });
-
       takeCareOfStrife(entities);
-
-
-    if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
-        CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
-        scene.myElement.append(canvasDiv);
-        Drawing.poseAsATeam(canvasDiv, renderableTargets);
-        scene.posedAsATeamAlready = true;
-    }
   }
 
   void takeCareOfStrife(List<GameEntity> entities) {
         //figure out if it's two teams or three teams
-      Team bigBadTeam = new Team.withName("${scene.gameEntity.htmlTitle()} and Allies",scene.session, getTeam(<GameEntity>[scene.gameEntity]));
-
+      Team bigBadTeam = new Team.withName("${scene.gameEntity.htmlTitle()} and their Allies",scene.session, getTeam(<GameEntity>[scene.gameEntity]));
+      bigBadTeam.canAbscond = false;
       List<GameEntity> playersAndAllies = new List<GameEntity>();
       List<GameEntity> other = new List<GameEntity>();
 
@@ -85,8 +72,8 @@ class StartStrife extends EffectEntity {
       Team playersTeam;
       Team othersTeam;
 
-      if(playersAndAllies.isNotEmpty) playersTeam = new Team.withName("The Players and Allies",scene.session, playersAndAllies);
-      if(other.isNotEmpty) othersTeam = new Team(scene.session, playersAndAllies);
+      if(playersAndAllies.isNotEmpty) playersTeam = new Team.withName("The Players and their Allies",scene.session, playersAndAllies);
+      if(other.isNotEmpty) othersTeam = new Team(scene.session, other);
 
       //render text on screen what the teams are
 

@@ -18,12 +18,24 @@ class Strife {
 
     num timeTillRocks = 99999999; //unless it's a royalty fight, assume no rocks.
 
+    void setHeader(Element div) {
+        DivElement header = new DivElement();
+        header.text = "";
+        div.append(header);
+        for(Team t in teams) {
+            if(t == teams.first) {
+                header.text = "${t.name}";
+            }else {
+                header.text = "${header.text} vs ${t.name}";
+            }
+        }
+    }
 
     void startTurn(Element div) {
         if(turnsPassed == 0) {
             outerDiv = div;
-            String divID = "${div.id}Inner";
-            String buttonID = "${div.id}Button";
+            setHeader(div);
+
             ButtonElement button = new ButtonElement();
             button.setInnerHtml("View Strife!");
             div.append(button);

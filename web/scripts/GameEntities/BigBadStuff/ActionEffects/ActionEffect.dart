@@ -153,8 +153,6 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new GrimDarkCorruption(scene));
       ret.add(new MakeStrifable(scene));
       ret.add(new StartStrife(scene));
-
-
       return ret;
   }
 
