@@ -65,7 +65,7 @@ abstract class TargetCondition {
             delete.text = "Remove Condition";
             delete.onClick.listen((e) {
                 //don't bother knowing where i am, just remove from all
-                scene.removeConditon();
+                scene.removeCondition(this);
                 container.remove();
                 scene.syncForm();
             });
@@ -74,6 +74,7 @@ abstract class TargetCondition {
     }
 
     void renderNotFlag(Element div) {
+        drawDeleteButton();
         DivElement subContainer = new DivElement();
         div.append(subContainer);
         LabelElement nameLabel = new LabelElement();

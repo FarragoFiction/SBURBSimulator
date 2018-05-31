@@ -73,6 +73,32 @@ class  SerializableScene extends Scene {
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
   }
 
+    void removeCondition(TargetCondition c) {
+        String jsonString = c.toJSON().toString();
+        List<TargetCondition> allConditions = new List<TargetCondition>.from(triggerConditionsLiving);
+        allConditions.addAll(triggerConditionsLand);
+        for(TargetCondition s in allConditions) {
+            if (s.toJSON().toString() == jsonString) {
+                triggerConditionsLand.remove(s);
+                triggerConditionsLiving.remove(s);
+                return;
+            }
+        }
+    }
+
+    void removeEffect(ActionEffect e) {
+        String jsonString = e.toJSON().toString();
+        List<ActionEffect> allEffects = new List<ActionEffect>.from(effectsForLands);
+        allEffects.addAll(effectsForLiving);
+        for(ActionEffect s in allEffects) {
+            if (s.toJSON().toString() == jsonString) {
+                effectsForLands.remove(s);
+                effectsForLiving.remove(s);
+                return;
+            }
+        }
+    }
+
   void doEffects() {
       print("doing effect for $gameEntity, effects for living is $effectsForLiving, $effectsForLands");
       for(ActionEffect e in effectsForLands) {
@@ -187,31 +213,7 @@ void syncForm() {
         }
     }
 
-    void removeCondition(TargetCondition c) {
-        String jsonString = c.toJSON().toString();
-        List<TargetCondition> allConditions = new List<TargetCondition>.from(triggerConditionsLiving);
-        allConditions.addAll(triggerConditionsLand);
-        for(TargetCondition s in allConditions) {
-            if (s.toJSON().toString() == jsonString) {
-                triggerConditionsLand.remove(s);
-                triggerConditionsLiving.remove(s);
-                return;
-            }
-        }
-    }
 
-    void removeEffect(ActionEffect e) {
-        String jsonString = e.toJSON().toString();
-        List<ActionEffect> allEffects = new List<ActionEffect>.from(effectsForLands);
-        allEffects.addAll(effectsForLiving);
-        for(ActionEffect s in allEffects) {
-            if (s.toJSON().toString() == jsonString) {
-                effectsForLands.remove(s);
-                effectsForLiving.remove(s);
-                return;
-            }
-        }
-    }
 
 
     void loadTriggerConditionsLand(String weirdString) {
