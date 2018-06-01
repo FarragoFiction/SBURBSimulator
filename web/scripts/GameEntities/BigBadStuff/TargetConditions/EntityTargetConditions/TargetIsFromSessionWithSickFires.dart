@@ -46,6 +46,6 @@ class TargetIsFromSessionWithSickFires extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
-        return item.dead;
+        return item.session.stats.sickFires;
     }
 }
