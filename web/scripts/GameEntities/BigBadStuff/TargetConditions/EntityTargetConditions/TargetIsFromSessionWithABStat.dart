@@ -104,6 +104,6 @@ class TargetIsFromSessionWithABStat extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         SessionSummary sessionSummary = item.session.generateSummary();
-        return sessionSummary.bool_stats[importantWord] == true;
+        return sessionSummary.bool_stats[importantWord] != true;
     }
 }
