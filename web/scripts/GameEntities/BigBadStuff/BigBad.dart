@@ -366,8 +366,13 @@ class BigBadForm {
         dataBox.rows = 10;
         dataBox.onChange.listen((Event e) {
             print("syncing template to data box");
-            bigBad.copyFromDataString(dataBox.value);
-            syncFormToBigBad();
+            try {
+                bigBad.copyFromDataString(dataBox.value);
+                syncFormToBigBad();
+            }catch(e) {
+                window.alert("something went wrong, $e");
+                print(e);
+            }
         });
         container.append(dataBox);
         ButtonElement manualSync = new ButtonElement()..text = "Manual Sync For Accurate DataString";

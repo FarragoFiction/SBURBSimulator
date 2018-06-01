@@ -220,6 +220,16 @@ abstract class TargetConditionLiving extends TargetCondition {
               return ret;
           }
       }
+      //The below is for JR to recover from the corrupted strings caused by changing the name of shit
+      /*
+      TargetCondition ret = new TargetIsFromSessionWithABStat(scene);
+      ret.copyNotFlagFromJSON(json);
+      ret.copyFromJSON(json);
+      ret.scene = scene;
+      return ret;
+      */
+      print("Unknown condition found, $name");
+      throw "Unknown condition found, $name";
   }
 
   static List<TargetConditionLiving> listPossibleTriggers(SerializableScene scene) {

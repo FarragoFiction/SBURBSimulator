@@ -12,12 +12,12 @@ class TargetIsFromSessionWithABStat extends TargetConditionLiving {
     Item crown;
 
     @override
-    String get importantWord => "N/A";
+    String importantWord;
 
     @override
-    String descText = "<b>Has AB Stat:</b><br>If AB were to visit this session at this moment, what would she report back on. (i.e. she would know there WERE sick fires, but not who did them). <br><br>";
+    String descText = "<b>Has AB Stat:</b><br>If AB were to visit this session at this moment, what would she report back on. (i.e. she would know there WERE sick fires, but not who did them). WARNING: Some things she reports back on are only set POST GAME (like scratch available), and thus a big bad couldn't really do anything about it. <br><br>";
     @override
-    String notDescText = "<b>Doesn't Have AB Stat:</b><br>If AB were to visit this session at this moment, what would she report back on. (i.e. she would know there were NOT sick fires). <br><br>";
+    String notDescText = "<b>Doesn't Have AB Stat:</b><br>WARNING: ALL stats are 'false' when the session is created. They only get set to 'true' when shit happens. Using this version means you are saying 'a big bad can only show up UNTIL X happens'. <br><br>";
 
     //strongly encouraged for this to be replaced
 
@@ -98,6 +98,7 @@ class TargetIsFromSessionWithABStat extends TargetConditionLiving {
     @override
     void copyFromJSON(JSONObject json) {
         //nothing to do
+        importantWord = json[TargetCondition.IMPORTANTWORD];
     }
 
     @override
