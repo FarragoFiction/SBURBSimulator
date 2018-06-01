@@ -101,7 +101,7 @@ class TodoHandler {
     todo("land condition: isMeteored (i.e. reckoning is going)", lowPriority);
     todo("isUnconditionallyImmortal",mediumPriority);
     todo("isDoomed", lowPriority);
-    todo("isWasted", mediumPriority);
+    todo("isWasted (lets you target players who did a gnosis 4, and combined with isAspect lets you target specific gnosises)", mediumPriority);
     todo("isTrickster", mediumPriority);
     todo("effect: add fraymotif named x", mediumPriority);
     todo("land target based on planet health", mediumPriority);
@@ -111,12 +111,13 @@ class TodoHandler {
     todo("isRobot", lowPriority);
     todo("isBrainGhost",lowPriority);
     todo("target based on 'recently broke up' or 'recently got together' with someone",lowPriority);
-
+    todo("ability to access pesterchum as an action (i guess they'd message the first player in their list, and ignoring it otherwise?)",lowPriority);
     todo("big bads have intro mod flavor text (like dystopic empire)",mediumPriority);
     todo("teach AB to write bigBadSummaries to cache",mediumPriority);
     todo("FORM BUG: big bad needs to be in default state before loading still, need to refresh page to clear shit out", highPriority);
     todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)", mediumPriority);
-  }
+    todo("anything AB can report on can be targeted. just ask me to implement it, yo (or maybe i can make it be a drop down of everything she knows)",mediumPriority);
+   }
 
 
   static void todo(String todo, Element priority) {
