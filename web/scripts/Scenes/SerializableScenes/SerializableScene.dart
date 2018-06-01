@@ -37,9 +37,9 @@ class  SerializableScene extends Scene {
 
     //flavor text will not influence the actual actions going on, but will change how it is narratively
   String flavorText = "Describe what happens in this scene in human words, based on what it targets and what it does to the targets. You can add a script tag to refer to the target or targets, but everything else should be your own words, including the Big Bads name.";
-  List<GameEntity> livingTargets = new List<GameEntity>();
+  Set<GameEntity> livingTargets = new Set<GameEntity>();
   //can include moons or the battlefield
-  List<Land> landTargets = new List<Land>();
+  Set<Land> landTargets = new Set<Land>();
 
 
 
@@ -111,19 +111,19 @@ class  SerializableScene extends Scene {
       gameEntity.available = false;
   }
 
-  List<GameEntity> get finalLivingTargets {
-      if(livingTargets == null || livingTargets.isEmpty) return new List<GameEntity>();
+  Set<GameEntity> get finalLivingTargets {
+      if(livingTargets == null || livingTargets.isEmpty) return new Set<GameEntity>();
       if(targetOne) {
-          return <GameEntity>[livingTargets.first];
+          return new Set<GameEntity>()..add(livingTargets.first);
       }else {
           return livingTargets;
       }
   }
 
-    List<Land> get finalLandTargets {
-      if(landTargets == null || landTargets.isEmpty) return new List<Land>();
+    Set<Land> get finalLandTargets {
+      if(landTargets == null || landTargets.isEmpty) return new Set<Land>();
         if(targetOne) {
-            return <Land>[landTargets.first];
+            return new Set<Land>()..add(landTargets.first);
         }else {
             return landTargets;
         }
@@ -132,9 +132,9 @@ class  SerializableScene extends Scene {
     //if i some how have both, living target will be the one i pick.
     String getTargetNames() {
       if(livingTargets.isNotEmpty) {
-          return turnArrayIntoHumanSentence(finalLivingTargets);
+          return turnArrayIntoHumanSentence(new List<GameEntity>.from(finalLivingTargets));
       }else {
-          return turnArrayIntoHumanSentence(finalLandTargets);
+          return turnArrayIntoHumanSentence(new List<Land>.from(finalLandTargets));
       }
 
   }
@@ -290,7 +290,7 @@ void syncForm() {
       posedAsATeamAlready = false;
       landTargets.clear();
       livingTargets.clear();
-      livingTargets = new List<GameEntity>.from(session.activatedNPCS); //not all, just active
+      livingTargets = new Set<GameEntity>.from(session.activatedNPCS); //not all, just active
       //TODO should i also get party members for those npcs? otherwise can't get brain ghosts and robots and the like
       for(Player p in session.players) {
             if(p.active) {
@@ -300,18 +300,18 @@ void syncForm() {
       }
       landTargets.addAll(session.moons);
 
-      livingTargets = shuffle(session.rand, livingTargets);
-      landTargets = shuffle(session.rand, landTargets);
+      livingTargets = new Set<GameEntity>.from(shuffle(session.rand, new List<GameEntity>.from(livingTargets)));
+      landTargets = new Set<Land>.from(shuffle(session.rand, new List<Land>.from(landTargets)));
 
 
       for(TargetConditionLiving tc in triggerConditionsLiving) {
-          livingTargets = tc.filter(livingTargets);
+          livingTargets = new Set.from(tc.filter(new List<GameEntity>.from(livingTargets)));
       }
       if(triggerConditionsLiving.isEmpty) livingTargets.clear();
 
 
       for(TargetConditionLand tc in triggerConditionsLand) {
-          landTargets = tc.filter(landTargets);
+          landTargets = new Set.from(tc.filter(new List<Land>.from(landTargets)));
       }
       if(triggerConditionsLand.isEmpty) landTargets.clear();
 
