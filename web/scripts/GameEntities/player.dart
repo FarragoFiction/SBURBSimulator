@@ -289,9 +289,11 @@ class Player extends GameEntity{
     @override
     String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
         //session.logger.info("DEBUGGING MAKE DEAD making ${title()} dead $causeOfDeath");
+        String looting = "";
 
         //can loot corpses even in life gnosis, or how else will things happen?
         if(killer != null && allowLooting) {
+            looting = "$killer takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
             killer.lootCorpse(this);
         }
 
@@ -333,7 +335,7 @@ class Player extends GameEntity{
         String bb = "";
         if(killer != null) bb = killer.makeBigBad();
 
-        return "$ret $bb";
+        return "$ret $looting $bb";
     }
 
     void triggerOtherPlayersWithMyDeath() {

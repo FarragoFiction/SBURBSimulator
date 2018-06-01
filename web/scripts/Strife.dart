@@ -176,6 +176,11 @@ class Strife {
         return t; //1 or fewer teams remain
     }
 
+    void handleLooting() {
+        DivElement looting = new DivElement();
+        outerDiv.append(looting);
+    }
+
 
     //need to list out who is dead, who absconded, and who is alive.  Who WON.
     //happens outside the spoiler tagged innser stuff. only ending matters.
@@ -202,6 +207,7 @@ class Strife {
 
         }
         appendHtml(outerDiv, endingHTML);
+        handleLooting();
         if (winner.findPlayer() != null) winner.renderPoseAsATeam(outerDiv); //only call this if winning team has a player in it. (otherwise blank canvas)
     }
 
@@ -496,7 +502,7 @@ class Team implements Comparable<Team> {
                 ret += member.checkDiedInAStrife(enemyTeams);
             }
         }
-        if (ret.isEmpty) appendHtml(div, ret);
+        if (!ret.isEmpty) appendHtml(div, ret);
     }
 
     void giveGristFromTeams(List<Team>teams) {

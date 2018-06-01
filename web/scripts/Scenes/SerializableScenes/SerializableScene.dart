@@ -299,7 +299,7 @@ void syncForm() {
             }
       }
 
-     session.logger.info("i think active targets is $livingTargets");
+     //session.logger.info("i think active targets is $livingTargets");
 
       landTargets.addAll(session.moons);
 

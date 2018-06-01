@@ -401,8 +401,8 @@ class GameEntity extends Object with StatOwner   {
                 if(living.isNotEmpty) killer = living[0]; //fastest member gets the loot
             }
 
-            makeDead(causeOfDeath, killer);
-            return "${htmlTitleHP()} has died. ";
+
+            return "${makeDead(causeOfDeath, killer)}";
         }
         return "";
     }
@@ -883,6 +883,7 @@ class GameEntity extends Object with StatOwner   {
     String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
         if(session.mutator.lifeField) return " Death has no meaning."; //does fucking nothing.
         this.dead = true;
+        String looting = "";
         this.causeOfDeath = causeOfDeath;
         if(killer != null) {
             if(this is Player) {
@@ -890,11 +891,14 @@ class GameEntity extends Object with StatOwner   {
             }else {
                 killer.npcKillCount ++;
             }
-            if(killer != null && allowLooting)  killer.lootCorpse(this);
+            if(killer != null && allowLooting) {
+                looting = "$killer takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
+                killer.lootCorpse(this);
+            }
         }
         String bb = "";
         if(killer != null) bb = killer.makeBigBad();
-        return "${htmlTitle()} is dead. $bb";
+        return "${htmlTitle()} is dead. $looting $bb";
     }
 
     void interactionEffect(GameEntity ge) {
