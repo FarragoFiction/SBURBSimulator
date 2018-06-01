@@ -67,7 +67,7 @@ class  SerializableScene extends Scene {
 
       myElement = new DivElement();
       div.append(myElement);
-      myElement.setInnerHtml(displayText);
+      myElement.setInnerHtml("$displayText");
       doEffects(); //automatic
       doAction(); //specific to subclass
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
@@ -298,6 +298,9 @@ void syncForm() {
                 landTargets.add(p.land);
             }
       }
+
+     session.logger.info("i think active targets is $livingTargets");
+
       landTargets.addAll(session.moons);
 
       livingTargets = new Set<GameEntity>.from(shuffle(session.rand, new List<GameEntity>.from(livingTargets)));
@@ -305,13 +308,13 @@ void syncForm() {
 
 
       for(TargetConditionLiving tc in triggerConditionsLiving) {
-          livingTargets = new Set.from(tc.filter(new List<GameEntity>.from(livingTargets)));
+          livingTargets = new Set<GameEntity>.from(tc.filter(new List<GameEntity>.from(livingTargets)));
       }
       if(triggerConditionsLiving.isEmpty) livingTargets.clear();
 
 
       for(TargetConditionLand tc in triggerConditionsLand) {
-          landTargets = new Set.from(tc.filter(new List<Land>.from(landTargets)));
+          landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets)));
       }
       if(triggerConditionsLand.isEmpty) landTargets.clear();
 

@@ -59,7 +59,7 @@ class SessionForm {
                     bigBad.copyFromDataString(badArea.value);
                     NPCHandler.bigBadsFromFile.add(badArea.value);
                     bigBad.active = true;
-                    session.activatedNPCS.add(bigBad);
+                    session.activateBigBad(bigBad);
                     window.alert("Added to active NPCs!!!");
 
                 }else {

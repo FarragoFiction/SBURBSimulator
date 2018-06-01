@@ -9,6 +9,7 @@ class StrifeBigBad extends Scene {
 
 	@override
 	bool trigger(playerList){
+		if(gameEntity.dead) return false; //just. stop it. please?
 		bigBad = null;
 		List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
 		possibleTargets.addAll(session.players);
