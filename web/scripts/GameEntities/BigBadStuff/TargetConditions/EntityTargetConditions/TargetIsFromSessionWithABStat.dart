@@ -1,0 +1,108 @@
+import "../../../../SBURBSim.dart";
+import 'dart:html';
+
+//has no sub form, just exists
+class TargetIsFromSessionWithABStat extends TargetConditionLiving {
+
+    SelectElement select;
+
+    @override
+    String name = "TargetIsFromSessionWithABStat";
+
+    Item crown;
+
+    @override
+    String get importantWord => "N/A";
+
+    @override
+    String descText = "<b>Has AB Stat:</b><br>If AB were to visit this session at this moment, what would she report back on. (i.e. she would know there WERE sick fires, but not who did them). <br><br>";
+    @override
+    String notDescText = "<b>Doesn't Have AB Stat:</b><br>If AB were to visit this session at this moment, what would she report back on. (i.e. she would know there were NOT sick fires). <br><br>";
+
+    //strongly encouraged for this to be replaced
+
+    TargetIsFromSessionWithABStat(SerializableScene scene) : super(scene){
+    }
+
+
+
+
+    @override
+    TargetCondition makeNewOfSameType() {
+        return new TargetIsFromSessionWithABStat(scene);
+    }
+
+    @override
+    void renderForm(Element divbluh) {
+        Session session = scene.session;
+        SessionSummary sessionSummary = session.generateSummary();
+
+        List<String> allStats = new List.from(sessionSummary.bool_stats.keys);
+
+        setupContainer(divbluh);
+
+        syncDescToDiv();
+
+        DivElement me = new DivElement();
+        container.append(me);
+
+
+        select = new SelectElement();
+        select.size = 13;
+        me.append(select);
+
+        for(String stat in allStats) {
+            OptionElement o = new OptionElement();
+            o.value = stat;
+            o.text = stat;
+            select.append(o);
+            if(o.value == importantWord) {
+                print("selecting $stat");
+                o.selected = true;
+            }
+
+        }
+
+
+
+        if(select.selectedIndex == -1) {
+            select.options[0].selected = true;
+            importantWord = select.options[select.selectedIndex].value;
+        }
+        select.onChange.listen((e) => syncToForm());
+        syncFormToMe();
+    }
+
+    @override
+    void syncFormToMe() {
+        for(OptionElement o in select.options) {
+            if(o.value == importantWord) {
+                o.selected = true;
+                return;
+            }
+        }
+        syncFormToNotFlag();
+
+        if(select.selectedIndex == -1) {
+            select.options[0].selected = true;
+            importantWord = select.options[select.selectedIndex].value;
+        }
+    }
+
+    @override
+    void syncToForm() {
+        importantWord = select.options[select.selectedIndex].value;
+        syncNotFlagToForm();
+        scene.syncForm();
+    }
+    @override
+    void copyFromJSON(JSONObject json) {
+        //nothing to do
+    }
+
+    @override
+    bool conditionForFilter(GameEntity item) {
+        SessionSummary sessionSummary = item.session.generateSummary();
+        return sessionSummary.bool_stats[importantWord] == true;
+    }
+}
