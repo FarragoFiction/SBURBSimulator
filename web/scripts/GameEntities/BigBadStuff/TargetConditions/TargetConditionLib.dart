@@ -4,6 +4,7 @@ export "TargetCondition.dart";
 export "EntityTargetConditions/TargetIsCarapace.dart";
 export "EntityTargetConditions/TargetHasItemWithTrait.dart";
 export "EntityTargetConditions/TargetHasCrown.dart";
+export "EntityTargetConditions/TargetIsFromSessionWithSickFires.dart";
 export "EntityTargetConditions/TargetIsAlive.dart";
 export "EntityTargetConditions/TargetIsPlayer.dart";
 export "EntityTargetConditions/TargetIsAspectPlayer.dart";

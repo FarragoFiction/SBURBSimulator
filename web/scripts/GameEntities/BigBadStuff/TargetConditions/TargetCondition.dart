@@ -238,6 +238,7 @@ abstract class TargetConditionLiving extends TargetCondition {
 
       ret.add(new TargetIsSelf(scene));
       ret.add(new TargetIsRandom(scene));
+      ret.add(new TargetIsFromSessionWithSickFires(scene));
 
 
       return ret;
