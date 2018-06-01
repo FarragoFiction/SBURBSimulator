@@ -45,7 +45,7 @@ class Carapace extends NPC {
 
     @override
     String title() {
-        return "$name ($initials) (Active: $active)";
+        return "$name ($initials)";
     }
 
 

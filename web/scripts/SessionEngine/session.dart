@@ -65,7 +65,7 @@ class Session {
         grabActivatedBigBads();
         grabActivatedCarapaces();
         grabSpecialCases();
-        logger.info(" I think tick is $numTicks and activated npcs is $_activatedNPCS");
+        //logger.info(" I think tick is $numTicks and activated npcs is $_activatedNPCS");
         return new List.from(_activatedNPCS); //don't let ppl have access to original list they might mod it
     }
 
@@ -79,7 +79,7 @@ class Session {
         List<GameEntity> bbRemove = new List<GameEntity>();
         for(GameEntity g in bigBads) {
             if(g.active) {
-                logger.info("I think that $g just activated as a big bad");
+                //logger.info("I think that $g just activated as a big bad");
                 _activatedNPCS.add(g);
                 bbRemove.add(g);
             }
@@ -159,7 +159,7 @@ class Session {
         if(canReckoning) {
             for (GameEntity g in npcHandler.allEntities) {
                 if (canReckoning && g.scepter != null) {
-                    logger.info("I think that $g just activated as a special case.");
+                    //logger.info("I think that $g just activated as a special case.");
                     g.active = true;
                     _activatedNPCS.add(g);
                 }
@@ -175,7 +175,7 @@ class Session {
                 for(GameEntity g in m.associatedEntities) {
 
                     if(g.active) {
-                        logger.info("I think that $g just activated as a carapace.");
+                       // logger.info("I think that $g just activated as a carapace.");
                         _activatedNPCS.add(g);
                         g.processCardFor();
                         toRemove.add(g);
