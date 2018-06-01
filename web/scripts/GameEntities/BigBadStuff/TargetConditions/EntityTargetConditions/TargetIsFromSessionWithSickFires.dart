@@ -12,9 +12,9 @@ class TargetIsFromSessionWithSickFires extends TargetConditionLiving {
     String get importantWord => "N/A";
 
     @override
-    String descText = "<b>Is Alive:</b><br>Target Entity must be from a session with Sick Fires (but isn't necessarily the rapper in question.). <br><br>";
+    String descText = "<b>Has Sick Fires:</b><br>Target Entity must be from a session with Sick Fires (but isn't necessarily the rapper in question.). <br><br>";
     @override
-    String notDescText = "<b>Is NOT Alive:</b><br>Target Entity must be NOT from a session with Sick Fires. <br><br>";
+    String notDescText = "<b>Has Weaksauce Raps:</b><br>Target Entity must be NOT from a session with Sick Fires. <br><br>";
 
     //strongly encouraged for this to be replaced
 
