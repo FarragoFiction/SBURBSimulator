@@ -133,7 +133,7 @@ abstract class EffectLand extends ActionEffect {
 
   @override
   void applyEffect() {
-        List<Land> targets = scene.finalLandTargets;
+        List<Land> targets = new List.from(scene.finalLandTargets);
         effectLands(targets);
   }
 
@@ -229,7 +229,7 @@ abstract class EffectEntity extends ActionEffect {
 
   @override
   void applyEffect() {
-      List<GameEntity> targets = scene.finalLivingTargets;
+      List<GameEntity> targets = new List.from(scene.finalLivingTargets);
       effectEntities(targets);
   }
 
