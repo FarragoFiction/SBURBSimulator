@@ -101,6 +101,8 @@ class TodoHandler {
     todo("land condition: isMeteored (i.e. reckoning is going)", lowPriority);
     todo("isUnconditionallyImmortal",mediumPriority);
     todo("isDoomed", lowPriority);
+    todo("action effect: deactivate (makes the target never do anything again without killing them, but you cant ever target them again either)", highPriority);
+    todo("smokey the bear needs shovelkind", mediumPriority);
     todo("isWasted (lets you target players who did a gnosis 4, and combined with isAspect lets you target specific gnosises)", mediumPriority);
     todo("isTrickster", mediumPriority);
     todo("effect: add fraymotif named x", mediumPriority);
