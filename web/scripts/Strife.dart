@@ -248,7 +248,7 @@ class Strife {
             player.htmlTitleBasic() +
             " is being a little baby who poops hard in their diapers and are in no way ready for this fight. The Denizen recommends that they come back after they mature a little bit. The " +
             player.htmlTitleBasic() +
-            "'s ass is kicked so hard they are ejected from the fight, but are not killed.");
+            "'s ass is kicked so hard they are ejected from the fight, and are healed (even if they had been dead).");
         if (player.session.rand.nextBool()) { //players don't HAVE to take the advice after all. assholes.
             player.increasePower(3);
             appendHtml(div, " They actually seem to be taking " + denizen.name + "'s advice. ");
@@ -599,7 +599,7 @@ class Team implements Comparable<Team> {
     static num getTeamsStatTotal(List<Team> teams, Stat statName) {
         num ret = 0;
         for (Team team in teams) {
-            team.members.first.session.logger.info("getting $statName for team ${team.name}");
+            //team.members.first.session.logger.info("getting $statName for team ${team.name}");
             ret += (statName.total(team.members));
         }
         return ret;

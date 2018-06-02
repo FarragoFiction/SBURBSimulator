@@ -892,8 +892,11 @@ class GameEntity extends Object with StatOwner   {
                 killer.npcKillCount ++;
             }
             if(killer != null && allowLooting) {
-                looting = "$killer takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
-                killer.lootCorpse(this);
+                if(sylladex.inventory.isNotEmpty) {
+                    looting = "$killer takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
+                }else {
+                    looting = "There was nothing to loot.";
+                }
             }
         }
         String bb = "";
