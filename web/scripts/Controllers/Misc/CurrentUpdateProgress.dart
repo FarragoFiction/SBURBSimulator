@@ -121,8 +121,19 @@ class TodoHandler {
     todo("teach AB to write bigBadSummaries to cache",mediumPriority);
     todo("FORM BUG: big bad needs to be in default state before loading still, need to refresh page to clear shit out", highPriority);
     todo("big bads have outro mod flavor text (if they aren't defeated, how do they effect child universe, like dystopic empire)", mediumPriority);
-    todo("anything AB can report on can be targeted. just ask me to implement it, yo (or maybe i can make it be a drop down of everything she knows)",mediumPriority);
-   }
+    todo("hasStat over/under X/MyValue target", highPriority);
+    todo("setUnavailable slash waste time (check to see when bigbads proc)", highPriority);
+    todo("give fraymotif named X effect", highPriority);
+    todo("give item (from list) effect", highPriority);
+    todo("destroy all items in specibus", mediumPriority);
+    todo("take all items in specibus", mediumPriority);
+    todo("ressurrect", mediumPriority);
+    todo("createRelationship of Type X with me", lowPriority);
+    todo("giveDestiny", mediumPriority);
+    todo("giveUnconditionalImmortality", lowPriority);
+    todo("removeUnconditionalImmortality (wasn't i already planning on this, did i forget to list?) needed for big bad defeats", highPriority);
+
+  }
 
 
   static void todo(String todo, Element priority) {
