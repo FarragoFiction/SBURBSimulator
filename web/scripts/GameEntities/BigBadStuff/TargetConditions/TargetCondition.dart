@@ -245,7 +245,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsMurderMode(scene));
       ret.add(new TargetIsGodTier(scene));
       ret.add(new TargetHasGodDestiny(scene));
-
+      ret.add(new TargetIsLeader(scene));
       ret.add(new TargetIsSelf(scene));
       ret.add(new TargetIsRandom(scene));
       ret.add(new TargetIsFromSessionWithABStat(scene));

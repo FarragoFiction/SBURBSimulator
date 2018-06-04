@@ -10,6 +10,7 @@ export "EntityTargetConditions/TargetIsPlayer.dart";
 export "EntityTargetConditions/TargetIsAspectPlayer.dart";
 export "EntityTargetConditions/TargetIsClassPlayer.dart";
 export "EntityTargetConditions/TargetIsSelf.dart";
+export "EntityTargetConditions/TargetIsLeader.dart";
 export "EntityTargetConditions/TargetIsGrimDark.dart";
 export "EntityTargetConditions/TargetIsGodTier.dart";
 export "EntityTargetConditions/TargetHasGodDestiny.dart";

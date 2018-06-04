@@ -76,10 +76,8 @@ class TodoHandler {
   }
 
   void setupBigBadTODO() {
-     todo("Make sure players not yet in the session (or their lands) can't be targetted.",highPriority);
     todo("fuck the world, make game entities serializable first before i modify big bads too much.", highPriority);
     todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun", highPriority);
-    todo("target land feature (smells like sweet, has consorts, etc, has strong denizen, etc)", highPriority);
     todo("target condition: winning players (purple frog, shogun etc pick this) useful for big giant boss fights at the last minute, or big bads that change their behavior at the last minute", highPriority);
     todo("once a game entities specibus/sylladex is serializable, shove that into big bads too", highPriority);
 
