@@ -535,6 +535,10 @@ class Player extends GameEntity{
             ret = "${ret}Crowned ";
         }
 
+        if(this.leader) {
+            ret = "${ret}Leader ";
+        }
+
         if (this.doomed) {
             ret = "${ret}Doomed ";
         }

@@ -59,7 +59,7 @@ class TodoHandler {
      todo("ability to serialize a session",highPriority);
      todo("create/destroy players", highPriority);
      todo("load old session url maybe?",mediumPriority);
-
+     todo("any loaded big bads should be part of serialized session",mediumPriority);
      todo("Sylladex Section lets you remove the selected item from the sylladex", highPriority);
      todo("can serialize a sylladex (just item numbers in allItems list, assume is stable)", highPriority);
      todo("can save a session to a .txt file", highPriority);
