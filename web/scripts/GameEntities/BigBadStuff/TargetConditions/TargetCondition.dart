@@ -126,7 +126,6 @@ abstract class TargetCondition {
     void copyNotFlagFromJSON(JSONObject json) {
         String notString = json["NOT"];
         if(notString == "true") not = true;
-        print("after copying not from json for $this, it is $not, json not was ${notString} and json was $json");
     }
 
 

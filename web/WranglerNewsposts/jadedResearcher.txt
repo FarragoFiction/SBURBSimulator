@@ -1,3 +1,4 @@
+2018-06-05: still nothing different on your end, but under the hood the AI is really getting beefy
 2018-05-31: Spent the day fixing bugs completely unrelated to sessions, letting Big Bads strife shit instead of only being able to InstaKill them, and upgrade my todo list to be more code saavy.
 2018-05-29: Eheheheh, I'm clearly the best and most compassionate Waste of all time. One month into the Big Bad update these planet killing assholes can finally be stopped. I bet that ups the surival rate by a fuck ton.
 2018-05-29: More AI work and definitely nothing better I could be working on. <br><br> >sweats in infinite bugs piling up
