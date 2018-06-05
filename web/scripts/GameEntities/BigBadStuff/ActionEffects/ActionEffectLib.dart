@@ -9,3 +9,5 @@ export "EntityEffects/GrimDarkCorruption.dart";
 export "EntityEffects/StartStrife.dart";
 export "LandEffects/ChangeInhabitantsStats.dart";
 export "LandEffects/MakeConsortsSay.dart";
+export "LandEffects/MakeConsortsInto.dart";
+export "LandEffects/MakeLandNamed.dart";

@@ -66,6 +66,9 @@ abstract class EffectLand extends ActionEffect {
       ret.add(new InstaBlowUp(scene));
       ret.add(new ChangeInhabitantsStat(scene));
       ret.add(new MakeConsortsSay(scene));
+      ret.add(new MakeConsortsInto(scene));
+      ret.add(new MakeLandNamed(scene));
+
       return ret;
   }
 
