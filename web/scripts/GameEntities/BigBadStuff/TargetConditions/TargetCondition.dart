@@ -236,6 +236,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       List<TargetConditionLiving> ret = new List<TargetConditionLiving>();
       ret.add(new TargetIsAlive(scene));
       ret.add(new TargetIsPlayer(scene));
+      ret.add(new TargetIsFinalPlayer(scene));
       ret.add(new TargetIsClassPlayer(scene));
       ret.add(new TargetIsAspectPlayer(scene));
       ret.add(new TargetHasItemWithTrait(scene));
