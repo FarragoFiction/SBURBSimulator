@@ -24,6 +24,7 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
   void renderForm(Element divbluh) {
     Session session = scene.session;
     List<String> allBloodColors = new List.from(bloodColors);
+    allBloodColors.add("#ff0000");
 
     setupContainer(divbluh);
 
@@ -45,6 +46,7 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
       OptionElement o = new OptionElement();
       o.value = bloodColor;
       o.text = bloodColor;
+      o.style.backgroundColor = bloodColor;
       select.append(o);
       if(o.value == importantWord) {
         print("selecting ${o.value}");
