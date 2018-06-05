@@ -536,7 +536,7 @@ class Player extends GameEntity{
         }
 
         if(this.leader) {
-            ret = "${ret}Leader ";
+            //ret = "${ret}Leader ";
         }
 
         if (this.doomed) {

@@ -42,7 +42,7 @@ class GameEntity extends Object with StatOwner   {
     List<String> bureaucraticBullshit = new List<String>();
 
     //if you have been flagged as a big bad, the players will try to stop you
-    bool bigBad = false;
+    bool villain = false;
     //players activate when they enter session, npcs activate when they encounter a player.
     bool active  = false;
 
@@ -187,8 +187,8 @@ class GameEntity extends Object with StatOwner   {
     bool get alliedToPlayers {
 
         //big bads are never allies
-        if(bigBad) return false;
-        if(partyLeader != null && partyLeader.bigBad) return false;
+        if(villain) return false;
+        if(partyLeader != null && partyLeader.villain) return false;
 
         //lots of ways to be on player's side
         if(this is Sprite) return true; //you're a guide
@@ -858,20 +858,20 @@ class GameEntity extends Object with StatOwner   {
         String reason = "";
         if(unconditionallyImmortal) {
             reason = " because if they don't stop them, who will?";
-            bigBad = true;
+            villain = true;
         }else if(landKillCount >=1 ) {
             reason = "because you can't just go around blowing up planets!";
-            bigBad = true;
+            villain = true;
         }else if(playerKillCount > 4 && ((this is Player && (this as Player).murderMode))) {
             //players count 3 x a s much as an npc
             reason = "because they have killed so many already.";
-            bigBad = true;
+            villain = true;
         }else if(npcKillCount > 12 && ((this is Player && (this as Player).murderMode))) {
             reason = "because npc victims or not, the ${htmlTitle()} is on a murderous rampage. ";
-            bigBad = true;
+            villain = true;
         }else if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players)) {
             reason = "no one being should have all that power and use it to kill."; //hums along
-            bigBad = true;
+            villain = true;
         }
 
         if(!reason.isEmpty) {

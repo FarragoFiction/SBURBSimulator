@@ -14,7 +14,7 @@ class StrifeBigBad extends Scene {
 		List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
 		possibleTargets.addAll(session.players);
 		//get rid of targets that aren't big bads or targets who are dead
-		possibleTargets.removeWhere((GameEntity item) => !item.bigBad || item.dead);
+		possibleTargets.removeWhere((GameEntity item) => !item.villain || item.dead);
 		possibleTargets.removeWhere((GameEntity item){
 			Relationship r = gameEntity.getRelationshipWith(item);
 			if(r == null) return false;

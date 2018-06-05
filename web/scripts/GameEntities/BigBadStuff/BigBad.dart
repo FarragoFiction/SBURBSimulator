@@ -13,7 +13,7 @@ class BigBad extends NPC {
 
     ///okay YES they are something CALLED a big bad, but until they wreck shit no venegence
   @override
-  bool bigBad = false;
+  bool villain = false;
   BigBadForm form;
   String textIfNoStrife = "";
   String textIfYesStrife = "";
