@@ -319,6 +319,7 @@ abstract class TargetConditionLand extends TargetCondition {
       ret.add(new TargetHasSound(scene));
       ret.add(new TargetHasFeel(scene));
       ret.add(new TargetIsMoon(scene));
+      ret.add(new TargetHPIs(scene));
       ret.add(new TargetIsProspit(scene));
       ret.add(new TargetIsDerse(scene));
       ret.add(new TargetIsRandomLand(scene));

@@ -3,7 +3,6 @@ import 'dart:html';
 
 
 class ChangeLandHealth extends EffectLand {
-    SelectElement selectStat;
     SelectElement selectAmount;
 
 
@@ -27,12 +26,6 @@ class ChangeLandHealth extends EffectLand {
 
     @override
     void syncFormToMe() {
-        for(OptionElement o in selectStat.options) {
-            if(o.value == importantWord) {
-                o.selected = true;
-                return;
-            }
-        }
 
         for(OptionElement o in selectAmount.options) {
             if(int.parse(o.value) == importantInt) {
@@ -52,25 +45,6 @@ class ChangeLandHealth extends EffectLand {
 
         me.setInnerHtml("<b>Change HP By:</b> <br>");
         //stat time
-
-        selectStat = new SelectElement();
-        me.append(selectStat);
-        for(String stat in allStatsKnown) {
-            OptionElement o = new OptionElement();
-            o.value = stat;
-            o.text = stat;
-            selectStat.append(o);
-            if(stat == importantWord) {
-                print("selecting ${o.value}");
-                o.selected = true;
-            }else {
-                //print("selecting ${o.value} is not ${itemTrait.toString()}");
-            }
-
-        }
-        if(importantWord == null) selectStat.selectedIndex = 0;
-        selectStat.onChange.listen((Event e) => syncToForm());
-
         //amount time
 
         selectAmount = new SelectElement();
@@ -94,7 +68,6 @@ class ChangeLandHealth extends EffectLand {
 
     @override
     void syncToForm() {
-        importantWord = selectStat.options[selectStat.selectedIndex].value;
         importantInt = (int.parse(selectAmount.options[selectAmount.selectedIndex].value));
 
         scene.syncForm();
@@ -128,6 +101,6 @@ class ChangeLandHealth extends EffectLand {
     }
     @override
     ActionEffect makeNewOfSameType() {
-        return new ChangeInhabitantsStat(scene);
+        return new ChangeLandHealth(scene);
     }
 }

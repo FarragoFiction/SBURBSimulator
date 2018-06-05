@@ -7,6 +7,8 @@ class MakeLandNamed extends EffectLand {
 
     TextInputElement input;
     @override
+    String importantWord = "Land of X and Y";
+    @override
     String name = "MakeLandNamed";
     MakeLandNamed(SerializableScene scene) : super(scene);
 

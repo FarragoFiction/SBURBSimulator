@@ -48,6 +48,7 @@ export "LandTargetConditions/TargetHasFeel.dart";
 export "LandTargetConditions/TargetHasSmell.dart";
 export "LandTargetConditions/TargetHasSound.dart";
 export "LandTargetConditions/TargetIsMyLand.dart";
+export "LandTargetConditions/TargetHPIs.dart";
 export "LandTargetConditions/TargetDenizenQuestsComplete.dart";
 export "LandTargetConditions/TargetFirstQuestsComplete.dart";
 export "LandTargetConditions/TargetFinalQuestsComplete.dart";
