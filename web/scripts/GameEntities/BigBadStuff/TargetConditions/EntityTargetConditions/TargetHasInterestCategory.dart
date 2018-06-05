@@ -2,21 +2,21 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //TODO can pick "any" or pick a specific carapace, use CrownedCarapace trigger as a guide
-class TargetIsTrollWithBloodColor extends TargetConditionLiving {
+class TargetHasInterestCategory extends TargetConditionLiving {
   SelectElement select;
 
-  static String ANY = "ANY";
+  @override
+  String name = "HasInterestCategory";
+
+  InterestCategory category;
 
   @override
-  String name = "IsTrollWithBloodColor";
-
+  String descText = "<b>Has Interest Category:</b><br>Target Player must have an interest in category:  <br><br>";
   @override
-  String descText = "<b>Is Troll:</b><br>Target Entity must be a troll with blood color:  <br><br>";
-  @override
-  String notDescText = "<b>Is NOT Troll:</b><br>Target Entity must NOT be a troll with blood color: <br><br>";
+  String notDescText = "<b>Has Interest Category:</b><br>Target Entity must NOT have an interest in a category (or not be a player): <br><br>";
 
 
-  TargetIsTrollWithBloodColor(SerializableScene scene) : super(scene) {
+  TargetHasInterestCategory(SerializableScene scene) : super(scene) {
 
   }
 
@@ -37,10 +37,6 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
     select.size = 13;
     me.append(select);
 
-    OptionElement o = new OptionElement();
-    o.value = ANY;
-    o.text = ANY;
-    select.append(o);
     for(String bloodColor in allBloodColors) {
       OptionElement o = new OptionElement();
       o.value = bloodColor;
@@ -56,7 +52,9 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
 
 
     if(select.selectedIndex == -1) {
-      importantWord = ANY;
+      category = InterestManager.allCategories.first;
+      importantWord = category.name;
+
       select.options[0].selected = true;
     }
     select.onChange.listen((e) => syncToForm());
@@ -64,10 +62,11 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
   }
   @override
   TargetCondition makeNewOfSameType() {
-    return new TargetIsTrollWithBloodColor(scene);
+    return new TargetHasInterestCategory(scene);
   }
   @override
   void syncFormToMe() {
+    importantWord = category.name;
     for(OptionElement o in select.options) {
       if(o.value == importantWord) {
         o.selected = true;
@@ -77,19 +76,21 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
     syncFormToNotFlag();
 
     if(select.selectedIndex == -1) {
-      importantWord = ANY;
+      category = InterestManager.allCategories.first;
+      importantWord = category.name;
       select.options[0].selected = true;
     }
   }
 
   @override
   String toString() {
-    return "TargetHasBloodColor: ${importantWord}";
+    return "TargetHasInterestCategory: ${importantWord}";
   }
 
   @override
   void syncToForm() {
     importantWord = select.options[select.selectedIndex].value;
+    category = InterestManager.getCategoryFromString(importantWord);
     //keeps the data boxes synced up the chain
     syncNotFlagToForm();
 
@@ -98,6 +99,7 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
   @override
   void copyFromJSON(JSONObject json) {
     importantWord = json[TargetCondition.IMPORTANTWORD];
+    category = InterestManager.getCategoryFromString(importantWord);
   }
 
   @override
@@ -105,9 +107,7 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
     if(item is Player) {
       Player p = item as Player;
       if(!p.isTroll) return true;
-      if(importantWord == ANY) {
-          return false;
-      }else if(p.bloodColor == importantWord) {
+      if(p.interestedInCategory(category)) {
         return false;
       }
     }
