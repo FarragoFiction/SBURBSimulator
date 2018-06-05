@@ -3,6 +3,7 @@ library TargetConditionLib;
 export "TargetCondition.dart";
 export "EntityTargetConditions/TargetIsVillain.dart";
 export "EntityTargetConditions/TargetHasTimeClones.dart";
+export "EntityTargetConditions/TargetIsTrollWithBloodColor.dart";
 export "EntityTargetConditions/TargetIsDoomed.dart";
 export "EntityTargetConditions/TargetIsDreamSelf.dart";
 export "EntityTargetConditions/TargetIsRobot.dart";

@@ -262,6 +262,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetHasKilledAnything(scene));
       ret.add(new TargetHasKilledAPlayer(scene));
       ret.add(new TargetHasEverDied(scene));
+      ret.add(new TargetIsTrollWithBloodColor(scene));
       ret.add(new TargetCompletedFirstQuests(scene));
       ret.add(new TargetCompletedDenizenQuests(scene));
       ret.add(new TargetCompletedThirdLandQuests(scene));
