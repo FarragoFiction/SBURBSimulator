@@ -68,6 +68,7 @@ abstract class EffectLand extends ActionEffect {
       ret.add(new MakeConsortsSay(scene));
       ret.add(new MakeConsortsInto(scene));
       ret.add(new MakeLandNamed(scene));
+      ret.add(new Corrupt(scene));
 
       return ret;
   }

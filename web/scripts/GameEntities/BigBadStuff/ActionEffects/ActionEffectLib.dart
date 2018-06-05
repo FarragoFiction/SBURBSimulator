@@ -11,3 +11,4 @@ export "LandEffects/ChangeInhabitantsStats.dart";
 export "LandEffects/MakeConsortsSay.dart";
 export "LandEffects/MakeConsortsInto.dart";
 export "LandEffects/MakeLandNamed.dart";
+export "LandEffects/Corrupt.dart";
