@@ -239,6 +239,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsFinalPlayer(scene));
       ret.add(new TargetIsClassPlayer(scene));
       ret.add(new TargetIsAspectPlayer(scene));
+      ret.add(new TargetHasInterestCategory(scene));
       ret.add(new TargetHasItemWithTrait(scene));
       ret.add(new TargetIsWasted(scene));
       ret.add(new TargetIsTrickster(scene));
@@ -310,6 +311,7 @@ abstract class TargetConditionLand extends TargetCondition {
   static List<TargetConditionLand> listPossibleTriggers(SerializableScene scene) {
       List<TargetConditionLand> ret = new List<TargetConditionLand>();
       ret.add(new TargetIsNotDestroyed(scene));
+      ret.add(new TargetIsMyLand(scene));
       ret.add(new TargetHasConsort(scene));
       ret.add(new TargetHasSmell(scene));
       ret.add(new TargetHasSound(scene));
