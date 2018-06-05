@@ -240,6 +240,11 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsClassPlayer(scene));
       ret.add(new TargetIsAspectPlayer(scene));
       ret.add(new TargetHasItemWithTrait(scene));
+      ret.add(new TargetIsWasted(scene));
+      ret.add(new TargetIsTrickster(scene));
+      ret.add(new TargetIsDreamSelf(scene));
+      ret.add(new TargetIsDoomed(scene));
+      ret.add(new TargetHasTimeClones(scene));
       ret.add(new TargetHasCrown(scene));
       ret.add(new TargetIsCarapace(scene));
       ret.add(new TargetIsGrimDark(scene));

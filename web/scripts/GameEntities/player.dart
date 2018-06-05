@@ -211,6 +211,16 @@ class Player extends GameEntity{
     }
 
     @override
+    List<Relationship> getQuadrants() {
+        List<Relationship> ret = new List<Relationship>();
+        ret.addAll(getHearts());
+        ret.addAll(getSpades());
+        ret.addAll(getDiamonds());
+        ret.addAll(getClubs());
+        return ret;
+    }
+
+    @override
     List<Relationship> getHearts() {
         List<Relationship> ret = <Relationship>[];
         for (num i = 0; i < this.relationships.length; i++) {

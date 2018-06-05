@@ -2,6 +2,13 @@ library TargetConditionLib;
 
 export "TargetCondition.dart";
 export "EntityTargetConditions/TargetIsVillain.dart";
+export "EntityTargetConditions/TargetHasTimeClones.dart";
+export "EntityTargetConditions/TargetIsDoomed.dart";
+export "EntityTargetConditions/TargetIsDreamSelf.dart";
+export "EntityTargetConditions/TargetIsRobot.dart";
+export "EntityTargetConditions/TargetIsSBAHJ.dart";
+export "EntityTargetConditions/TargetIsTrickster.dart";
+export "EntityTargetConditions/TargetIsWasted.dart";
 export "EntityTargetConditions/TargetIsBigBad.dart";
 export "EntityTargetConditions/TargetIsCompanion.dart";
 export "EntityTargetConditions/TargetCompletedThirdLandQuests.dart";
