@@ -308,6 +308,10 @@ abstract class TargetConditionLand extends TargetCondition {
       ret.add(new TargetIsProspit(scene));
       ret.add(new TargetIsDerse(scene));
       ret.add(new TargetIsRandomLand(scene));
+      ret.add(new TargetFirstQuestsComplete(scene));
+      ret.add(new TargetDenizenQuestsComplete(scene));
+      ret.add(new TargetFinalQuestsComplete(scene));
+
 
 
       return ret;
