@@ -23,7 +23,7 @@ class TargetHasInterestCategory extends TargetConditionLiving {
   @override
   void renderForm(Element divbluh) {
     Session session = scene.session;
-    List<String> allBloodColors = new List.from(bloodColors);
+    List<InterestCategory> allCategories = new List.from(InterestManager.allCategories);
 
     setupContainer(divbluh);
 
@@ -37,10 +37,10 @@ class TargetHasInterestCategory extends TargetConditionLiving {
     select.size = 13;
     me.append(select);
 
-    for(String bloodColor in allBloodColors) {
+    for(InterestCategory category in allCategories) {
       OptionElement o = new OptionElement();
-      o.value = bloodColor;
-      o.text = bloodColor;
+      o.value = category.name;
+      o.text = category.name;
       select.append(o);
       if(o.value == importantWord) {
         print("selecting ${o.value}");
