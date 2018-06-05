@@ -37,7 +37,7 @@ class TargetNameContains extends TargetConditionLand {
         });
         me.append(input);
         syncFormToMe();
-        scene.syncForm();
+        //scene.syncForm();
     }
 
 
@@ -67,6 +67,8 @@ class TargetNameContains extends TargetConditionLand {
 
     @override
     bool conditionForFilter(Land item) {
-        return !item.name.toLowerCase().contains(importantWord.toLowerCase());
+        bool ret = !item.name.toLowerCase().contains(importantWord.toLowerCase());
+        //print("item is $item and does it NOT contain $importantWord? $ret  (which will be flipped: $not)");
+        return ret;
     }
 }

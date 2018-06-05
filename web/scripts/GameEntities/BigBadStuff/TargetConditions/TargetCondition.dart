@@ -120,13 +120,13 @@ abstract class TargetCondition {
 
     void syncFormToNotFlag() {
         notElement.checked = not;
-        print("after loading not for $this, it is $not and checked is ${notElement.checked}");
+        print("after synging form to not flag not for $this, it is $not and checked is ${notElement.checked}");
     }
 
     void copyNotFlagFromJSON(JSONObject json) {
         String notString = json["NOT"];
         if(notString == "true") not = true;
-        print("after loading not for $this, it is $not");
+        print("after copying not from json for $this, it is $not, json not was ${notString} and json was $json");
     }
 
 
@@ -213,6 +213,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       List<TargetCondition> allConditions = listPossibleTriggers(scene);
       for(TargetCondition tc in allConditions) {
           if(tc.name == name) {
+              print("$name is found, time to copy not flag");
               TargetCondition ret = tc.makeNewOfSameType();
               ret.copyNotFlagFromJSON(json);
               ret.copyFromJSON(json);
@@ -301,6 +302,7 @@ abstract class TargetConditionLand extends TargetCondition {
       for(TargetCondition tc in allConditions) {
           if(tc.name == name) {
               TargetCondition ret = tc.makeNewOfSameType();
+              ret.copyNotFlagFromJSON(json);
               ret.copyFromJSON(json);
               ret.scene = scene;
               return ret;
