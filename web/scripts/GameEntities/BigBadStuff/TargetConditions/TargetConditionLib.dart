@@ -1,6 +1,10 @@
 library TargetConditionLib;
 
 export "TargetCondition.dart";
+export "EntityTargetConditions/TargetIsVillain.dart";
+export "EntityTargetConditions/TargetIsBigBad.dart";
+export "EntityTargetConditions/TargetIsCompanion.dart";
+export "EntityTargetConditions/TargetHasCompanions.dart";
 export "EntityTargetConditions/TargetIsCarapace.dart";
 export "EntityTargetConditions/TargetHasItemWithTrait.dart";
 export "EntityTargetConditions/TargetHasCrown.dart";
