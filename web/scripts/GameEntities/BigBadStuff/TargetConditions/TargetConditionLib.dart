@@ -51,3 +51,6 @@ export "LandTargetConditions/TargetIsMyLand.dart";
 export "LandTargetConditions/TargetDenizenQuestsComplete.dart";
 export "LandTargetConditions/TargetFirstQuestsComplete.dart";
 export "LandTargetConditions/TargetFinalQuestsComplete.dart";
+export "LandTargetConditions/TargetIsCorrupt.dart";
+export "LandTargetConditions/TargetNameContains.dart";
+

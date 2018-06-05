@@ -312,6 +312,8 @@ abstract class TargetConditionLand extends TargetCondition {
       List<TargetConditionLand> ret = new List<TargetConditionLand>();
       ret.add(new TargetIsNotDestroyed(scene));
       ret.add(new TargetIsMyLand(scene));
+      ret.add(new TargetIsCorrupt(scene));
+      ret.add(new TargetNameContains(scene));
       ret.add(new TargetHasConsort(scene));
       ret.add(new TargetHasSmell(scene));
       ret.add(new TargetHasSound(scene));

@@ -2,22 +2,22 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class TargetIsMoon extends TargetConditionLand {
+class TargetIsCorrupt extends TargetConditionLand {
     @override
-    String name = "IsMoon";
+    String name = "IsCorrupt";
 
     Item crown;
 
 
     @override
-    String descText = "<b>Is Moon:</b><br>Target Land must be a Moon <br><br>";
+    String descText = "<b>Is Corrupt:</b><br>Target Land must be glitchy/corrupted. <br><br>";
     @override
-    String notDescText = "<b>Is NOT Moon:</b><br>Target Entity must not be a Moon.<br><br>";
+    String notDescText = "<b>Is NOT Corrupt:</b><br>Target Entity must not be glitchy/corrupted.<br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    TargetIsMoon(SerializableScene scene) : super(scene){
+    TargetIsCorrupt(SerializableScene scene) : super(scene){
     }
 
 
@@ -25,7 +25,7 @@ class TargetIsMoon extends TargetConditionLand {
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetIsMoon(scene);
+        return new TargetIsCorrupt(scene);
     }
 
     @override
@@ -45,6 +45,6 @@ class TargetIsMoon extends TargetConditionLand {
 
     @override
     bool conditionForFilter(Land item) {
-        return !(item is Moon);
+        return !item.corrupted;
     }
 }
