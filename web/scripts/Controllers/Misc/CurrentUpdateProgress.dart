@@ -80,7 +80,7 @@ class TodoHandler {
     todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun", highPriority);
     todo("target condition: winning players (purple frog, shogun etc pick this) useful for big giant boss fights at the last minute, or big bads that change their behavior at the last minute", highPriority);
     todo("once a game entities specibus/sylladex is serializable, shove that into big bads too", highPriority);
-
+    todo("fucking do SOMETHING with land hp, maybe it auto blows up on 0, or it's value effects associated entity stats? (especially need for black king/queen)",mediumPriority);
     todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)", mediumPriority);
     todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)", mediumPriority);
     todo("big bads need 0 or more custom fraymotif names", mediumPriority);
