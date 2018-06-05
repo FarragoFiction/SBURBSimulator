@@ -65,6 +65,7 @@ abstract class EffectLand extends ActionEffect {
       List<EffectLand> ret = new List<EffectLand>();
       ret.add(new InstaBlowUp(scene));
       ret.add(new ChangeInhabitantsStat(scene));
+      ret.add(new ChangeLandHealth(scene));
       ret.add(new MakeConsortsSay(scene));
       ret.add(new MakeConsortsInto(scene));
       ret.add(new MakeLandNamed(scene));
