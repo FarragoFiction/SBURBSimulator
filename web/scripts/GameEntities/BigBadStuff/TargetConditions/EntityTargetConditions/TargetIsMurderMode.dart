@@ -16,8 +16,6 @@ class TargetIsMurderMode extends TargetConditionLiving {
     @override
     String notDescText = "<b>Is NOT MurderMode:</b><br>Target Entity must be NOT MurderMode. <br><br>";
 
-    //strongly encouraged for this to be replaced
-    //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
     TargetIsMurderMode(SerializableScene scene) : super(scene){
     }
