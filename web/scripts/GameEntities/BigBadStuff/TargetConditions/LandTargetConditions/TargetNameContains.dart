@@ -67,6 +67,6 @@ class TargetNameContains extends TargetConditionLand {
 
     @override
     bool conditionForFilter(Land item) {
-        return item.name.contains(importantWord);
+        return !item.name.toLowerCase().contains(importantWord.toLowerCase());
     }
 }
