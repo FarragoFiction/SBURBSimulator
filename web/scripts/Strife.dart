@@ -21,14 +21,16 @@ class Strife {
     void setHeader(Element div) {
         DivElement header = new DivElement();
         header.text = "";
+        String text = "";
         div.append(header);
         for(Team t in teams) {
             if(t == teams.first) {
-                header.text = "${t.name}";
+                text = "${t.name}";
             }else {
-                header.text = "${header.text} vs ${t.name}";
+                text = "$text vs ${t.name}";
             }
         }
+        header.setInnerHtml(text);
     }
 
     void startTurn(Element div) {
