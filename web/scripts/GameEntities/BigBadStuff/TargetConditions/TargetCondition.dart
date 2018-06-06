@@ -386,31 +386,50 @@ class StatAmount {
 
     StatAmount(String this.name, int this.amount);
 
-    static List<StatAmount> getAllStats() {
+    void addToMap(Map<int, StatAmount> map) {
+        map[amount] = this;
+    }
+
+    static Map<int, StatAmount> getAllStats() {
         return getGodStatsBad()..addAll(getMortalStatsBad())..addAll(getMortalStatsGood())..addAll(getGodStatsGood());
     }
 
-    static List<StatAmount> getAllPostiveStats() {
+    static Map<int, StatAmount> getAllPostiveStats() {
         return getMortalStatsGood()..addAll(getGodStatsGood());
     }
 
-    static List<StatAmount> getAllNegativeStats() {
+    static Map<int, StatAmount> getAllNegativeStats() {
        return getMortalStatsBad()..addAll(getGodStatsBad());
     }
 
-    static List<StatAmount> getMortalStatsGood() {
-        return <StatAmount> [new StatAmount("Low",130),new StatAmount("Medium",1300),new StatAmount("High",13000)];
+    static Map<int, StatAmount> getMortalStatsGood() {
+        Map<int, StatAmount> ret = new Map<int, StatAmount>();
+        new StatAmount("Low",130)..addToMap(ret);
+        new StatAmount("Medium",1300)..addToMap(ret);
+        new StatAmount("Hight",13000)..addToMap(ret);
+        return ret;
     }
 
-    static List<StatAmount> getGodStatsGood() {
-        return <StatAmount> [new StatAmount("Planetary",130000),new StatAmount("Galactic",1300000),new StatAmount("Cosmic",13000000)];
+    static Map<int, StatAmount> getGodStatsGood() {
+        Map<int, StatAmount> ret = new Map<int, StatAmount>();
+        new StatAmount("Planetary",130000)..addToMap(ret);
+        new StatAmount("Galactic",1300000)..addToMap(ret);
+        new StatAmount("Cosmic",13000000)..addToMap(ret);
+        return ret;
     }
 
-    static List<StatAmount> getMortalStatsBad() {
-        return <StatAmount> [new StatAmount("Bad",-130),new StatAmount("Shitty",-1300),new StatAmount("Pathetic",-13000)];
+    static Map<int, StatAmount> getMortalStatsBad() {
+        Map<int, StatAmount> ret = new Map<int, StatAmount>();
+        new StatAmount("Bad",-130)..addToMap(ret);
+        new StatAmount("Shitty",-1300)..addToMap(ret);
+        new StatAmount("Pathetic",13000)..addToMap(ret);
+        return ret;
     }
 
-    static List<StatAmount> getGodStatsBad() {
-        return <StatAmount> [new StatAmount("Fucked",-130000),new StatAmount("Cursed",-1300000),new StatAmount("Irredeemable",-13000000)];
+    static Map<int, StatAmount> getGodStatsBad() {
+        Map<int, StatAmount> ret = new Map<int, StatAmount>();
+        new StatAmount("Fucked",-130000)..addToMap(ret);
+        new StatAmount("Cursed",-1300000)..addToMap(ret);
+        new StatAmount("Irredeemable",-13000000)..addToMap(ret);
     }
 }

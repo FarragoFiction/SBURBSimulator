@@ -61,10 +61,10 @@ class OhShitFuckWheresTheRing extends Scene {
         text = "<br><br>Well. Fuck. After countless hours spent fruitlessly strifing, the ${gameEntity.htmlTitle()} stares blankly at the ${target.htmlTitle()}. The Players need the Ring, but immortality stops things from progressing as Skaia intended. They finally resolve it via a high stakes game of coin flipping. ${target.htmlTitle()} calls heads. ";
         if(rand.nextBool()) {
             target.sylladex.add(ring);
-            text = "$text The coin lands on heads! The ${target.htmlTitleWithTip()} wins! We all agree this is phenomonaly stupid. ";
+            text = "$text The coin lands on heads! The ${target.htmlTitleWithTip()} wins! We all agree this is phenomenally stupid. ";
         }else {
             gameEntity.sylladex.add(ring);
-            text = "$text The coin lands on tails! The ${gameEntity.htmlTitleWithTip()} wins! We all agree this is phenomonaly stupid. ";
+            text = "$text The coin lands on tails! The ${gameEntity.htmlTitleWithTip()} wins! We all agree this is phenomenally stupid. ";
         }
         div.setInnerHtml(text);
 

@@ -68,7 +68,10 @@ class ChangeStat extends EffectEntity {
             }
 
         }
-        if(importantWord == null) selectStat.selectedIndex = 0;
+        if(importantWord == null) {
+            importantWord = allStatsKnown.first;
+            selectStat.selectedIndex = 0;
+        }
         selectStat.onChange.listen((Event e) => syncToForm());
 
         //amount time

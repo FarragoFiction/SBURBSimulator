@@ -44,11 +44,11 @@ class KillWhiteKing extends Scene {
         text = "<br><br>Well. Fuck. After countless hours spent fruitlessly strifing, the ${gameEntity.htmlTitle()} stares blankly at the ${target.htmlTitle()}. How do you meet the Scepter's calling when both parties are immortal? They finally resolve it via a high stakes game of coin flipping. ${target.htmlTitle()} calls heads. ";
         if(rand.nextBool()) {
             target.sylladex.add(scepter);
-            text = "$text The coin lands on heads! The ${target.htmlTitleWithTip()} wins! We all agree this is phenomonaly stupid. ";
+            text = "$text The coin lands on heads! The ${target.htmlTitleWithTip()} wins! We all agree this is phenomenally stupid. ";
 
         }else {
             gameEntity.sylladex.add(scepter);
-            text = "$text The coin lands on tails! The ${gameEntity.htmlTitleWithTip()} wins! We all agree this is phenomonaly stupid. ";
+            text = "$text The coin lands on tails! The ${gameEntity.htmlTitleWithTip()} wins! We all agree this is phenomenally stupid. ";
         }
         div.setInnerHtml(text);
 

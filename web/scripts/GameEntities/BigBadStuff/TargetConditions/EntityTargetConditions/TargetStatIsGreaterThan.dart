@@ -2,32 +2,28 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class TargetHPIs extends TargetConditionLand {
+class TargetStatIsGreaterThanValue extends TargetConditionLiving {
+
     @override
-    String name = "HPIs";
+    String name = "StatIsGreaterThanValue";
 
     SelectElement selectAmount;
 
-    SelectElement selectDirection;
-    List<StatAmount> amounts = StatAmount.getAllStats();
-    static String GREATER = ">";
-    static String LESSER = "<";
-    static String EQUAL = "=";
-
-    List<String> directions = <String>[GREATER,EQUAL,LESSER];
+    SelectElement selectStat;
+    Map<int, StatAmount> amounts = StatAmount.getAllStats();
 
     Item crown;
 
 
     @override
-    String descText = "<b>HP IS:</b><br>Target Land's HP compares true to the value: <br><br>";
+    String descText = "<b>HP IS:</b><br>Target stat is greater than value: <br><br>";
     @override
-    String notDescText = "<b>HP IS NOt:</b><br>Target Land's HP does not compare true to the value:<br><br>";
+    String notDescText = "<b>HP IS NOT:</b><br>Target's stat is NOT greater than value (less than or equal to):<br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    TargetHPIs(SerializableScene scene) : super(scene){
+    TargetStatIsGreaterThanValue(SerializableScene scene) : super(scene){
     }
 
     @override
@@ -39,14 +35,15 @@ class TargetHPIs extends TargetConditionLand {
         DivElement me = new DivElement();
         container.append(me);
 
-        selectDirection = new SelectElement();
-        me.append(selectDirection);
-        for(String direction in directions) {
+        selectStat = new SelectElement();
+        me.append(selectStat);
+        List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
+        for(String stat in allStatsKnown) {
             OptionElement o = new OptionElement();
-            o.value = direction;
-            o.text = direction;
-            selectDirection.append(o);
-            if(direction == importantWord) {
+            o.value = stat;
+            o.text = stat;
+            selectStat.append(o);
+            if(stat == importantWord) {
                 print("selecting ${o.value}");
                 o.selected = true;
             }else {
@@ -54,16 +51,20 @@ class TargetHPIs extends TargetConditionLand {
             }
 
         }
-        selectDirection.onChange.listen((Event e) => syncToForm());
-        syncToForm();
+        if(importantWord == null) {
+            importantWord = allStatsKnown.first;
+            selectStat.selectedIndex = 0;
+        }
+        selectStat.onChange.listen((Event e) => syncToForm());
 
 
         selectAmount = new SelectElement();
         me.append(selectAmount);
-        for(int amount in amounts) {
+
+        for(int amount in amounts.keys) {
             OptionElement o = new OptionElement();
             o.value = "$amount";
-            o.text = "$amount";
+            o.text = "${amounts[amount]}";
             selectAmount.append(o);
             if(amount == importantInt) {
                 print("selecting ${o.value}");
@@ -80,12 +81,12 @@ class TargetHPIs extends TargetConditionLand {
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetHPIs(scene);
+        return new TargetStatIsGreaterThanValue(scene);
     }
 
     @override
     void syncFormToMe() {
-        for(OptionElement o in selectDirection.options) {
+        for(OptionElement o in selectStat.options) {
             if(o.value == importantWord) {
                 o.selected = true;
                 return;
@@ -103,7 +104,7 @@ class TargetHPIs extends TargetConditionLand {
 
     @override
     void syncToForm() {
-        importantWord = selectDirection.options[selectDirection.selectedIndex].value;
+        importantWord = selectStat.options[selectStat.selectedIndex].value;
         importantInt = int.parse(selectAmount.options[selectAmount.selectedIndex].value);
 
         syncNotFlagToForm();
@@ -118,14 +119,8 @@ class TargetHPIs extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
-        if(importantWord == GREATER) {
-            if(item.hp > importantInt) return false;
-        }else if(importantWord == LESSER) {
-            if(item.hp < importantInt) return false;
-        }else {
-            if(item.hp == importantInt) return false;
-        }
-        return true;
+    bool conditionForFilter(GameEntity item) {
+        Stat stat = Stats.byName[importantWord];
+        return !(item.getStat(stat) > importantInt);
     }
 }
