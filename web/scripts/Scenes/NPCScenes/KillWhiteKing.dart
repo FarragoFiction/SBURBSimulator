@@ -51,8 +51,6 @@ class KillWhiteKing extends Scene {
             text = "$text The coin lands on tails! The ${gameEntity.htmlTitleWithTip()} wins! We all agree this is phenomenally stupid. ";
         }
         div.setInnerHtml(text);
-
-
     }
 
 
