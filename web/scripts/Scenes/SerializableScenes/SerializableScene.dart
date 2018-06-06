@@ -57,11 +57,18 @@ class  SerializableScene extends Scene {
       //empty, subscenes can have complicated thigns here
   }
 
+  String getHeader() {
+      if(gameEntity is BigBad) return ">BigBadBullshit:";
+      if(gameEntity.villain) return ">Villany is Afoot:";
+      if(gameEntity is Carapace) return ">Carapace Capers:";
+      return ">Shenanigans: ";
+  }
+
   @override
   void renderContent(Element div) {
       //session.logger.info("TEST BIG BAD: rendering content");
 
-      String displayText = "<br>>BigBadBullshit: $flavorText";
+      String displayText = "<br>${getHeader} $flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
       displayText =   displayText.replaceAll("$SCENE_OWNER", "${gameEntity.htmlTitle()}");
 

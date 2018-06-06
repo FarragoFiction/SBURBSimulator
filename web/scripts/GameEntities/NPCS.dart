@@ -185,10 +185,13 @@ class Carapace extends NPC {
     void processScenes() {
         //serializableSceneStrings do it exctly once, then in scenes themselves worry about if crowned or not
         if(!addedSerializableScenes) {
-                for(String s in serializableSceneStrings) {
-                    scenes.add(new SerializableScene(session)..copyFromDataString(s));
-                }
-                addedSerializableScenes = true;
+            //shuffling makes it so i don't hafta care about order, and so
+            //even the same npc with the same actions available to it will behave slightly differnetly each time
+            serializableSceneStrings.shuffle();
+            for(String s in serializableSceneStrings) {
+                scenes.add(new SerializableScene(session)..copyFromDataString(s));
+            }
+            addedSerializableScenes = true;
         }
         super.processScenes();
     }

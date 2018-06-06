@@ -9,7 +9,7 @@ class ChangeStat extends EffectEntity {
 
 
 
-    List<int> amounts = <int>[-13000,-1300,-130, 130,1300,13000];
+    List<int> amounts = <int>[-13000,-1300,-130,-13, 13,130,1300,13000];
 
     @override
     int  importantInt = 0;

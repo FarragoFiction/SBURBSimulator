@@ -33,6 +33,7 @@ export "EntityTargetConditions/TargetIsAspectPlayer.dart";
 export "EntityTargetConditions/TargetIsClassPlayer.dart";
 export "EntityTargetConditions/TargetIsSelf.dart";
 export "EntityTargetConditions/TargetStatIsGreaterThanValue.dart";
+export "EntityTargetConditions/TargetStatIsGreaterThanMine.dart";
 export "EntityTargetConditions/TargetIsLeader.dart";
 export "EntityTargetConditions/TargetIsGrimDark.dart";
 export "EntityTargetConditions/IAmCrowned.dart";
