@@ -19,16 +19,42 @@ class OhShitFuckWheresTheRing extends Scene {
           Element container = new DivElement();
           me.append(container);
           GameEntity blackQueen = session.derse == null  ?  null:session.derse.queen;
-          startFight(div, bqowner, session.derseRing, blackQueen);
+          if(session.mutator.lifeField || (blackQueen.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
+              wellFuck(div, bqowner, session.derseRing, blackQueen);
+          }else {
+              startFight(div, bqowner, session.derseRing, blackQueen);
+          }
       }
 
       if(wqowner != null && !wqowner.alliedToPlayers) {
           Element container = new DivElement();
           me.append(container);
           GameEntity whiteQueen = session.prospit == null  ?  null:session.prospit.queen;
-          startFight(div, wqowner, session.prospitRing, whiteQueen);
-      }
+
+          if(session.mutator.lifeField || (whiteQueen.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
+              wellFuck(div, wqowner, session.prospitRing, whiteQueen);
+          }else {
+              startFight(div, wqowner, session.prospitRing, whiteQueen);
+          }      }
   }
+
+    void wellFuck(Element container, GameEntity target, Ring ring, GameEntity whoSHOULDHaveIt) {
+        DivElement div = new DivElement();
+        container.append(div);
+        String text = "";
+        text = "<br><br>Well. Fuck. After countless hours spent fruitlessly strifing, the ${gameEntity.htmlTitle()} stares blankly at the ${target.htmlTitle()}. The Players need the Ring, but immortality stops things from progressing as Skaia intended. They finally resolve it via a high stakes game of coin flipping. ${target.htmlTitle()} calls heads. ";
+        if(rand.nextBool()) {
+            text = "$text The coin lands on heads! The ${target.htmlTitle()} wins! We all agree this is phenomonaly stupid. ";
+            target.sylladex.add(ring);
+
+        }else {
+            text = "$text The coin lands on tails! The ${gameEntity.htmlTitle()} wins! We all agree this is phenomonaly stupid. ";
+            gameEntity.sylladex.add(ring);
+        }
+        div.setInnerHtml(text);
+
+
+    }
 
     List<GameEntity> getGoodGuys(){
         List<GameEntity>  living = findLiving(this.session.players);
