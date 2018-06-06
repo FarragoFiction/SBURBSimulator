@@ -139,7 +139,11 @@ class  SerializableScene extends Scene {
     //if i some how have both, living target will be the one i pick.
     String getTargetNames() {
       if(livingTargets.isNotEmpty) {
-          return turnArrayIntoHumanSentence(new List<GameEntity>.from(finalLivingTargets));
+          List<String> tmp = new List<String>();
+          for(GameEntity t in finalLivingTargets) {
+            tmp.add(t.htmlTitle());
+          }
+          return turnArrayIntoHumanSentence(new List<GameEntity>.from(tmp));
       }else {
           return turnArrayIntoHumanSentence(new List<Land>.from(finalLandTargets));
       }

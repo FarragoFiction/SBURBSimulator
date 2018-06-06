@@ -52,6 +52,7 @@ class PickPocket extends EffectEntity {
 
       DivElement div = new DivElement()..setInnerHtml(text);
       div.style.display = "none";
+      scene.myElement.append(div);
 
       toggle.onClick.listen((Event e) {
           if(div.style.display == "none") {
