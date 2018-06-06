@@ -9,8 +9,7 @@ class TargetHPIs extends TargetConditionLand {
     SelectElement selectAmount;
 
     SelectElement selectDirection;
-
-    List<int> amounts = <int>[130000,13000,130, 13, 1300,  0,13,130,1300,13000,130000,130000000];
+    List<StatAmount> amounts = StatAmount.getAllStats();
     static String GREATER = ">";
     static String LESSER = "<";
     static String EQUAL = "=";

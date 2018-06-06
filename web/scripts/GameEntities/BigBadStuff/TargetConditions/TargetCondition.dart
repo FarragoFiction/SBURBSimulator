@@ -386,11 +386,31 @@ class StatAmount {
 
     StatAmount(String this.name, int this.amount);
 
-    static List<StatAmount> getMortalStats() {
+    static List<StatAmount> getAllStats() {
+        return getGodStatsBad()..addAll(getMortalStatsBad())..addAll(getMortalStatsGood())..addAll(getGodStatsGood());
+    }
+
+    static List<StatAmount> getAllPostiveStats() {
+        return getMortalStatsGood()..addAll(getGodStatsGood());
+    }
+
+    static List<StatAmount> getAllNegativeStats() {
+       return getMortalStatsBad()..addAll(getGodStatsBad());
+    }
+
+    static List<StatAmount> getMortalStatsGood() {
         return <StatAmount> [new StatAmount("Low",130),new StatAmount("Medium",1300),new StatAmount("High",13000)];
     }
 
-    static List<StatAmount> getGodStats() {
+    static List<StatAmount> getGodStatsGood() {
         return <StatAmount> [new StatAmount("Planetary",130000),new StatAmount("Galactic",1300000),new StatAmount("Cosmic",13000000)];
+    }
+
+    static List<StatAmount> getMortalStatsBad() {
+        return <StatAmount> [new StatAmount("A Little Bad",-130),new StatAmount("Bad",-1300),new StatAmount("Very Bad",-13000)];
+    }
+
+    static List<StatAmount> getGodStatsBad() {
+        return <StatAmount> [new StatAmount("Broken",-130000),new StatAmount("Cursed",-1300000),new StatAmount("Irredeemable",-13000000)];
     }
 }

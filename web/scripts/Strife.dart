@@ -63,7 +63,7 @@ class Strife {
         div = innerDiv;
         teams.sort(); //we do this every turn because mobility can change and should effect turn order.
         for (Team team in teams) {
-            session.logger.info("it's $team's turn. living is ${team.getLiving()}");
+            //session.logger.info("it's $team's turn. living is ${team.getLiving()}");
             team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
         }
         checkForSuddenEnding(div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
@@ -166,7 +166,7 @@ class Strife {
                 } // two or more teams still alive
             }
         }
-        session.logger.info("${toString()} I think the strife is over, because living teams is $living.");
+        //session.logger.info("${toString()} I think the strife is over, because living teams is $living.");
         return living < 2;
     }
 
@@ -454,7 +454,7 @@ class Team implements Comparable<Team> {
             if (!ge.dead) {
                 ret.add(ge);
             }else {
-                session.logger.info("${toString()} $ge is dead. ${ge.dead}, ${ge.causeOfDeath}");
+               // session.logger.info("${toString()} $ge is dead. ${ge.dead}, ${ge.causeOfDeath}");
             }
         }
 
@@ -475,11 +475,11 @@ class Team implements Comparable<Team> {
         List<GameEntity> living = getLiving();
 
         for (GameEntity g in absconded) {
-            session.logger.info("removing $g from present members since they absconded. ");
+            //session.logger.info("removing $g from present members since they absconded. ");
             living.remove(g);
         }
         if(living.isEmpty) {
-            session.logger.info("${toString()} I think I have no present team members. Team is ${members}, living is $living and absconded is $absconded");
+           // session.logger.info("${toString()} I think I have no present team members. Team is ${members}, living is $living and absconded is $absconded");
         }
         return living;
     }

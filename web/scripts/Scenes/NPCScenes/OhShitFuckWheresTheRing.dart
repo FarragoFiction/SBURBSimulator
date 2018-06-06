@@ -28,15 +28,7 @@ class OhShitFuckWheresTheRing extends Scene {
           }
       }
 
-      void ohOkay(Element container, GameEntity target, Scepter scepter, GameEntity whoSHOULDHaveIt) {
-          DivElement div = new DivElement();
-          container.append(div);
-          String text = "";
-          text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitle()} just loots the $scepter from their corpse. Easy enough.";
-          target.sylladex.add(scepter);
 
-          div.setInnerHtml(text);
-      }
 
       if(wqowner != null && !wqowner.alliedToPlayers) {
           Element container = new DivElement();
@@ -52,6 +44,16 @@ class OhShitFuckWheresTheRing extends Scene {
           }
       }
   }
+
+    void ohOkay(Element container, GameEntity target, Scepter scepter, GameEntity whoSHOULDHaveIt) {
+        DivElement div = new DivElement();
+        container.append(div);
+        String text = "";
+        text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitle()} just loots the $scepter from their corpse. Easy enough.";
+        target.sylladex.add(scepter);
+
+        div.setInnerHtml(text);
+    }
 
     void wellFuck(Element container, GameEntity target, Ring ring, GameEntity whoSHOULDHaveIt) {
         DivElement div = new DivElement();
