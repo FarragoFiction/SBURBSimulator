@@ -432,5 +432,6 @@ class StatAmount {
         new StatAmount("Fucked",-130000)..addToMap(ret);
         new StatAmount("Cursed",-1300000)..addToMap(ret);
         new StatAmount("Irredeemable",-13000000)..addToMap(ret);
+        return ret;
     }
 }

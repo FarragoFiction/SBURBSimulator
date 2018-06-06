@@ -16,9 +16,9 @@ class TargetStatIsGreaterThanValue extends TargetConditionLiving {
 
 
     @override
-    String descText = "<b>HP IS:</b><br>Target stat is greater than value: <br><br>";
+    String descText = "<b>Stat IS:</b><br>Target's stat is greater than value: <br><br>";
     @override
-    String notDescText = "<b>HP IS NOT:</b><br>Target's stat is NOT greater than value (less than or equal to):<br><br>";
+    String notDescText = "<b>Stat IS NOT:</b><br>Target's stat is less than or equal to value:<br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
@@ -64,7 +64,7 @@ class TargetStatIsGreaterThanValue extends TargetConditionLiving {
         for(int amount in amounts.keys) {
             OptionElement o = new OptionElement();
             o.value = "$amount";
-            o.text = "${amounts[amount]}";
+            o.text = "${amounts[amount].name}";
             selectAmount.append(o);
             if(amount == importantInt) {
                 print("selecting ${o.value}");
