@@ -20,10 +20,22 @@ class OhShitFuckWheresTheRing extends Scene {
           me.append(container);
           GameEntity blackQueen = session.derse == null  ?  null:session.derse.queen;
           if(session.mutator.lifeField || (blackQueen.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
-              wellFuck(div, bqowner, session.derseRing, blackQueen);
+              return wellFuck(div, bqowner, session.derseRing, blackQueen);
+          }else if (blackQueen.dead) {
+              return ohOkay(div, bqowner, session.prospitScepter, blackQueen);
           }else {
-              startFight(div, bqowner, session.derseRing, blackQueen);
+              return startFight(div, bqowner, session.derseRing, blackQueen);
           }
+      }
+
+      void ohOkay(Element container, GameEntity target, Scepter scepter, GameEntity whoSHOULDHaveIt) {
+          DivElement div = new DivElement();
+          container.append(div);
+          String text = "";
+          text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitle()} just loots the $scepter from their corpse. Easy enough.";
+          target.sylladex.add(scepter);
+
+          div.setInnerHtml(text);
       }
 
       if(wqowner != null && !wqowner.alliedToPlayers) {
@@ -33,6 +45,8 @@ class OhShitFuckWheresTheRing extends Scene {
 
           if(session.mutator.lifeField || (whiteQueen.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
               wellFuck(div, wqowner, session.prospitRing, whiteQueen);
+          }else if (whiteQueen.dead) {
+              return ohOkay(div, wqowner, session.prospitScepter, whiteQueen);
           }else {
               startFight(div, wqowner, session.prospitRing, whiteQueen);
           }
@@ -104,9 +118,10 @@ class OhShitFuckWheresTheRing extends Scene {
 
       Team pTeam = new Team.withName("The Players",this.session, fighting);
       pTeam.canAbscond = false;
-      Team dTeam = new Team.withName("The Owner of the $ring (${gameEntity.htmlTitleHP()})",this.session, [target]);
+      Team dTeam = new Team.withName("The Owner of the $ring (${target.htmlTitleHPNoTip()})",this.session, [target]);
       dTeam.canAbscond = false;
       Strife strife = new Strife(this.session, [pTeam, dTeam]);
+      print("before i start the strife, i think the target is alive: ${target.dead} ");
       strife.startTurn(div);
 
       DivElement div2 = new DivElement();

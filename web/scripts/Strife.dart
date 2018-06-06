@@ -18,11 +18,8 @@ class Strife {
 
     num timeTillRocks = 99999999; //unless it's a royalty fight, assume no rocks.
 
-    void setHeader(Element div) {
-        DivElement header = new DivElement();
-        header.text = "";
+    String toString() {
         String text = "";
-        div.append(header);
         for(Team t in teams) {
             if(t == teams.first) {
                 text = "${t.name}";
@@ -30,7 +27,14 @@ class Strife {
                 text = "$text vs ${t.name}";
             }
         }
-        header.setInnerHtml(text);
+        return text;
+    }
+
+    void setHeader(Element div) {
+        DivElement header = new DivElement();
+        header.text = "";
+        div.append(header);
+        header.setInnerHtml(this.toString());
     }
 
     void startTurn(Element div) {
@@ -57,14 +61,15 @@ class Strife {
             });
         }
         div = innerDiv;
-        if (turnsPassed > 30) //session.logger.info("AB:  $turnsPassed turns passed in strife in session ${session.session_id}");
-            teams.sort(); //we do this every turn because mobility can change and should effect turn order.
+        teams.sort(); //we do this every turn because mobility can change and should effect turn order.
         for (Team team in teams) {
+            session.logger.info("it's $team's turn. living is ${team.getLiving()}");
             team.takeTurn(div, turnsPassed, teams); //will handling resetting player availablity
         }
         checkForSuddenEnding(div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
         bool over = strifeEnded();
         if (over || strifeIsOver) {
+            session.logger.info("I think the strife is over after $turnsPassed turns");
             Team winner = findWinningTeam();
             if (winner != null) {
                 winner.won = true;
@@ -161,6 +166,7 @@ class Strife {
                 } // two or more teams still alive
             }
         }
+        session.logger.info("${toString()} I think the strife is over, because living teams is $living.");
         return living < 2;
     }
 
@@ -445,8 +451,14 @@ class Team implements Comparable<Team> {
     List<GameEntity> getLiving() {
         List<GameEntity> ret = new List<GameEntity>();
         for (GameEntity ge in members) {
-            if (!ge.dead) ret.add(ge);
+            if (!ge.dead) {
+                ret.add(ge);
+            }else {
+                session.logger.info("${toString()} $ge is dead. ${ge.dead}, ${ge.causeOfDeath}");
+            }
         }
+
+
         return ret;
     }
 
@@ -461,8 +473,13 @@ class Team implements Comparable<Team> {
 
     List<GameEntity> getLivingMinusAbsconded() {
         List<GameEntity> living = getLiving();
-        for (num i = 0; i < this.absconded.length; i++) {
-            removeFromArray(this.absconded[i], living);
+
+        for (GameEntity g in absconded) {
+            session.logger.info("removing $g from present members since they absconded. ");
+            living.remove(g);
+        }
+        if(living.isEmpty) {
+            session.logger.info("${toString()} I think I have no present team members. Team is ${members}, living is $living and absconded is $absconded");
         }
         return living;
     }

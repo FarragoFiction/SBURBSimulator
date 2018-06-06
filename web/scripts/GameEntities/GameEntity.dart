@@ -381,6 +381,8 @@ class GameEntity extends Object with StatOwner   {
 
     String checkDiedInAStrife(List<Team> enemyTeams) {
         if (getStat(Stats.CURRENT_HEALTH) <= 0) {
+            session.logger.info("${title()} died in a strife, hp is ${Stats.CURRENT_HEALTH}");
+
             //TODO check for jack, king
             GameEntity jack = Team.findJackInTeams(enemyTeams);
             GameEntity king = Team.findKingInTeams(enemyTeams);
@@ -400,8 +402,6 @@ class GameEntity extends Object with StatOwner   {
                 living.sort(Stats.MOBILITY.sorter);
                 if(living.isNotEmpty) killer = living[0]; //fastest member gets the loot
             }
-
-
             return "${makeDead(causeOfDeath, killer)}";
         }
         return "";
@@ -431,12 +431,19 @@ class GameEntity extends Object with StatOwner   {
     //so yes, npcs can have ghost attacks.
     //this won't be called if I CAN'T take a turn because i participated in fraymotif
     void takeTurn(Element div, Team mySide, List<Team> enemyTeams) {
-        if (usedFraymotifThisTurn) return; //already did an attack.
-        if (mySide.absconded.contains(this)) return;
+        if (usedFraymotifThisTurn) {
+            session.logger.info("${title()} already participated in a fraymotif this turn");
+            return; //already did an attack.
+        }
+        if (mySide.absconded.contains(this)) {
+            session.logger.info("${title()} already absconded, can't take a turn");
+            return;
+        }
         //if still dead, return, can't do anything.
         if (dead) {
             reviveViaGhostPact(div);
             //whether it works or not, return. you can't revive AND do other stuff.
+            session.logger.info("${title()} is too dead to take a turn");
             return;
         }
         appendHtml(div, describeBuffs());
@@ -824,6 +831,11 @@ class GameEntity extends Object with StatOwner   {
         return "$ret $name";
     }
 
+    String htmlTitleHPNoTip() {
+        String ret = "";
+        if (this.crowned != null) ret = "${ret}Crowned ";
+        return "$ret $name (${(this.getStat(Stats.CURRENT_HEALTH)).round()} hp, ${(this.getStat(Stats.POWER)).round()} power)";
+    }
     void makeAlive() {
         this.dead = false;
         this.heal();
