@@ -322,6 +322,12 @@ class Sylladex extends Object with IterableMixin<Item> {
         }
     }
 
+    void removeAll() {
+        for(Item i in inventory) {
+            //
+            remove(i);
+        }
+    }
     Item get first => inventory.first;
 
     void remove(Item item) {

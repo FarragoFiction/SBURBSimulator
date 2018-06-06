@@ -155,6 +155,9 @@ abstract class EffectEntity extends ActionEffect {
       List<EffectEntity> ret = new List<EffectEntity>();
       ret.add(new InstaKill(scene));
       ret.add(new ChangeStat(scene));
+      ret.add(new PickPocket(scene));
+      ret.add(new Mug(scene));
+      ret.add(new DestroySylladex(scene));
       ret.add(new GrimDarkCorruption(scene));
       ret.add(new MakeStrifable(scene));
       ret.add(new StartStrife(scene));

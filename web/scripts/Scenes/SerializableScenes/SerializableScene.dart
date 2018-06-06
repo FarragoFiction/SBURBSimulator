@@ -68,7 +68,7 @@ class  SerializableScene extends Scene {
   void renderContent(Element div) {
       //session.logger.info("TEST BIG BAD: rendering content");
 
-      String displayText = "<br>${getHeader} $flavorText";
+      String displayText = "<br>${getHeader()} $flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
       displayText =   displayText.replaceAll("$SCENE_OWNER", "${gameEntity.htmlTitle()}");
 
