@@ -183,27 +183,12 @@ class Carapace extends NPC {
 
     @override
     void processScenes() {
-        //serializableSceneStrings
+        //serializableSceneStrings do it exctly once, then in scenes themselves worry about if crowned or not
         if(!addedSerializableScenes) {
-            if(crowned != null) {
                 for(String s in serializableSceneStrings) {
                     scenes.add(new SerializableScene(session)..copyFromDataString(s));
                 }
                 addedSerializableScenes = true;
-            }
-        }else {
-            //if not crowned lose scenes
-            if(crowned == null) {
-                List<SerializableScene> toRemove = new List<SerializableScene>();
-                addedSerializableScenes = false;
-                for (Scene s in scenes) {
-                    if(s is SerializableScene) toRemove.add(s);
-                }
-
-                for(SerializableScene s in toRemove) {
-                    scenes.remove(s);
-                }
-            }
         }
         super.processScenes();
     }
