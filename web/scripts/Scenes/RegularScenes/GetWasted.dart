@@ -61,6 +61,12 @@ class GetWasted extends Scene {
     }
 
     bool loreReachedTippingPoint(Player p) {
+        //wastes modify themselves, graces modify everyone
+        if(p.gnosis <= 4 && p.class_name == SBURBClassManager.WASTE) {
+            if(session.rand.nextDouble() >0.6) return true;
+        }else if(p.gnosis <= 4 &&  findClassPlayer(session.players, SBURBClassManager.GRACE) != null) {
+            if(session.rand.nextDouble() >0.9) return true;
+        }
         int tippingPoint = tippingPointBase;
         if(p.aspect == Aspects.TIME) tippingPoint = tippingPoint * 4; //time has way too easy a chance to get here.
         if(p.gnosis ==3) tippingPoint = tippingPoint *2; //very last tier should be extra hard.

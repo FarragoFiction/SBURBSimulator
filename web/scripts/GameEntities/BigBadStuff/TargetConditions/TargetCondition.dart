@@ -407,10 +407,10 @@ class StatAmount {
     }
 
     static List<StatAmount> getMortalStatsBad() {
-        return <StatAmount> [new StatAmount("A Little Bad",-130),new StatAmount("Bad",-1300),new StatAmount("Very Bad",-13000)];
+        return <StatAmount> [new StatAmount("Bad",-130),new StatAmount("Shitty",-1300),new StatAmount("Pathetic",-13000)];
     }
 
     static List<StatAmount> getGodStatsBad() {
-        return <StatAmount> [new StatAmount("Broken",-130000),new StatAmount("Cursed",-1300000),new StatAmount("Irredeemable",-13000000)];
+        return <StatAmount> [new StatAmount("Fucked",-130000),new StatAmount("Cursed",-1300000),new StatAmount("Irredeemable",-13000000)];
     }
 }
