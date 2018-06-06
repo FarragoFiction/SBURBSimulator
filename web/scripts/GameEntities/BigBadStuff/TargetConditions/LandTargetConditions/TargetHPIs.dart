@@ -23,7 +23,7 @@ class TargetHPIs extends TargetConditionLand {
     @override
     String descText = "<b>HP IS:</b><br>Target Land's HP compares true to the value: <br><br>";
     @override
-    String notDescText = "<b>HP IS NOt:</b><br>Target Land's HP does not compare true to the value:<br><br>";
+    String notDescText = "<b>HP IS NOT:</b><br>Target Land's HP does not compare true to the value:<br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
@@ -56,9 +56,7 @@ class TargetHPIs extends TargetConditionLand {
 
         }
         selectDirection.onChange.listen((Event e) => syncToForm());
-        syncToForm();
-
-
+        
         selectAmount = new SelectElement();
         me.append(selectAmount);
         for(int amount in amounts) {
