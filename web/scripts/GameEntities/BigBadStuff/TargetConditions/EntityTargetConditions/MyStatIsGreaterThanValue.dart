@@ -2,24 +2,28 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class TargetStatIsGreaterThanMine extends TargetConditionLiving {
+class MyStatIsGreaterThanValue extends TargetConditionLiving {
 
     @override
-    String name = "TargetStatIsGreaterThanMine";
+    String name = "MyStatIsGreaterThanValue";
 
+    SelectElement selectAmount;
 
     SelectElement selectStat;
+    Map<int, StatAmount> amounts = StatAmount.getAllStats();
+
+    Item crown;
 
 
     @override
-    String descText = "<b>Stat IS:</b><br>Target's stat is greater than my same stat: <br><br>";
+    String descText = "<b>My Stat IS:</b><br>Scene Owner's stat is greater than value: <br><br>";
     @override
-    String notDescText = "<b>Stat IS NOT:</b><br>Target's stat is less than or equal to my same stat:<br><br>";
+    String notDescText = "<b>My Stat IS NOT:</b><br>Scene Owner's stat is less than or equal to value:<br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    TargetStatIsGreaterThanMine(SerializableScene scene) : super(scene){
+    MyStatIsGreaterThanValue(SerializableScene scene) : super(scene){
     }
 
     @override
@@ -53,13 +57,31 @@ class TargetStatIsGreaterThanMine extends TargetConditionLiving {
         }
         selectStat.onChange.listen((Event e) => syncToForm());
 
+
+        selectAmount = new SelectElement();
+        me.append(selectAmount);
+
+        for(int amount in amounts.keys) {
+            OptionElement o = new OptionElement();
+            o.value = "$amount";
+            o.text = "${amounts[amount].name}";
+            selectAmount.append(o);
+            if(amount == importantInt) {
+                print("selecting ${o.value}");
+                o.selected = true;
+            }else {
+                //print("selecting ${o.value} is not ${itemTrait.toString()}");
+            }
+
+        }
+        selectAmount.onChange.listen((Event e) => syncToForm());
         syncFormToMe();
     }
 
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetStatIsGreaterThanMine(scene);
+        return new MyStatIsGreaterThanValue(scene);
     }
 
     @override
@@ -70,21 +92,35 @@ class TargetStatIsGreaterThanMine extends TargetConditionLiving {
                 return;
             }
         }
+
+        for(OptionElement o in selectAmount.options) {
+            if(o.value == "${importantInt}") {
+                o.selected = true;
+                return;
+            }
+        }
         syncFormToNotFlag();
     }
 
     @override
     void syncToForm() {
         importantWord = selectStat.options[selectStat.selectedIndex].value;
+        importantInt = int.parse(selectAmount.options[selectAmount.selectedIndex].value);
 
         syncNotFlagToForm();
         scene.syncForm();
     }
+    @override
+    void copyFromJSON(JSONObject json) {
+        //nothing to do
+        importantWord = json[TargetCondition.IMPORTANTWORD];
+        importantInt = int.parse(json[TargetCondition.IMPORTANTINT]);
 
+    }
 
     @override
     bool conditionForFilter(GameEntity item) {
         Stat stat = Stats.byName[importantWord];
-        return !(item.getStat(stat) > scene.gameEntity.getStat(stat));
+        return !(scene.gameEntity.getStat(stat) > importantInt);
     }
 }

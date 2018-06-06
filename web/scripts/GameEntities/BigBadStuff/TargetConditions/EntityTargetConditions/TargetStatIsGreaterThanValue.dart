@@ -5,7 +5,7 @@ import 'dart:html';
 class TargetStatIsGreaterThanValue extends TargetConditionLiving {
 
     @override
-    String name = "StatIsGreaterThanValue";
+    String name = "TargetStatIsGreaterThanValue";
 
     SelectElement selectAmount;
 

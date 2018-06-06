@@ -35,6 +35,8 @@ export "EntityTargetConditions/TargetIsSelf.dart";
 export "EntityTargetConditions/TargetStatIsGreaterThanValue.dart";
 export "EntityTargetConditions/TargetIsLeader.dart";
 export "EntityTargetConditions/TargetIsGrimDark.dart";
+export "EntityTargetConditions/IAmCrowned.dart";
+export "EntityTargetConditions/MyStatIsGreaterThanValue.dart";
 export "EntityTargetConditions/TargetIsGodTier.dart";
 export "EntityTargetConditions/TargetHasGodDestiny.dart";
 export "EntityTargetConditions/TargetIsMurderMode.dart";

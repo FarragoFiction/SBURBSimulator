@@ -242,6 +242,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsAlive(scene));
       ret.add(new TargetIsPlayer(scene));
       ret.add(new TargetStatIsGreaterThanValue(scene));
+      ret.add(new MyStatIsGreaterThanValue(scene));
       ret.add(new TargetIsFinalPlayer(scene));
       ret.add(new TargetIsClassPlayer(scene));
       ret.add(new TargetIsAspectPlayer(scene));
@@ -253,6 +254,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsDoomed(scene));
       ret.add(new TargetHasTimeClones(scene));
       ret.add(new TargetHasCrown(scene));
+      ret.add(new IAmCrowned(scene));
       ret.add(new TargetIsCarapace(scene));
       ret.add(new TargetIsGrimDark(scene));
       ret.add(new TargetIsMurderMode(scene));
