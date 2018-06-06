@@ -857,10 +857,7 @@ class GameEntity extends Object with StatOwner   {
         if(corpse == null) return;
         //so no concurrent mods (wouldu try to loop on items even as it removes items)
         List<Item> tmp = new List<Item>.from(corpse.sylladex.inventory);
-       // ;
         if(corpse != this) sylladex.addAll(tmp);
-        //;
-
     }
 
     //generally called from makeDead
@@ -905,7 +902,8 @@ class GameEntity extends Object with StatOwner   {
             }
             if(killer != null && allowLooting) {
                 if(sylladex.inventory.isNotEmpty) {
-                    looting = "$killer takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
+                    looting = "${killer.htmlTitleWithTip()} takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
+                    killer.lootCorpse(this);
                 }else {
                     looting = "There was nothing to loot.";
                 }
