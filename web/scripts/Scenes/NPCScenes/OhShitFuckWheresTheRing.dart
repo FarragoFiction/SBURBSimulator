@@ -35,7 +35,8 @@ class OhShitFuckWheresTheRing extends Scene {
               wellFuck(div, wqowner, session.prospitRing, whiteQueen);
           }else {
               startFight(div, wqowner, session.prospitRing, whiteQueen);
-          }      }
+          }
+      }
   }
 
     void wellFuck(Element container, GameEntity target, Ring ring, GameEntity whoSHOULDHaveIt) {
@@ -103,7 +104,7 @@ class OhShitFuckWheresTheRing extends Scene {
 
       Team pTeam = new Team.withName("The Players",this.session, fighting);
       pTeam.canAbscond = false;
-      Team dTeam = new Team(this.session, [target]);
+      Team dTeam = new Team.withName("The Owner of the $ring (${gameEntity.htmlTitleHP()})",this.session, [target]);
       dTeam.canAbscond = false;
       Strife strife = new Strife(this.session, [pTeam, dTeam]);
       strife.startTurn(div);

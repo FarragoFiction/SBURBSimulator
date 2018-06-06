@@ -63,9 +63,9 @@ class KillWhiteKing extends Scene {
             g.available = false;
         }
 
-        Team pTeam = new Team.withName("The Owner of the ${session.derseScepter} ",this.session, fighting);
+        Team pTeam = new Team.withName("The Owner of the ${session.derseScepter} (${gameEntity.htmlTitleHP()}) ",this.session, fighting);
         pTeam.canAbscond = false;
-        Team dTeam = new Team(this.session, [target]);
+        Team dTeam = new Team.withName("The Owner of the ${session.prospitScepter} (${target.htmlTitleHP()})",this.session, [target]);
         dTeam.canAbscond = false;
         Strife strife = new Strife(this.session, [pTeam, dTeam]);
         strife.startTurn(div);
