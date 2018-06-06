@@ -377,3 +377,20 @@ abstract class TargetConditionLand extends TargetCondition {
 
 
 }
+
+
+
+class StatAmount {
+    String name;
+    int amount;
+
+    StatAmount(String this.name, int this.amount);
+
+    static List<StatAmount> getMortalStats() {
+        return <StatAmount> [new StatAmount("Low",130),new StatAmount("Medium",1300),new StatAmount("High",13000)];
+    }
+
+    static List<StatAmount> getGodStats() {
+        return <StatAmount> [new StatAmount("Planetary",130000),new StatAmount("Galactic",1300000),new StatAmount("Cosmic",13000000)];
+    }
+}

@@ -19,10 +19,30 @@ class KillWhiteKing extends Scene {
         Element container = new DivElement();
         me.append(container);
         GameEntity whiteKing = session.battlefield == null  ?  null:session.battlefield.whiteKing;
-        startFight(div, wkowner, session.prospitScepter, whiteKing);
+        if(session.mutator.lifeField || (whiteKing.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
+            wellFuck(div, wkowner, session.prospitScepter, whiteKing);
+        }else {
+            startFight(div, wkowner, session.prospitScepter, whiteKing);
+        }
     }
 
+    void wellFuck(Element container, GameEntity target, Scepter scepter, GameEntity whoSHOULDHaveIt) {
+        DivElement div = new DivElement();
+        container.append(div);
+        String text = "";
+        text = "<br><br>Well. Fuck. After countless hours spent fruitlessly strifing, the ${gameEntity.htmlTitle()} stares blankly at the ${target.htmlTitle()}. How do you meet the Scepter's calling when both parties are immortal? They finally resolve it via a high stakes game of coin flipping. ${target.htmlTitle()} calls heads. ";
+        if(rand.nextBool()) {
+            text = "$text The coin lands on heads! The ${target.htmlTitle()} wins! We all agree this is phenomonaly stupid. ";
+            target.sylladex.add(gameEntity.ring);
 
+        }else {
+            text = "$text The coin lands on tails! The ${gameEntity.htmlTitle()} wins! We all agree this is phenomonaly stupid. ";
+            gameEntity.sylladex.add(target.ring);
+        }
+        div.setInnerHtml(text);
+
+
+    }
 
 
     void startFight(Element container, GameEntity target, Scepter scepter, GameEntity whoSHOULDHaveIt) {

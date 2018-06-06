@@ -287,9 +287,14 @@ Player findMVP(List<Player> playerList) {
 
     for (int i = 0; i < playerList.length; i++) {
         GameEntity p = playerList[i];
+
         if (p.grist > strongest.grist) {
             strongest = p;
         }
+
+        /*if (p.getStat(Stats.MOBILITY)  > strongest.getStat(Stats.MOBILITY) ) {
+            strongest = p;
+        }*/
     }
     return strongest;
 }
