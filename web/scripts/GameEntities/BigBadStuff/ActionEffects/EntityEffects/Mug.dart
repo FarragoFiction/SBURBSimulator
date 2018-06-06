@@ -25,7 +25,7 @@ class Mug extends EffectEntity {
 
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>PickPocket:</b> <br>take everything in target's inventory. All of it. <br><br>");
+        me.setInnerHtml("<b>Meg:</b> <br>take everything in target's inventory. All of it. <br><br>");
         syncToForm();
     }
 

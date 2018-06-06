@@ -25,7 +25,7 @@ class DestroySylladex extends EffectEntity {
 
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>PickPocket:</b> <br>take everything in target's inventory. All of it. <br><br>");
+        me.setInnerHtml("<b>DestroySylladex:</b> <br>destroy everything in target's inventory. All of it. <br><br>");
         syncToForm();
     }
 
