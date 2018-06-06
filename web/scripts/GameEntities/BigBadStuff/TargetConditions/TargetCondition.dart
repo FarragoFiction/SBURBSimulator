@@ -55,7 +55,12 @@ abstract class TargetCondition {
 
     void syncToForm();
     void syncFormToMe();
-    void copyFromJSON(JSONObject json);
+    void copyFromJSON(JSONObject json) {
+        //nothing to do
+        importantWord = json[TargetCondition.IMPORTANTWORD];
+        importantInt = int.parse(json[TargetCondition.IMPORTANTINT]);
+
+    }
 
     void setupContainer(DivElement div) {
         print("setting up container for $name");

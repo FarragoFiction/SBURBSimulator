@@ -56,7 +56,7 @@ class TargetHPIs extends TargetConditionLand {
 
         }
         selectDirection.onChange.listen((Event e) => syncToForm());
-        
+
         selectAmount = new SelectElement();
         me.append(selectAmount);
         for(int amount in amounts) {
