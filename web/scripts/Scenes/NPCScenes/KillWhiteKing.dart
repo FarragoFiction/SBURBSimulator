@@ -32,9 +32,8 @@ class KillWhiteKing extends Scene {
         DivElement div = new DivElement();
         container.append(div);
         String text = "";
-        text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitle()} just loots the $scepter from their corpse. Easy enough.";
-        target.sylladex.add(scepter);
-
+        gameEntity.lootCorpse(target);
+        text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitleWithTip()} just loots the $scepter from their corpse. Easy enough.";
         div.setInnerHtml(text);
     }
 
@@ -44,12 +43,12 @@ class KillWhiteKing extends Scene {
         String text = "";
         text = "<br><br>Well. Fuck. After countless hours spent fruitlessly strifing, the ${gameEntity.htmlTitle()} stares blankly at the ${target.htmlTitle()}. How do you meet the Scepter's calling when both parties are immortal? They finally resolve it via a high stakes game of coin flipping. ${target.htmlTitle()} calls heads. ";
         if(rand.nextBool()) {
-            text = "$text The coin lands on heads! The ${target.htmlTitle()} wins! We all agree this is phenomonaly stupid. ";
             target.sylladex.add(scepter);
+            text = "$text The coin lands on heads! The ${target.htmlTitleWithTip()} wins! We all agree this is phenomonaly stupid. ";
 
         }else {
-            text = "$text The coin lands on tails! The ${gameEntity.htmlTitle()} wins! We all agree this is phenomonaly stupid. ";
             gameEntity.sylladex.add(scepter);
+            text = "$text The coin lands on tails! The ${gameEntity.htmlTitleWithTip()} wins! We all agree this is phenomonaly stupid. ";
         }
         div.setInnerHtml(text);
 
@@ -87,7 +86,7 @@ class KillWhiteKing extends Scene {
         container.append(div2);
         String what = "";
         if(scepter.owner != gameEntity) what = "Uh. I....really don't think that was supposed to happen. Fuck. Now what happens?";
-        div2.setInnerHtml("<br>The ${scepter.owner.htmlTitle()} is now the owner of the ${scepter}. $what <br>");
+        div2.setInnerHtml("<br>The ${scepter.owner.htmlTitleWithTip()} is now the owner of the ${scepter}. $what <br>");
 
     }
 

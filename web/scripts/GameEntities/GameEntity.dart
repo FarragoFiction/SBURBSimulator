@@ -443,7 +443,7 @@ class GameEntity extends Object with StatOwner   {
         if (dead) {
             reviveViaGhostPact(div);
             //whether it works or not, return. you can't revive AND do other stuff.
-            session.logger.info("${title()} is too dead to take a turn");
+            //session.logger.info("${title()} is too dead to take a turn");
             return;
         }
         appendHtml(div, describeBuffs());
