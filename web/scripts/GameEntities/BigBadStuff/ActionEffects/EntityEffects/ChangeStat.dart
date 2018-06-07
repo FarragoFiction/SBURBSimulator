@@ -112,7 +112,7 @@ class ChangeStat extends EffectEntity {
         if(Stats.byName[importantWord] == Stats.RELATIONSHIPS && e is Player) {
             e.boostAllRelationshipsBy(importantInt);
         }
-        e.addStat(Stats.byName[importantWord], importantInt);
+        e.addStat(Stats.byName[importantWord], importantInt/Stats.byName[importantWord].coefficient);
         text = "$text ${e.getStat(Stats.byName[importantWord])}";
     });
 
