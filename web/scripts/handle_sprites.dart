@@ -542,7 +542,7 @@ abstract class Drawing {
 
 
     //might be repeats of players in there, cause of time clones
-    static void poseAsATeam(CanvasElement canvas, List<Player> players) {
+    static void poseAsATeam(CanvasElement canvas, List<GameEntity> players) {
         if (checkSimMode() == true) {
             return;
         }
