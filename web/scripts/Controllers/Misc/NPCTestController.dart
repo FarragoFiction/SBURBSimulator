@@ -118,6 +118,25 @@ void printOneScene(SerializableScene s, Element container) {
     for(TargetCondition t in s.triggerConditionsLiving) {
         printOneTargetCondition(t,livingTargets);
     }
+
+    UListElement landTargets = new UListElement()..text = "Land Target Conditions";
+    me.append(landTargets);
+    for(TargetCondition t in s.triggerConditionsLand) {
+        printOneTargetCondition(t,landTargets);
+    }
+
+    UListElement livingEffects = new UListElement()..text = "Effect on Entitites";
+    me.append(livingEffects);
+    for(EffectEntity t in s.effectsForLiving) {
+        printOneEffect(t,livingEffects);
+    }
+
+    UListElement landEffects = new UListElement()..text = "Effect on Lands";
+    me.append(landEffects);
+    for(ActionEffect t in s.effectsForLands) {
+        printOneEffect(t,landEffects);
+    }
+
 }
 
 void printOneTargetCondition(TargetCondition t, Element container) {
@@ -125,8 +144,9 @@ void printOneTargetCondition(TargetCondition t, Element container) {
     container.append(me);
 }
 
-void printOneEffect() {
-
+void printOneEffect(ActionEffect t, Element container) {
+    LIElement me = new LIElement()..text = "#${t.name}, Word: ${t.importantWord}, Number: ${t.importantInt}";
+    container.append(me);
 }
 
 
