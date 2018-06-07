@@ -143,7 +143,7 @@ class  SerializableScene extends Scene {
           for(GameEntity t in finalLivingTargets) {
             tmp.add(t.htmlTitle());
           }
-          return turnArrayIntoHumanSentence(new List<GameEntity>.from(tmp));
+          return turnArrayIntoHumanSentence(new List<String>.from(tmp));
       }else {
           return turnArrayIntoHumanSentence(new List<Land>.from(finalLandTargets));
       }
