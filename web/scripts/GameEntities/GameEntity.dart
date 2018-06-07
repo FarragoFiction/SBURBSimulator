@@ -815,6 +815,13 @@ class GameEntity extends Object with StatOwner   {
         return ret;
     }
 
+    void addSerializableScenes() {
+        serializableSceneStrings.shuffle();
+        for(String s in serializableSceneStrings) {
+            scenes.add(new SerializableScene(session)..copyFromDataString(s));
+        }
+    }
+
     String htmlTitleHP() {
         String ret = "<font color ='$fontColor'>";
         if (this.crowned != null) ret = "${ret}Crowned ";

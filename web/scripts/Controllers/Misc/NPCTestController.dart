@@ -26,8 +26,8 @@ Future<Null> start() async {
     Consort template = p.land.consortFeature.makeConsort(session);
 
     printBigBads();
+    printCarapaces();
 
-    appendHtml(storyDiv, "Carapaces are: ${session.derse.associatedEntities} and ${session.prospit.associatedEntities} ");
     appendHtml(storyDiv, "<br><br>${p.htmlTitleHP()} Before Minion:  ${p.debugStats}");
 
     List<String> leprechaunsNames = new List<String>();
@@ -62,12 +62,74 @@ Future<Null> start() async {
 
 }
 
+void printCarapaces(){
+    DivElement cc = new DivElement();
+    cc.text = "Carapaces:";
+    storyDiv.append(cc);
+    for(GameEntity g in session.derse.associatedEntities) {
+        printOneGameEntityWithAI(g,cc);
+    }
+
+    for(GameEntity g in session.prospit.associatedEntities) {
+        printOneGameEntityWithAI(g,cc);
+    }
+
+}
+
 void printBigBads() {
     DivElement bb = new DivElement();
-    bb.text = "Big Bads: ${session.npcHandler.bigBads}";
+    bb.text = "Big Bads: ";
+    for(GameEntity g in session.bigBads) {
+        printOneGameEntityWithAI(g,bb);
+    }
+
+
     storyDiv.append(bb);
     print("done printing big bads");
 }
+
+void printOneGameEntityWithAI(GameEntity g, Element container) {
+    DivElement subcontainer = new DivElement();
+    subcontainer.classes.add("aiElement");
+    subcontainer.setInnerHtml("<h3>${g.htmlTitle()}</h3>");
+    container.append(subcontainer);
+
+    if(g is BigBad) {
+        UListElement list = new UListElement();
+        for(SerializableScene s in (g as BigBad).startMechanisms) {
+            printOneScene(s,list);
+        }
+    }else if (g is Carapace) {
+        g.addSerializableScenes();
+    }
+
+    UListElement list = new UListElement();
+    subcontainer.append(list);
+    for(Scene s in g.scenes) {
+        if(s is SerializableScene) printOneScene(s,list);
+    }
+}
+
+void printOneScene(SerializableScene s, Element container) {
+    LIElement me = new LIElement()..text = "${s.name}: ${s.flavorText}";
+    container.append(me);
+    UListElement livingTargets = new UListElement()..text = "Entity Target Conditions";
+    me.append(livingTargets);
+    for(TargetCondition t in s.triggerConditionsLiving) {
+        printOneTargetCondition(t,livingTargets);
+    }
+}
+
+void printOneTargetCondition(TargetCondition t, Element container) {
+    LIElement me = new LIElement()..text = "#${t.name}, Word: ${t.importantWord}, Number: ${t.importantInt}";
+    container.append(me);
+}
+
+void printOneEffect() {
+
+}
+
+
 
 void printAllThings() {
     //        //logger.info("All Entities is: ${npcHandler.allEntities}");

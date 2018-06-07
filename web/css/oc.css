@@ -18,6 +18,16 @@
     box-shadow: 0 0 5px #88CE21, 0 0 3px #88CE21, 0 0 3px #88CE21, 0 0 9px black, 0 0 7px black, 0 0 7px black;
 }
 
+.aiElement{
+    margin: 5px;
+    display: inline-block;
+    padding: 15px;
+    border: 13px solid #3b3b3b;
+    border-radius: 15px;
+    background-color: #616161;
+    color: #00ff00;
+}
+
 .strifeButton{
     padding: 10px;
     margin-left: auto;

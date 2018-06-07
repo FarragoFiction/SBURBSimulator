@@ -187,14 +187,13 @@ class Carapace extends NPC {
         if(!addedSerializableScenes) {
             //shuffling makes it so i don't hafta care about order, and so
             //even the same npc with the same actions available to it will behave slightly differnetly each time
-            serializableSceneStrings.shuffle();
-            for(String s in serializableSceneStrings) {
-                scenes.add(new SerializableScene(session)..copyFromDataString(s));
-            }
+            addSerializableScenes();
             addedSerializableScenes = true;
         }
         super.processScenes();
     }
+
+
 
     @override
     StatHolder createHolder() => new CarapaceStatHolder(this);
