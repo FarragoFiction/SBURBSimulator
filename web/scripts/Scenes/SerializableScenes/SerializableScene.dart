@@ -70,7 +70,7 @@ class  SerializableScene extends Scene {
 
       String displayText = "<br>${getHeader()} $flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
-      displayText =   displayText.replaceAll("$SCENE_OWNER", "${gameEntity.htmlTitle()}");
+      displayText =   displayText.replaceAll("$SCENE_OWNER", "${gameEntity.htmlTitleWithTip()}");
 
       myElement = new DivElement();
       div.append(myElement);
@@ -141,7 +141,7 @@ class  SerializableScene extends Scene {
       if(livingTargets.isNotEmpty) {
           List<String> tmp = new List<String>();
           for(GameEntity t in finalLivingTargets) {
-            tmp.add(t.htmlTitle());
+            tmp.add(t.htmlTitleWithTip());
           }
           return turnArrayIntoHumanSentence(new List<String>.from(tmp));
       }else {
