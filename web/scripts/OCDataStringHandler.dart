@@ -52,7 +52,7 @@ class CharacterEasterEggEngine {
 
 
   void parseFileContentsToArray(arr, fileContents){
-    this.ocs[arr] = fileContents.split("\n");
+    this.ocs[arr] = fileContents.split(new RegExp("\n|\r"));
     ////print(arr);
     ////print(this[arr]);
   }

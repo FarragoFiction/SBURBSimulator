@@ -152,7 +152,7 @@ class SceneRenderingEngine {
 	void fillChatTextMultiLine(canvas, chat, player1, player2, x, y){
 		var ctx = canvas.getContext("2d");
 		var lineHeight = ctx.measureText("M").width * 1.2;
-	  var lines = chat.split("\n");
+	  var lines = chat.split(new RegExp("\n|\r"));
 		var player1Start = player1.chatHandleShort();
 		var player2Start = player2.chatHandleShortCheckDup(player1Start);
 	 	for (num i = 0; i < lines.length; ++i) {

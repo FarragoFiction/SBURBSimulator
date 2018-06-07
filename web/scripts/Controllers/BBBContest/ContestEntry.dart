@@ -25,7 +25,7 @@ class ContestEntry {
     static Future<List<ContestEntry>> slurpEntries() async{
         return await HttpRequest.getString(PathUtils.adjusted("BigBadLists/contestEntrants.txt")).then((String data) {
             List<ContestEntry> ret = new List<ContestEntry>();
-            List<String> parts = data.split("\n");
+            List<String> parts = data.split(new RegExp("\n|\r"));
             for(String line in parts) {
                 //print("adding entry from $line");
                 if(line.isNotEmpty) ret.add(new ContestEntry(line));

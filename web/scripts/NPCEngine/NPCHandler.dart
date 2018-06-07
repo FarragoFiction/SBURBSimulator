@@ -98,7 +98,7 @@ class NPCHandler
     static Future<Null> loadBigBads() async {
         print("loading big bads");
         String data = await Loader.getResource("BigBadLists/bigBads.txt");
-        bigBadsFromFile = data.split("\n");
+        bigBadsFromFile = data.split(new RegExp("\n|\r"));
     }
 
     void setupBigBads() {
