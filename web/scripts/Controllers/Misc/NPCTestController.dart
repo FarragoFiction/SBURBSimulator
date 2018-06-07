@@ -96,8 +96,9 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
 
     if(g is BigBad) {
         UListElement list = new UListElement();
+        subcontainer.append(list);
         for(SerializableScene s in (g as BigBad).startMechanisms) {
-            printOneScene(s,list);
+            printOneScene(s,list, "Activation Scene: ");
         }
     }else if (g is Carapace) {
         g.addSerializableScenes();
@@ -106,12 +107,12 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     UListElement list = new UListElement();
     subcontainer.append(list);
     for(Scene s in g.scenes) {
-        if(s is SerializableScene) printOneScene(s,list);
+        if(s is SerializableScene) printOneScene(s,list,"Action Scene");
     }
 }
 
-void printOneScene(SerializableScene s, Element container) {
-    LIElement me = new LIElement()..text = "${s.name}: ${s.flavorText}";
+void printOneScene(SerializableScene s, Element container, String header) {
+    LIElement me = new LIElement()..text = "$header ${s.name}: ${s.flavorText}";
     container.append(me);
     UListElement livingTargets = new UListElement()..text = "Entity Target Conditions";
     me.append(livingTargets);
@@ -140,7 +141,7 @@ void printOneScene(SerializableScene s, Element container) {
 }
 
 void printOneTargetCondition(TargetCondition t, Element container) {
-    LIElement me = new LIElement()..text = "#${t.name}, Word: ${t.importantWord}, Number: ${t.importantInt}";
+    LIElement me = new LIElement()..setInnerHtml("#${t.desc}, Word: ${t.importantWord}, Number: ${t.importantInt}");
     container.append(me);
 }
 
