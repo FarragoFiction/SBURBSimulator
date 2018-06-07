@@ -792,7 +792,13 @@ class GameEntity extends Object with StatOwner   {
         for(Item item in sylladex) {
             ret += "${item.fullNameWithUpgrade}<br>";
         }
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
 
+
+
+        for (Buff b in buffs) {
+            ret += "$b<br>";
+        }
 
         ret += "</td></tr><tr><td class = 'toolTipSection'>Fraymotifs<hr>";
         List<Fraymotif> confusion = fraymotifsForDisplay;

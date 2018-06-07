@@ -106,7 +106,7 @@ class ChangeInhabitantsStat extends EffectLand {
         entities.forEach((Land l) {
             for(GameEntity e in l.associatedEntities) {
                 if (e.renderable()) renderableTargets.add(e);
-                text = "$text Changing ${e.htmlTitle()} $importantWord by ${importantInt}, from ${e.getStat(Stats.byName[importantWord])} to";
+                text = "$text Changing ${e.htmlTitle()} $importantWord, from ${e.getStat(Stats.byName[importantWord])} to";
                 if (Stats.byName[importantWord] == Stats.RELATIONSHIPS && e is Player) {
                     e.boostAllRelationshipsBy(importantInt);
                 }
