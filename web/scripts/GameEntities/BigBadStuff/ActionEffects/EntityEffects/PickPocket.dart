@@ -41,10 +41,10 @@ class PickPocket extends EffectEntity {
           Item chosen = scene.session.rand.pickFrom(e.sylladex.inventory);
           if(chosen != null) {
               text = "$text ${e.htmlTitle()} loses ${chosen} from their inventory. ${scene.gameEntity} now owns it.";
+              scene.gameEntity.sylladex.add(chosen);
           }else {
               text = "$text ${scene.gameEntity.htmlTitle()} can find nothing to take from ${e.htmlTitle()}.";
           }
-          scene.gameEntity.sylladex.add(chosen);
       });
 
       ButtonElement toggle = new ButtonElement()..text = "Show Details?";
