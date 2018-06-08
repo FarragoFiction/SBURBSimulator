@@ -95,6 +95,12 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     container.append(subcontainer);
 
     if(g is BigBad) {
+        DivElement canStrife = new DivElement()..text = "Can be Strifed: ${g.canStrife}";
+        DivElement immortal = new DivElement()..text = "Unconditionally Immortal: ${g.unconditionallyImmortal}";
+
+        subcontainer.append(canStrife);
+        subcontainer.append(immortal);
+
         UListElement list = new UListElement()..setInnerHtml("<h3>Activation Scenes</h3>");;
         subcontainer.append(list);
         for(SerializableScene s in (g as BigBad).startMechanisms) {
@@ -102,6 +108,7 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
         }
     }else if (g is Carapace) {
         g.addSerializableScenes();
+        g.scenes.insertAll(0,g.scenesToAdd);
         carapaceExtras(g, subcontainer);
     }
 

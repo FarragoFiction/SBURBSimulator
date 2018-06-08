@@ -541,7 +541,7 @@ class Player extends GameEntity{
     String title() {
         String ret = "";
 
-        if (this.villain != null) ret = "${ret}Villainous ";
+        if (this.villain) ret = "${ret}Villainous ";
 
 
         if(this.crowned != null) {
