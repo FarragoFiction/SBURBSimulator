@@ -77,8 +77,8 @@ class BigBad extends NPC {
           canStrife = false;
       }
 
-      if(json["unconditionallyImmortal"] != "true") {
-          unconditionallyImmortal = false;
+      if(json["unconditionallyImmortal"] == "true") {
+          unconditionallyImmortal = true;
       }
 
       if(json["textIfNoStrife"] != null) {
