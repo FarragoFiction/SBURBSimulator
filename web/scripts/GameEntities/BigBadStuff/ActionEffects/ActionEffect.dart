@@ -159,6 +159,8 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new Mug(scene));
       ret.add(new PledgeLoyalty(scene));
       ret.add(new MakeMinion(scene));
+      ret.add(new MakeGodDestined(scene));
+      ret.add(new MakeGodTier(scene));
       ret.add(new DestroySylladex(scene));
       ret.add(new GrimDarkCorruption(scene));
       ret.add(new MakeStrifable(scene));
