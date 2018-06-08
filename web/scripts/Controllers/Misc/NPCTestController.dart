@@ -91,7 +91,7 @@ void printBigBads() {
 void printOneGameEntityWithAI(GameEntity g, Element container) {
     DivElement subcontainer = new DivElement();
     subcontainer.classes.add("aiElement");
-    subcontainer.setInnerHtml("<h3>${g.htmlTitle()}</h3>");
+    subcontainer.setInnerHtml("<h2>${g.htmlTitle()}</h2>");
     container.append(subcontainer);
 
     if(g is BigBad) {
@@ -137,7 +137,7 @@ void printOneScene(SerializableScene s, Element container, String header) {
 
     if(s.triggerConditionsLiving.isNotEmpty) {
         UListElement livingTargets = new UListElement()
-            ..text = "Entity Target Conditions";
+            ..setInnerHtml("<h3>Living Targeting Conditions</h3>");
         details.append(livingTargets);
         for (TargetCondition t in s.triggerConditionsLiving) {
             printOneTargetCondition(t, livingTargets);
@@ -146,7 +146,7 @@ void printOneScene(SerializableScene s, Element container, String header) {
 
     if(s.triggerConditionsLand.isNotEmpty) {
         UListElement landTargets = new UListElement()
-            ..text = "Land Target Conditions";
+            ..setInnerHtml("<h3>Land Target Conditions</h3>");
         details.append(landTargets);
         for (TargetCondition t in s.triggerConditionsLand) {
             printOneTargetCondition(t, landTargets);
@@ -155,7 +155,7 @@ void printOneScene(SerializableScene s, Element container, String header) {
 
     if(s.effectsForLiving.isNotEmpty) {
         UListElement livingEffects = new UListElement()
-            ..text = "Effect on Entitites";
+            ..setInnerHtml("<h3>Effect on Entitites</h3>");
         details.append(livingEffects);
         for (EffectEntity t in s.effectsForLiving) {
             printOneEffect(t, livingEffects);
@@ -164,7 +164,7 @@ void printOneScene(SerializableScene s, Element container, String header) {
 
     if(s.effectsForLands.isNotEmpty) {
         UListElement landEffects = new UListElement()
-            ..text = "Effect on Lands";
+            ..setInnerHtml("<h3>Effect on Lands</h3>");
         details.append(landEffects);
         for (ActionEffect t in s.effectsForLands) {
             printOneEffect(t, landEffects);
