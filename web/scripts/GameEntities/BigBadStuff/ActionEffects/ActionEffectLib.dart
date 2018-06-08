@@ -16,6 +16,7 @@ export "EntityEffects/PledgeLoyalty.dart";
 export "EntityEffects/MakeMinion.dart";
 export "EntityEffects/DestroySylladex.dart";
 export "LandEffects/InstaBlowUp.dart";
+export "EntityEffects/MakeBusy.dart";
 export "EntityEffects/ChangeStat.dart";
 export "EntityEffects/GrimDarkCorruption.dart";
 export "EntityEffects/StartStrife.dart";
