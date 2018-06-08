@@ -224,7 +224,7 @@ class BigBadForm {
         strifableYesElement.value = bigBad.textIfYesStrife;
         strifableNoElement.value = bigBad.textIfNoStrife;
         strifableElement.checked = bigBad.canStrife;
-        immortalElement.checked = bigBad.canStrife;
+        immortalElement.checked = bigBad.unconditionallyImmortal;
 
 
         for(SummonScene s in bigBad.startMechanisms) {
@@ -365,7 +365,7 @@ class BigBadForm {
             immortalElement = new CheckboxInputElement();
             subContainer.append(label1);
             subContainer.append(immortalElement);
-            immortalElement.checked = bigBad.canStrife;
+            immortalElement.checked = bigBad.unconditionallyImmortal;
             immortalElement.onChange.listen((Event e) {
                 bigBad.unconditionallyImmortal = immortalElement.checked;
                 syncDataBoxToBigBad();
