@@ -37,7 +37,7 @@ class GiveAction extends EffectEntity {
 
         actionStringBox = new TextAreaElement();
         me.append(actionStringBox);
-
+        actionStringBox.value = importantWord;
         actionStringBox.onChange.listen((Event e) => syncToForm());
         syncToForm();
     }

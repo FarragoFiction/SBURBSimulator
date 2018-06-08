@@ -361,7 +361,7 @@ class BigBadForm {
             DivElement subContainer = new DivElement();
             container.append(subContainer);
 
-            LabelElement label1 = new LabelElement()..setInnerHtml("Can BB die?");
+            LabelElement label1 = new LabelElement()..setInnerHtml("Is BB Unconditionally Immortal?");
             immortalElement = new CheckboxInputElement();
             subContainer.append(label1);
             subContainer.append(immortalElement);
