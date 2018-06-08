@@ -757,6 +757,7 @@ class GameEntity extends Object with StatOwner   {
 
     String htmlTitle() {
         String ret = "";
+        if (this.unconditionallyImmortal != null) ret = "${ret}Unkillable ";
         if (this.crowned != null) ret = "${ret}Crowned ";
         String pname = this.name;
         if (pname == "Yaldabaoth") {
@@ -911,6 +912,7 @@ class GameEntity extends Object with StatOwner   {
 
     String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
         if(session.mutator.lifeField) return " Death has no meaning."; //does fucking nothing.
+        if(unconditionallyImmortal) return "You can't kill the unkillable, dunkass.";
         this.dead = true;
         String looting = "";
         this.causeOfDeath = causeOfDeath;
