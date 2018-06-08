@@ -46,6 +46,7 @@ class BigBad extends NPC {
       json["name"] = name;
       json["description"] = description;
       json["canStrife"] = canStrife.toString();
+      json["unconditionallyImmortal"] = unconditionallyImmortal.toString();
       json["textIfNoStrife"] = textIfNoStrife;
       json["textIfYesStrife"] = textIfYesStrife;
 
@@ -74,6 +75,10 @@ class BigBad extends NPC {
 
       if(json["canStrife"] != "true") {
           canStrife = false;
+      }
+
+      if(json["unconditionallyImmortal"] != "true") {
+          unconditionallyImmortal = false;
       }
 
       if(json["textIfNoStrife"] != null) {
@@ -186,6 +191,7 @@ class BigBadForm {
     TextAreaElement descElement;
 
     CheckboxInputElement strifableElement;
+    CheckboxInputElement immortalElement;
     TextAreaElement strifableYesElement;
     TextAreaElement strifableNoElement;
 
@@ -203,6 +209,7 @@ class BigBadForm {
         drawName();
         drawDesc();
         drawStrifable();
+        drawImmortal();
         drawAddStartButton();
         drawAddSceneButton();
     }
@@ -217,6 +224,7 @@ class BigBadForm {
         strifableYesElement.value = bigBad.textIfYesStrife;
         strifableNoElement.value = bigBad.textIfNoStrife;
         strifableElement.checked = bigBad.canStrife;
+        immortalElement.checked = bigBad.canStrife;
 
 
         for(SummonScene s in bigBad.startMechanisms) {
@@ -303,7 +311,9 @@ class BigBadForm {
         DivElement subContainer = new DivElement();
         container.append(subContainer);
 
-        LabelElement label1 = new LabelElement()..setInnerHtml("Can BB be strifed at all? (Is it intangible, not yet here, too fast, etc)");
+        LabelElement label1 = new LabelElement()
+            ..setInnerHtml(
+                "Can BB be strifed at all? (Is it intangible, not yet here, too fast, etc)");
         strifableElement = new CheckboxInputElement();
         subContainer.append(label1);
         subContainer.append(strifableElement);
@@ -313,7 +323,9 @@ class BigBadForm {
             syncDataBoxToBigBad();
         });
 
-        LabelElement label2 = new LabelElement()..setInnerHtml("<br>When a Strife can't happen, what text is displayed as the reason? (You can leave this unmodified if the BB is expected to always be strifable).<br> ");
+        LabelElement label2 = new LabelElement()
+            ..setInnerHtml(
+                "<br>When a Strife can't happen, what text is displayed as the reason? (You can leave this unmodified if the BB is expected to always be strifable).<br> ");
         strifableNoElement = new TextAreaElement();
         strifableNoElement.value = bigBad.textIfNoStrife;
 
@@ -327,7 +339,9 @@ class BigBadForm {
         });
 
 
-        LabelElement label3 = new LabelElement()..setInnerHtml("<br>When a Strife does happen, what text is displayed? (i.e. the BB is now tangible, slowed down by their weakenss, etc).<br> ");
+        LabelElement label3 = new LabelElement()
+            ..setInnerHtml(
+                "<br>When a Strife does happen, what text is displayed? (i.e. the BB is now tangible, slowed down by their weakenss, etc).<br> ");
         strifableYesElement = new TextAreaElement();
         strifableYesElement.value = bigBad.textIfYesStrife;
         strifableYesElement.cols = 60;
@@ -338,9 +352,25 @@ class BigBadForm {
             bigBad.textIfYesStrife = strifableYesElement.value;
             syncDataBoxToBigBad();
         });
-
     }
 
+
+
+        //check box for canStrife and then two text areas for text on strife or strife avoidance
+        void drawImmortal() {
+            DivElement subContainer = new DivElement();
+            container.append(subContainer);
+
+            LabelElement label1 = new LabelElement()..setInnerHtml("Can BB die?");
+            immortalElement = new CheckboxInputElement();
+            subContainer.append(label1);
+            subContainer.append(immortalElement);
+            immortalElement.checked = bigBad.canStrife;
+            immortalElement.onChange.listen((Event e) {
+                bigBad.unconditionallyImmortal = immortalElement.checked;
+                syncDataBoxToBigBad();
+            });
+        }
     void drawDesc() {
         DivElement subContainer = new DivElement();
         LabelElement nameLabel = new LabelElement();
