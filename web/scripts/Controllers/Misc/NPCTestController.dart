@@ -94,6 +94,9 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     subcontainer.setInnerHtml("<h2>${g.htmlTitle()}</h2>");
     container.append(subcontainer);
 
+    DivElement desc = new DivElement()..text = "${g.description}";
+    subcontainer.append(desc);
+
     if(g is BigBad) {
         DivElement canStrife = new DivElement()..text = "Can be Strifed: ${g.canStrife}";
         DivElement immortal = new DivElement()..text = "Unconditionally Immortal: ${g.unconditionallyImmortal}";
