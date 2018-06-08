@@ -10,6 +10,7 @@ export "EntityEffects/MakeInactive.dart";
 export "EntityEffects/MakeMortal.dart";
 export "EntityEffects/MakeUnconditionallyImmortal.dart";
 export "EntityEffects/MakeGodDestined.dart";
+export "EntityEffects/MakeUnGodDestined.dart";
 export "EntityEffects/MakeGodTier.dart";
 export "EntityEffects/PledgeLoyalty.dart";
 export "EntityEffects/MakeMinion.dart";

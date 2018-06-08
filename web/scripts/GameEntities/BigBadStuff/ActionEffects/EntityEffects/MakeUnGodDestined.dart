@@ -3,10 +3,10 @@ import 'dart:html';
 
 //no chance to survive, no strife no anything. it's a red miles situation
 //not really any details, or modifiers
-class MakeGodDestined extends EffectEntity {
+class MakeUnGodDestined extends EffectEntity {
     @override
-    String name = "MakeGodDestined";
-    MakeGodDestined(SerializableScene scene) : super(scene);
+    String name = "MakeUnGodDestined";
+    MakeUnGodDestined(SerializableScene scene) : super(scene);
 
 
   @override
@@ -24,7 +24,7 @@ class MakeGodDestined extends EffectEntity {
         setupContainer(divbluh);
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>MakeGodDestined:</b> <br>If its a Player, they will probably god tier if they die. <br><br>");
+        me.setInnerHtml("<b>MakeUnGodDestined:</b> <br>If its a Player, they will not god tier if they die. <br><br>");
         syncToForm();
     }
 
@@ -40,8 +40,8 @@ class MakeGodDestined extends EffectEntity {
         SpanElement death = new SpanElement();
         String text = "";
         if(e is Player) {
-          (e as Player).godDestiny = true;
-          text = "${e.htmlTitle()} feels destined for greatness. ";
+          (e as Player).godDestiny = false;
+          text = "${e.htmlTitle()} feels destined for failure. ";
         }else {
           //does nothing. Nak.
           text = "${e.htmlTitle()} is confused. ";
@@ -58,6 +58,6 @@ class MakeGodDestined extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new MakeGodDestined(scene);
+    return new MakeUnGodDestined(scene);
   }
 }

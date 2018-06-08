@@ -77,8 +77,8 @@ class TodoHandler {
   }
 
   void setupBigBadTODO() {
+     todo("have defeatScenes that the big bad gives to all players when they activate. defeat scenes have a locked specialTarget of the big bad. can't target anything else. these scenes make them mortal, strifable, weaker, etc. ",highPriority);
     todo("fuck the world, make game entities serializable first before i modify big bads too much.", highPriority);
-    todo("big bads have flag for unconditionally immortal, just like they do for strifable",highPriority);
     todo("Combo players get special serialized scenes about helping the native players god tier, skip quests, etc.", highPriority);
     todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun", highPriority);
     todo("target condition: winning players (purple frog, shogun etc pick this) useful for big giant boss fights at the last minute, or big bads that change their behavior at the last minute", highPriority);
@@ -88,32 +88,20 @@ class TodoHandler {
     todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)", mediumPriority);
     todo("big bads need 0 or more custom fraymotif names", mediumPriority);
     todo("LAND EFFECT: set quests to done (pre, denizen or post) (doing this effectively skips them, no reward of any kind)", mediumPriority);
-    todo("hasInterest (if they aren't a player automatically false)", mediumPriority);
     todo("defeat system is list of scenes (like start or scenes) BUT the scenes are given to the player uppong summoning, not used by big bad", highPriority);
-    todo("land effect, rename land (can rename whole thing, reference original name, or parts of original name (first word, second word)", mediumPriority);
     todo("hasSpritePrototypedWith (if they aren't a player automatically false)", lowPriority);
     todo("isPrototypedWith (for sprites or carapace with rings)", mediumPriority);
     todo("isFromDystopia (i.e. Troll Empress)", mediumPriority);
-    todo("target condition for blood color", lowPriority);
-    todo("target condition of isTroll or isHuman", mediumPriority);
     todo("hasQuirk", mediumPriority); //bbb that hates unreadable quirks
     todo("put shogun in session 13, and as the effect of killing FU meta player",highPriority);
     todo("hasRelationshipWithMe (either 'any' or list of relatinships types", mediumPriority);
     todo("land condition: isMeteored (i.e. reckoning is going)", lowPriority);
-    todo("isUnconditionallyImmortal",mediumPriority);
     todo("isDoomed", lowPriority);
-    todo("isLeader (lets you target the person responsible for ectobiology)", highPriority);
-    todo("action effect: deactivate (makes the target never do anything again without killing them, but you cant ever target them again either)", highPriority);
     todo("smokey the bear needs shovelkind", mediumPriority);
-    todo("isWasted (lets you target players who did a gnosis 4, and combined with isAspect lets you target specific gnosises)", mediumPriority);
-    todo("isTrickster", mediumPriority);
     todo("effect entity: create minion (from scratch, with set name, like Science experiment or Living Puppet or whatever)",mediumPriority);
-    todo("effect entity: claim minion (some existing living thing(s) is now assigned to your party and will help you with fights). They will still be active and do their own things, though.", mediumPriority);
     todo("effect: add fraymotif named x", mediumPriority);
     todo("land target based on planet health", mediumPriority);
-    todo("isDreamSelf", mediumPriority);
     todo("effect: set god destiny to false (put this on lands means they destroyed quest bed)", mediumPriority);
-    todo("isMurderMode/effect go murdermode", mediumPriority);
     todo("isRobot", lowPriority);
     todo("isBrainGhost",lowPriority);
     todo("target based on 'recently broke up' or 'recently got together' with someone",lowPriority);
