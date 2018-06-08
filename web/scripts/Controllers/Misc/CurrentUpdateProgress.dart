@@ -78,6 +78,7 @@ class TodoHandler {
 
   void setupBigBadTODO() {
     todo("fuck the world, make game entities serializable first before i modify big bads too much.", highPriority);
+    todo("Combo players get special serialized scenes about helping the native players god tier, skip quests, etc.", highPriority);
     todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun", highPriority);
     todo("target condition: winning players (purple frog, shogun etc pick this) useful for big giant boss fights at the last minute, or big bads that change their behavior at the last minute", highPriority);
     todo("once a game entities specibus/sylladex is serializable, shove that into big bads too", highPriority);

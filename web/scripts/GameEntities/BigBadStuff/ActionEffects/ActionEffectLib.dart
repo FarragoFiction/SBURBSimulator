@@ -5,6 +5,8 @@ export "EntityEffects/InstaKill.dart";
 export "EntityEffects/MakeStrifable.dart";
 export "EntityEffects/PickPocket.dart";
 export "EntityEffects/Mug.dart";
+export "EntityEffects/PledgeLoyalty.dart";
+export "EntityEffects/MakeMinion.dart";
 export "EntityEffects/DestroySylladex.dart";
 export "LandEffects/InstaBlowUp.dart";
 export "EntityEffects/ChangeStat.dart";
