@@ -22,7 +22,7 @@ class GetTiger extends Scene{
 		var deadPlayers = findDeadPlayers(playerList);
 		for(num i = 0; i<deadPlayers.length; i++){
 			var p = deadPlayers[i];
-			if(!p.godTier && p.godDestiny && (p.isDreamSelf || p.dreamSelf)){
+			if(!p.godTier && p.godDestiny){
 				this.deadPlayersToGodTier.add(p);
 			}
 		}
