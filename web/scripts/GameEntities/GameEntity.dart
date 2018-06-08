@@ -758,8 +758,10 @@ class GameEntity extends Object with StatOwner   {
     String htmlTitle() {
         String ret = "";
         if (this.unconditionallyImmortal != null) ret = "${ret}Unkillable ";
+        if (this.doomed != null) ret = "${ret}Doomed ";
+        if (this.villain != null) ret = "${ret}Villainous ";
         if (this.crowned != null) ret = "${ret}Crowned ";
-        String pname = this.name;
+        String pname = title();
         if (pname == "Yaldabaoth") {
             List<String> misNames = <String>[ 'Yaldobob', 'Yolobroth', 'Yodelbooger', "Yaldabruh", 'Yogertboner', 'Yodelboth'];
             ////session.logger.info("Yaldobooger!!! ${this.session.session_id}");
