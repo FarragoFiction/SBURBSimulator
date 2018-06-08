@@ -799,14 +799,7 @@ class Session {
         List<Player> avail = setAvailablePlayers(playersInSession);
         makeSurePlayersNotInSessionArentAvailable(playersInSession);
         resetNPCAvailability();
-        for(Player p in avail) {
-            //;
-            if(p.scenes.isEmpty) Scene.createScenesForPlayer(this, p);
-            if(p.active && p.available) {
-                //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
-                p.processScenes();
-            }
-        }
+        //players used to go here but now i want them to go last
         List<GameEntity> cachedActivated = new List.from(activatedNPCS);
         //(since an npc can be activated during these scenes)
         for(GameEntity g in cachedActivated) {
@@ -823,7 +816,15 @@ class Session {
            // logger.info("done processing $g showing up, big bads is $bigBads");
         }
         //logger.info("done processing big bads showing up");
-
+        for(Player p in avail) {
+            //;
+            if(p.scenes.isEmpty) Scene.createScenesForPlayer(this, p);
+            if(p.active && p.available) {
+                //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
+                p.processScenes();
+            }
+        }
+        
         for (num i = 0; i < this.deathScenes.length; i++) {
             Scene s = this.deathScenes[i];
             if (s.trigger(playersInSession)) {

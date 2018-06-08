@@ -54,7 +54,6 @@ class TodoHandler {
   }
   
   void setupSessionCustomizerTODO() {
-       todo("make sure easter egg sessions work (i broke ab for this shit they better) especially 4037",highPriority);
      todo("ability to load a scene into a player/carapace for testing in the sessionCustomizer.", highPriority);
      todo("ability to serialize a game entity.",highPriority);
      todo("ability to serialize a session",highPriority);
