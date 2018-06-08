@@ -757,9 +757,9 @@ class GameEntity extends Object with StatOwner   {
 
     String htmlTitle() {
         String ret = "";
-        if (this.unconditionallyImmortal != null) ret = "${ret}Unkillable ";
-        if (this.doomed != null) ret = "${ret}Doomed ";
-        if (this.villain != null) ret = "${ret}Villainous ";
+        if (this.unconditionallyImmortal) ret = "${ret}Unkillable ";
+        if (this.doomed) ret = "${ret}Doomed ";
+        if (this.villain) ret = "${ret}Villainous ";
         if (this.crowned != null) ret = "${ret}Crowned ";
         String pname = title();
         if (pname == "Yaldabaoth") {
