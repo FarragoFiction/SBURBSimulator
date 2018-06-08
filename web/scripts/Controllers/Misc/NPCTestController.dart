@@ -98,7 +98,7 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
         UListElement list = new UListElement();
         subcontainer.append(list);
         for(SerializableScene s in (g as BigBad).startMechanisms) {
-            printOneScene(s,list, "Activation Scene: ");
+            printOneScene(s,list, "Activation Scene ");
         }
     }else if (g is Carapace) {
         g.addSerializableScenes();
@@ -107,41 +107,74 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     UListElement list = new UListElement();
     subcontainer.append(list);
     for(Scene s in g.scenes) {
-        if(s is SerializableScene) printOneScene(s,list,"Action Scene");
+        if(s is SerializableScene) printOneScene(s,list,"");
     }
 }
 
 void printOneScene(SerializableScene s, Element container, String header) {
     LIElement me = new LIElement()..text = "$header ${s.name}: ${s.flavorText}";
+    me.classes.add("aiScene");
     container.append(me);
-    UListElement livingTargets = new UListElement()..text = "Entity Target Conditions";
-    me.append(livingTargets);
-    for(TargetCondition t in s.triggerConditionsLiving) {
-        printOneTargetCondition(t,livingTargets);
+
+    ButtonElement toggle = new ButtonElement()..text = "Show Details";
+    toggle.style.display = "block";
+    toggle.classes.add("aiButton");
+    DivElement details = new DivElement();
+    details.style.display = "none";
+
+    toggle.onClick.listen((Event e) {
+        if(details.style.display == "block") {
+            details.style.display = "none";
+            toggle.text == "Show Details";
+        }else {
+            details.style.display = "block";
+            toggle.text == "Hide Details";
+        }
+    });
+
+    me.append(toggle);
+    me.append(details);
+
+    if(s.triggerConditionsLiving.isNotEmpty) {
+        UListElement livingTargets = new UListElement()
+            ..text = "Entity Target Conditions";
+        details.append(livingTargets);
+        for (TargetCondition t in s.triggerConditionsLiving) {
+            printOneTargetCondition(t, livingTargets);
+        }
     }
 
-    UListElement landTargets = new UListElement()..text = "Land Target Conditions";
-    me.append(landTargets);
-    for(TargetCondition t in s.triggerConditionsLand) {
-        printOneTargetCondition(t,landTargets);
+    if(s.triggerConditionsLand.isNotEmpty) {
+        UListElement landTargets = new UListElement()
+            ..text = "Land Target Conditions";
+        details.append(landTargets);
+        for (TargetCondition t in s.triggerConditionsLand) {
+            printOneTargetCondition(t, landTargets);
+        }
     }
 
-    UListElement livingEffects = new UListElement()..text = "Effect on Entitites";
-    me.append(livingEffects);
-    for(EffectEntity t in s.effectsForLiving) {
-        printOneEffect(t,livingEffects);
+    if(s.effectsForLiving.isNotEmpty) {
+        UListElement livingEffects = new UListElement()
+            ..text = "Effect on Entitites";
+        details.append(livingEffects);
+        for (EffectEntity t in s.effectsForLiving) {
+            printOneEffect(t, livingEffects);
+        }
     }
 
-    UListElement landEffects = new UListElement()..text = "Effect on Lands";
-    me.append(landEffects);
-    for(ActionEffect t in s.effectsForLands) {
-        printOneEffect(t,landEffects);
+    if(s.effectsForLands.isNotEmpty) {
+        UListElement landEffects = new UListElement()
+            ..text = "Effect on Lands";
+        details.append(landEffects);
+        for (ActionEffect t in s.effectsForLands) {
+            printOneEffect(t, landEffects);
+        }
     }
 
 }
 
 void printOneTargetCondition(TargetCondition t, Element container) {
-    LIElement me = new LIElement()..setInnerHtml("#${t.desc}, Word: ${t.importantWord}, Number: ${t.importantInt}");
+    LIElement me = new LIElement()..setInnerHtml("#${t.desc.replaceAll("<br>","")}, Word: ${t.importantWord}, Number: ${t.importantInt}");
     container.append(me);
 }
 

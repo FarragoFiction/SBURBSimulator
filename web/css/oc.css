@@ -18,6 +18,23 @@
     box-shadow: 0 0 5px #88CE21, 0 0 3px #88CE21, 0 0 3px #88CE21, 0 0 9px black, 0 0 7px black, 0 0 7px black;
 }
 
+.aiScene{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+    background-color: #888888;
+    border-radius: 15px;
+}
+
+.aiButton{
+    margin: 5px;
+    padding: 5px;
+    border: 3px solid #000000;
+    border-radius: 3px;
+    background-color: #3b3b3b;
+    color: #00ff00;
+}
+
 .aiElement{
     margin: 5px;
     display: inline-block;
