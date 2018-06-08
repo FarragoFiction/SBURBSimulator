@@ -6,6 +6,7 @@ export "EntityEffects/MakeStrifable.dart";
 export "EntityEffects/PickPocket.dart";
 export "EntityEffects/Mug.dart";
 export "EntityEffects/GiveFrog.dart";
+export "EntityEffects/KillFrog.dart";
 export "EntityEffects/MarkFirstQuestsAsComplete.dart";
 export "EntityEffects/MarkDenizenQuestsAsComplete.dart";
 export "EntityEffects/MarkFinalQuestsAsComplete.dart";
