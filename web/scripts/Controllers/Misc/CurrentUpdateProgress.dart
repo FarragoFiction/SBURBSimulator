@@ -77,7 +77,7 @@ class TodoHandler {
   }
 
   void setupBigBadTODO() {
-     todo("have defeatScenes that the big bad gives to all players when they activate. defeat scenes have a locked specialTarget of the big bad. can't target anything else. these scenes make them mortal, strifable, weaker, etc. ",highPriority);
+     todo("have defeatScenes that the big bad gives to all players when they activate. defeat scenes have a locked specialTarget of the big bad. can't target anything else (but can have target conditions to turn on/off the scene, like isUnconditionallyImmortal or isStrifable). these scenes make them mortal, strifable, weaker, etc. ",highPriority);
     todo("fuck the world, make game entities serializable first before i modify big bads too much.", highPriority);
     todo("Combo players get special serialized scenes about helping the native players god tier, skip quests, etc.", highPriority);
     todo("big bads need low, medium, high values for all stats. what am i saying i mean 'Planetary, Galactic, Cosmic'. sorry about that, shogun", highPriority);
@@ -102,7 +102,6 @@ class TodoHandler {
     todo("effect: add fraymotif named x", mediumPriority);
     todo("land target based on planet health", mediumPriority);
     todo("effect: set god destiny to false (put this on lands means they destroyed quest bed)", mediumPriority);
-    todo("isRobot", lowPriority);
     todo("isBrainGhost",lowPriority);
     todo("target based on 'recently broke up' or 'recently got together' with someone",lowPriority);
     todo("ability to access pesterchum as an action (i guess they'd message the first player in their list, and ignoring it otherwise?)",lowPriority);
@@ -118,9 +117,6 @@ class TodoHandler {
     todo("take all items in specibus", mediumPriority);
     todo("ressurrect", mediumPriority);
     todo("createRelationship of Type X with me", lowPriority);
-    todo("giveDestiny", mediumPriority);
-    todo("giveUnconditionalImmortality", lowPriority);
-    todo("removeUnconditionalImmortality (wasn't i already planning on this, did i forget to list?) needed for big bad defeats", highPriority);
 
   }
 

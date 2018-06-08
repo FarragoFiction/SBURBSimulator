@@ -252,6 +252,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsWasted(scene));
       ret.add(new TargetIsTrickster(scene));
       ret.add(new TargetIsDreamSelf(scene));
+      ret.add(new TargetIsSelf(scene));
       ret.add(new TargetIsDoomed(scene));
       ret.add(new TargetHasTimeClones(scene));
       ret.add(new TargetHasCrown(scene));
@@ -262,7 +263,8 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsGodTier(scene));
       ret.add(new TargetHasGodDestiny(scene));
       ret.add(new TargetIsLeader(scene));
-      ret.add(new TargetIsSelf(scene));
+      ret.add(new TargetIsStrifable(scene));
+      ret.add(new TargetIsUnconditionallyImmortal(scene));
       ret.add(new TargetIsRandom(scene));
       ret.add(new TargetIsFromSessionWithABStat(scene));
       ret.add(new TargetIsCompanion(scene));
