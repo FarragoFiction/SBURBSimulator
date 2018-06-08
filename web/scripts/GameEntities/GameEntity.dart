@@ -818,8 +818,15 @@ class GameEntity extends Object with StatOwner   {
     void addSerializableScenes() {
         serializableSceneStrings.shuffle();
         for(String s in serializableSceneStrings) {
-            scenes.add(new SerializableScene(session)..copyFromDataString(s));
+            addSerializalbeSceneFromString(s);
         }
+    }
+
+    //returns scene in case you wanna know what it was
+    SerializableScene addSerializalbeSceneFromString(String s) {
+        SerializableScene ret = new SerializableScene(session)..copyFromDataString(s);
+        scenesToAdd.add(ret);
+        return ret;
     }
 
     String htmlTitleHP() {

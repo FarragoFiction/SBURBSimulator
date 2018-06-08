@@ -5,6 +5,7 @@ export "EntityEffects/InstaKill.dart";
 export "EntityEffects/MakeStrifable.dart";
 export "EntityEffects/PickPocket.dart";
 export "EntityEffects/Mug.dart";
+export "EntityEffects/GiveAction.dart";
 export "EntityEffects/MakeGodDestined.dart";
 export "EntityEffects/MakeGodTier.dart";
 export "EntityEffects/PledgeLoyalty.dart";
