@@ -29,7 +29,7 @@ export "LandEffects/ChangeInhabitantsStats.dart";
 export "LandEffects/MakeConsortsSay.dart";
 export "LandEffects/MarkDenizenQuestsAsCompleteForLand.dart";
 export "LandEffects/MarkFinalQuestsAsCompleteForLand.dart";
-export "LandEffects/MarkFirstQuestsAsCompleteForLand.dart";
+export "LandEffects/MarkFirstQuestsAsCompleteforLand.dart";
 export "LandEffects/MakeConsortsInto.dart";
 export "LandEffects/MakeLandNamed.dart";
 export "LandEffects/Corrupt.dart";
