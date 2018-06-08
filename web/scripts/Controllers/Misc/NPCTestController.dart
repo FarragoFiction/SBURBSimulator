@@ -95,24 +95,40 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     container.append(subcontainer);
 
     if(g is BigBad) {
-        UListElement list = new UListElement();
+        UListElement list = new UListElement()..setInnerHtml("<h3>Activation Scenes</h3>");;
         subcontainer.append(list);
         for(SerializableScene s in (g as BigBad).startMechanisms) {
-            printOneScene(s,list, "Activation Scene ");
+            printOneScene(s,list);
         }
     }else if (g is Carapace) {
         g.addSerializableScenes();
+        carapaceExtras(g, subcontainer);
     }
 
-    UListElement list = new UListElement();
+    UListElement list = new UListElement()..setInnerHtml("<h3>Action Scenes</h3>");
     subcontainer.append(list);
     for(Scene s in g.scenes) {
-        if(s is SerializableScene) printOneScene(s,list,"");
+        if(s is SerializableScene) printOneScene(s,list);
     }
 }
 
-void printOneScene(SerializableScene s, Element container, String header) {
-    LIElement me = new LIElement()..text = "$header ${s.name}: ${s.flavorText}";
+void carapaceExtras(Carapace c, Element container) {
+    UListElement uListElement = new UListElement()..setInnerHtml("<h3>Random Distractions</h3>");
+    container.append(uListElement);
+    for(String s in c.distractions) {
+        LIElement liElement = new LIElement()..text = s;
+        uListElement.append(liElement);
+    }
+    UListElement uListElement2 = new UListElement()..setInnerHtml("<h3>Reasons to Visit Jack Noir</h3>");
+    container.append(uListElement2);
+    for(String s in c.bureaucraticBullshit) {
+        LIElement liElement = new LIElement()..text = s;
+        uListElement2.append(liElement);
+    }
+}
+
+void printOneScene(SerializableScene s, Element container) {
+    LIElement me = new LIElement()..text = "${s.name}: ${s.flavorText}";
     me.classes.add("aiScene");
     container.append(me);
 
