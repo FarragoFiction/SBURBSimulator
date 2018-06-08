@@ -25,7 +25,7 @@ class GiveFrog extends EffectEntity {
 
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>GiveFrog:</b> <br>target gets a frog (nearly useless unless they are the Space Player).  <br><br>");
+        me.setInnerHtml("<b>GiveFrog:</b> <br>target gets a frog (nearly useless unless they are the Space Player (and dangerous if they are GrimDark)).  <br><br>");
         syncToForm();
     }
 
