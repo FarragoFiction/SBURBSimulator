@@ -10,6 +10,8 @@ export "EntityTargetConditions/TargetIsStrifable.dart";
 export "EntityTargetConditions/TargetHasInterestCategory.dart";
 export "EntityTargetConditions/TargetIsDreamSelf.dart";
 export "EntityTargetConditions/TargetIsRobot.dart";
+export "EntityTargetConditions/TargetHasPurpleFrog.dart";
+export "EntityTargetConditions/TargetHasFrog.dart";
 export "EntityTargetConditions/TargetIsSBAHJ.dart";
 export "EntityTargetConditions/TargetIsTrickster.dart";
 export "EntityTargetConditions/TargetIsWasted.dart";
