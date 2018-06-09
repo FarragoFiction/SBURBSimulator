@@ -823,6 +823,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void addSerializableScenes() {
+        session.logger.info("adding serializable scenes for $this");
         //don't do this right nwo, but when i do it makes their ai a little harder to predict
         //serializableSceneStrings.shuffle();
         for(String s in serializableSceneStrings) {
