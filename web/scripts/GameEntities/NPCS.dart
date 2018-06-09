@@ -181,17 +181,6 @@ class Carapace extends NPC {
         }
     }
 
-    @override
-    void processScenes() {
-        //serializableSceneStrings do it exctly once, then in scenes themselves worry about if crowned or not
-        if(!addedSerializableScenes) {
-            //shuffling makes it so i don't hafta care about order, and so
-            //even the same npc with the same actions available to it will behave slightly differnetly each time
-            addSerializableScenes();
-            addedSerializableScenes = true;
-        }
-        super.processScenes();
-    }
 
 
 

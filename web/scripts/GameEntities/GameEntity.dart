@@ -205,7 +205,11 @@ class GameEntity extends Object with StatOwner   {
     //my scenes can trigger behavior in other things that makes them unable to do their own scenes.
     //this is intended. probably.
     void processScenes() {
-      // ;
+
+        if(!addedSerializableScenes) {
+            addSerializableScenes();
+            addedSerializableScenes = true;
+        }
         //can do as many as you want, so long as you haven't been taken out of availibility
         for(Scene s in scenes) {
             s.gameEntity = this;
@@ -819,7 +823,8 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void addSerializableScenes() {
-        serializableSceneStrings.shuffle();
+        //don't do this right nwo, but when i do it makes their ai a little harder to predict
+        //serializableSceneStrings.shuffle();
         for(String s in serializableSceneStrings) {
             addSerializalbeSceneFromString(s);
         }

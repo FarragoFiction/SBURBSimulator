@@ -25,7 +25,7 @@ class BeDistracted extends Scene {
   bool trigger(List<Player> playerList) {
       //don't be too spammy. you don't have to do something EVERY tick. you're not a player.
      // ;
-      if(session.rand.nextDouble() > .8) return true;
+      if(session.rand.nextDouble() > .9) return true;
       return false;
   }
 }
