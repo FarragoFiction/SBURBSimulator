@@ -48,10 +48,10 @@ class TargetIsFromProspit extends TargetConditionLiving {
     bool conditionForFilter(GameEntity item) {
         if(item is Carapace) {
             Carapace c = item as Carapace;
-            return c.type == Carapace.PROSPIT;
+            return c.type != Carapace.PROSPIT;
         }else if( item is Player) {
           Player p = item as Player;
-          if(p.moon == scene.session.prospit) return true;
+          if(p.moon == scene.session.prospit) return false;
         }else {
             return !scene.session.prospit.associatedEntities.contains(item);
         }
