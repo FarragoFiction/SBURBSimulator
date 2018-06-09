@@ -46,7 +46,14 @@ class TargetIsFromProspit extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
-        print("is $item from prospit? ${scene.session.prospit.associatedEntities.contains(item)} ");
-        return !scene.session.prospit.associatedEntities.contains(item);
+        if(item is Carapace) {
+            Carapace c = item as Carapace;
+            return c.type == Carapace.PROSPIT;
+        }else if( item is Player) {
+          Player p = item as Player;
+          if(p.moon == scene.session.prospit) return true;
+        }else {
+            return !scene.session.prospit.associatedEntities.contains(item);
+        }
     }
 }

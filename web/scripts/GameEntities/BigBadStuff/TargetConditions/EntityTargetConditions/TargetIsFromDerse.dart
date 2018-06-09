@@ -46,6 +46,14 @@ class TargetIsFromDerse extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
-        return !scene.session.derse.associatedEntities.contains(item);
+        if(item is Carapace) {
+            Carapace c = item as Carapace;
+            return c.type == Carapace.DERSE;
+        }else if( item is Player) {
+            Player p = item as Player;
+            if(p.moon == scene.session.derse) return true;
+        }else {
+            return !scene.session.derse.associatedEntities.contains(item);
+        }
     }
 }
