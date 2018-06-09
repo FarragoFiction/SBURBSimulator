@@ -52,6 +52,10 @@ class ImportAISection {
     td.append(dataBox);
 
     ButtonElement addScene = new ButtonElement()..text = "Add Scene";
+    addScene.onClick.listen((Event e) {
+      gameEntity.serializableSceneStrings.add(dataBox.value);
+      listSerializableScenes.append( new OptionElement()..value=dataBox.value..text=dataBox.value);
+    });
     td.append(addScene);
 
 
