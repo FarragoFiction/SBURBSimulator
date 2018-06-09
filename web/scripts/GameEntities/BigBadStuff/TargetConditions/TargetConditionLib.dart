@@ -30,6 +30,8 @@ export "EntityTargetConditions/TargetHasCompanions.dart";
 export "EntityTargetConditions/TargetIsCarapace.dart";
 export "EntityTargetConditions/TargetHasItemWithTrait.dart";
 export "EntityTargetConditions/TargetHasCrown.dart";
+export "EntityTargetConditions/TargetIsFromProspit.dart";
+export "EntityTargetConditions/TargetIsFromDerse.dart";
 export "EntityTargetConditions/TargetIsFromSessionWithABStat.dart";
 export "EntityTargetConditions/TargetIsAlive.dart";
 export "EntityTargetConditions/TargetIsPlayer.dart";
