@@ -102,10 +102,14 @@ class IndividualPlayerSection extends IndividualEntitySection{
         drawOneImportBox(row);
         drawSylladexShit(entity);
 
+
         TableRowElement row2 = new TableRowElement();
         container.append(row2);
         drawLandShit(row2);
         drawSpriteShit(row2);
+
+        drawAIShit();
+
 
     }
 

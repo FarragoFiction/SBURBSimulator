@@ -27,11 +27,16 @@ class ImportAISection {
     tr.append(td);
 
     SelectElement listSerializableScenes = new SelectElement();
+    listSerializableScenes.multiple = true;
+    listSerializableScenes.size = 13;
+    listSerializableScenes.style.width = "150px";
     td.append(listSerializableScenes);
     for(String s in gameEntity.serializableSceneStrings) {
       OptionElement o = new OptionElement()..value = s..text=s;
+      o.style.width = "150px";
+      listSerializableScenes.append(o);
     }
-    listSerializableScenes.options[0].selected;
+    if(listSerializableScenes.options.isNotEmpty) listSerializableScenes.options[0].selected;
     ButtonElement removeScene = new ButtonElement()..text = "Remove Selected Scene";
     td.append(removeScene);
 
