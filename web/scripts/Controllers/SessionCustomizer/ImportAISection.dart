@@ -39,9 +39,12 @@ class ImportAISection {
     if(listSerializableScenes.options.isNotEmpty) listSerializableScenes.options[0].selected;
     ButtonElement removeScene = new ButtonElement()..text = "Remove Selected Scene";
     removeScene.onClick.listen((Event e) {
-      OptionElement o = listSerializableScenes.options[listSerializableScenes.selectedIndex];
-      gameEntity.serializableSceneStrings.remove(o.value);
-      o.remove();
+      if(listSerializableScenes.selectedIndex != -1) {
+        OptionElement o = listSerializableScenes.options[listSerializableScenes
+            .selectedIndex];
+        gameEntity.serializableSceneStrings.remove(o.value);
+        o.remove();
+      }
     });
     td.append(removeScene);
 
@@ -53,8 +56,16 @@ class ImportAISection {
 
     ButtonElement addScene = new ButtonElement()..text = "Add Scene";
     addScene.onClick.listen((Event e) {
-      gameEntity.serializableSceneStrings.add(dataBox.value);
-      listSerializableScenes.append( new OptionElement()..value=dataBox.value..text=dataBox.value);
+      try {
+        //so i can confirm it parses
+        new SerializableScene(session).copyFromDataString(dataBox.value);
+        gameEntity.serializableSceneStrings.add(dataBox.value);
+        listSerializableScenes.append(new OptionElement()
+          ..value = dataBox.value
+          ..text = dataBox.value);
+      }catch(e) {
+        window.alert("Something is wrong with this scene: $e");
+      }
     });
     td.append(addScene);
 
