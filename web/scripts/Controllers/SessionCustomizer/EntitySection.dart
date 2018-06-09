@@ -120,12 +120,12 @@ abstract class IndividualEntitySection {
     void drawSylladex(TableRowElement row) {
         TableCellElement sylladexContainer = new TableCellElement();
         ButtonElement button = new ButtonElement()..text = "Captchalog Item?";
+        ButtonElement removeButton = new ButtonElement()..text = "Remove Item From Sylladex?";
         button.style.verticalAlign = "top";
         SelectElement select = new SelectElement();
         select.style.width = "188px"; //don't go off screen plz
         sylladexContainer.append(button);
         sylladexContainer.append(select);
-        select.disabled = true;
         select.size = 6;
         for(Item item in  entity.sylladex) {
             OptionElement option = new OptionElement();
@@ -133,6 +133,15 @@ abstract class IndividualEntitySection {
             option.value = "${entity.sylladex.inventory.indexOf(item)}";
             select.append(option);
         }
+        sylladexContainer.append(removeButton);
+        removeButton.onClick.listen((Event e) {
+            OptionElement o = select.options[select.selectedIndex];
+            print("trying to remove item named ${o.text}");
+            Item item = entity.sylladex.inventory[int.parse(o.value)];
+            entity.sylladex.remove(item);
+            o.remove();
+        });
+
         row.append(sylladexContainer);
         button.onClick.listen((Event e ) {
             try {
@@ -147,6 +156,7 @@ abstract class IndividualEntitySection {
                 entity.session.logger.error(e);
             }
         });
+
     }
 
     void drawPortrait();
