@@ -148,6 +148,9 @@ void printOneScene(SerializableScene s, Element container) {
     DivElement details = new DivElement();
     details.style.display = "none";
 
+    DivElement numTargets = new DivElement()..setInnerHtml("One Target: ${s.targetOne}");
+    details.append(numTargets);
+
     toggle.onClick.listen((Event e) {
         if(details.style.display == "block") {
             details.style.display = "none";

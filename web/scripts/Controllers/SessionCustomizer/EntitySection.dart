@@ -1,4 +1,5 @@
 import '../../SBURBSim.dart';
+import 'ImportAISection.dart';
 import "dart:html";
 import "dart:async";
 import "ItemSection.dart";
@@ -59,6 +60,7 @@ abstract class IndividualEntitySection {
     TableElement container;
     TableCellElement name;
     ItemSection itemSection;
+    ImportAISection importAiSection;
 
     IndividualEntitySection(GameEntity this.entity, Element parentContainer) {
         container = new TableElement();
@@ -89,6 +91,7 @@ abstract class IndividualEntitySection {
 
 
         drawSylladexShit(entity);
+        drawAIShit();
     }
 
     void drawSpecibus(TableRowElement row) {
@@ -147,6 +150,12 @@ abstract class IndividualEntitySection {
     }
 
     void drawPortrait();
+
+    void drawAIShit() {
+        DivElement div = new DivElement();
+        container.append(div);
+        importAiSection = new ImportAISection(entity, entity.session, div);
+    }
 
     void drawSylladexShit(GameEntity carapace) {
         TableRowElement row = new TableRowElement();

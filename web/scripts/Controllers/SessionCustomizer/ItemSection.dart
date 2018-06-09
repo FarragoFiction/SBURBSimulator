@@ -12,7 +12,7 @@ class ItemSection {
     //if you make a new item, it's that, else it's what was selected in form
     //guaranteed to be a copy
     Item selectedItem;
-    ItemSection(GameEntity gameEntity, Session this.session, Element parentContainer) {
+    ItemSection(GameEntity this.gameEntity, Session this.session, Element parentContainer) {
         container = new DivElement();
         container.classes.add("itemSection");
         parentContainer.append(container);
