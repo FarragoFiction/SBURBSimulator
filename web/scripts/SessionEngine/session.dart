@@ -1409,6 +1409,8 @@ class Session {
     }
 
     String getSessionType() {
+        if(sessionType < 0 ) sessionType = rand.nextDouble();
+       // logger.info("session type is $sessionType");
         if (this.sessionType > .6) {
             return "Human";
         } else if (this.sessionType > .3) {

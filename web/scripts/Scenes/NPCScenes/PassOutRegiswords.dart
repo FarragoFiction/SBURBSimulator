@@ -57,8 +57,8 @@ class PassOutRegiswords extends Scene {
 
       //he already gave you this quest.
       if(patsy.sylladex.containsWord("Regisword")) return false;
-     // ;
-
+     //not so many regiswords, plz
+      if(session.rand.nextDouble()< 0.5) return false;
       return true;
   }
 }

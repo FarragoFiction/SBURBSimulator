@@ -1607,6 +1607,7 @@ class Player extends GameEntity{
     }
 
     void decideTroll() {
+      //session.logger.info("Session of type: ${this.session.getSessionType()}");
         if (this.session.getSessionType() == "Human") {
             this.hairColor = session.rand.pickFrom(human_hair_colors);
             return;
