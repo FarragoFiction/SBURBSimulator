@@ -98,7 +98,7 @@ class StrifeBigBad extends Scene {
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
 		pTeam.canAbscond = true;
 		Team dTeam = new Team(this.session, [bigBad]);
-		dTeam.canAbscond = true;
+		dTeam.canAbscond = false; //take your fucking medicine
 		Strife strife = new Strife(this.session, [pTeam, dTeam]);
 		strife.startTurn(div);
 	}
