@@ -44,8 +44,11 @@ class QuestsAndStuff extends Scene {
         List<Player> avail = shuffle(session.rand, session.getReadOnlyAvailablePlayers());
         for(Player p in avail) {
             if(session.isPlayerAvailable(p) && !p.dead && p.land != null && !p.land.noMoreQuests && !p.land.dead){
+               // session.logger.info("making a questing party for ${p}");
                 QuestingParty party = createQuestingParty(p);
                 if(party != null) landParties.add(party);
+            }else {
+               // session.logger.info("can't make a questing party for ${p}, their land is ${p.land}, it has no more quests ${p.land.noMoreQuests} and the land is dead ${p.land.dead} they are available ${session.isPlayerAvailable(p)}");
             }
         }
     }

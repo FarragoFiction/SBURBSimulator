@@ -49,7 +49,7 @@ class MarkFirstQuestsAsComplete extends EffectEntity {
               }
                 land.firstCompleted = true;
               land.currentQuestChain = land.selectQuestChainFromSource(scene.session.players, land.secondQuests);
-              DivElement results = new DivElement()..setInnerHtml("${e.htmlTitle()} skips '$previousQuest'.");
+              DivElement results = new DivElement()..setInnerHtml("${e.htmlTitle()} skips '$previousQuest' and moves on to '${land.currentQuestChain}'.");
               scene.myElement.append(results);
             }
             land.firstCompleted = true;
