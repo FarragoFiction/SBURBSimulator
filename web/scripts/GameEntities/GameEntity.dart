@@ -932,7 +932,7 @@ class GameEntity extends Object with StatOwner   {
             }
             if(killer != null && allowLooting) {
                 if(sylladex.inventory.isNotEmpty) {
-                    looting = "${killer.htmlTitleWithTip()} takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
+                    looting = "${killer.htmlTitleWithTip()} takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophy";
                     killer.lootCorpse(this);
                 }else {
                     looting = "There was nothing to loot.";

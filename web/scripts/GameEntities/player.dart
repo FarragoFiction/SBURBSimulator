@@ -304,7 +304,7 @@ class Player extends GameEntity{
         //can loot corpses even in life gnosis, or how else will things happen?
         if(killer != null && allowLooting) {
             if(sylladex.inventory.isNotEmpty) {
-                looting = "$killer takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophey";
+                looting = "$killer takes ${turnArrayIntoHumanSentence(sylladex.inventory)} as a trophy";
             }else {
                 looting = "There was nothing to loot.";
             }
