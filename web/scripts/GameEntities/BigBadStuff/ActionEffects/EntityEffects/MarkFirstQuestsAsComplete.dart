@@ -45,6 +45,8 @@ class MarkFirstQuestsAsComplete extends EffectEntity {
             if(land.currentQuestChain is PreDenizenQuestChain) {
               land.currentQuestChain.finished;
               land.currentQuestChain = land.selectQuestChainFromSource(scene.session.players, land.secondQuests);
+              print("I was on the first quest but skipped it. going to do ${land.currentQuestChain.name} instead");
+
             }
           }
         }
