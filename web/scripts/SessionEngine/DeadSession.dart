@@ -48,6 +48,7 @@ class DeadSession extends Session {
     //lands can only happen once the player's main land has gotten past the first stage.
     Land currentLand;
     DeadSession(int sessionID): super(sessionID) {
+        SimController.instance.maxTicks = 300;
         mutator.sessionHealth = 13000 * Stats.POWER.coefficient;
         sessionHealth = mutator.sessionHealth;
         //have a metaplayer BEFORE you make the bullshit quests.

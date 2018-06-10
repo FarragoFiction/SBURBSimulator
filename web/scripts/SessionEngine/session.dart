@@ -1172,7 +1172,6 @@ class Session {
         ////
         //don't start  a reckoning until at least one person has been to the battlefield.
         //if everyone is dead, you can end. no more infinite jack sessions
-        int maxScenes = 1000; //don't go forever, dunkass
 
         /*
 
