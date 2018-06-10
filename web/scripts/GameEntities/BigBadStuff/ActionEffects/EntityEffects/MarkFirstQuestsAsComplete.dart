@@ -43,7 +43,8 @@ class MarkFirstQuestsAsComplete extends EffectEntity {
           if(land != null) {
             land.firstCompleted = true;
             if(land.currentQuestChain is PreDenizenQuestChain) {
-              land.currentQuestChain.finished; //is this enough???
+              land.currentQuestChain.finished;
+              land.currentQuestChain = land.selectQuestChainFromSource(scene.session.players, land.secondQuests);
             }
           }
         }
