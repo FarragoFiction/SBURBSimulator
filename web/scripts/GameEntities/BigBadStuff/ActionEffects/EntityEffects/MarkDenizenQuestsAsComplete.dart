@@ -41,6 +41,17 @@ class MarkDenizenQuestsAsComplete extends EffectEntity {
         if(e is Player) {
           Land land = (e as Player).land;
           if(land != null) {
+            if(land.currentQuestChain is DenizenQuestChain || (land.currentQuestChain == null && !land.secondCompleted)) {
+              String previousQuest = "Who Cares";
+              if(land.currentQuestChain != null) {
+                land.currentQuestChain.finished;
+                previousQuest = land.currentQuestChain.name;
+              }
+              land.secondCompleted = true;
+              land.currentQuestChain = land.selectQuestChainFromSource(scene.session.players, land.thirdQuests);
+              DivElement results = new DivElement()..setInnerHtml("${e.htmlTitle()} skips '$previousQuest' and moves on to '${land.currentQuestChain}'.");
+              scene.myElement.append(results);
+            }
             land.secondCompleted = true;
           }
         }
