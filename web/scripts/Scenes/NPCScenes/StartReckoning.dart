@@ -94,7 +94,8 @@ class StartReckoning extends Scene {
       //session.logger.info("$gameEntity has both scepters, will they cause a reckoning?");
       if(gameEntity.alliedToPlayers) {
           Player spacePlayer = session.findBestSpace();
-          if(session.fullFrogCheck(spacePlayer)) {
+          //either the players have already won, or now there is no way to.
+          if(session.fullFrogCheck(spacePlayer) && spacePlayer.land != null && !spacePlayer.land.dead) {
               return true;
           }
       }else {

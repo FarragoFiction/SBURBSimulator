@@ -257,6 +257,7 @@ class Land extends Object with FeatureHolder {
         session.stats.planetDestroyed = true;
         killer.landKillCount ++;
         dead = true;
+        name = "Destroyed $name";
 
         if(session is DeadSession) {
             (session as DeadSession).failed = true;
