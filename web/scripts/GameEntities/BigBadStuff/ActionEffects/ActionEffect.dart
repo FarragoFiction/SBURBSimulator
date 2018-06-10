@@ -191,7 +191,7 @@ abstract class EffectEntity extends ActionEffect {
 
       List<EffectEntity> allConditions = listPossibleEffects(scene);
       for(ActionEffect tc in allConditions) {
-          print("is $name the same as ${tc.name}");
+          //print("is $name the same as ${tc.name}");
 
           if(tc.name == name) {
               print("yes");

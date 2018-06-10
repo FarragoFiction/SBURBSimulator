@@ -41,13 +41,15 @@ class MarkFirstQuestsAsComplete extends EffectEntity {
         if(e is Player) {
           Land land = (e as Player).land;
           if(land != null) {
-            land.firstCompleted = true;
-            if(land.currentQuestChain is PreDenizenQuestChain) {
+            if(land.currentQuestChain is PreDenizenQuestChain || (land.currentQuestChain == null && !land.firstCompleted)) {
               land.currentQuestChain.finished;
+              land.firstCompleted = true;
+              String previousQuest = land.currentQuestChain.name;
               land.currentQuestChain = land.selectQuestChainFromSource(scene.session.players, land.secondQuests);
-              print("I was on the first quest but skipped it. going to do ${land.currentQuestChain.name} instead");
-
+              DivElement results = new DivElement()..setInnerHtml("${e.htmlTitle()} skips '$previousQuest'.");
+              scene.myElement.append(results);
             }
+            land.firstCompleted = true;
           }
         }
     });
