@@ -114,6 +114,9 @@ class Land extends Object with FeatureHolder {
 
     bool doQuest(Element div, Player p1, GameEntity p2) {
         //;
+        if(currentQuestChain == null || currentQuestChain.finished) {
+            decideIfTimeForNextChain(session.players);
+        }
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished) {
            // session.logger.info("deciding what to do next.");
