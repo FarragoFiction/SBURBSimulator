@@ -40,7 +40,13 @@ class MarkFirstQuestsAsComplete extends EffectEntity {
         if(e.renderable()) renderableTargets.add(e);
         if(e is Player) {
           Land land = (e as Player).land;
-          if(land != null) land.firstCompleted = true;
+          if(land != null) {
+            land.firstCompleted = true;
+            if(land.currentQuestChain is PreDenizenQuestChain) {
+              land.currentQuestChain.finished;
+              land.decideIfTimeForNextChain(scene.session.players);
+            }
+          }
         }
     });
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
