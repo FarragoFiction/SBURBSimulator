@@ -22,16 +22,7 @@ class Item implements Comparable<Item> {
     GameEntity owner;
 
 
-    static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
-        return Item.allUniqueItems.where((Item a) => (a.traits.contains(trait)));
-    }
 
-    //power of item
-    @override
-    int compareTo(Item other) {
-        //
-        return (other.rank - rank).sign.round(); //higher numbers first
-    }
 
     String baseName;
     bool isCopy;
@@ -104,6 +95,30 @@ class Item implements Comparable<Item> {
 
     String toString() {
         return fullName;
+    }
+
+    static Iterable<Item> uniqueItemsWithTrait(ItemTrait trait) {
+        return Item.allUniqueItems.where((Item a) => (a.traits.contains(trait)));
+    }
+
+    JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        json["name"] = baseName;
+
+
+        //just a list of strings
+        List<String> traitArray = new List<String>();
+        for(ItemTrait s in traits) {
+            traitArray.add(s.toString());
+        }
+        json["traits"] = traitArray.toString();
+    }
+
+    //power of item
+    @override
+    int compareTo(Item other) {
+        //
+        return (other.rank - rank).sign.round(); //higher numbers first
     }
 
     Item copy() {

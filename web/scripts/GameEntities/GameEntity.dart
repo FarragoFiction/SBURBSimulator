@@ -837,12 +837,8 @@ class GameEntity extends Object with StatOwner   {
         json["description"] = description;
         json["canStrife"] = canStrife.toString();
         json["unconditionallyImmortal"] = unconditionallyImmortal.toString();
-        json["textIfNoStrife"] = textIfNoStrife;
-        json["textIfYesStrife"] = textIfYesStrife;
-
         json["serializableSceneStrings"] = serializableSceneStrings.toString();
         //TODO serialize an item and store it to specibus and array to sylladex
-        //TODO serialize a stat and store it in var
         //TODO write 'fromJSON' code
         //TODO have big bad call super
 
@@ -859,6 +855,12 @@ class GameEntity extends Object with StatOwner   {
         }
         json["sylladex"] = sylladexArray.toString();
 
+        List<JSONObject> fraymotifArray = new List<JSONObject>();
+        for(Fraymotif s in fraymotifs) {
+            fraymotifArray.add(s.toJSON());
+        }
+        json["fraymotifs"] = fraymotifArray.toString();
+
         List<JSONObject> statArray = new List<JSONObject>();
         for(Stat s in stats) {
             //i'm not sure how to get a stats value from inside itself so....*shrug*
@@ -868,8 +870,6 @@ class GameEntity extends Object with StatOwner   {
            statArray.add(j);
         }
         json["stats"] = statArray.toString();
-
-
         return json;
     }
 

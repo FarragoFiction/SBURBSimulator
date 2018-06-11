@@ -40,7 +40,8 @@ class BigBad extends NPC {
   }
 
   JSONObject toJSON() {
-      JSONObject json = new JSONObject();
+      //game entity will handle specibus and shit
+      JSONObject json = super.toJSON();
       json["name"] = name;
       json["description"] = description;
       json["canStrife"] = canStrife.toString();
