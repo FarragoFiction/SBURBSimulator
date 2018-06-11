@@ -865,6 +865,7 @@ class GameEntity extends Object with StatOwner   {
            JSONObject j = new JSONObject();
            j["name"] = s.name;
            j["value"] = "${getStat(s)}";
+           statArray.add(j);
         }
         json["stats"] = statArray.toString();
 
