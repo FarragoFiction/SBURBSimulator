@@ -26,8 +26,6 @@ class BigBad extends NPC {
     List<SerializableScene> stopMechanisms = new List<SerializableScene>();
 
 
-    static String labelPattern = ":___ ";
-
   @override
   String description = "What shows up in ShogunBot's BigBadBinder?";
 

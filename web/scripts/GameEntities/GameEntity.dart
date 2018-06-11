@@ -1,6 +1,8 @@
 import "dart:html";
 import "dart:math" as Math;
 import "../SBURBSim.dart";
+import '../includes/lz-string.dart';
+
 
 enum ProphecyState {
     NONE,
@@ -22,6 +24,8 @@ class GameEntity extends Object with StatOwner   {
     int landKillCount  = 0;
     int moonKillCount  = 0;
     bool everCrowned = false;
+    String labelPattern = ":___ ";
+
 
 
     //availibility set to false by scenes
@@ -820,6 +824,41 @@ class GameEntity extends Object with StatOwner   {
         }
         ret += "</td></tr></table></span>";
         return ret;
+    }
+
+    String toDataString() {
+        print("data is ${toJSON()}");
+        return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
+    }
+
+    JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        json["name"] = name;
+        json["description"] = description;
+        json["canStrife"] = canStrife.toString();
+        json["unconditionallyImmortal"] = unconditionallyImmortal.toString();
+        json["textIfNoStrife"] = textIfNoStrife;
+        json["textIfYesStrife"] = textIfYesStrife;
+
+        json["serializableSceneStrings"] = serializableSceneStrings.toString();
+        //TODO serialize an item and store it to specibus and array to sylladex
+        //TODO serialize a stat and store it in var
+        //TODO write 'fromJSON' code
+        //TODO have big bad call super
+
+        List<JSONObject> sceneArray = new List<JSONObject>();
+        for(Scene s in scenes) {
+            if(s is SerializableScene) sceneArray.add(s.toJSON());
+        }
+        json["scenes"] = sceneArray.toString();
+
+        json["specibus"] = specibus.toJSON();
+        List<JSONObject> sylladexArray = new List<JSONObject>();
+        for(Item s in sylladex.inventory) {
+            if(s is SerializableScene) sylladexArray.add(s.toJSON());
+        }
+        json["sylladex"] = sylladexArray.toString();
+        return json;
     }
 
     void addSerializableScenes() {
