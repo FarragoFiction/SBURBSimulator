@@ -113,7 +113,8 @@ class Stat {
         return least;
     }
 
-    double average(Iterable<StatObject> from, [bool baseStats = false]) {
+
+        double average(Iterable<StatObject> from, [bool baseStats = false]) {
         return this.total(from, baseStats) / from.length;
     }
 

@@ -855,9 +855,20 @@ class GameEntity extends Object with StatOwner   {
         json["specibus"] = specibus.toJSON();
         List<JSONObject> sylladexArray = new List<JSONObject>();
         for(Item s in sylladex.inventory) {
-            if(s is SerializableScene) sylladexArray.add(s.toJSON());
+            sylladexArray.add(s.toJSON());
         }
         json["sylladex"] = sylladexArray.toString();
+
+        List<JSONObject> statArray = new List<JSONObject>();
+        for(Stat s in stats) {
+            //i'm not sure how to get a stats value from inside itself so....*shrug*
+           JSONObject j = new JSONObject();
+           j["name"] = s.name;
+           j["value"] = "${getStat(s)}";
+        }
+        json["stats"] = statArray.toString();
+
+
         return json;
     }
 
