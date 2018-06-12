@@ -826,6 +826,10 @@ class GameEntity extends Object with StatOwner   {
         return ret;
     }
 
+    void copyFromDataString(String data) {
+        window.alert("TODO: copy from data string");
+    }
+
     String toDataString() {
         print("data is ${toJSON()}");
         return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
@@ -848,7 +852,7 @@ class GameEntity extends Object with StatOwner   {
         }
         json["scenes"] = sceneArray.toString();
 
-        json["specibus"] = specibus.toJSON();
+        json["specibus"] = specibus.toJSON().toString();
         List<JSONObject> sylladexArray = new List<JSONObject>();
         for(Item s in sylladex.inventory) {
             sylladexArray.add(s.toJSON());

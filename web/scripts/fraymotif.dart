@@ -39,6 +39,14 @@ class Fraymotif {
             this.baseValue = 1000.0 * this.tier - 2; //so a tier 3 is 1000 * 3 -2, or....1000.  But..maybe there is a way to make them even more op???
     }
 
+    JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        json["name"] = name;
+        json["tier"] = "$tier";
+        json["desc"] = desc;
+        //just assume all fraymotifs just have each of the 4 main effects
+    }
+
     @override
     String toString() => this.name;
 
@@ -580,6 +588,14 @@ class FraymotifEffect {
     /// target 0  = self, 1 = allies, 2 = enemy 3 = enemies.
     FraymotifEffect(Stat this.statName, num this.target, bool this.damageInsteadOfBuff, [String this.flavorText = ""]) {}
 
+    static List<FraymotifEffect> allEffects() {
+        List<FraymotifEffect> ret = new List<FraymotifEffect>();
+        ret.add(new FraymotifEffect(Stats.POWER, ALLIES, true));
+        ret.add(new FraymotifEffect(Stats.POWER, ALLIES, false));
+        ret.add(new FraymotifEffect(Stats.POWER, ENEMIES, true));
+        ret.add(new FraymotifEffect(Stats.POWER, ENEMIES, false));
+        return ret;
+    }
 
     void setEffectForPlayer(Player player) {
         Random rand = player.rand;

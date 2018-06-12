@@ -236,8 +236,9 @@ class IndividualPlayerSection extends IndividualEntitySection{
         //container.append(row);
         TableCellElement box = new TableCellElement();
         LabelElement labelElement = new LabelElement();
-        labelElement.setInnerHtml("Load Player From Data String:");
+        labelElement.setInnerHtml("Load Player From Old Data String:");
         TextAreaElement playerData = new TextAreaElement();
+        playerData.value = player.toOCDataString();
         ButtonElement loadButton = new ButtonElement()..text = "Load";
         loadButton.onClick.listen((Event e) {
             try {

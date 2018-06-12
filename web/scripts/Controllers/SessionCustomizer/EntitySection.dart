@@ -176,17 +176,45 @@ abstract class IndividualEntitySection {
         itemSection.draw();
         TableElement itemsTable = new TableElement();
         td.append(itemsTable);
+        TableRowElement itemRow0 = new TableRowElement();
         TableRowElement itemRow1 = new TableRowElement();
         TableRowElement itemRow2 = new TableRowElement();
         TableRowElement itemRow3 = new TableRowElement();
+        row.append(itemRow0);
         row.append(itemRow1);
         row.append(itemRow2);
         row.append(itemRow3);
 
+
         itemSection.drawSelectedItem(itemRow1);
         drawSpecibus(itemRow2);
         drawSylladex(itemRow3);
+        drawLoadBox(itemRow0);
     }
+
+    void drawLoadBox(Element wrapper) {
+        DivElement box = new DivElement();
+        LabelElement labelElement = new LabelElement();
+        labelElement.setInnerHtml("DataString");
+        TextAreaElement dataBox = new TextAreaElement();
+        ButtonElement loadButton = new ButtonElement()..text = "Load";
+        dataBox.value = entity.toDataString();
+        loadButton.onClick.listen((Event e) {
+            try {
+                entity.copyFromDataString(dataBox.value);
+                draw(); //blow away old shit and redraw self
+            }catch(e){
+                window.alert("This data string doesn't work, for some reason. (the reason is JR isn't done) $e");
+                entity.session.logger.error(e);
+            }
+        });
+
+        box.append(labelElement);
+        box.append(dataBox);
+        box.append(loadButton);
+        wrapper.append(box);
+    }
+
 
 }
 

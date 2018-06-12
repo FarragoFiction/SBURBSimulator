@@ -1824,8 +1824,14 @@ class Player extends GameEntity{
         //as i add more things, add more lines. ALWAYS in same order, but not all features all the time.
     }
 
-    String toDataBytes() {
-        Map<String, dynamic> json = this.toJSON(); //<-- gets me data in pre-compressed format.
+    JSONObject toJSON() {
+      JSONObject json = super.toJSON();
+      json["ocDataString"] = toOCDataString();
+      //TODO eventually shove quirk and relationships into here
+    }
+
+      String toDataBytes() {
+        Map<String, dynamic> json = this.toJSONBrief(); //<-- gets me data in pre-compressed format.
         //var buffer = new ByteBuffer(11);
         StringBuffer ret = new StringBuffer(); //gonna return as a string of chars.;
         Uint8List uint8View = new Uint8List(11);
@@ -1847,7 +1853,7 @@ class Player extends GameEntity{
         return Uri.encodeComponent(ret.toString()).replaceAll("#", '%23').replaceAll("&", '%26');
     }
 
-    Map<String, dynamic> toJSON() {
+    Map<String, dynamic> toJSONBrief() {
         num moonNum = 0;
         String cod = this.causeOfDrain;
         if (cod == null) cod = "";

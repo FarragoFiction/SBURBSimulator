@@ -54,9 +54,8 @@ class TodoHandler {
   }
   
   void setupSessionCustomizerTODO() {
-     todo("ability to load a scene into a player/carapace for testing in the sessionCustomizer.", highPriority);
      todo("ability to serialize a game entity.",highPriority);
-     todo("ability to serialize a session",highPriority);
+     todo("ability to serialize a session (players, carapaces, big bads, etc)",highPriority);
      todo("create/destroy players", highPriority);
      todo("load old session url maybe?",mediumPriority);
      todo("any loaded big bads should be part of serialized session",mediumPriority);
