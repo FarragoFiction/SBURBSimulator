@@ -1828,6 +1828,7 @@ class Player extends GameEntity{
       JSONObject json = super.toJSON();
       json["ocDataString"] = toOCDataString();
       //TODO eventually shove quirk and relationships into here
+      return json;
     }
 
       String toDataBytes() {
