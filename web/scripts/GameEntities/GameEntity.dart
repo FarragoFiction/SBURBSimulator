@@ -1,3 +1,4 @@
+import 'dart:convert';
 import "dart:html";
 import "dart:math" as Math;
 import "../SBURBSim.dart";
@@ -842,9 +843,6 @@ class GameEntity extends Object with StatOwner   {
         json["canStrife"] = canStrife.toString();
         json["unconditionallyImmortal"] = unconditionallyImmortal.toString();
         json["serializableSceneStrings"] = serializableSceneStrings.toString();
-        //TODO serialize an item and store it to specibus and array to sylladex
-        //TODO write 'fromJSON' code
-        //TODO have big bad call super
 
         List<JSONObject> sceneArray = new List<JSONObject>();
         for(Scene s in scenes) {
@@ -875,6 +873,56 @@ class GameEntity extends Object with StatOwner   {
         }
         json["stats"] = statArray.toString();
         return json;
+    }
+
+    void copyFromJSON(String jsonString) {
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+        name = json["name"];
+        description = json["description"];
+        canStrife = json["canStrife"] == "true"? true : false ;
+        unconditionallyImmortal = json["unconditionallyImmortal"] == "true" ? true : false ;
+        serializableSceneStrings = json["serializableSceneStrings"].split(",");
+
+        String statString = json["stats"];
+        loadStats(statString);
+
+        String fraymotifString = json["fraymotifs"];
+        loadFraymotifs(fraymotifString);
+
+        String sylladexString = json["sylladex"];
+        loadSylladex(sylladexString);
+    }
+
+    void loadStats(String weirdString) {
+        if(weirdString == null) return;
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what){
+            JSONObject j = new JSONObject.fromJSONString(d);
+            Stat stat = Stats.byName[j["name"]];
+            setStat(stat, num.parse(j["value"]));
+        }
+    }
+
+    void loadFraymotifs(String weirdString) {
+        fraymotifs.clear();
+        if(weirdString == null) return;
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            Fraymotif ss = new Fraymotif("",0);
+            ss.copyFromJSON(d);
+            fraymotifs.add(ss);
+        }
+    }
+
+    void loadSylladex(String weirdString) {
+        sylladex.inventory.clear();
+        if(weirdString == null) return;
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            Item ss = new Item("",<ItemTrait>[]);
+            ss.copyFromJSON(d);
+            sylladex.add(ss);
+        }
     }
 
     void addSerializableScenes() {
