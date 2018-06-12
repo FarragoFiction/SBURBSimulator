@@ -1833,6 +1833,12 @@ class Player extends GameEntity{
       return json;
     }
 
+    void copyFromJSON(String jsonString) {
+      super.copyFromJSON(jsonString);
+      JSONObject json = new JSONObject.fromJSONString(jsonString);
+      copyFromOCDataString(json["ocDataString"]);
+    }
+
       String toDataBytes() {
         Map<String, dynamic> json = this.toJSONBrief(); //<-- gets me data in pre-compressed format.
         //var buffer = new ByteBuffer(11);
