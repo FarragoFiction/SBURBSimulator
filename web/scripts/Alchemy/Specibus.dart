@@ -19,6 +19,7 @@ class Specibus extends Item {
         return new Specibus(baseName, requiredTrait, nonrequiredTraits.toList());
     }
 
+    @override
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json["name"] = baseName;
@@ -32,6 +33,18 @@ class Specibus extends Item {
         }
         json["traits"] = traitArray.toString();
         json["requiredTrait"] = requiredTrait.toString();
+        return json;
+
+    }
+
+    @override
+    void copyFromJSON(String jsonString) {
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+        baseName = json["name"];
+        requiredTrait = ItemTraitFactory.itemTraitNamed(json[requiredTrait]);
+
+        String traitsString = json["traits"];
+        loadTraits(traitsString);
     }
 
     //don't be repetitive for specibus, where they are very limited in what they can say

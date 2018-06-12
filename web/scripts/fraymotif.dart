@@ -44,7 +44,10 @@ class Fraymotif {
         json["name"] = name;
         json["tier"] = "$tier";
         json["desc"] = desc;
-        //just assume all fraymotifs just have each of the 4 main effects
+        json["target"] = "${effects.first.target}";
+        //just assume all fraymotifs just have each of the 4 main effects, targeted at the same thing
+        //allEffectsTargetOne
+        return json;
     }
 
     @override
@@ -588,12 +591,21 @@ class FraymotifEffect {
     /// target 0  = self, 1 = allies, 2 = enemy 3 = enemies.
     FraymotifEffect(Stat this.statName, num this.target, bool this.damageInsteadOfBuff, [String this.flavorText = ""]) {}
 
-    static List<FraymotifEffect> allEffects() {
+    static List<FraymotifEffect> allEffectsTargetAll() {
         List<FraymotifEffect> ret = new List<FraymotifEffect>();
         ret.add(new FraymotifEffect(Stats.POWER, ALLIES, true));
         ret.add(new FraymotifEffect(Stats.POWER, ALLIES, false));
         ret.add(new FraymotifEffect(Stats.POWER, ENEMIES, true));
         ret.add(new FraymotifEffect(Stats.POWER, ENEMIES, false));
+        return ret;
+    }
+
+    static List<FraymotifEffect> allEffectsTargetOne() {
+        List<FraymotifEffect> ret = new List<FraymotifEffect>();
+        ret.add(new FraymotifEffect(Stats.POWER, SELF, true));
+        ret.add(new FraymotifEffect(Stats.POWER, SELF, false));
+        ret.add(new FraymotifEffect(Stats.POWER, ENEMY, true));
+        ret.add(new FraymotifEffect(Stats.POWER, ENEMY, false));
         return ret;
     }
 

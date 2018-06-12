@@ -57,6 +57,7 @@ class TodoHandler {
      todo("ability to serialize a game entity.",highPriority);
      todo("ability to serialize a session (players, carapaces, big bads, etc)",highPriority);
      todo("create/destroy players", highPriority);
+     todo("ability to save/load an entity (carapace, player, whatever)", highPriority);
      todo("load old session url maybe?",mediumPriority);
      todo("any loaded big bads should be part of serialized session",mediumPriority);
      todo("Sylladex Section lets you remove the selected item from the sylladex", highPriority);

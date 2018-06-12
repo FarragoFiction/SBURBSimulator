@@ -126,11 +126,13 @@ class Player extends GameEntity{
         _denizenDefeated = x;
     }
 
+    @override
+    String get name => "${title()}($chatHandle)";
+
 
     Player([Session session, SBURBClass this.class_name, Aspect this.aspect, GameEntity this.object_to_prototype, Moon m, bool this.godDestiny]) : super("", session) {
         //;
         moon = m; //set explicitly so triggers syncing.
-        this.name = "player_$id"; //this.htmlTitleBasic();
         //testing something
     }
 

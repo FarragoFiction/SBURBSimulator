@@ -111,8 +111,28 @@ class Item implements Comparable<Item> {
         for(ItemTrait s in traits) {
             traitArray.add(s.toString());
         }
-        json["traits"] = traitArray.toString();
+        json["traits"] = traitArray.join(",");
+        return json;
     }
+
+    void copyFromJSON(String jsonString) {
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+        baseName = json["name"];
+
+        String traitsString = json["traits"];
+        loadTraits(traitsString);
+    }
+
+    void loadTraits(String weirdString) {
+        traits.clear();
+        List<String> traitStrings = weirdString.split(",");
+        for(String s in traitStrings) {
+            traits.add(ItemTraitFactory.itemTraitNamed(s));
+        }
+    }
+
+
+
 
     //power of item
     @override
