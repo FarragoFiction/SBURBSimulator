@@ -828,7 +828,9 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void copyFromDataString(String data) {
-        window.alert("TODO: copy from data string");
+        String dataWithoutName = data.split("$labelPattern")[1];
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        copyFromJSON(rawJSON);
     }
 
     String toDataString() {
