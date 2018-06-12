@@ -69,7 +69,9 @@ class Fraymotif {
       List<dynamic> what = JSON.decode(weirdString);
       for(dynamic d in what) {
         FraymotifEffect ss = new FraymotifEffect(null, 0, false);
-        ss.copyFromJSON(d);
+        JSONObject j = new JSONObject();
+        j.json = d;
+        ss.copyFromJSON(j.toString());
         effects.add(ss);
       }
     }

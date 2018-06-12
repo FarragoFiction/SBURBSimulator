@@ -878,6 +878,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void copyFromJSON(String jsonString) {
+        print("trying to copy from json");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         name = json["name"];
         description = json["description"];
@@ -887,19 +888,25 @@ class GameEntity extends Object with StatOwner   {
 
         String statString = json["stats"];
         loadStats(statString);
+        print("loaded stats");
 
         String fraymotifString = json["fraymotifs"];
         loadFraymotifs(fraymotifString);
+        print("loaded fraymotifs");
 
         String sylladexString = json["sylladex"];
         loadSylladex(sylladexString);
+        print("loaded sylladex");
     }
 
     void loadStats(String weirdString) {
+        print("trying to decode weirdString $weirdString");
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what){
-            JSONObject j = new JSONObject.fromJSONString(d);
+            print("d is $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
             Stat stat = Stats.byName[j["name"]];
             setStat(stat, num.parse(j["value"]));
         }
@@ -910,8 +917,10 @@ class GameEntity extends Object with StatOwner   {
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
+            JSONObject j = new JSONObject();
+            j.json = d;
             Fraymotif ss = new Fraymotif("",0);
-            ss.copyFromJSON(d);
+            ss.copyFromJSON(j.toString());
             fraymotifs.add(ss);
         }
     }
@@ -922,7 +931,9 @@ class GameEntity extends Object with StatOwner   {
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
             Item ss = new Item("",<ItemTrait>[]);
-            ss.copyFromJSON(d);
+            JSONObject j = new JSONObject();
+            j.json = d;
+            ss.copyFromJSON(d.toString());
             sylladex.add(ss);
         }
     }
