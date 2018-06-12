@@ -1,4 +1,5 @@
 import "SBURBSim.dart";
+import 'dart:convert';
 
 /*
 stat effects from a fraymotif are temporary. wear off after battle.
@@ -44,10 +45,33 @@ class Fraymotif {
         json["name"] = name;
         json["tier"] = "$tier";
         json["desc"] = desc;
-        json["target"] = "${effects.first.target}";
-        //just assume all fraymotifs just have each of the 4 main effects, targeted at the same thing
-        //allEffectsTargetOne
+        List<JSONObject> effectArray = new List<JSONObject>();
+
+        for(FraymotifEffect s in effects) {
+          effectArray.add(s.toJSON());
+        }
+        json["effects"] = effectArray.toString();
+
         return json;
+    }
+
+    void copyFromJSON(String jsonString) {
+      JSONObject json = new JSONObject.fromJSONString(jsonString);
+      name = json["name"];
+      tier = int.parse(json["tier"]);
+      desc = json["desc"];
+      String traitsString = json["effects"];
+      loadEffects(traitsString);
+    }
+
+    void loadEffects(String weirdString) {
+      if(weirdString == null) return;
+      List<dynamic> what = JSON.decode(weirdString);
+      for(dynamic d in what) {
+        FraymotifEffect ss = new FraymotifEffect(null, 0, false);
+        ss.copyFromJSON(d);
+        effects.add(ss);
+      }
     }
 
     @override
@@ -579,7 +603,7 @@ class FraymotifEffect {
     static int ENEMY = 2;
     Stat statName; //hp heals current hp AND revives the player.
     num target; //self, allies or enemy or enemies, 0, 1, 2, 3
-    bool damageInsteadOfBuff; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
+    bool damageInsteadOfBuff = false; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
     num s = 0; //convineience methods cause i don't think js has enums but am too lazy to confirm.
     num a = 1;
     num e = 2;
@@ -590,6 +614,25 @@ class FraymotifEffect {
 
     /// target 0  = self, 1 = allies, 2 = enemy 3 = enemies.
     FraymotifEffect(Stat this.statName, num this.target, bool this.damageInsteadOfBuff, [String this.flavorText = ""]) {}
+
+    JSONObject toJSON() {
+      JSONObject json = new JSONObject();
+      json["stat"] = statName.name;
+      json["target"] = "$target";
+      json["damageInsteadOfBuff"] = damageInsteadOfBuff.toString();
+    }
+
+    void copyFromJSON(String jsonString) {
+      JSONObject json = new JSONObject.fromJSONString(jsonString);
+      statName = Stats.byName[json["name"]];
+      target = int.parse(json["target"]);
+      if(json["damageInsteadOfBuff"] == "true") {
+        damageInsteadOfBuff = true;
+      }else {
+        damageInsteadOfBuff = false;
+      }
+    }
+
 
     static List<FraymotifEffect> allEffectsTargetAll() {
         List<FraymotifEffect> ret = new List<FraymotifEffect>();
