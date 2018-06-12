@@ -1789,7 +1789,7 @@ class Player extends GameEntity{
 
     //take in a builder so when you do a group of players then can use same builder and no padding.
     String toDataBytesX(ByteBuilder builder) {
-        Map<String, dynamic> j = this.toJSON();
+        Map<String, dynamic> j = this.toJSONBrief();
         if (j["class_name"] <= 15 && j["aspect"] <= 15) { //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
             return BASE64URL.encode(builder.toBuffer().asUint8List());
