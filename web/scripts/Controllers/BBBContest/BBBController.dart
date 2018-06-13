@@ -25,9 +25,11 @@ void todo(String todo) {
 Future<Null> drawContestants() async{
     List<ContestEntry> entries = await ContestEntry.slurpEntries();
     print("entries is $entries");
+    int i = 1;
     for(ContestEntry e in entries) {
         print("entry is $e");
-        e.draw(div);
+        e.draw(div, i);
+        i++;
     }
 }
 

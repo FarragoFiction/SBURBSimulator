@@ -35,11 +35,11 @@ class ContestEntry {
         });
     }
 
-    void draw(Element parentContainer) {
+    void draw(Element parentContainer, int number) {
         DivElement container = new DivElement();
         container.classes.add("contestEntry");
 
-        DivElement nameElement = new DivElement()..text = "$bbName (by ${entrantName})";
+        DivElement nameElement = new DivElement()..text = "$number $bbName (by ${entrantName})";
         nameElement.classes.add("nameHeader");
         container.append(nameElement);
 
