@@ -423,7 +423,7 @@ class StatAmount {
         Map<int, StatAmount> ret = new Map<int, StatAmount>();
         new StatAmount("Low",130)..addToMap(ret);
         new StatAmount("Medium",1300)..addToMap(ret);
-        new StatAmount("Hight",13000)..addToMap(ret);
+        new StatAmount("High",13000)..addToMap(ret);
         return ret;
     }
 
@@ -439,7 +439,7 @@ class StatAmount {
         Map<int, StatAmount> ret = new Map<int, StatAmount>();
         new StatAmount("Bad",-130)..addToMap(ret);
         new StatAmount("Shitty",-1300)..addToMap(ret);
-        new StatAmount("Pathetic",13000)..addToMap(ret);
+        new StatAmount("Pathetic",-13000)..addToMap(ret);
         return ret;
     }
 
