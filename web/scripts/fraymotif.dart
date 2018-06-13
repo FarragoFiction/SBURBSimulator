@@ -622,6 +622,7 @@ class FraymotifEffect {
       json["stat"] = statName.name;
       json["target"] = "$target";
       json["damageInsteadOfBuff"] = damageInsteadOfBuff.toString();
+      return json;
     }
 
     void copyFromJSON(String jsonString) {
