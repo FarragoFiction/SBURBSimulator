@@ -38,8 +38,7 @@ class Specibus extends Item {
     }
 
     @override
-    void copyFromJSON(String jsonString) {
-        JSONObject json = new JSONObject.fromJSONString(jsonString);
+    void copyFromJSON(JSONObject json) {
         baseName = json["name"];
         requiredTrait = ItemTraitFactory.itemTraitNamed(json[requiredTrait]);
 

@@ -55,8 +55,8 @@ class Fraymotif {
         return json;
     }
 
-    void copyFromJSON(String jsonString) {
-      JSONObject json = new JSONObject.fromJSONString(jsonString);
+    void copyFromJSON(JSONObject json) {
+        print("copying from json $json");
       name = json["name"];
       tier = int.parse(json["tier"]);
       desc = json["desc"];

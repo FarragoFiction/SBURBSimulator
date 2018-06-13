@@ -894,9 +894,13 @@ class GameEntity extends Object with StatOwner   {
         loadFraymotifs(fraymotifString);
         print("loaded fraymotifs");
 
+        specibus.copyFromJSON(json["specibus"]);
+        print("loaded specibus");
+
         String sylladexString = json["sylladex"];
         loadSylladex(sylladexString);
         print("loaded sylladex");
+
     }
 
     void loadStats(String weirdString) {
@@ -904,7 +908,6 @@ class GameEntity extends Object with StatOwner   {
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what){
-            print("d is $d");
             JSONObject j = new JSONObject();
             j.json = d;
             Stat stat = Stats.byName[j["name"]];
@@ -917,23 +920,26 @@ class GameEntity extends Object with StatOwner   {
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
+            print("d is $d");
             JSONObject j = new JSONObject();
             j.json = d;
             Fraymotif ss = new Fraymotif("",0);
-            ss.copyFromJSON(j.toString());
+            ss.copyFromJSON(j);
             fraymotifs.add(ss);
         }
     }
 
     void loadSylladex(String weirdString) {
+        print ("weird string is $weirdString");
         sylladex.inventory.clear();
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
+            print("sylladex d is $d");
             Item ss = new Item("",<ItemTrait>[]);
             JSONObject j = new JSONObject();
             j.json = d;
-            ss.copyFromJSON(d.toString());
+            ss.copyFromJSON(j);
             sylladex.add(ss);
         }
     }
