@@ -77,10 +77,13 @@ class TodoHandler {
 
   void setupBigBadTODO() {
        todo("active/passive player targeting", mediumPriority);
+       todo("optional life sim card for a big bad (given on summon)",mediumPriority);
        todo("target entity has name with word X (lets big bads target specific other big bads, like that clown and pistol shrimp, or shogun and big meat jr)",highPriority);
        todo("SEASONAL BIG BADS, (ultimate dad for fathers day in us/uk/etc) target condition for land/entity of MONTH IS, and DAY is. (could do day of week but that would just be a bitch to debug i think). DO NOT OVER USE THIS. easter, halloween, april fools, xmas, things like that. a big bad that only shows up on the 13th of each month oh god. fuck yes.", highPriority);
        todo("every 13th any time a big bad tries to spawn, shogun spawns instead",highPriority);
+       todo("new years eve is grandpa with a knife, new years day is baby with a gun (actually two). spot the refrance",highPriority)
        todo("change player hair/blood color",lowPriority);
+       todo("list of birthday big bads, can't be overridden",highPriority);
        todo("allow you to add references to optional data, like land denizen, consorts, owner or player's land name (will not work if you aren't targeting a land/player but that's on you, yo)",mediumPriority);
      todo("have defeatScenes that the big bad gives to all players when they activate. defeat scenes have a locked specialTarget of the big bad. can't target anything else (but can have target conditions to turn on/off the scene, like isUnconditionallyImmortal or isStrifable). these scenes make them mortal, strifable, weaker, etc. ",highPriority);
     todo("fuck the world, make game entities serializable first before i modify big bads too much.", highPriority);
