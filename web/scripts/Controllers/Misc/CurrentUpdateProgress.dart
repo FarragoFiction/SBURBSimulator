@@ -77,6 +77,7 @@ class TodoHandler {
 
   void setupBigBadTODO() {
        todo("active/passive player targeting", mediumPriority);
+       todo("target entity has name with word X (lets big bads target specific other big bads, like that clown and pistol shrimp, or shogun and big meat jr)",highPriority);
        todo("SEASONAL BIG BADS, (ultimate dad for fathers day in us/uk/etc) target condition for land/entity of MONTH IS, and DAY is. (could do day of week but that would just be a bitch to debug i think). DO NOT OVER USE THIS. easter, halloween, april fools, xmas, things like that. a big bad that only shows up on the 13th of each month oh god. fuck yes.", highPriority);
        todo("every 13th any time a big bad tries to spawn, shogun spawns instead",highPriority);
        todo("change player hair/blood color",lowPriority);
