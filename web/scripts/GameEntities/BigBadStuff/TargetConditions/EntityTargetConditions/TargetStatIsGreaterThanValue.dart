@@ -64,7 +64,7 @@ class TargetStatIsGreaterThanValue extends TargetConditionLiving {
         for(int amount in amounts.keys) {
             OptionElement o = new OptionElement();
             o.value = "$amount";
-            o.text = "${amounts[amount].name}";
+            o.text = "${amounts[amount].name}($amount)";
             selectAmount.append(o);
             if(amount == importantInt) {
                 print("selecting ${o.value}");

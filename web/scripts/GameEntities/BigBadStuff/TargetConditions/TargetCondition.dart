@@ -421,6 +421,7 @@ class StatAmount {
 
     static Map<int, StatAmount> getMortalStatsGood() {
         Map<int, StatAmount> ret = new Map<int, StatAmount>();
+        new StatAmount("Tiny",13)..addToMap(ret);
         new StatAmount("Low",130)..addToMap(ret);
         new StatAmount("Medium",1300)..addToMap(ret);
         new StatAmount("High",13000)..addToMap(ret);
@@ -437,17 +438,18 @@ class StatAmount {
 
     static Map<int, StatAmount> getMortalStatsBad() {
         Map<int, StatAmount> ret = new Map<int, StatAmount>();
-        new StatAmount("Bad",-130)..addToMap(ret);
-        new StatAmount("Shitty",-1300)..addToMap(ret);
         new StatAmount("Pathetic",-13000)..addToMap(ret);
+        new StatAmount("Shitty",-1300)..addToMap(ret);
+        new StatAmount("Bad",-130)..addToMap(ret);
+        new StatAmount("Barely Bad",-13)..addToMap(ret);
         return ret;
     }
 
     static Map<int, StatAmount> getGodStatsBad() {
         Map<int, StatAmount> ret = new Map<int, StatAmount>();
-        new StatAmount("Fucked",-130000)..addToMap(ret);
-        new StatAmount("Cursed",-1300000)..addToMap(ret);
         new StatAmount("Irredeemable",-13000000)..addToMap(ret);
+        new StatAmount("Cursed",-1300000)..addToMap(ret);
+        new StatAmount("Fucked",-130000)..addToMap(ret);
         return ret;
     }
 }
