@@ -894,7 +894,7 @@ class GameEntity extends Object with StatOwner   {
         loadFraymotifs(fraymotifString);
         print("loaded fraymotifs");
 
-        specibus.copyFromJSON(json["specibus"]);
+        specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
         print("loaded specibus");
 
         String sylladexString = json["sylladex"];

@@ -71,7 +71,7 @@ class Fraymotif {
         FraymotifEffect ss = new FraymotifEffect(null, 0, false);
         JSONObject j = new JSONObject();
         j.json = d;
-        ss.copyFromJSON(j.toString());
+        ss.copyFromJSON(j);
         effects.add(ss);
       }
     }
@@ -625,8 +625,7 @@ class FraymotifEffect {
       return json;
     }
 
-    void copyFromJSON(String jsonString) {
-      JSONObject json = new JSONObject.fromJSONString(jsonString);
+    void copyFromJSON(JSONObject json) {
       statName = Stats.byName[json["name"]];
       target = int.parse(json["target"]);
       if(json["damageInsteadOfBuff"] == "true") {
