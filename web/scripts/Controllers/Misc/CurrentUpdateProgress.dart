@@ -77,6 +77,7 @@ class TodoHandler {
 
   void setupBigBadTODO() {
        todo("active/passive player targeting", mediumPriority);
+       todo("change player hair/blood color",lowPriority);
        todo("allow you to add references to optional data, like land denizen, consorts, owner or player's land name (will not work if you aren't targeting a land/player but that's on you, yo)",mediumPriority);
      todo("have defeatScenes that the big bad gives to all players when they activate. defeat scenes have a locked specialTarget of the big bad. can't target anything else (but can have target conditions to turn on/off the scene, like isUnconditionallyImmortal or isStrifable). these scenes make them mortal, strifable, weaker, etc. ",highPriority);
     todo("fuck the world, make game entities serializable first before i modify big bads too much.", highPriority);
