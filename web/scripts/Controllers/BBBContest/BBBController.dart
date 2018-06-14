@@ -5,6 +5,7 @@ import "dart:html";
 import "dart:async";
 
 Element div;
+String targetWords =  getParameterByName("target",null);
 void main() {
     loadNavbar();
     div = querySelector("#story");
@@ -25,6 +26,15 @@ void todo(String todo) {
 Future<Null> drawContestants() async{
     List<ContestEntry> entries = await ContestEntry.slurpEntries();
     print("entries is $entries");
+    if(targetWords != null) {
+        //i am the best at var names, it is me
+        List<String> doop = targetWords.split(" ");
+        for(String s in doop) {
+            entries.where((ContestEntry e) {
+                return e.bbName.contains(s);
+            });
+        }
+    }
     int i = 1;
     for(ContestEntry e in entries) {
         print("entry is $e");
