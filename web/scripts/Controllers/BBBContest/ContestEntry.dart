@@ -35,13 +35,29 @@ class ContestEntry {
         });
     }
 
+    static List<ContestEntry> filterBy(List<ContestEntry> entries, List<String> doop) {
+        for(String s in doop) {
+            print("s is $s");
+            entries = new List.from(entries.where((ContestEntry e) {
+                return e.bbName.contains(s) || e.entrantName.contains(s);
+            }));
+        }
+        return entries ;
+    }
+
     void draw(Element parentContainer, int number) {
         DivElement container = new DivElement();
         container.classes.add("contestEntry");
 
-        AnchorElement nameElement = new AnchorElement(href: "BigBadBattle.html?target=${bbName.replaceAll(' ','_')}")..text = "$number $bbName (by ${entrantName})";
+        AnchorElement nameElement = new AnchorElement(href: "BigBadBattle.html?target=${bbName.replaceAll(' ','_')}")..text = "$number $bbName";
+        nameElement.style.color = "#00ff00";
         nameElement.classes.add("nameHeader");
+
+        AnchorElement entrantElement = new AnchorElement(href: "BigBadBattle.html?target=${entrantName.replaceAll(' ','_')}")..text = "(by ${entrantName})";
+        entrantElement.style.color = "#00ff00";
+        entrantElement.classes.add("nameHeader");
         container.append(nameElement);
+        container.append(entrantElement);
 
         DivElement bodyElement = new DivElement()..setInnerHtml(text);
         bodyElement.classes.add("bodyElement");

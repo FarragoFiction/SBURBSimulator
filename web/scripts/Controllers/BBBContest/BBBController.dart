@@ -29,11 +29,7 @@ Future<Null> drawContestants() async{
     if(targetWords != null) {
         //i am the best at var names, it is me
         List<String> doop = targetWords.split("_");
-        for(String s in doop) {
-            entries.where((ContestEntry e) {
-                return e.bbName.contains(s);
-            });
-        }
+        entries = ContestEntry.filterBy(entries, doop);
     }
     int i = 1;
     for(ContestEntry e in entries) {
