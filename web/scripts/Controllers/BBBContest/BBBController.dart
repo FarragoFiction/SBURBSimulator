@@ -9,7 +9,11 @@ String targetWords =  getParameterByName("target",null);
 void main() {
     loadNavbar();
     div = querySelector("#story");
-    DivElement credits = new DivElement()..setInnerHtml("Credits for All Big Bads can be found <a href = 'http://farragofiction.com/CreditSim/viewBBB'>here</a>.");
+    DivElement credits = new DivElement()..setInnerHtml("Credits for All Big Bads can be found ");
+    AnchorElement a = new AnchorElement(href: "http://farragofiction.com/CreditSim/viewBBB")..text = "here.";
+    credits.style.fontSize = "24px";
+    credits.append(a);
+    div.append(credits);
     todo("have image folder for entrants");
     makeForm();
     drawContestants();
