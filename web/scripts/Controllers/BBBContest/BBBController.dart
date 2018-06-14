@@ -25,10 +25,10 @@ void todo(String todo) {
 
 Future<Null> drawContestants() async{
     List<ContestEntry> entries = await ContestEntry.slurpEntries();
-    print("entries is $entries");
+    print("target words is $targetWords");
     if(targetWords != null) {
         //i am the best at var names, it is me
-        List<String> doop = targetWords.split(" ");
+        List<String> doop = targetWords.split("_");
         for(String s in doop) {
             entries.where((ContestEntry e) {
                 return e.bbName.contains(s);

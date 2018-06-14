@@ -39,7 +39,7 @@ class ContestEntry {
         DivElement container = new DivElement();
         container.classes.add("contestEntry");
 
-        DivElement nameElement = new DivElement()..text = "$number $bbName (by ${entrantName})";
+        AnchorElement nameElement = new AnchorElement(href: "BigBadBattle.html?target=${bbName.replaceAll(' ','_')}")..text = "$number $bbName (by ${entrantName})";
         nameElement.classes.add("nameHeader");
         container.append(nameElement);
 
