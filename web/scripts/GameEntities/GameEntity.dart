@@ -15,6 +15,8 @@ enum ProphecyState {
 //not abstract, COULD spawn just a generic game entity.
 class GameEntity extends Object with StatOwner   {
     //for players it effects god tier revive, for others it works like life gnosis
+    //used to judge heroic deaths
+    GameEntity myKiller; //who killed you last? (even if you are alive now)
     bool unconditionallyImmortal = false;
     //only a few big bads can't even be fought in the first place
     bool canStrife = true;

@@ -302,7 +302,7 @@ class Player extends GameEntity{
     String makeDead(String causeOfDeath, GameEntity killer, [bool allowLooting = true]) {
         //session.logger.info("DEBUGGING MAKE DEAD making ${title()} dead $causeOfDeath");
         String looting = "";
-
+        myKiller = killer;
         //can loot corpses even in life gnosis, or how else will things happen?
         if(killer != null && allowLooting) {
             if(sylladex.inventory.isNotEmpty) {
@@ -896,6 +896,7 @@ class Player extends GameEntity{
     bool justDeath() {
         if(session.mutator.rageField) return true; //you earned it, kid. no take backs.
         if(unconditionallyImmortal) return false;
+        if(villain) return true;//you earned it too.
         bool ret = false;
 
         //impossible to have a just death from a denizen or denizen minion. unless you are corrupt.
@@ -941,6 +942,10 @@ class Player extends GameEntity{
     bool heroicDeath() {
         if(unconditionallyImmortal) return false;
         bool ret = false;
+        //maybe you derp died, sure. but....probably this was heroic
+        if(myKiller.villain == true && session.rand.nextDouble() > 0.3) {
+            return true;
+        }
 
         //it's not heroic derping to death against a minion or whatever, or in a solo fight.
         if (this.didDenizenKillYou() || this.causeOfDeath == "from a Bad Break.") {
