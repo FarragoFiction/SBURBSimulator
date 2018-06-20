@@ -77,6 +77,7 @@ class TodoHandler {
 
   void setupBigBadTODO() {
        todo("active/passive player targeting", mediumPriority);
+       todo("ability to target entities with particular serializable scenes (lets me give them a scene and then target them, basically mark them as my minion)",highPriority);
        todo("MyStatIsGreaterThanValue as a land filter, tg says", highPriority);
        todo("optional life sim card for a big bad (given on summon)",mediumPriority);
        todo("target entity has name with word X (lets big bads target specific other big bads, like that clown and pistol shrimp, or shogun and big meat jr)",highPriority);
