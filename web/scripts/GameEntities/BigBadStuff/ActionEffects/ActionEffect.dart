@@ -187,20 +187,20 @@ abstract class EffectEntity extends ActionEffect {
   //need to figure out what type of trigger condition it is.
   static ActionEffect fromJSON(JSONObject json, SerializableScene scene) {
       String name = json["name"];
-      print("looking for name $name");
+      //print("looking for name $name");
 
       List<EffectEntity> allConditions = listPossibleEffects(scene);
       for(ActionEffect tc in allConditions) {
           //print("is $name the same as ${tc.name}");
 
           if(tc.name == name) {
-              print("yes");
+              //print("yes");
               ActionEffect ret = tc.makeNewOfSameType();
-              print("made new of same type");
+              //print("made new of same type");
 
               ret.copyFromJSON(json);
               ret.scene = scene;
-              print("ret is $ret for name $name");
+              //print("ret is $ret for name $name");
               return ret;
           }
       }

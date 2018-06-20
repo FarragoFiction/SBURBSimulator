@@ -189,7 +189,7 @@ abstract class TargetConditionLiving extends TargetCondition {
                   TargetCondition newCondition = tc.makeNewOfSameType();
                   newCondition.scene = owner;
                   owner.triggerConditionsLiving.add(newCondition);
-                  print("adding new entity condition to $owner");
+                 // print("adding new entity condition to $owner");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
               }
@@ -217,7 +217,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       List<TargetCondition> allConditions = listPossibleTriggers(scene);
       for(TargetCondition tc in allConditions) {
           if(tc.name == name) {
-              print("$name is found, time to copy not flag");
+             // print("$name is found, time to copy not flag");
               TargetCondition ret = tc.makeNewOfSameType();
               ret.copyNotFlagFromJSON(json);
               ret.copyFromJSON(json);
