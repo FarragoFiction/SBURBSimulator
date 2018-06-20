@@ -79,6 +79,7 @@ class TodoHandler {
        todo("active/passive player targeting", mediumPriority);
        todo("ability to target entities with particular serializable scenes (lets me give them a scene and then target them, basically mark them as my minion)",highPriority);
        todo("MyStatIsGreaterThanValue as a land filter, tg says", highPriority);
+       todo("ability to set class/aspect (only works on players)", highPriority);
        todo("optional life sim card for a big bad (given on summon)",mediumPriority);
        todo("target entity has name with word X (lets big bads target specific other big bads, like that clown and pistol shrimp, or shogun and big meat jr)",highPriority);
        todo("SEASONAL BIG BADS, (ultimate dad for fathers day in us/uk/etc) target condition for land/entity of MONTH IS, and DAY is. (could do day of week but that would just be a bitch to debug i think). DO NOT OVER USE THIS. easter, halloween, april fools, xmas, things like that. a big bad that only shows up on the 13th of each month oh god. fuck yes.", highPriority);
