@@ -77,6 +77,7 @@ class TodoHandler {
 
   void setupBigBadTODO() {
        todo("active/passive player targeting", mediumPriority);
+       todo("GHAO/DQON: target condition (land or entity) entity named X is dead.  Need so GHAO summons DQON on death.(not dead just checksk for active and alive).", highPriority);
        todo("target players with a Disaster/Illegal/Corrupt sprite (diaster for rage virus)", highPriority);
        todo("shogun:ability to target entities with particular serializable scenes (lets me give them a scene and then target them, basically mark them as my minion)",highPriority);
        todo("MyStatIsGreaterThanValue as a land filter, tg says", highPriority);
