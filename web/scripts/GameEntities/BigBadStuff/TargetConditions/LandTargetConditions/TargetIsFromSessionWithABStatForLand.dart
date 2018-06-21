@@ -71,6 +71,8 @@ class TargetIsFromSessionWithABStatForLand extends TargetConditionLand {
         }
         select.onChange.listen((e) => syncToForm());
         syncFormToMe();
+        scene.syncForm();
+
     }
 
     @override

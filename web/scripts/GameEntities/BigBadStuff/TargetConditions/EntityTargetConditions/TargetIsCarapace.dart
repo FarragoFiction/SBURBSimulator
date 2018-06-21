@@ -57,11 +57,11 @@ class TargetIsCarapace extends TargetConditionLiving {
 
     }
 
-
-
     if(select.selectedIndex == -1) select.options[0].selected = true;
     select.onChange.listen((e) => syncToForm());
     syncFormToMe();
+    scene.syncForm();
+
   }
   @override
   TargetCondition makeNewOfSameType() {

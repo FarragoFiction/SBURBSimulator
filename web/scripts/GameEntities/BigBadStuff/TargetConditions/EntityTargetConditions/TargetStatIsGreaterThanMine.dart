@@ -54,6 +54,8 @@ class TargetStatIsGreaterThanMine extends TargetConditionLiving {
         selectStat.onChange.listen((Event e) => syncToForm());
 
         syncFormToMe();
+        scene.syncForm();
+
     }
 
 

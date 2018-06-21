@@ -74,6 +74,8 @@ class TargetHPIs extends TargetConditionLand {
         }
         selectAmount.onChange.listen((Event e) => syncToForm());
         syncFormToMe();
+        scene.syncForm();
+
     }
 
 

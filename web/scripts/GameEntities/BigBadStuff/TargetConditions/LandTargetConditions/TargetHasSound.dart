@@ -84,6 +84,7 @@ class TargetHasSound extends TargetConditionLand {
         }
         select.onChange.listen((Event e) => syncToForm());
         syncFormToMe();
+        scene.syncForm();
 
     }
 

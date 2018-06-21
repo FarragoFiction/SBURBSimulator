@@ -38,6 +38,7 @@ class TargetNameContains extends TargetConditionLand {
         me.append(input);
         syncFormToMe();
         //scene.syncForm();
+        scene.syncForm();
     }
 
 

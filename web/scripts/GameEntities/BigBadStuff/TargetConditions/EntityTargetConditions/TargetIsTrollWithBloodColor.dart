@@ -63,6 +63,8 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
     }
     select.onChange.listen((e) => syncToForm());
     syncFormToMe();
+    scene.syncForm();
+
   }
   @override
   TargetCondition makeNewOfSameType() {

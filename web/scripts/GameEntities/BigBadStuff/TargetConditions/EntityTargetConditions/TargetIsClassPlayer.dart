@@ -83,7 +83,7 @@ class TargetIsClassPlayer extends TargetConditionLiving {
       if(className == null) select.selectedIndex = 0;
       select.onChange.listen((Event e) => syncToForm());
       syncFormToMe();
-
+      scene.syncForm();
   }
 
   @override

@@ -189,7 +189,7 @@ abstract class TargetConditionLiving extends TargetCondition {
                   TargetCondition newCondition = tc.makeNewOfSameType();
                   newCondition.scene = owner;
                   owner.triggerConditionsLiving.add(newCondition);
-                 // print("adding new entity condition to $owner");
+                  print("adding new entity condition ${newCondition} to $owner, now its ${owner.triggerConditionsLiving}");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
               }

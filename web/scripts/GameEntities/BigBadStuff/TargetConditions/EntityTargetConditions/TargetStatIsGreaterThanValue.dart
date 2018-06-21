@@ -76,6 +76,7 @@ class TargetStatIsGreaterThanValue extends TargetConditionLiving {
         }
         selectAmount.onChange.listen((Event e) => syncToForm());
         syncFormToMe();
+        scene.syncForm();
     }
 
 
