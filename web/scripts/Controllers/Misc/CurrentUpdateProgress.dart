@@ -54,8 +54,9 @@ class TodoHandler {
   }
   
   void setupSessionCustomizerTODO() {
-     todo("ability to serialize a game entity.",highPriority);
+     todo("ability to serialize a land (for now just major parts, no traits).",highPriority);
      todo("ability to serialize a session (players, carapaces, big bads, etc)",highPriority);
+     todo("press button, get datastring for land", highPriority);
      todo("create/destroy players", highPriority);
      todo("ability to save/load an entity (carapace, player, whatever)", highPriority);
      todo("load old session url maybe?",mediumPriority);

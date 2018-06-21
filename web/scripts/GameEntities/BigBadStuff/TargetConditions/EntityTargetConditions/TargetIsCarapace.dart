@@ -15,10 +15,6 @@ class TargetIsCarapace extends TargetConditionLiving {
   @override
   String notDescText = "<b>Is NOT Carapace:</b><br>Target Entity must NOT be a carapace named: <br><br>";
 
-  @override
-  String get importantWord => carapaceInitials;
-
-  String carapaceInitials;
   //strongly encouraged for this to be replaced
   //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
@@ -54,7 +50,7 @@ class TargetIsCarapace extends TargetConditionLiving {
       o.value = carapace.initials;
       o.text = "${carapace.initials} (${carapace.name})";
       select.append(o);
-      if(o.value == carapaceInitials) {
+      if(o.value == importantWord) {
         print("selecting ${o.value}");
         o.selected = true;
       }
@@ -74,7 +70,7 @@ class TargetIsCarapace extends TargetConditionLiving {
   @override
   void syncFormToMe() {
     for(OptionElement o in select.options) {
-      if(o.value == carapaceInitials) {
+      if(o.value == importantWord) {
         o.selected = true;
         return;
       }
@@ -86,12 +82,12 @@ class TargetIsCarapace extends TargetConditionLiving {
 
   @override
   String toString() {
-    return "TargetIsCarapace: ${carapaceInitials}";
+    return "TargetIsCarapace: ${importantWord}";
   }
 
   @override
   void syncToForm() {
-    carapaceInitials = select.options[select.selectedIndex].value;
+      importantWord = select.options[select.selectedIndex].value;
     //keeps the data boxes synced up the chain
     syncNotFlagToForm();
 
@@ -99,14 +95,17 @@ class TargetIsCarapace extends TargetConditionLiving {
   }
   @override
   void copyFromJSON(JSONObject json) {
-    carapaceInitials = json[TargetCondition.IMPORTANTWORD];
+    importantWord = json[TargetCondition.IMPORTANTWORD];
   }
 
   @override
   bool conditionForFilter(GameEntity item) {
-    if(carapaceInitials != ANY) {
-      return !(item is Carapace) || item.initials != carapaceInitials;
+    print("i am ${scene.gameEntity}, checking for is Carapace for ${item}, carapace initials are $importantWord");
+    if(importantWord != ANY) {
+        print("looking for specific carapace");
+      return !(item is Carapace) || item.initials != importantWord;
     }else {
+        print("looking for any carapace, should I reject ${item}? ${!(item is Carapace)}");
       return !(item is Carapace);
     }
   }
