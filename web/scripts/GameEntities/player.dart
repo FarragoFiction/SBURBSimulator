@@ -541,7 +541,7 @@ class Player extends GameEntity{
 
     @override
     String title() {
-        String ret = extraTitle;
+        String ret = "$extraTitle ";
 
         if (this.villain) ret = "${ret}Villainous ";
 

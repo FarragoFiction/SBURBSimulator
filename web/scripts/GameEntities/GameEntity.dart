@@ -770,7 +770,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     String htmlTitle() {
-        String ret = extraTitle;
+        String ret = "$extraTitle ";;
         if (this.unconditionallyImmortal) ret = "${ret}Unkillable ";
         if (this.doomed) ret = "${ret}Doomed ";
         if (this.villain) ret = "${ret}Villainous ";
