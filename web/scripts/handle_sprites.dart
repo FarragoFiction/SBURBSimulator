@@ -981,7 +981,14 @@ abstract class Drawing {
         String imageString = "${player.moon}.png";
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
-        ctx.drawImage(img, 0, 0);
+        try {
+            ctx.drawImage(img, 0, 0);
+        }catch(e) {
+            String imageString = "unknownmoon.png";
+            addImageTag(imageString);
+            ImageElement img = imageSelector(imageString);
+            ctx.drawImage(img, 0, 0);
+        }
     }
 
 
