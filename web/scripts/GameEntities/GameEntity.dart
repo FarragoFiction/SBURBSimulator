@@ -28,6 +28,8 @@ class GameEntity extends Object with StatOwner   {
     int moonKillCount  = 0;
     bool everCrowned = false;
     String labelPattern = ":___ ";
+    //big bads and etc can set this
+    String extraTitle = "";
 
 
 
@@ -376,6 +378,7 @@ class GameEntity extends Object with StatOwner   {
         clonege.usedFraymotifThisTurn = usedFraymotifThisTurn;
         clonege.relationships = Relationship.cloneRelationshipsStopgap(relationships);
         clonege.renderingType = renderingType; //0 means default for this sim.
+        clonege.extraTitle = extraTitle;
         clonege.associatedStats = associatedStats; //most players will have a 2x, a 1x and a -1x stat.
         clonege.doomed = doomed; //if you are doomed, no matter what you are, you are likely to die.
         clonege.doomedTimeClones = doomedTimeClones; //TODO should these be cloned? help fight the final boss(es).
@@ -767,7 +770,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     String htmlTitle() {
-        String ret = "";
+        String ret = extraTitle;
         if (this.unconditionallyImmortal) ret = "${ret}Unkillable ";
         if (this.doomed) ret = "${ret}Doomed ";
         if (this.villain) ret = "${ret}Villainous ";
