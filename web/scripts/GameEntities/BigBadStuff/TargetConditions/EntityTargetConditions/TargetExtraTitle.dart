@@ -4,7 +4,7 @@ import 'dart:html';
 //has no sub form, just exists
 class TargetExtraTitle extends TargetConditionLiving {
     @override
-    String name = "NameContains";
+    String name = "ExtraTitleContains";
     InputElement input;
 
     Item crown;
