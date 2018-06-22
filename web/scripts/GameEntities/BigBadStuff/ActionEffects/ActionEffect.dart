@@ -64,6 +64,7 @@ abstract class EffectLand extends ActionEffect {
   static List<EffectLand> listPossibleEffects(SerializableScene scene) {
       List<EffectLand> ret = new List<EffectLand>();
       ret.add(new InstaBlowUp(scene));
+      ret.add(new ChangeMyStatLand(scene));
       ret.add(new MarkAllQuestsAsCompleteForLand(scene));
       ret.add(new MarkDenizenQuestsAsCompleteForLand(scene));
       ret.add(new MarkFirstQuestsAsCompleteForLand(scene));
@@ -158,6 +159,7 @@ abstract class EffectEntity extends ActionEffect {
       List<EffectEntity> ret = new List<EffectEntity>();
       ret.add(new InstaKill(scene));
       ret.add(new ChangeStat(scene));
+      ret.add(new ChangeMyStat(scene));
       ret.add(new GiveAction(scene));
       ret.add(new PickPocket(scene));
       ret.add(new Mug(scene));
@@ -171,6 +173,7 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new MakeGodDestined(scene));
       ret.add(new MakeUnGodDestined(scene));
       ret.add(new MakeBusy(scene));
+      ret.add(new GiveExtraTitle(scene));
       ret.add(new MakeGodTier(scene));
       ret.add(new DestroySylladex(scene));
       ret.add(new GrimDarkCorruption(scene));
