@@ -11,6 +11,25 @@ label{
     color: #00ff00;
 }
 
+.entrant{
+    border: 13px solid #3b3b3b;
+    background-color: #616161;
+    color: #00ff00;
+}
+
+.winner{
+    border: 13px solid #3b3b3b;
+    background-color: #00aa00;
+    color: #000000;
+}
+
+.finalist{
+
+    border: 13px solid #00ff00;
+    background-color: #616161;
+    color: #00ff00;
+}
+
 .conditionOrEffect{
     border: 1px solid black;
     margin: 10px;

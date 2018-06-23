@@ -11,6 +11,7 @@ class ContestEntry {
     String jrComment;
     String text;
     String shogunComment;
+    String category;
 
     ContestEntry(String line) {
         JSONObject json = new JSONObject.fromJSONString(line);
@@ -22,13 +23,28 @@ class ContestEntry {
         shogunComment = json["shogunComment"];
     }
 
-    static Future<List<ContestEntry>> slurpEntries() async{
-        return await HttpRequest.getString(PathUtils.adjusted("BigBadLists/contestEntrants.txt")).then((String data) {
+    static Future<List<ContestEntry>> slurpEntries() async {
+        List<ContestEntry> ret = new List<ContestEntry>();
+        List<ContestEntry> entrants = await slurpEntriesInCategory("entrant");
+        List<ContestEntry> finalists = await slurpEntriesInCategory("finalist");
+        List<ContestEntry> winners = await slurpEntriesInCategory("winner");
+        ret.addAll(winners);
+        ret.addAll(finalists);
+        ret.addAll(entrants);
+        return ret;
+    }
+
+    static Future<List<ContestEntry>> slurpEntriesInCategory(String category) async{
+        return await HttpRequest.getString(PathUtils.adjusted("BigBadLists/${category.toLowerCase()}.txt")).then((String data) {
             List<ContestEntry> ret = new List<ContestEntry>();
             List<String> parts = data.split(new RegExp("\n|\r"));
             for(String line in parts) {
                 //print("adding entry from $line");
-                if(line.isNotEmpty) ret.add(new ContestEntry(line));
+                if(line.isNotEmpty) {
+                    ContestEntry ce = new ContestEntry(line);
+                    ce.category = category;
+                    ret.add(ce);
+                }
             }
             //print("returning entries $ret");
             return ret;
@@ -48,8 +64,9 @@ class ContestEntry {
     void draw(Element parentContainer, int number) {
         DivElement container = new DivElement();
         container.classes.add("contestEntry");
+        container.classes.add("$category");
 
-        AnchorElement nameElement = new AnchorElement(href: "BigBadBattle.html?target=${bbName.replaceAll(' ','_')}")..text = "$number $bbName";
+        AnchorElement nameElement = new AnchorElement(href: "BigBadBattle.html?target=${bbName.replaceAll(' ','_')}")..text = "$number $bbName ($category)";
         nameElement.style.color = "#00ff00";
         nameElement.classes.add("nameHeader");
 

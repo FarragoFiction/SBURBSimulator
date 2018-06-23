@@ -100,6 +100,7 @@ class TodoHandler {
     todo("once a game entities specibus/sylladex is serializable, shove that into big bads too", highPriority);
     todo("fucking do SOMETHING with land hp, maybe it auto blows up on 0, or it's value effects associated entity stats? (especially need for black king/queen)",mediumPriority);
     todo("action effect, add land feature (smells like sweet, has consorts, etc, has strong denizen, etc)", mediumPriority);
+    todo("action effect remove action with datastring of x", highPriority);
     todo("action effect, remove land feature (smells like sweet, has consorts, etc, has strong denizen, etc)", mediumPriority);
     todo("big bads need 0 or more custom fraymotif names", mediumPriority);
     todo("LAND EFFECT: set quests to done (pre, denizen or post) (doing this effectively skips them, no reward of any kind)", mediumPriority);

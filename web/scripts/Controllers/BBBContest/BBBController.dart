@@ -14,8 +14,8 @@ void main() {
     credits.style.fontSize = "24px";
     credits.append(a);
     div.append(credits);
-    todo("have image folder for entrants");
-    makeForm();
+    //todo("have image folder for entrants");
+    //makeForm();
     drawContestants();
 }
 
