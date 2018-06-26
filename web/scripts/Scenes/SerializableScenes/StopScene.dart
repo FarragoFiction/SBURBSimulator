@@ -18,9 +18,11 @@ class StopScene extends SerializableScene {
         //session.logger.info("TEST BIG BAD: checking triggers");
         posedAsATeamAlready = false;
         livingTargets.clear();
+        if(originalOwner == null || originalOwner.dead || !originalOwner.active) return false;
         livingTargets.add(originalOwner);
 
 
+        //still can have normal targets, so defeat conditions can trigger with diff things
         for(TargetConditionLiving tc in triggerConditionsLiving) {
             livingTargets = new Set<GameEntity>.from(tc.filter(new List<GameEntity>.from(livingTargets)));
         }

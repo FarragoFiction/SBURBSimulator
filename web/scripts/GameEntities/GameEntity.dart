@@ -943,10 +943,25 @@ class GameEntity extends Object with StatOwner   {
             JSONObject j = new JSONObject();
             j.json = d;
             StopScene ss = new StopScene(session);
-            ss.gameEntity = this;
+            ss.originalOwner = this;
             ss.copyFromJSON(j);
             stopMechanisms.add(ss);
         }
+    }
+
+    void applyStopMechanisms() {
+        if(stopMechanisms.isEmpty) return;
+        for(Player p in session.players) {
+            //please don't try to defeat yourself.
+            if(p!=this) {
+                for(StopScene ss in stopMechanisms) {
+                    ss.gameEntity = p;
+                    p.scenesToAdd.add(ss);
+                }
+            }
+        }
+        //only happens once.
+        stopMechanisms.clear();
     }
 
     void loadStats(String weirdString) {

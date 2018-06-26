@@ -140,19 +140,7 @@ class BigBad extends NPC {
       }
   }
 
-  void applyStopMechanisms() {
-      if(stopMechanisms.isEmpty) return;
-      for(Player p in session.players) {
-          //please don't try to defeat yourself.
-          if(p!=this) {
-                for(StopScene ss in stopMechanisms) {
-                    p.scenesToAdd.add(ss);
-                }
-          }
-      }
-      //only happens once.
-      stopMechanisms.clear();
-  }
+
 
   void syncForm() {
       print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes");
