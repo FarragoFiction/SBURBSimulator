@@ -22,8 +22,7 @@ class BigBad extends NPC {
   List<SerializableScene> startMechanisms = new List<SerializableScene>();
   //scenes list is like normal, but i assume they are all serializable
 
-    //these are processed only if active, but separately from regular scenes. you can take an action and then be defeated
-    List<SerializableScene> stopMechanisms = new List<SerializableScene>();
+
 
 
   @override
@@ -60,11 +59,20 @@ class BigBad extends NPC {
           if(s is SerializableScene) sceneArray.add(s.toJSON());
       }
       json["scenes"] = sceneArray.toString();
+
+
+      List<JSONObject> stopSceneArray = new List<JSONObject>();
+      for(Scene s in stopMechanisms) {
+          if(s is SerializableScene) stopSceneArray.add(s.toJSON());
+      }
+      json["stopMechanisms"] = stopSceneArray.toString();
+
       return json;
   }
 
   void copyFromDataString(String data) {
      // print("copying from data: $data, looking for labelpattern: $labelPattern");
+      super.copyFromDataString(data);
       String dataWithoutName = data.split("$labelPattern")[1];
       String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
       print("big bad raw json for ${data.split("$labelPattern")[0]} is $rawJSON");
@@ -94,26 +102,10 @@ class BigBad extends NPC {
       loadStartMechanisms(startScenesString);
      // print("done loading start mechanisms");
 
-      String scenesString = json["scenes"];
-      //print("scenes string is $scenesString");
-      loadScenes(scenesString);
-      //print("done loading scenes");
   }
 
 
-    void loadScenes(String weirdString) {
-      if(weirdString == null) return;
-        List<dynamic> what = JSON.decode(weirdString);
-        for(dynamic d in what) {
-            print("dynamic json thing for action scene is is  $d");
-            JSONObject j = new JSONObject();
-            j.json = d;
-            SerializableScene ss = new SerializableScene(session);
-            ss.gameEntity = this;
-            ss.copyFromJSON(j);
-            scenes.add(ss);
-        }
-    }
+
 
     void loadStartMechanisms(String weirdString) {
       //print("weird string is $weirdString");
@@ -128,6 +120,7 @@ class BigBad extends NPC {
             startMechanisms.add(ss);
         }
     }
+
 
 
   static BigBad fromDataString(String rawDataString, Session session) {
@@ -145,6 +138,20 @@ class BigBad extends NPC {
               return;
           }
       }
+  }
+
+  void applyStopMechanisms() {
+      if(stopMechanisms.isEmpty) return;
+      for(Player p in session.players) {
+          //please don't try to defeat yourself.
+          if(p!=this) {
+                for(StopScene ss in stopMechanisms) {
+                    p.scenesToAdd.add(ss);
+                }
+          }
+      }
+      //only happens once.
+      stopMechanisms.clear();
   }
 
   void syncForm() {

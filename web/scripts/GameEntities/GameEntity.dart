@@ -31,7 +31,8 @@ class GameEntity extends Object with StatOwner   {
     //big bads and etc can set this
     String extraTitle = "";
 
-
+    //mostly for big bads, but other things can have them, too
+    List<StopScene> stopMechanisms = new List<StopScene>();
 
     //availibility set to false by scenes
     bool available = true;
@@ -906,6 +907,46 @@ class GameEntity extends Object with StatOwner   {
         loadSylladex(sylladexString);
         print("loaded sylladex");
 
+
+        String scenesString = json["scenes"];
+        //print("scenes string is $scenesString");
+        loadScenes(scenesString);
+        //print("done loading scenes");
+
+        String stopScenesString = json["stopMechanisms"];
+
+        loadStopMechanisms(stopScenesString);
+
+    }
+
+    void loadScenes(String weirdString) {
+        if(weirdString == null) return;
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            print("dynamic json thing for action scene is is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            SerializableScene ss = new SerializableScene(session);
+            ss.gameEntity = this;
+            ss.copyFromJSON(j);
+            scenes.add(ss);
+        }
+    }
+
+
+
+    void loadStopMechanisms(String weirdString) {
+        //print("weird string is $weirdString");
+        List<dynamic> what = JSON.decode(weirdString);
+        for(dynamic d in what) {
+            //print("dynamic json thing is  $d");
+            JSONObject j = new JSONObject();
+            j.json = d;
+            StopScene ss = new StopScene(session);
+            ss.gameEntity = this;
+            ss.copyFromJSON(j);
+            stopMechanisms.add(ss);
+        }
     }
 
     void loadStats(String weirdString) {
