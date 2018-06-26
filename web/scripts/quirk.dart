@@ -570,7 +570,8 @@ List<String> getOneRandomReplaceArray(Random rand){
     arr.add(["mu","mew"]);
     arr.add(["b","[B]"]);
     arr.add(["B","[B]"]);
-
+    arr.add(["l","w"]);
+    arr.add(["r","w"]);
 
     if(rand.nextDouble() > .5){
         return rand.pickFrom(arr);

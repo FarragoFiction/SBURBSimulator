@@ -513,7 +513,7 @@ List<Colour> tricksterColors = <Colour>[
 List<String> bloodColors = <String>["#A10000", "#a25203", "#a1a100", "#658200", "#416600", "#078446", "#008282", "#004182", "#0021cb", "#631db4", "#610061", "#99004d"];
 
 
-List<String> prefixes = <String>["8=D", ">->", "//", "tumut", ")", "><>", "(", "\$", "?", "=begin", "=end"]
+List<String> prefixes = <String>["owo","8=D", ">->", "//", "tumut", ")", "><>", "(", "\$", "?", "=begin", "=end"]
     ..addAll(<String>["<3", "<3<", "<>", "c3<", "{", "}", "<String>[", "]", "'", ".", ",", "~", "!", "~", "^", "&", "#", "@", "%", "*"]);
 
 
