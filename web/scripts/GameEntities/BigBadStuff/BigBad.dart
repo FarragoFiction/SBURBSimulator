@@ -191,6 +191,7 @@ class BigBadForm {
 
     Element startSceneSection;
     Element sceneSection;
+    Element stopSceneSection;
 
 
     BigBadForm(BigBad this.bigBad, Element parentContainer) {
@@ -206,6 +207,8 @@ class BigBadForm {
         drawImmortal();
         drawAddStartButton();
         drawAddSceneButton();
+        drawAddStopButton();
+
     }
 
     void syncDataBoxToBigBad() {
@@ -253,6 +256,33 @@ class BigBadForm {
         //render the ones the big bad starts with
         for(SummonScene s in bigBad.startMechanisms) {
             s.renderForm(startSceneSection);
+        }
+
+    }
+
+
+    void drawAddStopButton() {
+        stopSceneSection = new DivElement();
+        stopSceneSection.classes.add("stopSceneSection");
+        stopSceneSection.setInnerHtml("<h1>Stop Scenes</h1><hr>A Stop Scene is locked to target the original owner of it. It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
+        stopSceneSection.style.border = "1px solid black";
+        stopSceneSection.style.padding = "10px";
+        ButtonElement button = new ButtonElement();
+        button.text = "Add A Start Scene";
+        container.append(stopSceneSection);
+        container.append(button);
+        button.onClick.listen((Event e)
+        {
+            StopScene stopScene = new StopScene(bigBad.session);
+            stopScene.originalOwner = bigBad;
+            bigBad.stopMechanisms.add(stopScene);
+            stopScene.renderForm(stopSceneSection);
+            syncDataBoxToBigBad();
+        });
+
+        //render the ones the big bad starts with
+        for(StopScene s in bigBad.stopMechanisms) {
+            s.renderForm(stopSceneSection);
         }
 
     }
