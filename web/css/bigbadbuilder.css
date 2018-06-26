@@ -100,12 +100,15 @@ input{
      padding: 5px;
      margin: 5px;
      border: 1px solid black;
+     background-color: #333333;
+
  }
 
  .filterSection{
      padding: 15px;
      margin: 5px;
      border: 1px solid black;
+     background-color: #aaaaaa;
  }
 
 select{
