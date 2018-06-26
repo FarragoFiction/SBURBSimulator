@@ -247,6 +247,8 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsFinalPlayer(scene));
       ret.add(new TargetIsClassPlayer(scene));
       ret.add(new TargetIsAspectPlayer(scene));
+      ret.add(new TargetIsPassivePlayer(scene));
+      ret.add(new TargetIsActivePlayer(scene));
       ret.add(new TargetHasInterestCategory(scene));
       ret.add(new TargetHasItemWithTrait(scene));
       ret.add(new TargetIsWasted(scene));

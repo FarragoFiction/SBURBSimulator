@@ -8,6 +8,8 @@ export "EntityTargetConditions/TargetIsDoomed.dart";
 export "EntityTargetConditions/TargetEntityNameContains.dart";
 export "EntityTargetConditions/TargetExtraTitle.dart";
 export "EntityTargetConditions/TargetHasScene.dart";
+export "EntityTargetConditions/TargetIsPassivePlayer.dart";
+export "EntityTargetConditions/TargetIsActivePlayer.dart";
 export "EntityTargetConditions/TargetIsUnconditionallyImmortal.dart";
 export "EntityTargetConditions/TargetIsStrifable.dart";
 export "EntityTargetConditions/TargetHasInterestCategory.dart";
