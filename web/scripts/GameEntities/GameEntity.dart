@@ -965,6 +965,33 @@ class GameEntity extends Object with StatOwner   {
         return ret;
     }
 
+    SerializableScene removeSerializableSceneFromString(String s) {
+        SerializableScene ret = new SerializableScene(session)..copyFromDataString(s);
+        List<SerializableScene> toRemove = new List<SerializableScene>();
+        for(Scene s in scenes) {
+            if(s is SerializableScene) {
+                SerializableScene ss = s as SerializableScene;
+                if(ss.toDataString() == s) toRemove.add(ss);
+            }
+        }
+
+        for(Scene s in scenesToAdd) {
+            if(s is SerializableScene) {
+                SerializableScene ss = s as SerializableScene;
+                if(ss.toDataString() == s) toRemove.add(ss);
+            }
+        }
+
+        for(SerializableScene ss in toRemove) {
+            scenes.remove(ss);
+            scenesToAdd.remove(ss);
+        }
+
+        scenesToAdd.add(ret);
+        return ret;
+    }
+
+
     String htmlTitleHP() {
         String ret = "<font color ='$fontColor'>";
         if (this.crowned != null) ret = "${ret}Crowned ";

@@ -8,6 +8,7 @@ export "EntityEffects/Mug.dart";
 export "EntityEffects/GiveExtraTitle.dart";
 export "EntityEffects/ChangeMyStat.dart";
 export "EntityEffects/GiveThisAction.dart";
+export "EntityEffects/RemoveAction.dart";
 export "LandEffects/ChangeMyStatLand.dart";
 export "EntityEffects/GiveFrog.dart";
 export "EntityEffects/KillFrog.dart";
