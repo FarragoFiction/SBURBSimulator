@@ -6,6 +6,7 @@ export "EntityTargetConditions/TargetHasTimeClones.dart";
 export "EntityTargetConditions/TargetIsTrollWithBloodColor.dart";
 export "EntityTargetConditions/TargetIsDoomed.dart";
 export "EntityTargetConditions/TargetEntityNameContains.dart";
+export "EntityTargetConditions/TargetEntitySpriteNameContains.dart";
 export "EntityTargetConditions/TargetExtraTitle.dart";
 export "EntityTargetConditions/TargetHasScene.dart";
 export "EntityTargetConditions/TargetIsPassivePlayer.dart";

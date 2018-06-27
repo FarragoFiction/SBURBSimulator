@@ -273,6 +273,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetHasCompanions(scene));
       ret.add(new TargetIsVillain(scene));
       ret.add(new TargetEntityNameContains(scene));
+      ret.add(new TargetEntitySpriteNameContains(scene));
       ret.add(new TargetExtraTitle(scene));
       ret.add(new TargetHasScene(scene));
 
