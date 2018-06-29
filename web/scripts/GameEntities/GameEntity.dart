@@ -947,6 +947,7 @@ class GameEntity extends Object with StatOwner   {
             ss.copyFromJSON(j);
             stopMechanisms.add(ss);
         }
+        print ("loaded stop mechanisms $stopMechanisms");
     }
 
     void applyStopMechanisms() {

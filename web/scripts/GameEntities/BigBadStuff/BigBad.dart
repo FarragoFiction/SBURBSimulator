@@ -231,6 +231,10 @@ class BigBadForm {
         for(SerializableScene s in bigBad.scenes) {
             s.renderForm(sceneSection);
         }
+
+        for(StopScene s in bigBad.stopMechanisms) {
+            s.renderForm(stopSceneSection);
+        }
         syncDataBoxToBigBad();
     }
 
@@ -262,6 +266,7 @@ class BigBadForm {
 
 
     void drawAddStopButton() {
+        print("drawing add stop mechanisms button");
         stopSceneSection = new DivElement();
         stopSceneSection.classes.add("stopSceneSection");
         stopSceneSection.setInnerHtml("<h1>Stop Scenes</h1><hr>A Stop Scene is locked to target the original owner of it. Any target conditions you add will be modifiers on top of that. Lands can only be targeted if the original owner is also targetable. (i.e. alive and available) It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
@@ -273,6 +278,7 @@ class BigBadForm {
         container.append(button);
         button.onClick.listen((Event e)
         {
+            print("adding a stop scene");
             StopScene stopScene = new StopScene(bigBad.session);
             stopScene.originalOwner = bigBad;
             bigBad.stopMechanisms.add(stopScene);
@@ -281,7 +287,9 @@ class BigBadForm {
         });
 
         //render the ones the big bad starts with
+        print ("trying to render existing stop mechanisms");
         for(StopScene s in bigBad.stopMechanisms) {
+            print('rendering form for $s');
             s.renderForm(stopSceneSection);
         }
 

@@ -156,6 +156,7 @@ void syncForm() {
 }
 
   void renderForm(Element container) {
+      print ("render form for scene");
       form = new SceneForm(this, container);
       form.drawForm();
   }
