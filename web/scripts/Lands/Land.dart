@@ -116,6 +116,7 @@ class Land extends Object with FeatureHolder {
 
         bool ret = currentQuestChain.doQuest(p1, p2, denizenFeature, consortFeature, symbolicMcguffin, physicalMcguffin, div, this);
         if(currentQuestChain.finished) {
+            p1.leveledTheHellUp = true;
            // session.logger.info("deciding what to do next.");
             decideHowToProcede(); //if i just finished the last quest, then i am done.
         }
