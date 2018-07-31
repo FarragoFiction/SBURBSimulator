@@ -1,0 +1,718 @@
+TextEngine Word List
+
+//adjective order: opinion-size-age-shape-colour-origin-material-purpose
+
+ 
+adjective
+	@adj_positive
+	@adj_negative
+	@adj_surprising
+	@adj_large
+    @adj_small
+	@adj_many
+	@adj_few
+	@adj_tactile
+	@adj_taste
+	@adj_smell
+	@adj_new
+	@adj_old
+	@adj_shape
+	@adj_color
+	@adj_material
+//@adj_purpose - I can't think of a good way to use this for now
+	
+adj_positive
+	good
+	amazing
+	wonderful
+	awesome
+	cool
+    fascinating
+    incredible
+    marvelous
+    wonderful
+    grand
+    majestic
+    stunning
+    great
+    terrific
+	remarkable
+	fabulous
+	spectacular
+	spiffy: 0.1
+	peachy-keen: 0.1
+	aces: 0.1
+    bangup: 0.1
+	top notch: 0.1
+	spiffy: 0.1
+    vaunted: 0.1
+
+adj_negative
+    bad
+    terrible
+    awful
+    stupid
+    lame
+    atrocious
+    awful
+    crummy
+    dreadful
+    lousy
+    unacceptable
+    blah
+    garbage
+    gross
+    inferior
+    junky
+    beastly
+    cheesy
+    crappy
+    cruddy
+    deficient
+    godawful
+    inadequate
+    incorrect
+    not good
+    substandard
+    unsatisfactory
+    aggravating
+    abominable: 0.1
+    bedeviling: 0.1
+    boorish: 0.1
+    ridonkulous: 0.1
+    scandalous: 0.1
+
+adj_surprising
+	surprising
+    unbelievable
+    beyond belief
+    hard to believe
+    unconvincing
+    far-fetched
+    implausible
+    improbable
+    highly unlikely
+    dubious
+    doubtful
+    inconceivable
+    unthinkable
+    unimaginable
+    hard to swallow
+
+adj_large
+	large
+    big
+    broad
+    considerable
+    enormous
+    extensive
+    full
+    generous
+    giant
+    gigantic
+    grand
+    great
+    hefty
+    huge
+    immense
+    massive
+    sizable
+    substantial
+    vast
+    wide
+    comprehensive
+    roomy
+    ample
+    bulky
+    colossal
+    copious
+    excessive
+    humongous
+    immeasurable
+    jumbo
+    monumental
+    mountainous
+    plentiful
+    stupendous
+    voluminous
+    whopping
+    your mom: 0.01
+    very #adj_large#: 0.05
+
+adj_small
+	small
+	tiny
+	cramped
+    limited
+    meager
+    microscopic
+    miniature
+    minuscule
+    modest
+    narrow
+    paltry
+    poor
+    short
+    slight
+    small-scale
+    diminutive
+    little
+    mini
+    minute
+    petite
+    scanty
+    trifling
+    wee
+    bitty
+    inconsequential
+    piddling
+    pint-sized
+    pocket-sized
+    puny
+    teensy
+    teeny
+    itsy-bitsy
+    itty-bitty
+    teeny-weeny
+    undersized
+
+adj_many
+	many
+	bountiful
+	countless
+	numerous
+	endless
+	no end of
+	too many
+	a variety of
+	a multitude of
+	oodles of
+	quite a number of
+    so many
+	how many
+
+adj_few
+	few
+    less
+    a scattering of
+    a trifling amount of
+    an inconsequential number of
+    meager
+    negligible
+    not many
+    not too many
+    a paltry number of
+    a piddling amount of
+    rare
+    scarcely any
+    some
+    a sparse amount of
+    sporadic
+    straggling
+    a thin scattering of
+    uncommon
+    infrequent
+    a couple
+    a handful
+    a few
+
+adj_tactile
+	smooth
+	rough
+	bumpy
+	hard
+	soft
+	wet
+	dry
+	cold
+	warm
+
+adj_taste
+	delicious
+	disgusting
+	sweet
+	savory
+	salty
+	spicy
+	bland
+	flavorful
+
+adj_smell
+    stinky
+    smelly
+    fetid
+    putrid
+    foul
+    rank
+    rancid
+	fragrant
+    floral
+    aromatic
+    perfumed
+    odorous
+
+adj_new
+	new
+    brand-new
+	fresh
+	young
+    recent
+    novel
+    cutting-edge
+    latest
+
+adj_old
+	old
+	worn
+	used
+	aged
+	ancient
+	antique
+    traditional
+	out-of-date
+	stale
+
+adj_shape
+	long
+	short
+	wide
+	narrow
+	thin
+	thick
+    rounded
+    angular
+
+adj_color
+	@color_blood
+	@color_warm
+	@color_cool
+	@color_bright
+	@color_dull
+	@color_light
+	@color_dark
+	@color_red
+    @color_orange
+    @color_yellow
+    @color_green
+    @color_blue
+    @color_purple
+    @color_pink
+    @color_brown
+    @color_white
+    @color_black
+
+color_blood
+	candy red: 0.001
+	red: 0.001
+	burgundy
+	rust
+	bronze: 0.5
+	umber: 0.5
+	gold: 0.33
+	ochre: 0.33
+	lime: 0.2
+	yellow-green: 0.2
+	olive: 0.125
+    green: 0.2
+	jade: 0.076
+	teal: 0.048
+	aqua: 0.048
+	cerulean: 0.029
+	cobalt: 0.029
+	blue: 0.048
+	indigo: 0.018
+	purple: 0.011
+	violet: 0.007
+	fuschia: 0.004
+
+color_warm
+	@color_red
+    @color_orange
+    @color_yellow
+	@color_pink
+
+color_cool
+    @color_green
+    @color_blue
+    @color_purple
+
+color_bright
+	@color_white
+	bright
+	shining
+	brilliant
+	saturated
+	vibrant
+	neon
+    blazing
+	dazzling
+    intense
+	luminous
+	radiant
+	vivid
+	glossy
+	
+color_dull
+	@color_brown
+	@color_black
+	dull
+	muted
+	muddy
+	desaturated
+    cloudy
+    dismal
+    hazy
+    dun
+    faded
+    ashen
+    ashy
+    murky
+    dingy
+
+color_light
+	@color_white
+	light
+	pale
+	pastel
+	baby
+	unsaturated
+	bleached
+
+color_dark
+	@color_black
+	dark
+	shadowy
+	shadowed
+	shady
+	dim
+	gloomy
+	lightless
+	darkened
+
+color_red
+	red
+    cardinal
+    coral
+    crimson
+    flaming
+    maroon
+    blooming
+    brick
+    burgundy
+    carmine
+    cerise
+    cherry
+    chestnut
+    claret
+    copper
+    garnet
+    puce
+    ruby
+    russet
+    rust
+    sanguine
+    scarlet
+    titian
+    vermilion
+    bloodshot
+    flushed
+    inflamed
+    roseate
+    ruddy
+
+color_orange
+	orange
+    apricot
+    cantaloupe
+    carrot
+    peach
+    tangerine
+
+color_yellow
+	yellow
+	mustard
+	amber
+    bisque
+    blond
+    buff
+    cream
+    gold
+    ivory
+    lemon
+    citrine
+    saffron
+    sandy
+    sunny
+    tawny
+    xanthous
+    sallow
+
+color_green
+    green
+    lime
+    olive
+    jade
+    aquamarine
+    beryl
+    chartreuse
+    fir
+    forest
+    grassy
+    emerald
+    kelly green
+    malachite
+    mossy
+    peacock
+    pine
+    sage
+    sea-green
+    spinach
+    verdigris
+    vert
+    viridian
+    neon green
+
+color_blue
+	blue
+    cerulean
+    cobalt
+    indigo
+    azure
+    beryl
+    navy
+    royal
+    sapphire
+    turquoise
+    ultramarine
+    cadet blue
+    sky blue
+    electric blue
+
+color_purple
+	purple
+	violet
+	lavender
+    lilac
+    mauve
+    periwinkle
+    plum
+    amethyst
+    heliotrope
+    mulberry
+    orchid
+    wine-dark
+    amaranthine
+    violaceous
+    bruised
+
+color_pink
+	pink
+	fuchsia
+	magenta
+    pomegranate
+    blush
+    coral
+    flush
+    rose
+    salmon
+    roseate
+    hot pink
+    lightish red
+    neon pink
+    pastel
+
+color_brown
+	brown
+    bay
+    beige
+    bronze
+    buff
+    chestnut
+    chocolate
+    cinnamon
+    cocoa
+    coffee
+    earthy
+    ecru
+    fawn
+    ginger
+    hazel
+    henna
+    khaki
+    mahogany
+    ochre
+    sepia
+    sorrel
+    tan
+    toast
+    umber
+    auburn
+    burnt sienna
+    terra-cotta
+
+color_white
+	white
+	pale
+	snow
+	alabaster
+    blanched
+    bleached
+    frosted
+    ivory
+    light
+    pasty
+    pearly
+    wan
+    chalky
+    hoary
+    milky
+    pallid
+    snowy
+    waxen
+
+color_black
+	black
+	coal
+	tar
+    charcoal
+    obsidian
+    ebony
+    jet
+    onyx
+    pitch
+    raven
+    sable
+    slate
+    sloe
+    dusky
+    ebon
+    inky
+    shadowy
+    sooty
+    starless
+    stygian
+
+adj_material
+	@metal
+    @wood
+    @stone
+    @fabric
+	ceramic
+	porcelain
+	bone
+	plastic
+	rubber
+    paper
+	papyrus
+    glass
+    ectoplasm
+    flesh
+    fur
+    feathers
+    corruption
+    liquid
+    ice
+
+metal
+	metal
+	aluminum
+	tin: 0.75
+	lead
+    iron
+	nickel: 0.75
+	copper
+	zinc: 0.5
+	palladium: 0.5
+	silver
+	tungsten: 0.5
+	iridium: 0.5
+	platinum
+	gold
+    mercury: 0.1
+	steel
+	brass
+	bronze
+	titanium
+	mythril: 0.2
+	adamantium: 0.2
+
+wood
+	wood
+	pine
+    spruce
+    cedar
+    fir
+    oak
+    maple
+    walnut
+    cherry
+    birch
+    poplar
+    mahogany
+    ash
+    boxwood
+    elm
+    ironwood
+    sandalwood
+    willow
+    bark: 0.5
+    bamboo: 0.75
+
+stone
+	stone
+	rock
+	granite
+	jasper
+    marble
+    obsidian
+    sandstone
+    slate
+    basalt
+    limestone
+    travertine
+    concrete
+
+fabric
+	cloth
+	fabric
+	drapery
+	curtains
+	asbestos
+	batik
+	burlap
+	calico
+    canvas
+    cashmere
+    cotton
+    cloth-of-gold
+    chiffon
+    duck
+    denim
+    doeskin
+    fleece
+    flannel
+    fishnet
+    gauze
+    gingham
+    hemp
+    jersey
+    lace
+    leather
+    linen
+    muslin
+    mesh
+    net
+    nylon
+    poplin
+    quilt
+    ribbon
+    satin
+    silk
+    suede
+    taffeta
+    terrycloth
+    tweed
+    twill
+    velvet
+    velour
+    yarn
