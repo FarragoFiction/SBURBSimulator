@@ -1,8 +1,7 @@
-﻿Text Engine Word List
+﻿TextEngine Word List
 
 
 //adjective order: opinion-size-age-shape-colour-origin-material-purpose
-
 
 
 
@@ -13,7 +12,9 @@ adjective
     @adj_large
     @adj_small
     @adj_many
+    @adj_much
     @adj_few
+    @adj_less
     @adj_tactile
     @adj_taste
     @adj_smell
@@ -23,6 +24,7 @@ adjective
     @adj_color
     @adj_material
 //@adj_purpose - I can't think of a good way to use this for now
+//Many and few are for countable nouns; much and less are for uncountable nouns.
 
 
 adj_positive
@@ -51,7 +53,6 @@ adj_positive
     spiffy: 0.1
     vaunted: 0.1
 
-
 adj_negative
     bad
     terrible
@@ -78,7 +79,7 @@ adj_negative
     godawful
     inadequate
     incorrect
-    not good
+    not-good
     substandard
     unsatisfactory
     aggravating
@@ -88,12 +89,10 @@ adj_negative
     ridonkulous: 0.1
     scandalous: 0.1
 
-
 adj_surprising
     surprising
     unbelievable
-    beyond belief
-    hard to believe
+    hard-to-believe
     unconvincing
     far-fetched
     farfetch'd: 0.001
@@ -105,8 +104,7 @@ adj_surprising
     inconceivable
     unthinkable
     unimaginable
-    hard to swallow
-
+    hard-to-swallow
 
 adj_large
     large
@@ -148,7 +146,6 @@ adj_large
     your mom: 0.01
     very #adj_large#: 0.05
 
-
 adj_small
     small
     tiny
@@ -186,34 +183,53 @@ adj_small
     itty-bitty: 0.1
     teeny-weeny: 0.1
 
-
 adj_many
     many
-    bountiful
     countless
     numerous
     endless
-    noendof
+    no end of
     too many
     a variety of
     a multitude of
     oodles of
     quite a number of
     so many
-    how many
-
+    a lot of
+    lots of
+    how many: 0.1
+    
+adj_much
+    much
+    lots of
+    a lot of
+    abundant
+    bountiful
+    a generous amount of
+    so much
+    too much
+    no end of
 
 adj_few
     few
-    less
+    fewer
     a scattering of
-    a trifling amount of
     an inconsequential number of
-    meager
-    negligible
     not many
     not too many
     a paltry number of
+    some
+    a thin scattering of
+    a couple
+    a handful
+    a few
+
+adj_less
+    less
+    a trifling amount of
+    meager
+    negligible
+    not much
     a piddling amount of
     rare
     scarcely any
@@ -221,14 +237,7 @@ adj_few
     a sparse amount of
     sporadic
     straggling
-    a thin scattering of
-    uncommon
-    infrequent
-    a couple
-    a handful
-    a few
-
-
+        
 adj_tactile
     smooth
     rough
@@ -240,7 +249,6 @@ adj_tactile
     cold
     warm
 
-
 adj_taste
     delicious
     disgusting
@@ -250,7 +258,6 @@ adj_taste
     spicy
     bland
     flavorful
-
 
 adj_smell
     stinky
@@ -266,7 +273,6 @@ adj_smell
     perfumed
     odorous
 
-
 adj_new
     new
     brand-new
@@ -275,8 +281,6 @@ adj_new
     recent
     novel
     cutting-edge
-    latest
-
 
 adj_old
     old
@@ -289,7 +293,6 @@ adj_old
     out-of-date
     stale
 
-
 adj_shape
     long
     short
@@ -299,7 +302,6 @@ adj_shape
     thick
     rounded
     angular
-
 
 adj_color
     @color_blood
@@ -345,19 +347,16 @@ color_blood
     violet: 0.007
     fuchsia: 0.004
 
-
 color_warm
     @color_red
     @color_orange
     @color_yellow
     @color_pink
 
-
 color_cool
     @color_green
     @color_blue
     @color_purple
-
 
 color_bright
     @color_white
@@ -392,16 +391,13 @@ color_dull
     murky
     dingy
 
-
 color_light
     @color_white
     light
     pale
     pastel
-    baby
     unsaturated
     bleached
-
 
 color_dark
     @color_black
@@ -413,7 +409,6 @@ color_dark
     gloomy
     lightless
     darkened
-
 
 color_red
     red
@@ -437,12 +432,10 @@ color_red
     scarlet
     titian
     vermilion
-    bloodshot
     flushed
     inflamed
     roseate
     ruddy
-
 
 color_orange
     orange
@@ -451,7 +444,6 @@ color_orange
     carrot
     peach
     tangerine
-
 
 color_yellow
     yellow
@@ -470,7 +462,6 @@ color_yellow
     tawny
     xanthous
     sallow
-
 
 color_green
     green
@@ -497,7 +488,6 @@ color_green
     viridian
     neon green
 
-
 color_blue
     blue
     cerulean
@@ -513,7 +503,6 @@ color_blue
     cadet blue
     sky blue
     electric blue
-
 
 color_purple
     purple
@@ -532,7 +521,6 @@ color_purple
     violaceous
     bruised
 
-
 color_pink
     pink
     fuchsia
@@ -548,7 +536,6 @@ color_pink
     lightish red
     neon pink
     pastel
-
 
 color_brown
     amber
@@ -577,7 +564,6 @@ color_brown
     burnt sienna
     terra-cotta
 
-
 color_white
     white
     pale
@@ -597,7 +583,6 @@ color_white
     pallid
     snowy
     waxen
-
 
 color_black
     black
@@ -621,7 +606,6 @@ color_black
     starless
     stygian
 
-
 adj_material
     @metal
     @wood
@@ -642,7 +626,6 @@ adj_material
     corruption
     liquid
     ice
-
 
 metal
     metal
@@ -667,7 +650,6 @@ metal
     mythril: 0.2
     adamantium: 0.2
 
-
 wood
     wood
     pine
@@ -691,7 +673,6 @@ wood
     bark: 0.25
     bamboo: 0.5
 
-
 stone
     stone
     rock
@@ -705,8 +686,34 @@ stone
     limestone
     travertine
     concrete: 0.75
-
-
+    @semiPrecious: 0.25
+    @gem: 0.01
+    
+semiPrecious
+    jade
+    agate
+    amethyst
+    carnelian
+    jasper
+    quartz
+    tiger's eye
+    lapis lazuli
+    amber
+    jet
+    garnet
+    hematite
+    moonstone
+    obsidian
+    coral
+    
+gem
+    opal
+    pearl
+    ruby
+    sapphire
+    emerald
+    diamond
+    
 fabric
     cloth
     fabric
@@ -722,7 +729,6 @@ fabric
     doeskin
     fleece
     flannel
-    fishnet
     gauze
     gingham
     hemp
@@ -730,6 +736,7 @@ fabric
     leather
     linen
     muslin
+    netting
     nylon
     quilt
     ribbon
