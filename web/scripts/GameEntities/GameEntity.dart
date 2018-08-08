@@ -268,6 +268,7 @@ class GameEntity extends Object with StatOwner   {
         sylladex = new Sylladex(this);
         //;
         //default non player thingy.
+        //if i don't copy this it eventually loses it's required trait and i don't know why
         this.specibus = SpecibusFactory.CLAWS.copy();
         this.addBuff(new BuffSpecibus(this)); //programatic
         this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
