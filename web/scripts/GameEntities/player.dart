@@ -1894,6 +1894,7 @@ class Player extends GameEntity{
         this.bloodColor = replayPlayer.bloodColor;
         this.leftHorn = replayPlayer.leftHorn;
         this.specibus = replayPlayer.specibus.copy();
+        print("specibus is $specibus with traits ${specibus.traits}, required trait is ${specibus.requiredTrait}, the replay player has ${replayPlayer.specibus} with traits ${replayPlayer.specibus.traits} required trait is ${replayPlayer.specibus.requiredTrait}");
         this.rightHorn = replayPlayer.rightHorn;
         this.interest1 = replayPlayer.interest1;
         this.interest2 = replayPlayer.interest2;

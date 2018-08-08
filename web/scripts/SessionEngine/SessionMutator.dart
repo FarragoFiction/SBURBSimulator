@@ -977,6 +977,10 @@ class MetaPlayerHandler {
     Player makeFU(Session s) {
         s.logger.info("Making fu");
         Player player = randomPlayerNoDerived(s, SBURBClassManager.PAGE, Aspects.VOID);
+
+        player.deriveSpecibus = false;
+        player.specibus = new Specibus("Sauce", ItemTraitFactory.PIGEON, [ ItemTraitFactory.CORRUPT, ItemTraitFactory.OBSCURING]);
+        print("fu has specibus ${player.specibus}");
         player.quirk = randomHumanQuirk(s.rand);
 
         player.copyFromOCDataString("b=%C2%80%40%009%C3%BEU%04%17%0F%258&s=,,Classism,Genocide,feudalUltimatum&x=nkgA");
@@ -1007,8 +1011,6 @@ class MetaPlayerHandler {
         player.object_to_prototype = new PotentialSprite("Aku", s);
         player.sprite.addPrototyping(player.object_to_prototype);
 
-        player.deriveSpecibus = false;
-        player.specibus = new Specibus("Sauce", ItemTraitFactory.PIGEON, [ ItemTraitFactory.CORRUPT, ItemTraitFactory.OBSCURING]);
 
 
         Fraymotif f = new Fraymotif("Shitpost For Dear Life", 13);

@@ -67,7 +67,7 @@ class Item implements Comparable<Item> {
 
     double get rank {
         double ret = 0.0;
-        print("about to calculate over all rank from trait list $traits");
+        print("about to calculate over all rank for $this from trait list $traits");
         for(ItemTrait it in traits) {
             ret += it.rank;
         }

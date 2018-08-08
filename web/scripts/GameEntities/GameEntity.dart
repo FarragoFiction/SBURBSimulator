@@ -268,7 +268,7 @@ class GameEntity extends Object with StatOwner   {
         sylladex = new Sylladex(this);
         //;
         //default non player thingy.
-        this.specibus = SpecibusFactory.CLAWS;
+        this.specibus = SpecibusFactory.CLAWS.copy();
         this.addBuff(new BuffSpecibus(this)); //programatic
         this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
        //crashes if(getStat(Stats.CURRENT_HEALTH) <= 0) setStat(Stats.CURRENT_HEALTH, 10);
