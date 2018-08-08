@@ -915,7 +915,7 @@ class GameEntity extends Object with StatOwner   {
 
         String stopScenesString = json["stopMechanisms"];
 
-        loadStopMechanisms(stopScenesString);
+        if(stopScenesString != null) loadStopMechanisms(stopScenesString);
 
     }
 

@@ -105,6 +105,7 @@ class NPCHandler
         session.logger.info("TEST BULLSHIT: setting up big bads from ${bigBadsFromFile.length} data strings, $bigBadsFromFile");
         for(String line in bigBadsFromFile) {
             if(line.isNotEmpty) {
+                session.logger.info("processing $line");
                 BigBad newBB = BigBad.fromDataString(line, session);
                 newBB.setStat(Stats.HEALTH, 130);
                 newBB.heal();
