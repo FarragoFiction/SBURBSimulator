@@ -884,13 +884,13 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void copyFromJSON(String jsonString) {
-        print("trying to copy from json");
+        print("trying to copy from json $jsonString");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         name = json["name"];
         description = json["description"];
         canStrife = json["canStrife"] == "true"? true : false ;
         unconditionallyImmortal = json["unconditionallyImmortal"] == "true" ? true : false ;
-        serializableSceneStrings = json["serializableSceneStrings"].split(",");
+        if(json["serializableSceneStrings"] != null) serializableSceneStrings = json["serializableSceneStrings"].split(",");
 
         String statString = json["stats"];
         loadStats(statString);
@@ -900,7 +900,7 @@ class GameEntity extends Object with StatOwner   {
         loadFraymotifs(fraymotifString);
         print("loaded fraymotifs");
 
-        specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
+        if(json["specibus"] != null) specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
         print("loaded specibus");
 
         String sylladexString = json["sylladex"];
