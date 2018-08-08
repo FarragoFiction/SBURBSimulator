@@ -67,6 +67,7 @@ class Item implements Comparable<Item> {
 
     double get rank {
         double ret = 0.0;
+        print("about to calculate over all rank from trait list $traits");
         for(ItemTrait it in traits) {
             ret += it.rank;
         }
@@ -125,9 +126,10 @@ class Item implements Comparable<Item> {
 
     void loadTraits(String weirdString) {
         traits.clear();
+        weirdString = weirdString.replaceAll("[","").replaceAll("]","");
         List<String> traitStrings = weirdString.split(",");
         for(String s in traitStrings) {
-            traits.add(ItemTraitFactory.itemTraitNamed(s));
+            traits.add(ItemTraitFactory.itemTraitNamed(s.trim()));
         }
     }
 

@@ -122,6 +122,7 @@ class ItemTraitFactory {
   static Iterable<ItemTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
 
   static ItemTrait itemTraitNamed(String name) {
+      print("trying to find trait named $name");
     for(ItemTrait itemTrait in allTraits) {
       if(itemTrait.descriptions.contains(name)) return itemTrait;
     }
