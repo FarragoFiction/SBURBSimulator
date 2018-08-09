@@ -995,7 +995,7 @@ class Session {
             ret = "??? Frog";
         }
         if(spacePlayer !=null) {
-            logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
+            //logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
         }else {
             logger.info("AB: Uh. JR. There's no space player. What the fuck did you break this time???");
         }

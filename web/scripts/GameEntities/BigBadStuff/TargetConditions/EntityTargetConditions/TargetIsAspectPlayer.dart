@@ -41,9 +41,9 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
   @override
   bool conditionForFilter(GameEntity item) {
       if (item is Player) {
-          print("TEST BULLSHIT: $item is a player");
+          //print("TEST BULLSHIT: $item is a player");
           if((item as Player).aspect.name == aspectName) {
-              print("TEST BULLSHIT: $item is a $aspectName player so not going to remove");
+              //print("TEST BULLSHIT: $item is a $aspectName player so not going to remove");
               return false; //don't remove if i'm this aspect
           }else {
               return true;

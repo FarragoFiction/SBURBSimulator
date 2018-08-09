@@ -69,7 +69,7 @@ class Strife {
         checkForSuddenEnding(div); //everyone is killed. or absconded in denizen case. calls processEnding on own.
         bool over = strifeEnded();
         if (over || strifeIsOver) {
-            session.logger.info("I think the strife is over after $turnsPassed turns");
+            //session.logger.info("I think the strife is over after $turnsPassed turns");
             Team winner = findWinningTeam();
             if (winner != null) {
                 winner.won = true;

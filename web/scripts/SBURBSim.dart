@@ -354,7 +354,7 @@ String joinList<T>(Iterable<T> list, [String joiner = ""]) => joinCollection(lis
 void appendHtml(Element element, String html, [bool force = false]) {
     //TODO does this break anything?
     if(!(SimController.instance is AuthorBot) || force) {
-        element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted);
+        element.appendHtml(html, treeSanitizer: NodeTreeSanitizer.trusted,validator: new NodeValidatorBuilder()..allowElement("span"));
     }else {
        // ;
     }

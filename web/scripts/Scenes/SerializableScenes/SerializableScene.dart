@@ -107,7 +107,7 @@ class  SerializableScene extends Scene {
     }
 
   void doEffects() {
-      print("doing effect for $gameEntity, effects for living is $effectsForLiving, $effectsForLands");
+      //print("doing effect for $gameEntity, effects for living is $effectsForLiving, $effectsForLands");
       for(ActionEffect e in effectsForLands) {
           e.applyEffect();
       }

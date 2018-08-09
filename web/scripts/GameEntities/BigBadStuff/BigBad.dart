@@ -75,7 +75,7 @@ class BigBad extends NPC {
       super.copyFromDataString(data);
       String dataWithoutName = data.split("$labelPattern")[1];
       String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
-      print("big bad raw json for ${data.split("$labelPattern")[0]} is $rawJSON");
+      //print("big bad raw json for ${data.split("$labelPattern")[0]} is $rawJSON");
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
       name = json["name"];
       description = json["description"];

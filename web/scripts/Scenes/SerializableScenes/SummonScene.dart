@@ -33,7 +33,6 @@ class SummonScene extends SerializableScene {
   @override
   void doAction() {
       session.stats.bigBadActive = true;
-      session.logger.info("TEST BIG BAD: is this it? the first big bad has spawned? they probably don't do text replacement tho");
       gameEntity.active = true;
   }
 }

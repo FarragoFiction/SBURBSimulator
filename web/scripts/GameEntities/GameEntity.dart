@@ -397,7 +397,7 @@ class GameEntity extends Object with StatOwner   {
 
     String checkDiedInAStrife(List<Team> enemyTeams) {
         if (getStat(Stats.CURRENT_HEALTH) <= 0) {
-            session.logger.info("${title()} died in a strife, hp is ${Stats.CURRENT_HEALTH}");
+            //session.logger.info("${title()} died in a strife, hp is ${Stats.CURRENT_HEALTH}");
 
             //TODO check for jack, king
             GameEntity jack = Team.findJackInTeams(enemyTeams);
@@ -885,7 +885,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void copyFromJSON(String jsonString) {
-        print("trying to copy from json $jsonString");
+        //print("trying to copy from json $jsonString");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         name = json["name"];
         description = json["description"];
@@ -895,18 +895,18 @@ class GameEntity extends Object with StatOwner   {
 
         String statString = json["stats"];
         loadStats(statString);
-        print("loaded stats");
+        //print("loaded stats");
 
         String fraymotifString = json["fraymotifs"];
         loadFraymotifs(fraymotifString);
-        print("loaded fraymotifs");
+       // print("loaded fraymotifs");
 
         if(json["specibus"] != null) specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
-        print("loaded specibus");
+        //print("loaded specibus");
 
         String sylladexString = json["sylladex"];
         loadSylladex(sylladexString);
-        print("loaded sylladex");
+        //print("loaded sylladex");
 
 
         String scenesString = json["scenes"];
@@ -924,7 +924,7 @@ class GameEntity extends Object with StatOwner   {
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
-            print("dynamic json thing for action scene is is  $d");
+            //print("dynamic json thing for action scene is is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
             SerializableScene ss = new SerializableScene(session);
@@ -967,7 +967,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void loadStats(String weirdString) {
-        print("trying to decode weirdString $weirdString");
+        //print("trying to decode weirdString $weirdString");
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what){
@@ -993,12 +993,12 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void loadSylladex(String weirdString) {
-        print ("weird string is $weirdString");
+        //print ("weird string is $weirdString");
         sylladex.inventory.clear();
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
-            print("sylladex d is $d");
+            //print("sylladex d is $d");
             Item ss = new Item("",<ItemTrait>[]);
             JSONObject j = new JSONObject();
             j.json = d;
