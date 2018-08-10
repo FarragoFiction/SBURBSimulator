@@ -244,8 +244,9 @@ class Session {
         mutator.syncToSession(this);
         logger.info("Session made with ${sessionHealth} health.");
        resetAvailableClasspects();
-        getPlayersReady();
+       //reinit first, to match scratches and yards and shit, make players with fresh seed essentially
         reinit("new session");
+        getPlayersReady();
     }
 
     Moon stringToMoon(String string) {
@@ -666,16 +667,21 @@ class Session {
 
     //TODO oh god why is this still here and not somwhere sane like in a SimController.
     Future<Null> scratch() async {
-        //;
+        logger.info("scratching");
         numPlayersPreScratch = this.players.length;
         var ectoSave = this.stats.ectoBiologyStarted;
 
         reinit("scratch");
+        print("after reinit seed is: ${rand.spawn().nextInt()}");
+
         this.stats.scratched = true;
         this.stats.scratchAvailable = false;
         this.stats.doomedTimeline = false;
+        print("before ragged players seed is: ${rand.spawn().nextInt()}");
+
         this.didReckoning = false;
         raggedPlayers = findPlayersFromSessionWithId(this.players, this.session_id); //but only native
+        logger.info("the ragged players are $raggedPlayers");
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
         //hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
         //to leave a permanent little 'thank you' here as well. (and on the glitch page) I laughed, I cried, I realzied that fixing guardians
@@ -683,9 +689,12 @@ class Session {
         //it's not as simple as remebering to do easter eggs here, but that's a good start. i also gotta
         //rework the easter egg guardian code. last time it worked guardians were an array a session had, but now they're owned by individual players.
         //plus, at the time i first re-enabled the easter egg, session 612 totally didn't have a scratch, so i could exactly test.
+        print("before make players seed is: ${rand.spawn().nextInt()}");
+
         this.makePlayers();
         this.randomizeEntryOrder();
         this.makeGuardians(); //after entry order established
+        print("after i made the players they are $players");
         this.createScenesForPlayers();
 
         this.stats.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
@@ -1262,14 +1271,17 @@ class Session {
         completer = new Completer<Session>();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
-        ////print("reinit with seed: "  + Math.seed);
+        print("reinit with seed: ${rand.spawn().nextInt()}");
         this.timeTillReckoning = this.rand.nextIntRange(minTimeTillReckoning, maxTimeTillReckoning); //rand.nextIntRange(10,30);
         this.sessionType = this.rand.nextDouble(); //rand.nextDouble();
         createScenesForPlayers();
         //this.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
+        print("before reinit moons with seed: ${rand.spawn().nextInt()}");
         this.setupMoons("reiniting session");
+        print("after reinit moons with seed: ${rand.spawn().nextInt()}");
+
         //fix refereances
 
         this.reckoningStarted = false;
@@ -1277,12 +1289,14 @@ class Session {
         this.stats.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
         this.doomedTimelineReasons = <String>[];
         this.stats.ectoBiologyStarted = false;
+        print("at end of reinit with seed: ${rand.spawn().nextInt()}");
+
     }
 
 
 
     void makePlayers() {
-        logger.info("making players");
+        logger.info("making players from seed ${rand.spawn().nextInt()}");
         this.players = <Player>[];
         resetAvailableClasspects();
         int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);

@@ -18,6 +18,8 @@ List<ArtCategory> categores = <ArtCategory>[
     new ArtCategory("star.eyes' Memes FanArt",  "star.eyes' memes",                     "stareyes",         url: "/FanArt/star.eyes/"),
     new ArtCategory("Wranglers",              "Wranglers",                    "Wranglers",             url: "/FanArt/Wranglers/"),
     new ArtCategory("Misc FanArt",              "Miscellaneous Art",                    "misc",             url: "/FanArt/miscFanArt/"),
+    new ArtCategory("LOHAE FanArt",              "LOHAE Art",                    "LOHAE",             url: "/FanArt/LOHAE/"),
+    new ArtCategory("WigglerSim FanArt",              "WigglerSim Art",                    "WigglerSim",             url: "/FanArt/WigglerSim/"),
     new ArtCategory("Gif FanArt",               "Gif Gallery",                          "gifs",             url: "/FanArt/gifs/"),
     new ArtCategory("Octobermas FanArt",        "Octobermas!",                          "octobermas",       url: "/FanArt/OctoberMas/"),
     new ArtCategory("ShogunSim FanArt",         "ShogunSim Gallery",                    "shogunsim",        url: "/FanArt/ShogunSim/"),
