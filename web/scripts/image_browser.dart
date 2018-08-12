@@ -193,7 +193,7 @@ int getHighestSequentialFile(List<String> files, String filename) {
 }
 
 Future<Null> drawHair() async {
-    List<String> files = await getDirectoryListing("images/Hair/");
+    List<String> files = await getDirectoryListing("/images/Hair/");
 
     int count = getHighestSequentialFile(files, "hair");
 
@@ -203,12 +203,12 @@ Future<Null> drawHair() async {
 }
 
 Future<Null> drawHorns() async {
-    List<String> files = await getDirectoryListing("images/Horns/");
+    List<String> files = await getDirectoryListing("/images/Horns/");
 
     int count = getHighestSequentialFile(files, "left");
 
     for (int i=1; i<=count; i++) {
-        addImageToPage(makeSpriteStack(<String>["images/Horns/right$i.png","images/Hair/head.png","images/Horns/left$i.png"]), i.toString(), true, imageClass: "head", tileClass: "headTile");
+        addImageToPage(makeSpriteStack(<String>["/images/Horns/right$i.png","/images/Hair/head.png","/images/Horns/left$i.png"]), i.toString(), true, imageClass: "head", tileClass: "headTile");
     }
 }
 
