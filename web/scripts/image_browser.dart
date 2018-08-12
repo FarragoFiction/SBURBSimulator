@@ -193,22 +193,22 @@ int getHighestSequentialFile(List<String> files, String filename) {
 }
 
 Future<Null> drawHair() async {
-    List<String> files = await getDirectoryListing("/images/Hair/");
+    List<String> files = await getDirectoryListing("/SBURBSimE/images/Hair/");
 
     int count = getHighestSequentialFile(files, "hair");
 
     for (int i=1; i<=count; i++) {
-        addImageToPage(makeSpriteStack(<String>["images/Hair/hair_back$i.png","images/Hair/head.png","images/Hair/hair$i.png"]), i.toString(), true, imageClass: "head", tileClass: "headTile");
+        addImageToPage(makeSpriteStack(<String>["/SBURBSimE/images/Hair/hair_back$i.png","/SBURBSimE/images/Hair/head.png","/SBURBSimE/images/Hair/hair$i.png"]), i.toString(), true, imageClass: "head", tileClass: "headTile");
     }
 }
 
 Future<Null> drawHorns() async {
-    List<String> files = await getDirectoryListing("/images/Horns/");
+    List<String> files = await getDirectoryListing("/SBURBSimE/images/Horns/");
 
     int count = getHighestSequentialFile(files, "left");
 
     for (int i=1; i<=count; i++) {
-        addImageToPage(makeSpriteStack(<String>["/images/Horns/right$i.png","/images/Hair/head.png","/images/Horns/left$i.png"]), i.toString(), true, imageClass: "head", tileClass: "headTile");
+        addImageToPage(makeSpriteStack(<String>["/SBURBSimE/images/Horns/right$i.png","/SBURBSimE/images/Hair/head.png","/SBURBSimE/images/Horns/left$i.png"]), i.toString(), true, imageClass: "head", tileClass: "headTile");
     }
 }
 
