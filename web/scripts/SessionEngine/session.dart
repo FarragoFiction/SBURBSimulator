@@ -730,15 +730,11 @@ class Session {
         }
     }
 
-    Future<Null> restartSession() async {
-        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
-        window.scrollTo(0, 0);
-    }
-
     Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
         await checkEasterEgg(this);
+        startSession();
     }
 
     Future<Null> reckoningTick([num time]) async {
@@ -1032,9 +1028,8 @@ class Session {
         this.makeGuardians(); //after entry order established
         //don't need to call easter egg directly
         //print(npcHandler.debugNPCs());
-
-        this.easterCallBack(this);
-
+        print("oh hai there, i'm about to do the easter egg callback");
+        restartSession();
         return;
     }
 
@@ -1045,22 +1040,26 @@ class Session {
         }
     }
 
-    void easterCallBack(Session that) {
+    void restartSession() {
         //now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
         //after alll, i could be from a combo session.
         //but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
-        this.aliensClonedOnArrival = that.aliensClonedOnArrival;
+        this.aliensClonedOnArrival = aliensClonedOnArrival;
         ////print("adding this many clone aliens: " + this.aliensClonedOnArrival.length);
         ////print(getPlayersTitles(this.aliensClonedOnArrival));
         List<Player> aliens = <Player>[]; //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens;
-        for (num i = 0; i < that.aliensClonedOnArrival.length; i++) {
-            aliens.add(that.aliensClonedOnArrival[i]);
+        for (num i = 0; i < aliensClonedOnArrival.length; i++) {
+            aliens.add(aliensClonedOnArrival[i]);
         }
-        that.aliensClonedOnArrival = <Player>[]; //jettison old clones.
+        aliensClonedOnArrival = <Player>[]; //jettison old clones.
         if(!(this is DeadSession)) addAliensToSession(aliens);
 
-        restartSession(); //in controller
+        print("restarting session but it apparently doesn't actually do anything???");
+        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
+        window.scrollTo(0, 0);
+        startSession();
     }
+
     void easterCallBackScratch(Session that) {
         if (this.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
             setEctobiologicalSource(this.players, this.session_id);
