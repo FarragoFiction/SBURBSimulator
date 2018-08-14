@@ -258,7 +258,7 @@ class CarapaceSummary extends BigBadSummary {
     }
 
     //if you add a carapace summary to yourself, you add all it's values to your own data.
-    void add(CarapaceSummary other) {
+    void add(BigBadSummary other) {
         for(CarapaceStats cs in other.data.values) {
             if(data.containsKey(cs.initials)) {
                 data[cs.initials].add(cs);

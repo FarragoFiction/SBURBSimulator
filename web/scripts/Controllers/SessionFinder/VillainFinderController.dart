@@ -34,6 +34,7 @@ void syncCache() {
     print("There are ${cache.values.length} cached summaries.");
     for(SessionSummary s in cache.values) {
         carapaceSummary.add(s.carapaceSummary);
+        bigBadSummary.add(s.bigBadSummary);
     }
 
 }

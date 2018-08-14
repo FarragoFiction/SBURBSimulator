@@ -47,7 +47,7 @@ class BigBadStats {
 
 
     void loadBigBad(GameEntity bigBad) {
-        //;
+        print("loading a big bad $bigBad");
         this.name = bigBad.name;
         this.description = bigBad.description;
         statsMap["Times Activated"] = bigBad.active ? 1 : 0;
@@ -63,7 +63,7 @@ class BigBadStats {
         }
 
         //;
-
+        print("times activated is is ${statsMap["Times Activated"]}");
     }
 
     void turnPage() {
@@ -232,6 +232,17 @@ class BigBadSummary {
     void defaultSession() {
         session = new Session(-13);
         session.setupMoons("getting a default session");
+    }
+
+    //if you add a bigbad summary to yourself, you add all it's values to your own data.
+    void add(BigBadSummary other) {
+        for(BigBadStats cs in other.data.values) {
+            if(data.containsKey(cs.name)) {
+                data[cs.name].add(cs);
+            }else {
+                data[cs.name] = cs;
+            }
+        }
     }
 
     void init() {
