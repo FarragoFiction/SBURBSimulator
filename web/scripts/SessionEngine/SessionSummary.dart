@@ -500,6 +500,7 @@ class SessionSummary {
         ;
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.carapaceSummary = new CarapaceSummary(session);
+        summary.bigBadSummary = new BigBadSummary(session);
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         if(session.derse != null) {
