@@ -21,6 +21,7 @@ class SessionSummary {
     static String SAVE_TAG = "SESSIONSUMMARIESCACHE";
 
     CarapaceSummary carapaceSummary;
+    BigBadSummary bigBadSummary;
 
     //since stats will be hash, don't need to make junior
     int session_id = null;
@@ -122,9 +123,11 @@ class SessionSummary {
        // ;
         //        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
         carapaceSummary = new CarapaceSummary(null); //all zeroes
+        bigBadSummary = new BigBadSummary(null);
        // ;
 
         carapaceSummary.fromJSON(json["carapaceSummary"]);
+        bigBadSummary.fromJSON(json["bigBadSummary"]);
         //;
 
         // ;
@@ -171,6 +174,7 @@ class SessionSummary {
         JSONObject json = new JSONObject();
 
         json["carapaceSummary"] = carapaceSummary.toJSON().toString();
+        json["bigBadSummary"] = bigBadSummary.toJSON().toString();
 
         //TODO what to do about players and mini players? for now, leave off.
 

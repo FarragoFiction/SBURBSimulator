@@ -247,4 +247,33 @@ class BigBadSummary {
         }
     }
 
+    JSONObject toJSON() {
+        JSONObject container  = new JSONObject();
+        List<JSONObject> jsonArray = new List<JSONObject>();
+        for(BigBadStats cs in data.values) {
+            jsonArray.add(cs.toJSON());
+        }
+        container["data"] = jsonArray.toString();
+        return container;
+    }
+
+    void fromJSON(String jsonString) {
+        //  ;
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+        List<dynamic> what = JSON.decode(json["data"]);
+        for(dynamic d in what) {
+            //;
+            JSONObject j = new JSONObject();
+            j.json = d;
+            //;
+            BigBadStats s = new BigBadStats(null);
+            //;
+            s.fromJSON(j.toString());
+            // ;
+            data[s.name] = s;
+        }
+
+    }
+
+
 }

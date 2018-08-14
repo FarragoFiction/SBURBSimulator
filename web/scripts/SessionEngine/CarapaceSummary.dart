@@ -246,6 +246,7 @@ class CarapaceSummary extends BigBadSummary {
 
     }
 
+    @override
     JSONObject toJSON() {
         JSONObject container  = new JSONObject();
         List<JSONObject> jsonArray = new List<JSONObject>();
