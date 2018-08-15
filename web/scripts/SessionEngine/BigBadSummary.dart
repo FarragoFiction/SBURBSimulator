@@ -47,7 +47,7 @@ class BigBadStats {
 
 
     void loadBigBad(GameEntity bigBad) {
-        print("loading a big bad $bigBad");
+        print("loading a big bad $bigBad, it wasn't default");
         this.name = bigBad.name;
         this.description = bigBad.description;
         statsMap["Times Activated"] = bigBad.active ? 1 : 0;
@@ -61,9 +61,11 @@ class BigBadStats {
         if(bigBad.session.session_id >0 && !bigBad.session.stats.scratched && !bigBad.session.stats.hadCombinedSession) {
             if (bigBad.active) activeSessions.add(bigBad.session.session_id);
         }
-
         //;
-        print("times activated is is ${statsMap["Times Activated"]}");
+        print("done loading big bad");
+        for(String key in statsMap.keys) {
+            print("key $key is ${statsMap[key]}");
+        }
     }
 
     void turnPage() {
@@ -206,6 +208,7 @@ class BigBadStats {
         JSONObject json = new JSONObject();
         for(String key in statsMap.keys) {
             json[key] = statsMap[key].toString();
+            print("$name json $key is ${json[key]}");
         }
         json["name"] = name;
         json["activeSessions"] = activeSessions.toString();
@@ -236,7 +239,9 @@ class BigBadSummary {
 
     //if you add a bigbad summary to yourself, you add all it's values to your own data.
     void add(BigBadSummary other) {
+        print("adding big bad summary ${other}");
         for(BigBadStats cs in other.data.values) {
+            print("processing big bad stats with name ${cs.name}");
             if(data.containsKey(cs.name)) {
                 data[cs.name].add(cs);
             }else {
@@ -246,12 +251,10 @@ class BigBadSummary {
     }
 
     void init() {
-        List<GameEntity> npcs = session.npcHandler.bigBads;
+        List<GameEntity> npcs = session.activatedNPCS;
         for(GameEntity g in npcs) {
-            if(g is Carapace) {
-                CarapaceStats s = new CarapaceStats(g);
-                data[s.initials] = s;
-            }else {
+            if(g is BigBad){
+                print("TEST AB WRITING: I am initializing a big bad summary from a real session. the big bad is $g");
                 BigBadStats s = new BigBadStats(g);
                 data[s.name] = s;
             }

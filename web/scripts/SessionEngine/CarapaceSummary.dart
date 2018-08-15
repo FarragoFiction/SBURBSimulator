@@ -268,6 +268,7 @@ class CarapaceSummary extends BigBadSummary {
         }
     }
 
+    @override
     void init() {
 
         List<GameEntity> npcs = session.activatedNPCS;
@@ -280,7 +281,6 @@ class CarapaceSummary extends BigBadSummary {
         if(session.derse != null) npcs.addAll(session.npcHandler.dersites);
         if(session.battlefield != null) npcs.add(session.battlefield.blackKing);
         if(session.derse != null) npcs.add(session.derse.queen);
-
 
         for(GameEntity g in npcs) {
             if(g is Carapace) {

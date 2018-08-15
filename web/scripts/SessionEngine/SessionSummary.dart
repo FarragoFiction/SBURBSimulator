@@ -108,6 +108,7 @@ class SessionSummary {
     }
 
     static void saveAllSummaries(List<SessionSummary> summaries) {
+        print("AB is writing ShogunBot a data packet about big bads, how cute");
         List<JSONObject> jsonArray = new List<JSONObject>();
         for(SessionSummary p in summaries) {
             //TODO refuse to save if any easter eggs are active or if gnosis 4 happened.
