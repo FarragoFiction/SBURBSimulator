@@ -20,21 +20,24 @@ Future<Null> main() async {
 }
 
 Future<Null> displayCards() async {
-    for(CarapaceStats cs in carapaceSummary.data.values) {
-        cs.getCard(div);
-    }
 
     for(BigBadStats bs in bigBadSummary.data.values) {
         bs.getCard(div);
     }
+
+    for(CarapaceStats cs in carapaceSummary.data.values) {
+        cs.getCard(div);
+    }
+
+
 }
 
 void syncCache() {
     Map<String, SessionSummary> cache =  SessionSummary.loadAllSummaries();
     print("There are ${cache.values.length} cached summaries.");
     for(SessionSummary s in cache.values) {
-        carapaceSummary.add(s.carapaceSummary);
         bigBadSummary.add(s.bigBadSummary);
+        carapaceSummary.add(s.carapaceSummary);
     }
 
 }

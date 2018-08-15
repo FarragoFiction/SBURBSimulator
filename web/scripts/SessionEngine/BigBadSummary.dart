@@ -200,6 +200,7 @@ class BigBadStats {
             statsMap[key] = num.parse(json[key]);
         }
         name = json["name"];
+        description = json["description"];
         activeSessions  = JSONObject.jsonStringToIntArray(json["activeSessions"]);
 
     }
@@ -212,6 +213,7 @@ class BigBadStats {
             print("$name json $key is ${json[key]}");
         }
         json["name"] = name;
+        json["description"] = description;
         json["activeSessions"] = activeSessions.toString();
 
         // ;
