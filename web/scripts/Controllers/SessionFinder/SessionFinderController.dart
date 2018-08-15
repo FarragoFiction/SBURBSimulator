@@ -259,9 +259,9 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
 
   //stripped out tournament stuff, that'll be a different controller.
   @override
-  SessionSummary summarizeSession(Session session) {
+  SessionSummary summarizeSession(Session session, Duration duration) {
     ////;
-    print("summarizing: ${session}");
+    print("summarizing: ${session}, duration is $duration");
     backup = SimController.instance.storyElement.text;
     //SimController.instance.clearElement(SimController.instance.storyElement);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
@@ -272,7 +272,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     }
     sessionsSimulated.add(session.session_id);
     SessionSummary sum = session.generateSummary();
-
+    sum.duration = duration;
     allSessionsSummaries.add(sum);
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.

@@ -851,7 +851,7 @@ class GameEntity extends Object with StatOwner   {
         json["description"] = description;
         json["canStrife"] = canStrife.toString();
         json["unconditionallyImmortal"] = unconditionallyImmortal.toString();
-        json["serializableSceneStrings"] = serializableSceneStrings.toString();
+        json["serializableSceneStrings"] = serializableSceneStrings.join(",");
 
         List<JSONObject> sceneArray = new List<JSONObject>();
         for(Scene s in scenes) {
@@ -891,7 +891,13 @@ class GameEntity extends Object with StatOwner   {
         description = json["description"];
         canStrife = json["canStrife"] == "true"? true : false ;
         unconditionallyImmortal = json["unconditionallyImmortal"] == "true" ? true : false ;
-        if(json["serializableSceneStrings"] != null) serializableSceneStrings = json["serializableSceneStrings"].split(",");
+
+        if(json["serializableSceneStrings"] != null) {
+            String tmp = json["serializableSceneStrings"];
+            tmp = tmp.replaceAll("[", "");
+            tmp = tmp.replaceAll("]", ""); //just in case it's using the old fucking shit
+            serializableSceneStrings = tmp.split(",");
+        }
 
         String statString = json["stats"];
         loadStats(statString);
@@ -1008,11 +1014,11 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void addSerializableScenes() {
-        //session.logger.info("adding serializable scenes for $this");
+        session.logger.info("adding serializable scenes for $this, they are $serializableSceneStrings");
         //don't do this right nwo, but when i do it makes their ai a little harder to predict
         //serializableSceneStrings.shuffle();
         for(String s in serializableSceneStrings) {
-            addSerializalbeSceneFromString(s);
+            if(s!= null && s.isNotEmpty) addSerializalbeSceneFromString(s);
         }
     }
 

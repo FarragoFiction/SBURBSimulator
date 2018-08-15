@@ -19,6 +19,7 @@ class MiniPlayer {
 
 class SessionSummary {
     static String SAVE_TAG = "SESSIONSUMMARIESCACHE";
+    Duration duration;
 
     CarapaceSummary carapaceSummary;
     BigBadSummary bigBadSummary;
@@ -393,13 +394,13 @@ class SessionSummary {
         String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>";
 
         if (this.childSession != null) {
-            html = "$html${this.decodeLineageGenerateHTML()}";
+            html = "$html${this.decodeLineageGenerateHTML()} (Simulation time: $duration)";
             html = "$html<br><a target = '_blank' href='observatory.html?seed=${this.session_id}&$params'>View session ${this.session_id} in the Observatory</a>";
         } else {
             String scratch = "";
             if (this.scratched) scratch = " (scratched)";
 
-            html = "$html<Br><b> Session</b>: <a target = '_blank' href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
+            html = "$html<Br><b> Session</b>: <a target = '_blank' href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a> (Simulation time: $duration)";
             html = "$html<br><a target = '_blank' href='observatory.html?seed=${this.session_id}&$params'>View in the Observatory</a>";
         }
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";

@@ -166,7 +166,7 @@ void syncForm() {
     }
 
     void copyFromDataString(String data) {
-        //print("copying from data: $data, looking for labelpattern: $labelPattern");
+        print("copying from data: $data, looking for labelpattern: $labelPattern");
         String dataWithoutName = data.split("$labelPattern")[1];
         //print("data without name is $dataWithoutName");
 
