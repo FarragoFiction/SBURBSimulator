@@ -120,6 +120,14 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     for(Scene s in g.scenes) {
         if(s is SerializableScene) printOneScene(s,list);
     }
+
+    if(g.stopMechanisms != null && g.stopMechanisms.isNotEmpty) {
+        UListElement list = new UListElement()..setInnerHtml("<h3>Resist Scenes:</h3>");
+        subcontainer.append(list);
+        for(SerializableScene s in (g as BigBad).stopMechanisms) {
+            printOneScene(s,list);
+        }
+    }
 }
 
 void carapaceExtras(Carapace c, Element container) {
