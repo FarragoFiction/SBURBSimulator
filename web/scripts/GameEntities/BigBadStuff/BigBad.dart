@@ -269,7 +269,7 @@ class BigBadForm {
         print("drawing add stop mechanisms button");
         stopSceneSection = new DivElement();
         stopSceneSection.classes.add("stopSceneSection");
-        stopSceneSection.setInnerHtml("<h1>Stop Scenes</h1><hr>A Stop Scene is locked to target the original owner of it. Any target conditions you add will be modifiers on top of that. Lands can only be targeted if the original owner is also targetable. (i.e. alive and available) It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
+        stopSceneSection.setInnerHtml("<h1>Player Reactions</h1><hr>A Player Reaction Scene is locked to target the original owner of it. Any target conditions you add will be modifiers on top of that. Lands can only be targeted if the original owner is also targetable. (i.e. alive and available) It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
         stopSceneSection.style.border = "1px solid black";
         stopSceneSection.style.padding = "10px";
         ButtonElement button = new ButtonElement();

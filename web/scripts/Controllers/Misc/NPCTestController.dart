@@ -122,7 +122,7 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     }
 
     if(g.stopMechanisms != null && g.stopMechanisms.isNotEmpty) {
-        UListElement list = new UListElement()..setInnerHtml("<h3>Resist Scenes:</h3>");
+        UListElement list = new UListElement()..setInnerHtml("<h3>Player Response Scenes: (every player gets this scene when they show up)</h3>");
         subcontainer.append(list);
         for(SerializableScene s in (g as BigBad).stopMechanisms) {
             printOneScene(s,list);
