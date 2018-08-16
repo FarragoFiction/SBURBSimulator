@@ -236,8 +236,10 @@ class BigBadSummary {
     }
 
     void defaultSession() {
-        session = new Session(-13);
-        session.setupMoons("getting a default session");
+        session =Session.defaultSession;
+        if(session.prospitRing == null) {
+            session.setupMoons("getting a default session");
+        }
     }
 
     //if you add a bigbad summary to yourself, you add all it's values to your own data.

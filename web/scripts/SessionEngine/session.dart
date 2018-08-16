@@ -12,6 +12,18 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
+
+    static Session _defaultSession;
+    //will speed shogun bot up , who makes a LOT of default sessions for loading
+    //creating a session is slower than it used to be cuz it does all the init stuff too
+    //and sessions got REALLY big post npc update
+    static Session get  defaultSession {
+        if(_defaultSession == null) {
+            _defaultSession = new Session(-13);
+        }
+        return _defaultSession;
+
+    }
     //this will be set by reinit
     Completer<Session> completer; // PL: this handles the internal callback for awaiting a session!
 
@@ -234,7 +246,6 @@ class Session {
     Session(int this.session_id) {
         globalInit();
         logger = Logger.get("Session: $session_id", false);
-
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
@@ -243,8 +254,8 @@ class Session {
         stats.initialGameEntityId = GameEntity.getIDCopy();
         mutator.syncToSession(this);
         logger.info("Session made with ${sessionHealth} health.");
-       resetAvailableClasspects();
-       //reinit first, to match scratches and yards and shit, make players with fresh seed essentially
+        resetAvailableClasspects();
+        //reinit first, to match scratches and yards and shit, make players with fresh seed essentially
         reinit("new session");
         getPlayersReady();
     }

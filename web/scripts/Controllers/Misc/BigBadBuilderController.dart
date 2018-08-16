@@ -6,7 +6,7 @@ import "dart:async";
 
 
 Element div;
-BigBad bigBad = new BigBad("Sample Big Bad", new Session(-13));
+BigBad bigBad = new BigBad("Sample Big Bad", Session.defaultSession);
 void main() {
   loadNavbar();
   start();
