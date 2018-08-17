@@ -374,8 +374,10 @@ class SceneForm {
     }
 
     void syncDataBoxToScene() {
+        print("trying to sync data box, owner is ${scene.gameEntity}");
         dataBox.value = scene.toDataString();
         if(scene.gameEntity is BigBad) {
+            print("i'm owned by a big bad so syncing it too");
             (scene.gameEntity as BigBad).syncForm();
         }
     }

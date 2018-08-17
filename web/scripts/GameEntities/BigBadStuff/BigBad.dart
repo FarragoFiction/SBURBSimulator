@@ -143,7 +143,7 @@ class BigBad extends NPC {
 
 
   void syncForm() {
-      print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes");
+      print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes and ${stopMechanisms.length} reaction scenes");
      form.syncDataBoxToBigBad();
 
   }
@@ -269,11 +269,11 @@ class BigBadForm {
         print("drawing add stop mechanisms button");
         stopSceneSection = new DivElement();
         stopSceneSection.classes.add("stopSceneSection");
-        stopSceneSection.setInnerHtml("<h1>Player Reactions</h1><hr>A Player Reaction Scene is locked to target the original owner of it. Any target conditions you add will be modifiers on top of that. Lands can only be targeted if the original owner is also targetable. (i.e. alive and available) It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
+        stopSceneSection.setInnerHtml("<h1>Players Reactions</h1><hr>A Player Reaction Scene is locked to target the original owner of it. Any target conditions you add will be modifiers on top of that. Lands can only be targeted if the original owner is also targetable. (i.e. alive and available) It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
         stopSceneSection.style.border = "1px solid black";
         stopSceneSection.style.padding = "10px";
         ButtonElement button = new ButtonElement();
-        button.text = "Add A Stop Scene";
+        button.text = "Add A Players Reaction";
         container.append(stopSceneSection);
         container.append(button);
         button.onClick.listen((Event e)
@@ -281,6 +281,7 @@ class BigBadForm {
             print("adding a stop scene");
             StopScene stopScene = new StopScene(bigBad.session);
             stopScene.originalOwner = bigBad;
+            stopScene.gameEntity = bigBad; //will be replace dlater
             bigBad.stopMechanisms.add(stopScene);
             stopScene.renderForm(stopSceneSection);
             syncDataBoxToBigBad();

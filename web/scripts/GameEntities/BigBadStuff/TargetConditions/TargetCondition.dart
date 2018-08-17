@@ -192,6 +192,7 @@ abstract class TargetConditionLiving extends TargetCondition {
                   print("adding new entity condition ${newCondition} to $owner, now its ${owner.triggerConditionsLiving}");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
+                  owner.syncForm();
               }
           }
       });
