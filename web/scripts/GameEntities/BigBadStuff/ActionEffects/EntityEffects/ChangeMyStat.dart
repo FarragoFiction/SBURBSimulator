@@ -142,6 +142,6 @@ class ChangeMyStat extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new ChangeStat(scene);
+    return new ChangeMyStat(scene);
   }
 }
