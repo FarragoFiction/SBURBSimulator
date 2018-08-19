@@ -66,7 +66,7 @@ class Thief extends SBURBClass {
         items = new WeightedList<Item>()
             ..add(new Item("Lockpick",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING, ItemTraitFactory.POINTY,ItemTraitFactory.LEGENDARY],shogunDesc: "Anti-Lock Dagger",abDesc:"No matter what, you'll always have at least one.")) //like katia.
             ..add(new Item("Sneaking Suit",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.OBSCURING],shogunDesc: "Full Body Latex Suit",abDesc:"God. Why is Snake's outfit really called this. So dumb.")) //snake knows what it's about
-            ..add(new Item("Dagger",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.DAGGER],shogunDesc: "Stabbing Contraption",abDesc:"For when you wanna show 'em your stabs, I guess."));
+            ..add(new Item("Thief's Dagger",<ItemTrait>[ItemTraitFactory.METAL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.POINTY, ItemTraitFactory.EDGED, ItemTraitFactory.DAGGER],shogunDesc: "Stabbing Contraption",abDesc:"For when you wanna show 'em your stabs, I guess."));
     }
 
 

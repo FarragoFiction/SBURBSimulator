@@ -128,7 +128,7 @@ class NPCHandler
 
        // print ("TEST NPCS: initializing midnight crew");
         jack = (new Carapace("Jack Noir", session, Carapace.DERSE, firstNames: <String>["Spades","Septuple","Six","Skullduggerous"], lastNames: <String>["Slick", "Shiv","Shankmaster","Snake"], ringFirstNames: <String>["Sovereign", "Seven"], ringLastNames: <String>["Slayer", "Shanks","Stabber"])
-            ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, <ItemTrait>[ ItemTraitFactory.JACKLY])
+            ..specibus = new Specibus("JackKnife", ItemTraitFactory.KNIFE, <ItemTrait>[ ItemTraitFactory.JACKLY])
             ..distractions = <String>["is throwing a tantrum about how huge a bitch the Black Queen is.","is pretending to ride on a horse.","is so mad at paperwork.","is refusing to wear his uniform.","is stabbing some random carapace who said 'hello'.","is sharpening Occam's razor","is actually being a pretty good bureaucrat.","is hiding his scottie dogs candies."]
             ..sylladex.add(new Item("Occam's Razor",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.SMART]))
             ..sylladex.add(new Item("Horse Hitcher",<ItemTrait>[ItemTraitFactory.STICK, ItemTraitFactory.IRONICSHITTYFUNNY]))
@@ -166,7 +166,7 @@ class NPCHandler
         );
 
         midnightCrew.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Diamonds","Draconian","Dignified"], lastNames: <String>["Droog","Dignitary","Diplomat"], ringFirstNames: <String>["Dashing","Dartabout","Derelict"], ringLastNames: <String>["Destroyer","Demigod"])
-            ..specibus = new Specibus("Knife", ItemTraitFactory.KNIFE, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.CLASSY])
+            ..specibus = new Specibus("Dignified Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.CLASSY])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new GiveJackScepter(session), new GiveJackRing(session)] //order of scenes is order of priority
             ..distractions = <String>["is playing classy records. ","is reading the paper. ","is fantasizing about perfectly tailored suits.", "is hiding his swedish fish.","is reading 'classy literature' about grey ladies.","is keeping everyone calm and productive."]
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 100, Stats.SANITY: 500, Stats.HEALTH: 20, Stats.FREE_WILL: 0, Stats.POWER: 20})
@@ -538,7 +538,7 @@ class NPCHandler
         prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Kid","Kind","Keen","Knave"], lastNames: <String>["Boi"], ringFirstNames: <String>["Knight"], ringLastNames: <String>["Boi"])
             ..scenes = <Scene>[new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is being the very best, like no one ever was.","is explaining the rules to Captchacardmons.","is showing everyone his fanfictions."]
-            ..specibus = new Specibus("Friendship Bracelet", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL])
+            ..specibus = new Specibus("BestFriendship Bracelet", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL])
             ..fraymotifs.add(f)
             ..companionChance = 0.95 //almost guaranteed to follow you
             ..sylladex.add(new Item("Catpchacardmon Ball",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.SENTIENT]))
