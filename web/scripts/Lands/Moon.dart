@@ -201,7 +201,7 @@ class Moon extends Land {
             this.queen.name = "Black Queen"; //override crowned name
         }
 
-        this.queen.specibus = new Specibus("Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
+        this.queen.specibus = new Specibus("${this.queen.name}'s Blade", ItemTraitFactory.BLADE, [ ItemTraitFactory.QUEENLY]);
         queen.stats.setMap(<Stat, num>{Stats.HEALTH: 500, Stats.FREE_WILL: -100, Stats.POWER: 50});
         queen.heal();
     }
