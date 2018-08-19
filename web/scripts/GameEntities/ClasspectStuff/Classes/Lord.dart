@@ -68,7 +68,7 @@ class Lord extends SBURBClass {
 
         items = new WeightedList<Item>()
 
-            ..add(new Item("Uno Reverse Card",<ItemTrait>[ItemTraitFactory.CARD, ItemTraitFactory.PLYWOOD, ItemTraitFactory.CLASSY],shogunDesc: "Shoguns Card",abDesc:"Some kind of memey bullshit."))
+            ..add(new Item("Deck of Uno Cards",<ItemTrait>[ItemTraitFactory.CARD, ItemTraitFactory.PLYWOOD, ItemTraitFactory.CLASSY],shogunDesc: "Shoguns Card",abDesc:"Some kind of memey bullshit."))
             ..add(new Item("Lord's Cape",<ItemTrait>[ItemTraitFactory.CLOTH, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY],shogunDesc: "Shoguns Cape",abDesc:"Lord Shit"))
             ..add(new Item("Drawing Tablet",<ItemTrait>[ItemTraitFactory.SMARTPHONE, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.CLASSY],shogunDesc: "Shitpost Etching Table",abDesc:"Have fun drawing grids."))
             ..add(new Item("How to Make Friends And Influence People",<ItemTrait>[ItemTraitFactory.LEGENDARY,ItemTraitFactory.PAPER, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.ENRAGING, ItemTraitFactory.BOOK],shogunDesc: "Book for Nerds",abDesc:"Good luck with that. You'll need it, asshole."));
