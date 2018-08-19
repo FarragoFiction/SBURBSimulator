@@ -287,7 +287,7 @@ class NPCHandler
             ..specibus = new Specibus("Flamethrower", ItemTraitFactory.PISTOL, <ItemTrait>[ ItemTraitFactory.ONFIRE])
             ..distractions = <String>["is very nervous.","is having a nervous breakdown.","is trying to figure out the difference between a teddy bear and a knife."]
             ..sideLoyalty = 10
-            ..sylladex.add(new Item("Teddy Bear",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.ROBOTIC2]))
+            ..sylladex.add(new Item("RoboTeddy",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.ROBOTIC2]))
             ..description = "A Prospitian broad with a famously low Mangrit stat, which is only as low as her Nervousness threshold. Its anybodies guess why the White Queen allows her to go out in public armed with a flamethrower."
             ..sylladex.add(new Item("Paint Stripper",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.ONFIRE]))
             ..companionChance = 0.1
@@ -324,7 +324,7 @@ class NPCHandler
         );
 
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Wayward","Wizardly","Warweary","Wandering"], lastNames: <String>["Vagrant","Villain","Vassal","Villager"], ringFirstNames: <String>["Wicked"], ringLastNames: <String>["Villian"])
-            ..specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.METAL])
+            ..specibus = new Specibus("Mayoral Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.POINTY,ItemTraitFactory.METAL])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekScepter(session)] //order of scenes is order of priority
             ..royaltyOpinion = -1000
             ..description = "Not just another carapacian you can meet on the Battlefield. A rogue Dersite pawn, WV wants democracy - or, at the very least, lack of all-destroying monarchy, and is willing to put the work in to get it."
@@ -351,7 +351,7 @@ class NPCHandler
         );
 
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Zipping","Zany","Zephyr"], lastNames: <String>["Coach","Coaster","Coder"], ringFirstNames: <String>["Zero"], ringLastNames: <String>["Casualties"])
-            ..specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.METAL])
+            ..specibus = new Specibus("Fast Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.POINTY,ItemTraitFactory.METAL])
             ..sylladex.add(new Item("Postal Code Map",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.PAPER]))
             ..description = "ZC LOVES the mail, not because of letters and packages (how boring), but because of how elegantly designed Derse's Zip Code Map is. You can find anything so quickly, so easily! How did a goverment famous for Red Tap make something so fast?"
             ..scenes = <Scene>[new MailSideQuest(session), new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
@@ -435,7 +435,7 @@ class NPCHandler
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Meticulous","Miles","Maverick","Mass"], lastNames: <String>["Edgeworth","Egoist","Engineer","Edge","Effect"], ringFirstNames: <String>["Mass"], ringLastNames: <String>["Effect"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is memeing at something.","is being a renegade of some sort.","is choosing between two ridiculously polarized options."]
-            ..specibus = new Specibus("Rifle", ItemTraitFactory.RIFLE, <ItemTrait>[ ItemTraitFactory.SHOOTY])
+            ..specibus = new Specibus("Avenger Rifle", ItemTraitFactory.RIFLE, <ItemTrait>[ ItemTraitFactory.SHOOTY])
             ..sylladex.add(new Item("Model Spaceship",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.SMART]))
             ..serializableSceneStrings.add("Mash A and Keep Punching1:___ N4IgdghgtgpiBcICyEDOALABAQUxMAJpgNIwwAOmACgK5gDG6AlmAOYCMIANCAGYA2EAG4B7AE4AVGAA8ALghCYAygGEAogDk1AfQDyAdS0AlbRuxI1meiLC8mBGGFn8AnphaomqWakyyRfugwmJgS2EYA4moSpuY6uiZmFkqBELKYqADWTOTkLKx4-PyBwQRMEPwirDTB+EQYIiKy+ZgwQjBiLrLMbKnpXmAA5P1QUHTB-pgARjRFMD7uvg52YEyyMK4lmADuEG6TqORkRGJ0gV6YrNAwAHSY+kFgW6HhUTFJ8YlxKeQiLAsiGjpbppEpuCBiRzDVrtJ6sebNXoARxq3kwkN2YgIqC4IVUmnihjUXwsO2EMF8EF2+yCTDEVhs9A6YF82zWWAgmAEOXI+HS9EETCgfUwwyCl2umHQaD8AXoaUYmBolDqlyY7UwLkBGWY6TajlkNAqrkGN24IFkEPhsl0YDgiFkpzgPEdTFY8LEKhsZWaNlQABl1fkFABtYAAHRAQt+YktTn04gIkfgkY0AHpsJGuKndBJk5HeBVUDAs5HILB8yAAJKobD8dUl7iR6PiOOyKtOSsABkjAF9cRGo1AY22E1jK+nM02QBpc5XHTVS+BrpWABJoL3D-jzGAEABidO8-rqAEVUT4ly3Y3yO7Ju32B83h62+WOkwhUxml7O8x++EXG2zZcKz-GsqEEFwOkvZ9rycW97xAftMEHK9R0TCcv2nH9K0LfhiyXctGxTatUD3MQRCgAARDp8OnVCb07P8e0Qx8hxHV90L-SdvznP9cNooDCMrGsjDqCjoPYuDGOIgAmZjewAXXNV13Q6L1CDWJg-WPQhQyUngYF4XgYHoHw93EQMhGDRAwyfSTZDfDCp0Elc-xQMRMgPMRvDPCkfGwVBN3Ibd1gkl8nA0GgoCmKCmL7fSQEM4zTNIiy6lQPTEKAA")
             ..serializableSceneStrings.add("Mash A and Keep Punching2:___ N4IgdghgtgpiBcICyEDOALABAQUxMAJpgNIwwAOmACgK5gDG6AlmAOYBMIANCAGYA2EAG4B7AE4AVGAA8ALghCYAygGEAogDk1AfQDyAdS0AlbRuxI1meiLC8mBGGFn8AnphaomqWakyyRfugwmJgS2EYA4moSpuY6uiZmFkqBELKYqADWTOTkLKx4-PyBwQRMEPwirDTB+EQYIiKy+ZgwQjBiLrLMbKnpXmAA5P1QUHTB-pgARjRFMD7uvg52YEyyMK4lmADuEG6TqORkRGJ0gV6YrNAwAHSY+kFgW6HhUTFJ8YlxKeQiLAsiGjpbppEpuCBiRzDVrtJ6sebNXoARxq3kwkN2YgIqC4IVUmnihjUXwsO2EMF8EF2+yCTDEVhs9A6YF82zWWAgmAEOXI+HS9EETCgfUwwyCl2umHQaD8AXoaUYmBolDqlyY7UwLkBGWY6TajlkNAqrkGNwk4pCYUi0ViFj0JLUKQu0qELVQIlgmAIgKmPhu-u4IFkEPhsl0YDgiFkpzgPGjTFY8LEKhsZWaNlQABl1fkFABtYAAHRAQt+YmDTn04gIxfgxY0AHpsMWuPXdBJa8XeBVUDAW8XILBOyAAJKobD8dV97jF0viCuyEdOYcABmLAF9cUWS1Aywuq1jh43mzOQBp28Pu-xe-3wNdh2OqIIXB1b3Py3yl7JVxut7Pd-OfIHjWCD1k2t7nh2oF8D206tneQ7QWOABiYgegAIh0N6nu+C5fj+ICbpg264UB1ZHuBp6QcO0Y1Leg7TnWIAABJoCmu78PMMAEJhqwAF6OJmdQAIqoj4b4AR+Tj4dBa6EX+O57mRh7QceEEXtBV7YfBDEPqgRh1B6ElKdJy7QewcnrgAuoG8aJh0KaEGsTAZkJhD5jZPAwLwvAwPQPjIeI2aumw+YkZJ+7kaplE6fe0EoGImS8UwAlgKJFI+NgqDseQnHrMZgFOBoNBQFMr6yRunkgN5vn+aggViG52IeYRQA")
@@ -518,7 +518,7 @@ class NPCHandler
         prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Parcel","Perigrine","Postal","Prospitian"], lastNames: <String>["Mistress","Mendicate","Mailer", "Maillady"], ringFirstNames: <String>["Punititve","Prospitian"], ringLastNames: <String>["Marauder","Monarch"])
             ..scenes = <Scene>[new MailSideQuest(session),new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is flipping the fuck out about how great the MAIL is.","is delivering packages to unimportant carapaces.","is just sort of generally being a badass."]
-            ..specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.METAL])
+            ..specibus = new Specibus("Letter Opener Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.POINTY, ItemTraitFactory.METAL])
             ..stats.setMap(<Stat, num>{Stats.MOBILITY: 500,Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..bureaucraticBullshit = <String>["needs to pick up a package that's in lockup.","has to deliver a small package to the Archagrent.","wants to pick up some mail to deliver."]
@@ -595,7 +595,7 @@ class NPCHandler
         prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Holy","Happy","High"], lastNames: <String>["Preacher","Pediatrician","Priest","Pope"], ringFirstNames: <String>["Hallowed"], ringLastNames: <String>["Patrician"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is expounding on the virutes of the Vast Croak to any who would listen.","is meditating on how to be more Frog-like.","is performing an acapello song of croaks."]
-            ..specibus = new Specibus("Religious Text", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL])
+            ..specibus = new Specibus("Sacred Frog Text", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER, ItemTraitFactory.MAGICAL])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..serializableSceneStrings.add("Help Breed Frogs:___ N4IgdghgtgpiBcIASMA2AHABAIQE4xgBNMAxXAewHMBnEAGhADNUIA3c3AFRgA8AXBCE4ALGJgDKAYQCiAOWkB9APIB1eQCUFsgIIBZaZgBG5AO7VMEMMWoBjXBHQxzEPpj6jMmTtvUBxaZxaeopKmjr64hZWmMIArlCGqACeFtQA1uYAloxuoilQECkQ1NSZ1K7uMFCYmWC5MJm4MeTJmISxfJlOAHSY9CB8ELiUMHxKYHCIjBCo1HAMfLiZlCO4kuRWmZ0b1AAymay1lIIA2sAAOiCZUOgcg2B8KhyEl-CXsgD02pd070qcr0u01mMB+l0gsEBIAAktRtKgDqD6JdrrdcPc+NCHlCAAyXAC+dEwFyuNzulkezyh4nQEBsSN+IFk-yhwLmYPA0CRbyucOojhsfAACiwkjBcBzUeSHli+LiCUSSVL0RSnrgXggwLFUKhGcyAQhLotYgzwVyoUhimQqJKySqZdjDSA8SBCcSUXaMWqNTzPt9kUyWU62abOZCnbD1JZCOQoLa0RjZVCAEwATgJAF1+otlqt1pttmA9tHTlmGDBGIwYILqCQOPtDmBjogzh6E6qqU6-RyIdzLr5EdbKPHpXxZPFDOL5a6yyAK1Wa3XcLto7QW1n8UA")
             ..serializableSceneStrings.add("Kill the Blasphemer:___ N4IgdghgtgpiBcIDSBLANmgBAFwBY0wCE0IBnAB31gCcQAaEAMxIDcB7agFRgA9sEQmAMoBhAKIA5MQH0A8gHUpAJWkSAggFkxmFKUylcbAMYBrGABNMEMJYjlyEDBZxt9MAhCIAZNUIAKABJiGrIAqkKYfqFKfl7aAGJKsgDiOmA4+JiYnGpKyWKcqpoysirqWkIA5HqkAJ4YEOa8AHTZ+LWYUBBmmACOAK4oppgA7hwmmGyMGTBQdFY2M5ihEgGyXgCamGt+fmJKLpgARmxs2M30INgQ1ADmMNiyYHCI2NT9cAxvKLf31CJsGwobAoQGkLwoFgoMC3AQAbWAAB0QCgoOQONcwNh5BxzMj4MiJAB6NTIuiE2ScfHIxiOUgwMnIyCwakgACSpDUaEhDPoyNR6OomOwbKxrIADMiAL7zJEotEY6zY3GsoQOIy88kgCSU1m0tD0xngaC8gkozkUGBGbB+Ei1GDUI0CxVY0XYCXS2X8hVCpU46h4hBgfoYLU6qkIGl0zVMk2sgJkPz9ajkNAweLUNi3J0+4Vuj0gGWYOXO31Y-2Bs3E0l87W6yNMaNG5mm5FstRQESZkbPQNa0t5sUNyWFgC6l2+vwdAKBILBXms5nh44YMEYjCt2FI8Q4EKhMPhJdzfpVDerzbjDdFpGuqAwOcFwok-SgRwdBaLR8fJ4DrPPtZbVkvDYekMyzB8XWwZ9X3fYdpRXEA1w3a1t13RdSGXQsgA")
@@ -661,7 +661,7 @@ class NPCHandler
         prospitians.add(new Carapace(null, session,Carapace.PROSPIT, firstNames: <String>["Yogistic","Yard","Yelling"], lastNames: <String>["Dark","Doctor","Dentist"], ringFirstNames: <String>["Yelling"], ringLastNames: <String>["Dacnomaniac"])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["has the weird feeling that he should be more than this.","is treating random carapace patients.","is reading various medical texts."]
-            ..specibus = new Specibus("Stethoscope", ItemTraitFactory.BUST, <ItemTrait>[ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT])
+            ..specibus = new Specibus("Hippocratic Bust", ItemTraitFactory.BUST, <ItemTrait>[ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT])
             ..bureaucraticBullshit = <String>["needs to make sure his medical license is up to date.","is filing for time off in six months."]
             ..sylladex.add(new Item("Stethescope",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.HEALING]))
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})

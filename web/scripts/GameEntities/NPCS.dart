@@ -264,7 +264,7 @@ class Leprechaun extends NPC {
         possibleSpecibi.add( new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BLUNT]));
         possibleSpecibi.add( new Specibus("Hammer", ItemTraitFactory.HAMMER, [ ItemTraitFactory.HAMMER, ItemTraitFactory.BLUNT]));
         possibleSpecibi.add( new Specibus("Spear", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]));
-        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.POINTY, ItemTraitFactory.EDGED]));
         possibleSpecibi.add( new Specibus("Rod", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.MAGICAL]));
         possibleSpecibi.add( new Specibus("Gun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]));
 
@@ -628,7 +628,7 @@ class Consort extends NPC {
         possibleSpecibi.add( new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BLUNT]));
         possibleSpecibi.add( new Specibus("Hammer", ItemTraitFactory.HAMMER, [ ItemTraitFactory.HAMMER, ItemTraitFactory.BLUNT]));
         possibleSpecibi.add( new Specibus("Spear", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]));
-        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]));
+        possibleSpecibi.add( new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL,ItemTraitFactory.POINTY, ItemTraitFactory.EDGED]));
         possibleSpecibi.add( new Specibus("Rod", ItemTraitFactory.STAFF, [ ItemTraitFactory.WOOD, ItemTraitFactory.MAGICAL]));
         possibleSpecibi.add( new Specibus("Gun", ItemTraitFactory.PISTOL, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]));
 
