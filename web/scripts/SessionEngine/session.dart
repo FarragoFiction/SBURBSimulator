@@ -188,6 +188,7 @@ class Session {
 
                     if(g.active) {
                        // logger.info("I think that $g just activated as a carapace.");
+                        g.heal();
                         _activatedNPCS.add(g);
                         g.processCardFor();
                         toRemove.add(g);
