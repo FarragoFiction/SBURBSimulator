@@ -1,3 +1,5 @@
+import '../PlayerSpriteHandler.dart';
+import 'dart:async';
 import 'dart:convert';
 import "dart:html";
 import "dart:math" as Math;
@@ -1701,10 +1703,12 @@ class Player extends GameEntity{
     }
 
     void renderSelf(String caller) {
-       // ;
         if(Drawing.checkSimMode()) return;
         if (canvas == null) this.initSpriteCanvas();
         this.clearSelf();
+        //TODO someday tackle the headache that would be needed to make all of rendering async
+        //await PlayerSpriteHandler.drawSpriteFromScratch(canvas, this);
+
         Drawing.drawSpriteFromScratch(canvas, this);
     }
 

@@ -1,3 +1,4 @@
+2018-08-20: Oh my fuck I finally untangled whatever demon pacts past JR used to do the shitty slow rendering for the char creator. It's way faster now.
 2018-08-15: Shogunbot has been sped up like whoa.
 2018-08-15: Hell yes! Shogunbot and AB are finally talking about big bads!  I can finally start calibrating big bads so they aren't either impossibly rare or spammy as fuck.
 2018-08-13: HAH! Turns out pastJR was a total DUNKASS that just like...stopped mid refactoring and forgot to hook up yards again to work with AB's more efficient state??? It was total bullshit. Not to worry tho, I corrected pastJr's egregious mistakes.<br><br>ALSO in preparation  for advertising the FUCK out of LOHAE I finally got around to making a <a target="_blank" href = 'https://www.youtube.com/watch?v=lCgt4Kn_mTI&feature=youtu.be'>Patreon Intro Video</a>. See how many gigglesnorts YOU can find!!!
