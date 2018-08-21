@@ -126,6 +126,10 @@ class BigBad extends NPC {
   static BigBad fromDataString(String rawDataString, Session session) {
       BigBad ret = new BigBad("TEMPORARY", session);
       ret.copyFromDataString(rawDataString);
+      //all big bads have at least these stats
+      ret.setStat(Stats.HEALTH, 130);
+      ret.heal();
+      ret.setStat(Stats.POWER, 130);
       return ret;
   }
 
