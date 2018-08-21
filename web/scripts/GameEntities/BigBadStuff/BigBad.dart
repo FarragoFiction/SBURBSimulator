@@ -62,7 +62,7 @@ class BigBad extends NPC {
 
 
       List<JSONObject> stopSceneArray = new List<JSONObject>();
-      for(Scene s in stopMechanisms) {
+      for(Scene s in playerReactions) {
           if(s is SerializableScene) stopSceneArray.add(s.toJSON());
       }
       json["stopMechanisms"] = stopSceneArray.toString();
@@ -143,7 +143,7 @@ class BigBad extends NPC {
 
 
   void syncForm() {
-      print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes and ${stopMechanisms.length} reaction scenes");
+      print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes and ${playerReactions.length} reaction scenes");
      form.syncDataBoxToBigBad();
 
   }
@@ -152,13 +152,13 @@ class BigBad extends NPC {
       String jsonString = scene.toJSON().toString();
       List<Scene> allScenes = new List<Scene>.from(startMechanisms);
       allScenes.addAll(scenes);
-      allScenes.addAll(stopMechanisms);
+      allScenes.addAll(playerReactions);
       for(Scene s in allScenes) {
           if(s is SerializableScene) {
               if (s.toJSON().toString() == jsonString) {
                   startMechanisms.remove(s);
                   scenes.remove(s);
-                  stopMechanisms.remove(s);
+                  playerReactions.remove(s);
                   return;
               }
           }
@@ -232,7 +232,7 @@ class BigBadForm {
             s.renderForm(sceneSection);
         }
 
-        for(StopScene s in bigBad.stopMechanisms) {
+        for(StopScene s in bigBad.playerReactions) {
             s.renderForm(stopSceneSection);
         }
         syncDataBoxToBigBad();
@@ -282,14 +282,14 @@ class BigBadForm {
             StopScene stopScene = new StopScene(bigBad.session);
             stopScene.originalOwner = bigBad;
             stopScene.gameEntity = bigBad; //will be replace dlater
-            bigBad.stopMechanisms.add(stopScene);
+            bigBad.playerReactions.add(stopScene);
             stopScene.renderForm(stopSceneSection);
             syncDataBoxToBigBad();
         });
 
         //render the ones the big bad starts with
         print ("trying to render existing stop mechanisms");
-        for(StopScene s in bigBad.stopMechanisms) {
+        for(StopScene s in bigBad.playerReactions) {
             print('rendering form for $s');
             s.renderForm(stopSceneSection);
         }

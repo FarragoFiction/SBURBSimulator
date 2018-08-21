@@ -121,10 +121,10 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
         if(s is SerializableScene) printOneScene(s,list);
     }
 
-    if(g.stopMechanisms != null && g.stopMechanisms.isNotEmpty) {
+    if(g.playerReactions != null && g.playerReactions.isNotEmpty) {
         UListElement list = new UListElement()..setInnerHtml("<h3>Player Response Scenes: (every player gets this scene when they show up)</h3>");
         subcontainer.append(list);
-        for(SerializableScene s in (g as BigBad).stopMechanisms) {
+        for(SerializableScene s in (g as BigBad).playerReactions) {
             printOneScene(s,list);
         }
     }

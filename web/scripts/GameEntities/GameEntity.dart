@@ -32,7 +32,7 @@ class GameEntity extends Object with StatOwner   {
     String extraTitle = "";
 
     //mostly for big bads, but other things can have them, too
-    List<StopScene> stopMechanisms = new List<StopScene>();
+    List<StopScene> playerReactions = new List<StopScene>();
 
     //availibility set to false by scenes
     bool available = true;
@@ -952,24 +952,29 @@ class GameEntity extends Object with StatOwner   {
             StopScene ss = new StopScene(session);
             ss.originalOwner = this;
             ss.copyFromJSON(j);
-            stopMechanisms.add(ss);
+            playerReactions.add(ss);
         }
-        print ("loaded stop mechanisms $stopMechanisms");
+        print ("loaded stop mechanisms $playerReactions");
+    }
+
+    //players call this on intro, everything else in the grabActivatedX loops. not sure if dead session players will call this? i want them to
+    void activateTasks() {
+        applyStopMechanisms();
     }
 
     void applyStopMechanisms() {
-        if(stopMechanisms.isEmpty) return;
+        if(playerReactions.isEmpty) return;
         for(Player p in session.players) {
             //please don't try to defeat yourself.
             if(p!=this) {
-                for(StopScene ss in stopMechanisms) {
+                for(StopScene ss in playerReactions) {
                     ss.gameEntity = p;
                     p.scenesToAdd.add(ss);
                 }
             }
         }
         //only happens once.
-        stopMechanisms.clear();
+        playerReactions.clear();
     }
 
     void loadStats(String weirdString) {

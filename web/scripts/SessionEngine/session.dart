@@ -83,7 +83,10 @@ class Session {
 
     void activateBigBad(GameEntity bb) {
         bb.active = true;
-        if(!_activatedNPCS.contains(bb)) _activatedNPCS.add(bb);
+        if(!_activatedNPCS.contains(bb)) {
+            _activatedNPCS.add(bb);
+            bb.activateTasks();
+        }
 
     }
 
@@ -94,6 +97,7 @@ class Session {
                 //logger.info("I think that $g just activated as a big bad");
                 _activatedNPCS.add(g);
                 bbRemove.add(g);
+                g.activateTasks();
             }
         }
         for(GameEntity g in bbRemove) {
@@ -174,6 +178,7 @@ class Session {
                     //logger.info("I think that $g just activated as a special case.");
                     g.active = true;
                     _activatedNPCS.add(g);
+                    g.activateTasks();
                 }
             }
         }
@@ -192,6 +197,8 @@ class Session {
                         _activatedNPCS.add(g);
                         g.processCardFor();
                         toRemove.add(g);
+                        g.activateTasks();
+
                     }
                 }
                 for(GameEntity g in toRemove) {
