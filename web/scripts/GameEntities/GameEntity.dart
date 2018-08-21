@@ -742,7 +742,8 @@ class GameEntity extends Object with StatOwner   {
 
     //sets current hp to max hp. mostly called after strifes assuming you'll use healing items
     void heal() {
-        this.setStat(Stats.CURRENT_HEALTH, this.getStat(Stats.HEALTH));
+        //have at least one hp
+        this.setStat(Stats.CURRENT_HEALTH, Math.max(this.getStat(Stats.HEALTH),1));
     }
 
     String htmlTitleWithTip() {
@@ -959,6 +960,7 @@ class GameEntity extends Object with StatOwner   {
 
     //players call this on intro, everything else in the grabActivatedX loops. not sure if dead session players will call this? i want them to
     void activateTasks() {
+        heal();
         applyStopMechanisms();
     }
 
