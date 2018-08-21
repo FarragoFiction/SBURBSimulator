@@ -64,6 +64,7 @@ export "LandTargetConditions/IAmCrownedForLand.dart";
 export "LandTargetConditions/TargetIsFromSessionWithABStatForLand.dart";
 export "LandTargetConditions/TargetHasFeel.dart";
 export "LandTargetConditions/TargetHasSmell.dart";
+export "LandTargetConditions/MyStatIsGreaterThanValueLand.dart";
 export "LandTargetConditions/TargetHasSound.dart";
 export "LandTargetConditions/TargetIsMyLand.dart";
 export "LandTargetConditions/TargetHPIs.dart";
