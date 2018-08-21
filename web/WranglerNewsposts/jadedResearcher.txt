@@ -1,3 +1,4 @@
+2018-08-21: BigBads finally have the option of provoking a reaction in players, such as inspiring them to all try to defeat them just cuz they showed up.
 2018-08-20: Oh my fuck I finally untangled whatever demon pacts past JR used to do the shitty slow rendering for the char creator. It's way faster now.
 2018-08-15: Shogunbot has been sped up like whoa.
 2018-08-15: Hell yes! Shogunbot and AB are finally talking about big bads!  I can finally start calibrating big bads so they aren't either impossibly rare or spammy as fuck.
