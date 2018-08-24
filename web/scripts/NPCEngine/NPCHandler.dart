@@ -123,7 +123,7 @@ class NPCHandler
         List<Carapace> midnightCrew = new List<Carapace>();
 
        // print ("TEST NPCS: initializing midnight crew");
-        jack = (new Carapace("Jack Noir", session, Carapace.DERSE, firstNames: <String>["Spades","Septuple","Six","Skullduggerous"], lastNames: <String>["Slick", "Shiv","Shankmaster","Snake"], ringFirstNames: <String>["Sovereign", "Seven"], ringLastNames: <String>["Slayer", "Shanks","Stabber"])
+        jack = (new Carapace("Jack Noir", session, Carapace.DERSE, firstNames: <String>["Spades","Septuple","Six","Skullduggerous"], lastNames: <String>["Slick", "Shiv","Shankmaster","Snake"], ringFirstNames: <String>["Sovereign", "Six"], ringLastNames: <String>["Slayer", "Shivs","Stabber"])
             ..specibus = new Specibus("JackKnife", ItemTraitFactory.KNIFE, <ItemTrait>[ ItemTraitFactory.JACKLY])
             ..distractions = <String>["is throwing a tantrum about how huge a bitch the Black Queen is.","is pretending to ride on a horse.","is so mad at paperwork.","is refusing to wear his uniform.","is stabbing some random carapace who said 'hello'.","is sharpening Occam's razor","is actually being a pretty good bureaucrat.","is hiding his scottie dogs candies."]
             ..sylladex.add(new Item("Occam's Razor",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.SMART]))

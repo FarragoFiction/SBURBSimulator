@@ -161,7 +161,7 @@ bool printCorruptionMessage(Session session, ErrorEvent e) {
 
     }else if (session.players.isEmpty) {
         appendHtml(story, "<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
-        recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE, THE FREAKING *CONSORTS* WOULD PLAY THE GAME. ACTUALLY, THAT'S NOT HALF BAD AN IDEA. INTO THE PILE. ${mutatorsInPlay(session)}";
+        recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE??? THE CARAPACES WOULD SOMEHOW BREED A FROG??? ${mutatorsInPlay(session)}";
     } else if (session.players.length < 2 ) {
         appendHtml(story, "<BR>ERROR: DEAD SESSION DETECTED.");
         String url = "dead_index.html?seed=${session.session_id}&${generateURLParamsForPlayers(<Player>[session.players[0]],true)}";

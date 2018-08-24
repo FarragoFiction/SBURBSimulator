@@ -115,6 +115,7 @@ class Stat {
 
 
         double average(Iterable<StatObject> from, [bool baseStats = false]) {
+        if(from.isEmpty) return 0.0;
         return this.total(from, baseStats) / from.length;
     }
 

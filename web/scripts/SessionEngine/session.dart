@@ -32,7 +32,9 @@ class Session {
     bool plzStartReckoning = false;
     bool didReckoning = false;
     int numberPlayersOnBattlefield = 0;
+
     bool get canReckoning {
+        if(tableGuardianMode) return false;
         int difficulty = 2;//at least half of us are done
         if(stats.crownedCarapace)difficulty = players.length; // ANY of us are down (ala canon's early reckoning)
         return numberPlayersOnBattlefield > (players.length/difficulty).round();
@@ -1165,7 +1167,10 @@ class Session {
         await SimController.instance.easterEggCallBack(this);
         */
         print("about to start, seed is ${rand.spawn().nextInt()}");
-        if (doNotRender == true) {
+        if(tableGuardianMode) {
+            //no one is entering, no one needs loaded , just go
+            tick();
+        }else if (doNotRender == true) {
             intro();
         } else {
             load(this,players, getGuardiansForPlayers(players), "");
@@ -1197,6 +1202,7 @@ class Session {
 
     Future<Null> tick([num time]) async{
         this.numTicks ++;
+        if(tableGuardianMode) players.clear();
         //
         ////
         //don't start  a reckoning until at least one person has been to the battlefield.
@@ -1208,7 +1214,7 @@ class Session {
             two things can start the reckoning: enough time passing (shenanigans launch the meteors)
             or someone having both scepters.
          */
-        if(plzStartReckoning || numTicks > SimController.instance.maxTicks ||  findLiving(players).isEmpty) {
+        if(plzStartReckoning || numTicks > SimController.instance.maxTicks ||  (findLiving(players).isEmpty && !tableGuardianMode)) {
             if(numTicks > SimController.instance.maxTicks) stats.timeoutReckoning = true;
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
@@ -1443,7 +1449,7 @@ class Session {
 
     void randomizeEntryOrder() {
         this.players = shuffle(this.rand, this.players);
-        this.players[0].leader = true;
+        if(this.players.isNotEmpty)this.players[0].leader = true;
     }
 
     void switchPlayersForScratch() {
@@ -1510,7 +1516,7 @@ class Session {
         String lightBS = "";
         String innerHTML = "";
         bool debugMode = getParameterByName("debug") == "fuckYes";
-        if(debugMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}, Power coefficent: ${Stats.POWER.coefficient},  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}, Mutator: ${mutator}";
+        if(debugMode || tableGuardianMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Tick Num: $numTicks, Name: ${callingScene}  Session Health: ${sessionHealth}, Power coefficent: ${Stats.POWER.coefficient},  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}, Mutator: ${mutator}";
         if (this.sbahj) {
             ret.classes.add("sbahj");
             int reallyRand = getRandomIntNoSeed(1, 10);
@@ -1616,6 +1622,10 @@ class Session {
     }
 
     SessionSummary generateSummary() {
+        if(tableGuardianMode) {
+            //empty
+            return new SessionSummary(-13);
+        }
         return SessionSummary.makeSummaryForSession(this);
     }
 
