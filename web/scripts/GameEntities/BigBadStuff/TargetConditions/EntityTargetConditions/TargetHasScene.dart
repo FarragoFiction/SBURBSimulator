@@ -70,7 +70,9 @@ class TargetHasScene extends TargetConditionLiving {
         for(Scene s in item.scenes) {
             if(s is SerializableScene) {
                 SerializableScene ss = s as SerializableScene;
-                if(ss.toDataString() == importantWord) {
+                SerializableScene sceneFromWord = new SerializableScene(ss.session);
+                sceneFromWord.copyFromDataString(importantWord);
+                if(ss.toDataString() == sceneFromWord.toDataString()) {
                     return false; //you have it, don't remove
                 }
             }
