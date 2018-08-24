@@ -677,6 +677,12 @@ class Player extends GameEntity{
             ret += "${item.fullNameWithUpgrade}<br>";
         }
 
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>AI<hr>";
+
+        for (Scene s in scenes) {
+            ret += "${s}<br>";
+        }
+
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
 

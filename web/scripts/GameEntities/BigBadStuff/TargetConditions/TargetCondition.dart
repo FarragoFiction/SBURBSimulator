@@ -38,9 +38,9 @@ abstract class TargetCondition {
             ret = descText;
         }
         if(vriska) {
-            ret.replaceAll("target","self");
-            ret.replaceAll("Target","Self");
-            ret.replaceAll("TARGET","SELF");
+            ret = ret.replaceAll("target","self");
+            ret = ret.replaceAll("Target","Self");
+            ret = ret.replaceAll("TARGET","SELF");
         }
         return ret;
     }
@@ -143,6 +143,7 @@ abstract class TargetCondition {
             descElement  = new DivElement();
             container.append(descElement);
         }
+
         descElement.setInnerHtml(desc);
     }
 

@@ -66,6 +66,7 @@ class TargetHasScene extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
+        //print("checking if target has scene, not is $not, entity is ${scene.gameEntity}, target is ${item}");
         List<String> serializedScenes = new List<String>();
         for(Scene s in item.scenes) {
             if(s is SerializableScene) {
@@ -73,11 +74,14 @@ class TargetHasScene extends TargetConditionLiving {
                 SerializableScene sceneFromWord = new SerializableScene(ss.session);
                 sceneFromWord.copyFromDataString(importantWord);
                 if(ss.toDataString() == sceneFromWord.toDataString()) {
+                    //print(" ${ss.name} is the same thing as ${sceneFromWord.name} so dont pick $item");
                     return false; //you have it, don't remove
                 }
+            }else {
             }
         }
         //couldn't find it
+        //print("couldn't find the scene so returning true (you should reject unless not) target is $item");
         return true;
     }
 }

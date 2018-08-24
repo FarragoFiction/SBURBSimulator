@@ -107,7 +107,7 @@ class  SerializableScene extends Scene {
     }
 
   void doEffects() {
-      //print("doing effect for $gameEntity, effects for living is $effectsForLiving, $effectsForLands");
+      print("tick is ${session.numTicks} , doing effect for $gameEntity, scene is $name, chosen targets is $finalLivingTargets from all living of $livingTargets ");
       for(ActionEffect e in effectsForLands) {
           e.applyEffect();
       }
@@ -166,7 +166,7 @@ void syncForm() {
     }
 
     void copyFromDataString(String data) {
-        print("copying from data: $data, looking for labelpattern: $labelPattern");
+        //print("copying from data: $data, looking for labelpattern: $labelPattern");
         String dataWithoutName = data.split("$labelPattern")[1];
         //print("data without name is $dataWithoutName");
 
@@ -254,6 +254,10 @@ void syncForm() {
 
     }
 
+    @override
+    String toString() {
+            return name;
+    }
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
@@ -310,7 +314,7 @@ void syncForm() {
       }
 
       if(session.prospit != null) {
-          if(session.prospit.queen != null && !livingTargets.contains(session.prospit.queen)) livingTargets.add(session.prospit.queen);
+         if(session.prospit.queen != null && !livingTargets.contains(session.prospit.queen)) livingTargets.add(session.prospit.queen);
           if(session.prospit.king != null && !livingTargets.contains(session.prospit.king)) livingTargets.add(session.prospit.king);
       }
       //TODO should i also get party members for those npcs? otherwise can't get brain ghosts and robots and the like
@@ -339,7 +343,6 @@ void syncForm() {
           landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets)));
       }
       if(triggerConditionsLand.isEmpty) landTargets.clear();
-
 
       return landTargets.isNotEmpty || livingTargets.isNotEmpty;
   }

@@ -27,6 +27,8 @@ class Session {
     //this will be set by reinit
     Completer<Session> completer; // PL: this handles the internal callback for awaiting a session!
 
+    //no players, carapaces only, final destination
+    bool tableGuardianMode = true;
     bool plzStartReckoning = false;
     bool didReckoning = false;
     int numberPlayersOnBattlefield = 0;
@@ -1311,40 +1313,55 @@ class Session {
 
     }
 
+    void activateAllCarapaces() {
+        for(GameEntity g in derse.associatedEntities) {
+           g.active = true;
+        }
+
+        for(GameEntity g in prospit.associatedEntities) {
+            g.active = true;
+        }
+    }
+
 
 
     void makePlayers() {
         logger.info("making players from seed ${rand.spawn().nextInt()}");
         this.players = <Player>[];
-        resetAvailableClasspects();
-        int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);
-        double special = rand.nextDouble();
+        if(tableGuardianMode) {
+            activateAllCarapaces();
+        }else{
+            resetAvailableClasspects();
+            int numPlayers = this.rand.nextIntRange(
+                2, 12); //rand.nextIntRange(2,12);
+            double special = rand.nextDouble();
 
-        List<Player> replayer =  getReplayers(this);
-        if(replayer.isEmpty) {
-            this.players.add(randomSpacePlayer(this));
-            this.players.add(randomTimePlayer(this));
-            for (int i = 2; i < numPlayers; i++) {
-                this.players.add(randomPlayer(this));
-            }
-
-            //random chance of Lord/Muse for two player sessions
-            if (numPlayers <= 2) {
-                ;
-                if (special > .6) {
-                    players[0].class_name = SBURBClassManager.LORD;
-                    players[1].class_name = SBURBClassManager.MUSE;
-                } else if (special < .3) {
-                    players[0].class_name = SBURBClassManager.MUSE;
-                    players[1].class_name = SBURBClassManager.LORD;
+            List<Player> replayer = getReplayers(this);
+            if (replayer.isEmpty) {
+                this.players.add(randomSpacePlayer(this));
+                this.players.add(randomTimePlayer(this));
+                for (int i = 2; i < numPlayers; i++) {
+                    this.players.add(randomPlayer(this));
                 }
-            }
-        }else {
-            players = new List.from(replayer);
-        }
 
-        logger.info("players is $players");
-        playerInitialization();
+                //random chance of Lord/Muse for two player sessions
+                if (numPlayers <= 2) {
+                    ;
+                    if (special > .6) {
+                        players[0].class_name = SBURBClassManager.LORD;
+                        players[1].class_name = SBURBClassManager.MUSE;
+                    } else if (special < .3) {
+                        players[0].class_name = SBURBClassManager.MUSE;
+                        players[1].class_name = SBURBClassManager.LORD;
+                    }
+                }
+            } else {
+                players = new List.from(replayer);
+            }
+
+            logger.info("players is $players");
+            playerInitialization();
+        }
     }
 
     //called immediately after making players, whether replayers or natives

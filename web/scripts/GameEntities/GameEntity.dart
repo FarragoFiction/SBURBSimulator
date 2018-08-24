@@ -318,7 +318,7 @@ class GameEntity extends Object with StatOwner   {
         }
         return ret;
     }
-    
+
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
     //TODO make sure Player's @overide them.
 
@@ -809,9 +809,18 @@ class GameEntity extends Object with StatOwner   {
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
         ret += "Specibus: ${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br><br>";
 
+
+
         for(Item item in sylladex) {
             ret += "${item.fullNameWithUpgrade}<br>";
         }
+
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>AI<hr>";
+
+        for (Scene s in scenes) {
+            ret += "${s}<br>";
+        }
+
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
 
 
