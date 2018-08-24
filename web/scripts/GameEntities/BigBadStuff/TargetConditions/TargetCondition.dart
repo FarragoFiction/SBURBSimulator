@@ -174,12 +174,18 @@ abstract class TargetCondition {
         if(notString == "true") not = true;
     }
 
+    void copyVriskaFlagFromJSON(JSONObject json) {
+        String notString = json["VRISKA"];
+        if(notString == "true") vriska = true;
+    }
+
 
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json[IMPORTANTWORD] = importantWord;
         json["NOT"] = not.toString();
+        json["VRISKA"] = vriska.toString();
         json["name"] = name;
         json[IMPORTANTINT] = "$importantInt";
 
@@ -273,6 +279,7 @@ abstract class TargetConditionLiving extends TargetCondition {
              // print("$name is found, time to copy not flag");
               TargetCondition ret = tc.makeNewOfSameType();
               ret.copyNotFlagFromJSON(json);
+              ret.copyVriskaFlagFromJSON(json);
               ret.copyFromJSON(json);
               ret.scene = scene;
               return ret;
