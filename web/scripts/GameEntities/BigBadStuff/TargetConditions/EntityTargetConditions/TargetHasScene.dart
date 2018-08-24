@@ -13,7 +13,7 @@ class TargetHasScene extends TargetConditionLiving {
     @override
     String descText = "<b>has Scene:</b><br>Target Entities must have scene:  <br><br>";
     @override
-    String notDescText = "<bDoes NOT Have Scene:</b><br>Target Entities's must not have scene:<br><br>";
+    String notDescText = "<b>Does NOT Have Scene:</b><br>Target Entities's must not have scene:<br><br>";
 
 
     TargetHasScene(SerializableScene scene) : super(scene){

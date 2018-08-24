@@ -18,7 +18,11 @@ abstract class TargetCondition {
     String name = "Generic Trigger";
 
     bool not = false;
+    bool vriska = false;
     CheckboxInputElement notElement;
+    //is this target all about you?
+    CheckboxInputElement vriskaElement;
+
 
     DivElement container;
     DivElement descElement;
@@ -27,11 +31,18 @@ abstract class TargetCondition {
     String notDescText = "is NOT generic";
 
     String get desc {
+        String ret;
         if(not) {
-            return notDescText;
+            ret = notDescText;
         }else {
-            return descText;
+            ret = descText;
         }
+        if(vriska) {
+            ret.replaceAll("target","self");
+            ret.replaceAll("Target","Self");
+            ret.replaceAll("TARGET","SELF");
+        }
+        return ret;
     }
 
 
@@ -71,6 +82,8 @@ abstract class TargetCondition {
         drawDeleteButton();
         print("drew delete button");
         renderNotFlag(container);
+        renderVriskaFlag(container);
+
         print("rendered not flag");
     }
 
@@ -88,13 +101,32 @@ abstract class TargetCondition {
         }
     }
 
+    //makes it aaaaaaaall about you instead of the target
+    void renderVriskaFlag(Element div) {
+        DivElement subContainer = new DivElement();
+        div.append(subContainer);
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Apply to Self Instead of Target";
+        vriskaElement = new CheckboxInputElement();
+        vriskaElement.checked = vriska;
+
+        subContainer.append(nameLabel);
+        subContainer.append(vriskaElement);
+        container.append(subContainer);
+
+        vriskaElement.onChange.listen((e) {
+            syncVriskaForm();
+            scene.syncForm();
+        });
+    }
+
     void renderNotFlag(Element div) {
         DivElement subContainer = new DivElement();
         div.append(subContainer);
         LabelElement nameLabel = new LabelElement();
         nameLabel.text = "Invert Target";
         notElement = new CheckboxInputElement();
-        notElement.checked = scene.targetOne;
+        notElement.checked = not;
 
         subContainer.append(nameLabel);
         subContainer.append(notElement);
@@ -119,6 +151,15 @@ abstract class TargetCondition {
             not = true;
         }else {
             not = false;
+        }
+        syncDescToDiv();
+    }
+
+    void syncVriskaForm() {
+        if(vriskaElement.checked) {
+            vriska = true;
+        }else {
+            vriska = false;
         }
         syncDescToDiv();
     }
