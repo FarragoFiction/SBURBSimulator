@@ -680,7 +680,11 @@ class Player extends GameEntity{
         ret += "</td><td class = 'toolTipSection' rowspan='2'>AI<hr>";
 
         for (Scene s in scenes) {
-            ret += "${s}<br>";
+            if(s is SerializableScene) {
+                ret += "${s}<br>";
+            }else {
+                ret += "???<br>";
+            }
         }
 
 

@@ -818,7 +818,11 @@ class GameEntity extends Object with StatOwner   {
         ret += "</td><td class = 'toolTipSection' rowspan='2'>AI<hr>";
 
         for (Scene s in scenes) {
-            ret += "${s}<br>";
+            if(s is SerializableScene) {
+                ret += "${s}<br>";
+            }else {
+                ret += "???<br>";
+            }
         }
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
