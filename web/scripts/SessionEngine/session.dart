@@ -28,7 +28,7 @@ class Session {
     Completer<Session> completer; // PL: this handles the internal callback for awaiting a session!
 
     //no players, carapaces only, final destination
-    bool tableGuardianMode = true;
+    bool tableGuardianMode = false;
     bool plzStartReckoning = false;
     bool didReckoning = false;
     int numberPlayersOnBattlefield = 0;
@@ -1214,7 +1214,7 @@ class Session {
             two things can start the reckoning: enough time passing (shenanigans launch the meteors)
             or someone having both scepters.
          */
-        if(plzStartReckoning || numTicks > SimController.instance.maxTicks ||  (findLiving(players).isEmpty && !tableGuardianMode)) {
+        if(plzStartReckoning || numTicks > SimController.instance.maxTicks || currentSceneNum > SimController.instance.maxScenes ||  (findLiving(players).isEmpty && !tableGuardianMode)) {
             if(numTicks > SimController.instance.maxTicks) stats.timeoutReckoning = true;
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
@@ -1516,7 +1516,7 @@ class Session {
         String lightBS = "";
         String innerHTML = "";
         bool debugMode = getParameterByName("debug") == "fuckYes";
-        if(debugMode || tableGuardianMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Tick Num: $numTicks, Name: ${callingScene}  Session Health: ${sessionHealth}, Power coefficent: ${Stats.POWER.coefficient},  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}, Mutator: ${mutator}";
+        if(debugMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Tick Num: $numTicks, Name: ${callingScene}  Session Health: ${sessionHealth}, Power coefficent: ${Stats.POWER.coefficient},  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}, Mutator: ${mutator}";
         if (this.sbahj) {
             ret.classes.add("sbahj");
             int reallyRand = getRandomIntNoSeed(1, 10);

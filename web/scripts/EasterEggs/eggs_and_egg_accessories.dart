@@ -106,6 +106,11 @@ void sbahjMode(Session session){
 		bardQuestMode(session);
 	}
 
+	if (getParameterByName("tables", null) == "guarded") {
+		session.tableGuardianMode = true;
+		session.activateAllCarapaces();
+	}
+
 	if (getParameterByName("lollipop", null) == "true") {
 		tricksterMode(session);
 	}
