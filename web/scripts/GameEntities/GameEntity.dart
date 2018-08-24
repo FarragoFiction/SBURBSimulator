@@ -1125,14 +1125,14 @@ class GameEntity extends Object with StatOwner   {
         }else if(landKillCount >=1 ) {
             reason = "because you can't just go around blowing up planets!";
             villain = true;
-        }else if(playerKillCount > 4 && ((this is Player && (this as Player).murderMode))) {
+        }else if(playerKillCount > 4 ) {
             //players count 3 x a s much as an npc
             reason = "because they have killed so many already.";
             villain = true;
-        }else if(npcKillCount > 12 && ((this is Player && (this as Player).murderMode))) {
+        }else if(npcKillCount > 12 ) {
             reason = "because npc victims or not, the ${htmlTitle()} is on a murderous rampage. ";
             villain = true;
-        }else if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players) && session.players.length > 2) {
+        }else if(getStat(Stats.POWER) > 13000 * Stats.POWER.average(session.players) && session.players.length > 2) {
             reason = "because no one being should have all that power and use it to kill."; //hums along
             villain = true;
         }
