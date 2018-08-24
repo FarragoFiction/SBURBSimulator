@@ -303,6 +303,16 @@ void syncForm() {
       landTargets.clear();
       livingTargets.clear();
       livingTargets = new Set<GameEntity>.from(session.activatedNPCS); //not all, just active
+      //royalty exist
+      if(session.derse != null) {
+        if(session.derse.queen != null) livingTargets.add(session.derse.queen);
+        if(session.derse.king != null) livingTargets.add(session.derse.king);
+      }
+
+      if(session.prospit != null) {
+          if(session.prospit.queen != null) livingTargets.add(session.prospit.queen);
+          if(session.prospit.king != null) livingTargets.add(session.prospit.king);
+      }
       //TODO should i also get party members for those npcs? otherwise can't get brain ghosts and robots and the like
       for(Player p in session.players) {
             if(p.active) {
