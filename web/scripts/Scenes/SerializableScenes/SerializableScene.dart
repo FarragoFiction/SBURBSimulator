@@ -75,6 +75,17 @@ class  SerializableScene extends Scene {
       myElement = new DivElement();
       div.append(myElement);
       myElement.setInnerHtml("$displayText");
+
+      if(gameEntity is Carapace) {
+          ImageElement portrait = new ImageElement(src: "images/BigBadCards/${(gameEntity as Carapace).initials.toLowerCase()}.png");
+          portrait.onError.listen((e) {
+              portrait.src = "images/BigBadCards/default.gif";
+          });
+          portrait.style.width = "100px";
+          portrait.style.backgroundColor = "grey";
+          div.append(portrait);
+      }
+
       doEffects(); //automatic
       doAction(); //specific to subclass
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
