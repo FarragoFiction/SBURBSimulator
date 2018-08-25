@@ -16,12 +16,30 @@ abstract class ActionEffect {
     String  importantWord = "N/A";
     int  importantInt = 0;
 
+    bool vriska = false;
+    CheckboxInputElement vriskaElement;
+    DivElement descElement;
+
+
+
     ActionEffect(SerializableScene scene);
 
     void renderForm(Element div);
     void syncToForm();
     void syncFormToMe();
-    void copyFromJSON(JSONObject json);
+
+    void copyFromJSON(JSONObject json) {
+        // print("copying from json");
+        importantWord = json[ActionEffect.IMPORTANTWORD];
+        importantInt = (int.parse(json[ActionEffect.IMPORTANTINT]));
+        copyVriskaFlagFromJSON(json);
+    }
+
+    void copyVriskaFlagFromJSON(JSONObject json) {
+        String notString = json["VRISKA"];
+        if(notString == "true") vriska = true;
+    }
+
     void applyEffect();
     ActionEffect makeNewOfSameType();
 
@@ -44,6 +62,43 @@ abstract class ActionEffect {
             });
             container.append(delete);
         }
+
+        drawVriska();
+    }
+
+    void drawVriska() {
+        if(this is EffectLand) return;
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Apply to Self Instead of Target";
+        vriskaElement = new CheckboxInputElement();
+        vriskaElement.checked = vriska;
+
+        subContainer.append(nameLabel);
+        subContainer.append(vriskaElement);
+        container.append(subContainer);
+
+        vriskaElement.onChange.listen((e) {
+            syncVriskaForm();
+            scene.syncForm();
+        });
+        syncVriskaForm();
+    }
+
+    void syncVriskaForm() {
+        String text;
+        if(descElement == null) {
+            descElement = new DivElement();
+            container.append(descElement);
+        }
+        if(vriskaElement.checked) {
+            vriska = true;
+            text = "(effects self)";
+        }else {
+            vriska = false;
+            text = "(effects target or targets)";
+        }
+        descElement.text = text;
     }
 
 
@@ -51,6 +106,7 @@ abstract class ActionEffect {
         JSONObject json = new JSONObject();
         json[IMPORTANTWORD] = importantWord;
         json["name"] = name;
+        json["VRISKA"] = vriska.toString();
         json[IMPORTANTINT] = "$importantInt";
         return json;
     }

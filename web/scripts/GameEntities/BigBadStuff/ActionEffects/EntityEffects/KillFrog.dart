@@ -9,10 +9,6 @@ class KillFrog extends EffectEntity {
     KillFrog(SerializableScene scene) : super(scene);
 
 
-  @override
-  void copyFromJSON(JSONObject json) {
-    // nothing to do
-  }
 
   @override
   void syncFormToMe() {

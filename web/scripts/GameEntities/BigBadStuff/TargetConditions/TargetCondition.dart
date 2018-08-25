@@ -20,12 +20,12 @@ abstract class TargetCondition {
     bool not = false;
     bool vriska = false;
     CheckboxInputElement notElement;
+    DivElement descElement;
     //is this target all about you?
     CheckboxInputElement vriskaElement;
 
 
     DivElement container;
-    DivElement descElement;
 
     String descText = "is generic";
     String notDescText = "is NOT generic";
@@ -103,6 +103,7 @@ abstract class TargetCondition {
 
     //makes it aaaaaaaall about you instead of the target
     void renderVriskaFlag(Element div) {
+        if(this is TargetConditionLand) return;
         DivElement subContainer = new DivElement();
         div.append(subContainer);
         LabelElement nameLabel = new LabelElement();
@@ -157,6 +158,7 @@ abstract class TargetCondition {
     }
 
     void syncVriskaForm() {
+
         if(vriskaElement.checked) {
             vriska = true;
         }else {
