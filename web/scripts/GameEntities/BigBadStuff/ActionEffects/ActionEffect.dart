@@ -317,7 +317,13 @@ abstract class EffectEntity extends ActionEffect {
 
   @override
   void applyEffect() {
-      List<GameEntity> targets = new List.from(scene.finalLivingTargets);
+      List<GameEntity> targets;
+      if(vriska) {
+          targets = new List<GameEntity>();
+          targets.add(scene.gameEntity);
+      }else {
+          targets = new List.from(scene.finalLivingTargets);
+      }
       effectEntities(targets);
   }
 
