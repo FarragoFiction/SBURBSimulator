@@ -239,6 +239,7 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new MakeStrifable(scene));
       ret.add(new StartStrife(scene));
       ret.add(new MakeInactive(scene));
+      ret.add(new ModifySessionHealth(scene));
       ret.add(new MakeMortal(scene));
       ret.add(new MakeUnconditionallyImmortal(scene));
 
