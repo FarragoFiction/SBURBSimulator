@@ -141,7 +141,8 @@ class NPCHandler
             ..serializableSceneStrings.add("Say Hello:___ N4IgdghgtgpiBcIDKECeACAEjANjg9iADQgBmOEAbvgE4AqMAHgC4Ih0AWM6SAwgKIA5fgH0A8gHVhAJRGCAggFl+6ACYwADgVQBndDgCWAcw7N0O5hABGe5vgDuEGqttd0dedIDi-OnKWiYrIKykhE6AbMAOR6AFYArhboHA7ozFwYOmjJuAQAdAA6YAA8VjQAfKUVxCCWNEYwzGJgcIjMNPFwJO3GDTS8+GCqkQaDOgAyBpQGYEZsANrABSAGUBq0lmDMErSqy-DLggD08stEh2J0+8ukEDg6MGfLAGrSAJJIANKnCDd3D09wNBHr8QG8dPJDJQQecVmsNhAtm8ttcQAAGZYAX3CSzh6xom22u1Rxx+sMEl1Rt3uMJe7y+PwOZH+tKBsFR4OkiNU+CggNW+MJyOYqIATBiQNj0LiBQitjtnCSToCKVdQe1OoDXh9vlSWYDIOzQeCkLhSPz4QTEcxhaiJVKZZbCQq9qDSSrKeqOqztQy9TSDcCOfIoLwaA4Wq7YbKrUiUaD7TjljHncS3criBc1UyNT76brQdSAZm2SCmZgIDowxGLYLrbaE1ik3i5UTFaCAAoOGA0D3Z5a5rX5xl-AMlw1l5Z0JwNZhISw2nReGgwCDMHucRGKGaslP1+NMxPS5NO60u1HYO7pPv+4uw30FplF1kT1HT+qNedr8HL1fr+gcIizx3JqJZ7nGIqggAjAAzEejp1vKablquODXiWqqooOJYPiOzJjrCr6gu+s5fouv5rhugFgMBOCgdGp4QaisFovBJ6IW2rpMoo+BWAYhjMKgN5evRdI6nhz6BkaTIkZ+C4-iulEAVuO61q2DaHk2x4trGnGoigYCREJGGejm3pDuJt4vkGoKKKgZEKX+VFASBu6MTaB7LLBWIALo1D0Rh9AMQwjGM4zcgsfkkDApCkDAADGzA6AAYrQkzTLMCwIa256gpeaEcFJk4gLw1ENGRFl+oW+pge5gjxFAVg9qiAC0LG+TUMVxYlKVpdyOiRZKQA")
             ..serializableSceneStrings.add("Say Hello Badly:___ N4IgdghgtgpiBcIDKECeACAEjANjg9ugEIQAmOqIANCAGY4QBu+ATgCowAeALgiGwAsY6JAGEAogDlxAfQDyAdWkAlGZICCAWXHpSMAA4FUAZ3Q4AlgHMB3dMe4QARqe74A7hBakXQ9G3XKAOLibGpasnKqGtpIAHTocgLolvik8YIQ3ADkphBm+Lb4tOiOBKnxCrg4VOjcvmJSEUriUeF2AK4swqT4MMZgWbbGMDBQtQKZJQVCXaQlGObcsQA6YAA8jiwAfBvb1CAOLJYw3HJgcIjcLO1wNFdWxyyi+GCki+YvxgAy5ozmYJY+ABtYDLEDmKD6VgOMDcBSsUhg+BgyQAenUYKoKLkbCRYNoEBww0xYIAasoAJJIADSGIQ+MJxOoYMgsDxIApxnUFkYMBJ4Mh0IgsIpsPZAAYwQBfGqggVQlgwuEI9loulYkCSHHsglEvnMkDkqm0nWM-Ua1n65Ec4zKYU9KD8iEKpWi7jsgCMkpAMvQcudQth8K8qvR-K1uPpB2u5rJlJpdOtuqZFugVrBnKQuFoTsFiuF3DdEulsrBAfzQZVUbV4e1UauN35RoTpr1-Mt7Ip6igohY7nOiIN5ddYqj3t9-rzSuDg+tNYNEfZDdjhvjJqjyZXHajmAgxl7-dzLoLRbHJb9ZanBZn7IACu4YCxa5Hrcum2vEwy2wbt9a2J5jm4JAHELYxAi6TJHwyMBNH+FdhxPUdrXHUt5UDZUQx3GBCTqZ8lxjd9jU-OgzXbNN2X-I4TmAzJOXA7DuCgiYwFJQlGyHK8RSQsEPQAZhQi80IrDDZzBTR8EccwLG4VA8PrAiDWbdck1In9yKjSjAJo0D6Mg9hmNg84j3Q09kPPSdj0rTDrUqCAAGsYDAYgGAAYzs9AAEUbkc+AZD89BJAAFgpSxSGsSxuEsfRzCIFyKQAEQAR00ClAmMAAtSx1A8iR1AAJnEdROCgHBLApfBRHaTQoC7SRRHUQIAE1xCIdp1AATkscRAvUZL1EwSxRGCyw5HUUROAERr1FQSxgnUfBLHiuz9HUWgPPi1AkDkHLSQAVk0MqKSIdLqVJRb2kS+LAnUeLFAADXMak3H6gAxCT0sahR2pc3bGoANkcUl1BcpA7JcrVJsYVj2hq9RSHUdQ-qm9QAA51HEdKuUwAAvZQXMcDzLEYIgiC5ORGrcRgKX0Sw4vMFHHAAKWURmAGocoUCBlCJcRzE4LLREcF7GE0UlSUZrLUE4ABVbGXsawI7PqyQWHmpB4pe6X4sx6kFFEFGtux0laFoIh2oO+LxSgMBxXFTRAvwFzpd4-jxAGqAUu4dqGsSxL1EZxnzHUSQKS+UQ5HaRw8oAdkYSxxXi4w7opCkXKga3Fna8VGE61m3AAKypmB87QBGiu90RWbqynpfZzhWcC7HGrstxRgEOz0fFRx84pM7REkHBuF4xhjHzxLSGx7hNECF7vEcUgptEMABEZ6WBHUFgWnMDzJHwZQiGUMB2pgG7LCQdQ3GUSuwDYOOpYETR1DuyRsYEFHxT3TB9HzlgWA8lyAGv3MOYNgpAKTUiQANf29UezKGMAofmgRdouUCo1FG+g7LGHFANVAu4oAvRRgIaOw0lYCGlmwaWoN4qiCgKSRqUBAqYGpHdQKqA-pyDyrxVADdxBQGULxJAiV86iHitwcQnBPCBT+pwMAABaIgf1jDtRwIraq7RMAo1ZhAfA7VAjmDygoPKu0PSBQELxcw+c-p9DsrQjymg-r4GMNSeKRBWY4AELtOyt4EbGDslNdodlpZ5VOqgMA0cmCkkVh6FGWcIC8Q8o1W8yg-ouNEF8Nw-giphW4LvUgmxlB2XaCjKq3j1DUjqJYRw8UcCkDcEQXm4h4oUlQI1AQSAPpaNwKgWgpBMB5UkLeRmdldqiEsNLDyd11Bdm4OoIg114qaA9BAJAd10rR1oC5TAbhZHY0ZmARwjhaTqmxC+MEb5FIflbCmFk6lrS7mMEgFyjl4KcULNxEAAkLLoRvFGFAYBFiyQXHWV8CkNRKWIpuMibIoyaE2iBOiEFGL6WFKxHA7ENQIS4u6KMfFpQAF19j3EsI8Z4rx3ifC+PaYEBKaAwBNjAFy3BjBvRYD8P4AJgRfOEj8ucYY1LQutKKewEBqRSRwIRFsG5VIYteZIGGjhHzFh9DSkAdLaAMqZSyylrxjDUp9EAA")
             ..sylladex.add(new Item("Scottie Dogs",<ItemTrait>[ItemTraitFactory.CANDY]))
-
+            ..activationChance = 0.99999
+            ..companionChance = 0.5
             ..active = true //jack needs to be on for every session
             ..royaltyOpinion = -1000
             ..scenes = <Scene>[new RedMiles(session), new BeDistracted(session),new PassOutRegiswords(session),  new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
@@ -160,7 +161,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 500, Stats.MAX_LUCK: 500, Stats.SANITY: 100, Stats.HEALTH: 20, Stats.FREE_WILL: 100, Stats.POWER: 15})
             ..makeLucky(1000)
             ..sylladex.add(new Item("Black Inches Magazine",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER]))
-                        ..activationChance = 0.1
+            ..activationChance = 0.5
+            ..companionChance = 0.5
             ..sylladex.add(new Item("Bull Penis Cane",<ItemTrait>[ItemTraitFactory.STICK, ItemTraitFactory.GROSSOUT]))
             ..sylladex.add(new Item("Regisword",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.LEGENDARY, ItemTraitFactory.EDGED, ItemTraitFactory.POINTY]))
             ..makeCunning(1000)
@@ -173,7 +175,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 100, Stats.SANITY: 500, Stats.HEALTH: 20, Stats.FREE_WILL: 0, Stats.POWER: 20})
             ..makeCharming(1000)
             ..makeCunning(1000)
-            ..activationChance = 0.1
+            ..activationChance = 0.5
+            ..companionChance = 0.1
             ..serializableSceneStrings.add("Bond over Fashion:___ N4IgdghgtgpiBcIBCB7MATABCgbjATpgGIQDOAFgJZogA0IAZgDYQ4r4AqMAHgC4IhMAZQDCAUQByYgPoB5AOpSAStIkBBALJjMABzKkYpTKRSxMvSmYDGpvfkpgA5pgZkqaTGBS9DmAO6UvOSYmBxqSgDiYhyqmjKyKupaQnQgvBD4jjC8smBwiLz4AK5w9IWUjln4ImjogdRgpAAylDgOjgIA2sAAOiCWOuzpYLzy7Oh98H0SAPRqfbTTshyTfa5MBgt9kLCrIACSpGpMrTBb-VCD+MO8+yN7AAx9AL60mL0XVzdj+BMIfQARUyGCxWc4SZZ7dabOjbaBnf4gAASZDuPnwIJEEB8jnYAE9zgMhhARmjHi8ALqpcqVAg1DD1NDNEnoLpU+gwBgMGBWXikIjsFptJxdD5E64k0bjPZCEmBAmw8DwvYicgkrJCdK8QmXYkjCRFKAAIwIewAjABmSmpTnc3n8wUs0hskDPIA")
             ..serializableSceneStrings.addAll(<String>["Destroy Bad Fashion:___ N4IgdghgtgpiBcIAiMDOAXATgewJ4AIAhCAE3wDEJUALAS2zBABoQAzAGwgDdtMAVGAA90CEAGUAwgFEAclID6AeQDqcgEryZAQQCyU-LVT4IABxMR27GGQjp86ajHwB3CAT5a1AcSl9NuhUUNbT0xAHIjbABXdFZaO3ZsbABrVAA6fAAJJxJsNHtHF152G3xWbl5jMDISNCw8I3iMgBkk1Px2WmSnBxhcMMt8am4e7GN2AGNHKFoALycwGGd8CcTe9PwtauMO7DtsVnw9x0x8DCjWViZ7JLTmEHQITABzGHRFRdEsKLgWLFpnq9MBIGCR4vQwKhmrQuLQwM9RABtYAAHRAtCgJl4jzA6GUvBIaPgaJkAHotGimCTFHwiWjyuxUDBKWjILA6SAAJKoAAKnFwMEwLPRmOxEFxnNxHIADGiAL7XVEirGYHF4gkcskU5jU2kIekWJnCtnM-Vc1BqcW5KDCjEqtWS9AcgAc8sVaLtYtx+MwhLNfAgE2SuGFMhpHIZRp14GgpuJIEyVE56BgUGU8WofEwEHittFqvF6EdMrd+CVnoL3o1Zp52GcgtD4bN31NVJj7P9T1e6DEjyLqC8mBgtkFfGGYB0cNbHvzDqlZtlIDlAF17v9AYKQdVwQwoVakauWDBLjAJuhUOReNDYfCkeXZ4WfX741rjbGOSgMDhcGJcJZSEIeb2oWMhRFAABGDYLvKh4gMerCnuel6YM0VqoAeS5AA","Collect Finely Tailored Suits:___ N4IgdghgtgpiBcIDCB7ANmmBjALgAgDEBLMGNATzwBUIi0UAnGAEzwGUBXInAZxABoQAMzQQAboyowAHjgQg2SAKIA5JQH0A8gHU1AJXUqAggFkleJhAyU0RANYweeHAAsYeAO4RKr99SN6AOJKVIamGpoGxmZsAOROKBw4Qtx49Ch2PAB0eAASMLEYeABG7jgQdiQA5s4uEDj8eGAoHjkAMigZTrYOtTDkhWh4dWJlKHhWWG5QRABe7qQeeFj0vtl4RmCsEGko+ChCeHtuDHg8OBxCQo04nVkCIOUMVTA4mqTyOAwccIJfRFUXgxUFtuEQUGAeG0iGJqvIANrAAA6ICIUAADoxymAcNpGMwUfAUSoAPRGFH8YmaKiElFCKw8GAUlGQWC0kAASR4AAVROQYAxmaiMViIDiOTj2QAGFEAX0ayOFmIY2Nx+PZpPJAipNIQdIZTO14GghqJnJ4ejFzBQUCFaOVqolOHZAA45QqUfbRTi8QwCXqQCsIDweOQhSpqeyvj8hazTSjcsGOTgYFBtNwXFQGLRnUavSqxTgndL3XhFfnVb7-WbuS0BeHIwHo4bKca2QGaM9XmxykWeIFLCmGFQ6mATCQW56RQXxZKAzKQLKALoPf6AgUg5hgiFQq0IleCGBXbC8AiMaGwsBVBHl6eV9UBzWxk3skwcKp2u+FlQcKClQXznKB4gEeQgnjwZ4MG0Vp8Ig8IrrKQA"])
             ..description = "The most competent of the Midnight Crew, DD is the most classy gentlemen you will meet in your life. Unless you catch him with his gray ladies journal. Oh, and DD is probably the one you should talk to if you want to get rid of a troublesome...entity discreetly.Unless he’s Crowned. In this case, you are already fucked."
@@ -196,7 +199,8 @@ class NPCHandler
             ..sylladex.add(new Item("Regisword",<ItemTrait>[ItemTraitFactory.BLADE, ItemTraitFactory.LEGENDARY, ItemTraitFactory.EDGED, ItemTraitFactory.POINTY]))
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: 0, Stats.MAX_LUCK: 0, Stats.SANITY: 0, Stats.HEALTH: 500, Stats.FREE_WILL: 0, Stats.POWER: 500})
             ..makeViolent(1000)
-            ..activationChance = 0.1
+            ..activationChance = 0.5
+            ..companionChance = 0.1
             ..makeCharming(1000)
         );
 
@@ -230,7 +234,8 @@ class NPCHandler
             ..makeCharming(1000)
             ..sylladex.add(new Item("Candy Corn",<ItemTrait>[ItemTraitFactory.CANDY]))
             ..sylladex.add(new Item("Diversity Mural",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.PRETTY]))
-            ..companionChance = 0.1
+            ..activationChance = 0.1
+            ..companionChance = 0.5
 
             ..bureaucraticBullshit = <String>["needs to get their private eye license renewed.","needs to pay off all those mural loans he took out.","has to get this treaty properly ratified."]
             ..makeLucky(1000)
@@ -243,7 +248,8 @@ class NPCHandler
             ..description = "A Prospitian Agent with a disconcerting oggle. There is a small sub-cult on Prospit that worships his high Imagination stat instead of The Genesis Frog, and he finds it to be off-putting."
             ..sylladex.add(new Item("Tootsie Roll",<ItemTrait>[ItemTraitFactory.CANDY]))
             ..sylladex.add(new Item("Imaginary Fort",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.FAKE, ItemTraitFactory.PLYWOOD]))
-            ..companionChance = 0.1
+            ..activationChance = 0.1
+            ..companionChance = 0.5
             ..serializableSceneStrings.addAll(<String>["Become GodHead PIckleInspector:___ N4IgdghgtgpiBcIBCMDGB7WACA4ugJgBIwT5YAKAkqgNYA2MlYAzgA5oAu6ATiADQgAZnQgA3HgBUYADw4IQAZQDCAUQByKgPoB5AOoaASprUBBALIqsAIzSYYzLBAcRcBR2DKD0HugE8s3DAA5hDc+M50dFjogliogRAcAJbeAHT8IByhQTAc2mBwiIIQdMxwAhzcSUE53Ere+EnJ3swAMkmiSWBB8gDawAA6IElQrDxZYBy6PPhD8ENqAPQmQ3wL2hJzQ8WlMKtDkLBbIJTMBhAemPvDo+MXHEwcxwCMAMxDAL58WIM3Y9wTKYzY5LFb8dabBDbEpla6HPZQk5nC74K7gv53SaPF4ABhxn2+vxG-0B0zCIOW1zUG2OO1h6Phx1OChgdEE12JmIek2O+JAXx+Q05APuZNmiNBVJpiLpCLW4GgCPmJxMUCU3HQAHcCuL5cLAdjEXyPgBdDKVaq1eoeJopFitFF9M0CGCCQScZgAMR47U63T6RNuIsmYuOCguTV8cMVxyUAAsLjkFFknuj9fc1ABXKA2bgvV5442EoVB0nAxE4KrMDhYVowUSs6NHRHxxMwZOJDmljPZ3P5wsEwUY4NA8mIlTSdhVGBgVByg4xlsJ7rtlNdkk9nMwPOIt4D-nF4dlsfKkx0VBxmBQKMMxfK1srjupvXdyZZrc75V7vGDwMbkPlsqChIAAqgYSC1jw84Ks297Lkma5pq+HDvn2u4Fj+-LOiArruqgHBej6KLME6-JAA"])
             ..bureaucraticBullshit = <String>["has to pay this fine for public oogling.","needs a permit to fondly regard creation.","has a ticket for excess imagination usage this month."]
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
@@ -256,6 +262,7 @@ class NPCHandler
             ..specibus = new Specibus("Fist", ItemTraitFactory.FIST, <ItemTrait>[ ItemTraitFactory.BLUNT])
             ..distractions = <String>["is punching various things in the snoot to establish dominance.","is brewing the worlds most perfect hot sauce.","is wearing a wig. You assume he's undercover or something?"]
             ..royaltyOpinion = -10
+            ..activationChance = 0.5
             ..companionChance = 0.1
             ..description = "A Prospitian Agent with famously shitty imagination. He doesn't even have a female counterpart, as  a result. He is AMAZING at establishing dominance and brewing hot sauce, though. "
             ..sylladex.add(new Item("Gummy Worm",<ItemTrait>[ItemTraitFactory.CANDY]))
@@ -275,7 +282,8 @@ class NPCHandler
             ..description = "A Prospitian Dame who excels at making friends in the most unlikely of situations. Her Hysteria Meter is a formidable attack, though indescriminate in nature."
             ..sylladex.add(new Item("Scale Bodice",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.PRETTY]))
             ..sylladex.add(new Item("Tommy Gun",<ItemTrait>[ItemTraitFactory.MACHINEGUN, ItemTraitFactory.SHOOTY]))
-            ..companionChance = 0.1
+            ..activationChance = 0.1
+            ..companionChance = 0.5
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..bureaucraticBullshit = <String>["has to pay this fine for public hysteria.","needs a permit to open up a fine establishment for her new friends.","has to pay a fine for all this public damage."]
             ..serializableSceneStrings.addAll(<String>["Be Hysterical:___ N4IgdghgtgpiBcIBCMAEAJAngZwC4wCcBLAYwgBsQAaEAM3IgDcB7AgFRgA9cEQB5ABaoA5swAmVVAGUAwgFEAcnID6fAOpKASsoUBBALJzURbKgE58xMuQB00gWhLlm2GKYcFUMTG9QQwYqjYAO5EAA6+BP5izFDkmH64qKi4DqhsupoA4nJsOgYqfNp6hlJ21CC4EATCMLh8YHCIuAQArnA0LUTCtQQyzAFEuEQD2AAyRIxEYMK8ANrAADogRFBhrFVguGqsYsvwywoA9LrLVId8bPvLtBSuZ8uQsNcgAJLYuuSTMA8raxv+XCvLYvAAMywAvpIln91gRNttdi9jqdqBcrggbncfmjwNAcQc3thNNFYr9VnCEcDcC8AIwAFkh0OWFIBWx2BD2mJAKN+CkuL1u5HuuKeBOWr10UBkBGYwUaXPOsLZQJB3PBIChqBhrPhgI5XMJAAU5YQ+QLuS12r8xS82NVargpFUgdgsgQYBBLGwBP59NMcUrdVS1YSNRCALoVLo9Qj9QbDUZjaLzKM0GC0WgwEi4bAAMVYEymM3mOv+evZSO5vNF+JewLwEAA0kRyORyeWEQpWlAAEZm9WQtMgDNZnP5wvRbCpzVAA"])
@@ -291,7 +299,8 @@ class NPCHandler
             ..sylladex.add(new Item("RoboTeddy",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.ROBOTIC2]))
             ..description = "A Prospitian broad with a famously low Mangrit stat, which is only as low as her Nervousness threshold. Its anybodies guess why the White Queen allows her to go out in public armed with a flamethrower."
             ..sylladex.add(new Item("Paint Stripper",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.ONFIRE]))
-            ..companionChance = 0.1
+            ..activationChance = 0.1
+            ..companionChance = 0.5
 
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..bureaucraticBullshit = <String>["needs a permit for public fainting.","is trying to help out CI with getting an invention permit. "]
@@ -312,6 +321,8 @@ class NPCHandler
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Agitated","Authority","Aimless","Authoritarian"], lastNames: <String>["Regulator","Renegade","Radical","Rifleer"], ringFirstNames: <String>["Ascendant"], ringLastNames: <String>["Rioter"])
             ..specibus = new Specibus("Pray and Spray Machine Gun", ItemTraitFactory.MACHINEGUN, <ItemTrait>[ ItemTraitFactory.SHOOTY])
             ..sideLoyalty = 20
+            ..activationChance = 0.5
+            ..companionChance = 0.1
             ..sylladex.add(new Item("Alarming Pile of Guns and Ammunition",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.SHOOTY]))
             ..description = "He’s just another Dersite who disperse tickets. He hates crimes and will throw the criminals in the slammer. He calls it the slammer when he is extra angry. "
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
@@ -338,6 +349,8 @@ class NPCHandler
             ..specibus = new Specibus("Mayoral Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.POINTY,ItemTraitFactory.METAL])
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekScepter(session)] //order of scenes is order of priority
             ..royaltyOpinion = -1000
+            ..activationChance = 0.2
+            ..companionChance = 0.3
             ..serializableSceneStrings.add("Deploy Democracy:___ N4IgdghgtgpiBcIAiMAOAbA9gTwAQqkwGMAnCI7EAGhADN0IA3TEgFRgA8AXBEVgCxi4AygGEAogDlxAfQDyAdWkAlGZICCAWXG4AzqkxdduLoNyt1ygOLjWarbLmqN24bgDuEMABMYJAJZgAOa4ECSYAK4+AHTmZlzumLgARpg+uJiMfqF6-GEw3riBXH4wulxFYLi0JDAFmFCxAkJiUo5K4s4OuEH+WcamQhbWtvba8l2uOajhUP66Qpi0of7e0QA6YAA8ySQAfDv71CBcYUEwXHJgcIhcJBFwNHf+Qeckomne-lz+aboAMn1AkFeABtYDrED+KAGEinMBcBQsbyQ+CQyQAenUkKo6LkrFRkNoEHQCxxkIAasoAJLCADS2IQRJJZOokMgsEJIGpAJgEF8JHJUJhLHhXGpCK5AAZIQBfKi4CHC2FipEkFFMkCYxm4rX4rnE0kwIVU2kMg0s41s8DQK1o7m6dToPpW3XQlVecWSzUykDyxWQ92iz1qjX27VCyT6zWG1m6030xn22Ou9m2rkACQgug+MPQFwKADF-CRyv8vN4AIoPcq6IVBuGeiVcaVyhVKhuq5Fcul1VC4AAKs3mMHgMnHuEkABZqUFvEF+EEuEFUP4AEJEalIYSaACa6iI6nE6kL6lY52wQXEujXYDk6is-HUSE06mSonUkgAXhx3GuAKr7gOJ7uMooj7rou6vpeNjqJgQRIAA1so6i0JWSDYOoVaIU6wgKNSogfgoyjiLuwhWKIVgAFasDO6i7l+U5nkg6iiK+YD8GAABaAAcmisIWlaYEg-jUqguiMBSrCoMIACMyiYMeABsMBfroGZcbJ3gAMxIMo6CMEg7jiFwmgZruUFrpI-hWF+7iaMIQRrgAGhAiGoKI0CYMkcjaVKEhgAArMkVhWLomCiFZADUEBUe47jqBmmjeAoJAJdp6B0poED8PwABMA4DoF-BEP+ACcgXiP+-iSEga6BUptBOdp4jJP4SlWGu9m1e4HBQMk2DUqw+hWAoa4cAAjhA2l7mEE1Qdpu7-ohmCJFY8FELuUqOlemVcUQADsgUcN4UDeIw3gTYh-h1f8ohcVAUH+LJchcJgz7YMea48buRkHZFiWraw4gRLokgDpgiFmfwB2rHV3jeOIXGiAAUmV-gZkxSCoEE1IZlAGaiEEU5QIhOH-vOzlIt4EDKEEciiNS85TpI-yIeIL7uM9CiITOlayeIn1fOIVgkMe6jYPwSCYFLE3Oeo6h5TePHCGuoiFvVVH8BNySFlx1LuKwA7-FOA50hwkiiBSZvYEgJCoOI7hcLQ-x0mua4TXS6G0Ay610lYU6o0gSn8GucyyQo2BgNg2CiO4-5SkEVgHeIhasP+pWeFKdKoAomgUs5uhWEpHAZlK6i3ugJ5lQAtGA-yVjxE3UlFE1ECjcuq1xSAQJWeUozRB1flxyRBBwSmVlmGb-v9eVKcIU7JO4GjCGVJC0EQlb8Cj-hSqREA1-8hZeAOqAZpgslQFO2BruIHD8Ihsnae4X5+YFYDJyQYDJM5PHYNmUpnLaR-tgKcB0wC7m0oWDgc8ypKV0AlFGogkCSBrmuKir5+BSiIBNBEyh0b31fM5f8qADoo3cHeQKjBaTqAmoWXchZCzCBRugLgU5MDaEwOgNcC4qK6E0JWCu-gqJrn8PwOk-5m6u24vwWAEBMCxSUlKKc-B0BKSQANQgEA5KiDKJ0KA1JaboV0HIFymBfJTiCP8KKNclLqFVgwnklZnLqJwjqPEBJNR3AeCaGkiYLRGiFByO0kIsy6GEEQGA1x6wikbAiZsrY-QAF1jjPFeH4D4Phvi-DAACCsYIUk0BgLQWgMAiBGELCwQEjBgRgg7LErs6oex9kHMOBYY4JzTlnPORcy5Vwbi3Dufch5jynnPDAS815bz3kfM+V875Pw-j-IBdQwFCygXAuoSC0Ek7HngkhFCaEMJYUrDhdAeECJERImRCi1FaLUnooxZirF2KcV4vxQSwlRLiUktJOSCllKqXUppHSekDJGRMmZCymgrI2Tsg5Jyrl3KeUID5PyAVgqhXCpFSQMU4oJSSilNK6gMpZRyvlQqxVSoVSqjVOqDUmprham1DqXVNA9T6gNIaI0xqTWmrNEg81NCLWWqtTA60gibW2uoXadJ9pHROmdC6V0bprjug9J6L03ofS+j9P6ANz6GxBmDCGUMMwwzhmuBGSNUbo0xs+HGeMCZExJmTdQFMghU0wDTOmDMmbE1ZuzTm3NebUn5oLcQwtRbi0ltLWW8tFbK1VurTW2tdb60NsbU25tLbWzpLbe2jtnau3dp7b2vtMD+0DijYOodw6R2jrHeOidk6p3TpnCA2dc750LsXUu5dK7Vzrg3JuLc24d2cl3HufcB6sCHiPMeE8p4z1EHPBeS8V5rw3lvHee9dwHyPifM+F8r43zvg-J+L834fwOl-H+f8AFAJAWAiBUCYFKTgQg9QSCUFoIweoLBOC8EEP4EQkhZCKFyCoTQuhDCmEsLYRw8QXCeH8D4QIoRIixESKkXSGRciFFUSUSotRGjsBaJ0Xo5QBijFIBMWYixVibF2IcYWJxLikIKyCemTUVgXQHh+GkGJHoESSAiP1PwiTZSFJAMU0p5TdCVJIOWHwugCl+iAA")
             ..serializableSceneStrings.add("Liberate Prospit:___ N4IgdghgtgpiBcIAyBLARjAThALjABAAqYD2AzgA4o4gA0IAZgDYQBuJmAKjAB42KcAFgQDKAYQCiAOQkB9APIB1GQCVZUgIIBZCfiYwIAEzL4cwlJnyYYGJvgiYoAT1MlTEANYEzBMjmswOCYkDESklNQAdPhCMC4UBgDGMAwArkxMLhwA5hBgKABeBBD4UBBkZCisBBSkeH6mgrj42YEmEBn4IWHkVDhdYI0wFviVhjDRsT0ROCh57db4DAHRADxoAHz4ACIwUCSJ2Iku1ijZYCZkqbV7E-irAPSbADpg65gb7xt0IDgOrTh5GA4Ih-Kk4PR-GdWpgxCQwIZqCh4WRUKwUGBsggQABtAC6Pyh2RhcIRSJRSDyhmxOOAzxAKCgFA4fzAOEUHEM9PgYHSTFo9Kk8k43PpDA6ZBg9IFIAAaioAJIiADSGlFjAlUro9MgsHVCrIxF61Gl9MZzMwrJwCrZ6oADPSAL60fB0hlMll5dmc9VSB5q7UgIUihBizWmuWKlUB+BhpiSiO6rWxkCcf6BA1SEg4XZ+UhOGBcwPmz1sm04e1Ol1ukuWr0czBFlMSHgJTAoGBgZIR4Pq8XxrUy+VK1V98OBpPqrROER-a1kADi1lwWCEeVlHXBlIREdrVvL6oAjABmB0gZ2us0eutshtN+moDDYPBFmW90O-TDgiPD6NjgeJtAyaCkBpJ-BiZC7te+62h+Z6OgS9ApAwMCJEEABiHBohiWKILSV4Wlad7qi2bYdl2g46kB6piE0mIwNOs64FBhFelIqRQE+R6nlWl7uqxt4+h+AASBhMGYgF6h+tF5K0jFzixpY4OxnFYNxdrwdWBFKcR0mpJg1hsvgokdBJE7UdJdFyTOCnFtBbEcVxH4nhpTqISAyGoRhWFUmQNI1vZgmNuqj5YCuhjTH0knASAWieDA26GFIQGvtpN7KY5alwbxAUCd6wUfgA5NsJAAO6DKV1CCEM+BiKQ5UAISFdFU7xaSZAsmQIgQE4inpSpTkpvBBKOkAA")
             ..serializableSceneStrings.add("Liberate Derse:___ N4IgdghgtgpiBcIAyBLARjAThALjABACJYDOcANCAGYA2EAbgPaYAqMAHjgiCwBYEBlAMIBRAHIiA+gHkA6hIBKksQEEAsiPw0YEACYl8Ofikz5MMDDXwRMUAJ6HGhiAGsCRgiRzmYOA4yoiUhgAOnw+GAcABx0AYxgqAFcaGgdmAHMIMBQALwIIfCgIEhIUegIozEY8L0NeXHx03wMIFPwAoMwydrA6mBN8Ut1Q8P5O0prrc3wqHzCAHjQAPiCoRljsWIdzFHSwAxJEyphYBYB6ZYAdMEXMJdulkEocGyacaTA4RG9EihBvXZNTBCRhgXQoHAoUEkVD0FBgdLcADaAF0nv9MICsCCwRCofskFldMjgJcQCgoFFmC8wDhZMxdGT4GBkjRyGSxNIWEyyVRWmQyeyQAA1BQASQEAGkVDzqPyYIKyZBYLKxSRiF0FU8yRSqZgaTgxbTZQAGMkAX3I+FJ5Mp1KydIZsrEZxl2pAnO5CF58sVIvFUrd8B9NAF7uVWuDPFevjVYmqxC8VTsMEZ7t19tpRpwpotVptGf1DvpmDTUZE7BimJgYHifs9sr5oa1QtFEuljd94egkbJajsAhehpIAHFzLgsHwssLWr9CWC-YWDdnZQBGADMZpAlutOrtRdpJbLZNQGGweDTQob3oxvz9bcDnebfojzp7OJe8JIi-3y+NN63c00UoBIqBgWI-AAMWYWF4URRAkQLX9iydG8KyrFAazrbsVRvIR6gRGB+0HXAfz1A0xESKAzzXTc813W1yJQ0tZQABUYAB3LAXx7WV8KyJpiKHMjMxwSjqO4m8NxNQDgJAUDwKgmCiRIEk9yYw9UKjU8sAnXRxhbJVeJvNRXBgeddDEHtL3U0TxJogD6KQjTHRYm8AHJCE43oOIhXg+nwDZvIAQncnjcKjUy3BxEhqRIAQIDsESDzEqiHKjWTtyAA")
@@ -359,6 +372,8 @@ class NPCHandler
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Jazz","Jazzed","Jazzy"], lastNames: <String>["Singer","Songstress","Savant"], ringFirstNames: <String>["Jilted"], ringLastNames: <String>["Seductress"])
             ..specibus = new Specibus("Ribbon Mic", ItemTraitFactory.CLUB, <ItemTrait>[ ItemTraitFactory.LOUD, ItemTraitFactory.ZAP])
             ..bureaucraticBullshit = <String>["needs to renew her liquor license.","wants a permit for a public performance.","needs to pay a fine for singing a song with banned words."]
+            ..activationChance = 0.1
+            ..companionChance = 0.4
             ..sylladex.add(new Item("Classy Stockings",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.CLASSY]))
             ..description = "A slightly promiscuous Dersite carapacian, JS is the owner and star performer of the Liquid Negrocity jazz club, famous for hosing the Midnight Club's impromptu jazz sessions. She’s...an interesting carapace."
             ..distractions = <String>["is singing a sultry tune.","is writing down some new lyrics for her work in progress song.","is flirting with a random carapace."]
@@ -374,6 +389,8 @@ class NPCHandler
             ..specibus = new Specibus("Fast Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.POINTY,ItemTraitFactory.METAL])
             ..sylladex.add(new Item("Postal Code Map",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.PAPER]))
             ..description = "ZC LOVES the mail, not because of letters and packages (how boring), but because of how elegantly designed Derse's Zip Code Map is. You can find anything so quickly, so easily! How did a goverment famous for Red Tap make something so fast?"
+            ..activationChance = 0.4
+            ..companionChance = 0.1
             ..scenes = <Scene>[new MailSideQuest(session), new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..serializableSceneStrings.add("Win the Races:___ N4IgdghgtgpiBcIDqBLMACALgCxugShAMYwDOIANCAGYA2EAbgPYBOAKjAB6YIjoDKAYQCiAOWEB9APJJx+CaICCAWWHoi2CLVowwAczJZc6dG0X4A4sLYKVkqfKWr+WJugjpqLFLoAmtAE90FmIYADpTXCCYCFIUQPQAdzQAQhM2KPQ9FAY8HDxTcysbJ3tHOxdSJlh0AAcmNEwYFlJ0KqMYIKIIDF83ACMYTCaWdDAuTCwUWDDKEEwIFgNMKXHeTBYAVzgqDZQ9AxZBJjBfFEwUE9IAGRy0PV4AbWAAHRBp+pYFsEwkVl83vA3qIAPSKN4UYFSNiAt7ULSkGAQt6QWCwkAASVIiloOSRlDeH1Y30wGJ+6IADG8AL4UdCvd5QT4kv4sAEIN7KJj9eLnALIkCiaHojbbAWo-FAkBsRbLfgLUmkCwsGIjDI9ZRofGQxnMnqk8kckBUkC0+mEpnE-Ws9lS0HggmC4VG0XalHQSVvLH8GC0agColffVkzCUmkAXTmewOzWOp3OlzANx6viekaoMGo1BgREwpAAYqxbgx7k8GYGWf90VyebjMPzHRL0YJNPoYPKIKHHRX9aJNlBBix0QBGADMJup6ZAmezuYLRZT5EQj0j1KAA")
             ..serializableSceneStrings.add("Go Fast:___ N4IgdghgtgpiBcIDiB7ABAMQgZwC4gBoQAzAGwgDcUAnAFRgA99E0BlAYQFEA5TgfQDyAdV4AlPtwCCAWU5oA1mBQB3bGlwALGAE80AYwhg0Ac3TEcuGNQB0aWlt0BXbDHVa0ABxVW0KYm5gAS2o0dmoVI1x0ahgAExhiQLBXTVd4xLBA3ECUIz80bA8YOLQsl1JiW0IQXAhqYxhcAWSEGupHOCJcakDjBup2XNisnLBsABlAiiTjVoBtYAAdEECoL2pasFwhGljl+GXpFAAjQNIs7WWCZe4BWn3l7o6r5chYB5BpbVZa3ABJbBIGIQSx0DSGABqEFIz0Iy1W602-y2HwAjABmAAM2MxywAvgQ0EsVmsaEidtQ9ggbgB6SQvEC3e7UkjQlwMt4wD5-SRQMIROIMhFkwzI3AfXEgAlE+GkjaiilUg6MukMpkfcykdlw8DQLksgGsGAVIVypF-FEsyV4gC61W6vX6gzAw2yuQmhli8ztRASxBgelw2AwNEm0zAs0QC1liIVuw+R1O51wlx1nI+7HBEZgPxBptjW24jigxysaKx2PxPpAfoDQZD1HGnuw3qlQA")
@@ -390,6 +407,8 @@ class NPCHandler
             ..specibus = new Specibus("Tome", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER])
             ..distractions = <String>["is telling everyone that the End is Nigh. Everyone ignores him because this is obviously true.","is ranting about various Philosophical topics that no one actually cares about.","has just given up on everything, for a while.", "is drunk off his ass."]
             ..sideLoyalty = 10
+            ..activationChance = 0.4
+            ..companionChance = 0.1
             ..serializableSceneStrings.add("The End Is Nigh:___ N4IgdghgtgpiBcIAqALGACAomAJugkgM7oByAlgOYogA0IAZgDYQBuA9gE5IwAeALgmRp0AZQDCmEpgD6AeQDqUgErSSAQQCymdB2gAjRjGJsw6CHrYBXPuj7CIABzYBjCIwCeDwhj5tbwpDUlAHFMJFVNGVkVdS0RdDJTCFNLMG8+PkZEinQoZLAYDgA6dABNIxKANUL3dFT0zOyS1Bhatyg2Qhs9GCyYFgwyPhK1Rg6uotoQPggOChg+WQLBPg5LODpVynmOMRMcIbITQgAZMhZswQBtYAAdEDIoJw4ZsD55Thx7+HuSAHo1PcaL9ZEhvvd6G5vED7pBYOCQERRucYDCHk9OK8+Pg3giAAz3AC+NHQd3RzyxHw4XwQvwBaJIoIRkMY0NosOgqNpiMISmSODYUDRjwpyWxuO5AFYCSBiaT7iLMWKqTSfiB-oD2eqmdzVus0XCuWqiCJevRhRiXmKcXx8USALpTLYUHZ7XCHY4nfnXR10GD0egwZx8QgAMU4ZwuYAo1zJiqtbxVCJEySG7gNnIRYhQyXmIhmtq18axJEsUB6HARAFoAIwAZgdU39geDYYj-MIPtlQA")
             ..serializableSceneStrings.add("Spread Word About The End:___ N4IgdghgtgpiBcIDKAHATjCATABAdQHs1cBBAIwIFcAXHAFQAsYcBRMLEAGhADMAbCADcidGAA9qCEI2ZIAwiwByLAPoB5PMoBKKxSQCyLHAGMCYagEswlGAGcc1AjjTQyfZmZwQKNB01bsAHQ4AJK0tjAwUPbUDBC0scxWcWQW1BDm9gQ89CRaAOIsdLoGqmo6eoZIOHGCzBDG1JQQfHwAnjhkMADmlGAOTl18FjB1OFY4AO5x1KMwaH4W9hAoBMYtbSiWxjhQlFAUOABW+4dLfvF+MG0A5Bg4tqs0Vt2BXCDpaN0w1GpgcIhqGgbO8gRZut80HIzFg0hYzLYADIWQQvKQAbQAuqC0ODIdD2HCEYiMhxEOjgAAdEAWKCrNDpcyEYjU+DUxQAehI1M47LUdFZ1J4LQiPOpkFggukEC+PxCtkUBGoABE7ECCG0YFgxTS6URGdQQuYpQAGakAX04OCpuvpBuZ2oQ7K5OsU-Klwr4oq44ugMCl8q0pIIUB1tLtGUNxqdIAAjGaQObsdwYDweDBGrYAGJEZGosDdDHJkCp9OZnNoEnsWwYm3h-WRh1SxI4GDscb2MDghg6iX+mP6CAAaxgBNs+tsSAgbTDeoZkcUp3mpot2PNQA")
             ..serializableSceneStrings.add("The End is Really Nigh:___ N4IgdghgtgpiBcIAqALGACAomAJuglgM7oBKMEANhQJ7oBy+A5iiADQgBmFEAbgPYAnJDAAeAFwTI06AMoBhTHUwB9APIB1JSWV0AggFlM6AO4QBYYmOlJdJAOKYkOgytXa9hmeggAjPgFcxdCsMbBwAOnQAIRh8MEZ0HD4+WBxWYJQidBhCAAcYAGN8Shp0fwsYMTEKHIyYKHC2EDEzRkrVMDhEMQF-OHYepjaBOT5cfDF8McIAGXweOMZJAG1gAB0QfChcwRawMXVBHA34DboAel0N1jPVJBONjkpCGGuNyFgHkABJQl0KeavNgbLY7AR7MTffZfAAMGwAvul1pttrsIPtDgJjggzpc3iA6Hcvk8KC98R8gacfoQACLJVL40Fo-ZQsSwhFIkGo8Hog5HL4XK7AglEnGcZ5Am7gaCUja-EjopJQRnciGsr4ADjhIER6GRTJ5GP5YsF+MJ9zFPT65JlX1+MhgFA4KrBauhYu18IAuk1BoxhqNxpNpjNFSsfewYBwOIUxIQAGKCOYLeIrfWq3mY7FUmToibUG2fMVyFDotoyFps4UGiF0fxQHwwARfAC0AEYAMyeiMgKMxgpxxMCUO4QjhnVAA")
@@ -410,6 +429,8 @@ class NPCHandler
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is getting some much needed rest in between shifts.","is probably forging those insurance documents.","is accepting money under the operating table."]
             ..sideLoyalty = -10
+            ..activationChance = 0.49
+            ..companionChance = 0.01
             ..serializableSceneStrings.add("Perform Surgery:___ N4IgdghgtgpiBcIAKMBOAzA9qqACAygK6oDmaAniADQjoA2EAbtgCowAeALgiCwBYwCAYQCiAOREB9APIB1CQCVJYgIIBZEbgAOaLDgDOuCNogBLMOkJ1cdTJgDW5krlgATUwGMI1rakweYV2JBTDBcTgFcFhUFAHERFmV1KWklVQ18XAB3UwjMQk4XGH19J1xCLQA6KIFyXH0YGDxOTFwAI0FzdphOTjR6vggdXDBMLMrqEE4IUh7pMDhETlRCOBpl0xIyVCFQ905TUP0AGVNGJx4AbWAAHRBTKC1sabBOWWxXO-g7sQB6FTuVB+0hYXzu6G8DUBd0gsDBIAAkvoVHQzjBofdHs8IK8Ea94QAGO4AXyouFumKeqBebw+8L+AOowNBCHBkPRTPA0A530R+gUONcmCgGIeVJpeM48IATESQKTyXcxdjXu9UJ9WSAGRixCD4ctVhjYTy7kj8DA6OhRVjqTjOJLCSSyRTlbbVXTNUJiKgYK9cAAJGDeCI6vWag0coFcuGalgzMicfDTe36WI+iB9VD8HFqcyRpU2iX4zVy4kAXUmGy2aF2YH2hzAJ0FVwrNBg6HQMA8nH0ADFsKdzmASFcXYW7WqNbyvagfX7A8G+EbufChINhzAkxnreK7WJCFAOqh4QBGADMpdbIHbne7fYHgv0LflQA")
             ..serializableSceneStrings.add("Mess Up Surgery:___ N4IgdghgtgpiBcICyMDOqAEBVADhgygK4BOA5jMQJ4gA0IAZgDYQBuA9sQCowAeALghCcAFjAIBhAKIA5SQH0A8gHVZAJTnSAgkkkYIfPjCg4+mPmww4K9DlAyoS5KhjZgMfURk6bVAcUmcGtryCupaOvh6YAAmGFAQANZo9mywGMIcxACWAEaMYlBZqHyJMAB0BKkwGQDuGFl89nxZjIwYNRwJqBUiYt5+AUE6imHBkYWkwo05YvQwMIxZYKR6GIsG+RgzBhQ0W4SNHjCUAOTEs-OLyxjE+qLEKedltCAlZDB8CmBwiHzEhHA6H8sqQnOJXNEGllXKgADJZFhLUiCADawAAOiAssYOCUwHwlBxopj4JjpAB6TSYmhkhScEmY+gQRioGDUzGQWAMkAASVQmkWLDZtEx2JwuIg+J5+O5AAZMQBfPYYrE44h4glE7kUqkikDSOncv4A9ngaDC0m81D4Bb0U1iiVSmUITHykBKjAqh3qyWa4jEl36ymmg30wNMlnCmlmrmBvmqSXRVL2tUa6V8bkAJjdHq9qd9hP93PEJHO+IwAAkYMyPCHDYHjVGOebuZwIO8+PgSnw+b5zvoKCJJUglk3VeKfU6M4GcwBdF7A0EUcExKEw2GJ1HzugwehzADGpgAYhx4Yjlqi8xONYWA5aqzXhKbORbMeJhJLyF39Cnr77pIQUAzMQ3IAIwAMyKsqor5vit7ckgbA5C0DSUM+LaBu+n4wN+07Rt6GoAUBFDcgAtBBc4vLuB7HqeiaoFu7pAA")
             ..serializableSceneStrings.add("Perform Weird Surgery:___ N4IgdghgtgpiBcIAKMBOAzA9qqACA6jAJaoAmuAygK6oDmaAniADQjoA2EAbtgCowAPAC4IQvABYxKAYQCiAOVkB9APL5FAJSXyAggFlZuAA5osOAM65zNeqga5MYXEMm5eOjQHFZvbfuUqWroGFLhEThC4qBAuaLikROZCNABG4bS4UBBgYGgAdATiROxSsW4e3r7BAUH+oYnGpjAAxkLs9ujhUkbiDOZEzRDs7cy44tzpzpi4AO4xzeLOrhRyiqrqsrUGDibRQlKOSzB445Yl6EJHeHuSqLhUYDMww5kwYEJD7XksIB90MEIVLlREJUFQ4KxQURaLZpI4EkIiI5zAAZIhcdKiADawAAOiAiFAjNgPu98NhSPj4Pj5AB6HT45g0lS8Kn49BDcwwRn4yCwNkgACS5h07HR3JY+MJxNQpKEgveAoADPiAL6jPEEokk7JCclkAV0hmSkDyFkC0HgnngaAS6lC8wUZ7oa3SnXvBVCZVqjVS7Wy3X6ykIGn061m1khticiVMm38qPCjTZUiYKCu-1yz0CgDMAFYfbhNW6A2SKQLpDRUG9LgAJGBDFzh81Ry2x3m2gW8CD-IQUD7y8yeasxNASbJ6LoZmVZxVRlUgVUAXR+UJhaDhYARSLAqJT2JXrBg6HQLSE5gAYtg0RiwLRscXM4Hy1HK6hq+9cPXG+JrXy7fi0jjHeMD9jE07ukI8hUFAKRoAKACMOYLuqRZ+jOz4GlGFDZEQQgMH+navsB9BgV6JolnK0GwfBUYALRIShh4gMep6tJe14puYB6LkAA")
@@ -433,6 +454,8 @@ class NPCHandler
             ..sylladex.add(new Item("Glowing Crysal",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.FAE]))
             ..description = "An introverted lamplighter, SI knows how to make gas lamps, lightbulbs and automatons powered by light itself.  She is quite fond of her work, and will gladly explain how illumination on Derse works."
             ..specibus = new Specibus("Spark Rifle", ItemTraitFactory.RIFLE, <ItemTrait>[ ItemTraitFactory.ZAP, ItemTraitFactory.SHOOTY, ItemTraitFactory.POINTY])
+            ..activationChance = 0.4
+            ..companionChance = 0.1
             ..serializableSceneStrings.add("Design Blueprint:___ N4IgdghgtgpiBcIAiMDOBLA5mABAIQBsBXGABwCd0wAXEAGhADMCIA3Ae3IBUYAPWxFwAWMHAGUAwgFEAclID6AeQDqcgEryZAQQCyUnOlQ4hEcgBMcEajgDunANY4zaLGCqZLOAEbEylGgB0OMIwAJ44pDDkjJxQONRo1EY26NRCnqym6DDU4eyMOKhCVOGw1BAEqHQ4mBBGLFCkVZZgFgRYQtZeRAReRkQ06ATxIuGYOYXsZcVgHmlWOATs7Pb16PaiqTgAxuw9Fnbk9gH0IOXk49SKYHCI1OQkp-dY4+QS7K2p6B+oADLorHcCBAAG1gAAdEDoRqcco0ZScMyQ+CQmQAei0kLoqMUXGRkMYFVQMCxkMgsHxIAAkqgxDACIxSVCYeQ4dQqTRKQAGSEAX2qEOZpFhEHhiMp6Mx9BxeIQBKJJOl4GgipR1NQWnarEV2KFIpoHOo3L5Ash0OFrNF1AR5kpmu2IigoSZMlxlPuJCZ5NVkJ0oTE5XZqAA4uQYFYosJRQA1CqepXm-XszlykAARgAzDyQPycILE5axbbU5KXW7U4TKjqySrKTS1KKzFMmQW2YbKQAOACsfIAuk9KJhXu9PtRvmA-o3gSD+wwYIxGDBtkkAGKcf6A2bT-Mstk2pGp+2O51K72UiQmWYwANWFu7q0yIhQLxRSmZk15s33osHtVHmBOl6tapheorjDeRoJt+1CPs+r6pu+OamnqhbWuKh4EA6AEnrqZ4gZe4GBneFpsrBL7kG+GZ9qc86LsuqBruQvyNqg079ryQA")
             ..serializableSceneStrings.add("Get Help With Blueprint:___ N4IgdghgtgpiBcIDiMAuACAEjANgB3QHUBLVAC3QCEcBXGPAJ2LFRABoQAzHCANwHsGAFRgAPVoiFkY6AMoBhAKIA5RQH0A8oVUAlNcoCCAWUXoA5mgDO6afnScG-KOnIyhBnUkVD9x9Rr1DE1kXfnQAExhLYjMwdAh0ACNaeiYWADp0KRgAT3QAd0EAa1CLVwYXKNRmMxdpdBpLGE4aHDAo635OcwhrHig8awgwcPQcGLJURNbE62Z49Hb89GZeGBZifjB09hBUCAYyjXaEPYY6XdQmMwsGeS3w0k2wSwAZYl4a04BtYAAdEDEAaCfYsQiCcIA+AA5QAegMALYMI0QihAKudERAMgsDRIAAkpZZLhOFjAcCGKDUPiWHiAAwAgC+bHQ-3JeBBw1Q4IYkIQMPhZOUKLxnAgOCaZJxMDxhIM4zWZKBHMpXJpqHpTJZbOVnLBELx8oAxtIoDkhSL+WdMexsdAZVajDlZPtqZYkAwYBBUDBhGRhgA1cU2pHsvXU2lWgCMAGYGSBmayAbrVfreXi4QjbSBhairWKJQ7Q9LZZYdMNwk4lRSqeq8TGY1qk2HU9yDVbjabzdnc6LxZLsyWrUIDmUXd7CR6vT6-cMjMwi8ma2rI9CQPHGQBdS7XW73EZPLZvCs-bccZqcGBG1CWABignenzAZh+OuXab5a87MDNUvtePkf1nxgJ1xw1bMUypZQaCgRJfTxWMmzfFUqR5T8AW-X9B3-K1AOGCxQNdasUK5aDYPg6NGwTbUlxIj9DRwE0f27YscLXPDgMI71iPDMi4IYBCqMTZDwzQhimKw1jcVwoCCOdIiIPfVA+IotdEOo5tIK5MSO0Yrs-2k9jZJA+TuMUujlJg-jBKQ2jRPbL89OYgyHSM-CTLAnjWxUgTKKZM8QAvK8b3vBhXgrSxTwTIA")
             ..serializableSceneStrings.add("Create Powerful Invention:___ N4IgdghgtgpiBcIDCAnGEAuMAEAFA9gO4woBmArgDbYCSYAbjGBgJb5ggA0IplE9+FABUYADwwIQQgBY4AykgCiAOUUB9APIB1VQCU1ygIIBZRdnIBnGBewRsAI0rkYABxQtm2DPmwBjNJg4EGC2UBAAXh4A5tgejMxsYACE2DIwAJ4O+PgWGF6yLCjYRCEuRCTmFtH5OB7+MAAmLI44VvUYNtIsDQ1M2IQsGF0hQzCF2FEQNnxQLrEMTKzsAHRcIBgQKFEwGBpgcIgYKM5rRyxR2yhI7E1LYBYAMiz00ZIA2sAAOiAss4IbzC0gga33g32UAHpDN9OOCNEJQd9SBBKFYYd9ILBESAaBY5DBKKR0T8-igARg6BhsQAGb4AX042C+JLKZOCGCBKBBCHBUOJynh2ORqJgxMxop5OIshkozwlsJZ-3ZlJp9MZzN+rPJnO5YJAMt8sig6X5gslwrRXAx0AleuM6TkGwpFgA4gEsMJpMEAGoo5zEzVK5gqyUARgAzLSQAymd9A2zAcDsZDoVaQAKEeaUZaFeLsbjdMEGvgoAHSeSQ3qAGxV+kAXVO7guJGuYFuiUeRfeDe4MFIpBgvg6ADFBE8XmAou8NeX2TrsQajSa03nJUgvZOYI7MGWtezlOQoPYSNiALQRqMxmd7xNc7EEYgoMU27Hr4LbbdUtPx8kHo8nsNIzVWNFQTDkk0lB8ANzF81w3D8nV3IMMD-Y8n0Ay8exAPsByHCxRxQB4iwsbtoyAA")
@@ -461,6 +484,8 @@ class NPCHandler
             ..serializableSceneStrings.add("Mash A and Keep Punching2:___ N4IgdghgtgpiBcICyEDOALABAQUxMAJpgNIwwAOmACgK5gDG6AlmAOYBMIANCAGYA2EAG4B7AE4AVGAA8ALghCYAygGEAogDk1AfQDyAdS0AlbRuxI1meiLC8mBGGFn8AnphaomqWakyyRfugwmJgS2EYA4moSpuY6uiZmFkqBELKYqADWTOTkLKx4-PyBwQRMEPwirDTB+EQYIiKy+ZgwQjBiLrLMbKnpXmAA5P1QUHTB-pgARjRFMD7uvg52YEyyMK4lmADuEG6TqORkRGJ0gV6YrNAwAHSY+kFgW6HhUTFJ8YlxKeQiLAsiGjpbppEpuCBiRzDVrtJ6sebNXoARxq3kwkN2YgIqC4IVUmnihjUXwsO2EMF8EF2+yCTDEVhs9A6YF82zWWAgmAEOXI+HS9EETCgfUwwyCl2umHQaD8AXoaUYmBolDqlyY7UwLkBGWY6TajlkNAqrkGNwk4pCYUi0ViFj0JLUKQu0qELVQIlgmAIgKmPhu-u4IFkEPhsl0YDgiFkpzgPGjTFY8LEKhsZWaNlQABl1fkFABtYAAHRAQt+YmDTn04gIxfgxY0AHpsMWuPXdBJa8XeBVUDAW8XILBOyAAJKobD8dV97jF0viCuyEdOYcABmLAF9cUWS1Aywuq1jh43mzOQBp28Pu-xe-3wNdh2OqIIXB1b3Py3yl7JVxut7Pd-OfIHjWCD1k2t7nh2oF8D206tneQ7QWOABiYgegAIh0N6nu+C5fj+ICbpg264UB1ZHuBp6QcO0Y1Leg7TnWIAABJoCmu78PMMAEJhqwAF6OJmdQAIqoj4b4AR+Tj4dBa6EX+O57mRh7QceEEXtBV7YfBDEPqgRh1B6ElKdJy7QewcnrgAuoG8aJh0KaEGsTAZkJhD5jZPAwLwvAwPQPjIeI2aumw+YkZJ+7kaplE6fe0EoGImS8UwAlgKJFI+NgqDseQnHrMZgFOBoNBQFMr6yRunkgN5vn+aggViG52IeYRQA")
             ..serializableSceneStrings.add("Mash A and Keep Punching3:___ N4IgdghgtgpiBcICyEDOALABAQUxMAJpgNIwwAOmACgK5gDG6AlmAOYDMIANCAGYA2EAG4B7AE4AVGAA8ALghCYAygGEAogDk1AfQDyAdS0AlbRuxI1meiLC8mBGGFn8AnphaomqWakyyRfugwmJgS2EYA4moSpuY6uiZmFkqBELKYqADWTOTkLKx4-PyBwQRMEPwirDTB+EQYIiKy+ZgwQjBiLrLMbKnpXmAA5P1QUHTB-pgARjRFMD7uvg52YEyyMK4lmADuEG6TqORkRGJ0gV6YrNAwAHSY+kFgW6HhUTFJ8YlxKeQiLAsiGjpbppEpuCBiRzDVrtJ6sebNXoARxq3kwkN2YgIqC4IVUmnihjUXwsO2EMF8EF2+yCTDEVhs9A6YF82zWWAgmAEOXI+HS9EETCgfUwwyCl2umHQaD8AXoaUYmBolDqlyY7UwLkBGWY6TajlkNAqrkGNwAOmALRJxWFItFYhY9CS1CkLmAYBDNkyxLIICwRd0LtLfFMyE9OZDjS5cZGim4phAiPYPTduCBfWJ4bJdO6FLJTnAePmmKx4WIVDYys0bKgADLq-IKADawDNICFvx9fP04gIbfgbY0AHpsG2uIPdBJ+23eBVUDAx23ILBpyAAJKobD8dUL7htjviX1ONdOVcABjbAF9ca321BO0fZD2savh6O9yANJPV7P+PPF+A1yrhuVCCC4HQAQeXbHqeCBtheIDXpgt5QY+z59nBn4jgBX5Tphv7-h+y67gO66oAAYmIIhQAAIh0hHjneD58iesjnleN77veh7dr2r7YR+uGrvmNQAcRq4ABJoBW978PMMAEFu-C1nUACKqI+JB3HQbIrHsYhnFMTxTjofx76MUJ+FzrujHiZhG5GHU1FacxMFsZhABMCGXgAummxalh0FaEGsTA1iphDNn5PAwLwvAwPQPjkeI9ZCI2iAtlxrlPnxmFvmJQGYSgYiZEp6kUj42CoDJ5ByesLnGbIGg0FAoZiPpvlprF8WJRRKV1KgUWIUAA")
             ..sideLoyalty = -100
+            ..activationChance = 0.25
+            ..companionChance = 0.25
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
             ..bureaucraticBullshit = <String>["has to pay a fine after spray painting 'N7' on the Royal Palace.","has to pay a fine after doing sweet BIKE STUNTS off the chain between Derse and it's moon.","has to post bail after punching all those kittens."]
@@ -473,6 +498,8 @@ class NPCHandler
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is eating a shit ton of food.","is cooking, and then eating, a shit ton of food.","has further perfected her noodle recipe."]
             ..specibus = new Specibus("Salad Fork", ItemTraitFactory.FORK, <ItemTrait>[ ItemTraitFactory.POINTY, ItemTraitFactory.METAL])
+            ..activationChance = 0.1
+            ..companionChance = 0.4
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..sylladex.add(new Item("Cookbook",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.BOOK]))
@@ -489,6 +516,8 @@ class NPCHandler
             ..distractions = <String>["is flipping the fuck out about how great bugs are!","thinks they just saw a rare beetle.","is tending to her butterflies."]
             ..specibus = new Specibus("Butterfly Net", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.WOOD, ItemTraitFactory.RESTRAINING])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
+            ..activationChance = 0.4
+            ..companionChance = 0.1
             ..makeCharming(100)
             ..sylladex.add(new Item("Butterfly Collection",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.FAE]))
             ..description = "BE loves bugs, all bugs. Fluttering butterflies, iridescent beetles, scurrying bugs. They are all equally loved by Derse's foremost Entomologist.  "
@@ -503,6 +532,8 @@ class NPCHandler
             ..specibus = new Specibus("Grimoire", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER, ItemTraitFactory.CORRUPT, ItemTraitFactory.MAGICAL])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: -500, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeViolent(100)
+            ..activationChance = 0.3
+            ..companionChance = 0.2
             ..serializableSceneStrings.add("Provide Blasphemous Frogs:___ N4IgdghgtgpiBcIAKAnA9gNwJYBMYAIAhAGwgGcAHACxijQFcz8AxdAczJABoQAzUjGhQAVGAA8ALghD4AygGEAogDlFAfQDyAdVUAlNcoCCAWUX4A7hGISAXjCYosbKhPz0K+CWk818+YYa6AOKKwgYm6hr6RqayFlgSVPgQ+ADWYGjmWGBs8WCpyWA4+BTEaBRMKYQAMoaySAASisYaAKpxSK26SNVmzLoaQfiOzq7ZXj4wWCj4pBQAdPjcIBIQKGwwEhpgcIgSKPRwPPtOGyjyaEUJWJdk1VjYOdIA2sAAOiBYUBRCq2ASWiEOA+8A+sgoEAAxjAPlwPsoNMIQR9eFYyDDuB9ILBkZ8yIZKDBIRIkKQAJ4wFCwj5fH4oP4SACS-1xAAYPgBfLj4d6fb6-CD-QEoYEIeEAekM1JACKRYr4aIxcPA0AxoJAjLIQUcUAAImtUtLaQL-syJGzOdzecb6YKAUCQWB6MRiMrZbj9odpdi1R8GuQkPQUKUYKw0GwjfzbaaWfL2SAOQBdZYnNhnC5XCQ3MB3QU4F7JngwXi8IkSMjMIT3R5sF7WqMM4Wi9XKSXe1W4oIPUPsSN0hnKehQABGlItCcLIGLpeJFarec4iGeyY5QA")
             ..serializableSceneStrings.add("Corrupt the Players:___ N4IgdghgtgpiBcIDCB7ATmgrgBwC4AJcALGfABQBsIBPGNAZxABoQAzKgN3QBUYAPXAhD4AykgCiAOXEB9APIB1aQCUZkgIIBZcflYBLSBQrV8RCPUIl82FAHc6p0mYv0UmAOZECrdPlf4KFDB3ADp8dXwAEwg0AGtja0w0bApSCCSIfBgwDhhA7BgLYlJudWUAcXFuNS1ZOVUNbREwuSJ8WnowgAk9CyhzXDoLWz0jfAAjUn8UmHMYSJDmEFwY9xhcOTA4RFYICno4Flw0PXc1tFQwSL1cPSD6ABk9DgN3IQBtYAAdED0oGzQKzAuAU6EiP3gP0kAHp1D8mFC5NwIT9dvsYPCfpBYCiQABJdRQJBoOxbcHMH5-AFA3B44G4gAMPwAvkx8N9fv90DTQWhyZCQDC4RTBUjccdMBiRdipQK8fRyicoAARGKxTGc6kQYF03CMllsjlU7nakFg3FCjWSMUIVF7A4amW4+WUGh0DXGwGm3X6kCs9mUrle4G8-lQ2FWm0CtEO6XQWU-eXKbWRFBQD1Bmk+20gABMAHYWQBdJbHU7nS7XW73B4pj4llgwVisGAAY1w9AAYugni9gh8jZnTaGLRG4zic4q-qq4qgMDhq2AM1rgZJMFBJmhfcyGyAmy3212eynGIh3iXmUA")
             ..sylladex.add(new Item("Shrieking Grimoire",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.CORRUPT]))
@@ -529,6 +560,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..bureaucraticBullshit = <String>["needs to pay a fine after that debacle with the Pastries of Love.","is dropping off a cake topped with Scottie Dogs."]
             ..makeCharming(100)
+            ..activationChance = 0.3
+            ..companionChance = 0.2
             ..sylladex.add(new Item("Holy Pastry",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.EDIBLE, ItemTraitFactory.MAGICAL]))
             ..description = "The baker of the Prospitian Royal Family, RB is skilled at making HOLY PASTRIES. On weekends he runs a bakery even the common folk can enjoy, and even might teach you to make pastries, too."
             ..makeLucky(100)
@@ -541,6 +574,8 @@ class NPCHandler
             ..specibus = new Specibus("Letter Opener Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.POINTY, ItemTraitFactory.METAL])
             ..stats.setMap(<Stat, num>{Stats.MOBILITY: 500,Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
+            ..activationChance = 0.4
+            ..companionChance = 0.2
             ..bureaucraticBullshit = <String>["needs to pick up a package that's in lockup.","has to deliver a small package to the Archagrent.","wants to pick up some mail to deliver."]
             ..sylladex.add(new Item("Mail Cap",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.CLOTH]))
             ..description = "Liberty. Reason. Justice. Civility. Edification. Perfection. MAIL. PM loves the MAIL. The MAIL is her job and her hobby. She might even let you help out."
@@ -560,7 +595,8 @@ class NPCHandler
             ..distractions = <String>["is being the very best, like no one ever was.","is explaining the rules to Captchacardmons.","is showing everyone his fanfictions."]
             ..specibus = new Specibus("BestFriendship Bracelet", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL])
             ..fraymotifs.add(f)
-            ..companionChance = 0.3 //more likely to follow you
+            ..activationChance = 0.01
+            ..companionChance = 0.49
             ..sylladex.add(new Item("Catpchacardmon Ball",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.SENTIENT]))
             ..description = "KB loves playing captchacardmons, and wants to help you be the very best, the best there ever was! He’ll gladly accompany you anywhere you go."
             ..bureaucraticBullshit = <String>["wants to update their captchacardmon license."]
@@ -576,6 +612,8 @@ class NPCHandler
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority
             ..distractions = <String>["is teaching everyone who will listen the rules of Magic, which is a totally real thing.","is performing stage magic for a crowd.","is teaching simple magic to onlookers."]
             ..sideLoyalty = 10
+            ..activationChance = 0.25
+            ..companionChance = 0.25
             ..bureaucraticBullshit = <String>["wants to get a permit to put on a magic show.","needs to pay a fine for a public disturbance claiming magic was real.","needs to update their magic license."]
             ..sylladex.add(new Item("Magical Textbook",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.MAGICAL, ItemTraitFactory.BOOK]))
             ..description = "An amateur magician, they’re already good at stage tricks. Totally offering lessons in stage trickery. Totally willing to accompany you on your journeys."
@@ -589,6 +627,8 @@ class NPCHandler
             ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekRing(session), new SeekScepter(session)] //order of scenes is order of priority
             ..distractions = <String>["is eating a shit ton of sugar.","is just sort of generally being a dick.","is really emotionally invested in this game of Life being played."]
             ..sideLoyalty = -1000
+            ..activationChance = 0.49
+            ..companionChance = 0.01
             ..sylladex.add(new Item("Romance Novel",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.ROMANTIC, ItemTraitFactory.BOOK]))
             ..description = "The crime lord of Prospit. Skilled at crime. Cheater. Used to have diabetes. Stay away from him. Or challenge him to a game of Life."
             ..bureaucraticBullshit = <String>["wants to file a 'legitimate business' license.","wants to talk shop.","wants a license to practice 'legitimate business'."]
@@ -605,6 +645,8 @@ class NPCHandler
             ..specibus = new Specibus("Paintbrush", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.BLUNT, ItemTraitFactory.WOOD])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
+            ..activationChance = 0.01
+            ..companionChance = 0.49
             ..sylladex.add(new Item("Lewd Object",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.METAL])) //its' a bucket
             ..sideLoyalty = 10
             ..bureaucraticBullshit = <String>["wants to file paperwork to get reimbursed for a community mural she painted.","needs to file an extension for a mural she's painting.","has to get a permit to order more lewd objects filled with paint."]
@@ -620,6 +662,8 @@ class NPCHandler
             ..serializableSceneStrings.add("Help Breed Frogs:___ N4IgdghgtgpiBcIASMA2AHABAIQE4xgBNMAxXAewHMBnEAGhADNUIA3c3AFRgA8AXBCE4ALGJgDKAYQCiAOWkB9APIB1eQCUFsgIIBZaZgBG5AO7VMEMMWoBjXBHQxzEPpj6jMmTtvUBxaZxaeopKmjr64hZWmMIArlCGqACeFtQA1uYAloxuoilQECkQ1NSZ1K7uMFCYmWC5MJm4MeTJmISxfJlOAHSY9CB8ELiUMHxKYHCIjBCo1HAMfLiZlCO4kuRWmZ0b1AAymay1lIIA2sAAOiCZUOgcg2B8KhyEl-CXsgD02pd070qcr0u01mMB+l0gsEBIAAktRtKgDqD6JdrrdcPc+NCHlCAAyXAC+dEwFyuNzulkezyh4nQEBsSN+IFk-yhwLmYPA0CRbyucOojhsfAACiwkjBcBzUeSHli+LiCUSSVL0RSnrgXggwLFUKhGcyAQhLotYgzwVyoUhimQqJKySqZdjDSA8SBCcSUXaMWqNTzPt9kUyWU62abOZCnbD1JZCOQoLa0RjZVCAEwATgJAF1+otlqt1pttmA9tHTlmGDBGIwYILqCQOPtDmBjogzh6E6qqU6-RyIdzLr5EdbKPHpXxZPFDOL5a6yyAK1Wa3XcLto7QW1n8UA")
             ..serializableSceneStrings.add("Kill the Blasphemer:___ N4IgdghgtgpiBcIDSBLANmgBAFwBY0wCE0IBnAB31gCcQAaEAMxIDcB7agFRgA9sEQmAMoBhAKIA5MQH0A8gHUpAJWkSAggFkxmFKUylcbAMYBrGABNMEMJYjlyEDBZxt9MAhCIAZNUIAKABJiGrIAqkKYfqFKfl7aAGJKsgDiOmA4+JiYnGpKyWKcqpoysirqWkIA5HqkAJ4YEOa8AHTZ+LWYUBBmmACOAK4oppgA7hwmmGyMGTBQdFY2M5ihEgGyXgCamGt+fmJKLpgARmxs2M30INgQ1ADmMNiyYHCI2NT9cAxvKLf31CJsGwobAoQGkLwoFgoMC3AQAbWAAB0QCgoOQONcwNh5BxzMj4MiJAB6NTIuiE2ScfHIxiOUgwMnIyCwakgACSpDUaEhDPoyNR6OomOwbKxrIADMiAL7zJEotEY6zY3GsoQOIy88kgCSU1m0tD0xngaC8gkozkUGBGbB+Ei1GDUI0CxVY0XYCXS2X8hVCpU46h4hBgfoYLU6qkIGl0zVMk2sgJkPz9ajkNAweLUNi3J0+4Vuj0gGWYOXO31Y-2Bs3E0l87W6yNMaNG5mm5FstRQESZkbPQNa0t5sUNyWFgC6l2+vwdAKBILBXms5nh44YMEYjCt2FI8Q4EKhMPhJdzfpVDerzbjDdFpGuqAwOcFwok-SgRwdBaLR8fJ4DrPPtZbVkvDYekMyzB8XWwZ9X3fYdpRXEA1w3a1t13RdSGXQsgA")
             ..makeCharming(100)
+            ..activationChance = 0.25
+            ..companionChance = 0.25
             ..sylladex.add(new Item("Crystaline Frog",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.GLOWING]))
             ..description = "He knows the End is Nigh and preaches acceptance, nay ANTICIPATION, of this joyous event. The Vast Croak will purify the world in the fires of creation, and build it anew in the Players image. "
             ..bureaucraticBullshit = <String>["needs a license to preach.","would like to get a permit for limited amphibian iconography to spread the word of the Vast Croak.","has gotten arrested for spreading Frog Religion on Derse."]
@@ -636,6 +680,8 @@ class NPCHandler
             ..sylladex.add(new Item("Peridot Gem",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.CRYSTAL]))
             ..description = "She collects rocks. Especially shiny and sparkly ones. That’s all she is talking about. She even ships her rocks. She wants more of them. Give her more rocks, and she will follow you."
             ..specibus = new Specibus("Geode", ItemTraitFactory.BUST, <ItemTrait>[ ItemTraitFactory.STONE, ItemTraitFactory.GLASS])
+            ..activationChance = 0.4
+            ..companionChance = 0.1
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..makeLucky(100)
@@ -648,6 +694,8 @@ class NPCHandler
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..sylladex.add(new Item("'How to Have a Bad Time' Book",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.BOOK, ItemTraitFactory.IRONICSHITTYFUNNY]))
             ..makeViolent(100)
+            ..activationChance = 0.4
+            ..companionChance = 0.1
             ..description = "ME’s spiritual sibling. Meme brought to flesh and chitin. They are usually chilling, munching on the hotdogs somewhere you cannot reach them, or doing dumb things.<br><br>Oh, and when they go crowned their left eye lights up and Megalovania starts accompanying them everywhere. Who writes this crap???...oh right."
             ..bureaucraticBullshit = <String>["is having a bad time."]
             ..sideLoyalty = -1000
@@ -660,6 +708,8 @@ class NPCHandler
             ..specibus = new Specibus("Giant Gear", ItemTraitFactory.BUST, <ItemTrait>[ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT])
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
+            ..activationChance = 0.25
+            ..companionChance = 0.25
             ..serializableSceneStrings.add("Design Blueprint:___ N4IgdghgtgpiBcIAiMDOBLA5mABAIQBsBXGABwCd0wAXEAGhADMCIA3Ae3IBUYAPWxFwAWMHAGUAwgFEAclID6AeQDqcgEryZAQQCyUnOlQ4hEcgBMcEajgDunANY4zaLGCqZLOAEbEylGgB0OMIwAJ44pDDkjJxQONRo1EY26NRCnqym6DDU4eyMTqaOsNQQBKh0OJgwphWWYBaoCdA4MGCYVGg4RDToBPEi4dXWqOwlQu4DVjgE7Oz2RgTo9qKpOADG7EQEFnbk9gH0IKXkw4pgcIjU5CRH11jV5BLsDanoL6gAMuis7gggAG1gAAdEDoKCkTilGjKThmUHwUEyAD0WlBdCRii4CNBjDKqBg6NBkFgOJAAElUGIYARGESwRCoRAaOSaGSAAyggC+lRBDMh5Gh1Fh5jJKLR9Ex2IQuPxhMl4Gg8sRFNQWiWrHlGP5TJZbJlIE5IB5OD54IFQpF8IN6vWIigoXpMixZOuJHpJOVoJ0oTEpWolIA4uQagluCYwAA1MruhXm3UB-UqgCMAGYjSazYzBczhXCxainS6DXjylriUqyZS1MyzGN6fGc3rqGSABwAVm5AF07pRMI9nq9qO8wF9a-8AT2GDBGIwYOskgAxTjfX7tCdZi25q1k232x0Kz1kiQR6p+qwN7NCmREKBeKJktPc3mgxuW-M2gh2mAOj2Vg0nsyZ7+peW40Ded4PgaT7Gi+OpNnmoqft+v6Hv+KqAe0MDni2cZXrmEH3uQj6pt2RwznOC6oMu5CfLWqATj2XJAA")
             ..serializableSceneStrings.add("Get Help With Blueprint:___ N4IgdghgtgpiBcIDiMAuACAEjANgB3QHUBLVAC3QCEcBXGPAJ2LFRABoQAzHCANwHsGAFRgAPVoiFkY6AMoBhAKIA5RQH0A8oVUAlNcoCCAWUXoA5mgDO6afnScG-KOnIyhBnUkVD9x9Rr1DE1kXfnQAExhLYjMwdAh0ACNaeiYWADp0KRgAT3QAd0EAa1CLVwYXKNRmMxdpdBpLGE4aHDAo635OcxgIBmsIMHD0S1Re5xgwM2Yo9GZ49Hb8ubBeSer+MHT2EFQ+so12hF2GOh3UJjMLBnlN8NJiTcsAGWJeGuOAbWAAHRBiKB4QR7FiEQThP7wP7KAD0Bj+bGhGiEkL+FzoCL+kFgqJAAElLLJcJxMf9AcDBqg8SxcQAGP4AXzY6F+ZKBDBBqDBDAhCGhcNJymRuM4EBwTVJ2JguIJBhwb2l7D+APZnOpqDpjOZrJVFNB4NxcoAxtIoDlBcK+ScMUrwNBFVCQEYcrI9lTLEgGL0xsIyIMAGpim2Itl6qk0q0ARgAzPSQEyWcryRzKdzeY7YfDbUKUVbReLFSGpTLLDpBuEnKTdSmWOrcdHo1rE6Ga1yDVbjabzdnLY78xLbcWrUJ9mhXRB3Z7vTBfYMjDMq8m1RHHXGGQBdc6Xa63IYPJ7PctfTccZqcGBG1CWABigle7ymXx1S9T7cdnZgZsl9tx8j9UxgZ1xw1W1q05ZQaCgRIZ1xGMm2fVVXx5Q0cBNT9uyLH8rT-QYLCAt1F0QlgIKgmCo0beNtSTIi22QjtUK7b8cWw-88JdAjQJfYjIOghhYIohMELDNMULQr9Bywx0cIA-CJ0IsMSN4-j4Oo4S3z+D9xMw5ipNYwD2LkziaMUsjHTgyjmzApD0w0hj0KYh0-mktjgPk1sTL48jGRPEAzwvK9bwYQ8hksY94yAA")
             ..serializableSceneStrings.add("Create Protective Invention:___ N4IgdghgtgpiBcIDCAnGEAuMAEAFFA9lgMYYCWAbjgJJhVjkFggA0IAZgDYQUEoAqMAB4YEIfgAscAZSQBRAHJyA+gHkA6koBKyhQEEAsnOwBXAM4wz2CNgBGnEzAAOKMg2wYC2Ymkw4IYNZQEABebgDm2G70jGAAhNiSMACedgQEZhgeUmQo2AQA7oEAJjDsMGAWpmYR2ThuPjDFZPY4Fo0YVhJkxaWBBWQY3YFDMLnYmehQTiZgANZRdBWxAHSsIBgQKOEwGKpgcIgYKI7rx2ThOyhITM2xZgAylBFiANrAADogZNN8mwzqPjFL7wL4KAD0ei+LDBqn4IK+7AgnAs0K+kFgCJA1DM0hgnHYaO+vxQ-wwtAwWIADF8AL4sbCfYlOP4BDCAlDAhBgyFEhRwrFIlEwIkYkXc7FmPScSjimHM1kMCnUukMpk-FmktkcrmgkDS4hSKDJPkCiVC1GsdHQcV6gzJaSbclmADiviwAgkAQAasjHESNYryQwsQBGADMNJA9MZX0DWoBQKxEKhVpA-Ph5uRlvlYqxOK0AWKBCgAZJZOVEoAbFW6QBdM6uS4wa63QZkJiPItvBtsMrlUhmABifCeFBeiHecfL2qTEoNRpNabzEqQXrAO0dmDLmrJChMUFsLaxAFoI1GY+qZ4nOVikCYUGh3AAJdCcIaim139ebp07oP7oex4SueqqxgqCbsnOer3o+yzYK+yIfsuX6rj+MBbpSabxnuB5HigYaRvW6z9jAg4jigDxFmYPbRkAA")
@@ -686,6 +736,8 @@ class NPCHandler
             ..sylladex.add(new Item("Stethescope",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.HEALING]))
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
+            ..activationChance = 0.4
+            ..companionChance = 0.1
             ..description = "He probably won’t chop off the wrong limb, and he probably won’t treat something you don’t have.  You...get the feeling he is supposed to be something more than this."
             ..makeCunning(100)
         );

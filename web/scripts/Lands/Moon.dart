@@ -222,6 +222,7 @@ class Moon extends Land {
     }
 
     Carapace get partyRandomCarapace {
+        if(session.numActiveCarapaces > session.maxCarapaces) return null;
         List<Carapace> choices = new List<Carapace>();
         for(GameEntity g in associatedEntities) {
             if(g is Carapace && !g.active) {
