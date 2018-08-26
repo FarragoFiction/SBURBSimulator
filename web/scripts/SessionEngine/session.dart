@@ -50,6 +50,9 @@ class Session {
     Moon furthestRing;
     List<Moon> get moons => <Moon>[prospit, derse];
 
+    int get maxCarapaces => 12-players.length;
+    int numActiveCarapaces = 0;
+
     List<Land> get allLands {
         List<Land> targets = new List<Land>();
         for(Player p in players) {
@@ -202,6 +205,7 @@ class Session {
                         g.processCardFor();
                         toRemove.add(g);
                         g.activateTasks();
+                        numActiveCarapaces ++;
 
                     }
                 }

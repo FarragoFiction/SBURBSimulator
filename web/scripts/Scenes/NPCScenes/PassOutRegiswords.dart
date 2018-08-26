@@ -63,6 +63,7 @@ class PassOutRegiswords extends Scene {
 
       patsy = pickAPatsy();
       if(gameEntity == patsy || patsy == null ) return false;
+      if(patsy is Carapace && session.numActiveCarapaces > session.maxCarapaces) return false;
       //;
       //no longer during beurocracy stuff
       if(gameEntity.crowned != null || gameEntity.partyLeader != null ) return false;
