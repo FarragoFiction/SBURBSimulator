@@ -317,6 +317,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsWasted(scene));
       ret.add(new TargetIsTrickster(scene));
       ret.add(new TargetIsDreamSelf(scene));
+      ret.add(new TargetHasDreamSelf(scene));
       ret.add(new TargetIsSelf(scene));
       ret.add(new TargetIsDoomed(scene));
       ret.add(new TargetHasTimeClones(scene));
