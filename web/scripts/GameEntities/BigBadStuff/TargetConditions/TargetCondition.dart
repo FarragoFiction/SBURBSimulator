@@ -318,6 +318,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsTrickster(scene));
       ret.add(new TargetIsDreamSelf(scene));
       ret.add(new TargetHasDreamSelf(scene));
+      ret.add(new TargetEntitySessionHealthIsGreaterThan(scene));
       ret.add(new TargetIsSelf(scene));
       ret.add(new TargetIsDoomed(scene));
       ret.add(new TargetHasTimeClones(scene));
@@ -409,6 +410,7 @@ abstract class TargetConditionLand extends TargetCondition {
       ret.add(new TargetHasSound(scene));
       ret.add(new TargetHasFeel(scene));
       ret.add(new TargetIsMoon(scene));
+      ret.add(new TargetLandSessionHealthIsGreaterThan(scene));
       ret.add(new TargetHPIs(scene));
       ret.add(new TargetIsProspit(scene));
       ret.add(new TargetIsDerse(scene));
