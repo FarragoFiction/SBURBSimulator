@@ -47,7 +47,7 @@ class PassOutRegiswords extends Scene {
             finalList.add(g, 0.01);
         }
       }
-      return rand.pickFrom(patsies);
+      return rand.pickFrom(finalList);
   }
 
   @override
