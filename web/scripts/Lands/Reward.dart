@@ -669,7 +669,7 @@ class DreamReward extends Reward {
 
 
         String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Prospitians. ";
-        if(companion != null) {
+        if(companion != null && p1.session.rand.nextDouble() > 0.5) {
             companion.active = true;
             String a  = "A";
             if(companion.name.startsWith(new RegExp("[aeiouAEIOU]"))) a = "An";
@@ -702,7 +702,7 @@ class DreamReward extends Reward {
         activated = p1.session.derse.activateRandomCaparapce;
 
         String text = " The ${p1.htmlTitleBasicNoTip()} is getting pretty popular among Dersites. ";
-        if(companion != null) {
+        if(companion != null && p1.session.rand.nextDouble() > 0.5) {
             companion.active = true;
 
             String a  = "A";
