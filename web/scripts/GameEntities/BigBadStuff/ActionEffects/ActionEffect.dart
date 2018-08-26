@@ -214,6 +214,7 @@ abstract class EffectEntity extends ActionEffect {
   static List<EffectEntity> listPossibleEffects(SerializableScene scene) {
       List<EffectEntity> ret = new List<EffectEntity>();
       ret.add(new InstaKill(scene));
+      ret.add(new KillSleepingDreamSelf(scene));
       ret.add(new ChangeStat(scene));
       ret.add(new ChangeMyStat(scene));
       ret.add(new GiveAction(scene));
