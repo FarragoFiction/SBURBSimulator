@@ -560,7 +560,7 @@ class NPCHandler
             ..distractions = <String>["is being the very best, like no one ever was.","is explaining the rules to Captchacardmons.","is showing everyone his fanfictions."]
             ..specibus = new Specibus("BestFriendship Bracelet", ItemTraitFactory.STICK, <ItemTrait>[ ItemTraitFactory.CLOTH, ItemTraitFactory.ASPECTAL])
             ..fraymotifs.add(f)
-            ..companionChance = 0.95 //almost guaranteed to follow you
+            ..companionChance = 0.3 //more likely to follow you
             ..sylladex.add(new Item("Catpchacardmon Ball",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.SENTIENT]))
             ..description = "KB loves playing captchacardmons, and wants to help you be the very best, the best there ever was! He’ll gladly accompany you anywhere you go."
             ..bureaucraticBullshit = <String>["wants to update their captchacardmon license."]
