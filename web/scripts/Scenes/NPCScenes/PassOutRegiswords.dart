@@ -4,6 +4,9 @@ import 'dart:html';
 //jack passes out regiswords and quests to get rings/scepters to everyone he meets
 
 class PassOutRegiswords extends Scene {
+
+    int swordsPassedOut = 0;
+    int maxSwordsPassedOut = 2;
     GameEntity patsy;
   PassOutRegiswords(Session session) : super(session);
 
@@ -28,6 +31,7 @@ class PassOutRegiswords extends Scene {
 
       me.setInnerHtml("<br>The ${patsy.htmlTitle()} ${session.rand.pickFrom(genericReasons)} They end up having to visit the ${gameEntity.htmlTitle()} for bureaucratic reasons, who immediately hands them a Regisword. They make it a policy to hand out Regiswords to just about anyone who enters their office.  The ${patsy.htmlTitle()} is instructed to not bother coming back without a Ring or Scepter.");
       div.append(me);
+      swordsPassedOut ++;
   }
 
   GameEntity pickAPatsy() {
@@ -35,6 +39,14 @@ class PassOutRegiswords extends Scene {
       //royalty are kept separate so jack should NOT give the white queen a quest to get herh own ring.
       if(session.derse != null) patsies.addAll(session.derse.associatedEntities);
       if(session.prospit != null) patsies.addAll(session.prospit.associatedEntities);
+      WeightedList<GameEntity> finalList = new WeightedList<GameEntity>();
+      for(GameEntity g in patsies) {
+        if(g is Carapace) {
+            finalList.add(g, g.activationChance);
+        }else {
+            finalList.add(g, 0.01);
+        }
+      }
       return rand.pickFrom(patsies);
   }
 
@@ -47,6 +59,7 @@ class PassOutRegiswords extends Scene {
 
       //you're not  going to be your OWN patsy
      // ;
+      if(swordsPassedOut >= maxSwordsPassedOut) return false;
 
       patsy = pickAPatsy();
       if(gameEntity == patsy || patsy == null ) return false;

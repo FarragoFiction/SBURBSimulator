@@ -14,7 +14,7 @@ class Carapace extends NPC {
     int royaltyOpinion = 1;
     int sideLoyalty = 1;
     
-    double activationChance = 0.0;
+    double activationChance = 0.01;
     double companionChance = 0.01;
 
     //what is their normal goal
