@@ -50,6 +50,7 @@ export "EntityTargetConditions/TargetStatIsGreaterThanValue.dart";
 export "EntityTargetConditions/TargetStatIsGreaterThanMine.dart";
 export "EntityTargetConditions/TargetIsLeader.dart";
 export "EntityTargetConditions/TargetIsRoyalty.dart";
+export "EntityTargetConditions/TargetIsAgent.dart";
 export "EntityTargetConditions/TargetIsMyLeader.dart";
 export "EntityTargetConditions/TargetIsGrimDark.dart";
 export "EntityTargetConditions/IAmCrowned.dart";
