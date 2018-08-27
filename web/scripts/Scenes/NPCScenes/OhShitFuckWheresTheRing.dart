@@ -19,10 +19,10 @@ class OhShitFuckWheresTheRing extends Scene {
           Element container = new DivElement();
           me.append(container);
           GameEntity blackQueen = session.derse == null  ?  null:session.derse.queen;
-          if(session.mutator.lifeField || (blackQueen.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
+          if(session.mutator.lifeField || (bqowner.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
               return wellFuck(div, bqowner, session.derseRing, blackQueen);
-          }else if (blackQueen.dead) {
-              return ohOkay(div, bqowner, session.prospitScepter, blackQueen);
+          }else if (bqowner.dead) {
+              return ohOkay(div, bqowner, session.derseRing, blackQueen);
           }else {
               return startFight(div, bqowner, session.derseRing, blackQueen);
           }
@@ -35,22 +35,22 @@ class OhShitFuckWheresTheRing extends Scene {
           me.append(container);
           GameEntity whiteQueen = session.prospit == null  ?  null:session.prospit.queen;
 
-          if(session.mutator.lifeField || (whiteQueen.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
+          if(session.mutator.lifeField || (wqowner.unconditionallyImmortal &&  gameEntity.unconditionallyImmortal)) {
               wellFuck(div, wqowner, session.prospitRing, whiteQueen);
-          }else if (whiteQueen.dead) {
-              return ohOkay(div, wqowner, session.prospitScepter, whiteQueen);
+          }else if (wqowner.dead) {
+              return ohOkay(div, wqowner, session.prospitRing, whiteQueen);
           }else {
               startFight(div, wqowner, session.prospitRing, whiteQueen);
           }
       }
   }
 
-    void ohOkay(Element container, GameEntity target, Scepter scepter, GameEntity whoSHOULDHaveIt) {
+    void ohOkay(Element container, GameEntity target, Ring ring, GameEntity whoSHOULDHaveIt) {
         DivElement div = new DivElement();
         container.append(div);
         String text = "";
         gameEntity.lootCorpse(target);
-        text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitleWithTip()} just loots the $scepter from their corpse. Easy enough.";
+        text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitleWithTip()} just loots the $ring from their corpse. Easy enough.";
         div.setInnerHtml(text);
     }
 
