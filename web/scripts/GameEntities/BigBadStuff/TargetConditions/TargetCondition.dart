@@ -330,6 +330,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsGodTier(scene));
       ret.add(new TargetHasGodDestiny(scene));
       ret.add(new TargetIsLeader(scene));
+      ret.add(new TargetIsMyLeader(scene));
       ret.add(new TargetIsStrifable(scene));
       ret.add(new TargetIsUnconditionallyImmortal(scene));
       ret.add(new TargetIsRandom(scene));
