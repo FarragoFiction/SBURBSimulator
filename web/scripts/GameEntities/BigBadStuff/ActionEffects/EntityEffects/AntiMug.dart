@@ -31,8 +31,16 @@ class AntiMug extends EffectEntity {
   @override
   void effectEntities(List<GameEntity> entities) {
       String text = "";
-      text = "${scene.gameEntity.htmlTitle()} hands over everything in their inventory to the ${entities.first}, ${turnArrayIntoHumanSentence(scene.gameEntity.sylladex.inventory)}";
-
+      if(scene.gameEntity.sylladex.isNotEmpty) {
+          text = "The ${scene.gameEntity
+              .htmlTitle()} hands over everything in their inventory to the ${entities
+              .first}, ${turnArrayIntoHumanSentence(
+              scene.gameEntity.sylladex.inventory)}";
+      }else {
+          text = "The ${scene.gameEntity
+              .htmlTitle()} is feeling charitable, but realizes they have nothing to give to the ${entities
+              .first} .";
+      }
       entities.first.lootCorpse(scene.gameEntity);
 
 
