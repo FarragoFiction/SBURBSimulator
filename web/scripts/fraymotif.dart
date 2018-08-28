@@ -976,7 +976,7 @@ class FraymotifForm {
     void drawTier() {
         DivElement subContainer = new DivElement();
         LabelElement nameLabel = new LabelElement();
-        nameLabel.text = "Tier (Normal is 1, GodTier is 3, anything beyond 3 is stupidly high):";
+        nameLabel.text = "Tier (1-3 is normal):";
         tierElement = new TextInputElement();
         tierElement.value = "${owner.tier}";
         subContainer.append(nameLabel);
@@ -990,7 +990,34 @@ class FraymotifForm {
     }
 
     void drawDesc() {
+        descElement = new TextAreaElement();
+        descElement.value = owner.desc;
+        descElement.cols = 60;
+        descElement.rows = 10;
+        descElement.onInput.listen((e) {
+            owner.desc = descElement.value;
+            syncDataBoxToScene();
+        });
 
+        DivElement buttonDiv = new DivElement();
+
+        List<String> keyWords = <String>[Fraymotif.OWNER, Fraymotif.CASTERS, Fraymotif.ALLIES, Fraymotif.ENEMY, Fraymotif.ENEMIES, Fraymotif.FRAYMOTIF];
+
+        for(String word in keyWords) {
+            ButtonElement button = new ButtonElement();
+            button.text = "Append $word tag";
+            button.onClick.listen((e) {
+                descElement.value =
+                "${descElement.value} ${word}";
+                owner.desc = descElement.value;
+                syncDataBoxToScene();
+            });
+            buttonDiv.append(button);
+        }
+
+
+        container.append(descElement);
+        container.append(buttonDiv);
     }
 
     void drawEffects() {

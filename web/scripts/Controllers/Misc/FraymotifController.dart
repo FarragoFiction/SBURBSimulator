@@ -8,7 +8,7 @@ import "CurrentUpdateProgress.dart";
 Element div;
 UListElement todoElement;
 DivElement faqElement;
-Fraymotif fraymotif = new Fraymotif("Sample Fraymotif",1,desc: "What does the fraymotif do when played?");
+Fraymotif fraymotif = new Fraymotif("Sample Fraymotif",1,desc: "OWNER plays a 90s hit classic, and you can't help but tap your feet. ENEMY seems to not be able to stand it at all.");
 void main() {
   loadNavbar();
   start();
