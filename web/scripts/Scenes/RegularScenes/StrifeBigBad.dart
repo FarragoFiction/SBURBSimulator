@@ -38,6 +38,7 @@ class StrifeBigBad extends Scene {
 		for(GameEntity g in living) {
 			Relationship r = g.getRelationshipWith(bigBad);
 			if(r != null && r.value > Relationship.CRUSHVALUE/2) friendsToRemove.add(g);
+			if(bigBad.companionsCopy.contains(g)) friendsToRemove.add(g);
 		}
 
 		for(GameEntity friend in friendsToRemove) {
