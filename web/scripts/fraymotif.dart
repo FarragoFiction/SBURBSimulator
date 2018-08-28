@@ -901,6 +901,10 @@ class FraymotifEffect {
 class FraymotifForm {
     Element container;
     TextInputElement nameElement;
+    TextInputElement tierElement;
+    TextAreaElement descElement;
+
+
     TextAreaElement dataBox;
     Fraymotif owner;
 
@@ -954,11 +958,35 @@ class FraymotifForm {
     }
 
     void drawName() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Name:";
+        nameElement = new TextInputElement();
+        nameElement.value = owner.name;
+        subContainer.append(nameLabel);
+        subContainer.append(nameElement);
+        container.append(subContainer);
 
+        nameElement.onInput.listen((e) {
+            owner.name = nameElement.value;
+            syncDataBoxToScene();
+        });
     }
 
     void drawTier() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Tier (Normal is 1, GodTier is 3, anything beyond 3 is stupidly high):";
+        tierElement = new TextInputElement();
+        tierElement.value = "${owner.tier}";
+        subContainer.append(nameLabel);
+        subContainer.append(tierElement);
+        container.append(subContainer);
 
+        tierElement.onInput.listen((e) {
+            owner.tier = int.parse(tierElement.value);
+            syncDataBoxToScene();
+        });
     }
 
     void drawDesc() {

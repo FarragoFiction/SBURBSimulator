@@ -51,7 +51,7 @@ class TargetIsFromDerse extends TargetConditionLiving {
             return c.type != Carapace.DERSE;
         }else if( item is Player) {
             Player p = item as Player;
-            if(p.moon == scene.session.derse) return false;
+            if(p.moon.name == scene.session.derse.name) return false;
         }else {
             return !scene.session.derse.associatedEntities.contains(item);
         }
