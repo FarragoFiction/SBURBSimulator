@@ -1,5 +1,8 @@
 import "SBURBSim.dart";
 import 'dart:convert';
+import "dart:html";
+import 'includes/lz-string.dart';
+
 
 /*
 stat effects from a fraymotif are temporary. wear off after battle.
@@ -15,7 +18,10 @@ class Fraymotif {
     static String ENEMY = "ENEMY";
     static String ENEMIES = "ENEMIES";
     static String FRAYMOTIF  = "FRAYMOTIF";
+    String get labelPattern => ":___ ";
 
+
+    FraymotifForm form;
 
     List<Aspect> aspects; //expect to be an array
     String name;
@@ -53,6 +59,27 @@ class Fraymotif {
         json["effects"] = effectArray.toString();
 
         return json;
+    }
+
+    String toDataString() {
+        return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
+    }
+
+    void copyFromDataString(String data) {
+        //print("copying from data: $data, looking for labelpattern: $labelPattern");
+        String dataWithoutName = data.split("$labelPattern")[1];
+        //print("data without name is $dataWithoutName");
+
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        //print("raw json is $rawJSON");
+        JSONObject json = new JSONObject.fromJSONString(rawJSON);
+        copyFromJSON(json);
+    }
+
+    void renderForm(Element container) {
+        print ("render form for scene");
+        form = new FraymotifForm(this, container);
+        form.drawForm();
     }
 
     void copyFromJSON(JSONObject json) {
@@ -868,4 +895,77 @@ class FraymotifEffect {
         return ret;
     }
 
+}
+
+
+class FraymotifForm {
+    Element container;
+    TextInputElement nameElement;
+    TextAreaElement dataBox;
+    Fraymotif owner;
+
+    FraymotifForm(Fraymotif this.owner, Element parentContainer) {
+        container = new DivElement();
+        container.classes.add("SceneDiv");
+
+        parentContainer.append(container);
+
+    }
+
+    void drawForm() {
+        print("drawing new fraymotif form");
+        drawDataBox();
+        drawName();
+        drawTier();
+        drawDesc();
+        drawEffects();
+    }
+
+    void syncFormToOwner() {
+        print("syncing form to scene");
+        nameElement.value = owner.name;
+        print("syncing data box to scene");
+        syncDataBoxToScene();
+    }
+
+    void syncDataBoxToScene() {
+        print("trying to sync data box, owner is ${owner}");
+        dataBox.value = owner.toDataString();
+    }
+
+    void drawDataBox() {
+        print("drawing data box");
+        dataBox = new TextAreaElement();
+        dataBox.value = owner.toDataString();
+        dataBox.cols = 60;
+        dataBox.rows = 10;
+        dataBox.onChange.listen((e) {
+            print("syncing template to data box");
+            try {
+                owner.copyFromDataString(dataBox.value);
+                print("loaded scene");
+                syncFormToOwner();
+                print("synced form to scene");
+            }catch(e) {
+                window.alert("something went wrong! $e");
+            }
+        });
+        container.append(dataBox);
+    }
+
+    void drawName() {
+
+    }
+
+    void drawTier() {
+
+    }
+
+    void drawDesc() {
+
+    }
+
+    void drawEffects() {
+
+    }
 }
