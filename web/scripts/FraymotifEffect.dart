@@ -323,16 +323,18 @@ class FraymotifEffectForm {
     }
 
     void drawStat() {
+        print("trying to draw stats");
         statElement = new SelectElement();
         List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
         for(String key in allStatsKnown) {
+            print("key is $key");
             OptionElement statOption = new OptionElement()..value = key..text = key;
             if(owner.statName.name == key) statOption.selected = true;
             statElement.append(statOption);
         }
         container.append(statElement);
 
-        damageElement.onChange.listen((e) {
+        statElement.onChange.listen((e) {
             owner.statName = Stats.byName[statElement.value];
             syncDataBoxToScene();
         });
