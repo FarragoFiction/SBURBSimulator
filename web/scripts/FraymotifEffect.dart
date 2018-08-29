@@ -6,7 +6,7 @@ import 'dart:html';
 class FraymotifEffect {
     static int ALLIES = 1;
     static int ENEMIES = 3;
-    static int SELF = 1;
+    static int SELF = 0;
     static int ENEMY = 2;
     Stat statName; //hp heals current hp AND revives the player.
     num target; //self, allies or enemy or enemies, 0, 1, 2, 3
@@ -319,6 +319,9 @@ class FraymotifEffectForm {
     void syncFormToOwner() {
         print("syncing form to scene");
         owner.damageInsteadOfBuff = damageElement.value == "true";
+        owner.statName = Stats.byName[statElement.value];
+        owner.target = int.parse(targetElement.value);
+
         syncDataBoxToScene();
     }
 
@@ -342,7 +345,26 @@ class FraymotifEffectForm {
     }
 
     void drawTarget() {
+        /*    static int ALLIES = 1;
+    static int ENEMIES = 3;
+    static int SELF = 1;
+    static int ENEMY = 2;
+    */
+        print("trying to draw stats");
+        targetElement = new SelectElement();
+        Map<String,int> map = <String,int>{"SELF":FraymotifEffect.SELF, "SINGLE ENEMY":FraymotifEffect.ENEMY,"ALL ALLIES":FraymotifEffect.ALLIES, "ALL ENEMIES": FraymotifEffect.ENEMIES, };
+        for(String key in map.keys) {
+            print("key is $key");
+            OptionElement statOption = new OptionElement()..value = "${map[key]}"..text = key;
+            if(owner.target == map[key]) statOption.selected = true;
+            targetElement.append(statOption);
+        }
+        container.append(targetElement);
 
+        targetElement.onChange.listen((e) {
+            owner.target = int.parse(targetElement.value);
+            syncDataBoxToScene();
+        });
     }
 
     void drawDamage() {
