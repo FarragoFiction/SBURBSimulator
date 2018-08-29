@@ -118,7 +118,7 @@ class  SerializableScene extends Scene {
     }
 
   void doEffects() {
-      print("tick is ${session.numTicks} , doing effect for $gameEntity, scene is $name, chosen targets is $finalLivingTargets from all living of $livingTargets ");
+      //print("tick is ${session.numTicks} , doing effect for $gameEntity, scene is $name, chosen targets is $finalLivingTargets from all living of $livingTargets ");
       for(ActionEffect e in effectsForLands) {
           e.applyEffect();
       }

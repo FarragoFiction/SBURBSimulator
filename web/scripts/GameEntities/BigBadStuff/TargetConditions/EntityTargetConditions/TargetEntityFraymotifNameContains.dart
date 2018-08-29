@@ -69,7 +69,7 @@ class TargetEntityFraymotifNameContains extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         for(Fraymotif f in item.fraymotifs) {
-            if(f.name.contains(importantWord)) return false;
+            if(f.name.toLowerCase().contains(importantWord.toLowerCase())) return false;
         }
         return true;
 

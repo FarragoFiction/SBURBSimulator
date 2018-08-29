@@ -50,7 +50,7 @@ class GiveFraymotif extends EffectEntity {
         Fraymotif fraymotif = new Fraymotif("",0);
         fraymotif.copyFromDataString(importantWord);
         e.fraymotifs.add(fraymotif);
-        text = "$text ${e.htmlTitle()} learned a new fraymotif: ${fraymotif.name}}.";
+        text = "$text ${e.htmlTitle()} learned a new fraymotif: ${fraymotif.name}.";
     });
 
     ButtonElement toggle = new ButtonElement()..text = "Show Details?";
