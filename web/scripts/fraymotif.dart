@@ -663,10 +663,10 @@ class FraymotifForm {
             s.renderForm(effectsSection);
         }
         print("syncing data box to scene");
-        syncDataBoxToScene();
+        syncDataBoxToOwner();
     }
 
-    void syncDataBoxToScene() {
+    void syncDataBoxToOwner() {
         print("trying to sync data box, owner is ${owner}");
         dataBox.value = owner.toDataString();
     }
@@ -709,7 +709,7 @@ class FraymotifForm {
 
         nameElement.onInput.listen((e) {
             owner.name = nameElement.value;
-            syncDataBoxToScene();
+            syncDataBoxToOwner();
         });
     }
 
@@ -725,7 +725,7 @@ class FraymotifForm {
 
         tierElement.onInput.listen((e) {
             owner.tier = int.parse(tierElement.value);
-            syncDataBoxToScene();
+            syncDataBoxToOwner();
         });
     }
 
@@ -736,7 +736,7 @@ class FraymotifForm {
         descElement.rows = 10;
         descElement.onInput.listen((e) {
             owner.desc = descElement.value;
-            syncDataBoxToScene();
+            syncDataBoxToOwner();
         });
 
         DivElement buttonDiv = new DivElement();
@@ -750,7 +750,7 @@ class FraymotifForm {
                 descElement.value =
                 "${descElement.value} ${word}";
                 owner.desc = descElement.value;
-                syncDataBoxToScene();
+                syncDataBoxToOwner();
             });
             buttonDiv.append(button);
         }

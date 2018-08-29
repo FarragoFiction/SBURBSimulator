@@ -307,6 +307,7 @@ class FraymotifEffectForm {
         print("drawing new fraymotif form");
         DivElement help = new DivElement()..text = "Targeting allies helps them, Targeting enemies hurts them. If you damage with a stat, you use your copy of the stat to determine how much damage you do. If you buff with a stat, you raise/lower that stat directly.  If you 'damage' hp for allies you both heal and revive them.";
         container.append(help);
+        drawDeleteButton();
         drawDamage();
         drawTarget();
         drawStat();
@@ -367,6 +368,19 @@ class FraymotifEffectForm {
             owner.target = int.parse(targetElement.value);
             syncDataBoxToScene();
         });
+    }
+
+    void drawDeleteButton() {
+            ButtonElement delete = new ButtonElement();
+            delete.text = "Remove Effect";
+            delete.onClick.listen((e) {
+                //don't bother knowing where i am, just remove from all
+                owner.fraymotif.effects.remove(owner);
+                container.remove();
+                owner.fraymotif.form.syncDataBoxToOwner();
+            });
+            container.append(delete);
+
     }
 
     void drawDamage() {
