@@ -17,6 +17,10 @@ void main() {
 
 Future<Null> start() async {
   await globalInit();
+  FraymotifEffect effect = new FraymotifEffect(Stats.POWER, 0,true);
+  //needed for form, won't be needed in a live simulation
+  effect.fraymotif = fraymotif;
+  fraymotif.effects.add(effect);
   div = querySelector("#story");
   setUpForm();
 
