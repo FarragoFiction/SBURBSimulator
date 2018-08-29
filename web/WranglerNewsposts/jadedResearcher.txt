@@ -1,3 +1,4 @@
+2018-08-28: Oh shit, we're here, the begining of the end. I've finally gotten around to implementing one of the more complicated AIEngine features: the ability to spawn custom fraymotifs. <br><Br>And yes, before you ask, eventually it'll be part of the session customizer.
 2018-08-28: Uh. Apparently procedural strifes have been crashing like fuck any time either side has allies? That was a thing. Not anymore though, I squashed that bug like whoa.
 2018-08-26: AiUpdate slowly but surely gets fleshed out.
 2018-08-24: Carapaces suddenly have graphics??? Hopy shit. And TG totally helped me track down this weird bug where the AI was behaving weird style.
