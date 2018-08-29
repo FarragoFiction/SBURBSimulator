@@ -288,8 +288,8 @@ class FraymotifEffect {
 class FraymotifEffectForm {
     Element container;
     //Stat this.statName, num this.target, bool this.damageInsteadOfBuff
-    TextInputElement statElement;
-    TextInputElement targetElement;
+    SelectElement statElement;
+    SelectElement targetElement;
     SelectElement damageElement;
 
 
@@ -323,6 +323,19 @@ class FraymotifEffectForm {
     }
 
     void drawStat() {
+        statElement = new SelectElement();
+        List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
+        for(String key in allStatsKnown) {
+            OptionElement statOption = new OptionElement()..value = key..text = key;
+            if(owner.statName.name == key) statOption.selected = true;
+            statElement.append(statOption);
+        }
+        container.append(statElement);
+
+        damageElement.onChange.listen((e) {
+            owner.statName = Stats.byName[statElement.value];
+            syncDataBoxToScene();
+        });
 
     }
 
