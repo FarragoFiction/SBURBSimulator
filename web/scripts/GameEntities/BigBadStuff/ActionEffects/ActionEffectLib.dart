@@ -7,6 +7,7 @@ export "EntityEffects/PickPocket.dart";
 export "EntityEffects/KillSleepingDreamSelf.dart";
 export "EntityEffects/Mug.dart";
 export "EntityEffects/AntiMug.dart";
+export "EntityEffects/GiveFraymotif.dart";
 export "EntityEffects/GiveExtraTitle.dart";
 export "EntityEffects/ChangeMyStat.dart";
 export "EntityEffects/GiveThisAction.dart";
