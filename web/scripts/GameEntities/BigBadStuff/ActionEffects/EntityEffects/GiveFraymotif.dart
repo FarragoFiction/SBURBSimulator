@@ -27,7 +27,11 @@ class GiveFraymotif extends EffectEntity {
 
         me.setInnerHtml("<b>GiveFraymotif:</b> <br>");
         //stat time
-
+        AnchorElement a = new AnchorElement(href:"FraymotifCreation.html")..text = "Fraymotif Builder";
+        a.style.backgroundColor = "white";
+        a.style.padding = "5px";
+        a.target = "_blank";
+        me.append(a);
         actionStringBox = new TextAreaElement();
         me.append(actionStringBox);
         actionStringBox.value = importantWord;
