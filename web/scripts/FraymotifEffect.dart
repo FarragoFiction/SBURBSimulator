@@ -290,7 +290,7 @@ class FraymotifEffectForm {
     //Stat this.statName, num this.target, bool this.damageInsteadOfBuff
     TextInputElement statElement;
     TextInputElement targetElement;
-    TextAreaElement damageElement;
+    SelectElement damageElement;
 
 
     TextAreaElement dataBox;
@@ -318,6 +318,7 @@ class FraymotifEffectForm {
 
     void syncFormToOwner() {
         print("syncing form to scene");
+        owner.damageInsteadOfBuff = damageElement.value == "true";
         syncDataBoxToScene();
     }
 
@@ -330,12 +331,22 @@ class FraymotifEffectForm {
     }
 
     void drawDamage() {
-        SelectElement select = new SelectElement();
-        OptionElement damage = new OptionElement()..value = 'true'..text = 'Damage'..selected=true;
+        damageElement = new SelectElement();
+        OptionElement damage = new OptionElement()..value = 'true'..text = 'Damage';
         OptionElement buff = new OptionElement()..value='false'..text='Buff';
-        select.append(damage);
-        select.append(buff);
-        container.append(select);
+        if(owner.damageInsteadOfBuff) {
+            damage.selected = true;
+        }else {
+            buff.selected = true;
+        }
+        damageElement.append(damage);
+        damageElement.append(buff);
+        container.append(damageElement);
+
+        damageElement.onChange.listen((e) {
+            owner.damageInsteadOfBuff = damageElement.value == "true";
+            syncDataBoxToScene();
+        });
     }
 
 }

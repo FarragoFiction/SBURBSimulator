@@ -629,6 +629,7 @@ class FraymotifForm {
     TextInputElement nameElement;
     TextInputElement tierElement;
     TextAreaElement descElement;
+    Element effectsSection;
 
 
     TextAreaElement dataBox;
@@ -657,7 +658,10 @@ class FraymotifForm {
         nameElement.value = owner.name;
         tierElement.value = "${owner.tier}";
         descElement.value = owner.desc;
-        //TODO something something effects
+
+        for (FraymotifEffect s in owner.effects) {
+            s.renderForm(effectsSection);
+        }
         print("syncing data box to scene");
         syncDataBoxToScene();
     }
@@ -676,7 +680,13 @@ class FraymotifForm {
         dataBox.onChange.listen((e) {
             print("syncing template to data box");
             try {
+                List<FraymotifEffect> effectsBackup = new List.from(owner.effects);
+
                 owner.copyFromDataString(dataBox.value);
+                //remove the effects from the form
+                for(FraymotifEffect effect in effectsBackup) {
+                    effect.form.container.remove();
+                }
                 print("loaded scene");
                 syncFormToOwner();
                 print("synced form to scene");
@@ -751,8 +761,10 @@ class FraymotifForm {
     }
 
     void drawExistingEffects() {
+        effectsSection = new DivElement();
+        container.append(effectsSection);
         for(FraymotifEffect e in owner.effects) {
-            e.renderForm(container);
+            e.renderForm(effectsSection);
         }
     }
 
@@ -763,6 +775,13 @@ class FraymotifForm {
         ButtonElement button = new ButtonElement()..text = "Add Effect";
         tmp.append(button);
         container.append(tmp);
+        button.onClick.listen((Event e) {
+            FraymotifEffect effect = new FraymotifEffect(Stats.POWER, 0,true);
+            //needed for form, won't be needed in a live simulation
+            effect.fraymotif = owner;
+            owner.effects.add(effect);
+            effect.renderForm(effectsSection);
+        });
 
     }
 }
