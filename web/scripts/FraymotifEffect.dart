@@ -305,9 +305,11 @@ class FraymotifEffectForm {
 
     void drawForm() {
         print("drawing new fraymotif form");
-        drawStat();
-        drawTarget();
+        DivElement help = new DivElement()..text = "Targeting allies helps them, Targeting enemies hurts them. If you damage with a stat, you use your copy of the stat to determine how much damage you do. If you buff with a stat, you raise/lower that stat directly.  If you 'damage' hp for allies you both heal and revive them.";
+        container.append(help);
         drawDamage();
+        drawTarget();
+        drawStat();
     }
 
     void syncDataBoxToScene() {
@@ -369,8 +371,8 @@ class FraymotifEffectForm {
 
     void drawDamage() {
         damageElement = new SelectElement();
-        OptionElement damage = new OptionElement()..value = 'true'..text = 'Damage';
-        OptionElement buff = new OptionElement()..value='false'..text='Buff';
+        OptionElement damage = new OptionElement()..value = 'true'..text = 'Damage/Heal';
+        OptionElement buff = new OptionElement()..value='false'..text='Debuff/Buff';
         if(owner.damageInsteadOfBuff) {
             damage.selected = true;
         }else {

@@ -15,6 +15,7 @@ export "EntityTargetConditions/TargetIsUnconditionallyImmortal.dart";
 export "EntityTargetConditions/TargetIsStrifable.dart";
 export "EntityTargetConditions/TargetHasInterestCategory.dart";
 export "EntityTargetConditions/TargetIsDreamSelf.dart";
+export "EntityTargetConditions/TargetEntityFraymotifNameContains.dart";
 export "EntityTargetConditions/TargetHasDreamSelf.dart";
 export "EntityTargetConditions/TargetEntitySessionHealthGreaterThan.dart";
 export "EntityTargetConditions/TargetIsRobot.dart";
