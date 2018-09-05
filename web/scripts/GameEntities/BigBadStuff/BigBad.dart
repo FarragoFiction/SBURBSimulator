@@ -315,6 +315,21 @@ class BigBadForm {
             syncDataBoxToBigBad();
         });
 
+        purpleFrogElement.onInput.listen((Event e) {
+            bigBad.purpleFrogText = purpleFrogElement.value;
+            syncDataBoxToBigBad();
+        });
+
+        pinkFrogElement.onInput.listen((Event e) {
+            bigBad.pinkFrogText = pinkFrogElement.value;
+            syncDataBoxToBigBad();
+        });
+
+        prologueElement.onInput.listen((Event e) {
+            bigBad.prologueText = prologueElement.value;
+            syncDataBoxToBigBad();
+        });
+
 
 
 
