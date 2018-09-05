@@ -3,6 +3,8 @@ import "../../SBURBSim.dart";
 
 //the final fight against every big bad at once in a big stupid pile
 class StrifeBigBadFinale extends Scene {
+	//you get one shot, one opportunity (even if you're alive after, the big bads just follow you in)
+	bool happenedOnce = false;
 	List<BigBad> bigBads = new List<BigBad>();
 
 	StrifeBigBadFinale(Session session): super(session);
@@ -20,7 +22,7 @@ class StrifeBigBadFinale extends Scene {
 
 		bigBads = possibleTargets;
 
-		return bigBads.isEmpty;
+		return bigBads.isNotEmpty && !happenedOnce;
 	}
 
 
@@ -50,6 +52,7 @@ class StrifeBigBadFinale extends Scene {
 
 	@override
 	void renderContent(Element div){
+		happenedOnce = true; //now or never
 		doFight(div);
 	}
 
@@ -84,7 +87,7 @@ class StrifeBigBadFinale extends Scene {
 		Strife strife = new Strife(this.session, teams);
 		strife.startTurn(div);
 	}
-	
+
 
 	void describeFight() {
 
