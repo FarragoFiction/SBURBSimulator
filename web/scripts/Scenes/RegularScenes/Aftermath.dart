@@ -344,6 +344,7 @@ class Aftermath extends Scene {
 
         appendHtml(div, end);
         //String divID = (div.id) + "_aftermath" ;
+        processBigBadEndings();
 
 
         //poseAsATeam(canvasDiv, this.session.players, 2000); //everybody, even corpses, pose as a team.
@@ -357,6 +358,26 @@ class Aftermath extends Scene {
             session.simulationComplete("Aftermath, not eligible for a combo.");
         }
         return null;
+    }
+
+    void processBigBadEndings() {
+        List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
+        //if you are not a big bad, dead or inactive, remove.
+        possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
+        for(BigBad bb in possibleTargets) {
+            String text;
+            if(session.stats.gnosisEnding) {
+                text = bb.pinkFrogText;
+            }else if(session.frogStatus().contains("Purple")) {
+                text = bb.purpleFrogText;
+            }else {
+                text = bb.regularFrogText;
+            }
+            if(text != null && text.isNotEmpty) {
+                DivElement div = new DivElement()..text = text;
+                SimController.instance.storyElement.append(div);
+            }
+        }
     }
 
     void processLivingEnding(Element div, String end, bool yellowYard) {
