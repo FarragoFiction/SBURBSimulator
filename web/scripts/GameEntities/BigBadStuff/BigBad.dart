@@ -54,6 +54,12 @@ class BigBad extends NPC {
       json["textIfNoStrife"] = textIfNoStrife;
       json["textIfYesStrife"] = textIfYesStrife;
 
+      json["regularFrogText"] = regularFrogText;
+      json["purpleFrogText"] = purpleFrogText;
+      json["pinkFrogText"] = pinkFrogText;
+      json["prologueText"] = prologueText;
+
+
       List<JSONObject> startSceneArray = new List<JSONObject>();
       for(Scene s in startMechanisms) {
           if(s is SerializableScene) startSceneArray.add(s.toJSON());
@@ -101,6 +107,24 @@ class BigBad extends NPC {
       if(json["textIfYesStrife"] != null) {
           textIfYesStrife = json["textIfYesStrife"];
       }
+
+
+      if(json["regularFrogText"] != null) {
+          regularFrogText = json["regularFrogText"];
+      }
+
+      if(json["purpleFrogText"] != null) {
+          purpleFrogText = json["purpleFrogText"];
+      }
+
+      if(json["pinkFrogText"] != null) {
+          pinkFrogText = json["pinkFrogText"];
+      }
+
+      if(json["prologueText"] != null) {
+          prologueText = json["prologueText"];
+      }
+
      // print("done with name and description");
 
       String startScenesString = json["startMechanisms"];
