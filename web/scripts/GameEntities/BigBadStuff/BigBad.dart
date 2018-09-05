@@ -266,13 +266,13 @@ class BigBadForm {
          */
 
         prologueElement = new TextAreaElement();
-        LabelElement prologueLabel = new LabelElement()..text ="Prologue Text (if active on session creation)";
+        LabelElement prologueLabel = new LabelElement()..text ="Prologue Text (if active on session creation)"..style.display="block";
         pinkFrogElement = new TextAreaElement();
-        LabelElement pinkLabel = new LabelElement()..text ="Pink Frog Text";
+        LabelElement pinkLabel = new LabelElement()..text ="Pink Frog Text"..style.display="block";
         purpleFrogElement = new TextAreaElement();
-        LabelElement purpleLabel = new LabelElement()..text ="Purple Frog Text";
+        LabelElement purpleLabel = new LabelElement()..text ="Purple Frog Text"..style.display="block";
         regularFrogElement = new TextAreaElement();
-        LabelElement regularLabel = new LabelElement()..text ="Regular Frog Text";
+        LabelElement regularLabel = new LabelElement()..text ="Regular Frog Text"..style.display="block";
 
         DivElement first = new DivElement();
         DivElement second = new DivElement();
@@ -280,11 +280,11 @@ class BigBadForm {
         DivElement fourth = new DivElement();
 
 
-        first.append(regularLabel);
-        first.append(regularFrogElement);
+        second.append(regularLabel);
+        second.append(regularFrogElement);
 
-        second.append(prologueLabel);
-        second.append(prologueElement);
+        first.append(prologueLabel);
+        first.append(prologueElement);
 
         third.append(pinkLabel);
         third.append(pinkFrogElement);
@@ -328,6 +328,11 @@ class BigBadForm {
         strifableNoElement.value = bigBad.textIfNoStrife;
         strifableElement.checked = bigBad.canStrife;
         immortalElement.checked = bigBad.unconditionallyImmortal;
+
+        prologueElement.value = bigBad.prologueText;
+        regularFrogElement.value = bigBad.regularFrogText;
+        pinkFrogElement.value = bigBad.pinkFrogText;
+        purpleFrogElement.value = bigBad.purpleFrogText;
 
 
         for(SummonScene s in bigBad.startMechanisms) {
