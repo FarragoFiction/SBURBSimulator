@@ -639,7 +639,20 @@ class Session {
         }
 
         appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. The ${turnArrayIntoHumanSentence(npcsWithTag)} seem to be especially anticipating them.<br><br>");
+        processBigBadIntros();
         await callNextIntro(0);
+    }
+
+    void processBigBadIntros() {
+        List<GameEntity> possibleTargets = new List<GameEntity>.from(activatedNPCS);
+        //if you are not a big bad, dead or inactive, remove.
+        possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
+        for(BigBad bb in possibleTargets) {
+            if(bb.prologueText != null && bb.prologueText.isNotEmpty) {
+                DivElement div = new DivElement()..text = bb.prologueText;
+                SimController.instance.storyElement.append(div);
+            }
+        }
     }
 
     Future<Null> processCombinedSession() async {

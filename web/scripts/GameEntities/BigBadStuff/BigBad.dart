@@ -17,10 +17,10 @@ class BigBad extends NPC {
   BigBadForm form;
   String textIfNoStrife = "";
   String textIfYesStrife = "";
-  String text regularFrogText = "";
-    String text purpleFrogText = "";
-    String text pinkFrogText = "";
-    String text prologueText = "";
+  String regularFrogText = "";
+ String purpleFrogText = "";
+ String pinkFrogText = "";
+ String prologueText = "";
 
 
 
