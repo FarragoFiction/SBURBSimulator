@@ -77,13 +77,17 @@ class  SerializableScene extends Scene {
       myElement.setInnerHtml("$displayText");
 
       if(gameEntity is Carapace) {
-          ImageElement portrait = new ImageElement(src: "images/BigBadCards/${(gameEntity as Carapace).initials.toLowerCase()}.png");
-          portrait.onError.listen((e) {
-              portrait.src = "images/BigBadCards/default.gif";
-          });
-          portrait.style.width = "100px";
-          portrait.style.backgroundColor = "grey";
-          div.append(portrait);
+          if(!doNotRender) {
+              ImageElement portrait = new ImageElement(
+                  src: "images/BigBadCards/${(gameEntity as Carapace).initials
+                      .toLowerCase()}.png");
+              portrait.onError.listen((e) {
+                  portrait.src = "images/BigBadCards/default.gif";
+              });
+              portrait.style.width = "100px";
+              portrait.style.backgroundColor = "grey";
+              div.append(portrait);
+          }
       }
 
       doEffects(); //automatic

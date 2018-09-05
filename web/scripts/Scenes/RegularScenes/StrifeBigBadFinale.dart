@@ -11,7 +11,6 @@ class StrifeBigBadFinale extends Scene {
 
 	@override
 	bool trigger(playerList){
-		if(gameEntity.dead) return false; //just. stop it. please?
 		bigBads.clear();
 
 		List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
@@ -77,7 +76,7 @@ class StrifeBigBadFinale extends Scene {
 		String flavor = "It is time for a fuck off big giant boss fight.";
 		if(bigBads.length > 2) flavor = "$flavor It's actually really confusing to keep track of who is on who's side.";
 
-		div.setInnerHtml("The ${gameEntity.htmlTitle()} realizes that before they can deploy the frog, they need to at least TRY to get rid of the all these motherfucking big bads in this motherfucking session.  $flavor");
+		div.setInnerHtml("The Players realize that before they can deploy the frog, they need to at least TRY to get rid of the all these motherfucking big bads in this motherfucking session.  $flavor");
 
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
 		pTeam.canAbscond = false;
