@@ -835,7 +835,7 @@ class Session {
         List<GameEntity> cachedActivated = new List.from(activatedNPCS);
         //(since an npc can be activated during these scenes)
         for(GameEntity g in cachedActivated) {
-            if(g.active && g.available) g.processScenes();
+            if(g.active && g.available && !g.dead) g.processScenes();
         }
 
         //keep it from being a concurrent mod if i activate (and thus get removed from list
@@ -851,7 +851,7 @@ class Session {
         for(Player p in avail) {
             //;
             if(p.scenes.isEmpty) Scene.createScenesForPlayer(this, p);
-            if(p.active && p.available) {
+            if(p.active && p.available && !p.dead) {
                 //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
                 p.processScenes();
             }
