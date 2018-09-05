@@ -15,7 +15,7 @@ class StrifeBigBadFinale extends Scene {
 
 		List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
 		//if you are not a big bad, dead or inactive, remove.
-		possibleTargets.removeWhere((GameEntity item) => !(item is BigBad || item.dead || !item.active));
+		possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
 		//if you aren't fightable, what are you even doing here?
 		possibleTargets.removeWhere((GameEntity item) => !item.canStrife);
 
