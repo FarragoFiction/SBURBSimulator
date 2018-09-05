@@ -336,7 +336,7 @@ void syncForm() {
       for(Player p in session.players) {
             if(p.active) {
                 livingTargets.add(p);
-                landTargets.add(p.land);
+                if(p.land != null) landTargets.add(p.land);
             }
       }
 

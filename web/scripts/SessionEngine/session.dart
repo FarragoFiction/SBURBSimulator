@@ -88,8 +88,13 @@ class Session {
         return new List.from(_activatedNPCS); //don't let ppl have access to original list they might mod it
     }
 
-    void addActiveNPCS(List<GameEntity>npcs){
-        _activatedNPCS.addAll(npcs);
+    void addActiveNPCSForCombo(List<GameEntity>npcs){
+        for(GameEntity g in npcs) {
+            //no guarantee you'll make it in
+            if(g.dead == false && g.active && rand.nextBool()) {
+                _activatedNPCS.add(g);
+            }
+        }
     }
 
     void activateBigBad(GameEntity bb) {
@@ -1273,7 +1278,7 @@ class Session {
         ;
         ////print(getPlayersTitles(living));
         newSession.addAliensToSession(this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
-        newSession.addActiveNPCS(activatedNPCS);
+        newSession.addActiveNPCSForCombo(activatedNPCS);
         this.stats.hadCombinedSession = true;
         this.childSession = newSession;
         //reverse polarity
