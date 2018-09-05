@@ -17,8 +17,14 @@ class BigBad extends NPC {
   BigBadForm form;
   String textIfNoStrife = "";
   String textIfYesStrife = "";
+  String text regularFrogText = "";
+    String text purpleFrogText = "";
+    String text pinkFrogText = "";
+    String text prologueText = "";
 
-  //if any of these are true, the big bad is triggered. proccessed even if not active
+
+
+    //if any of these are true, the big bad is triggered. proccessed even if not active
   List<SerializableScene> startMechanisms = new List<SerializableScene>();
   //scenes list is like normal, but i assume they are all serializable
 
