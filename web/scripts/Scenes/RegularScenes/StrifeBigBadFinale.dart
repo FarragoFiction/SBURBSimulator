@@ -3,47 +3,30 @@ import "../../SBURBSim.dart";
 
 //the final fight against every big bad at once in a big stupid pile
 class StrifeBigBadFinale extends Scene {
-	GameEntity bigBad;
+	List<BigBad> bigBads = new List<BigBad>();
 
 	StrifeBigBadFinale(Session session): super(session);
 
 	@override
 	bool trigger(playerList){
 		if(gameEntity.dead) return false; //just. stop it. please?
-		bigBad = null;
-		List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
-		possibleTargets.addAll(session.players);
-		//get rid of targets that aren't big bads or targets who are dead
-		possibleTargets.removeWhere((GameEntity item) => !item.villain || item.dead || item == gameEntity);
-		possibleTargets.removeWhere((GameEntity item){
-			Relationship r = gameEntity.getRelationshipWith(item);
-			if(r == null) return false;
-			if(r.value > Relationship.CRUSHVALUE/2) return true; //i like you too much to target you.
-			return false;
-		});
+		bigBads.clear();
 
-		bigBad = session.rand.pickFrom(possibleTargets);
-		return bigBad != null;
+		List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
+		//if you are not a big bad, dead or inactive, remove.
+		possibleTargets.removeWhere((GameEntity item) => !(item is BigBad || item.dead || !item.active));
+		//if you aren't fightable, what are you even doing here?
+		possibleTargets.removeWhere((GameEntity item) => !item.canStrife);
+
+		bigBads = possibleTargets;
+
+		return bigBads.isEmpty;
 	}
 
 
 	List<GameEntity> getGoodGuys(){
 		List<GameEntity> living = findLiving(this.session.players);
 		List<GameEntity> allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
-		//for the love of all that is sane, don't join the team meant to defeat you. please.
-		living.remove(bigBad);
-
-		//if they like you, they won't join the angry mob hunting you down
-		List<GameEntity> friendsToRemove = new List<GameEntity>();
-		for(GameEntity g in living) {
-			Relationship r = g.getRelationshipWith(bigBad);
-			if(r != null && r.value > Relationship.CRUSHVALUE/2) friendsToRemove.add(g);
-			if(bigBad.companionsCopy.contains(g)) friendsToRemove.add(g);
-		}
-
-		for(GameEntity friend in friendsToRemove) {
-			living.remove(friend);
-		}
 
 		for(num i = 0; i<allPlayers.length; i++){
 			living.addAll(allPlayers[i].doomedTimeClones);
@@ -67,47 +50,41 @@ class StrifeBigBadFinale extends Scene {
 
 	@override
 	void renderContent(Element div){
-		if(canFight()) {
-			doFight(div);
-		}else {
-			failFight(div);
+		doFight(div);
+	}
+
+	List<Team> setupBigBadTeams(Team pTeam) {
+		List<Team> teams = new List<Team>();
+		for(BigBad bb in bigBads) {
+			Team dTeam = new Team(this.session, [bb]);
+			teams.add(dTeam);
+			dTeam.canAbscond = false;
+			pTeam.members.removeWhere((GameEntity g) => dTeam.members.contains(g));
 		}
+		return teams;
 
 	}
 
-	void failFight(Element div) {
-		DivElement container = new DivElement();
-		div.append(container);
-		String flavor = "";
-		if(bigBad is BigBad) flavor = (bigBad as BigBad).textIfNoStrife;
-		div.setInnerHtml("The ${gameEntity.htmlTitle()} has had enough of the tyranny of the ${bigBad.htmlTitle()}.  $flavor");
-
-
-	}
 
 	void doFight(Element div) {
-		bigBad.heal();
 		DivElement container = new DivElement();
 		div.append(container);
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
 		List<GameEntity> fighting = this.getGoodGuys();
-		String flavor = "";
-		if(bigBad is BigBad) flavor = (bigBad as BigBad).textIfYesStrife;
-		if(bigBad is Player) flavor = "It hurts to have to fight a former friend, but this has to be done.";
-		div.setInnerHtml("The ${gameEntity.htmlTitle()} has had enough of the tyranny of the ${bigBad.htmlTitle()}. They rally as many of the other players against the villain as they can.  $flavor");
+		String flavor = "It is time for a fuck off big giant boss fight.";
+		if(bigBads.length > 2) flavor = "$flavor It's actually really confusing to keep track of who is on who's side.";
+
+		div.setInnerHtml("The ${gameEntity.htmlTitle()} realizes that before they can deploy the frog, they need to at least TRY to get rid of the all these motherfucking big bads in this motherfucking session.  $flavor");
 
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
-		pTeam.canAbscond = true;
-		Team dTeam = new Team(this.session, [bigBad]);
-		pTeam.members.removeWhere((GameEntity g) => dTeam.members.contains(g));
-		dTeam.canAbscond = false; //take your fucking medicine
-		Strife strife = new Strife(this.session, [pTeam, dTeam]);
+		pTeam.canAbscond = false;
+
+		List<Team> teams = setupBigBadTeams(pTeam);
+		teams.insert(0, pTeam);
+		Strife strife = new Strife(this.session, teams);
 		strife.startTurn(div);
 	}
-
-	bool canFight() {
-		return bigBad.canStrife;
-	}
+	
 
 	void describeFight() {
 
