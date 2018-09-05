@@ -53,10 +53,13 @@ class TargetIsFromProspit extends TargetConditionLiving {
             return c.type != Carapace.PROSPIT;
         }else if( item is Player) {
           Player p = item as Player;
+          //okay maybe you don't have a moon anymore but you still have jamies
+          if(p.moon == null) return p.dreamPalette == scene.session.prospit.palette;
           if(p.moon.name == scene.session.prospit.name) return false;
         }else {
             //print("oh, hello there. $item is not a carapace or a player. i guess i can see if its on the moon");
             return !scene.session.prospit.associatedEntities.contains(item);
         }
+        return true;
     }
 }
