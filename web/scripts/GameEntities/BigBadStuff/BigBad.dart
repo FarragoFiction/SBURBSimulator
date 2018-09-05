@@ -223,6 +223,12 @@ class BigBadForm {
     TextAreaElement strifableYesElement;
     TextAreaElement strifableNoElement;
 
+    TextAreaElement pinkFrogElement;
+    TextAreaElement purpleFrogElement;
+    TextAreaElement regularFrogElement;
+    TextAreaElement prologueElement;
+
+
     Element startSceneSection;
     Element sceneSection;
     Element stopSceneSection;
@@ -242,11 +248,77 @@ class BigBadForm {
         drawAddStartButton();
         drawAddSceneButton();
         drawAddStopButton();
+        drawTextBoxes();
 
     }
 
     void syncDataBoxToBigBad() {
         dataBox.value = bigBad.toDataString();
+    }
+
+    void drawTextBoxes() {
+
+        /*
+            TextAreaElement pinkFrogElement;
+    TextAreaElement purpleFrogElement;
+    TextAreaElement regularFrogElement;
+    TextAreaElement prologueElement;
+         */
+
+        prologueElement = new TextAreaElement();
+        LabelElement prologueLabel = new LabelElement()..text ="Prologue Text (if active on session creation)";
+        pinkFrogElement = new TextAreaElement();
+        LabelElement pinkLabel = new LabelElement()..text ="Pink Frog Text";
+        purpleFrogElement = new TextAreaElement();
+        LabelElement purpleLabel = new LabelElement()..text ="Purple Frog Text";
+        regularFrogElement = new TextAreaElement();
+        LabelElement regularLabel = new LabelElement()..text ="Regular Frog Text";
+
+        DivElement first = new DivElement();
+        DivElement second = new DivElement();
+        DivElement third = new DivElement();
+        DivElement fourth = new DivElement();
+
+
+        first.append(regularLabel);
+        first.append(regularFrogElement);
+
+        second.append(prologueLabel);
+        second.append(prologueElement);
+
+        third.append(pinkLabel);
+        third.append(pinkFrogElement);
+
+        fourth.append(purpleLabel);
+        fourth.append(purpleFrogElement);
+
+        container.append(first);
+        container.append(second);
+        container.append(third);
+        container.append(fourth);
+
+        prologueElement.cols = 60;
+        prologueElement.rows = 10;
+
+        pinkFrogElement.cols = 60;
+        pinkFrogElement.rows = 10;
+
+        purpleFrogElement.cols = 60;
+        purpleFrogElement.rows = 10;
+
+        regularFrogElement.cols = 60;
+        regularFrogElement.rows = 10;
+
+
+        regularFrogElement.onInput.listen((Event e) {
+            bigBad.regularFrogText = regularFrogElement.value;
+            syncDataBoxToBigBad();
+        });
+
+
+
+
+
     }
 
     void syncFormToBigBad() {
