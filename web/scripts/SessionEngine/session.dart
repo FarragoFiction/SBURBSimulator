@@ -78,7 +78,7 @@ class Session {
     //these are not
 
     //stores them.
-    List<GameEntity> _activatedNPCS = new List<GameEntity>();
+    Set<GameEntity> _activatedNPCS = new Set<GameEntity>();
 
     List<GameEntity> get activatedNPCS {
         grabActivatedBigBads();
@@ -641,6 +641,7 @@ class Session {
         for(GameEntity g in this.activatedNPCS) {
             npcsWithTag.add(g.htmlTitleWithTip());
         }
+
 
         appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. The ${turnArrayIntoHumanSentence(npcsWithTag)} seem to be especially anticipating them.<br><br>");
         processBigBadIntros();
