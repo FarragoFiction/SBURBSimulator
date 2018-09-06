@@ -324,6 +324,8 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetEntitySpecibusNameContains(scene));
       ret.add(new TargetEntityHasItemNamed(scene));
       ret.add(new TargetIsDoomed(scene));
+      ret.add(new TargetHasActiveProphecy(scene));
+      ret.add(new TargetHasFullfilledProphecy(scene));
       ret.add(new TargetHasTimeClones(scene));
       ret.add(new TargetHasCrown(scene));
       ret.add(new IAmCrowned(scene));

@@ -13,6 +13,9 @@ export "EntityTargetConditions/TargetIsPassivePlayer.dart";
 export "EntityTargetConditions/TargetIsActivePlayer.dart";
 export "EntityTargetConditions/TargetIsUnconditionallyImmortal.dart";
 export "EntityTargetConditions/TargetIsStrifable.dart";
+export "EntityTargetConditions/TargetHasActiveProphecy.dart";
+export "EntityTargetConditions/TargetHasFullfilledProphecy.dart";
+
 export "EntityTargetConditions/TargetHasInterestCategory.dart";
 export "EntityTargetConditions/TargetIsDreamSelf.dart";
 export "EntityTargetConditions/TargetEntityFraymotifNameContains.dart";
