@@ -26,6 +26,13 @@
     border-radius: 15px;
 }
 
+.textSection{
+    border: 1px solid black;
+    padding: 15px;
+}
+
+
+
 .aiButton{
     margin: 5px;
     padding: 5px;

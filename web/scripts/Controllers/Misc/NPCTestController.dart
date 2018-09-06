@@ -100,10 +100,10 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     if(g is BigBad) {
         DivElement canStrife = new DivElement()..text = "Can be Strifed: ${g.canStrife}";
         DivElement immortal = new DivElement()..text = "Unconditionally Immortal: ${g.unconditionallyImmortal}";
-        DivElement prologue = new DivElement()..text = "If Active At Start (Prologue): ${g.prologueText}";
-        DivElement regfrog = new DivElement()..text = "Regular Ending: ${g.regularFrogText}";
-        DivElement pinkFrog = new DivElement()..text = "Pink Ending: ${g.pinkFrogText}";
-        DivElement purpfrog = new DivElement()..text = "Purple Ending: ${g.purpleFrogText}";
+        DivElement prologue = new DivElement()..text = "If Active At Start (Prologue): ${g.prologueText}"..classes.add("textSection");
+        DivElement regfrog = new DivElement()..text = "Regular Ending: ${g.regularFrogText}"..classes.add("textSection");
+        DivElement pinkFrog = new DivElement()..text = "Pink Ending: ${g.pinkFrogText}"..classes.add("textSection");
+        DivElement purpfrog = new DivElement()..text = "Purple Ending: ${g.purpleFrogText}"..classes.add("textSection");
 
         subcontainer.append(canStrife);
         subcontainer.append(immortal);
