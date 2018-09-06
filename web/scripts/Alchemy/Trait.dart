@@ -63,15 +63,19 @@ class ItemTraitForm
     //draw my name (and list of sub names)
     //draw the remove button
     DivElement name = new DivElement()..text = "Trait: ${trait.toString()} (${trait.descriptions})";
+    DivElement rank = new DivElement()..text = "Rank: ${trait.rank}";
+
     ButtonElement delete = new ButtonElement();
     delete.text = "Remove Trait";
     delete.onClick.listen((e) {
       //don't bother knowing where i am, just remove from all
-      owner.traits.remove(owner);
+      owner.traits.remove(trait);
       container.remove();
       owner.form.syncDataBoxToOwner();
     });
     container.append(name);
+    container.append(rank);
+
     container.append(delete);
   }
 }
