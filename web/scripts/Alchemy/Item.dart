@@ -427,7 +427,6 @@ class ItemForm {
         drawDataBox();
         drawName();
         drawAddTraits();
-        drawExistingTraits();
     }
 
     void syncFormToOwner() {
@@ -488,14 +487,6 @@ class ItemForm {
         });
     }
 
-    void drawExistingTraits() {
-        traitsSection = new DivElement();
-        container.append(traitsSection);
-        for(ItemTrait e in owner.traits) {
-            e.renderForm(traitsSection, owner);
-        }
-    }
-
     void drawAddTraits() {
         DivElement tmp = new DivElement();
         tmp.classes.add("filterSection");
@@ -504,6 +495,9 @@ class ItemForm {
         container.append(tmp);
 
         ItemTraitFactory.drawSelectTraits(container, owner, traitsSection);
+        for(ItemTrait e in owner.traits) {
+            e.renderForm(traitsSection, owner);
+        }
 
     }
 

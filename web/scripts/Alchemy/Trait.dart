@@ -40,7 +40,7 @@ abstract class ItemTrait {
   }
 
   void renderForm(Element container, Item item) {
-    print ("render form for scene");
+    print ("render form for trait $this");
     form = new ItemTraitForm(this, item, container);
     form.drawForm();
   }
@@ -52,7 +52,7 @@ class ItemTraitForm
   Element container;
   Item owner;
   ItemTrait trait;
-  ItemTraitForm(ItemTrait trait, Item this.owner, Element parentContainer) {
+  ItemTraitForm(ItemTrait this.trait, Item this.owner, Element parentContainer) {
     container = new DivElement();
     container.classes.add("SceneDiv");
 
@@ -71,6 +71,7 @@ class ItemTraitForm
       container.remove();
       owner.form.syncDataBoxToOwner();
     });
+    container.append(name);
     container.append(delete);
   }
 }
@@ -159,6 +160,7 @@ class ItemTraitFactory {
   static Iterable<ItemTrait> get appearanceTraits => allTraits.where((ItemTrait a) => (a is ItemAppearanceTrait && !(a is ItemObjectTrait)));
   static Iterable<ItemTrait> get objectTraits => allTraits.where((ItemTrait a) => (a is ItemObjectTrait));
   static Iterable<ItemTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
+  static Iterable<ItemTrait> get pureTraits => allTraits.where((ItemTrait a) => !(a is CombinedTrait));
 
   static ItemTrait itemTraitNamed(String name) {
     for(ItemTrait itemTrait in allTraits) {
@@ -1446,7 +1448,7 @@ class ItemTraitFactory {
     triggersSection.setInnerHtml("<h3>Item Traits:   First is 'core' if specibus </h3><br>");
     Set<ItemTrait> traits;
 
-    traits = ItemTraitFactory.allTraits;
+    traits = ItemTraitFactory.pureTraits;
 
     SelectElement select = new SelectElement();
     for(ItemTrait sample in traits) {
@@ -1465,7 +1467,7 @@ class ItemTraitFactory {
           ItemTrait newTrait = ItemTraitFactory.itemTraitNamed(type);
           owner.traits.add(newTrait);
           newTrait.renderForm(triggersSection, owner);
-          owner.form.syncFormToOwner();
+          owner.form.syncDataBoxToOwner();
         }
       }
     });
