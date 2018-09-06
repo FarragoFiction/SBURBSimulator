@@ -240,6 +240,7 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new MakeGodTier(scene));
       ret.add(new DestroySylladex(scene));
       ret.add(new GrimDarkCorruption(scene));
+      ret.add(new CureGrimDarkCorruption(scene));
       ret.add(new MakeStrifable(scene));
       ret.add(new StartStrife(scene));
       ret.add(new MakeInactive(scene));

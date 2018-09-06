@@ -3,10 +3,10 @@ import 'dart:html';
 
 //no chance to survive, no strife no anything. it's a red miles situation
 //not really any details, or modifiers
-class GrimDarkCorruption extends EffectEntity {
+class CureGrimDarkCorruption extends EffectEntity {
     @override
-    String name = "GrimDarkCorruption";
-    GrimDarkCorruption(SerializableScene scene) : super(scene);
+    String name = "CureGrimDarkCorruption";
+    CureGrimDarkCorruption(SerializableScene scene) : super(scene);
 
 
 
@@ -21,7 +21,7 @@ class GrimDarkCorruption extends EffectEntity {
         setupContainer(divbluh);
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>GrimDarkCorruption:</b> <br>sets GrimDark to max. <br><br>");
+        me.setInnerHtml("<b>CureGrimDarkCorruption:</b> <br>sets GrimDark to 0. <br><br>");
         syncToForm();
     }
 
@@ -34,8 +34,8 @@ class GrimDarkCorruption extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        if(e is Player) e.grimDark = 13;
-        e.changeGrimDark(13);
+        if(e is Player) e.grimDark = 0;
+        e.changeGrimDark(-13);
     });
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
@@ -46,6 +46,6 @@ class GrimDarkCorruption extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new GrimDarkCorruption(scene);
+    return new CureGrimDarkCorruption(scene);
   }
 }
