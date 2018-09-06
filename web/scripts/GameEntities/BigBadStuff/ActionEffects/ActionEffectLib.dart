@@ -34,6 +34,8 @@ export "EntityEffects/DestroySylladex.dart";
 export "LandEffects/InstaBlowUp.dart";
 export "EntityEffects/MakeBusy.dart";
 export "EntityEffects/ChangeStat.dart";
+export "EntityEffects/MakeActiveProphecy.dart";
+export "EntityEffects/MakeFullfilledProphecy.dart";
 export "EntityEffects/GrimDarkCorruption.dart";
 export "EntityEffects/CureGrimDarkCorruption.dart";
 export "EntityEffects/StartStrife.dart";

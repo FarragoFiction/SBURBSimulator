@@ -250,6 +250,8 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new MakeInactive(scene));
       ret.add(new ModifySessionHealth(scene));
       ret.add(new MakeMortal(scene));
+      ret.add(new MakeActiveProphecy(scene));
+      ret.add(new MakeFullfilledProphecy(scene));
       ret.add(new MakeUnconditionallyImmortal(scene));
 
       return ret;
