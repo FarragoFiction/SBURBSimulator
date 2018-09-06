@@ -37,6 +37,8 @@ export "EntityEffects/ChangeStat.dart";
 export "EntityEffects/GrimDarkCorruption.dart";
 export "EntityEffects/CureGrimDarkCorruption.dart";
 export "EntityEffects/StartStrife.dart";
+export "EntityEffects/MakeMurderMode.dart";
+export "EntityEffects/UnMakeMurderMode.dart";
 export "LandEffects/ChangeInhabitantsStats.dart";
 export "LandEffects/MakeConsortsSay.dart";
 export "LandEffects/MarkDenizenQuestsAsCompleteForLand.dart";

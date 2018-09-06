@@ -3,10 +3,10 @@ import 'dart:html';
 
 //no chance to survive, no strife no anything. it's a red miles situation
 //not really any details, or modifiers
-class GrimDarkCorruption extends EffectEntity {
+class MakeMurderMode extends EffectEntity {
     @override
-    String name = "GrimDarkCorruption";
-    GrimDarkCorruption(SerializableScene scene) : super(scene);
+    String name = "MakeMurderMode";
+    MakeMurderMode(SerializableScene scene) : super(scene);
 
 
 
@@ -21,7 +21,7 @@ class GrimDarkCorruption extends EffectEntity {
         setupContainer(divbluh);
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>GrimDarkCorruption:</b> <br>sets GrimDark to max. <br><br>");
+        me.setInnerHtml("<b>MakeMurderMode:</b> <br>sets MurderMode to true. (but doesn't necessarily make them hate anyone enough to kill) <br><br>");
         syncToForm();
     }
 
@@ -34,8 +34,7 @@ class GrimDarkCorruption extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        if(e is Player) e.grimDark = 0;
-        e.changeGrimDark(4);
+        if(e is Player) e.makeMurderMode();
     });
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
@@ -46,6 +45,6 @@ class GrimDarkCorruption extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new GrimDarkCorruption(scene);
+    return new MakeMurderMode(scene);
   }
 }
