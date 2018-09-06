@@ -52,6 +52,8 @@ class GiveItem extends EffectEntity {
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
         Item item = new Item("Generic",[]);
+        item.copyFromDataString(importantWord);
+
         e.sylladex.add(item);
         text = "$text ${e.htmlTitle()} captchalogs a new item: ${item.baseName}.";
     });

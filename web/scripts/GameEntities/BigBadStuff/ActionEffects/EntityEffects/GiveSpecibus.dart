@@ -52,9 +52,10 @@ class GiveSpecibus extends EffectEntity {
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
         Item item = new Item("Generic",[]);
+        item.copyFromDataString(importantWord);
+
         Specibus s = new Specibus(item.baseName, item.traits.first,
             new List.from(item.traits));
-        item.copyFromDataString(importantWord);
         e.specibus = s;
         text = "$text ${e.htmlTitle()} equips a new specibus: ${s.name}.";
     });
