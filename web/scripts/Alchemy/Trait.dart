@@ -1,3 +1,6 @@
+import 'Item.dart';
+import 'dart:html';
+
 /*
 http://mspaintadventures.wikia.com/wiki/Alchemiter
 
@@ -20,6 +23,8 @@ abstract class ItemTrait {
   static int MATERIAL = 9;
   static int PURPOSE = 10;
 
+  ItemTraitForm form;
+
   //what kind of adj am i, what order should i be displayed?
   int ordering;
   List<String> descriptions = new List<String>();
@@ -34,6 +39,22 @@ abstract class ItemTrait {
     return "NULL TRAIT";
   }
 
+  void renderForm(Element container) {
+    print ("render form for scene");
+    form = new ItemTraitForm(this, container);
+    form.drawForm();
+  }
+
+}
+
+class ItemTraitForm
+{
+  Element container;
+  ItemTrait owner;
+  ItemTraitForm(ItemTrait this.owner, Element container);
+
+  void drawForm() {
+  }
 }
 
 //what can this do?
@@ -1402,4 +1423,40 @@ class ItemTraitFactory {
     REAL = new ItemFunctionTrait(["real", "actual", "believable", "geniune", "guaranteed","veritable"], 0.3,ItemTrait.OPINION);
 
   }
+
+  static SelectElement drawSelectTraits(Element div, Item owner, Element triggersSection) {
+    triggersSection.setInnerHtml("<h3>Item Traits:   First is 'core' if specibus </h3><br>");
+    Set<ItemTrait> traits;
+
+    traits = ItemTraitFactory.allTraits;
+
+    SelectElement select = new SelectElement();
+    for(ItemTrait sample in traits) {
+      OptionElement o = new OptionElement();
+      o.value = sample.toString();
+      o.text = sample.toString();
+      select.append(o);
+    }
+
+    ButtonElement button = new ButtonElement();
+    button.text = "Add Item Trait";
+    button.onClick.listen((e) {
+      String type = select.options[select.selectedIndex].value;
+      for(ItemTrait tc in traits) {
+        if(tc.toString() == type) {
+          ItemTrait newTrait = ItemTraitFactory.itemTraitNamed(type);
+          owner.traits.add(newTrait);
+          newTrait.renderForm(triggersSection);
+          owner.form.syncFormToOwner();
+        }
+      }
+    });
+
+    triggersSection.append(select);
+    triggersSection.append(button);
+
+    return select;
+  }
+
+
 }

@@ -423,7 +423,7 @@ class ItemForm {
     }
 
     void drawForm() {
-        print("drawing new fraymotif form");
+        print("drawing new item form");
         drawDataBox();
         drawName();
         drawAddTraits();
