@@ -21,6 +21,9 @@ export "EntityTargetConditions/TargetEntitySessionHealthGreaterThan.dart";
 export "EntityTargetConditions/TargetIsRobot.dart";
 export "EntityTargetConditions/TargetHasPurpleFrog.dart";
 export "EntityTargetConditions/TargetHasFrog.dart";
+export "EntityTargetConditions/TargetEntitySpecibusNameContains.dart";
+export "EntityTargetConditions/TargetEntityHasItemNamed.dart";
+
 export "EntityTargetConditions/TargetIsSBAHJ.dart";
 export "EntityTargetConditions/TargetIsTrickster.dart";
 export "EntityTargetConditions/TargetIsWasted.dart";

@@ -321,6 +321,8 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetEntitySessionHealthIsGreaterThan(scene));
       ret.add(new TargetIsSelf(scene));
       ret.add(new TargetEntityFraymotifNameContains(scene));
+      ret.add(new TargetEntitySpecibusNameContains(scene));
+      ret.add(new TargetEntityHasItemNamed(scene));
       ret.add(new TargetIsDoomed(scene));
       ret.add(new TargetHasTimeClones(scene));
       ret.add(new TargetHasCrown(scene));
