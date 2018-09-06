@@ -2,6 +2,7 @@ import "../GameEntities/player.dart";
 import "../GameEntities/GameEntity.dart";
 export "../GameEntities/Stats/stat.dart";
 
+import '../includes/lz-string.dart';
 import "Item.dart";
 import "MagicalItem.dart";
 import "../random_tables.dart";
@@ -10,6 +11,7 @@ import "../random.dart";
 import 'dart:collection';
 import "../GameEntities/NPCS.dart";
 import "../SBURBSim.dart";
+import 'dart:html';
 
 //I expect aspects and interests to have lists of items inside of them.
 class Item implements Comparable<Item> {
@@ -17,6 +19,9 @@ class Item implements Comparable<Item> {
     static List<Item> allUniqueItems = new List<Item>();
     String abDesc;
     String shogunDesc;
+    String get labelPattern => ":___ ";
+
+    ItemForm form;
 
     //needed so i can target the ring bearer, for example
     GameEntity owner;
@@ -90,6 +95,12 @@ class Item implements Comparable<Item> {
 
     String get fullNameWithUpgrade {
         return "${fullName} ${numUpgrades}/${maxUpgrades}";
+    }
+
+    void renderForm(Element container) {
+        print ("render form for scene");
+        form = new ItemForm(this, container);
+        form.drawForm();
     }
 
 
@@ -175,6 +186,21 @@ class Item implements Comparable<Item> {
         }else {
             return false;
         }
+    }
+
+    String toDataString() {
+        return  "$baseName$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
+    }
+
+    void copyFromDataString(String data) {
+        //print("copying from data: $data, looking for labelpattern: $labelPattern");
+        String dataWithoutName = data.split("$labelPattern")[1];
+        //print("data without name is $dataWithoutName");
+
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        //print("raw json is $rawJSON");
+        JSONObject json = new JSONObject.fromJSONString(rawJSON);
+        copyFromJSON(json);
     }
 
     //most items won't have an abj desc, but some will
@@ -378,4 +404,108 @@ class Sylladex extends Object with IterableMixin<Item> {
 
   @override
   Iterator<Item> get iterator => inventory.iterator;
+}
+
+class ItemForm {
+    Element container;
+    TextInputElement nameElement;
+    Element traitsSection;
+
+
+    TextAreaElement dataBox;
+    Item owner;
+
+    ItemForm(Item this.owner, Element parentContainer) {
+        container = new DivElement();
+        container.classes.add("SceneDiv");
+
+        parentContainer.append(container);
+    }
+
+    void drawForm() {
+        print("drawing new fraymotif form");
+        drawDataBox();
+        drawName();
+        drawAddTraits();
+        drawExistingTraits();
+    }
+
+    void syncFormToOwner() {
+        print("syncing form to scene");
+        nameElement.value = owner.baseName;
+
+        for (ItemTrait s in owner.traits) {
+            s.renderForm(traitsSection);
+        }
+        print("syncing data box to scene");
+        syncDataBoxToOwner();
+    }
+
+    void syncDataBoxToOwner() {
+        print("trying to sync data box, owner is ${owner}");
+        dataBox.value = owner.toDataString();
+    }
+
+    void drawDataBox() {
+        print("drawing data box");
+        dataBox = new TextAreaElement();
+        dataBox.value = owner.toDataString();
+        dataBox.cols = 60;
+        dataBox.rows = 10;
+        dataBox.onChange.listen((e) {
+            print("syncing template to data box");
+            try {
+                List<ItemTrait> traitsBackup = new List.from(owner.traits);
+
+                owner.copyFromDataString(dataBox.value);
+                //remove the effects from the form
+                for(ItemTrait trait in traitsBackup) {
+                    trait.form.container.remove();
+                }
+                print("loaded scene");
+                syncFormToOwner();
+                print("synced form to scene");
+            }catch(e, trace) {
+                window.alert("something went wrong! $e, $trace");
+            }
+        });
+        container.append(dataBox);
+    }
+
+    void drawName() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Name:";
+        nameElement = new TextInputElement();
+        nameElement.value = owner.baseName;
+        subContainer.append(nameLabel);
+        subContainer.append(nameElement);
+        container.append(subContainer);
+
+        nameElement.onInput.listen((e) {
+            owner.baseName = nameElement.value;
+            syncDataBoxToOwner();
+        });
+    }
+
+    void drawExistingTraits() {
+        traitsSection = new DivElement();
+        container.append(traitsSection);
+        for(ItemTrait e in owner.traits) {
+            e.renderForm(traitsSection);
+        }
+    }
+
+    void drawAddTraits() {
+        DivElement tmp = new DivElement();
+        tmp.classes.add("filterSection");
+        traitsSection = new DivElement();
+        tmp.append(traitsSection);
+        container.append(tmp);
+
+        ItemTraitFactory.drawSelectTraits(container, owner, traitsSection);
+
+    }
+
+
 }
