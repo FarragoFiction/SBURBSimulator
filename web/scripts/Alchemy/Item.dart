@@ -435,7 +435,7 @@ class ItemForm {
         nameElement.value = owner.baseName;
 
         for (ItemTrait s in owner.traits) {
-            s.renderForm(traitsSection);
+            s.renderForm(traitsSection, owner);
         }
         print("syncing data box to scene");
         syncDataBoxToOwner();
@@ -492,7 +492,7 @@ class ItemForm {
         traitsSection = new DivElement();
         container.append(traitsSection);
         for(ItemTrait e in owner.traits) {
-            e.renderForm(traitsSection);
+            e.renderForm(traitsSection, owner);
         }
     }
 

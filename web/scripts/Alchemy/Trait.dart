@@ -39,9 +39,9 @@ abstract class ItemTrait {
     return "NULL TRAIT";
   }
 
-  void renderForm(Element container) {
+  void renderForm(Element container, Item item) {
     print ("render form for scene");
-    form = new ItemTraitForm(this, container);
+    form = new ItemTraitForm(this, item, container);
     form.drawForm();
   }
 
@@ -50,10 +50,28 @@ abstract class ItemTrait {
 class ItemTraitForm
 {
   Element container;
-  ItemTrait owner;
-  ItemTraitForm(ItemTrait this.owner, Element container);
+  Item owner;
+  ItemTrait trait;
+  ItemTraitForm(ItemTrait trait, Item this.owner, Element parentContainer) {
+    container = new DivElement();
+    container.classes.add("SceneDiv");
+
+    parentContainer.append(container);
+  }
 
   void drawForm() {
+    //draw my name (and list of sub names)
+    //draw the remove button
+    DivElement name = new DivElement()..text = "Trait: ${trait.toString()} (${trait.descriptions})";
+    ButtonElement delete = new ButtonElement();
+    delete.text = "Remove Trait";
+    delete.onClick.listen((e) {
+      //don't bother knowing where i am, just remove from all
+      owner.traits.remove(owner);
+      container.remove();
+      owner.form.syncDataBoxToOwner();
+    });
+    container.append(delete);
   }
 }
 
@@ -1446,7 +1464,7 @@ class ItemTraitFactory {
         if(tc.toString() == type) {
           ItemTrait newTrait = ItemTraitFactory.itemTraitNamed(type);
           owner.traits.add(newTrait);
-          newTrait.renderForm(triggersSection);
+          newTrait.renderForm(triggersSection, owner);
           owner.form.syncFormToOwner();
         }
       }
