@@ -56,6 +56,7 @@ class GiveSpecibus extends EffectEntity {
 
         Specibus s = new Specibus(item.baseName, item.traits.first,
             new List.from(item.traits));
+        e.sylladex.add(e.specibus); //captchalog old one
         e.specibus = s;
         text = "$text ${e.htmlTitle()} equips a new specibus: ${s.name}.";
     });
