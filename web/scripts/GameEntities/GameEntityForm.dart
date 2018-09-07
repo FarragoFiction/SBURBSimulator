@@ -9,6 +9,8 @@ class GameEntityForm {
     TextInputElement nameElement;
     TextAreaElement dataBox;
 
+    List<StatForm> statForms = new List<StatForm>();
+
     GameEntityForm(GameEntity this.owner, Element parentContainer) {
         container = new DivElement();
         container.classes.add("SceneDiv");
@@ -27,6 +29,10 @@ class GameEntityForm {
     void syncFormToOwner() {
         print("syncing form to scene");
         nameElement.value = owner.name;
+
+        for(StatForm form in statForms) {
+            form.valueElement.value = "${owner.getStat(form.stat).round()}";
+        }
 
         print("syncing data box to scene");
         syncDataBoxToOwner();
@@ -49,6 +55,7 @@ class GameEntityForm {
         container.append(statHolder);
         StatForm form = new StatForm(this, stat, statHolder);
         form.drawForm();
+        statForms.add(form);
     }
 
     void drawDataBox() {
@@ -116,6 +123,11 @@ class StatForm {
         valueElement = new TextInputElement()..value = "${owner.owner.getStat(stat).round()}";
         container.append(label);
         container.append(valueElement);
+
+        valueElement.onInput.listen((e) {
+           owner.owner.setStat(stat, num.parse(valueElement.value));
+            owner.syncDataBoxToOwner();
+        });
 
     }
 }
