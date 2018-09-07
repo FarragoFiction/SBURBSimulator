@@ -18,9 +18,10 @@ class GameEntityForm {
     }
 
     void drawForm() {
-        print("drawing new fraymotif form");
+        print("drawing new entity form");
         drawDataBox();
         drawName();
+        drawStats();
     }
 
     void syncFormToOwner() {
@@ -34,6 +35,20 @@ class GameEntityForm {
     void syncDataBoxToOwner() {
         print("trying to sync data box, owner is ${owner}");
         dataBox.value = owner.toDataString();
+    }
+
+    void drawStats() {
+        Iterable<Stat> as = Stats.summarise;
+        for(Stat s in as) {
+            drawOneStat(s);
+        }
+    }
+
+    void drawOneStat(Stat stat) {
+        DivElement statHolder = new DivElement();
+        container.append(statHolder);
+        StatForm form = new StatForm(this, stat, statHolder);
+        form.drawForm();
     }
 
     void drawDataBox() {
@@ -72,5 +87,35 @@ class GameEntityForm {
             owner.name = nameElement.value;
             syncDataBoxToOwner();
         });
+    }
+}
+
+
+class StatForm {
+    GameEntityForm owner;
+    Stat stat;
+    Element container;
+
+    TextInputElement valueElement;
+
+
+    StatForm(GameEntityForm this.owner, Stat this.stat, Element parentContainer) {
+        container = new DivElement();
+        //container.classes.add("SceneDiv");
+
+        parentContainer.append(container);
+
+    }
+
+
+    void drawForm() {
+        print("drawing new stat form");
+        DivElement label = new DivElement()..text = stat.name;
+        label.style.width = "200px";
+        label.style.display = "inline-block";
+        valueElement = new TextInputElement()..value = "${owner.owner.getStat(stat).round()}";
+        container.append(label);
+        container.append(valueElement);
+
     }
 }
