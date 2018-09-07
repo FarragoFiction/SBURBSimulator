@@ -887,7 +887,8 @@ class GameEntity extends Object with StatOwner   {
         json["fraymotifs"] = fraymotifArray.toString();
 
         List<JSONObject> statArray = new List<JSONObject>();
-        for(Stat s in stats) {
+        Iterable<Stat> as = Stats.summarise;
+        for(Stat s in as) {
             //i'm not sure how to get a stats value from inside itself so....*shrug*
            JSONObject j = new JSONObject();
            j["name"] = s.name;

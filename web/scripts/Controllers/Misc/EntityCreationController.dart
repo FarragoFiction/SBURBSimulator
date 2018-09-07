@@ -9,7 +9,7 @@ import "CurrentUpdateProgress.dart";
 Element div;
 UListElement todoElement;
 DivElement faqElement;
-GameEntity entity = new GameEntity("Sample Entity",Session.defaultSession);
+GameEntity entity; //dont set here or there won't be any stats dunkass....or not. fuck.
 void main() {
   loadNavbar();
   start();
@@ -18,7 +18,7 @@ void main() {
 
 Future<Null> start() async {
   await globalInit();
-
+   entity = new GameEntity("Sample Entity",Session.defaultSession);
   div = querySelector("#story");
   setUpForm();
 
