@@ -1,3 +1,4 @@
+2018-09-11: One big central location for the state of the Big Bads: <a href = 'https://jadedresearcher.tumblr.com/post/177976972254/sburbsim-main-status'>my Tumblr</a>.
 2018-09-06: ...<br><br>...<br><br>...I am so fucking sorry AB. If I had known that you were so slow because sessions had literally hundreds of copies of the same carapaces scampering about...
 2018-09-05: Any big bad that is capable of being strifed has a fuck off big 'every man for themselves' boss fight with the players right before frog time.
 2018-08-29: Oh shit, we're here, the begining of the end. I've finally gotten around to implementing one of the more complicated AIEngine features: the ability to spawn custom fraymotifs. <br><Br>And yes, before you ask, eventually it'll be part of the session customizer.

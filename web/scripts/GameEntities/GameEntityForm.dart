@@ -31,7 +31,7 @@ class GameEntityForm {
         nameElement.value = owner.name;
 
         for(StatForm form in statForms) {
-            form.valueElement.value = "${owner.getStat(form.stat).round()}";
+            form.valueElement.value = "${owner.getStat(form.stat, true).round()}";
         }
 
         print("syncing data box to scene");
@@ -120,7 +120,7 @@ class StatForm {
         DivElement label = new DivElement()..text = stat.name;
         label.style.width = "200px";
         label.style.display = "inline-block";
-        valueElement = new TextInputElement()..value = "${owner.owner.getStat(stat).round()}";
+        valueElement = new TextInputElement()..value = "${owner.owner.getStat(stat,true).round()}";
         container.append(label);
         container.append(valueElement);
 
