@@ -223,6 +223,8 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new GiveAction(scene));
       ret.add(new GiveThisAction(scene));
       ret.add(new RemoveAction(scene));
+      ret.add(new DestroyItemNamed(scene));
+      ret.add(new PickpocketItemNamed(scene));
       ret.add(new PickPocket(scene));
       ret.add(new Mug(scene));
       ret.add(new AntiMug(scene));
