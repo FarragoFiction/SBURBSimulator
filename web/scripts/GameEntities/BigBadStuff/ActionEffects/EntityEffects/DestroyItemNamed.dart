@@ -51,7 +51,7 @@ class DestroyItemNamed extends EffectEntity {
         if(e.renderable()) renderableTargets.add(e);
         bool found = false;
         for(Item item in e.sylladex) {
-            if(item.fullName == importantWord) {
+            if(item.fullName.toLowerCase().contains(importantWord.toLowerCase())) {
                 found = true;
                 e.sylladex.remove(item);
                 text = "$text The ${e.htmlTitleWithTip()} loses their ${item.fullName}.";

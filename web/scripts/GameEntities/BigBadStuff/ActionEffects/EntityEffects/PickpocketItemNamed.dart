@@ -51,7 +51,7 @@ class PickpocketItemNamed extends EffectEntity {
         if(e.renderable()) renderableTargets.add(e);
         bool found = false;
         for(Item item in e.sylladex) {
-            if(item.fullName == importantWord) {
+            if(item.fullName.toLowerCase().contains(importantWord.toLowerCase())) {
                 found = true;
                 e.sylladex.remove(item);
                 scene.gameEntity.sylladex.add(item);
