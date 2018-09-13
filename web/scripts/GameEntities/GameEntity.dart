@@ -230,6 +230,8 @@ class GameEntity extends Object with StatOwner   {
                 this.session.numScenes ++;
                 s.renderContent(this.session.newScene(s.runtimeType.toString()));
             }
+            //no need to keep looping, okay? just stop once you are done.
+            if(!available) break;
         }
 
         //otherwise will get conconrrent modification error. put at front, new things are important and shiny
@@ -855,7 +857,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     String toDataString() {
-        print("data is ${toJSON()}");
+        //print("data is ${toJSON()}");
         return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
     }
 
@@ -1050,30 +1052,41 @@ class GameEntity extends Object with StatOwner   {
         return ret;
     }
 
-    SerializableScene removeSerializableSceneFromString(String s) {
+    List<SerializableScene> removeSerializableSceneFromString(String s) {
         SerializableScene ret = new SerializableScene(session)..copyFromDataString(s);
+        //print("I want to remove $ret");
         List<SerializableScene> toRemove = new List<SerializableScene>();
-        for(Scene s in scenes) {
-            if(s is SerializableScene) {
-                SerializableScene ss = s as SerializableScene;
-                if(ss.toDataString() == s) toRemove.add(ss);
+        for(Scene scene in scenes) {
+            if(scene is SerializableScene) {
+                SerializableScene ss = scene as SerializableScene;
+                if(ss.toDataString() == s) {
+                    //print ("i found $ret in scenes");
+                    toRemove.add(ss);
+                }
             }
         }
 
-        for(Scene s in scenesToAdd) {
-            if(s is SerializableScene) {
-                SerializableScene ss = s as SerializableScene;
-                if(ss.toDataString() == s) toRemove.add(ss);
+        for(Scene scene in scenesToAdd) {
+            if(scene is SerializableScene) {
+                SerializableScene ss = scene as SerializableScene;
+                if(ss.toDataString() == s) {
+                    //print("i found $ret in scenes to add");
+                    toRemove.add(ss);
+                }
             }
         }
 
         for(SerializableScene ss in toRemove) {
+            //print("I'm trying to remove $ss");
             scenes.remove(ss);
             scenesToAdd.remove(ss);
         }
 
-        scenesToAdd.add(ret);
-        return ret;
+        //JR from 9/13/18 says: WHY THE FUCK DID PAST JR REMOVE THE SCENE TWO DIFFERNET WAYS AND THEN JUST ADD IT RIGHT BACK IN
+        //a;lsdkfjas;lfjas;dlfj
+        //...probably from a copy pasta typo. jessus fuck
+        //scenesToAdd.add(ret);
+        return toRemove;
     }
 
 

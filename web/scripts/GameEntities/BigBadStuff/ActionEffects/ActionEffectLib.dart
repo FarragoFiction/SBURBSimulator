@@ -12,6 +12,7 @@ export "EntityEffects/GiveSpecibus.dart";
 export "EntityEffects/GiveFraymotif.dart";
 export "EntityEffects/GiveExtraTitle.dart";
 export "EntityEffects/ChangeMyStat.dart";
+export "EntityEffects/RemoveThisAction.dart";
 export "EntityEffects/DestroyItemNamed.dart";
 export "EntityEffects/PickpocketItemNamed.dart";
 export "EntityEffects/GiveThisAction.dart";

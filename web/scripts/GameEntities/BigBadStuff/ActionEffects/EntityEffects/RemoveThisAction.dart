@@ -1,43 +1,25 @@
 import "../../../../SBURBSim.dart";
 import 'dart:html';
 
-//no chance to survive, no strife no anything. it's a red miles situation
-//not really any details, or modifiers
-class RemoveAction extends EffectEntity {
+//if you do it to yourself instead of target, makes it a single use action. nice, tg is smart (thanks tg)
+class RemoveThisAction extends EffectEntity {
     TextAreaElement actionStringBox;
     @override
     int  importantInt = 0;
 
     @override
-    String name = "RemoveAction";
-    RemoveAction(SerializableScene scene) : super(scene);
+    String name = "RemoveThisAction";
+    RemoveThisAction(SerializableScene scene) : super(scene);
+
+
 
 
   @override
   void syncFormToMe() {
-      actionStringBox.value = importantWord;
   }
-
-    @override
-    void renderForm(Element divbluh) {
-        setupContainer(divbluh);
-        DivElement me = new DivElement();
-        container.append(me);
-        List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
-
-        me.setInnerHtml("<b>RemoveAction (does nothing if they don't have it):</b> <br>");
-        //stat time
-
-        actionStringBox = new TextAreaElement();
-        me.append(actionStringBox);
-        actionStringBox.value = importantWord;
-        actionStringBox.onChange.listen((Event e) => syncToForm());
-        syncToForm();
-    }
 
   @override
   void syncToForm() {
-      importantWord = actionStringBox.value;
       scene.syncForm();
   }
 
@@ -47,8 +29,13 @@ class RemoveAction extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        String nameOfScene = e.removeSerializableSceneFromString(importantWord).join(",");
-        text = "$text ${e.htmlTitle()} no longer wants to: $nameOfScene.";
+        List<SerializableScene> s = e.removeSerializableSceneFromString(this.scene.toDataString());
+        if(s == null || s.isEmpty) {
+            text = "$text ${e.htmlTitle()} no longer wants to do this action, but can't figure out how to stop. Addiction is a powerful thing. Their scenes are ${e.scenes}} and scenes to add is ${e.scenesToAdd}. Tell JR if you are seeing this because game entities shouldn't be addicted.";
+
+        }else {
+            text = "$text ${e.htmlTitle()} no longer wants to do this action.";
+        }
     });
 
     ButtonElement toggle = new ButtonElement()..text = "Show Details?";
@@ -78,6 +65,15 @@ class RemoveAction extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new RemoveAction(scene);
+    return new RemoveThisAction(scene);
   }
+    @override
+    void renderForm(Element divbluh) {
+        setupContainer(divbluh);
+
+        DivElement me = new DivElement();
+        container.append(me);
+        me.setInnerHtml("<b>RemoveThis Action:</b> <br>Useful for single use scenes or no longer valid scenes. <br><br>");
+        syncToForm();
+    }
 }

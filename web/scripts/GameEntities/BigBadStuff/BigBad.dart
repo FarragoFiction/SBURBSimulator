@@ -40,7 +40,7 @@ class BigBad extends NPC {
   }
 
   String toDataString() {
-      print("data is ${toJSON()}");
+      //print("data is ${toJSON()}");
       return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
   }
 
