@@ -156,7 +156,7 @@ class BuffSpecibus extends Buff {
         }
         if (stat.pickable) {
             if(stat == Stats.HEALTH || stat == Stats.CURRENT_HEALTH || stat == Stats.POWER) {
-                double ret = val * gameEntity.specibus.rank;
+                double ret = val * (1.0 + gameEntity.specibus.rank);
                 //print("buff health stat ret is $ret");
                 if(ret <1) {
                     //print("NEGATIVE buff health stat ret is $ret  for $gameEntity so am returning 1.0 instead.");
@@ -164,7 +164,7 @@ class BuffSpecibus extends Buff {
                 }
                 return ret;
             }else {
-                return val * gameEntity.specibus.rank;
+                return val * (1.0 + gameEntity.specibus.rank);
             }
         }
         return val;
