@@ -200,7 +200,7 @@ abstract class StatOwner implements StatObject {
     void addBuff(Buff buff, {String name, Object source}) => _stats.addBuff(buff, name:name, source:source);
     void removeBuff(String name, Object source) => _stats.removeBuff(name, source);
 
-    double getStat(Stat stat, [bool raw = false]) => raw ? this.stats[stat] / stat.coefficient : this.stats[stat];
+    double getStat(Stat stat, [bool raw = false]) => raw ? this.stats.getBase(stat) : this.stats[stat];
     void addStat(Stat stat, num val) => this.stats.addBase(stat, val.toDouble());
     void setStat(Stat stat, num val) => this.stats.setBase(stat, val.toDouble());
 }
