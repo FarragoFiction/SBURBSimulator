@@ -555,7 +555,9 @@ class BigBadForm {
     }
 
     void drawTemplate() {
-        syncTemplateInfo(); //creates div
+        if(templateInfoElement == null) {
+            syncTemplateInfo(); //creates div
+        }
         DivElement subContainer = new DivElement();
         DivElement nameLabel = new DivElement();
         nameLabel.text = "Load Template (optional, for stats, items and fraymotifs):";
@@ -600,6 +602,10 @@ class BigBadForm {
         DivElement items = new DivElement()..setInnerHtml("<b>Sylladex</b>: ${bigBad.sylladex}");
         templateInfoElement.append(items);
 
+        DivElement fraymotifs = new DivElement()..setInnerHtml("<b>Fraymotifs</b>: ${bigBad.fraymotifs}");
+        templateInfoElement.append(fraymotifs);
+
+        drawTemplate(); //redraw the box
 
     }
 
