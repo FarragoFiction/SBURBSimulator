@@ -11,6 +11,7 @@ class GameEntityForm {
     TextAreaElement specibusBox;
 
     DivElement fraymotifSection;
+    DivElement sylladexSection;
 
     List<StatForm> statForms = new List<StatForm>();
 
@@ -28,6 +29,9 @@ class GameEntityForm {
         drawName();
         drawStats();
         drawSpecibusBox();
+
+        drawExistingSylladexItems();
+        drawAddSylladexItems();
 
         drawExistingFraymotifs();
         drawAddFraymotifs();
@@ -99,11 +103,63 @@ class GameEntityForm {
 
     }
 
+    void drawAddSylladexItems() {
+        sylladexSection.classes.add("filterSection");
+        ButtonElement button = new ButtonElement()..text = "Add Item To Sylladex";
+        sylladexSection.append(button);
+        //container.append(fraymotifSection);
+        button.onClick.listen((Event e) {
+            Item item = new Item("Replace This Please", []);
+            owner.sylladex.add(item);
+            drawSylladexBox(sylladexSection, item);
+        });
+    }
+
+    void drawSylladexBox(Element parent, Item item) {
+        //has a box and a 'remove' button
+        DivElement me = new DivElement();
+        parent.append(me);
+        AnchorElement a = new AnchorElement(href: "ItemCreation.html")..text = "Build Item"..target="_blank";
+        TextAreaElement box = new TextAreaElement()..value = item.toDataString();
+        box.rows = 10;
+        box.cols = 30;
+        box.style.verticalAlign = "bottom";
+        ButtonElement remove = new ButtonElement()..text = "Remove";
+
+        me.append(a);
+        me.append(box);
+        me.append(remove);
+
+        remove.onClick.listen((Event e) {
+            me.remove();
+            owner.sylladex.remove(item);
+        });
+
+        box.onChange.listen((e) {
+            try {
+
+                item.copyFromDataString(box.value);
+                syncDataBoxToOwner();
+            }catch(e, trace) {
+                window.alert("something went wrong! $e, $trace");
+            }
+        });
+
+    }
+
     void drawExistingFraymotifs() {
         fraymotifSection = new DivElement();
         container.append(fraymotifSection);
         for(Fraymotif e in owner.fraymotifs) {
             drawFraymotifBox(fraymotifSection,e);
+        }
+    }
+
+    void drawExistingSylladexItems() {
+        sylladexSection = new DivElement();
+        container.append(sylladexSection);
+        for(Item e in owner.sylladex) {
+            drawSylladexBox(sylladexSection,e);
         }
     }
 
