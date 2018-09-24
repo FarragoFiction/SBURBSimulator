@@ -43,7 +43,7 @@ class GameEntityForm {
         specibusBox.value  = owner.specibus.toDataString();
 
         for(StatForm form in statForms) {
-            form.valueElement.value = "${owner.getStat(form.stat, true).round()}";
+            form.valueElement.value = "${owner.getStatHolder().getBase(form.stat).round()}";
         }
 
         for (Fraymotif s in owner.fraymotifs) {
@@ -263,7 +263,7 @@ class StatForm {
         DivElement label = new DivElement()..text = stat.name;
         label.style.width = "200px";
         label.style.display = "inline-block";
-        valueElement = new TextInputElement()..value = "${owner.owner.getStat(stat,true).round()}";
+        valueElement = new TextInputElement()..value = "${owner.owner.getStatHolder().getBase(stat).round()}";
         container.append(label);
         container.append(valueElement);
 
