@@ -8,6 +8,8 @@ class GameEntityForm {
 
     TextInputElement nameElement;
     TextAreaElement dataBox;
+    TextAreaElement specibusBox;
+
     DivElement fraymotifSection;
 
     List<StatForm> statForms = new List<StatForm>();
@@ -27,11 +29,13 @@ class GameEntityForm {
         drawStats();
         drawExistingFraymotifs();
         drawAddFraymotifs();
+        drawSpecibusBox();
     }
 
     void syncFormToOwner() {
         print("syncing form to scene");
         nameElement.value = owner.name;
+        specibusBox.value  = owner.specibus.name;
 
         for(StatForm form in statForms) {
             form.valueElement.value = "${owner.getStat(form.stat, true).round()}";
@@ -137,6 +141,25 @@ class GameEntityForm {
             }
         });
         container.append(dataBox);
+    }
+
+    void drawSpecibusBox() {
+        print("drawing data box");
+        AnchorElement specibusLabel = new AnchorElement(href: "ItemCreation.html")..text = "Build Specibus:"..target="_blank";
+        specibusBox = new TextAreaElement();
+        specibusBox.value = owner.specibus.toDataString();
+        specibusBox.cols = 60;
+        specibusBox.rows = 10;
+        specibusBox.onChange.listen((e) {
+            try {
+                owner.specibus.copyFromDataString(specibusBox.value);
+                syncDataBoxToOwner();
+            }catch(e, trace) {
+                window.alert("something went wrong! $e, $trace");
+            }
+        });
+        container.append(specibusLabel);
+        container.append(specibusBox);
     }
 
     void drawName() {
