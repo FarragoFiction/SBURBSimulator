@@ -900,7 +900,7 @@ class GameEntity extends Object with StatOwner   {
             //i'm not sure how to get a stats value from inside itself so....*shrug*
            JSONObject j = new JSONObject();
            j["name"] = s.name;
-           j["value"] = "${getStat(s)}";
+           j["value"] = "${getStatHolder().getBase(s)}";
            statArray.add(j);
         }
         json["stats"] = statArray.toString();
