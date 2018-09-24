@@ -655,7 +655,9 @@ class Player extends GameEntity{
         Iterable<Stat> as = Stats.summarise;
         ret += "<td class = 'toolTipSection'>Stats<hr>";
         for (Stat stat in as) {
-            ret += "$stat: ${getStat(stat).round()}<br>";
+            int baseValue = getStatHolder().getBase(stat).round();
+            int derivedValue = getStat(stat).round();
+            ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue} from $specibus)<br>";
         }
 
         ret += "</td>";
