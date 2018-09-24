@@ -13,6 +13,8 @@ export "EntityTargetConditions/TargetIsPassivePlayer.dart";
 export "EntityTargetConditions/TargetIsActivePlayer.dart";
 export "EntityTargetConditions/TargetIsUnconditionallyImmortal.dart";
 export "EntityTargetConditions/TargetIsStrifable.dart";
+export "EntityTargetConditions/TargetEntityHasCompanionNamed.dart";
+
 export "EntityTargetConditions/TargetHasActiveProphecy.dart";
 export "EntityTargetConditions/TargetHasFullfilledProphecy.dart";
 
