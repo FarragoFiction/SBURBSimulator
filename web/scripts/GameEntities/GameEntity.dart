@@ -856,6 +856,12 @@ class GameEntity extends Object with StatOwner   {
         copyFromJSON(rawJSON);
     }
 
+    void copyFromDataStringTemplate(String data) {
+        String dataWithoutName = data.split("$labelPattern")[1];
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        copyFromJSONTemplate(rawJSON);
+    }
+
     String toDataString() {
         //print("data is ${toJSON()}");
         return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
@@ -941,6 +947,26 @@ class GameEntity extends Object with StatOwner   {
 
         if(stopScenesString != null) loadStopMechanisms(stopScenesString);
 
+    }
+
+    //don't load everything, just the things the template can set
+    void copyFromJSONTemplate(String jsonString) {
+        //print("trying to copy from json $jsonString");
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+
+        String statString = json["stats"];
+        loadStats(statString);
+        //print("loaded stats");
+
+        String fraymotifString = json["fraymotifs"];
+        loadFraymotifs(fraymotifString);
+        // print("loaded fraymotifs");
+
+        if(json["specibus"] != null) specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
+        //print("loaded specibus");
+
+        String sylladexString = json["sylladex"];
+        loadSylladex(sylladexString);
     }
 
     void loadScenes(String weirdString) {

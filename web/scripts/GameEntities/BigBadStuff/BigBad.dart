@@ -134,6 +134,13 @@ class BigBad extends NPC {
 
   }
 
+  @override
+    void copyFromDataStringTemplate(String data) {
+        // print("copying from data: $data, looking for labelpattern: $labelPattern");
+        super.copyFromDataStringTemplate(data);
+        //dont do anything else, its just game entity stuff if its a template
+    }
+
 
     void loadStartMechanisms(String weirdString) {
       //print("weird string is $weirdString");
@@ -238,6 +245,8 @@ class BigBadForm {
         drawDataBox();
         drawName();
         drawDesc();
+        drawTemplate();
+
         drawStrifable();
         drawImmortal();
         drawAddStartButton();
@@ -539,6 +548,24 @@ class BigBadForm {
 
         descElement.onInput.listen((Event e) {
             bigBad.description = descElement.value;
+            syncDataBoxToBigBad();
+        });
+    }
+
+    void drawTemplate() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Load Template (optional, for stats, items and fraymotifs):";
+        TextAreaElement templateEle = new TextAreaElement();
+        templateEle.value = "N/A";
+        templateEle.cols = 60;
+        templateEle.rows = 10;
+        subContainer.append(nameLabel);
+        subContainer.append(templateEle);
+        container.append(subContainer);
+
+        templateEle.onInput.listen((Event e) {
+            bigBad.copyFromDataStringTemplate(templateEle.value);
             syncDataBoxToBigBad();
         });
     }
