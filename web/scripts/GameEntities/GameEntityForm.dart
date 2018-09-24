@@ -8,6 +8,7 @@ class GameEntityForm {
 
     TextInputElement nameElement;
     TextAreaElement dataBox;
+    DivElement fraymotifSection;
 
     List<StatForm> statForms = new List<StatForm>();
 
@@ -24,6 +25,7 @@ class GameEntityForm {
         drawDataBox();
         drawName();
         drawStats();
+        drawExistingFraymotifs();
         drawAddFraymotifs();
     }
 
@@ -33,6 +35,10 @@ class GameEntityForm {
 
         for(StatForm form in statForms) {
             form.valueElement.value = "${owner.getStat(form.stat, true).round()}";
+        }
+
+        for (Fraymotif s in owner.fraymotifs) {
+           drawFraymotifBox(fraymotifSection,s);
         }
 
         print("syncing data box to scene");
@@ -59,8 +65,7 @@ class GameEntityForm {
 
     void drawFraymotifBox(Element parent, Fraymotif fraymotif) {
         //has a box and a 'remove' button
-        DivElement me  = new DivElement();
-        parent.append(me);
+        parent.append(fraymotifSection);
         AnchorElement a = new AnchorElement(href: "FraymotifCreation.html")..text = "Build Fraymotif"..target="_blank";
         TextAreaElement box = new TextAreaElement()..value = fraymotif.toDataString();
         box.rows = 10;
@@ -68,12 +73,12 @@ class GameEntityForm {
         box.style.verticalAlign = "bottom";
         ButtonElement remove = new ButtonElement()..text = "Remove";
 
-        me.append(a);
-        me.append(box);
-        me.append(remove);
+        fraymotifSection.append(a);
+        fraymotifSection.append(box);
+        fraymotifSection.append(remove);
 
         remove.onClick.listen((Event e) {
-            me.remove();
+            fraymotifSection.remove();
             owner.fraymotifs.remove(fraymotif);
         });
 
@@ -87,6 +92,14 @@ class GameEntityForm {
             }
         });
 
+    }
+
+    void drawExistingFraymotifs() {
+        fraymotifSection = new DivElement();
+        container.append(fraymotifSection);
+        for(Fraymotif e in owner.fraymotifs) {
+            drawFraymotifBox(fraymotifSection,e);
+        }
     }
 
     void drawStats() {
