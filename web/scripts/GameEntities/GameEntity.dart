@@ -802,8 +802,8 @@ class GameEntity extends Object with StatOwner   {
         Iterable<Stat> as = Stats.summarise;
         ret += "<td class = 'toolTipSection'>Stats<hr>";
         for (Stat stat in as) {
-            int baseValue = getStatHolder().getBase(stat).round();
-            int derivedValue = getStat(stat).round();
+            int baseValue = getStatHolder().getBase(stat).round(); //113 lets say
+            int derivedValue = getStat(stat).round(); //120 lets say
             ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue})<br>";
         }
 
