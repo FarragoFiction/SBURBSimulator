@@ -24,6 +24,7 @@ class GameEntityForm {
         drawDataBox();
         drawName();
         drawStats();
+        drawAddFraymotifs();
     }
 
     void syncFormToOwner() {
@@ -41,6 +42,51 @@ class GameEntityForm {
     void syncDataBoxToOwner() {
         print("trying to sync data box, owner is ${owner}");
         dataBox.value = owner.toDataString();
+    }
+
+    void drawAddFraymotifs() {
+        DivElement tmp = new DivElement();
+        tmp.classes.add("filterSection");
+        ButtonElement button = new ButtonElement()..text = "Add Fraymotif";
+        tmp.append(button);
+        container.append(tmp);
+        button.onClick.listen((Event e) {
+            Fraymotif fraymotif = new Fraymotif("Replace This Please",1);
+            owner.fraymotifs.add(fraymotif);
+            drawFraymotifBox(tmp, fraymotif);
+        });
+    }
+
+    void drawFraymotifBox(Element parent, Fraymotif fraymotif) {
+        //has a box and a 'remove' button
+        DivElement me  = new DivElement();
+        parent.append(me);
+        AnchorElement a = new AnchorElement(href: "FraymotifCreation.html")..text = "Build Fraymotif"..target="_blank";
+        TextAreaElement box = new TextAreaElement()..value = fraymotif.toDataString();
+        box.rows = 10;
+        box.cols = 30;
+        box.style.verticalAlign = "bottom";
+        ButtonElement remove = new ButtonElement()..text = "Remove";
+
+        me.append(a);
+        me.append(box);
+        me.append(remove);
+
+        remove.onClick.listen((Event e) {
+            me.remove();
+            owner.fraymotifs.remove(fraymotif);
+        });
+
+        box.onChange.listen((e) {
+            try {
+
+                fraymotif.copyFromDataString(dataBox.value);
+                syncFormToOwner();
+            }catch(e, trace) {
+                window.alert("something went wrong! $e, $trace");
+            }
+        });
+
     }
 
     void drawStats() {
