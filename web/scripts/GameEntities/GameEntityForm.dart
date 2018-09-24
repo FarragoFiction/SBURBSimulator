@@ -85,7 +85,7 @@ class GameEntityForm {
         box.onChange.listen((e) {
             try {
 
-                fraymotif.copyFromDataString(dataBox.value);
+                fraymotif.copyFromDataString(box.value);
                 syncFormToOwner();
             }catch(e, trace) {
                 window.alert("something went wrong! $e, $trace");
