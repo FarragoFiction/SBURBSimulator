@@ -589,7 +589,7 @@ class BigBadForm {
 
         String statsString = "";
         for(Stat s in as) {
-            statsString = "$statsString, ${s.name}: ${(bigBad.getStat(s,true).round())}";
+            statsString = "$statsString, ${s.name}: ${(bigBad.getStatHolder().getBase(s).round())}";
         }
         DivElement stats = new DivElement()..setInnerHtml("<b>Stats</b>: $statsString");
 

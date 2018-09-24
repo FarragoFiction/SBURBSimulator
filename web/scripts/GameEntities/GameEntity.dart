@@ -804,7 +804,7 @@ class GameEntity extends Object with StatOwner   {
         for (Stat stat in as) {
             int baseValue = getStatHolder().getBase(stat).round();
             int derivedValue = getStat(stat).round();
-            ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue} from $specibus)<br>";
+            ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue})<br>";
         }
 
         ret += "</td>";
@@ -1034,6 +1034,7 @@ class GameEntity extends Object with StatOwner   {
             Stat stat = Stats.byName[j["name"]];
             setStat(stat, num.parse(j["value"]));
         }
+        heal();
     }
 
     void loadFraymotifs(String weirdString) {

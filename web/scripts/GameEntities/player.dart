@@ -657,7 +657,7 @@ class Player extends GameEntity{
         for (Stat stat in as) {
             int baseValue = getStatHolder().getBase(stat).round();
             int derivedValue = getStat(stat).round();
-            ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue} from $specibus)<br>";
+            ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue})<br>";
         }
 
         ret += "</td>";
