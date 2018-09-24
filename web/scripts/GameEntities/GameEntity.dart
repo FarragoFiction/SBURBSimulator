@@ -1186,7 +1186,7 @@ class GameEntity extends Object with StatOwner   {
         }else if(npcKillCount > 12 ) {
             reason = "because npc victims or not, the ${htmlTitle()} is on a murderous rampage. ";
             villain = true;
-        }else if(getStat(Stats.POWER) > 13000 * Stats.POWER.average(session.players) && session.players.length > 2) {
+        }else if(getStat(Stats.POWER) > 13000 * Stats.POWER.average(session.players) && session.players.length > 2 ) {
             reason = "because no one being should have all that power and use it to kill."; //hums along
             villain = true;
         }
@@ -1219,7 +1219,7 @@ class GameEntity extends Object with StatOwner   {
             }
         }
         String bb = "";
-        if(killer != null) bb = killer.makeBigBad();
+        if(killer != null && !villain) bb = killer.makeBigBad();
         return "${htmlTitle()} is dead. $looting $bb";
     }
 

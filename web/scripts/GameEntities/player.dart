@@ -351,7 +351,7 @@ class Player extends GameEntity{
         }
 
         String bb = "";
-        if(killer != null) bb = killer.makeBigBad();
+        if(killer != null && !villain) bb = killer.makeBigBad();
 
         return "$ret $looting $bb";
     }
