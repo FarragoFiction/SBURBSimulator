@@ -3,15 +3,16 @@ import 'dart:html';
 
 //no chance to survive, no strife no anything. it's a red miles situation
 //not really any details, or modifiers
-class GiveMinion extends EffectEntity {
+class RemoveMinionNamed extends EffectEntity {
     TextAreaElement actionStringBox;
     @override
     int  importantInt = 0;
 
     @override
-    String name = "GiveMinion";
-    GiveMinion(SerializableScene scene) : super(scene);
-
+    String importantWord = "";
+    @override
+    String name = "RemoveMinionNamed";
+    RemoveMinionNamed(SerializableScene scene) : super(scene);
 
 
   @override
@@ -24,14 +25,11 @@ class GiveMinion extends EffectEntity {
         setupContainer(divbluh);
         DivElement me = new DivElement();
         container.append(me);
+        List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
 
-        me.setInnerHtml("<b>Spawn and Give a  Minion:</b> <br>");
+        me.setInnerHtml("<b>RemoveMinionNamed: (name is either exactly or contains, minion is no longer in targets party, but does still exist):</b> <br>");
         //stat time
-        AnchorElement a = new AnchorElement(href:"GameEntityCreation.html")..text = "Minion Builder";
-        a.style.backgroundColor = "white";
-        a.style.padding = "5px";
-        a.target = "_blank";
-        me.append(a);
+
         actionStringBox = new TextAreaElement();
         me.append(actionStringBox);
         actionStringBox.value = importantWord;
@@ -51,13 +49,18 @@ class GiveMinion extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        GameEntity minion = new GameEntity("Minion",scene.session);
-        minion.copyFromDataString(importantWord);
-        //in theory, allows minions to have scenes attached, if you figure out how to give them some
-        //but only becomes relevant if the minion activates which SHOULD
-        //only be on reckoning if they have a scepter.
-        e.addCompanion(minion);
-        text = "$text ${e.htmlTitle()} acquires a new minion: ${minion.htmlTitleWithTip()}.";
+        bool found = false;
+        for(GameEntity companion in e.companionsCopy) {
+            if(companion.title().toLowerCase().contains(importantWord.toLowerCase())) {
+                found = true;
+                e.removeCompanion(companion);
+                text = "$text The ${e.htmlTitleWithTip()} loses the friendship of the ${companion.htmlTitleWithTip()}.";
+                break;
+            }
+        }
+        if(!found) {
+            text = "$text The ${scene.gameEntity.htmlTitleWithTip()} cannot find a  ${importantWord} in ${e.htmlTitleWithTip()}'s party.";
+        }
     });
 
     ButtonElement toggle = new ButtonElement()..text = "Show Details?";
@@ -87,6 +90,6 @@ class GiveMinion extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new GiveMinion(scene);
+    return new RemoveMinionNamed(scene);
   }
 }

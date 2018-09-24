@@ -18,6 +18,7 @@ export "EntityEffects/PickpocketItemNamed.dart";
 export "EntityEffects/GiveThisAction.dart";
 export "EntityEffects/RemoveAction.dart";
 export "EntityEffects/GiveMinion.dart";
+export "EntityEffects/RemoveMinionNamed.dart";
 export "EntityEffects/ModifySessionHealth.dart";
 export "LandEffects/ChangeMyStatLand.dart";
 export "EntityEffects/GiveFrog.dart";
