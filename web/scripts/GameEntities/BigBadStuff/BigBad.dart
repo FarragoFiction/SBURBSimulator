@@ -219,6 +219,7 @@ class BigBadForm {
     TextInputElement nameElement;
     TextAreaElement dataBox;
     TextAreaElement descElement;
+    Element templateInfoElement;
 
     CheckboxInputElement strifableElement;
     CheckboxInputElement immortalElement;
@@ -366,6 +367,7 @@ class BigBadForm {
             s.renderForm(stopSceneSection);
         }
         syncDataBoxToBigBad();
+        syncTemplateInfo();
     }
 
     void drawAddStartButton() {
@@ -567,7 +569,29 @@ class BigBadForm {
         templateEle.onInput.listen((Event e) {
             bigBad.copyFromDataStringTemplate(templateEle.value);
             syncDataBoxToBigBad();
+            syncTemplateInfo();
         });
+    }
+
+    void syncTemplateInfo() {
+        if(templateInfoElement == null) {
+            templateInfoElement = new DivElement();
+            container.append(templateInfoElement);
+        }
+        templateInfoElement.text = ""; //clear
+
+        Iterable<Stat> as = Stats.summarise;
+
+        DivElement stats = new DivElement()..text = "Stats: ${as.join(',')}";
+        templateInfoElement.append(stats);
+
+        DivElement specibus = new DivElement()..text = "Specibus: ${bigBad.specibus}";
+        templateInfoElement.append(specibus);
+
+        DivElement items = new DivElement()..text = "Sylladex: ${bigBad.sylladex}";
+        templateInfoElement.append(items);
+
+
     }
 
     void drawDataBox() {
