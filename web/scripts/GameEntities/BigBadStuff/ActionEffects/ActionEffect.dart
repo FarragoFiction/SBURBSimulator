@@ -217,6 +217,7 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new KillSleepingDreamSelf(scene));
       ret.add(new ChangeStat(scene));
       ret.add(new ChangeMyStat(scene));
+      ret.add(new GiveMinion(scene));
       ret.add(new GiveFraymotif(scene));
       ret.add(new GiveItem(scene));
       ret.add(new GiveSpecibus(scene));
