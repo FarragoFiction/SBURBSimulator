@@ -953,6 +953,7 @@ class GameEntity extends Object with StatOwner   {
     void copyFromJSONTemplate(String jsonString) {
         //print("trying to copy from json $jsonString");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
+        name = json["name"];
 
         String statString = json["stats"];
         loadStats(statString);

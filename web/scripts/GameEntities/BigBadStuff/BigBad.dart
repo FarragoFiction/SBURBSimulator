@@ -555,8 +555,9 @@ class BigBadForm {
     }
 
     void drawTemplate() {
+        syncTemplateInfo(); //creates div
         DivElement subContainer = new DivElement();
-        LabelElement nameLabel = new LabelElement();
+        DivElement nameLabel = new DivElement();
         nameLabel.text = "Load Template (optional, for stats, items and fraymotifs):";
         TextAreaElement templateEle = new TextAreaElement();
         templateEle.value = "N/A";
@@ -564,7 +565,7 @@ class BigBadForm {
         templateEle.rows = 10;
         subContainer.append(nameLabel);
         subContainer.append(templateEle);
-        container.append(subContainer);
+        templateInfoElement.append(subContainer);
 
         templateEle.onInput.listen((Event e) {
             bigBad.copyFromDataStringTemplate(templateEle.value);
@@ -576,19 +577,27 @@ class BigBadForm {
     void syncTemplateInfo() {
         if(templateInfoElement == null) {
             templateInfoElement = new DivElement();
+            templateInfoElement.style.border = "1px solid black";
+            templateInfoElement.style.padding = "5px";
             container.append(templateInfoElement);
         }
         templateInfoElement.text = ""; //clear
 
         Iterable<Stat> as = Stats.summarise;
 
-        DivElement stats = new DivElement()..text = "Stats: ${as.join(',')}";
+        String statsString = "";
+        for(Stat s in as) {
+            statsString = "$statsString, ${s.name}: ${(bigBad.getStat(s,true).round())}";
+        }
+        DivElement stats = new DivElement()..setInnerHtml("<b>Stats</b>: $statsString");
+
+
         templateInfoElement.append(stats);
 
-        DivElement specibus = new DivElement()..text = "Specibus: ${bigBad.specibus}";
+        DivElement specibus = new DivElement()..setInnerHtml("<b>Specibus:</b> ${bigBad.specibus}");
         templateInfoElement.append(specibus);
 
-        DivElement items = new DivElement()..text = "Sylladex: ${bigBad.sylladex}";
+        DivElement items = new DivElement()..setInnerHtml("<b>Sylladex</b>: ${bigBad.sylladex}");
         templateInfoElement.append(items);
 
 
