@@ -43,7 +43,7 @@ class GameEntityForm {
         specibusBox.value  = owner.specibus.toDataString();
 
         for(StatForm form in statForms) {
-            form.valueElement.value = "${owner.getStatHolder().getBase(form.stat).round()}";
+            form.valueElement.value = "${owner.getStat(form.stat,true).round()}";
         }
 
         for (Fraymotif s in owner.fraymotifs) {
