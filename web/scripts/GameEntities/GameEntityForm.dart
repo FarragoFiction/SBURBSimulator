@@ -51,21 +51,21 @@ class GameEntityForm {
     }
 
     void drawAddFraymotifs() {
-        DivElement tmp = new DivElement();
-        tmp.classes.add("filterSection");
+        fraymotifSection.classes.add("filterSection");
         ButtonElement button = new ButtonElement()..text = "Add Fraymotif";
-        tmp.append(button);
-        container.append(tmp);
+        fraymotifSection.append(button);
+        //container.append(fraymotifSection);
         button.onClick.listen((Event e) {
             Fraymotif fraymotif = new Fraymotif("Replace This Please",1);
             owner.fraymotifs.add(fraymotif);
-            drawFraymotifBox(tmp, fraymotif);
+            drawFraymotifBox(fraymotifSection, fraymotif);
         });
     }
 
     void drawFraymotifBox(Element parent, Fraymotif fraymotif) {
         //has a box and a 'remove' button
-        parent.append(fraymotifSection);
+        DivElement me = new DivElement();
+        parent.append(me);
         AnchorElement a = new AnchorElement(href: "FraymotifCreation.html")..text = "Build Fraymotif"..target="_blank";
         TextAreaElement box = new TextAreaElement()..value = fraymotif.toDataString();
         box.rows = 10;
@@ -73,12 +73,12 @@ class GameEntityForm {
         box.style.verticalAlign = "bottom";
         ButtonElement remove = new ButtonElement()..text = "Remove";
 
-        fraymotifSection.append(a);
-        fraymotifSection.append(box);
-        fraymotifSection.append(remove);
+        me.append(a);
+        me.append(box);
+        me.append(remove);
 
         remove.onClick.listen((Event e) {
-            fraymotifSection.remove();
+            me.remove();
             owner.fraymotifs.remove(fraymotif);
         });
 
@@ -86,7 +86,7 @@ class GameEntityForm {
             try {
 
                 fraymotif.copyFromDataString(box.value);
-                syncFormToOwner();
+                syncDataBoxToOwner();
             }catch(e, trace) {
                 window.alert("something went wrong! $e, $trace");
             }
