@@ -50,6 +50,11 @@ class GameEntityForm {
            drawFraymotifBox(fraymotifSection,s);
         }
 
+
+        for (Item s in owner.sylladex) {
+            drawSylladexBox(sylladexSection,s);
+        }
+
         print("syncing data box to scene");
         syncDataBoxToOwner();
     }
@@ -137,7 +142,6 @@ class GameEntityForm {
 
         box.onChange.listen((e) {
             try {
-
                 item.copyFromDataString(box.value);
                 syncDataBoxToOwner();
             }catch(e, trace) {
