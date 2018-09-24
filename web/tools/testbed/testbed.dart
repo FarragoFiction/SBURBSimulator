@@ -4,6 +4,7 @@ import "dart:html";
 import "dart:math" as Math;
 import "dart:typed_data";
 import "dart:web_audio";
+import "dart:js";
 
 import "../../scripts/Rendering/threed/three.dart" as THREE;
 import "../../scripts/Rendering/text/opentype.dart" as OT;
@@ -16,6 +17,8 @@ import '../../scripts/includes/png.dart';
 
 void main() {
     Element stuff = querySelector("#stuff");
+
+
 
     /*new Timer(new Duration(seconds: 1),()
     {
@@ -60,7 +63,20 @@ void main() {
 
     //testText();
 
-    testLoaderIssues();
+    //testLoaderIssues();
+
+    testFancyPrint();
+}
+
+void fancyPrint(Object message, String css) => context["console"].callMethod("log", <String>["%c$message", css]);
+void testFancyPrint() {
+    String pl_css = "font-family: courier, monospace; color: #0d378e; font-weight: bold; font-size:14px;";
+    String shogun_css = "font-family: papyrus; color: black; font-size: 48px; text-shadow: 0 0 15px lime, 0 0 10px lime, 0 0 5px lime;";
+    
+    fancyPrint("PL: pssst, I found a way to talk here, it should be hidden", pl_css);
+    fancyPrint("PL: y'know, from, uh", pl_css);
+    fancyPrint("FOOLS", shogun_css);
+    fancyPrint("PL: shit", pl_css);
 }
 
 Future<Null> testLoaderIssues() async {
