@@ -8,7 +8,7 @@ import 'dart:html';
  */
 class StopScene extends SerializableScene {
     @override
-    String name = "Stop Scene";
+    String name = "Reaction Scene";
     GameEntity originalOwner;
     StopScene(Session session) : super(session);
 

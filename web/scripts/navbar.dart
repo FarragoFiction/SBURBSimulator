@@ -146,6 +146,7 @@ void hide(Element v) {
 
 
 void storeCard(String card) {
+    if(doNotRender) return; //speed up for AB
     String key = "LIFESIMFOUNDCARDS";
     if(window.localStorage == null) {
         print("saving isn't possible....you don't have local storage");

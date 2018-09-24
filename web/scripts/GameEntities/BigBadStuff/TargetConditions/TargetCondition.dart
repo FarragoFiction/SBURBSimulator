@@ -18,20 +18,31 @@ abstract class TargetCondition {
     String name = "Generic Trigger";
 
     bool not = false;
+    bool vriska = false;
     CheckboxInputElement notElement;
+    DivElement descElement;
+    //is this target all about you?
+    CheckboxInputElement vriskaElement;
+
 
     DivElement container;
-    DivElement descElement;
 
     String descText = "is generic";
     String notDescText = "is NOT generic";
 
     String get desc {
+        String ret;
         if(not) {
-            return notDescText;
+            ret = notDescText;
         }else {
-            return descText;
+            ret = descText;
         }
+        if(vriska) {
+            ret = ret.replaceAll("target","self");
+            ret = ret.replaceAll("Target","Self");
+            ret = ret.replaceAll("TARGET","SELF");
+        }
+        return ret;
     }
 
 
@@ -71,6 +82,8 @@ abstract class TargetCondition {
         drawDeleteButton();
         print("drew delete button");
         renderNotFlag(container);
+        renderVriskaFlag(container);
+
         print("rendered not flag");
     }
 
@@ -88,13 +101,33 @@ abstract class TargetCondition {
         }
     }
 
+    //makes it aaaaaaaall about you instead of the target
+    void renderVriskaFlag(Element div) {
+        if(this is TargetConditionLand) return;
+        DivElement subContainer = new DivElement();
+        div.append(subContainer);
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Apply to Self Instead of Target";
+        vriskaElement = new CheckboxInputElement();
+        vriskaElement.checked = vriska;
+
+        subContainer.append(nameLabel);
+        subContainer.append(vriskaElement);
+        container.append(subContainer);
+
+        vriskaElement.onChange.listen((e) {
+            syncVriskaForm();
+            scene.syncForm();
+        });
+    }
+
     void renderNotFlag(Element div) {
         DivElement subContainer = new DivElement();
         div.append(subContainer);
         LabelElement nameLabel = new LabelElement();
         nameLabel.text = "Invert Target";
         notElement = new CheckboxInputElement();
-        notElement.checked = scene.targetOne;
+        notElement.checked = not;
 
         subContainer.append(nameLabel);
         subContainer.append(notElement);
@@ -111,6 +144,7 @@ abstract class TargetCondition {
             descElement  = new DivElement();
             container.append(descElement);
         }
+
         descElement.setInnerHtml(desc);
     }
 
@@ -119,6 +153,16 @@ abstract class TargetCondition {
             not = true;
         }else {
             not = false;
+        }
+        syncDescToDiv();
+    }
+
+    void syncVriskaForm() {
+
+        if(vriskaElement.checked) {
+            vriska = true;
+        }else {
+            vriska = false;
         }
         syncDescToDiv();
     }
@@ -133,12 +177,18 @@ abstract class TargetCondition {
         if(notString == "true") not = true;
     }
 
+    void copyVriskaFlagFromJSON(JSONObject json) {
+        String notString = json["VRISKA"];
+        if(notString == "true") vriska = true;
+    }
+
 
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json[IMPORTANTWORD] = importantWord;
         json["NOT"] = not.toString();
+        json["VRISKA"] = vriska.toString();
         json["name"] = name;
         json[IMPORTANTINT] = "$importantInt";
 
@@ -153,15 +203,26 @@ abstract class TargetCondition {
 //i filter living things
 abstract class TargetConditionLiving extends TargetCondition {
   TargetConditionLiving(SerializableScene scene) : super(scene);
+  //what are we removing?
   bool conditionForFilter(GameEntity item);
 
 
   List<GameEntity> filter(List<GameEntity> list) {
       if(not) {
-          list.removeWhere((GameEntity item) => !conditionForFilter(item));
+          if(vriska) {
+              //reject all if my condition isn't met
+              if(!conditionForFilter(scene.gameEntity)) list.clear();
+          }else {
+              list.removeWhere((GameEntity item) => !conditionForFilter(item));
+          }
 
       }else {
-          list.removeWhere((GameEntity item) => conditionForFilter(item));
+          if(vriska) {
+              //reject all if my condition is met
+              if(conditionForFilter(scene.gameEntity)) list.clear();
+          }else {
+              list.removeWhere((GameEntity item) => conditionForFilter(item));
+          }
       }
       return list;
   }
@@ -192,6 +253,7 @@ abstract class TargetConditionLiving extends TargetCondition {
                   print("adding new entity condition ${newCondition} to $owner, now its ${owner.triggerConditionsLiving}");
                   //bigBad.triggerConditions.add(newCondition);
                   newCondition.renderForm(triggersSection);
+                  owner.syncForm();
               }
           }
       });
@@ -220,6 +282,7 @@ abstract class TargetConditionLiving extends TargetCondition {
              // print("$name is found, time to copy not flag");
               TargetCondition ret = tc.makeNewOfSameType();
               ret.copyNotFlagFromJSON(json);
+              ret.copyVriskaFlagFromJSON(json);
               ret.copyFromJSON(json);
               ret.scene = scene;
               return ret;
@@ -254,17 +317,27 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsWasted(scene));
       ret.add(new TargetIsTrickster(scene));
       ret.add(new TargetIsDreamSelf(scene));
+      ret.add(new TargetHasDreamSelf(scene));
+      ret.add(new TargetEntitySessionHealthIsGreaterThan(scene));
       ret.add(new TargetIsSelf(scene));
+      ret.add(new TargetEntityFraymotifNameContains(scene));
+      ret.add(new TargetEntitySpecibusNameContains(scene));
+      ret.add(new TargetEntityHasItemNamed(scene));
       ret.add(new TargetIsDoomed(scene));
+      ret.add(new TargetHasActiveProphecy(scene));
+      ret.add(new TargetHasFullfilledProphecy(scene));
       ret.add(new TargetHasTimeClones(scene));
       ret.add(new TargetHasCrown(scene));
       ret.add(new IAmCrowned(scene));
       ret.add(new TargetIsCarapace(scene));
+      ret.add(new TargetIsRoyalty(scene));
+      ret.add(new TargetIsAgent(scene));
       ret.add(new TargetIsGrimDark(scene));
       ret.add(new TargetIsMurderMode(scene));
       ret.add(new TargetIsGodTier(scene));
       ret.add(new TargetHasGodDestiny(scene));
       ret.add(new TargetIsLeader(scene));
+      ret.add(new TargetIsMyLeader(scene));
       ret.add(new TargetIsStrifable(scene));
       ret.add(new TargetIsUnconditionallyImmortal(scene));
       ret.add(new TargetIsRandom(scene));
@@ -335,6 +408,7 @@ abstract class TargetConditionLand extends TargetCondition {
       List<TargetConditionLand> ret = new List<TargetConditionLand>();
       ret.add(new TargetIsNotDestroyed(scene));
       ret.add(new TargetIsMyLand(scene));
+      ret.add(new MyStatIsGreaterThanValueLand(scene));
       ret.add(new IAmCrownedForLand(scene));
       ret.add(new TargetIsFromSessionWithABStatForLand(scene));
       ret.add(new TargetIsCorrupt(scene));
@@ -344,6 +418,7 @@ abstract class TargetConditionLand extends TargetCondition {
       ret.add(new TargetHasSound(scene));
       ret.add(new TargetHasFeel(scene));
       ret.add(new TargetIsMoon(scene));
+      ret.add(new TargetLandSessionHealthIsGreaterThan(scene));
       ret.add(new TargetHPIs(scene));
       ret.add(new TargetIsProspit(scene));
       ret.add(new TargetIsDerse(scene));

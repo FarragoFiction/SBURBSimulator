@@ -75,6 +75,21 @@ class  SerializableScene extends Scene {
       myElement = new DivElement();
       div.append(myElement);
       myElement.setInnerHtml("$displayText");
+
+      if(gameEntity is Carapace) {
+          if(!doNotRender) {
+              ImageElement portrait = new ImageElement(
+                  src: "images/BigBadCards/${(gameEntity as Carapace).initials
+                      .toLowerCase()}.png");
+              portrait.onError.listen((e) {
+                  portrait.src = "images/BigBadCards/default.gif";
+              });
+              portrait.style.width = "100px";
+              portrait.style.backgroundColor = "grey";
+              div.append(portrait);
+          }
+      }
+
       doEffects(); //automatic
       doAction(); //specific to subclass
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
@@ -107,7 +122,7 @@ class  SerializableScene extends Scene {
     }
 
   void doEffects() {
-      print("doing effect for $gameEntity, effects for living is $effectsForLiving, $effectsForLands");
+      //print("tick is ${session.numTicks} , doing effect for $gameEntity, scene is $name, chosen targets is $finalLivingTargets from all living of $livingTargets ");
       for(ActionEffect e in effectsForLands) {
           e.applyEffect();
       }
@@ -254,6 +269,10 @@ void syncForm() {
 
     }
 
+    @override
+    String toString() {
+            return name;
+    }
 
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
@@ -303,11 +322,21 @@ void syncForm() {
       landTargets.clear();
       livingTargets.clear();
       livingTargets = new Set<GameEntity>.from(session.activatedNPCS); //not all, just active
+      //royalty exist
+      if(session.derse != null) {
+        if(session.derse.queen != null && !livingTargets.contains(session.derse.queen)) livingTargets.add(session.derse.queen);
+        if(session.derse.king != null && !livingTargets.contains(session.derse.king)) livingTargets.add(session.derse.king);
+      }
+
+      if(session.prospit != null) {
+         if(session.prospit.queen != null && !livingTargets.contains(session.prospit.queen)) livingTargets.add(session.prospit.queen);
+          if(session.prospit.king != null && !livingTargets.contains(session.prospit.king)) livingTargets.add(session.prospit.king);
+      }
       //TODO should i also get party members for those npcs? otherwise can't get brain ghosts and robots and the like
       for(Player p in session.players) {
             if(p.active) {
                 livingTargets.add(p);
-                landTargets.add(p.land);
+                if(p.land != null) landTargets.add(p.land);
             }
       }
 
@@ -329,7 +358,6 @@ void syncForm() {
           landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets)));
       }
       if(triggerConditionsLand.isEmpty) landTargets.clear();
-
 
       return landTargets.isNotEmpty || livingTargets.isNotEmpty;
   }
@@ -374,8 +402,10 @@ class SceneForm {
     }
 
     void syncDataBoxToScene() {
+        print("trying to sync data box, owner is ${scene.gameEntity}");
         dataBox.value = scene.toDataString();
         if(scene.gameEntity is BigBad) {
+            print("i'm owned by a big bad so syncing it too");
             (scene.gameEntity as BigBad).syncForm();
         }
     }

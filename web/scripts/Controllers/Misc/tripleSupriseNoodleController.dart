@@ -34,13 +34,13 @@ Future<Null> main() async {
 class MysteryController extends AuthorBot {
 
   @override
-  void summarizeSession(Session session) {
+  void summarizeSession(Session session, Duration duration) {
       checkPasswordAgainstQuip(session.generateSummary());
   }
 
   @override
   void scratchAB(Session session) {
-      summarizeSession(session); //no scratching, you're done here.
+      summarizeSession(session, new Duration()); //no scratching, you're done here.
   }
 
   @override

@@ -32,7 +32,7 @@ class GameEntity extends Object with StatOwner   {
     String extraTitle = "";
 
     //mostly for big bads, but other things can have them, too
-    List<StopScene> stopMechanisms = new List<StopScene>();
+    List<StopScene> playerReactions = new List<StopScene>();
 
     //availibility set to false by scenes
     bool available = true;
@@ -230,6 +230,8 @@ class GameEntity extends Object with StatOwner   {
                 this.session.numScenes ++;
                 s.renderContent(this.session.newScene(s.runtimeType.toString()));
             }
+            //no need to keep looping, okay? just stop once you are done.
+            if(!available) break;
         }
 
         //otherwise will get conconrrent modification error. put at front, new things are important and shiny
@@ -268,7 +270,8 @@ class GameEntity extends Object with StatOwner   {
         sylladex = new Sylladex(this);
         //;
         //default non player thingy.
-        this.specibus = SpecibusFactory.CLAWS;
+        //if i don't copy this it eventually loses it's required trait and i don't know why
+        this.specibus = SpecibusFactory.CLAWS.copy();
         this.addBuff(new BuffSpecibus(this)); //programatic
         this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
        //crashes if(getStat(Stats.CURRENT_HEALTH) <= 0) setStat(Stats.CURRENT_HEALTH, 10);
@@ -317,7 +320,7 @@ class GameEntity extends Object with StatOwner   {
         }
         return ret;
     }
-    
+
     //TODO grab out every method that current gameEntity, Player and PlayerSnapshot are required to have.
     //TODO make sure Player's @overide them.
 
@@ -396,7 +399,7 @@ class GameEntity extends Object with StatOwner   {
 
     String checkDiedInAStrife(List<Team> enemyTeams) {
         if (getStat(Stats.CURRENT_HEALTH) <= 0) {
-            session.logger.info("${title()} died in a strife, hp is ${Stats.CURRENT_HEALTH}");
+            //session.logger.info("${title()} died in a strife, hp is ${Stats.CURRENT_HEALTH}");
 
             //TODO check for jack, king
             GameEntity jack = Team.findJackInTeams(enemyTeams);
@@ -741,7 +744,8 @@ class GameEntity extends Object with StatOwner   {
 
     //sets current hp to max hp. mostly called after strifes assuming you'll use healing items
     void heal() {
-        this.setStat(Stats.CURRENT_HEALTH, this.getStat(Stats.HEALTH));
+        //have at least one hp
+        this.setStat(Stats.CURRENT_HEALTH, Math.max(this.getStat(Stats.HEALTH),1));
     }
 
     String htmlTitleWithTip() {
@@ -807,9 +811,22 @@ class GameEntity extends Object with StatOwner   {
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
         ret += "Specibus: ${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br><br>";
 
+
+
         for(Item item in sylladex) {
             ret += "${item.fullNameWithUpgrade}<br>";
         }
+
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>AI<hr>";
+
+        for (Scene s in scenes) {
+            if(s is SerializableScene) {
+                ret += "${s}<br>";
+            }else {
+                ret += "???<br>";
+            }
+        }
+
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Buffs<hr>";
 
 
@@ -839,8 +856,14 @@ class GameEntity extends Object with StatOwner   {
         copyFromJSON(rawJSON);
     }
 
+    void copyFromDataStringTemplate(String data) {
+        String dataWithoutName = data.split("$labelPattern")[1];
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        copyFromJSONTemplate(rawJSON);
+    }
+
     String toDataString() {
-        print("data is ${toJSON()}");
+        //print("data is ${toJSON()}");
         return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
     }
 
@@ -850,7 +873,7 @@ class GameEntity extends Object with StatOwner   {
         json["description"] = description;
         json["canStrife"] = canStrife.toString();
         json["unconditionallyImmortal"] = unconditionallyImmortal.toString();
-        json["serializableSceneStrings"] = serializableSceneStrings.toString();
+        json["serializableSceneStrings"] = serializableSceneStrings.join(",");
 
         List<JSONObject> sceneArray = new List<JSONObject>();
         for(Scene s in scenes) {
@@ -872,7 +895,8 @@ class GameEntity extends Object with StatOwner   {
         json["fraymotifs"] = fraymotifArray.toString();
 
         List<JSONObject> statArray = new List<JSONObject>();
-        for(Stat s in stats) {
+        Iterable<Stat> as = Stats.summarise;
+        for(Stat s in as) {
             //i'm not sure how to get a stats value from inside itself so....*shrug*
            JSONObject j = new JSONObject();
            j["name"] = s.name;
@@ -884,28 +908,34 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void copyFromJSON(String jsonString) {
-        print("trying to copy from json");
+        //print("trying to copy from json $jsonString");
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         name = json["name"];
         description = json["description"];
         canStrife = json["canStrife"] == "true"? true : false ;
         unconditionallyImmortal = json["unconditionallyImmortal"] == "true" ? true : false ;
-        serializableSceneStrings = json["serializableSceneStrings"].split(",");
+
+        if(json["serializableSceneStrings"] != null) {
+            String tmp = json["serializableSceneStrings"];
+            tmp = tmp.replaceAll("[", "");
+            tmp = tmp.replaceAll("]", ""); //just in case it's using the old fucking shit
+            serializableSceneStrings = tmp.split(",");
+        }
 
         String statString = json["stats"];
         loadStats(statString);
-        print("loaded stats");
+        //print("loaded stats");
 
         String fraymotifString = json["fraymotifs"];
         loadFraymotifs(fraymotifString);
-        print("loaded fraymotifs");
+       // print("loaded fraymotifs");
 
-        specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
-        print("loaded specibus");
+        if(json["specibus"] != null) specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
+        //print("loaded specibus");
 
         String sylladexString = json["sylladex"];
         loadSylladex(sylladexString);
-        print("loaded sylladex");
+        //print("loaded sylladex");
 
 
         String scenesString = json["scenes"];
@@ -915,15 +945,36 @@ class GameEntity extends Object with StatOwner   {
 
         String stopScenesString = json["stopMechanisms"];
 
-        loadStopMechanisms(stopScenesString);
+        if(stopScenesString != null) loadStopMechanisms(stopScenesString);
 
+    }
+
+    //don't load everything, just the things the template can set
+    void copyFromJSONTemplate(String jsonString) {
+        //print("trying to copy from json $jsonString");
+        JSONObject json = new JSONObject.fromJSONString(jsonString);
+        name = json["name"];
+
+        String statString = json["stats"];
+        loadStats(statString);
+        //print("loaded stats");
+
+        String fraymotifString = json["fraymotifs"];
+        loadFraymotifs(fraymotifString);
+        // print("loaded fraymotifs");
+
+        if(json["specibus"] != null) specibus.copyFromJSON(new JSONObject.fromJSONString(json["specibus"]));
+        //print("loaded specibus");
+
+        String sylladexString = json["sylladex"];
+        loadSylladex(sylladexString);
     }
 
     void loadScenes(String weirdString) {
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
-            print("dynamic json thing for action scene is is  $d");
+            //print("dynamic json thing for action scene is is  $d");
             JSONObject j = new JSONObject();
             j.json = d;
             SerializableScene ss = new SerializableScene(session);
@@ -945,28 +996,34 @@ class GameEntity extends Object with StatOwner   {
             StopScene ss = new StopScene(session);
             ss.originalOwner = this;
             ss.copyFromJSON(j);
-            stopMechanisms.add(ss);
+            playerReactions.add(ss);
         }
-        print ("loaded stop mechanisms $stopMechanisms");
+        print ("loaded stop mechanisms $playerReactions");
+    }
+
+    //players call this on intro, everything else in the grabActivatedX loops. not sure if dead session players will call this? i want them to
+    void activateTasks() {
+        heal();
+        applyStopMechanisms();
     }
 
     void applyStopMechanisms() {
-        if(stopMechanisms.isEmpty) return;
+        if(playerReactions.isEmpty) return;
         for(Player p in session.players) {
             //please don't try to defeat yourself.
             if(p!=this) {
-                for(StopScene ss in stopMechanisms) {
+                for(StopScene ss in playerReactions) {
                     ss.gameEntity = p;
                     p.scenesToAdd.add(ss);
                 }
             }
         }
         //only happens once.
-        stopMechanisms.clear();
+        playerReactions.clear();
     }
 
     void loadStats(String weirdString) {
-        print("trying to decode weirdString $weirdString");
+        //print("trying to decode weirdString $weirdString");
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what){
@@ -992,12 +1049,12 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void loadSylladex(String weirdString) {
-        print ("weird string is $weirdString");
+        //print ("weird string is $weirdString");
         sylladex.inventory.clear();
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
-            print("sylladex d is $d");
+            //print("sylladex d is $d");
             Item ss = new Item("",<ItemTrait>[]);
             JSONObject j = new JSONObject();
             j.json = d;
@@ -1007,11 +1064,11 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void addSerializableScenes() {
-        session.logger.info("adding serializable scenes for $this");
+        session.logger.info("adding serializable scenes for $this, they are $serializableSceneStrings");
         //don't do this right nwo, but when i do it makes their ai a little harder to predict
         //serializableSceneStrings.shuffle();
         for(String s in serializableSceneStrings) {
-            addSerializalbeSceneFromString(s);
+            if(s!= null && s.isNotEmpty) addSerializalbeSceneFromString(s);
         }
     }
 
@@ -1022,30 +1079,41 @@ class GameEntity extends Object with StatOwner   {
         return ret;
     }
 
-    SerializableScene removeSerializableSceneFromString(String s) {
+    List<SerializableScene> removeSerializableSceneFromString(String s) {
         SerializableScene ret = new SerializableScene(session)..copyFromDataString(s);
+        //print("I want to remove $ret");
         List<SerializableScene> toRemove = new List<SerializableScene>();
-        for(Scene s in scenes) {
-            if(s is SerializableScene) {
-                SerializableScene ss = s as SerializableScene;
-                if(ss.toDataString() == s) toRemove.add(ss);
+        for(Scene scene in scenes) {
+            if(scene is SerializableScene) {
+                SerializableScene ss = scene as SerializableScene;
+                if(ss.toDataString() == s) {
+                    //print ("i found $ret in scenes");
+                    toRemove.add(ss);
+                }
             }
         }
 
-        for(Scene s in scenesToAdd) {
-            if(s is SerializableScene) {
-                SerializableScene ss = s as SerializableScene;
-                if(ss.toDataString() == s) toRemove.add(ss);
+        for(Scene scene in scenesToAdd) {
+            if(scene is SerializableScene) {
+                SerializableScene ss = scene as SerializableScene;
+                if(ss.toDataString() == s) {
+                    //print("i found $ret in scenes to add");
+                    toRemove.add(ss);
+                }
             }
         }
 
         for(SerializableScene ss in toRemove) {
+            //print("I'm trying to remove $ss");
             scenes.remove(ss);
             scenesToAdd.remove(ss);
         }
 
-        scenesToAdd.add(ret);
-        return ret;
+        //JR from 9/13/18 says: WHY THE FUCK DID PAST JR REMOVE THE SCENE TWO DIFFERNET WAYS AND THEN JUST ADD IT RIGHT BACK IN
+        //a;lsdkfjas;lfjas;dlfj
+        //...probably from a copy pasta typo. jessus fuck
+        //scenesToAdd.add(ret);
+        return toRemove;
     }
 
 
@@ -1111,14 +1179,14 @@ class GameEntity extends Object with StatOwner   {
         }else if(landKillCount >=1 ) {
             reason = "because you can't just go around blowing up planets!";
             villain = true;
-        }else if(playerKillCount > 4 && ((this is Player && (this as Player).murderMode))) {
+        }else if(playerKillCount > 4 ) {
             //players count 3 x a s much as an npc
             reason = "because they have killed so many already.";
             villain = true;
-        }else if(npcKillCount > 12 && ((this is Player && (this as Player).murderMode))) {
+        }else if(npcKillCount > 12 ) {
             reason = "because npc victims or not, the ${htmlTitle()} is on a murderous rampage. ";
             villain = true;
-        }else if(getStat(Stats.POWER) > 10 * Stats.POWER.average(session.players)) {
+        }else if(getStat(Stats.POWER) > 13000 * Stats.POWER.average(session.players) && session.players.length > 2 ) {
             reason = "because no one being should have all that power and use it to kill."; //hums along
             villain = true;
         }
@@ -1151,7 +1219,7 @@ class GameEntity extends Object with StatOwner   {
             }
         }
         String bb = "";
-        if(killer != null) bb = killer.makeBigBad();
+        if(killer != null && !villain) bb = killer.makeBigBad();
         return "${htmlTitle()} is dead. $looting $bb";
     }
 

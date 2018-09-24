@@ -20,13 +20,6 @@ class ChangeMyStat extends EffectEntity {
 
 
   @override
-  void copyFromJSON(JSONObject json) {
-     // print("copying from json");
-      importantWord = json[ActionEffect.IMPORTANTWORD];
-      importantInt = (int.parse(json[ActionEffect.IMPORTANTINT]));
-  }
-
-  @override
   void syncFormToMe() {
       for(OptionElement o in selectStat.options) {
           if(o.value == importantWord) {
@@ -142,6 +135,6 @@ class ChangeMyStat extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new ChangeStat(scene);
+    return new ChangeMyStat(scene);
   }
 }

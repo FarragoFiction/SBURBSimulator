@@ -134,7 +134,7 @@ class SpecibusFactory {
         _specibi.add(new Specibus("Whip", ItemTraitFactory.WHIP, [ ItemTraitFactory.RESTRAINING, ItemTraitFactory.CLOTH],shogunDesc: "ImKinkshamingKind", abjDesc:"Probably p hard to use."));
         _specibi.add(new Specibus("Bow", ItemTraitFactory.BOW, [ItemTraitFactory.SHOOTY, ItemTraitFactory.STONE, ItemTraitFactory.CLOTH, ItemTraitFactory.POINTY],shogunDesc: "ImpossibleToShootYourselfKind",abjDesc:"Your inferior meat body cannot use this to its maximum potential."));
         _specibi.add(new Specibus("Club", ItemTraitFactory.CLUB, [ ItemTraitFactory.WOOD, ItemTraitFactory.BLUNT],shogunDesc: "CavemanKind",abjDesc:"Easy to use even for weak fleshy muscles."));
-        _specibi.add(new Specibus("Broom", ItemTraitFactory.BROOM, [ ItemTraitFactory.WOOD, ItemTraitFactory.BROOM],shogunDesc: "BeatEmDeadAndCleanTheSceneKind", abjDesc:"God damn Wastes, use normal specibi. "));
+        _specibi.add(new Specibus("Battle Broom", ItemTraitFactory.BROOM, [ ItemTraitFactory.WOOD, ItemTraitFactory.BROOM],shogunDesc: "BeatEmDeadAndCleanTheSceneKind", abjDesc:"God damn Wastes, use normal specibi. "));
         _specibi.add(new Specibus("Book", ItemTraitFactory.BOOK, [ ItemTraitFactory.PAPER, ItemTraitFactory.BLUNT],shogunDesc: "SharpenTheLeatherBoundKind",abjDesc:"You better fucking hope this is either heavy or magic as fuck."));
         _specibi.add(new Specibus("Road Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT],shogunDesc: "TheGreatestFuckingWeaponKind",abjDesc:"Okay. There's a story here, I just know it."));
         _specibi.add(new Specibus("Axe", ItemTraitFactory.AXE, [ ItemTraitFactory.EDGED, ItemTraitFactory.METAL, ItemTraitFactory.BLUNT],shogunDesc: "TreeMassacreKind",abjDesc:"Legit."));

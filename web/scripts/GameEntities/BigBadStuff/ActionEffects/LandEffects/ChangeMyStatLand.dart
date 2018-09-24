@@ -142,6 +142,6 @@ class ChangeMyStatLand extends EffectLand {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new ChangeStat(scene);
+    return new ChangeMyStatLand(scene);
   }
 }

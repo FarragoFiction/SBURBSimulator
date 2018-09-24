@@ -17,7 +17,7 @@ Future<Null> main() async {
 
   new AfterlifeController();
   await globalInit(); // initialise classes and aspects if necessary
-  session = new Session(-13);
+  session = Session.defaultSession;
   self = SimController.instance;
   if(getParameterByName("seed",null) != null){
     self.initial_seed = int.parse(getParameterByName("seed",null));

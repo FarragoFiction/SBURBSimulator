@@ -236,7 +236,7 @@ class TournamentController extends AuthorBot {
 
 
   @override
-void  summarizeSession(Session session) {
+void  summarizeSession(Session session, Duration duration) {
     aBSummary(session.generateSummary());
   }
 
@@ -564,7 +564,7 @@ void  summarizeSession(Session session) {
   @override
   void scratchAB(Session session) {
       //do nothing. scratches aren' tallowed.
-    summarizeSession(session);
+    summarizeSession(session, new Duration());
   }
 
 

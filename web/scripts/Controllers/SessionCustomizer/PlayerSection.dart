@@ -4,6 +4,8 @@ import '../../GameEntities/Stats/stat.dart';
 import '../../GameEntities/player.dart';
 import '../../SessionEngine/session.dart';
 import '../../fraymotif.dart';
+import '../../FraymotifEffect.dart';
+
 import "EntitySection.dart";
 import 'dart:html';
 import "../../PlayerSpriteHandler.dart";

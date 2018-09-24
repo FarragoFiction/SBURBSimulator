@@ -41,7 +41,7 @@ class EngageMurderMode extends Scene{
 
 
 	void rapBattle(Element div, Player player1, Player player2){
-		 session.logger.info("Engage Murder:   murder rap battles ");
+		 //session.logger.info("Engage Murder:   murder rap battles ");
 		this.session.stats.rapBattle = true;
 		String narration = "The " + player1.htmlTitle() + " is contemplating murder. Can their rage be soothed by a good old-fashioned rap battle?<Br>";
 		appendHtml(div, narration);
@@ -126,7 +126,7 @@ class EngageMurderMode extends Scene{
 		}
 
 		ret.addAll(<PlusMinusConversationalPair>[first, second, third, fourth]);
-		session.logger.info("Engage Murder: meta murder threat");
+		//session.logger.info("Engage Murder: meta murder threat");
 		return new Conversation(ret);
 	}
 
@@ -152,7 +152,7 @@ class EngageMurderMode extends Scene{
 		//		PlusMinusConversationalPair fourth = new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]);
 
 
-		session.logger.info("Engage Murder: not valid murder threat");
+		//session.logger.info("Engage Murder: not valid murder threat");
 		ret.addAll(<PlusMinusConversationalPair>[first, second, third,fourth]);
 		return new Conversation(ret);
 	}
@@ -179,7 +179,7 @@ class EngageMurderMode extends Scene{
 			ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","This isn't happening.","Oh god. Tell me you're joking."],<String>["Fuck.","... No. This isn't happening. It can't be.","Oh god.","Oh fuck. oh fuck oh fuck.","No. You don't mean this. Even you aren't this much of an asshole.","This isn't happening.","It's a shitty joke, that's all it is."]));
 		}
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("Engage Murder: not valid murder threat");
+		//session.logger.info("Engage Murder: not valid murder threat");
 		return new Conversation(ret);
 	}
 
@@ -263,7 +263,7 @@ class EngageMurderMode extends Scene{
 		}
 
 					//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("Engage Murder: rage convo");
+		//session.logger.info("Engage Murder: rage convo");
 		return new Conversation(ret);
 	}
 
@@ -278,7 +278,7 @@ class EngageMurderMode extends Scene{
 		ret.add(new PlusMinusConversationalPair(<String>["See you soon!","...",":)"], <String>[":)"],<String>[":)"]));
 
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("Engage Murder: killing buddies");
+		//session.logger.info("Engage Murder: killing buddies");
 		return new Conversation(ret);
 	}
 
@@ -295,7 +295,7 @@ class EngageMurderMode extends Scene{
 
 
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("Engage Murder: kill a god.");
+		//session.logger.info("Engage Murder: kill a god.");
 		return new Conversation(ret);
 	}
 
@@ -309,7 +309,7 @@ class EngageMurderMode extends Scene{
 		ret.add(new PlusMinusConversationalPair(<String>["I think things would go better if you were dead"], <String>["Oh god.","Oh fuck. oh fuck oh fuck.","...I. Really?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."],<String>["Oh, fuck. I always knew you were an asshole, but THIS!? ","Oh fuck, I didn't mean any of those things I said. I swear it!","....You. You're kidding. Right? Even you aren't this big of an asshole...","Oh god.","Oh fuck. oh fuck oh fuck.","Why ME?","What the hell? Why did you snap NOW? Why ME?","Oh god. Tell me you're joking."]));
 		ret.add(new PlusMinusConversationalPair(<String>["Well. See you soon."], <String>["Oh god...Why are you like this?", "Oh god. No. Please.", "God it's so creepy how you are so flat but you're saying shit like that."],<String>["Oh god. You asshole.", "Fuck.","Shit.", "God it's so creepy how you are so flat but you're saying shit like that."]));
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("kill while grim dark.");
+		//session.logger.info("kill while grim dark.");
 		return new Conversation(ret);
 	}
 
@@ -323,7 +323,7 @@ class EngageMurderMode extends Scene{
 		ret.add(new PlusMinusConversationalPair(deathThreats, <String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."],<String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."]));
 		ret.add(new PlusMinusConversationalPair(<String>["Fuck you. You are too far gone to even CARE that I'm going to kill you.","... at least I know you deserve to die.","Fuck you."], <String>["If that's all you had to say,  I have shit to do. I think I'm close to achieving my goals."],<String>["If that's all you had to say,  I have shit to do.  I think I'm close to achieving my goals."]));
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("Engage Murder: kill a grim dark.");
+		//session.logger.info("Engage Murder: kill a grim dark.");
 		return new Conversation(ret);
 	}
 
@@ -337,7 +337,7 @@ class EngageMurderMode extends Scene{
 		ret.add(new PlusMinusConversationalPair(<String>["I think things would go better if you were dead"], <String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."],<String>["I don't care. Everything in this game wants to kill me, may as well add the Players to the list.","Don't care.","Okay then.","Go right ahead and try."]));
 		ret.add(new PlusMinusConversationalPair(<String>["Well. See you soon."], <String>["If that's all you had to say,  I have shit to do. I think I'm close to achieving my goals."],<String>["If that's all you had to say,  I have shit to do.  I think I'm close to achieving my goals."]));
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("Engage Murder: kill a grim dark as a grimdark.");
+		//session.logger.info("Engage Murder: kill a grim dark as a grimdark.");
 		return new Conversation(ret);
 	}
 
@@ -352,7 +352,7 @@ class EngageMurderMode extends Scene{
 		ret.add(new PlusMinusConversationalPair(<String>["See you soon! :)"], <String>["You asshole, I thought we were friends!"],<String>["Bring it, bitch!"]));
 
 		//		ret.add(new PlusMinusConversationalPair(<String>[""], <String>[""],<String>[""]));
-		session.logger.info("Engage Murder: kill a heiress.");
+		//session.logger.info("Engage Murder: kill a heiress.");
 		return new Conversation(ret);
 	}
 

@@ -173,7 +173,7 @@ class SanityChecker extends AuthorBot {
     }
 
   @override
-  void summarizeSession(Session session) {
+  void summarizeSession(Session session, Duration duration) {
     // TODO: implement summarizeSession
   }
 

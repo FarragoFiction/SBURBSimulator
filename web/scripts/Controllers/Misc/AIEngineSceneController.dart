@@ -6,7 +6,7 @@ import "CurrentUpdateProgress.dart";
 
 
 Element div;
-SerializableScene scene = new SerializableScene(new Session(-13));
+SerializableScene scene = new SerializableScene(Session.defaultSession);
 UListElement todoElement;
 DivElement faqElement;
 void main() {

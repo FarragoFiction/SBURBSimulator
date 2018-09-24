@@ -1,5 +1,9 @@
+import 'FraymotifEffect.dart';
 import "SBURBSim.dart";
 import 'dart:convert';
+import "dart:html";
+import 'includes/lz-string.dart';
+
 
 /*
 stat effects from a fraymotif are temporary. wear off after battle.
@@ -15,7 +19,10 @@ class Fraymotif {
     static String ENEMY = "ENEMY";
     static String ENEMIES = "ENEMIES";
     static String FRAYMOTIF  = "FRAYMOTIF";
+    String get labelPattern => ":___ ";
 
+
+    FraymotifForm form;
 
     List<Aspect> aspects; //expect to be an array
     String name;
@@ -53,6 +60,27 @@ class Fraymotif {
         json["effects"] = effectArray.toString();
 
         return json;
+    }
+
+    String toDataString() {
+        return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
+    }
+
+    void copyFromDataString(String data) {
+        //print("copying from data: $data, looking for labelpattern: $labelPattern");
+        String dataWithoutName = data.split("$labelPattern")[1];
+        //print("data without name is $dataWithoutName");
+
+        String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
+        //print("raw json is $rawJSON");
+        JSONObject json = new JSONObject.fromJSONString(rawJSON);
+        copyFromJSON(json);
+    }
+
+    void renderForm(Element container) {
+        print ("render form for scene");
+        form = new FraymotifForm(this, container);
+        form.drawForm();
     }
 
     void copyFromJSON(JSONObject json) {
@@ -596,276 +624,164 @@ class FraymotifCreator {
 }
 
 
-//effects are frozen at creation, basically.  if this fraymotif is created by a Bard of Breath in a session with a Prince of Time,
-//who then dies, and then a combo session results in an Heir of Time being able to use it with the Bard of Breath, then it'll still have the prince effect.
-class FraymotifEffect {
-    static int ALLIES = 1;
-    static int ENEMIES = 3;
-    static int SELF = 1;
-    static int ENEMY = 2;
-    Stat statName; //hp heals current hp AND revives the player.
-    num target; //self, allies or enemy or enemies, 0, 1, 2, 3
-    bool damageInsteadOfBuff = false; // statName can either be applied towards damaging someone or buffing someone.  (damaging self or allies is "healing", buffing enemies is applied in the negative direction.)
-    num s = 0; //convineience methods cause i don't think js has enums but am too lazy to confirm.
-    num a = 1;
-    num e = 2;
-    num e2 = 3;
-
-    String flavorText = ""; // ? is this even used
+class FraymotifForm {
+    Element container;
+    TextInputElement nameElement;
+    TextInputElement tierElement;
+    TextAreaElement descElement;
+    Element effectsSection;
 
 
-    /// target 0  = self, 1 = allies, 2 = enemy 3 = enemies.
-    FraymotifEffect(Stat this.statName, num this.target, bool this.damageInsteadOfBuff, [String this.flavorText = ""]) {}
+    TextAreaElement dataBox;
+    Fraymotif owner;
 
-    JSONObject toJSON() {
-      JSONObject json = new JSONObject();
-      json["stat"] = statName.name;
-      json["target"] = "$target";
-      json["damageInsteadOfBuff"] = damageInsteadOfBuff.toString();
-      return json;
+    FraymotifForm(Fraymotif this.owner, Element parentContainer) {
+        container = new DivElement();
+        container.classes.add("SceneDiv");
+
+        parentContainer.append(container);
+
     }
 
-    void copyFromJSON(JSONObject json) {
-      statName = Stats.byName[json["name"]];
-      target = int.parse(json["target"]);
-      if(json["damageInsteadOfBuff"] == "true") {
-        damageInsteadOfBuff = true;
-      }else {
-        damageInsteadOfBuff = false;
-      }
+    void drawForm() {
+        print("drawing new fraymotif form");
+        drawDataBox();
+        drawName();
+        drawTier();
+        drawDesc();
+        drawAddEffects();
+        drawExistingEffects();
     }
 
+    void syncFormToOwner() {
+        print("syncing form to scene");
+        nameElement.value = owner.name;
+        tierElement.value = "${owner.tier}";
+        descElement.value = owner.desc;
 
-    static List<FraymotifEffect> allEffectsTargetAll() {
-        List<FraymotifEffect> ret = new List<FraymotifEffect>();
-        ret.add(new FraymotifEffect(Stats.POWER, ALLIES, true));
-        ret.add(new FraymotifEffect(Stats.POWER, ALLIES, false));
-        ret.add(new FraymotifEffect(Stats.POWER, ENEMIES, true));
-        ret.add(new FraymotifEffect(Stats.POWER, ENEMIES, false));
-        return ret;
-    }
-
-    static List<FraymotifEffect> allEffectsTargetOne() {
-        List<FraymotifEffect> ret = new List<FraymotifEffect>();
-        ret.add(new FraymotifEffect(Stats.POWER, SELF, true));
-        ret.add(new FraymotifEffect(Stats.POWER, SELF, false));
-        ret.add(new FraymotifEffect(Stats.POWER, ENEMY, true));
-        ret.add(new FraymotifEffect(Stats.POWER, ENEMY, false));
-        return ret;
-    }
-
-    void setEffectForPlayer(Player player) {
-        Random rand = player.rand;
-        FraymotifEffect effect = new FraymotifEffect(null, this.e, true); //default to just damaging the enemy.
-        if (player.class_name == SBURBClassManager.KNIGHT) effect = rand.pickFrom(this.knightEffects());
-        if (player.class_name == SBURBClassManager.SEER) effect = rand.pickFrom(this.seerEffects());
-        if (player.class_name == SBURBClassManager.BARD) effect = rand.pickFrom(this.bardEffects());
-        if (player.class_name == SBURBClassManager.HEIR) effect = rand.pickFrom(this.heirEffects());
-        if (player.class_name == SBURBClassManager.MAID) effect = rand.pickFrom(this.maidEffects());
-        if (player.class_name == SBURBClassManager.ROGUE) effect = rand.pickFrom(this.rogueEffects());
-        if (player.class_name == SBURBClassManager.PAGE) effect = rand.pickFrom(this.pageEffects());
-        if (player.class_name == SBURBClassManager.THIEF) effect = rand.pickFrom(this.thiefEffects());
-        if (player.class_name == SBURBClassManager.SYLPH) effect = rand.pickFrom(this.sylphEffects());
-        if (player.class_name == SBURBClassManager.PRINCE) effect = rand.pickFrom(this.princeEffects());
-        if (player.class_name == SBURBClassManager.WITCH) effect = rand.pickFrom(this.witchEffects());
-        if (player.class_name == SBURBClassManager.MAGE) effect = rand.pickFrom(this.mageEffects());
-        this.target = effect.target;
-        this.damageInsteadOfBuff = effect.damageInsteadOfBuff;
-        if (!player.associatedStatsFromAspect.isEmpty) { //null plyaers have no associated stats
-            this.statName = rand.pickFrom(player.associatedStatsFromAspect).stat;
-        } else {
-            this.statName = Stats.POWER;
+        for (FraymotifEffect s in owner.effects) {
+            s.renderForm(effectsSection);
         }
+        print("syncing data box to scene");
+        syncDataBoxToOwner();
     }
 
-    List<FraymotifEffect> knightEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false)];
+    void syncDataBoxToOwner() {
+        print("trying to sync data box, owner is ${owner}");
+        dataBox.value = owner.toDataString();
     }
 
-    List<FraymotifEffect> seerEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false), new FraymotifEffect(null, this.e2, false), new FraymotifEffect(null, this.a, false)];
-    }
+    void drawDataBox() {
+        print("drawing data box");
+        dataBox = new TextAreaElement();
+        dataBox.value = owner.toDataString();
+        dataBox.cols = 60;
+        dataBox.rows = 10;
+        dataBox.onChange.listen((e) {
+            print("syncing template to data box");
+            try {
+                List<FraymotifEffect> effectsBackup = new List.from(owner.effects);
 
-    List<FraymotifEffect> bardEffects() {
-        List<FraymotifEffect> ret = <FraymotifEffect>[new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false), new FraymotifEffect(null, this.e2, false), new FraymotifEffect(null, this.a, false)];
-        ret.addAll(<FraymotifEffect>[new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.a, true)]);
-        return ret;
-    }
-
-    List<FraymotifEffect> heirEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.s, false)];
-    }
-
-    List<FraymotifEffect> maidEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.e, false), new FraymotifEffect(null, this.a, false)];
-    }
-
-    List<FraymotifEffect> rogueEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.a, false), new FraymotifEffect(null, this.e, false)];
-    }
-
-    List<FraymotifEffect> pageEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.a, false)];
-    }
-
-    List<FraymotifEffect> thiefEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.e, false)];
-    }
-
-    List<FraymotifEffect> sylphEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.s, false), new FraymotifEffect(null, this.a, false)];
-    }
-
-    List<FraymotifEffect> princeEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.e2, true), new FraymotifEffect(null, this.e2, false)];
-    }
-
-    List<FraymotifEffect> witchEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.e, true), new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e2, false)];
-    }
-
-    List<FraymotifEffect> mageEffects() {
-        return <FraymotifEffect>[new FraymotifEffect(null, this.a, true), new FraymotifEffect(null, this.s, true), new FraymotifEffect(null, this.e2, false), new FraymotifEffect(null, this.e, false)];
-    }
-
-    void applyEffect(GameEntity owner, List<GameEntity> allies, List<GameEntity> casters, GameEntity enemy, List<GameEntity> enemies, double baseValue) {
-        double strifeValue = this.processEffectValue(casters, enemies);
-        double baseDouble = baseValue.toDouble();
-        double effectValue = baseDouble;
-        if (strifeValue < baseDouble) effectValue = baseDouble;
-        if (strifeValue > baseDouble && strifeValue < (2 * baseDouble)) effectValue = 2 * baseDouble;
-        if (strifeValue > (2 * baseDouble)) effectValue = 3 * baseDouble;
-
-        //now, i need to USE this effect value.  is it doing "damage" or "buffing"?
-        if (this.target == this.e || this.target == this.e2) effectValue = effectValue * -1; //do negative things to the enemy.
-        List<GameEntity> targetArr = this.chooseTargetArr(owner, allies, casters, enemy, enemies);
-        ////print(["target chosen: ", targetArr]);
-        if (this.damageInsteadOfBuff) {
-            ////print("applying damage: " + targetArr.length);
-            //;
-            this.applyDamage(targetArr, effectValue);
-        } else {
-            ////;
-            //;
-            this.applyBuff(targetArr, effectValue);
-        }
-    }
-
-    List<GameEntity> chooseTargetArr(GameEntity owner, List<GameEntity> allies, List<GameEntity> casters, GameEntity enemy, List<GameEntity> enemies) {
-        ////print(["potential targets: ",owner, allies, casters, enemies]);
-        if (this.target == this.s) return <GameEntity>[owner];
-        if (this.target == this.a) return allies;
-        if (this.target == this.e) return <GameEntity>[enemy]; //all effects target same enemy.
-        if (this.target == this.e2) return enemies;
-        return null;
-    }
-
-    void applyDamage(List<GameEntity> targetArr, double effectValue) {
-        double e = effectValue / targetArr.length; //more potent when a single target.
-        ////print(["applying damage", effectValue, targetArr.length, e]);
-        for (num i = 0; i < targetArr.length; i++) {
-            GameEntity t = targetArr[i];
-
-            t.addBuff(new BuffFlat(Stats.CURRENT_HEALTH, e, combat:true)); //don't mod directly anymore
-
-            if (t.stats[Stats.CURRENT_HEALTH] > 0) {
-                t.dead = false;
-            }
-        }
-    }
-
-    void applyBuff(List<GameEntity> targetArr, double effectValue) {
-        double e = effectValue / targetArr.length; //more potent when a single target.
-        for (num i = 0; i < targetArr.length; i++) {
-            GameEntity t = targetArr[i];
-            if (this.statName != Stats.RELATIONSHIPS) {
-                //t[this.statName] += e;
-                t.addBuff(new BuffFlat(this.statName, e, combat:true)); //don't mod directly anymore
-            } else {
-                for (num j = 0; j < t.relationships.length; j++) {
-                    //t.relationships[j].value += e;
-                    t.addBuff(new BuffFlat(this.statName, e, combat:true));
+                owner.copyFromDataString(dataBox.value);
+                //remove the effects from the form
+                for(FraymotifEffect effect in effectsBackup) {
+                    effect.form.container.remove();
                 }
+                print("loaded scene");
+                syncFormToOwner();
+                print("synced form to scene");
+            }catch(e, trace) {
+                window.alert("something went wrong! $e, $trace");
             }
-            //;
+        });
+        container.append(dataBox);
+    }
+
+    void drawName() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Name:";
+        nameElement = new TextInputElement();
+        nameElement.value = owner.name;
+        subContainer.append(nameLabel);
+        subContainer.append(nameElement);
+        container.append(subContainer);
+
+        nameElement.onInput.listen((e) {
+            owner.name = nameElement.value;
+            syncDataBoxToOwner();
+        });
+    }
+
+    void drawTier() {
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Tier (1-3 is normal):";
+        tierElement = new TextInputElement();
+        tierElement.value = "${owner.tier}";
+        subContainer.append(nameLabel);
+        subContainer.append(tierElement);
+        container.append(subContainer);
+
+        tierElement.onInput.listen((e) {
+            owner.tier = int.parse(tierElement.value);
+            syncDataBoxToOwner();
+        });
+    }
+
+    void drawDesc() {
+        descElement = new TextAreaElement();
+        descElement.value = owner.desc;
+        descElement.cols = 60;
+        descElement.rows = 10;
+        descElement.onInput.listen((e) {
+            owner.desc = descElement.value;
+            syncDataBoxToOwner();
+        });
+
+        DivElement buttonDiv = new DivElement();
+
+        List<String> keyWords = <String>[Fraymotif.OWNER, Fraymotif.CASTERS, Fraymotif.ALLIES, Fraymotif.ENEMY, Fraymotif.ENEMIES, Fraymotif.FRAYMOTIF];
+
+        for(String word in keyWords) {
+            ButtonElement button = new ButtonElement();
+            button.text = "Append $word tag";
+            button.onClick.listen((e) {
+                descElement.value =
+                "${descElement.value} ${word}";
+                owner.desc = descElement.value;
+                syncDataBoxToOwner();
+            });
+            buttonDiv.append(button);
+        }
+
+
+        container.append(descElement);
+        container.append(buttonDiv);
+    }
+
+    void drawExistingEffects() {
+        effectsSection = new DivElement();
+        container.append(effectsSection);
+        for(FraymotifEffect e in owner.effects) {
+            e.renderForm(effectsSection);
         }
     }
 
-    double processEffectValue(List<GameEntity> casters, List<GameEntity> enemies) {
-        double ret = 0.0;
-        for (num i = 0; i < casters.length; i++) {
-            GameEntity tmp = casters[i];
-            ret += tmp.getStat(this.statName);
-        }
+    void drawAddEffects() {
+//trigger conditions know how to add their own damn selves
+        DivElement tmp = new DivElement();
+        tmp.classes.add("filterSection");
+        ButtonElement button = new ButtonElement()..text = "Add Effect";
+        tmp.append(button);
+        container.append(tmp);
+        button.onClick.listen((Event e) {
+            FraymotifEffect effect = new FraymotifEffect(Stats.POWER, 0,true);
+            //needed for form, won't be needed in a live simulation
+            effect.fraymotif = owner;
+            owner.effects.add(effect);
+            effect.renderForm(effectsSection);
+        });
 
-        for (num i = 0; i < enemies.length; i++) {
-            GameEntity tmp = enemies[i];
-            ret += tmp.getStat(this.statName);
-        }
-        return ret;
     }
-
-    String toStringSimple() {
-        String ret = "";
-        if (this.damageInsteadOfBuff && this.target < 2) {
-            ret += "a heals";
-        } else if (this.damageInsteadOfBuff && this.target >= 2) {
-            ret += "a damages";
-        } else if (!this.damageInsteadOfBuff && this.target < 2) {
-            ret += "a buffs";
-        } else if (!this.damageInsteadOfBuff && this.target >= 2) {
-            ret += "a debuffs";
-        }
-
-        if (this.target == 0) {
-            ret += " SELF";
-        } else if (this.target == 1) {
-            ret += " FRIENDSBLUH";
-        } else if (this.target == 2) {
-            ret += " EBLUH";
-        } else if (this.target == 3) {
-            ret += " ESBLUHS";
-        }
-
-        ret += " of STAT ";
-
-        if (this.target == 0) {
-            ret += " envelopes the OWNER";
-        } else if (this.target == 1) {
-            ret += " surrounds the allies";
-        } else if (this.target == 2) {
-            ret += " pierces the ENEMY";
-        } else if (this.target == 3) {
-            ret += " surrounds all enemies";
-        }
-        return ret;
-    }
-
-    @override
-    String toString() {
-        String ret = "";
-        if (this.damageInsteadOfBuff && this.target < 2) {
-            ret += " heals";
-        } else if (this.damageInsteadOfBuff && this.target >= 2) {
-            ret += " damages";
-        } else if (!this.damageInsteadOfBuff && this.target < 2) {
-            ret += " buffs";
-        } else if (!this.damageInsteadOfBuff && this.target >= 2) {
-            ret += " debuffs";
-        }
-
-        if (this.target == 0) {
-            ret += " self";
-        } else if (this.target == 1) {
-            ret += " allies";
-        } else if (this.target == 2) {
-            ret += " an enemy";
-        } else if (this.target == 3) {
-            ret += " all enemies";
-        }
-        String stat = "STAT";
-        ret += " based on how " + stat + " the casters are compared to their enemy";
-        return ret;
-    }
-
 }

@@ -84,7 +84,7 @@ class Gristmas extends Scene {
       p = session.rand.pickFrom(possibleRobots);
       if(p == null) return false;
       p = Player.makeRenderingSnapshot(p,false);
-      session.logger.info("AB: Oh look. A superior robot is being made.");
+      //session.logger.info("AB: Oh look. A superior robot is being made.");
       p.robot = true; //superior robot
       p.doomed = true;
       //sanitizing history as per PL's instruction. but other ppl won't

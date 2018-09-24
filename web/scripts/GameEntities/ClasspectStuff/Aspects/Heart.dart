@@ -80,7 +80,7 @@ class Heart extends Aspect {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Doll",<ItemTrait>[ItemTraitFactory.PORCELAIN,ItemTraitFactory.PRETTY,ItemTraitFactory.SENTIENT, ItemTraitFactory.ASPECTAL],shogunDesc: "Possessed Doll (Probably)", abDesc: "It's like a robot, but useless."))
-            ..add(new Item("Puppet",<ItemTrait>[ItemTraitFactory.WOOD,ItemTraitFactory.SENTIENT, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY,ItemTraitFactory.SCARY],shogunDesc: "Baby Muppet Snuff Survivor",abDesc:"Don't touch this shit."))
+            ..add(new Item("Soul Puppet",<ItemTrait>[ItemTraitFactory.WOOD,ItemTraitFactory.SENTIENT, ItemTraitFactory.ASPECTAL, ItemTraitFactory.LEGENDARY,ItemTraitFactory.SCARY],shogunDesc: "Baby Muppet Snuff Survivor",abDesc:"Don't touch this shit."))
             ..add(new Item("Mirror",<ItemTrait>[ItemTraitFactory.MIRROR, ItemTraitFactory.ASPECTAL],shogunDesc: "Mirror That Shows A Reflection Of The World But A Horrible Beast Mimics Your Every Move"))
             ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.PAPER, ItemTraitFactory.ASPECTAL, ItemTraitFactory.ROMANTIC],shogunDesc: "A Grid of Pure Taint",abDesc:"No. No cat troll shit."))
             ..add(new Item("Shades",<ItemTrait>[ItemTraitFactory.COOLK1D,ItemTraitFactory.GLASS,ItemTraitFactory.ASPECTAL],shogunDesc: "Glasses For Try Hard Nerds", abDesc: "You can put a p great robot in these. I advise it."));

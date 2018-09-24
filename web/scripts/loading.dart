@@ -62,6 +62,7 @@ dynamic loadAllImagesForPlayerWithCallback(Session session, Player player, cb){
 Future<Null> loadAllImagesForPlayers(Session session, List<Player> players, List<Player> guardians, String skipInit) async{
 	if(doNotRender == true) return checkDone(session, skipInit);
 	if(players.isEmpty) return checkDone(session, skipInit);
+	print("loading all images for players $players and guardians $guardians");
 	num numImages = 0;
 	//loadFuckingEverything(skipInit); //lol, fuck the world, let's do this shit.
 

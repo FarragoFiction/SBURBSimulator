@@ -90,10 +90,10 @@ class FreeWillStuff extends Scene {
         String psionic = "";
         String pname = this.player.canMindControl();
         if (pname != null) {
-            session.logger.info("psychic powers used to mind control in session ");
+            //session.logger.info("psychic powers used to mind control in session ");
             psionic = " The " + this.player.htmlTitleBasic() + " uses their $pname. ";
         }else {
-            session.logger.info("actual aspect powers used to do mind control free will is ${player.getStat(Stats.FREE_WILL)}");
+            //session.logger.info("actual aspect powers used to do mind control free will is ${player.getStat(Stats.FREE_WILL)}");
         }
         appendHtml(div, "<br><img src = 'images/sceneIcons/freewill_icon.png'> " + psionic + this.content());
         if (this.playerGodTiered != null) {

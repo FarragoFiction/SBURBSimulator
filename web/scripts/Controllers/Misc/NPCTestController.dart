@@ -100,9 +100,18 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     if(g is BigBad) {
         DivElement canStrife = new DivElement()..text = "Can be Strifed: ${g.canStrife}";
         DivElement immortal = new DivElement()..text = "Unconditionally Immortal: ${g.unconditionallyImmortal}";
+        DivElement prologue = new DivElement()..text = "If Active At Start (Prologue): ${g.prologueText}"..classes.add("textSection");
+        DivElement regfrog = new DivElement()..text = "Regular Ending: ${g.regularFrogText}"..classes.add("textSection");
+        DivElement pinkFrog = new DivElement()..text = "Pink Ending: ${g.pinkFrogText}"..classes.add("textSection");
+        DivElement purpfrog = new DivElement()..text = "Purple Ending: ${g.purpleFrogText}"..classes.add("textSection");
 
         subcontainer.append(canStrife);
         subcontainer.append(immortal);
+        subcontainer.append(prologue);
+        subcontainer.append(regfrog);
+        subcontainer.append(pinkFrog);
+        subcontainer.append(purpfrog);
+
 
         UListElement list = new UListElement()..setInnerHtml("<h3>Activation Scenes</h3>");;
         subcontainer.append(list);
@@ -119,6 +128,14 @@ void printOneGameEntityWithAI(GameEntity g, Element container) {
     subcontainer.append(list);
     for(Scene s in g.scenes) {
         if(s is SerializableScene) printOneScene(s,list);
+    }
+
+    if(g.playerReactions != null && g.playerReactions.isNotEmpty) {
+        UListElement list = new UListElement()..setInnerHtml("<h3>Player Response Scenes: (every player gets this scene when they show up)</h3>");
+        subcontainer.append(list);
+        for(SerializableScene s in (g as BigBad).playerReactions) {
+            printOneScene(s,list);
+        }
     }
 }
 

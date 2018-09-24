@@ -34,7 +34,8 @@ Future<Null> main() async
   checkEasterEgg(session);
   self.easterEggCallBack(session);
   //session.startSession();
-  loadFuckingEverything(session,"I really should stop doing this",renderPlayersForEditing );
+  //loadFuckingEverything(session,"I really should stop doing this",renderPlayersForEditing );
+  renderPlayersForEditing();
 }
 
 void newPlayer() {

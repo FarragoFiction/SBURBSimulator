@@ -9,10 +9,6 @@ class InstaKill extends EffectEntity {
   InstaKill(SerializableScene scene) : super(scene);
 
 
-  @override
-  void copyFromJSON(JSONObject json) {
-    // nothing to do
-  }
 
   @override
   void syncFormToMe() {

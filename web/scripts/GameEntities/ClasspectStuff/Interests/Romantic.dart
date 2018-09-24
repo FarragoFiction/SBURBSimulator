@@ -27,7 +27,7 @@ class Romantic extends InterestCategory {
     void initializeItems() {
         items = new WeightedList<Item>()
             ..add(new Item("Red Rose",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PRETTY],shogunDesc: "Seductive Plant"))
-            ..add(new Item("Shipping Grid",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER],shogunDesc: "Grid of Sin",abDesc:"Don't let ABJ see this."))
+            ..add(new Item("Friend Fic",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.PAPER],shogunDesc: "Grid of Sin",abDesc:"Don't ship irl ppl, asshole."))
             ..add(new Item("Chocolate Bar",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EDIBLE],shogunDesc: "Brick of Shit Coloured Nice Tasting Food",abDesc:"Robots don't need shitty food."))
             ..add(new Item("Candelabra",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.ONFIRE],shogunDesc: "Dying Light Holding Device, Cruelty Made of Metal"))
             ..add(new Item("Head Cannon",<ItemTrait>[ItemTraitFactory.ROMANTIC, ItemTraitFactory.EXPLODEY,ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY], abDesc: "Fuck you for that pun, JR."))

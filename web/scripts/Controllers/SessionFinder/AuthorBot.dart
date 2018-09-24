@@ -40,9 +40,12 @@ abstract class AuthorBot extends SimController {
 
   Future<Null> startSessionThenSummarize(Session session) async{
     checkEasterEgg(session);
+    DateTime start = new DateTime.now();
     await session.startSession();
     print("I think the session stopped!");
-    summarizeSession(session);
+    DateTime end = new DateTime.now();
+
+    summarizeSession(session, end.difference(start));
     print("I think i summarized the session!");
   }
 
@@ -59,7 +62,7 @@ abstract class AuthorBot extends SimController {
       ////;
       needToScratch = false; //can't scratch if skaiai is a frog
       session.stats.makeCombinedSession = false;
-      summarizeSession(session);
+      summarizeSession(session, new Duration());
     }
   }
 
@@ -142,11 +145,11 @@ abstract class AuthorBot extends SimController {
   void recoverFromCorruption(Session session) {
     session.logger.info("Recovering from corruption in ab");
     session.simulationComplete("Crashed in AB");
-    summarizeSession(session); //well...THAT session ended
+    summarizeSession(session, new Duration()); //well...THAT session ended
   }
 
   //this will be called once session has ended. it's up to each child to know what to do here.
-  void summarizeSession(Session session);
+  void summarizeSession(Session session, Duration duration);
 
   void summarizeSessionNoFollowup(Session session);
 

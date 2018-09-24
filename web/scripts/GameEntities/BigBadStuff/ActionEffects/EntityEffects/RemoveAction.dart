@@ -14,13 +14,6 @@ class RemoveAction extends EffectEntity {
 
 
   @override
-  void copyFromJSON(JSONObject json) {
-     // print("copying from json");
-      importantWord = json[ActionEffect.IMPORTANTWORD];
-      importantInt = (int.parse(json[ActionEffect.IMPORTANTINT]));
-  }
-
-  @override
   void syncFormToMe() {
       actionStringBox.value = importantWord;
   }
@@ -54,7 +47,7 @@ class RemoveAction extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        String nameOfScene = e.removeSerializableSceneFromString(importantWord).name;
+        String nameOfScene = e.removeSerializableSceneFromString(importantWord).join(",");
         text = "$text ${e.htmlTitle()} no longer wants to: $nameOfScene.";
     });
 

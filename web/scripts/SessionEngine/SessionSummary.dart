@@ -19,8 +19,10 @@ class MiniPlayer {
 
 class SessionSummary {
     static String SAVE_TAG = "SESSIONSUMMARIESCACHE";
+    Duration duration;
 
     CarapaceSummary carapaceSummary;
+    BigBadSummary bigBadSummary;
 
     //since stats will be hash, don't need to make junior
     int session_id = null;
@@ -107,6 +109,7 @@ class SessionSummary {
     }
 
     static void saveAllSummaries(List<SessionSummary> summaries) {
+        print("AB is writing ShogunBot a data packet about big bads, how cute");
         List<JSONObject> jsonArray = new List<JSONObject>();
         for(SessionSummary p in summaries) {
             //TODO refuse to save if any easter eggs are active or if gnosis 4 happened.
@@ -122,9 +125,11 @@ class SessionSummary {
        // ;
         //        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
         carapaceSummary = new CarapaceSummary(null); //all zeroes
+        bigBadSummary = new BigBadSummary(null);
        // ;
 
         carapaceSummary.fromJSON(json["carapaceSummary"]);
+        bigBadSummary.fromJSON(json["bigBadSummary"]);
         //;
 
         // ;
@@ -171,6 +176,7 @@ class SessionSummary {
         JSONObject json = new JSONObject();
 
         json["carapaceSummary"] = carapaceSummary.toJSON().toString();
+        json["bigBadSummary"] = bigBadSummary.toJSON().toString();
 
         //TODO what to do about players and mini players? for now, leave off.
 
@@ -388,13 +394,13 @@ class SessionSummary {
         String html = "<div class = 'sessionSummary' id = 'summarizeSession${this.session_id}'>";
 
         if (this.childSession != null) {
-            html = "$html${this.decodeLineageGenerateHTML()}";
+            html = "$html${this.decodeLineageGenerateHTML()} (Simulation time: $duration)";
             html = "$html<br><a target = '_blank' href='observatory.html?seed=${this.session_id}&$params'>View session ${this.session_id} in the Observatory</a>";
         } else {
             String scratch = "";
             if (this.scratched) scratch = " (scratched)";
 
-            html = "$html<Br><b> Session</b>: <a target = '_blank' href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a>";
+            html = "$html<Br><b> Session</b>: <a target = '_blank' href = 'index2.html?seed=${this.session_id}&$params'>${this.session_id}$scratch</a> (Simulation time: $duration)";
             html = "$html<br><a target = '_blank' href='observatory.html?seed=${this.session_id}&$params'>View in the Observatory</a>";
         }
         html = "$html<Br><b>Players</b>: ${getPlayersTitlesBasic(this.players)}";
@@ -496,6 +502,7 @@ class SessionSummary {
         ;
         SessionSummary summary = new SessionSummary(session.session_id);
         summary.carapaceSummary = new CarapaceSummary(session);
+        summary.bigBadSummary = new BigBadSummary(session);
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         if(session.derse != null) {

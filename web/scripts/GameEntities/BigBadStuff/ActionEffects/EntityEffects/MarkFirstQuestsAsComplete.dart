@@ -8,12 +8,6 @@ class MarkFirstQuestsAsComplete extends EffectEntity {
     String name = "MarkFirstQuestsAsComplete";
     MarkFirstQuestsAsComplete(SerializableScene scene) : super(scene);
 
-
-  @override
-  void copyFromJSON(JSONObject json) {
-    // nothing to do
-  }
-
   @override
   void syncFormToMe() {
     ////does nothing since i have no personal data

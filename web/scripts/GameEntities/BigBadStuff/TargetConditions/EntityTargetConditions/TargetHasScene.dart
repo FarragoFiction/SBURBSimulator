@@ -13,7 +13,7 @@ class TargetHasScene extends TargetConditionLiving {
     @override
     String descText = "<b>has Scene:</b><br>Target Entities must have scene:  <br><br>";
     @override
-    String notDescText = "<bDoes NOT Have Scene:</b><br>Target Entities's must not have scene:<br><br>";
+    String notDescText = "<b>Does NOT Have Scene:</b><br>Target Entities's must not have scene:<br><br>";
 
 
     TargetHasScene(SerializableScene scene) : super(scene){
@@ -66,16 +66,35 @@ class TargetHasScene extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
+        //print("checking if target has scene, not is $not, entity is ${scene.gameEntity}, target is ${item}");
         List<String> serializedScenes = new List<String>();
         for(Scene s in item.scenes) {
             if(s is SerializableScene) {
                 SerializableScene ss = s as SerializableScene;
-                if(ss.toDataString() == importantWord) {
+                SerializableScene sceneFromWord = new SerializableScene(ss.session);
+                sceneFromWord.copyFromDataString(importantWord);
+                if(ss.toDataString() == sceneFromWord.toDataString()) {
+                    //print(" ${ss.name} is the same thing as ${sceneFromWord.name} so dont pick $item");
                     return false; //you have it, don't remove
                 }
+            }else {
+            }
+        }
+
+        for(Scene s in item.scenesToAdd) {
+            if(s is SerializableScene) {
+                SerializableScene ss = s as SerializableScene;
+                SerializableScene sceneFromWord = new SerializableScene(ss.session);
+                sceneFromWord.copyFromDataString(importantWord);
+                if(ss.toDataString() == sceneFromWord.toDataString()) {
+                    //print(" ${ss.name} is the same thing as ${sceneFromWord.name} so dont pick $item");
+                    return false; //you have it, don't remove
+                }
+            }else {
             }
         }
         //couldn't find it
+        //print("couldn't find the scene so returning true (you should reject unless not) target is $item");
         return true;
     }
 }

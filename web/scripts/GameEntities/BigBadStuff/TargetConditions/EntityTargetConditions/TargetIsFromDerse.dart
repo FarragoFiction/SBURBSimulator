@@ -51,9 +51,12 @@ class TargetIsFromDerse extends TargetConditionLiving {
             return c.type != Carapace.DERSE;
         }else if( item is Player) {
             Player p = item as Player;
-            if(p.moon == scene.session.derse) return false;
+            //okay maybe you don't have a moon anymore but you still have jamies
+            if(p.moon == null) return p.dreamPalette == scene.session.derse.palette;
+            if(p.moon.name == scene.session.derse.name) return false;
         }else {
             return !scene.session.derse.associatedEntities.contains(item);
         }
+        return true;
     }
 }

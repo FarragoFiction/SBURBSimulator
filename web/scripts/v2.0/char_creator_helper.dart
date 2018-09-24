@@ -1,4 +1,6 @@
+import '../PlayerSpriteHandler.dart';
 import "../SBURBSim.dart";
+import 'dart:async';
 import 'dart:html';
 import "../v2.0/char_creator_helper.dart";
 import '../navbar.dart';
@@ -57,7 +59,7 @@ class CharacterCreatorHelper {
     }
 
     //TODO why the fuck did this have the same name as a handle_sprites function?
-    void drawSinglePlayerForHelper(Session session, Player player) {
+    Future<Null> drawSinglePlayerForHelper(Session session, Player player) async {
         //print("drawing: " + player.title());
         String str = "";
         String divId = player.id.toString();
@@ -97,13 +99,13 @@ class CharacterCreatorHelper {
         player.initSpriteCanvas();
         player.renderSelf("drawSinglePlayerFor");
 
-        var canvas = player.canvas;
         //drawSinglePlayer(canvas, player);
-        var p1SpriteBuffer =
-        Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
-        Drawing.drawSpriteFromScratch(p1SpriteBuffer, player);
+        //var p1SpriteBuffer =
+        //Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
+        //Drawing.drawSpriteFromScratch(p1SpriteBuffer, player);
         //drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
-        Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer, 0, 0);
+        //Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, p1SpriteBuffer, 0, 0);
+
         this.wireUpTabs(session,player);
         this.wireUpPlayerDropDowns(player);
         this.wireUpTextBoxes(player);
@@ -352,13 +354,15 @@ class CharacterCreatorHelper {
         return str;
     }
 
-    void redrawSinglePlayer(Player player) {
+    Future<Null> redrawSinglePlayer(Player player) async{
         player.renderSelf("redrawSinglePlayer");
         String divId = "canvas${player.id}";
         //divId = divId.replaceAll(new RegExp(r"""\s+""", multiLine:true), ''); //TODO what is going on here?
         var canvas = querySelector("#" + divId);
-        Drawing.drawSolidBG(canvas, ReferenceColours.WHITE);
-        Drawing.drawSinglePlayer(canvas, player);
+        Drawing.drawSolidBG(canvas, new Colour.fromStyleString("#fefefe"));
+        await PlayerSpriteHandler.drawSpriteFromScratch(canvas, player);
+
+        //Drawing.drawSinglePlayer(canvas, player);
         this.createSummaryOnCanvas(player);
         this.writePlayerToDataBox(player);
         this.syncPlayerToFields(player);

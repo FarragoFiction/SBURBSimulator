@@ -10,11 +10,6 @@ class StartStrife extends EffectEntity {
 
 
   @override
-  void copyFromJSON(JSONObject json) {
-    // nothing to do
-  }
-
-  @override
   void syncFormToMe() {
     ////does nothing since i have no personal data
   }
@@ -36,7 +31,9 @@ class StartStrife extends EffectEntity {
 
   //all of your allies
     List<GameEntity> getTeam(List<GameEntity> entities){
-           for(GameEntity e in entities){
+      //if i don't do this it tries to add toa  list i'm currently looping in like a fucking dunk ass
+      List<GameEntity> fuckingClone = new List.from(entities);
+           for(GameEntity e in fuckingClone){
             entities.addAll(e.doomedTimeClones);
             for(GameEntity g in e.companionsCopy) {
                 if(!g.dead) entities.add(g);

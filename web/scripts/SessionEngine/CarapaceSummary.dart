@@ -246,6 +246,7 @@ class CarapaceSummary extends BigBadSummary {
 
     }
 
+    @override
     JSONObject toJSON() {
         JSONObject container  = new JSONObject();
         List<JSONObject> jsonArray = new List<JSONObject>();
@@ -257,7 +258,7 @@ class CarapaceSummary extends BigBadSummary {
     }
 
     //if you add a carapace summary to yourself, you add all it's values to your own data.
-    void add(CarapaceSummary other) {
+    void add(BigBadSummary other) {
         for(CarapaceStats cs in other.data.values) {
             if(data.containsKey(cs.initials)) {
                 data[cs.initials].add(cs);
@@ -267,6 +268,7 @@ class CarapaceSummary extends BigBadSummary {
         }
     }
 
+    @override
     void init() {
 
         List<GameEntity> npcs = session.activatedNPCS;
@@ -279,7 +281,6 @@ class CarapaceSummary extends BigBadSummary {
         if(session.derse != null) npcs.addAll(session.npcHandler.dersites);
         if(session.battlefield != null) npcs.add(session.battlefield.blackKing);
         if(session.derse != null) npcs.add(session.derse.queen);
-
 
         for(GameEntity g in npcs) {
             if(g is Carapace) {

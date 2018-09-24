@@ -12,13 +12,29 @@ enum CanonLevel {
 
 //okay, fine, yes, global variables are getting untenable.
 class Session {
+
+    static Session _defaultSession;
+    //will speed shogun bot up , who makes a LOT of default sessions for loading
+    //creating a session is slower than it used to be cuz it does all the init stuff too
+    //and sessions got REALLY big post npc update
+    static Session get  defaultSession {
+        if(_defaultSession == null) {
+            _defaultSession = new Session(-13);
+        }
+        return _defaultSession;
+
+    }
     //this will be set by reinit
     Completer<Session> completer; // PL: this handles the internal callback for awaiting a session!
 
+    //no players, carapaces only, final destination
+    bool tableGuardianMode = false;
     bool plzStartReckoning = false;
     bool didReckoning = false;
     int numberPlayersOnBattlefield = 0;
+
     bool get canReckoning {
+        if(tableGuardianMode) return false;
         int difficulty = 2;//at least half of us are done
         if(stats.crownedCarapace)difficulty = players.length; // ANY of us are down (ala canon's early reckoning)
         return numberPlayersOnBattlefield > (players.length/difficulty).round();
@@ -33,6 +49,9 @@ class Session {
     //needed for dreams now, null moons are possible
     Moon furthestRing;
     List<Moon> get moons => <Moon>[prospit, derse];
+
+    int get maxCarapaces => 12-players.length;
+    int numActiveCarapaces = 0;
 
     List<Land> get allLands {
         List<Land> targets = new List<Land>();
@@ -59,7 +78,7 @@ class Session {
     //these are not
 
     //stores them.
-    List<GameEntity> _activatedNPCS = new List<GameEntity>();
+    Set<GameEntity> _activatedNPCS = new Set<GameEntity>();
 
     List<GameEntity> get activatedNPCS {
         grabActivatedBigBads();
@@ -69,9 +88,21 @@ class Session {
         return new List.from(_activatedNPCS); //don't let ppl have access to original list they might mod it
     }
 
+    void addActiveNPCSForCombo(List<GameEntity>npcs){
+        for(GameEntity g in npcs) {
+            //no guarantee you'll make it in
+            if(g.dead == false && g.active && rand.nextBool()) {
+                _activatedNPCS.add(g);
+            }
+        }
+    }
+
     void activateBigBad(GameEntity bb) {
         bb.active = true;
-        if(!_activatedNPCS.contains(bb)) _activatedNPCS.add(bb);
+        if(!_activatedNPCS.contains(bb)) {
+            _activatedNPCS.add(bb);
+            bb.activateTasks();
+        }
 
     }
 
@@ -82,6 +113,7 @@ class Session {
                 //logger.info("I think that $g just activated as a big bad");
                 _activatedNPCS.add(g);
                 bbRemove.add(g);
+                g.activateTasks();
             }
         }
         for(GameEntity g in bbRemove) {
@@ -162,6 +194,7 @@ class Session {
                     //logger.info("I think that $g just activated as a special case.");
                     g.active = true;
                     _activatedNPCS.add(g);
+                    g.activateTasks();
                 }
             }
         }
@@ -176,9 +209,13 @@ class Session {
 
                     if(g.active) {
                        // logger.info("I think that $g just activated as a carapace.");
+                        g.heal();
                         _activatedNPCS.add(g);
                         g.processCardFor();
                         toRemove.add(g);
+                        g.activateTasks();
+                        numActiveCarapaces ++;
+
                     }
                 }
                 for(GameEntity g in toRemove) {
@@ -234,7 +271,6 @@ class Session {
     Session(int this.session_id) {
         globalInit();
         logger = Logger.get("Session: $session_id", false);
-
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
@@ -243,9 +279,10 @@ class Session {
         stats.initialGameEntityId = GameEntity.getIDCopy();
         mutator.syncToSession(this);
         logger.info("Session made with ${sessionHealth} health.");
-       resetAvailableClasspects();
-        getPlayersReady();
+        resetAvailableClasspects();
+        //reinit first, to match scratches and yards and shit, make players with fresh seed essentially
         reinit("new session");
+        getPlayersReady();
     }
 
     Moon stringToMoon(String string) {
@@ -610,8 +647,22 @@ class Session {
             npcsWithTag.add(g.htmlTitleWithTip());
         }
 
+
         appendHtml(SimController.instance.storyElement, "<Br><br>Game ${session_id} of  SBURB has been initiated. All prepare for the arrival of ${turnArrayIntoHumanSentence(playerTitlesWithTag)}. The ${turnArrayIntoHumanSentence(npcsWithTag)} seem to be especially anticipating them.<br><br>");
+        processBigBadIntros();
         await callNextIntro(0);
+    }
+
+    void processBigBadIntros() {
+        List<GameEntity> possibleTargets = new List<GameEntity>.from(activatedNPCS);
+        //if you are not a big bad, dead or inactive, remove.
+        possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
+        for(BigBad bb in possibleTargets) {
+            if(bb.prologueText != null && bb.prologueText.isNotEmpty) {
+                DivElement div = new DivElement()..text = bb.prologueText;
+                SimController.instance.storyElement.append(div);
+            }
+        }
     }
 
     Future<Null> processCombinedSession() async {
@@ -666,16 +717,21 @@ class Session {
 
     //TODO oh god why is this still here and not somwhere sane like in a SimController.
     Future<Null> scratch() async {
-        //;
+        logger.info("scratching");
         numPlayersPreScratch = this.players.length;
         var ectoSave = this.stats.ectoBiologyStarted;
 
         reinit("scratch");
+        print("after reinit seed is: ${rand.spawn().nextInt()}");
+
         this.stats.scratched = true;
         this.stats.scratchAvailable = false;
         this.stats.doomedTimeline = false;
+        print("before ragged players seed is: ${rand.spawn().nextInt()}");
+
         this.didReckoning = false;
         raggedPlayers = findPlayersFromSessionWithId(this.players, this.session_id); //but only native
+        logger.info("the ragged players are $raggedPlayers");
         //use seeds the same was as original session and also make DAMN sure the players/guardians are fresh.
         //hello to TheLertTheWorldNeeds, I loved your amazing bug report!  I will obviously respond to you in kind, but wanted
         //to leave a permanent little 'thank you' here as well. (and on the glitch page) I laughed, I cried, I realzied that fixing guardians
@@ -683,9 +739,12 @@ class Session {
         //it's not as simple as remebering to do easter eggs here, but that's a good start. i also gotta
         //rework the easter egg guardian code. last time it worked guardians were an array a session had, but now they're owned by individual players.
         //plus, at the time i first re-enabled the easter egg, session 612 totally didn't have a scratch, so i could exactly test.
+        print("before make players seed is: ${rand.spawn().nextInt()}");
+
         this.makePlayers();
         this.randomizeEntryOrder();
         this.makeGuardians(); //after entry order established
+        print("after i made the players they are $players");
         this.createScenesForPlayers();
 
         this.stats.ectoBiologyStarted = ectoSave; //if i didn't do ecto in first version, do in second
@@ -721,15 +780,11 @@ class Session {
         }
     }
 
-    Future<Null> restartSession() async {
-        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
-        window.scrollTo(0, 0);
-    }
-
     Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
         await checkEasterEgg(this);
+        startSession();
     }
 
     Future<Null> reckoningTick([num time]) async {
@@ -803,7 +858,7 @@ class Session {
         List<GameEntity> cachedActivated = new List.from(activatedNPCS);
         //(since an npc can be activated during these scenes)
         for(GameEntity g in cachedActivated) {
-            if(g.active && g.available) g.processScenes();
+            if(g.active && g.available && !g.dead) g.processScenes();
         }
 
         //keep it from being a concurrent mod if i activate (and thus get removed from list
@@ -819,7 +874,7 @@ class Session {
         for(Player p in avail) {
             //;
             if(p.scenes.isEmpty) Scene.createScenesForPlayer(this, p);
-            if(p.active && p.available) {
+            if(p.active && p.available && !p.dead) {
                 //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
                 p.processScenes();
             }
@@ -995,7 +1050,7 @@ class Session {
             ret = "??? Frog";
         }
         if(spacePlayer !=null) {
-            logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
+            //logger.info("AB:  Returning ending of $ret with grist of ${getAverageGrist(players)} and frog level of ${spacePlayer.landLevel}");
         }else {
             logger.info("AB: Uh. JR. There's no space player. What the fuck did you break this time???");
         }
@@ -1023,9 +1078,8 @@ class Session {
         this.makeGuardians(); //after entry order established
         //don't need to call easter egg directly
         //print(npcHandler.debugNPCs());
-
-        this.easterCallBack(this);
-
+        print("oh hai there, i'm about to do the easter egg callback");
+        restartSession();
         return;
     }
 
@@ -1036,22 +1090,26 @@ class Session {
         }
     }
 
-    void easterCallBack(Session that) {
+    void restartSession() {
         //now that i've done that, (for seed reasons) fucking ignore it and stick the actual players in
         //after alll, i could be from a combo session.
         //but don't just hardcore replace. need to...fuck. okay, cloning aliens now.
-        this.aliensClonedOnArrival = that.aliensClonedOnArrival;
+        this.aliensClonedOnArrival = aliensClonedOnArrival;
         ////print("adding this many clone aliens: " + this.aliensClonedOnArrival.length);
         ////print(getPlayersTitles(this.aliensClonedOnArrival));
         List<Player> aliens = <Player>[]; //if don't make copy of aliensClonedOnArrival, goes into an infinite loop as it loops on it and adds to it inside of addAliens;
-        for (num i = 0; i < that.aliensClonedOnArrival.length; i++) {
-            aliens.add(that.aliensClonedOnArrival[i]);
+        for (num i = 0; i < aliensClonedOnArrival.length; i++) {
+            aliens.add(aliensClonedOnArrival[i]);
         }
-        that.aliensClonedOnArrival = <Player>[]; //jettison old clones.
+        aliensClonedOnArrival = <Player>[]; //jettison old clones.
         if(!(this is DeadSession)) addAliensToSession(aliens);
 
-        restartSession(); //in controller
+        print("restarting session but it apparently doesn't actually do anything???");
+        setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
+        window.scrollTo(0, 0);
+        startSession();
     }
+
     void easterCallBackScratch(Session that) {
         if (this.stats.ectoBiologyStarted) { //players are reset except for haivng an ectobiological source
             setEctobiologicalSource(this.players, this.session_id);
@@ -1136,7 +1194,10 @@ class Session {
         await SimController.instance.easterEggCallBack(this);
         */
         print("about to start, seed is ${rand.spawn().nextInt()}");
-        if (doNotRender == true) {
+        if(tableGuardianMode) {
+            //no one is entering, no one needs loaded , just go
+            tick();
+        }else if (doNotRender == true) {
             intro();
         } else {
             load(this,players, getGuardiansForPlayers(players), "");
@@ -1168,6 +1229,7 @@ class Session {
 
     Future<Null> tick([num time]) async{
         this.numTicks ++;
+        if(tableGuardianMode) players.clear();
         //
         ////
         //don't start  a reckoning until at least one person has been to the battlefield.
@@ -1179,7 +1241,7 @@ class Session {
             two things can start the reckoning: enough time passing (shenanigans launch the meteors)
             or someone having both scepters.
          */
-        if(plzStartReckoning || numTicks > SimController.instance.maxTicks ||  findLiving(players).isEmpty) {
+        if(plzStartReckoning || numTicks > SimController.instance.maxTicks || (currentSceneNum > SimController.instance.maxScenes && tableGuardianMode) ||  (findLiving(players).isEmpty && !tableGuardianMode)) {
             if(numTicks > SimController.instance.maxTicks) stats.timeoutReckoning = true;
             this.logger.info("reckoning at ${this.timeTillReckoning} and can reckoning is ${this.canReckoning}");
             this.timeTillReckoning = 0; //might have gotten negative while we wait.
@@ -1216,7 +1278,7 @@ class Session {
         ;
         ////print(getPlayersTitles(living));
         newSession.addAliensToSession(this.players); //used to only bring players, but that broke shipping. shipping is clearly paramount to Skaia, because everything fucking crashes if shipping is compromised.
-
+        newSession.addActiveNPCSForCombo(activatedNPCS);
         this.stats.hadCombinedSession = true;
         this.childSession = newSession;
         //reverse polarity
@@ -1262,14 +1324,17 @@ class Session {
         completer = new Completer<Session>();
         //Math.seed = this.session_id; //if session is reset,
         this.rand.setSeed(this.session_id);
-        ////print("reinit with seed: "  + Math.seed);
+        print("reinit with seed: ${rand.spawn().nextInt()}");
         this.timeTillReckoning = this.rand.nextIntRange(minTimeTillReckoning, maxTimeTillReckoning); //rand.nextIntRange(10,30);
         this.sessionType = this.rand.nextDouble(); //rand.nextDouble();
         createScenesForPlayers();
         //this.available_scenes = curSessionGlobalVar.scenes.slice(0);
         //curSessionGlobalVar.doomedTimeline = false;
         this.stats.doomedTimeline = false;
+        print("before reinit moons with seed: ${rand.spawn().nextInt()}");
         this.setupMoons("reiniting session");
+        print("after reinit moons with seed: ${rand.spawn().nextInt()}");
+
         //fix refereances
 
         this.reckoningStarted = false;
@@ -1277,42 +1342,59 @@ class Session {
         this.stats.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
         this.doomedTimelineReasons = <String>[];
         this.stats.ectoBiologyStarted = false;
+        print("at end of reinit with seed: ${rand.spawn().nextInt()}");
+
+    }
+
+    void activateAllCarapaces() {
+        for(GameEntity g in derse.associatedEntities) {
+           g.active = true;
+        }
+
+        for(GameEntity g in prospit.associatedEntities) {
+            g.active = true;
+        }
     }
 
 
 
     void makePlayers() {
-        logger.info("making players");
+        logger.info("making players from seed ${rand.spawn().nextInt()}");
         this.players = <Player>[];
-        resetAvailableClasspects();
-        int numPlayers = this.rand.nextIntRange(2, 12); //rand.nextIntRange(2,12);
-        double special = rand.nextDouble();
+        if(tableGuardianMode) {
+            activateAllCarapaces();
+        }else{
+            resetAvailableClasspects();
+            int numPlayers = this.rand.nextIntRange(
+                2, 12); //rand.nextIntRange(2,12);
+            double special = rand.nextDouble();
 
-        List<Player> replayer =  getReplayers(this);
-        if(replayer.isEmpty) {
-            this.players.add(randomSpacePlayer(this));
-            this.players.add(randomTimePlayer(this));
-            for (int i = 2; i < numPlayers; i++) {
-                this.players.add(randomPlayer(this));
-            }
-
-            //random chance of Lord/Muse for two player sessions
-            if (numPlayers <= 2) {
-                ;
-                if (special > .6) {
-                    players[0].class_name = SBURBClassManager.LORD;
-                    players[1].class_name = SBURBClassManager.MUSE;
-                } else if (special < .3) {
-                    players[0].class_name = SBURBClassManager.MUSE;
-                    players[1].class_name = SBURBClassManager.LORD;
+            List<Player> replayer = getReplayers(this);
+            if (replayer.isEmpty) {
+                this.players.add(randomSpacePlayer(this));
+                this.players.add(randomTimePlayer(this));
+                for (int i = 2; i < numPlayers; i++) {
+                    this.players.add(randomPlayer(this));
                 }
-            }
-        }else {
-            players = new List.from(replayer);
-        }
 
-        logger.info("players is $players");
-        playerInitialization();
+                //random chance of Lord/Muse for two player sessions
+                if (numPlayers <= 2) {
+                    ;
+                    if (special > .6) {
+                        players[0].class_name = SBURBClassManager.LORD;
+                        players[1].class_name = SBURBClassManager.MUSE;
+                    } else if (special < .3) {
+                        players[0].class_name = SBURBClassManager.MUSE;
+                        players[1].class_name = SBURBClassManager.LORD;
+                    }
+                }
+            } else {
+                players = new List.from(replayer);
+            }
+
+            logger.info("players is $players");
+            playerInitialization();
+        }
     }
 
     //called immediately after making players, whether replayers or natives
@@ -1394,7 +1476,7 @@ class Session {
 
     void randomizeEntryOrder() {
         this.players = shuffle(this.rand, this.players);
-        this.players[0].leader = true;
+        if(this.players.isNotEmpty)this.players[0].leader = true;
     }
 
     void switchPlayersForScratch() {
@@ -1461,7 +1543,7 @@ class Session {
         String lightBS = "";
         String innerHTML = "";
         bool debugMode = getParameterByName("debug") == "fuckYes";
-        if(debugMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Name: ${callingScene}  Session Health: ${sessionHealth}, Power coefficent: ${Stats.POWER.coefficient},  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}, Mutator: ${mutator}";
+        if(debugMode || mutator.lightField) lightBS = "Session ID: $session_id Scene ID: ${this.currentSceneNum} Tick Num: $numTicks, Name: ${callingScene}  Session Health: ${sessionHealth}, Power coefficent: ${Stats.POWER.coefficient},  TimeTillReckoning: ${timeTillReckoning} Last Rand: ${rand.spawn().nextInt()}, Mutator: ${mutator}";
         if (this.sbahj) {
             ret.classes.add("sbahj");
             int reallyRand = getRandomIntNoSeed(1, 10);
@@ -1567,6 +1649,10 @@ class Session {
     }
 
     SessionSummary generateSummary() {
+        if(tableGuardianMode) {
+            //empty
+            return new SessionSummary(-13);
+        }
         return SessionSummary.makeSummaryForSession(this);
     }
 

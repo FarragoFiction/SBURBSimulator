@@ -1,3 +1,6 @@
+import 'Item.dart';
+import 'dart:html';
+
 /*
 http://mspaintadventures.wikia.com/wiki/Alchemiter
 
@@ -20,6 +23,8 @@ abstract class ItemTrait {
   static int MATERIAL = 9;
   static int PURPOSE = 10;
 
+  ItemTraitForm form;
+
   //what kind of adj am i, what order should i be displayed?
   int ordering;
   List<String> descriptions = new List<String>();
@@ -34,6 +39,45 @@ abstract class ItemTrait {
     return "NULL TRAIT";
   }
 
+  void renderForm(Element container, Item item) {
+    print ("render form for trait $this");
+    form = new ItemTraitForm(this, item, container);
+    form.drawForm();
+  }
+
+}
+
+class ItemTraitForm
+{
+  Element container;
+  Item owner;
+  ItemTrait trait;
+  ItemTraitForm(ItemTrait this.trait, Item this.owner, Element parentContainer) {
+    container = new DivElement();
+    container.classes.add("SceneDiv");
+
+    parentContainer.append(container);
+  }
+
+  void drawForm() {
+    //draw my name (and list of sub names)
+    //draw the remove button
+    DivElement name = new DivElement()..text = "Trait: ${trait.toString()} (${trait.descriptions})";
+    DivElement rank = new DivElement()..text = "Rank: ${trait.rank}";
+
+    ButtonElement delete = new ButtonElement();
+    delete.text = "Remove Trait";
+    delete.onClick.listen((e) {
+      //don't bother knowing where i am, just remove from all
+      owner.traits.remove(trait);
+      container.remove();
+      owner.form.syncDataBoxToOwner();
+    });
+    container.append(name);
+    container.append(rank);
+
+    container.append(delete);
+  }
 }
 
 //what can this do?
@@ -120,6 +164,7 @@ class ItemTraitFactory {
   static Iterable<ItemTrait> get appearanceTraits => allTraits.where((ItemTrait a) => (a is ItemAppearanceTrait && !(a is ItemObjectTrait)));
   static Iterable<ItemTrait> get objectTraits => allTraits.where((ItemTrait a) => (a is ItemObjectTrait));
   static Iterable<ItemTrait> get combinedTraits => allTraits.where((ItemTrait a) => (a is CombinedTrait));
+  static Iterable<ItemTrait> get pureTraits => allTraits.where((ItemTrait a) => !(a is CombinedTrait));
 
   static ItemTrait itemTraitNamed(String name) {
     for(ItemTrait itemTrait in allTraits) {
@@ -1402,4 +1447,40 @@ class ItemTraitFactory {
     REAL = new ItemFunctionTrait(["real", "actual", "believable", "geniune", "guaranteed","veritable"], 0.3,ItemTrait.OPINION);
 
   }
+
+  static SelectElement drawSelectTraits(Element div, Item owner, Element triggersSection) {
+    triggersSection.setInnerHtml("<h3>Item Traits:   First is 'core' if specibus </h3><br>");
+    Set<ItemTrait> traits;
+
+    traits = ItemTraitFactory.pureTraits;
+
+    SelectElement select = new SelectElement();
+    for(ItemTrait sample in traits) {
+      OptionElement o = new OptionElement();
+      o.value = sample.toString();
+      o.text = sample.toString();
+      select.append(o);
+    }
+
+    ButtonElement button = new ButtonElement();
+    button.text = "Add Item Trait";
+    button.onClick.listen((e) {
+      String type = select.options[select.selectedIndex].value;
+      for(ItemTrait tc in traits) {
+        if(tc.toString() == type) {
+          ItemTrait newTrait = ItemTraitFactory.itemTraitNamed(type);
+          owner.traits.add(newTrait);
+          newTrait.renderForm(triggersSection, owner);
+          owner.form.syncDataBoxToOwner();
+        }
+      }
+    });
+
+    triggersSection.append(select);
+    triggersSection.append(button);
+
+    return select;
+  }
+
+
 }

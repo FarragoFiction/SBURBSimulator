@@ -154,12 +154,21 @@ class MailSideQuest extends Scene {
   }
 
   bool givePackageToRecipient() {
+      bool activateCrownGlitch = session.rand.nextBool();
       if(gameEntity.specibus.rank < package.rank) {
-          recipient.sylladex.add(recipient.specibus);
-          Specibus s = new Specibus(package.fullName, package.traits.first, new List.from(package.traits));
-          recipient.specibus = s;
-          gameEntity.sylladex.remove((package));
-          return true;
+          if((package is Ring || package is Scepter) && activateCrownGlitch) {
+              recipient.sylladex.add(recipient.specibus);
+              Specibus s = new Specibus(package.fullName, package.traits.first,
+                  new List.from(package.traits));
+              recipient.specibus = s;
+              gameEntity.sylladex.remove((package));
+              return true;
+          }else {
+              //you have the common sense not to turn the Crown into a specibus, which makes it glitch out
+              recipient.sylladex.add(package); //should auto remove from sender, but let's be safe
+              gameEntity.sylladex.remove((package));
+              return false;
+          }
       }else {
           recipient.sylladex.add(package); //should auto remove from sender, but let's be safe
           gameEntity.sylladex.remove((package));

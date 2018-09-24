@@ -1,3 +1,5 @@
+import '../PlayerSpriteHandler.dart';
+import 'dart:async';
 import 'dart:convert';
 import "dart:html";
 import "dart:math" as Math;
@@ -349,7 +351,7 @@ class Player extends GameEntity{
         }
 
         String bb = "";
-        if(killer != null) bb = killer.makeBigBad();
+        if(killer != null && !villain) bb = killer.makeBigBad();
 
         return "$ret $looting $bb";
     }
@@ -673,6 +675,16 @@ class Player extends GameEntity{
 
         for(Item item in sylladex) {
             ret += "${item.fullNameWithUpgrade}<br>";
+        }
+
+        ret += "</td><td class = 'toolTipSection' rowspan='2'>AI<hr>";
+
+        for (Scene s in scenes) {
+            if(s is SerializableScene) {
+                ret += "${s}<br>";
+            }else {
+                ret += "???<br>";
+            }
         }
 
 
@@ -1701,10 +1713,12 @@ class Player extends GameEntity{
     }
 
     void renderSelf(String caller) {
-       // ;
         if(Drawing.checkSimMode()) return;
         if (canvas == null) this.initSpriteCanvas();
         this.clearSelf();
+        //TODO someday tackle the headache that would be needed to make all of rendering async
+        //await PlayerSpriteHandler.drawSpriteFromScratch(canvas, this);
+
         Drawing.drawSpriteFromScratch(canvas, this);
     }
 
@@ -1894,6 +1908,7 @@ class Player extends GameEntity{
         this.bloodColor = replayPlayer.bloodColor;
         this.leftHorn = replayPlayer.leftHorn;
         this.specibus = replayPlayer.specibus.copy();
+        print("specibus is $specibus with traits ${specibus.traits}, required trait is ${specibus.requiredTrait}, the replay player has ${replayPlayer.specibus} with traits ${replayPlayer.specibus.traits} required trait is ${replayPlayer.specibus.requiredTrait}");
         this.rightHorn = replayPlayer.rightHorn;
         this.interest1 = replayPlayer.interest1;
         this.interest2 = replayPlayer.interest2;

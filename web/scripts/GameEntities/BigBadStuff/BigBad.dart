@@ -17,8 +17,14 @@ class BigBad extends NPC {
   BigBadForm form;
   String textIfNoStrife = "";
   String textIfYesStrife = "";
+  String regularFrogText = "";
+ String purpleFrogText = "";
+ String pinkFrogText = "";
+ String prologueText = "";
 
-  //if any of these are true, the big bad is triggered. proccessed even if not active
+
+
+    //if any of these are true, the big bad is triggered. proccessed even if not active
   List<SerializableScene> startMechanisms = new List<SerializableScene>();
   //scenes list is like normal, but i assume they are all serializable
 
@@ -34,7 +40,7 @@ class BigBad extends NPC {
   }
 
   String toDataString() {
-      print("data is ${toJSON()}");
+      //print("data is ${toJSON()}");
       return  "$name$labelPattern${LZString.compressToEncodedURIComponent(toJSON().toString())}";
   }
 
@@ -47,6 +53,12 @@ class BigBad extends NPC {
       json["unconditionallyImmortal"] = unconditionallyImmortal.toString();
       json["textIfNoStrife"] = textIfNoStrife;
       json["textIfYesStrife"] = textIfYesStrife;
+
+      json["regularFrogText"] = regularFrogText;
+      json["purpleFrogText"] = purpleFrogText;
+      json["pinkFrogText"] = pinkFrogText;
+      json["prologueText"] = prologueText;
+
 
       List<JSONObject> startSceneArray = new List<JSONObject>();
       for(Scene s in startMechanisms) {
@@ -62,7 +74,7 @@ class BigBad extends NPC {
 
 
       List<JSONObject> stopSceneArray = new List<JSONObject>();
-      for(Scene s in stopMechanisms) {
+      for(Scene s in playerReactions) {
           if(s is SerializableScene) stopSceneArray.add(s.toJSON());
       }
       json["stopMechanisms"] = stopSceneArray.toString();
@@ -75,7 +87,7 @@ class BigBad extends NPC {
       super.copyFromDataString(data);
       String dataWithoutName = data.split("$labelPattern")[1];
       String rawJSON = LZString.decompressFromEncodedURIComponent(dataWithoutName);
-      print("big bad raw json for ${data.split("$labelPattern")[0]} is $rawJSON");
+      //print("big bad raw json for ${data.split("$labelPattern")[0]} is $rawJSON");
       JSONObject json = new JSONObject.fromJSONString(rawJSON);
       name = json["name"];
       description = json["description"];
@@ -95,6 +107,24 @@ class BigBad extends NPC {
       if(json["textIfYesStrife"] != null) {
           textIfYesStrife = json["textIfYesStrife"];
       }
+
+
+      if(json["regularFrogText"] != null) {
+          regularFrogText = json["regularFrogText"];
+      }
+
+      if(json["purpleFrogText"] != null) {
+          purpleFrogText = json["purpleFrogText"];
+      }
+
+      if(json["pinkFrogText"] != null) {
+          pinkFrogText = json["pinkFrogText"];
+      }
+
+      if(json["prologueText"] != null) {
+          prologueText = json["prologueText"];
+      }
+
      // print("done with name and description");
 
       String startScenesString = json["startMechanisms"];
@@ -104,7 +134,12 @@ class BigBad extends NPC {
 
   }
 
-
+  @override
+    void copyFromDataStringTemplate(String data) {
+        // print("copying from data: $data, looking for labelpattern: $labelPattern");
+        super.copyFromDataStringTemplate(data);
+        //dont do anything else, its just game entity stuff if its a template
+    }
 
 
     void loadStartMechanisms(String weirdString) {
@@ -122,10 +157,11 @@ class BigBad extends NPC {
     }
 
 
-
   static BigBad fromDataString(String rawDataString, Session session) {
       BigBad ret = new BigBad("TEMPORARY", session);
       ret.copyFromDataString(rawDataString);
+      //all big bads have at least these stats
+      ret.heal();
       return ret;
   }
 
@@ -143,7 +179,7 @@ class BigBad extends NPC {
 
 
   void syncForm() {
-      print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes");
+      print("going to sync with ${startMechanisms.length} start scenes and  ${scenes.length} action scenes and ${playerReactions.length} reaction scenes");
      form.syncDataBoxToBigBad();
 
   }
@@ -152,13 +188,13 @@ class BigBad extends NPC {
       String jsonString = scene.toJSON().toString();
       List<Scene> allScenes = new List<Scene>.from(startMechanisms);
       allScenes.addAll(scenes);
-      allScenes.addAll(stopMechanisms);
+      allScenes.addAll(playerReactions);
       for(Scene s in allScenes) {
           if(s is SerializableScene) {
               if (s.toJSON().toString() == jsonString) {
                   startMechanisms.remove(s);
                   scenes.remove(s);
-                  stopMechanisms.remove(s);
+                  playerReactions.remove(s);
                   return;
               }
           }
@@ -183,11 +219,18 @@ class BigBadForm {
     TextInputElement nameElement;
     TextAreaElement dataBox;
     TextAreaElement descElement;
+    Element templateInfoElement;
 
     CheckboxInputElement strifableElement;
     CheckboxInputElement immortalElement;
     TextAreaElement strifableYesElement;
     TextAreaElement strifableNoElement;
+
+    TextAreaElement pinkFrogElement;
+    TextAreaElement purpleFrogElement;
+    TextAreaElement regularFrogElement;
+    TextAreaElement prologueElement;
+
 
     Element startSceneSection;
     Element sceneSection;
@@ -203,16 +246,99 @@ class BigBadForm {
         drawDataBox();
         drawName();
         drawDesc();
+        drawTemplate();
+
         drawStrifable();
         drawImmortal();
         drawAddStartButton();
         drawAddSceneButton();
         drawAddStopButton();
+        drawTextBoxes();
 
     }
 
     void syncDataBoxToBigBad() {
         dataBox.value = bigBad.toDataString();
+    }
+
+    void drawTextBoxes() {
+
+        /*
+            TextAreaElement pinkFrogElement;
+    TextAreaElement purpleFrogElement;
+    TextAreaElement regularFrogElement;
+    TextAreaElement prologueElement;
+         */
+
+        prologueElement = new TextAreaElement();
+        LabelElement prologueLabel = new LabelElement()..text ="Prologue Text (if active on session creation)"..style.display="block";
+        pinkFrogElement = new TextAreaElement();
+        LabelElement pinkLabel = new LabelElement()..text ="Pink Frog Text"..style.display="block";
+        purpleFrogElement = new TextAreaElement();
+        LabelElement purpleLabel = new LabelElement()..text ="Purple Frog Text"..style.display="block";
+        regularFrogElement = new TextAreaElement();
+        LabelElement regularLabel = new LabelElement()..text ="Regular Frog Text"..style.display="block";
+
+        DivElement first = new DivElement();
+        DivElement second = new DivElement();
+        DivElement third = new DivElement();
+        DivElement fourth = new DivElement();
+
+
+        second.append(regularLabel);
+        second.append(regularFrogElement);
+
+        first.append(prologueLabel);
+        first.append(prologueElement);
+
+        third.append(pinkLabel);
+        third.append(pinkFrogElement);
+
+        fourth.append(purpleLabel);
+        fourth.append(purpleFrogElement);
+
+        container.append(first);
+        container.append(second);
+        container.append(third);
+        container.append(fourth);
+
+        prologueElement.cols = 60;
+        prologueElement.rows = 10;
+
+        pinkFrogElement.cols = 60;
+        pinkFrogElement.rows = 10;
+
+        purpleFrogElement.cols = 60;
+        purpleFrogElement.rows = 10;
+
+        regularFrogElement.cols = 60;
+        regularFrogElement.rows = 10;
+
+
+        regularFrogElement.onInput.listen((Event e) {
+            bigBad.regularFrogText = regularFrogElement.value;
+            syncDataBoxToBigBad();
+        });
+
+        purpleFrogElement.onInput.listen((Event e) {
+            bigBad.purpleFrogText = purpleFrogElement.value;
+            syncDataBoxToBigBad();
+        });
+
+        pinkFrogElement.onInput.listen((Event e) {
+            bigBad.pinkFrogText = pinkFrogElement.value;
+            syncDataBoxToBigBad();
+        });
+
+        prologueElement.onInput.listen((Event e) {
+            bigBad.prologueText = prologueElement.value;
+            syncDataBoxToBigBad();
+        });
+
+
+
+
+
     }
 
     void syncFormToBigBad() {
@@ -223,6 +349,11 @@ class BigBadForm {
         strifableElement.checked = bigBad.canStrife;
         immortalElement.checked = bigBad.unconditionallyImmortal;
 
+        prologueElement.value = bigBad.prologueText;
+        regularFrogElement.value = bigBad.regularFrogText;
+        pinkFrogElement.value = bigBad.pinkFrogText;
+        purpleFrogElement.value = bigBad.purpleFrogText;
+
 
         for(SummonScene s in bigBad.startMechanisms) {
             s.renderForm(startSceneSection);
@@ -232,10 +363,11 @@ class BigBadForm {
             s.renderForm(sceneSection);
         }
 
-        for(StopScene s in bigBad.stopMechanisms) {
+        for(StopScene s in bigBad.playerReactions) {
             s.renderForm(stopSceneSection);
         }
         syncDataBoxToBigBad();
+        syncTemplateInfo();
     }
 
     void drawAddStartButton() {
@@ -269,11 +401,11 @@ class BigBadForm {
         print("drawing add stop mechanisms button");
         stopSceneSection = new DivElement();
         stopSceneSection.classes.add("stopSceneSection");
-        stopSceneSection.setInnerHtml("<h1>Stop Scenes</h1><hr>A Stop Scene is locked to target the original owner of it. Any target conditions you add will be modifiers on top of that. Lands can only be targeted if the original owner is also targetable. (i.e. alive and available) It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
+        stopSceneSection.setInnerHtml("<h1>Players Reactions</h1><hr>A Player Reaction Scene is locked to target the original owner of it. Any target conditions you add will be modifiers on top of that. Lands can only be targeted if the original owner is also targetable. (i.e. alive and available) It will be given to the players. (i.e. the players will quest to stop this big bad by doing these scenes)");
         stopSceneSection.style.border = "1px solid black";
         stopSceneSection.style.padding = "10px";
         ButtonElement button = new ButtonElement();
-        button.text = "Add A Stop Scene";
+        button.text = "Add A Players Reaction";
         container.append(stopSceneSection);
         container.append(button);
         button.onClick.listen((Event e)
@@ -281,14 +413,15 @@ class BigBadForm {
             print("adding a stop scene");
             StopScene stopScene = new StopScene(bigBad.session);
             stopScene.originalOwner = bigBad;
-            bigBad.stopMechanisms.add(stopScene);
+            stopScene.gameEntity = bigBad; //will be replace dlater
+            bigBad.playerReactions.add(stopScene);
             stopScene.renderForm(stopSceneSection);
             syncDataBoxToBigBad();
         });
 
         //render the ones the big bad starts with
         print ("trying to render existing stop mechanisms");
-        for(StopScene s in bigBad.stopMechanisms) {
+        for(StopScene s in bigBad.playerReactions) {
             print('rendering form for $s');
             s.renderForm(stopSceneSection);
         }
@@ -419,6 +552,61 @@ class BigBadForm {
             bigBad.description = descElement.value;
             syncDataBoxToBigBad();
         });
+    }
+
+    void drawTemplate() {
+        if(templateInfoElement == null) {
+            syncTemplateInfo(); //creates div
+        }
+        DivElement subContainer = new DivElement();
+        DivElement nameLabel = new DivElement();
+        nameLabel.text = "Load Template (optional, for stats, items and fraymotifs):";
+        TextAreaElement templateEle = new TextAreaElement();
+        templateEle.value = "N/A";
+        templateEle.cols = 60;
+        templateEle.rows = 10;
+        subContainer.append(nameLabel);
+        subContainer.append(templateEle);
+        templateInfoElement.append(subContainer);
+
+        templateEle.onInput.listen((Event e) {
+            bigBad.copyFromDataStringTemplate(templateEle.value);
+            syncDataBoxToBigBad();
+            syncTemplateInfo();
+        });
+    }
+
+    void syncTemplateInfo() {
+        if(templateInfoElement == null) {
+            templateInfoElement = new DivElement();
+            templateInfoElement.style.border = "1px solid black";
+            templateInfoElement.style.padding = "5px";
+            container.append(templateInfoElement);
+        }
+        templateInfoElement.text = ""; //clear
+
+        Iterable<Stat> as = Stats.summarise;
+
+        String statsString = "";
+        for(Stat s in as) {
+            statsString = "$statsString, ${s.name}: ${(bigBad.getStat(s,true).round())}";
+        }
+        DivElement stats = new DivElement()..setInnerHtml("<b>Stats</b>: $statsString");
+
+
+        templateInfoElement.append(stats);
+
+        DivElement specibus = new DivElement()..setInnerHtml("<b>Specibus:</b> ${bigBad.specibus}");
+        templateInfoElement.append(specibus);
+
+        DivElement items = new DivElement()..setInnerHtml("<b>Sylladex</b>: ${bigBad.sylladex}");
+        templateInfoElement.append(items);
+
+        DivElement fraymotifs = new DivElement()..setInnerHtml("<b>Fraymotifs</b>: ${bigBad.fraymotifs}");
+        templateInfoElement.append(fraymotifs);
+
+        drawTemplate(); //redraw the box
+
     }
 
     void drawDataBox() {

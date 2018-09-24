@@ -9,10 +9,7 @@ class GrimDarkCorruption extends EffectEntity {
     GrimDarkCorruption(SerializableScene scene) : super(scene);
 
 
-  @override
-  void copyFromJSON(JSONObject json) {
-    // nothing to do
-  }
+
 
   @override
   void syncFormToMe() {
@@ -37,7 +34,8 @@ class GrimDarkCorruption extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        e.changeGrimDark(13);
+        if(e is Player) e.grimDark = 0;
+        e.changeGrimDark(4);
     });
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);

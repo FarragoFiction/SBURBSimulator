@@ -16,12 +16,30 @@ abstract class ActionEffect {
     String  importantWord = "N/A";
     int  importantInt = 0;
 
+    bool vriska = false;
+    CheckboxInputElement vriskaElement;
+    DivElement descElement;
+
+
+
     ActionEffect(SerializableScene scene);
 
     void renderForm(Element div);
     void syncToForm();
     void syncFormToMe();
-    void copyFromJSON(JSONObject json);
+
+    void copyFromJSON(JSONObject json) {
+        // print("copying from json");
+        importantWord = json[ActionEffect.IMPORTANTWORD];
+        importantInt = (int.parse(json[ActionEffect.IMPORTANTINT]));
+        copyVriskaFlagFromJSON(json);
+    }
+
+    void copyVriskaFlagFromJSON(JSONObject json) {
+        String notString = json["VRISKA"];
+        if(notString == "true") vriska = true;
+    }
+
     void applyEffect();
     ActionEffect makeNewOfSameType();
 
@@ -44,6 +62,43 @@ abstract class ActionEffect {
             });
             container.append(delete);
         }
+
+        drawVriska();
+    }
+
+    void drawVriska() {
+        if(this is EffectLand) return;
+        DivElement subContainer = new DivElement();
+        LabelElement nameLabel = new LabelElement();
+        nameLabel.text = "Apply to Self Instead of Target";
+        vriskaElement = new CheckboxInputElement();
+        vriskaElement.checked = vriska;
+
+        subContainer.append(nameLabel);
+        subContainer.append(vriskaElement);
+        container.append(subContainer);
+
+        vriskaElement.onChange.listen((e) {
+            syncVriskaForm();
+            scene.syncForm();
+        });
+        syncVriskaForm();
+    }
+
+    void syncVriskaForm() {
+        String text;
+        if(descElement == null) {
+            descElement = new DivElement();
+            container.append(descElement);
+        }
+        if(vriskaElement.checked) {
+            vriska = true;
+            text = "(effects self)";
+        }else {
+            vriska = false;
+            text = "(effects target or targets)";
+        }
+        descElement.text = text;
     }
 
 
@@ -51,6 +106,7 @@ abstract class ActionEffect {
         JSONObject json = new JSONObject();
         json[IMPORTANTWORD] = importantWord;
         json["name"] = name;
+        json["VRISKA"] = vriska.toString();
         json[IMPORTANTINT] = "$importantInt";
         return json;
     }
@@ -158,13 +214,21 @@ abstract class EffectEntity extends ActionEffect {
   static List<EffectEntity> listPossibleEffects(SerializableScene scene) {
       List<EffectEntity> ret = new List<EffectEntity>();
       ret.add(new InstaKill(scene));
+      ret.add(new KillSleepingDreamSelf(scene));
       ret.add(new ChangeStat(scene));
       ret.add(new ChangeMyStat(scene));
+      ret.add(new GiveFraymotif(scene));
+      ret.add(new GiveItem(scene));
+      ret.add(new GiveSpecibus(scene));
       ret.add(new GiveAction(scene));
       ret.add(new GiveThisAction(scene));
       ret.add(new RemoveAction(scene));
+      ret.add(new RemoveThisAction(scene));
+      ret.add(new DestroyItemNamed(scene));
+      ret.add(new PickpocketItemNamed(scene));
       ret.add(new PickPocket(scene));
       ret.add(new Mug(scene));
+      ret.add(new AntiMug(scene));
       ret.add(new GiveFrog(scene));
       ret.add(new KillFrog(scene));
       ret.add(new MarkFirstQuestsAsComplete(scene));
@@ -179,10 +243,18 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new MakeGodTier(scene));
       ret.add(new DestroySylladex(scene));
       ret.add(new GrimDarkCorruption(scene));
+      ret.add(new CureGrimDarkCorruption(scene));
+      ret.add(new MakeMurderMode(scene));
+      ret.add(new UnMakeMurderMode(scene));
+      ret.add(new DeclareVillain(scene));
+      ret.add(new DeclareRedeemed(scene));
       ret.add(new MakeStrifable(scene));
       ret.add(new StartStrife(scene));
       ret.add(new MakeInactive(scene));
+      ret.add(new ModifySessionHealth(scene));
       ret.add(new MakeMortal(scene));
+      ret.add(new MakeActiveProphecy(scene));
+      ret.add(new MakeFullfilledProphecy(scene));
       ret.add(new MakeUnconditionallyImmortal(scene));
 
       return ret;
@@ -261,7 +333,13 @@ abstract class EffectEntity extends ActionEffect {
 
   @override
   void applyEffect() {
-      List<GameEntity> targets = new List.from(scene.finalLivingTargets);
+      List<GameEntity> targets;
+      if(vriska) {
+          targets = new List<GameEntity>();
+          targets.add(scene.gameEntity);
+      }else {
+          targets = new List.from(scene.finalLivingTargets);
+      }
       effectEntities(targets);
   }
 
