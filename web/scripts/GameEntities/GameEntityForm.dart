@@ -27,15 +27,16 @@ class GameEntityForm {
         drawDataBox();
         drawName();
         drawStats();
+        drawSpecibusBox();
+
         drawExistingFraymotifs();
         drawAddFraymotifs();
-        drawSpecibusBox();
     }
 
     void syncFormToOwner() {
         print("syncing form to scene");
         nameElement.value = owner.name;
-        specibusBox.value  = owner.specibus.name;
+        specibusBox.value  = owner.specibus.toDataString();
 
         for(StatForm form in statForms) {
             form.valueElement.value = "${owner.getStat(form.stat, true).round()}";
