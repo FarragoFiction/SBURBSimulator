@@ -142,7 +142,9 @@ class GameEntityForm {
 
         box.onChange.listen((e) {
             try {
+                print("trying to sync item $item");
                 item.copyFromDataString(box.value);
+                print("after sync item is $item");
                 syncDataBoxToOwner();
             }catch(e, trace) {
                 window.alert("something went wrong! $e, $trace");
@@ -202,6 +204,11 @@ class GameEntityForm {
             }
         });
         container.append(dataBox);
+        ButtonElement button = new ButtonElement()..text = "Manual Sync";
+        button.onClick.listen((Event e) {
+            syncDataBoxToOwner();
+        });
+        container.append(button);
     }
 
     void drawSpecibusBox() {

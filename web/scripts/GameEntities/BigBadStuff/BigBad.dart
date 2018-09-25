@@ -246,8 +246,7 @@ class BigBadForm {
         drawDataBox();
         drawName();
         drawDesc();
-        drawTemplate();
-
+        syncTemplateInfo(); //it will draw tempalte
         drawStrifable();
         drawImmortal();
         drawAddStartButton();
@@ -555,9 +554,7 @@ class BigBadForm {
     }
 
     void drawTemplate() {
-        if(templateInfoElement == null) {
-            syncTemplateInfo(); //creates div
-        }
+
         DivElement subContainer = new DivElement();
         DivElement nameLabel = new DivElement();
         nameLabel.text = "Load Template (optional, for stats, items and fraymotifs):";
