@@ -84,16 +84,21 @@ class  SerializableScene extends Scene {
               portrait.onError.listen((e) {
                   portrait.src = "images/BigBadCards/default.gif";
               });
-              portrait.style.width = "100px";
+              portrait.style.width = "400px";
               portrait.style.backgroundColor = "grey";
               div.append(portrait);
           }
       }else if(gameEntity is BigBad) {
-          ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}.png");
-          portrait.onError.listen((e) {
-              portrait.src = "images/BigBadCards/default.gif";
-          });
-          div.append(portrait);
+          if(!doNotRender) {
+              ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}.png");
+
+              portrait.onError.listen((e) {
+                  portrait.src = "images/BigBadCards/default.gif";
+              });
+              portrait.style.width = "100px";
+              portrait.style.backgroundColor = "grey";
+              div.append(portrait);
+          }
       }
 
       doEffects(); //automatic
