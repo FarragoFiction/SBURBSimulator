@@ -33,7 +33,7 @@ class MakeInactive extends EffectEntity {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        e.active = false;
+        scene.session.deactivateNPC(e);
     });
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);

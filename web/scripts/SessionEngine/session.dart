@@ -88,6 +88,11 @@ class Session {
         return new List.from(_activatedNPCS); //don't let ppl have access to original list they might mod it
     }
 
+    void deactivateNPC(GameEntity npc) {
+        npc.active = false;
+        _activatedNPCS.remove(npc);
+    }
+
     void addActiveNPCSForCombo(List<GameEntity>npcs){
         for(GameEntity g in npcs) {
             //no guarantee you'll make it in
@@ -121,6 +126,8 @@ class Session {
         }
 
     }
+
+
 
     //save a copy of the alien (in case of yellow yard)
     void addAliensToSession(List<Player> aliens) {
