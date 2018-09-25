@@ -960,6 +960,10 @@ class GameEntity extends Object with StatOwner   {
 
         if(stopScenesString != null) loadStopMechanisms(stopScenesString);
 
+        if(grist <130) {
+            grist = getStat(Stats.EXPERIENCE)*100+100;
+        }
+
     }
 
     //don't load everything, just the things the template can set
