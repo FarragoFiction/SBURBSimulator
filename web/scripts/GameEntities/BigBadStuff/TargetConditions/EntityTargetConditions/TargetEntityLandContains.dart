@@ -4,7 +4,7 @@ import 'dart:html';
 //has no sub form, just exists
 class TargetEntityLandNameContains extends TargetConditionLiving {
     @override
-    String name = "SpriteLandContains";
+    String name = "EntityLandContains";
     InputElement input;
 
     Item crown;
