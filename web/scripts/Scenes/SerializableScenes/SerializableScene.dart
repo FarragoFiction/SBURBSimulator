@@ -88,6 +88,12 @@ class  SerializableScene extends Scene {
               portrait.style.backgroundColor = "grey";
               div.append(portrait);
           }
+      }else if(gameEntity is BigBad) {
+          ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}.png");
+          portrait.onError.listen((e) {
+              portrait.src = "images/BigBadCards/default.gif";
+          });
+          div.append(portrait);
       }
 
       doEffects(); //automatic

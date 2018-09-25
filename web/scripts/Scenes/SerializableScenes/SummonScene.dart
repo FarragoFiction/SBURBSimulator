@@ -20,7 +20,7 @@ class SummonScene extends SerializableScene {
             debug = " (Triggers are: $triggerConditionsLand and $triggerConditionsLiving) Targets are: $landTargets nad $livingTargets. Remaining BigBads are ${session.bigBads}";
         }
         intro.setInnerHtml("<h1>All tremble at the arrival of ${gameEntity.name}. $debug <br>");
-        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}.png");
+        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}_entrance.png");
         portrait.onError.listen((e) {
             portrait.src = "images/BigBadCards/default.gif";
         });

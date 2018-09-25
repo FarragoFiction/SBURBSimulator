@@ -256,7 +256,8 @@ class BigBadSummary {
     }
 
     void init() {
-        List<GameEntity> npcs = session.activatedNPCS;
+        //List<GameEntity> npcs = session.activatedNPCS;
+        List<GameEntity> npcs = session.bigBads;// for when you dont want to hide any
         for(GameEntity g in npcs) {
             if(g is BigBad){
                 //print("TEST AB WRITING: I am initializing a big bad summary from a real session. the big bad is $g");
