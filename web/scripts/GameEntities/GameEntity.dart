@@ -752,7 +752,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     String htmlTitleWithTip() {
-        String ret = "";
+        String ret = "$extraTitle ";
         if (this.crowned != null) ret = "${ret}Crowned ";
         String pname = this.name;
         if (pname == "Yaldabaoth") {
