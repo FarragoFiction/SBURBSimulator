@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import "dart:html";
 import "dart:math" as Math;
 import "../SBURBSim.dart";
@@ -215,6 +216,7 @@ class GameEntity extends Object with StatOwner   {
     //my scenes can trigger behavior in other things that makes them unable to do their own scenes.
     //this is intended. probably.
     void processScenes() {
+        UserTag previousTag = session.createDebugTag("Processing ${this.runtimeType} Scene");
 
         if(!addedSerializableScenes) {
             addSerializableScenes();
@@ -238,6 +240,7 @@ class GameEntity extends Object with StatOwner   {
        // if(scenesToAdd.isNotEmpty) print("TEST RECKONING: adding ${scenesToAdd.length} scenes to $this");
         scenes.insertAll(0,scenesToAdd);
         scenesToAdd.clear();
+        previousTag.makeCurrent();
     }
 
 

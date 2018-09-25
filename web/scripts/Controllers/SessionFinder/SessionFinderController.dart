@@ -307,13 +307,14 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       //RESETTING the mutator so that wastes can't leak into other sessions
       getMVP(session);
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
+      previousTag.makeCurrent();
+
       window.requestAnimationFrame((num t){
         Session session = new Session(SimController.instance.initial_seed);
         startSessionThenSummarize(session);
       });
     }
     ////;
-    previousTag.makeCurrent();
     return sum;
   }
 

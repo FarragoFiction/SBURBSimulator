@@ -1,4 +1,5 @@
 import "../../SBURBSim.dart";
+import 'dart:developer';
 import "dart:html";
 import '../../includes/lz-string.dart';
 import "dart:convert";
@@ -166,6 +167,8 @@ class BigBad extends NPC {
   }
 
   void summonTriggered() {
+      UserTag previousTag = session.createDebugTag("CheckingBigBadSummon");
+
       //first summon scene to trigger has dibs
       for(SummonScene s in startMechanisms) {
           if(s.trigger(session.players)) {
@@ -174,6 +177,7 @@ class BigBad extends NPC {
               return;
           }
       }
+      previousTag.makeCurrent();
   }
 
 

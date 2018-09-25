@@ -862,6 +862,8 @@ class Session {
 
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
+        UserTag previousTag = createDebugTag("Processing Scenes");
+
         List<Player> avail = setAvailablePlayers(playersInSession);
         makeSurePlayersNotInSessionArentAvailable(playersInSession);
         resetNPCAvailability();
@@ -898,6 +900,7 @@ class Session {
                 s.renderContent(this.newScene(s.runtimeType.toString()));
             }
         }
+        previousTag.makeCurrent();
     }
 
     void processReckoning(List<Player> playerList) {
