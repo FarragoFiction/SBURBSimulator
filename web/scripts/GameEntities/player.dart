@@ -957,7 +957,7 @@ class Player extends GameEntity{
         if(unconditionallyImmortal) return false;
         bool ret = false;
         //maybe you derp died, sure. but....probably this was heroic
-        if(myKiller.villain == true && session.rand.nextDouble() > 0.3) {
+        if(myKiller != null && myKiller.villain == true && session.rand.nextDouble() > 0.3) {
             return true;
         }
 

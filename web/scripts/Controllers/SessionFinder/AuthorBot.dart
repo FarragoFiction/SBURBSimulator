@@ -42,11 +42,11 @@ abstract class AuthorBot extends SimController {
     checkEasterEgg(session);
     DateTime start = new DateTime.now();
     await session.startSession();
-    print("I think the session stopped!");
+    //print("I think the session stopped!");
     DateTime end = new DateTime.now();
 
     summarizeSession(session, end.difference(start));
-    print("I think i summarized the session!");
+   // print("I think i summarized the session!");
   }
 
   @override
@@ -80,7 +80,7 @@ abstract class AuthorBot extends SimController {
         quip += "I've seen ${window.localStorage["catTroll"]} cat trolls and it's all your fault. ";
       }
     }
-    print ("is it nepeta? ${getParameterByName("nepeta",null)}");
+    //print ("is it nepeta? ${getParameterByName("nepeta",null)}");
 
     if(sessionSummary.getBoolStat("crashedFromSessionBug")){
       quip += Zalgo.generate("Fuck. Shit crashed hardcore. It's a good thing I'm a flawless robot, or I'd have nightmares from that. Just. Fuck session crashes.  Also, shout out to star.eyes: 'His palms are sweaty, knees weak, arms are heavy. There's vomit on his sweater already, mom's spaghetti'");

@@ -210,7 +210,7 @@ class BigBadStats {
         JSONObject json = new JSONObject();
         for(String key in statsMap.keys) {
             json[key] = statsMap[key].toString();
-            print("$name json $key is ${json[key]}");
+            //print("$name json $key is ${json[key]}");
         }
         json["name"] = name;
         json["description"] = description;

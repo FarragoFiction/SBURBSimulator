@@ -409,10 +409,10 @@ class IntroNew extends IntroScene {
                 possible2.add(new PlusMinusConversationalPair(["The enemies are fucking TERRIFYING now. I regret everything. ", "I have just.... just ALL the regrets.", "It was a really fucking bad idea."], ["Okay, well, now that you're in, what's it like?","What's it like?","What about your land?", "How's the land?"],["That really fucking sucks. Is your land at least okay?","Sucks. Well, how's your land?"]));
             }else {
                 if(player.object_to_prototype.helpfulness > 0) {
-                    session.logger.info("helpful sprite");
+                    //session.logger.info("helpful sprite");
                     possible2.add(new PlusMinusConversationalPair(["Apparently it made it made my sprite into a kick ass guide.", "Made my sprite super helpful", "Made my sprite dope as fuck."], ["Cool. Okay, well, now that you're in, what's it like?", "Awesome, is your land cool, too?", "Awesome. What about your land?", "Cool. How's the land?"], ["Is your land at least okay?", "Well, how's your land?"]));
                 }else if(player.object_to_prototype.helpfulness < 0) {
-                    session.logger.info("unhelpful sprite");
+                    //session.logger.info("unhelpful sprite");
                     possible2.add(new PlusMinusConversationalPair(["Apparently it made my sprite into the most useless asshole in Paradox Space.", "Oh god, it made my sprite so fucking annoying.", "I hate ${player.object_to_prototype}s so fucking much now."], ["That sucks. Okay, well, now that you're in, what's your land like?", "Sux. What about your land?", "Lame. What about your land?", "That sucks. How's the land?"], ["You probably deserved it. I hope your land sucks, too.", "Well, how's your land?"]));
                 }else {
                     possible2.add(new PlusMinusConversationalPair(["I think it just made the enemies look like a ${player.object_to_prototype.name}.", "I have absolutely no idea.", "Dunno."], ["Okay, well, now that you're in, what's it like?", "What's it like?", "What about your land?", "How's the land?"], ["Is your land at least okay?", "Well, how's your land?"]));
