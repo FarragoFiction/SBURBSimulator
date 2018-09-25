@@ -1,5 +1,6 @@
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
+import 'dart:developer';
 import 'dart:html';
 import 'dart:async';
 import 'dart:typed_data';
@@ -262,6 +263,8 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   SessionSummary summarizeSession(Session session, Duration duration) {
     ////;
     print("summarizing: ${session}, duration is $duration");
+    UserTag previousTag = session.createDebugTag("SummarizingSession");
+
     backup = SimController.instance.storyElement.text;
     //SimController.instance.clearElement(SimController.instance.storyElement);
     //don't summarize the same session multiple times. can happen if scratch happens in reckoning, both point here.
@@ -310,6 +313,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       });
     }
     ////;
+    previousTag.makeCurrent();
     return sum;
   }
 
@@ -367,6 +371,8 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   }
 
   void printStats(List<String> filters, List<SBURBClass> classes, List<Aspect> aspects) {
+    UserTag previousTag = currentSessionForErrors.createDebugTag("PrintingStats");
+
     MultiSessionSummary mms;
     if(sessionSummariesDisplayed.isEmpty) {
       mms = new MultiSessionSummary(); //don't try to collate nothing, wont' fail gracefully like javascript did
@@ -435,6 +441,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       }
 
     }
+    previousTag.makeCurrent();
 
   }
   @override

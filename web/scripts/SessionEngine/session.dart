@@ -1,3 +1,4 @@
+import 'dart:developer';
 import "dart:html";
 import "../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../Lands/Quest.dart";
@@ -81,10 +82,13 @@ class Session {
     Set<GameEntity> _activatedNPCS = new Set<GameEntity>();
 
     List<GameEntity> get activatedNPCS {
+        UserTag previousTag = createDebugTag("ActivatingNPCs");
+
         grabActivatedBigBads();
         grabActivatedCarapaces();
         grabSpecialCases();
         //logger.info(" I think tick is $numTicks and activated npcs is $_activatedNPCS");
+        previousTag.makeCurrent();
         return new List.from(_activatedNPCS); //don't let ppl have access to original list they might mod it
     }
 
@@ -1090,6 +1094,11 @@ class Session {
         return;
     }
 
+    UserTag createDebugTag(String named) {
+        var customTag = new UserTag(named);
+        return customTag.makeCurrent();
+    }
+
     void createScenesForPlayers() {
         //;
         for(Player p in players) {
@@ -1190,6 +1199,7 @@ class Session {
     //players should be created before i start
     Future<Session> startSession() async {
         logger.info("session is starting");
+        UserTag previousTag = createDebugTag("Session$session_id");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
         changeCanonState(this,getParameterByName("canonState",null));
@@ -1209,6 +1219,8 @@ class Session {
         } else {
             load(this,players, getGuardiansForPlayers(players), "");
         }
+        previousTag.makeCurrent();
+
         return completer.future;
     }
 
@@ -1235,6 +1247,8 @@ class Session {
     }
 
     Future<Null> tick([num time]) async{
+        UserTag previousTag = createDebugTag("Ticking");
+
         this.numTicks ++;
         if(tableGuardianMode) players.clear();
         //
@@ -1260,6 +1274,7 @@ class Session {
             await window.requestAnimationFrame(tick);
         }
         //if we are doomed, we crashed, so don't do anything.
+        previousTag.makeCurrent();
     }
 
 
@@ -1315,6 +1330,7 @@ class Session {
     }
 
     void reinit(String source) {
+        UserTag previousTag = createDebugTag("reiniting");
         String parent = "";
         if(childSession != null) parent = "${childSession.session_id}";
         logger.info("DEBUG SESSION CUSTOMIZER: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
@@ -1349,7 +1365,8 @@ class Session {
         this.stats.rocksFell = false; //sessions where rocks fell screw over their scratched and yarded iterations, dunkass
         this.doomedTimelineReasons = <String>[];
         this.stats.ectoBiologyStarted = false;
-        print("at end of reinit with seed: ${rand.spawn().nextInt()}");
+        //print("at end of reinit with seed: ${rand.spawn().nextInt()}");
+        previousTag.makeCurrent();
 
     }
 

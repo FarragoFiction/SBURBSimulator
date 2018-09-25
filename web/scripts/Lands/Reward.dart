@@ -727,7 +727,7 @@ class DreamReward extends Reward {
     }
 
     void applyBubbles(Element div, Player p1, GameEntity p2, Land land) {
-        p1.session.logger.info("bubble reward");
+        //p1.session.logger.info("bubble reward");
         bgImage = "dreambubbles.png";
         String text = " The ${p1.htmlTitleBasicNoTip()} is getting used to these Dream Bubbles.";
         p1.addStat(Stats.SANITY, 2); //just a bit better.
@@ -736,7 +736,7 @@ class DreamReward extends Reward {
     }
 
     void applyHorrorTerrors(Element div, Player p1, GameEntity p2, Land land) {
-        p1.session.logger.info("terror reward");
+        //p1.session.logger.info("terror reward");
         bgImage = "horrorterror.png";
         String text = " The ${p1.htmlTitleBasicNoTip()} writhes in agony.";
         p1.corruptionLevelOther += 2; //just a bit.
