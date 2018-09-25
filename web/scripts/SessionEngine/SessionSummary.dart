@@ -521,8 +521,11 @@ class SessionSummary {
     static SessionSummary makeSummaryForSession(Session session) {
         ;
         SessionSummary summary = new SessionSummary(session.session_id);
+        //TODO turn this back on but for now testing what is fucking AB up
         summary.carapaceSummaryJSON = new CarapaceSummary(session).toJSON();
         summary.bigBadSummaryJSON = new BigBadSummary(session).toJSON();
+        //summary.carapaceSummary = new CarapaceSummary(session);
+        //summary.bigBadSummary = new BigBadSummary(session);
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         if(session.derse != null) {
