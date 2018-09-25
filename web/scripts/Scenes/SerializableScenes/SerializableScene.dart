@@ -84,7 +84,7 @@ class  SerializableScene extends Scene {
               portrait.onError.listen((e) {
                   portrait.src = "images/BigBadCards/default.gif";
               });
-              portrait.style.width = "400px";
+              portrait.style.width = "100px";
               portrait.style.backgroundColor = "grey";
               div.append(portrait);
           }
@@ -95,7 +95,7 @@ class  SerializableScene extends Scene {
               portrait.onError.listen((e) {
                   portrait.src = "images/BigBadCards/default.gif";
               });
-              portrait.style.width = "100px";
+              portrait.style.width = "300px";
               portrait.style.backgroundColor = "grey";
               div.append(portrait);
           }
