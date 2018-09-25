@@ -248,8 +248,8 @@ class Player extends GameEntity{
                 //only sauce players can use the ring
                 ret.addAll(m.fraymotifs);
             }else if(Item is MagicalItem) {
-                MagicalItem m = item as MagicalItem;
-                if(!(m is Ring) && !(m is Scepter) ) ret.addAll(m.fraymotifs);
+                //MagicalItem m = item as MagicalItem;
+                //if(!(m is Ring) && !(m is Scepter) ) ret.addAll(m.fraymotifs);
             }
         }
         return ret;

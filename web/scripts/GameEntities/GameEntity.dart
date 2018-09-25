@@ -492,7 +492,10 @@ class GameEntity extends Object with StatOwner   {
         if (this.session.rand.nextDouble() > 0.5 && !(this is Player)) return false; //don't use them all at once, dunkass. unless you are a player. fraymotifs 4 lyfe
         List<Fraymotif> usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(this, living_allies, living_enemies);
         if (crowned != null) { //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
-            usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifsMagicalItem(crowned, living_allies, living_enemies));
+            //jr from 9/25/18 says fuck no past jr, humans aren't allowed fryamotifs from teh rings/scepters.
+            if(this is Carapace || (this is Player && (this as Player).aspect == Aspects.SAUCE)){
+                usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifsMagicalItem(crowned, living_allies, living_enemies));
+            }
         }
         if (usableFraymotifs.isEmpty) return false;
         num mine = getStat(Stats.SANITY);
@@ -764,10 +767,13 @@ class GameEntity extends Object with StatOwner   {
     //will be diff for carapaces
     List<Fraymotif> get fraymotifsForDisplay {
         List<Fraymotif> ret = new List<Fraymotif>.from(fraymotifs);
-        for(Item item in sylladex) {
-            if(item is MagicalItem) {
-                MagicalItem m = item as MagicalItem;
-                if(!(m is Ring) && !(m is Scepter) ) ret.addAll(m.fraymotifs);
+        if(this is Carapace) {
+            for (Item item in sylladex) {
+                if (item is MagicalItem) {
+                    MagicalItem m = item as MagicalItem;
+                    if (!(m is Ring) && !(m is Scepter)) ret.addAll(
+                        m.fraymotifs);
+                }
             }
         }
        // ;
