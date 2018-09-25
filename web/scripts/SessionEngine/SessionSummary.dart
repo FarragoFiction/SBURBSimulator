@@ -21,8 +21,17 @@ class SessionSummary {
     static String SAVE_TAG = "SESSIONSUMMARIESCACHE";
     Duration duration;
 
+    //these two should ONLY be used by shogunbot, since aB memory leaks if she uses it
+    //(using it doesn't let her forget shit about the sessions)
     CarapaceSummary carapaceSummary;
     BigBadSummary bigBadSummary;
+
+    //AB should use these two instead, write the letter to shogunbot as she goes
+    //instead of trying to memorize every detail to write later
+    JSONObject carapaceSummaryJSON;
+    JSONObject bigBadSummaryJSON;
+
+
 
     //since stats will be hash, don't need to make junior
     int session_id = null;
@@ -175,8 +184,19 @@ class SessionSummary {
     JSONObject toJSON() {
         JSONObject json = new JSONObject();
 
-        json["carapaceSummary"] = carapaceSummary.toJSON().toString();
-        json["bigBadSummary"] = bigBadSummary.toJSON().toString();
+        if(carapaceSummary != null) {
+            json["carapaceSummary"] = carapaceSummary.toJSON().toString();
+        }else {
+            json["carapaceSummary"] = carapaceSummaryJSON.toString();
+
+        }
+
+        if(bigBadSummary != null) {
+            json["bigBadSummary"] = bigBadSummary.toJSON().toString();
+        }else {
+            json["bigBadSummary"] = bigBadSummaryJSON.toString();
+
+        }
 
         //TODO what to do about players and mini players? for now, leave off.
 
@@ -501,8 +521,8 @@ class SessionSummary {
     static SessionSummary makeSummaryForSession(Session session) {
         ;
         SessionSummary summary = new SessionSummary(session.session_id);
-        summary.carapaceSummary = new CarapaceSummary(session);
-        summary.bigBadSummary = new BigBadSummary(session);
+        summary.carapaceSummaryJSON = new CarapaceSummary(session).toJSON();
+        summary.bigBadSummaryJSON = new BigBadSummary(session).toJSON();
         summary.setMiniPlayers(session.players);
         if(session.mutator.voidField) return session.mutator.makeBullshitSummary(session, summary);
         if(session.derse != null) {
