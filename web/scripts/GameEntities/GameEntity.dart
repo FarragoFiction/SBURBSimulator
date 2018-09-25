@@ -809,6 +809,17 @@ class GameEntity extends Object with StatOwner   {
 
         ret += "</td>";
 
+        ret += "<td class = 'toolTipSection'>Companions<hr>";
+        for(GameEntity g in companionsCopy) {
+            String species  = "";
+            if(g is Leprechaun) species = "(Leprechaun)";
+            if(g is Consort) species = "(Consort)";
+            if(g is Carapace && (g as Carapace).type == Carapace.DERSE) species = "(Dersite)";
+            if(g is Carapace && (g as Carapace).type == Carapace.PROSPIT) species = "(Prospitian)";
+
+            ret += "${g.title()} $species<br>";
+        }
+
 
         ret += "</td><td class = 'toolTipSection' rowspan='2'>Sylladex<hr>";
         ret += "Specibus: ${specibus.fullNameWithUpgrade}, Rank: ${specibus.rank}<br><br>";
