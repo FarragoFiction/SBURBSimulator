@@ -84,7 +84,7 @@ class Fraymotif {
     }
 
     void copyFromJSON(JSONObject json) {
-        print("copying from json $json");
+        //print("copying from json $json");
       name = json["name"];
       tier = int.parse(json["tier"]);
       desc = json["desc"];

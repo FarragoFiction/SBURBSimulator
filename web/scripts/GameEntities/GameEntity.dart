@@ -1021,7 +1021,7 @@ class GameEntity extends Object with StatOwner   {
             ss.copyFromJSON(j);
             playerReactions.add(ss);
         }
-        print ("loaded stop mechanisms $playerReactions");
+        //print ("loaded stop mechanisms $playerReactions");
     }
 
     //players call this on intro, everything else in the grabActivatedX loops. not sure if dead session players will call this? i want them to
@@ -1063,7 +1063,7 @@ class GameEntity extends Object with StatOwner   {
         if(weirdString == null) return;
         List<dynamic> what = JSON.decode(weirdString);
         for(dynamic d in what) {
-            print("d is $d");
+            //print("d is $d");
             JSONObject j = new JSONObject();
             j.json = d;
             Fraymotif ss = new Fraymotif("",0);
@@ -1088,7 +1088,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void addSerializableScenes() {
-        session.logger.info("adding serializable scenes for $this, they are $serializableSceneStrings");
+        //session.logger.info("adding serializable scenes for $this, they are $serializableSceneStrings");
         //don't do this right nwo, but when i do it makes their ai a little harder to predict
         //serializableSceneStrings.shuffle();
         for(String s in serializableSceneStrings) {

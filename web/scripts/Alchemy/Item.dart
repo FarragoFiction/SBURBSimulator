@@ -128,7 +128,7 @@ class Item implements Comparable<Item> {
     }
 
     void copyFromJSON(JSONObject json) {
-        print("trying to load item from json $json");
+       // print("trying to load item from json $json");
         baseName = json["name"];
 
         String traitsString = json["traits"];

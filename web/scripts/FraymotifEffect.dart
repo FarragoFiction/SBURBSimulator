@@ -38,7 +38,7 @@ class FraymotifEffect {
 
 
     void copyFromJSON(JSONObject json) {
-        print("copying fraymotif effect from json $json");
+       // print("copying fraymotif effect from json $json");
         statName = Stats.byName[json["stat"]];
         target = int.parse(json["target"]);
         if(json["damageInsteadOfBuff"] == "true") {
