@@ -365,18 +365,28 @@ class Aftermath extends Scene {
         List<GameEntity> possibleTargets = new List<GameEntity>.from(session.activatedNPCS);
         //if you are not a big bad, dead or inactive, remove.
         possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
-        for(BigBad bb in possibleTargets) {
-            String text;
-            if(session.stats.gnosisEnding) {
-                text = bb.pinkFrogText;
-            }else if(session.frogStatus().contains("Purple")) {
-                text = bb.purpleFrogText;
-            }else {
-                text = bb.regularFrogText;
-            }
-            if(text != null && text.isNotEmpty) {
-                DivElement div = new DivElement()..text = text;
-                SimController.instance.storyElement.append(div);
+        bool frogIsIn = session.stats.won;
+        String status = session.frogStatus();
+        if(status == "Full Frog" || status == "Purple Frog") {
+            for (BigBad bb in possibleTargets) {
+                String text = "";
+                if (!frogIsIn) {
+                    frogIsIn = true;
+                    text = "${bb
+                        .htmlTitle()} pops the fully bred, but Playerless Frog into the Skaia hole.";
+                }
+                if (session.stats.gnosisEnding) {
+                    text = "$text ${bb.pinkFrogText}";
+                } else if (session.frogStatus().contains("Purple")) {
+                    text = "$text ${bb.purpleFrogText}";
+                } else {
+                    text = "$text ${bb.regularFrogText}";
+                }
+                if (text != null && text.isNotEmpty) {
+                    DivElement div = new DivElement()
+                        ..text = text;
+                    SimController.instance.storyElement.append(div);
+                }
             }
         }
     }
