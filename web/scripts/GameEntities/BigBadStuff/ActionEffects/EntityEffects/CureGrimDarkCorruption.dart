@@ -36,6 +36,7 @@ class CureGrimDarkCorruption extends EffectEntity {
         if(e.renderable()) renderableTargets.add(e);
         if(e is Player) e.grimDark = 0;
         e.changeGrimDark(-4);
+        if(e is Player)(e as Player).renderSelf("changeGrimDark");
     });
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
