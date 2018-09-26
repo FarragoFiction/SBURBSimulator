@@ -205,6 +205,7 @@ class Aftermath extends Scene {
         GameEntity wqowner =  session.prospitRing == null  ?  null:session.prospitRing.owner;
 
         if(session.playersHaveRings()) {
+            print("I think the players have the rings");
             if(bqowner != null) {
                 ret = "$ret The  ${session.derseRing.owner.htmlTitle()} helpfully hands over the  ${session.derseRing}.";
             }else {

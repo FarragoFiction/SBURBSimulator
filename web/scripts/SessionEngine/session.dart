@@ -1024,14 +1024,26 @@ class Session {
 
     //will this return false if either moon is destroyed??? that's weird
     bool playersHaveRings() {
-        GameEntity bqowner = derseRing == null  ?  null:derseRing.owner;
-        GameEntity wqowner =  prospitRing == null  ?  null:prospitRing.owner;
         //if a ring is destroyed, it counts as being in the forge, even if it was destroyed through dumb shit like alchemy
         //the forge is just a game mechanic
         //all the session needs is the energy from teh ring
-        if(bqowner == null || wqowner == null) return true;
-        if(bqowner == null && wqowner.alliedToPlayers) return true;
-        if(wqowner == null && bqowner.alliedToPlayers) return true;
+        GameEntity bqowner = derseRing == null  ?  null:derseRing.owner;
+        GameEntity wqowner =  prospitRing == null  ?  null:prospitRing.owner;
+        if(bqowner == null && wqowner == null) {
+            print("returning true because no one has the rings");
+            return true;
+        }
+        if(bqowner == null && wqowner.alliedToPlayers) {
+            print("returning true because the black ring is destroyed adn the white ring belongs to the players");
+            return true;
+        }
+        if(wqowner == null && bqowner.alliedToPlayers) {
+            print("returning true because the white ring is destroyed adn the black ring belongs to the players");
+
+            return true;
+        }
+        print("both rings exist, returning ${bqowner.alliedToPlayers && wqowner.alliedToPlayers}");
+
         return bqowner.alliedToPlayers && wqowner.alliedToPlayers;
     }
 
