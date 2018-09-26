@@ -1246,7 +1246,7 @@ class GameEntity extends Object with StatOwner   {
             }
         }
         String bb = "";
-        if(killer != null && !villain) bb = killer.makeBigBad();
+        if(killer != null && !villain && killer != this) bb = killer.makeBigBad();
         return "${htmlTitle()} is dead. $looting $bb";
     }
 

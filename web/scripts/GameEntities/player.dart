@@ -351,7 +351,8 @@ class Player extends GameEntity{
         }
 
         String bb = "";
-        if(killer != null && !villain) bb = killer.makeBigBad();
+        //no you can't be a villain for dying randomly or killing yourself
+        if(killer != null && !villain && killer != this) bb = killer.makeBigBad();
 
         return "$ret $looting $bb";
     }
