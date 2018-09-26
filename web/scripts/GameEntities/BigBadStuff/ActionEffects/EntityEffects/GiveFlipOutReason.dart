@@ -11,7 +11,7 @@ class GiveFlipOutReason extends EffectEntity {
     @override
     String importantWord = "";
     @override
-    String name = "GiveExtraTitle";
+    String name = "GiveFlipOutReason";
     GiveFlipOutReason(SerializableScene scene) : super(scene);
 
 
