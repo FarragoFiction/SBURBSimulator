@@ -239,7 +239,7 @@ class ConsortReward extends Reward {
             text = text.replaceAll("${Reward.PLAYER2}", "${(p2 as Player).htmlTitleBasicNoTip()}");
         }
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
-        p1.session.logger.info("AB: Consort reward.");
+       // p1.session.logger.info("AB: Consort reward.");
         super.apply(div, p1, p2, land,text);
     }
 }
@@ -395,7 +395,7 @@ class SpecificCarapaceReward extends Reward {
             p1.session.logger.info("AB: The Carapace ($carapace that should have been triggered by this is dead.");
             text = "The ${p1.htmlTitle()} gets the strangest feeling that something more should be happening now.";
         }else {
-            p1.session.logger.info("AB: A Carapace ($carapace) joins in response to a quest.");
+            //p1.session.logger.info("AB: A Carapace ($carapace) joins in response to a quest.");
 
             text = " The ${p1.htmlTitle()} attracts the attention of a ${carapace.htmlTitle()}. They decide they like the cut of the ${p1.htmlTitle()}'s jib and agree to tag along.";
             if(carapace.partyLeader != null){

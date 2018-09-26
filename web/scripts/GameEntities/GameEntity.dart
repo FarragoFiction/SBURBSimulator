@@ -453,7 +453,7 @@ class GameEntity extends Object with StatOwner   {
     //this won't be called if I CAN'T take a turn because i participated in fraymotif
     void takeTurn(Element div, Team mySide, List<Team> enemyTeams) {
         if (usedFraymotifThisTurn) {
-            session.logger.info("${title()} already participated in a fraymotif this turn");
+            //session.logger.info("${title()} already participated in a fraymotif this turn");
             return; //already did an attack.
         }
         if (mySide.absconded.contains(this)) {

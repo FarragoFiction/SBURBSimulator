@@ -113,7 +113,6 @@ class SessionSummary {
     }
 
     static void clearCache() {
-        window.localStorage[SAVE_TAG] = null;
         window.localStorage.remove(SAVE_TAG);
     }
 

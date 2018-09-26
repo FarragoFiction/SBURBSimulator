@@ -21,7 +21,7 @@ class SeekScepter extends Scene {
 
 
       gameEntity.available = false;
-      session.logger.info("$gameEntity is seeking the scepter.");
+      //session.logger.info("$gameEntity is seeking the scepter.");
       DivElement me = new DivElement();
       me.setInnerHtml(getText());
       div.append(me);
@@ -42,7 +42,7 @@ class SeekScepter extends Scene {
         if(gameEntity.getStat(Stats.POWER) > target.getStat(Stats.HEALTH)) {
             //should auto loot
             target.makeDead("being assasinated by ${gameEntity.title()}", gameEntity);
-            session.logger.info("AB: A scepter was assasinated from a target.");
+            //session.logger.info("AB: A scepter was assasinated from a target.");
             return "The ${oldName} sneaks up behind the ${targetOldName} and assasinates them! They pull the $scepter off their still twitching finger. They are now the ${gameEntity.title()}!";
         }else {
             return "The ${oldName} wants the $scepter, they start a strife with the the ${targetOldName}!${prepareStrife()}";
@@ -54,7 +54,7 @@ class SeekScepter extends Scene {
         double rollValueHigh = gameEntity.rollForLuck(Stats.MAX_LUCK);
         if(rollValueHigh <300) {
             gameEntity.sylladex.add(scepter);
-            session.logger.info("AB: A scepter was stolen from a target.");
+            //session.logger.info("AB: A scepter was stolen from a target.");
             return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $scepter and equip it! They are now the ${gameEntity.title()}! ";
         }else if(rollValueLow < -300) {
             return "The ${oldName} tries to pickpocket the $scepter from the ${targetOldName}, but get caught! The ${targetOldName} decides to Strife them!${prepareStrife()}";
@@ -68,7 +68,7 @@ class SeekScepter extends Scene {
         Relationship theirRelationship = target.getRelationshipWith(gameEntity);
         if(theirRelationship != null && theirRelationship.value >10) {
             gameEntity.sylladex.add(scepter);
-            session.logger.info("AB: A scepter was given from a target.");
+            //session.logger.info("AB: A scepter was given from a target.");
             return "The ${oldName} politely approaches the ${targetOldName} and asks for the $scepter. To everyone's surprise, the ${targetOldName} hands it over.  The ${oldName} is now the ${gameEntity.title()}! ";
         }else if(theirRelationship != null && theirRelationship.value < -10){
             return "The ${oldName} has the audacity to just waltz right up to the ${targetOldName} and demand the $scepter. We are unsurprised that the ${targetOldName} is offended enough to strife. ${prepareStrife()}";
@@ -80,7 +80,7 @@ class SeekScepter extends Scene {
     String tryFinding() {
         //always works, but really hard to trigger
         gameEntity.sylladex.add(scepter);
-        session.logger.info("AB: A scepter was just found out of nowhere.");
+        //session.logger.info("AB: A scepter was just found out of nowhere.");
 
         return "The ${oldName} trips over practically nothing and somehow finds the $scepter !? The  ${targetOldName} must have lost it. The ${oldName} is now the ${gameEntity.title()}. It's really kind of weird and anti-climatic. Oh well.";
 
