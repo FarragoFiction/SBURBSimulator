@@ -68,8 +68,13 @@ class TargetIsFlippingOutAbout extends TargetConditionLiving {
     bool conditionForFilter(GameEntity item) {
         bool ret = true; //reject if not player
         if(item is Player) {
-            ret = !item.flipOutReason.toLowerCase().contains(importantWord.toLowerCase());
-            //print("item is $item and does it NOT contain $importantWord? $ret  (which will be flipped: $not)");
+            if(item.flipOutReason != null) {
+                ret = !item.flipOutReason.toLowerCase().contains(
+                    importantWord.toLowerCase());
+            }else {
+                ret = true; //flipping out about nothing
+            }
+            //print("item is $item and is flipping out about ${item.flipOutReason} which is maybe $importantWord? $ret  (which will be flipped: $not)");
         }
         return ret;
     }
