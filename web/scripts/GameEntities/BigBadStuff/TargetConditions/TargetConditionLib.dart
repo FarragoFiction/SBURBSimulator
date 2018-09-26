@@ -9,6 +9,8 @@ export "EntityTargetConditions/TargetEntityNameContains.dart";
 export "EntityTargetConditions/TargetEntitySpriteNameContains.dart";
 export "EntityTargetConditions/TargetEntityLandContains.dart";
 export "EntityTargetConditions/TargetExtraTitle.dart";
+export "EntityTargetConditions/TargetIsFlippingOutAbout.dart";
+
 export "EntityTargetConditions/TargetHasScene.dart";
 export "EntityTargetConditions/TargetIsPassivePlayer.dart";
 export "EntityTargetConditions/TargetIsActivePlayer.dart";
