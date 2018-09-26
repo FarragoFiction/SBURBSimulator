@@ -561,6 +561,8 @@ class BigBadForm {
 
         DivElement subContainer = new DivElement();
         DivElement nameLabel = new DivElement();
+        AnchorElement templateCreator = new AnchorElement(href:"GameEntityCreation.html")..text = "Make Template Here"..target="_blank";
+        subContainer.append(templateCreator);
         nameLabel.text = "Load Template (optional, for stats, items and fraymotifs):";
         TextAreaElement templateEle = new TextAreaElement();
         templateEle.value = "N/A";
