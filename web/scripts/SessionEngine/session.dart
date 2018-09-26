@@ -1030,20 +1030,19 @@ class Session {
         GameEntity bqowner = derseRing == null  ?  null:derseRing.owner;
         GameEntity wqowner =  prospitRing == null  ?  null:prospitRing.owner;
         if(bqowner == null && wqowner == null) {
-            print("returning true because no one has the rings");
+            //print("returning true because no one has the rings");
             return true;
         }
         if(bqowner == null && wqowner.alliedToPlayers) {
-            print("returning true because the black ring is destroyed adn the white ring belongs to the players");
+            //print("returning true because the black ring is destroyed adn the white ring belongs to the players");
             return true;
         }
         if(wqowner == null && bqowner.alliedToPlayers) {
-            print("returning true because the white ring is destroyed adn the black ring belongs to the players");
-
+            //print("returning true because the white ring is destroyed adn the black ring belongs to the players");
             return true;
         }
-        print("both rings exist, returning ${bqowner.alliedToPlayers && wqowner.alliedToPlayers}");
-
+        //if we got here, either NEITHER are null, or ONE IS NULL and the OTHER IS AN ENEMY
+        if(bqowner == null || wqowner == null) return false;
         return bqowner.alliedToPlayers && wqowner.alliedToPlayers;
     }
 
