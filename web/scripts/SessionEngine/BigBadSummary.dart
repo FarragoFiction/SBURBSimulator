@@ -119,10 +119,13 @@ class BigBadStats {
     Element makePortrait() {
         DivElement div = new DivElement();
         div.classes.add("cardPortraitBG");
-        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${name.toLowerCase().replaceAll(" ", "_")}.png");
+        String extension = ".png";
+        if(name.contains("Lord English")) extension = ".gif";
+        ImageElement portrait = new ImageElement(src: "images/BigBadCards/${name.toLowerCase().replaceAll(" ", "_")}_card$extension");
         div.style.backgroundImage = "url(images/BigBadCards/white.png)";
 
         portrait.onError.listen((e) {
+            print("couldn't find ${portrait.src}");
             portrait.src = "images/BigBadCards/default.gif";
         });
 

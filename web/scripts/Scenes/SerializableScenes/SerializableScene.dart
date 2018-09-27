@@ -78,9 +78,11 @@ class  SerializableScene extends Scene {
 
       if(gameEntity is Carapace) {
           if(!doNotRender) {
+              String extension = ".png";
+              if(gameEntity.name.contains("Lord English")) extension = ".gif";
               ImageElement portrait = new ImageElement(
                   src: "images/BigBadCards/${(gameEntity as Carapace).initials
-                      .toLowerCase()}.png");
+                      .toLowerCase()}$extension");
               portrait.onError.listen((e) {
                   portrait.src = "images/BigBadCards/default.gif";
               });
@@ -90,7 +92,9 @@ class  SerializableScene extends Scene {
           }
       }else if(gameEntity is BigBad) {
           if(!doNotRender) {
-              ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}.png");
+              String extension = ".png";
+              if(gameEntity.name.contains("Lord English")) extension = ".gif";
+              ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}$extension");
 
               portrait.onError.listen((e) {
                   portrait.src = "images/BigBadCards/default.gif";

@@ -21,9 +21,11 @@ class SummonScene extends SerializableScene {
         }
         intro.setInnerHtml("<h1>All tremble at the arrival of ${gameEntity.name}. $debug <br>");
         if(!doNotRender) {
+            String extension = ".png";
+            if(gameEntity.name.contains("Lord English")) extension = ".gif";
             ImageElement portrait = new ImageElement(
                 src: "images/BigBadCards/${gameEntity.name.toLowerCase()
-                    .replaceAll(" ", "_")}_entrance.png");
+                    .replaceAll(" ", "_")}_entrance$extension");
             portrait.onError.listen((e) {
                 portrait.src = "images/BigBadCards/default.gif";
             });
