@@ -429,7 +429,7 @@ abstract class TargetConditionLand extends TargetCondition {
       ret.add(new TargetHPIs(scene));
       ret.add(new TargetIsProspit(scene));
       ret.add(new TargetIsInSessionXLand(scene));
-      ret.add(new TargetIsInSessionXMultipleLand(scene));
+      ret.add(new TargetIsInSessionMultipleXLand(scene));
 
       ret.add(new TargetIsDerse(scene));
       ret.add(new TargetIsRandomLand(scene));

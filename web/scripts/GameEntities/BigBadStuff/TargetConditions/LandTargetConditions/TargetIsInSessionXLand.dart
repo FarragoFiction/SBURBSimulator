@@ -2,7 +2,7 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class TargetIsInSessionXLand extends TargetConditionLiving {
+class TargetIsInSessionXLand extends TargetConditionLand {
     @override
     String name = "SessionSeedIsLand";
     InputElement input;
@@ -62,7 +62,7 @@ class TargetIsInSessionXLand extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(Land item) {
         return scene.session.session_id != importantInt;
 
     }
