@@ -75,6 +75,9 @@ export "EntityTargetConditions/TargetHasGodDestiny.dart";
 export "EntityTargetConditions/TargetIsMurderMode.dart";
 export "LandTargetConditions/TargetIsNotDestroyed.dart";
 export "LandTargetConditions/TargetIsMoon.dart";
+export "LandTargetConditions/TargetIsInSessionXLand.dart";
+export "LandTargetConditions/TargetIsInSessionMultipleXLand.dart";
+
 export "LandTargetConditions/TargetIsProspit.dart";
 export "LandTargetConditions/TargetIsDerse.dart";
 export "EntityTargetConditions/TargetIsRandom.dart";
