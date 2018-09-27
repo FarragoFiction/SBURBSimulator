@@ -342,6 +342,7 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsUnconditionallyImmortal(scene));
       ret.add(new TargetIsRandom(scene));
       ret.add(new TargetIsFromSessionWithABStat(scene));
+      ret.add(new TargetIsInSessionX(scene));
       ret.add(new TargetIsCompanion(scene));
       ret.add(new TargetHasCompanions(scene));
       ret.add(new TargetEntityHasCompanionNamed(scene));
