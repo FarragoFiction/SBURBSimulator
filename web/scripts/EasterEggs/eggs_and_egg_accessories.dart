@@ -1013,6 +1013,7 @@ void session420(Session session){
 void session13(Session session) {
     session.mutator.metaHandler.initalizePlayers(session,true);
 	session.players = new List<Player>.from(session.mutator.metaHandler.metaPlayers); //just blow them away.
+	session.players.remove(session.mutator.metaHandler.feudalUltimatum);//shogun said to do this
     //will this be enough to get shogun in?
     if(session.aliensClonedOnArrival.isNotEmpty) {
     	//window.alert("adding shogun");
