@@ -1201,8 +1201,9 @@ class GameEntity extends Object with StatOwner   {
     String makeBigBad() {
         String reason = "";
         if(unconditionallyImmortal) {
-            reason = " because if they don't stop them, who will?";
-            villain = true;
+            //turning this off cuz it happens too much
+           // reason = " because if they don't stop them, who will?";
+            //villain = true;
         }else if(landKillCount >=1 ) {
             reason = "because you can't just go around blowing up planets!";
             villain = true;
