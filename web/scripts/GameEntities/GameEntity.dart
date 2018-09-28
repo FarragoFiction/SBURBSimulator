@@ -1214,8 +1214,9 @@ class GameEntity extends Object with StatOwner   {
             reason = "because npc victims or not, the ${htmlTitle()} is on a murderous rampage. ";
             villain = true;
         }else if(getStat(Stats.POWER) > 13000 * Stats.POWER.average(session.players) && session.players.length > 2 ) {
-            reason = "because no one being should have all that power and use it to kill."; //hums along
-            villain = true;
+            //turning this off cuz its actually a bit op
+            //reason = "because no one being should have all that power and use it to kill."; //hums along
+            //villain = true;
         }
 
         if(!reason.isEmpty) {
