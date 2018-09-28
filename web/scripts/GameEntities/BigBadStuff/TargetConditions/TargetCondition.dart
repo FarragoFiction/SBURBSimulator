@@ -383,15 +383,15 @@ abstract class TargetConditionLand extends TargetCondition {
   TargetConditionLand(SerializableScene scene) : super(scene);
 
 
-  bool conditionForFilter(Land item);
+  bool conditionForFilter(Land item, Set<GameEntity> entities);
 
 
-  List<Land> filter(List<Land> list) {
+  List<Land> filter(List<Land> list, Set<GameEntity> entities) {
       if(not) {
-          list.removeWhere((Land item) => !conditionForFilter(item));
+          list.removeWhere((Land item) => !conditionForFilter(item, entities));
 
       }else {
-          list.removeWhere((Land item) => conditionForFilter(item));
+          list.removeWhere((Land item) => conditionForFilter(item,entities));
       }
       return list;
   }

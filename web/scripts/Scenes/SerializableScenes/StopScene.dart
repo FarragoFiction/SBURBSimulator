@@ -42,7 +42,7 @@ class StopScene extends SerializableScene {
 
 
         for(TargetConditionLand tc in triggerConditionsLand) {
-            landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets)));
+            landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets), livingTargets));
         }
         if(triggerConditionsLand.isEmpty) landTargets.clear();
         //even if you have land targets, NEED to target the original owner

@@ -67,7 +67,7 @@ class TargetNameContains extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         bool ret = !item.name.toLowerCase().contains(importantWord.toLowerCase());
         //print("item is $item and does it NOT contain $importantWord? $ret  (which will be flipped: $not)");
         return ret;

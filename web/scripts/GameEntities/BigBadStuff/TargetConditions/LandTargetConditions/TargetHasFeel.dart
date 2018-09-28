@@ -130,7 +130,7 @@ class TargetHasFeel extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land land) {
+    bool conditionForFilter(Land land,List<GameEntity> entities) {
         //remember if you have the feature, return false;
             if(feature is AmbianceFeature) {
                 if(land.feels.contains(feature)) return false;

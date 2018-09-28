@@ -44,7 +44,7 @@ class TargetIsProspit extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         return item != scene.session.prospit;
     }
 }

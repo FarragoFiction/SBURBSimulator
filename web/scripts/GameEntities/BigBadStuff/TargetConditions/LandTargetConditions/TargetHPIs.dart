@@ -119,7 +119,7 @@ class TargetHPIs extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         if(importantWord == GREATER) {
             if(item.hp > importantInt) return false;
         }else if(importantWord == LESSER) {

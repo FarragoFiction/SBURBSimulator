@@ -131,7 +131,7 @@ class TargetHasSound extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land land) {
+    bool conditionForFilter(Land land,List<GameEntity> entities) {
         //remember if you have the feature, return false;
         if(feature is SoundFeature) {
             if(land.sounds.contains(feature)) return false;

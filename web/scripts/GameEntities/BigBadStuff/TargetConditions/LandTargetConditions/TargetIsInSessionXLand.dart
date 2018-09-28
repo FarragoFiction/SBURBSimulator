@@ -62,7 +62,7 @@ class TargetIsInSessionXLand extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         return scene.session.session_id != importantInt;
 
     }

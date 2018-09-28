@@ -44,7 +44,7 @@ class TargetFirstQuestsComplete extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         return !item.firstCompleted;
     }
 }

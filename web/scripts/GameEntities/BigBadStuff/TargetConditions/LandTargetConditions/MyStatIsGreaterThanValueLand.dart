@@ -121,7 +121,7 @@ class MyStatIsGreaterThanValueLand extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         Stat stat = Stats.byName[importantWord];
         return !(scene.gameEntity.getStat(stat) > importantInt);
     }

@@ -56,5 +56,6 @@ export "LandEffects/MarkFinalQuestsAsCompleteForLand.dart";
 export "LandEffects/MarkFirstQuestsAsCompleteforLand.dart";
 export "LandEffects/MakeConsortsInto.dart";
 export "LandEffects/MakeLandNamed.dart";
+export "LandEffects/MakeLandNamedStartWith.dart";
 export "LandEffects/Corrupt.dart";
 export "LandEffects/ChangeLandHealth.dart";

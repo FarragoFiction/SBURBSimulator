@@ -347,7 +347,7 @@ void syncForm() {
          if(session.prospit.queen != null && !livingTargets.contains(session.prospit.queen)) livingTargets.add(session.prospit.queen);
           if(session.prospit.king != null && !livingTargets.contains(session.prospit.king)) livingTargets.add(session.prospit.king);
       }
-      //TODO should i also get party members for those npcs? otherwise can't get brain ghosts and robots and the like
+
       for(Player p in session.players) {
             if(p.active) {
                 livingTargets.add(p);
@@ -370,7 +370,7 @@ void syncForm() {
 
 
       for(TargetConditionLand tc in triggerConditionsLand) {
-          landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets)));
+          landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets), livingTargets));
       }
       if(triggerConditionsLand.isEmpty) landTargets.clear();
 

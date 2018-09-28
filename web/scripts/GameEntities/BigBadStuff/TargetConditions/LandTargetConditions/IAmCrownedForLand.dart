@@ -45,7 +45,7 @@ class IAmCrownedForLand extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         return scene.gameEntity.crowned == null;
     }
 }

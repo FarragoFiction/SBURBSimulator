@@ -130,7 +130,7 @@ class TargetHasConsort extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land land) {
+    bool conditionForFilter(Land land,List<GameEntity> entities) {
         //remember if you have the feature, return false;
         if (feature is ConsortFeature) {
             if(land.consortFeature == feature) return false;

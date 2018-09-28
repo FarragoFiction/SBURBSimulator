@@ -104,7 +104,7 @@ class TargetIsFromSessionWithABStatForLand extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land item) {
+    bool conditionForFilter(Land item,Set<GameEntity> entities) {
         SessionSummary sessionSummary = item.session.generateSummary();
         return sessionSummary.bool_stats[importantWord] != true;
     }
