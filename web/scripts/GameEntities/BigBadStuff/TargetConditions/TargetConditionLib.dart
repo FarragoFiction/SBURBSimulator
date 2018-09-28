@@ -90,6 +90,8 @@ export "LandTargetConditions/TargetHasSmell.dart";
 export "LandTargetConditions/MyStatIsGreaterThanValueLand.dart";
 export "LandTargetConditions/TargetHasSound.dart";
 export "LandTargetConditions/TargetIsMyLand.dart";
+export "LandTargetConditions/TargetIsAnyTargetEntititesLand.dart";
+
 export "LandTargetConditions/TargetHPIs.dart";
 export "LandTargetConditions/TargetLandSessionHealthGreaterThan.dart";
 export "LandTargetConditions/TargetDenizenQuestsComplete.dart";
