@@ -45,7 +45,9 @@ class TargetIsAnyTargetEntititesLand extends TargetConditionLand {
     @override
     bool conditionForFilter(Land item,Set<GameEntity> entities) {
         for(GameEntity e in entities) {
+            print("is the targeted entity $e on the land $item?");
             if(item.associatedEntities.contains(e)) {
+                print("yes");
                 return false; //found the target. eye lens flare ensues
             }
         }

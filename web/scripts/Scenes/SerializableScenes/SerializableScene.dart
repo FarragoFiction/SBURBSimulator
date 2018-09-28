@@ -370,7 +370,7 @@ void syncForm() {
 
 
       for(TargetConditionLand tc in triggerConditionsLand) {
-          landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets), livingTargets));
+          landTargets = new Set<Land>.from(tc.filter(new List<Land>.from(landTargets), finalLivingTargets));
       }
       if(triggerConditionsLand.isEmpty) landTargets.clear();
 
