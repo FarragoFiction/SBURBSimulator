@@ -50,7 +50,7 @@ class TargetIsInSessionX extends TargetConditionLiving {
 
     @override
     void syncFormToMe() {
-        input.value = importantWord;
+        input.value = "$importantInt";
         syncFormToNotFlag();
     }
 

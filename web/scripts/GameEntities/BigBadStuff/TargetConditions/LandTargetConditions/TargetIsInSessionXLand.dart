@@ -50,7 +50,7 @@ class TargetIsInSessionXLand extends TargetConditionLand {
 
     @override
     void syncFormToMe() {
-        input.value = importantWord;
+        input.value = "$importantInt";
         syncFormToNotFlag();
     }
 
