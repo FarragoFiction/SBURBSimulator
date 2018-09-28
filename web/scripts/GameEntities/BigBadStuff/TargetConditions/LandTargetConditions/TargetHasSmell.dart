@@ -133,7 +133,7 @@ class TargetHasSmell extends TargetConditionLand {
     }
 
     @override
-    bool conditionForFilter(Land land,List<GameEntity> entities) {
+    bool conditionForFilter(Land land,Set<GameEntity> entities) {
         //remember if you have the feature, return false;
         if(feature is SmellFeature) {
             if(land.smells.contains(feature)) return false;
