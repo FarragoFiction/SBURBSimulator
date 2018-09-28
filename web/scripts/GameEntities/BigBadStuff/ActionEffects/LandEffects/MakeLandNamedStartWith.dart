@@ -47,7 +47,7 @@ class MakeLandNamedStartWith extends EffectLand {
   @override
   void effectLands(List<Land> entities) {
     entities.forEach((Land e) {
-        print("making targeted land $e have a new name part $importantWord");
+       // print("making targeted land $e have a new name part $importantWord");
         e.name = "${importantWord} ${e.name}";
     });
   }
