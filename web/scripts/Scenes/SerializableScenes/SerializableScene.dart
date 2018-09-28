@@ -76,11 +76,13 @@ class  SerializableScene extends Scene {
       div.append(myElement);
       myElement.setInnerHtml("$displayText");
 
+      ImageElement portrait;
+
       if(gameEntity is Carapace) {
           if(!doNotRender) {
               String extension = ".png";
               if(gameEntity.name.contains("Lord English")) extension = ".gif";
-              ImageElement portrait = new ImageElement(
+              portrait = new ImageElement(
                   src: "images/BigBadCards/${(gameEntity as Carapace).initials
                       .toLowerCase()}$extension");
               portrait.onError.listen((e) {
@@ -94,7 +96,7 @@ class  SerializableScene extends Scene {
           if(!doNotRender) {
               String extension = ".png";
               if(gameEntity.name.contains("Lord English")) extension = ".gif";
-              ImageElement portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}$extension");
+              portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}$extension");
 
               portrait.onError.listen((e) {
                   portrait.src = "images/BigBadCards/default.gif";
@@ -107,6 +109,18 @@ class  SerializableScene extends Scene {
 
       doEffects(); //automatic
       doAction(); //specific to subclass
+      if(gameEntity.name == "Lawgun") {
+          if(!doNotRender) {
+              String extension = ".png";
+              if(gameEntity.name.contains("Lord English")) extension = ".gif";
+              portrait.src = "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}$extension";
+
+              portrait.onError.listen((e) {
+                  portrait.src = "images/BigBadCards/default.gif";
+              });
+
+          }
+      }
       //ANY SUB CLASSES ARE RESPONSIBLE FOR RENDERING CANVAS SHIT HERE, SO THEY CALL SUPER, THEN DO CANVAS
   }
 
