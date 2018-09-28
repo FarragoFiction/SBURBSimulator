@@ -28,6 +28,7 @@ export "EntityEffects/MarkFirstQuestsAsComplete.dart";
 export "EntityEffects/MarkDenizenQuestsAsComplete.dart";
 export "EntityEffects/MarkFinalQuestsAsComplete.dart";
 export "EntityEffects/GiveAction.dart";
+export "EntityEffects/RenameTarget.dart";
 export "EntityEffects/MakeInactive.dart";
 export "EntityEffects/MakeMortal.dart";
 export "EntityEffects/MakeUnconditionallyImmortal.dart";

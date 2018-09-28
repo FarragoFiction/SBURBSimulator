@@ -242,6 +242,7 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new MakeGodDestined(scene));
       ret.add(new MakeUnGodDestined(scene));
       ret.add(new MakeBusy(scene));
+      ret.add(new RenameTarget(scene));
       ret.add(new GiveExtraTitle(scene));
       ret.add(new GiveFlipOutReason(scene));
       ret.add(new MakeGodTier(scene));
