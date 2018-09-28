@@ -659,9 +659,9 @@ class DreamReward extends Reward {
     void applyProspit(Element div, Player p1, GameEntity p2, Land land) {
        // p1.session.logger.info("getting random carapace for prospit reward");
         bgImage = "Prospit.png";
-        if(p1.session.derse.name.toLowerCase().contains("sauce")){
+        if(p1.session.prospit.name.toLowerCase().contains("sauce")){
             bgImage = "saucemoon.png";
-        }else if(p1.session.derse.name.toLowerCase() != "prospit") {
+        }else if(p1.session.prospit.name.toLowerCase() != "prospit") {
             bgImage = "unknownmoon.png";
         }
         //but if they start up a SHENANIGAN we'll want custom text here.
