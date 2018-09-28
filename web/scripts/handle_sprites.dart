@@ -985,6 +985,10 @@ abstract class Drawing {
             ctx.drawImage(img, 0, 0);
         }catch(e) {
             String imageString = "unknownmoon.png";
+
+            if(player.moon.name.toLowerCase().contains("sauce")) {
+                imageString = "saucemoon.png";
+            }
             addImageTag(imageString);
             ImageElement img = imageSelector(imageString);
             ctx.drawImage(img, 0, 0);
