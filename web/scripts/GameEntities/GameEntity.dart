@@ -245,7 +245,7 @@ class GameEntity extends Object with StatOwner   {
 
     void handleAddingNewScenes() {
         if(scenesToAdd.isNotEmpty) {
-            print("adding $scenesToAdd to $this");
+            //print("adding $scenesToAdd to $this");
             scenes.insertAll(0,scenesToAdd);
             scenesToAdd.clear();
         }
@@ -1048,7 +1048,7 @@ class GameEntity extends Object with StatOwner   {
             //please don't try to defeat yourself.
             if(p!=this) {
                 for(StopScene ss in playerReactions) {
-                    print("giving player $p the stop reaction $ss");
+                   // print("giving player $p the stop reaction $ss");
                     ss.gameEntity = p;
                     p.scenesToAdd.add(ss);
                 }
