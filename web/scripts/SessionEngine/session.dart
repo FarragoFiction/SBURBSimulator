@@ -891,7 +891,7 @@ class Session {
                 //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
                 p.processScenes();
             }else {
-                handleAddingNewScenes();
+                p.handleAddingNewScenes();
             }
         }
         
