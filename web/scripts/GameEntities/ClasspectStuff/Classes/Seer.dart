@@ -59,7 +59,7 @@ class Seer extends SBURBClass {
     @override
     void initializeItems() {
         items = new WeightedList<Item>()
-            ..add(new Item("Cueball",<ItemTrait>[ItemTraitFactory.BALL,ItemTraitFactory.PORCELAIN, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.BLUNT,ItemTraitFactory.SENTIENT,ItemTraitFactory.LEGENDARY],shogunDesc: "A Worthless White Ball",abDesc:"Don't listen to this asshole."))
+            ..add(new Item("Cueball",<ItemTrait>[ItemTraitFactory.CUEBALL, ItemTraitFactory.CLASSRELATED],shogunDesc: "A Worthless White Ball",abDesc:"Don't listen to this asshole."))
             ..add(new Item("Crystal Ball",<ItemTrait>[ItemTraitFactory.BALL,ItemTraitFactory.CRYSTALBALL, ItemTraitFactory.CLASSRELATED,ItemTraitFactory.GLOWING],shogunDesc: "A Worthless Clear Ball",abDesc:"Seer shit."))
             ..add(new Item("Binoculars",<ItemTrait>[ItemTraitFactory.GLASS, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.METAL],shogunDesc: "Long Distance Perversion Apparatus",abDesc:"Seer shit."))
              ..add(new Item("Blindfold",<ItemTrait>[ItemTraitFactory.BLINDFOLDED, ItemTraitFactory.CLASSRELATED, ItemTraitFactory.COMFORTABLE],shogunDesc: "Long Distance Perversion Apparatus",abDesc:"May as well skip the whole 'going blind' part of the deal."));

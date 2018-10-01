@@ -471,6 +471,7 @@ class ItemTraitFactory {
   static CombinedTrait GOLDEN;
   static CombinedTrait PLATINUM;
   static CombinedTrait HORSESHOE;
+  static CombinedTrait CUEBALL;
   static CombinedTrait FELT;
   static CombinedTrait GRANITE;
   static CombinedTrait MARBLE;
@@ -1079,7 +1080,7 @@ class ItemTraitFactory {
     new CombinedTrait("Robe",<String>["Robe"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,CLOTH,SMART, MAGICAL, COMFORTABLE]);
     new CombinedTrait("Beret",<String>["Beret"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[LEGENDARY,CLOTH,SMART, PRETTY, CLASSY]);
     new CombinedTrait("Blank",<String>["Blank"], 0.0,ItemTrait.CONDITION, <ItemTrait>[LEGENDARY,PAPER,SMART, BOOK, SMART, OBSCURING]);
-    new CombinedTrait("Cueball",<String>["Cueball"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LEGENDARY,PRETTY,CERAMIC, BLUNT, BALL, SENTIENT]);
+    CUEBALL = new CombinedTrait("Cueball",<String>["Cueball"], 0.0,ItemTrait.MATERIAL, <ItemTrait>[LEGENDARY,PRETTY,CERAMIC, BLUNT, BALL, SENTIENT]);
     new CombinedTrait("Meddler's",<String>["Meddler's"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[LEGENDARY,BOOK,PAPER, ENRAGING, HEALING]);
     new CombinedTrait("Scroll",<String>["Scroll"], 0.0,ItemTrait.ORIGIN, <ItemTrait>[MAGICAL,PAPER]);
     new CombinedTrait("Tome",<String>["Tome"], 0.0,ItemTrait.PURPOSE, <ItemTrait>[PAPER,SMART,BOOK]);
