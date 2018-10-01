@@ -890,6 +890,8 @@ class Session {
             if(p.active && p.available && !p.dead) {
                 //querySelector("#story").appendHtml("$p is both active and available and this is going through session.");
                 p.processScenes();
+            }else {
+                handleAddingNewScenes();
             }
         }
         

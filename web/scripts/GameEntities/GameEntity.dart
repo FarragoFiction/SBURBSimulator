@@ -238,9 +238,17 @@ class GameEntity extends Object with StatOwner   {
 
         //otherwise will get conconrrent modification error. put at front, new things are important and shiny
        // if(scenesToAdd.isNotEmpty) print("TEST RECKONING: adding ${scenesToAdd.length} scenes to $this");
-        scenes.insertAll(0,scenesToAdd);
-        scenesToAdd.clear();
+        handleAddingNewScenes();
+
         previousTag.makeCurrent();
+    }
+
+    void handleAddingNewScenes() {
+        if(scenesToAdd.isNotEmpty) {
+            print("adding $scenesToAdd to $this");
+            scenes.insertAll(0,scenesToAdd);
+            scenesToAdd.clear();
+        }
     }
 
 
@@ -457,7 +465,7 @@ class GameEntity extends Object with StatOwner   {
             return; //already did an attack.
         }
         if (mySide.absconded.contains(this)) {
-            session.logger.info("${title()} already absconded, can't take a turn");
+            //session.logger.info("${title()} already absconded, can't take a turn");
             return;
         }
         //if still dead, return, can't do anything.
@@ -1034,11 +1042,13 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void applyStopMechanisms() {
+        print("looking for stop mechanisms to apply, found $playerReactions");
         if(playerReactions.isEmpty) return;
         for(Player p in session.players) {
             //please don't try to defeat yourself.
             if(p!=this) {
                 for(StopScene ss in playerReactions) {
+                    print("giving player $p the stop reaction $ss");
                     ss.gameEntity = p;
                     p.scenesToAdd.add(ss);
                 }
