@@ -68,6 +68,6 @@ class TargetEntitySpecibusNameContains extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
-        return !(item.specibus.baseName.toLowerCase().contains(importantWord.toLowerCase()));
+        return !(item.specibus.fullName.toLowerCase().contains(importantWord.toLowerCase()));
     }
 }

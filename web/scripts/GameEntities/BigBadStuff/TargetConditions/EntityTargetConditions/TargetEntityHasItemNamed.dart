@@ -69,7 +69,7 @@ class TargetEntityHasItemNamed extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         for(Item actualItem in item.sylladex) {
-            if(actualItem.baseName.toLowerCase().contains(
+            if(actualItem.fullName.toLowerCase().contains(
                 importantWord.toLowerCase())) return false;
         }
         return true;
