@@ -541,6 +541,11 @@ class GameEntity extends Object with StatOwner   {
     bool checkAbscond(Element div, Team mySide, List<Team> enemies) {
         if (!mySide.canAbscond) return false; //can't abscond, bro
         if (doomed) return false; //accept your fate.
+
+        if(2*getStat(Stats.MOBILITY) < Team.getTeamsStatTotal(enemies, Stats.MOBILITY)) return false; //not fast enough
+        if(2*getStat(Stats.MIN_LUCK) < Team.getTeamsStatTotal(enemies, Stats.MAX_LUCK)) return false; //not lucky enough enough
+        if(session.rand.nextBool()) return false; //its boring if its too consistent
+
         List<GameEntity> whoINeedToProtect = mySide.getLivingMinusAbsconded();
         num reasonsToLeave = 0;
         num reasonsToStay = 2; //generally prefer to win fights.
