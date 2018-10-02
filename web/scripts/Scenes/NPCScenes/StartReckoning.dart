@@ -95,7 +95,7 @@ class StartReckoning extends Scene {
       if(gameEntity.alliedToPlayers) {
           Player spacePlayer = session.findBestSpace();
           //either the players have already won, or now there is no way to.
-          if(session.fullFrogCheck(spacePlayer) && spacePlayer.land != null && !spacePlayer.land.dead) {
+          if(session.sickFrogCheck(spacePlayer) && spacePlayer.land != null && !spacePlayer.land.dead) {
               return true;
           }
       }else {
