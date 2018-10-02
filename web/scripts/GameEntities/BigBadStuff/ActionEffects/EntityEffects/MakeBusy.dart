@@ -30,6 +30,7 @@ class MakeBusy extends EffectEntity {
   @override
   void effectEntities(List<GameEntity> entities) {
       List<GameEntity> renderableTargets = new List<GameEntity>();
+      String text = "";
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
         if(e is Player) {
@@ -37,7 +38,9 @@ class MakeBusy extends EffectEntity {
         }else {
           e.available = false;
         }
+        text = "$text ${e.htmlTitle()} is too busy.";
     });
+    scene.myElement.append(new SpanElement()..text = text);
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);
