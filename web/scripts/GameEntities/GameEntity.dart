@@ -1081,6 +1081,7 @@ class GameEntity extends Object with StatOwner   {
             Stat stat = Stats.byName[j["name"]];
             setStat(stat, num.parse(j["value"]));
         }
+        if(grist <= 0) grist = getStat(Stats.EXPERIENCE,true);
         heal();
     }
 
