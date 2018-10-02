@@ -1218,6 +1218,8 @@ class GameEntity extends Object with StatOwner   {
         //so no concurrent mods (wouldu try to loop on items even as it removes items)
         List<Item> tmp = new List<Item>.from(corpse.sylladex.inventory);
         if(corpse != this) sylladex.addAll(tmp);
+        grist += corpse.grist;
+        corpse.grist = 0;
     }
 
     //generally called from makeDead
