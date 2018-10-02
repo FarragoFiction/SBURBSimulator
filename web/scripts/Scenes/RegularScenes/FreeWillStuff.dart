@@ -675,7 +675,7 @@ class FreeWillStuff extends Scene {
         if (space != null && space.landLevel < this.session.goodFrogLevel && player.gnosis > 0 && player.grimDark < 2) { //grim dark players don't care about sburb
             if (player == space) {
                 ////session.logger.info(player.title() +" did their damn job breeding frogs. " +this.session.session_id);
-                space.increaseLandLevel(10.0);
+                space.increaseLandLevel(13.0);
                 session.removeAvailablePlayer(player);
                 return "The " + player.htmlTitle() + " is not going to fall into SBURB's trap. They know why frog breeding is important, and they are going to fucking DO it. ";
             } else {
@@ -688,11 +688,11 @@ class FreeWillStuff extends Scene {
                         session.removeAvailablePlayer(player);
                         session.removeAvailablePlayer(space);
                         ////session.logger.info(player.title() +" convinced space player to do their damn job. " +this.session.session_id);
-                        space.increaseLandLevel(10.0);
+                        space.increaseLandLevel(13.0);
                         return "The " + player.htmlTitle() + timeIntro + " is not going to to fall into SBURB's trap. They pester the " + space.htmlTitle() + " to do frog breeding, even if it seems useless. They bug and fuss and meddle and finally the " + space.htmlTitle() + " agrees to ...just FUCKING DO IT.";
                     } else if (player.getStat(Stats.POWER) > 50) {
                         ////session.logger.info(player.title() +" mind controlled space player to do their damn job. " +this.session.session_id);
-                        space.increaseLandLevel(10.0);
+                        space.increaseLandLevel(13.0);
                         session.removeAvailablePlayer(player);
                         session.removeAvailablePlayer(space);
                         String trait = this.getManipulatableTrait(player);
