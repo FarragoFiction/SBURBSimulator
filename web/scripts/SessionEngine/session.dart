@@ -665,6 +665,7 @@ class Session {
     }
 
     void processBigBadIntros() {
+        checkBigBadTriggers();
         List<GameEntity> possibleTargets = new List<GameEntity>.from(activatedNPCS);
         //if you are not a big bad, dead or inactive, remove.
         possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
@@ -860,6 +861,8 @@ class Session {
         }
     }
 
+
+
     //used to live in scene controller but fuck that noise (also used to be named processScenes2)
     void processScenes(List<Player> playersInSession) {
         UserTag previousTag = createDebugTag("Processing Scenes");
@@ -875,14 +878,7 @@ class Session {
         }
 
         //keep it from being a concurrent mod if i activate (and thus get removed from list
-        List<GameEntity> bb = new List.from(bigBads);
-        for(GameEntity g in bb) {
-            if(g is BigBad) {
-                //handles activation and rendering
-                g.summonTriggered();
-            }
-           // logger.info("done processing $g showing up, big bads is $bigBads");
-        }
+        checkBigBadTriggers();
         //logger.info("done processing big bads showing up");
         for(Player p in avail) {
             //;
@@ -903,6 +899,18 @@ class Session {
             }
         }
         previousTag.makeCurrent();
+    }
+
+    void checkBigBadTriggers() {
+           //keep it from being a concurrent mod if i activate (and thus get removed from list
+      List<GameEntity> bb = new List.from(bigBads);
+      for(GameEntity g in bb) {
+          if(g is BigBad) {
+              //handles activation and rendering
+              g.summonTriggered();
+          }
+         // logger.info("done processing $g showing up, big bads is $bigBads");
+      }
     }
 
     void processReckoning(List<Player> playerList) {
