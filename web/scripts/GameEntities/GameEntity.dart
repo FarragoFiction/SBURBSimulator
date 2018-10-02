@@ -295,6 +295,7 @@ class GameEntity extends Object with StatOwner   {
         this.addBuff(new BuffLord(this)); //will only apply if you are a lord, but all have potential
        //crashes if(getStat(Stats.CURRENT_HEALTH) <= 0) setStat(Stats.CURRENT_HEALTH, 10);
         if(!(this is PotentialSprite) && session != null) session.npcHandler.allEntities.add(this);
+        if(grist <= 0) grist = 113;
     }
 
     Iterable<AssociatedStat> get associatedStatsFromAspect => associatedStats.where((AssociatedStat c) => c.isFromAspect);
@@ -1081,7 +1082,7 @@ class GameEntity extends Object with StatOwner   {
             Stat stat = Stats.byName[j["name"]];
             setStat(stat, num.parse(j["value"]));
         }
-        if(grist <= 0) grist = getStat(Stats.EXPERIENCE,true);
+        if(grist <= 113) grist = getStat(Stats.EXPERIENCE,true);
         heal();
     }
 
