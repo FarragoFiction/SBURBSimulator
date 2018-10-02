@@ -192,7 +192,7 @@ class Player extends GameEntity{
 
     ///not the only way to get grist, but you get a small base amount just for doing that shit
     void increaseLandLevel([double points = 1.0]) {
-        landLevel += 0.1; //TESTING what right value is to balance with FrogRewards
+        landLevel += points; //TESTING what right value is to balance with FrogRewards
        increaseGrist();
     }
 
