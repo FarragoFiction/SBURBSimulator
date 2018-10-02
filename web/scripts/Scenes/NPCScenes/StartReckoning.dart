@@ -94,8 +94,11 @@ class StartReckoning extends Scene {
       //session.logger.info("$gameEntity has both scepters, will they cause a reckoning?");
       if(gameEntity.alliedToPlayers) {
           Player spacePlayer = session.findBestSpace();
+          //help the space player out out right (otherwise we can get a VERY long session)
+          spacePlayer.landLevel += session.minFrogLevel;
+          spacePlayer.grist += session.minimumGristPerPlayer;
           //either the players have already won, or now there is no way to.
-          if(session.sickFrogCheck(spacePlayer) && spacePlayer.land != null && !spacePlayer.land.dead) {
+          if(session.sickFrogCheck(spacePlayer) || spacePlayer.land == null || !spacePlayer.land.dead) {
               return true;
           }
       }else {
