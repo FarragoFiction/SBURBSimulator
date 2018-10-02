@@ -31,10 +31,13 @@ class MakeInactive extends EffectEntity {
   @override
   void effectEntities(List<GameEntity> entities) {
       List<GameEntity> renderableTargets = new List<GameEntity>();
+      String text = "";
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
         scene.session.deactivateNPC(e);
+        text = "$text ${e.htmlTitle()} will never trouble this session again.";
     });
+    scene.myElement.append(new SpanElement()..setInnerHtml(text));
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);

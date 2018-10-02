@@ -40,7 +40,7 @@ class MakeBusy extends EffectEntity {
         }
         text = "$text ${e.htmlTitle()} is too busy.";
     });
-    scene.myElement.append(new SpanElement()..text = text);
+    scene.myElement.append(new SpanElement()..setInnerHtml(text));
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);
