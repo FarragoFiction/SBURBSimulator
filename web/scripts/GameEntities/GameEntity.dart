@@ -87,7 +87,15 @@ class GameEntity extends Object with StatOwner   {
     bool ghost = false; //if you are ghost, you are rendered spoopy style
     bool brainGhost = false;
 
-    num grist = 100; //everything has it.
+    //depreciated, use pls stat system finally on 10/2/18 says jr
+    //num grist = 100; //everything has it.
+
+    num get grist => getStat(Stats.GRIST);
+
+    num set grist(num value) {
+        setStat(Stats.GRIST, value);
+    }
+
     bool dead = false;
     String causeOfDrain = null; //if it's ever not null they will be sideways
     bool exiled = false;
@@ -385,7 +393,6 @@ class GameEntity extends Object with StatOwner   {
         clonege.stats = this; // copies the stats via StatOwner's stats setter! (also buffs)
         clonege.fontColor = fontColor;
         clonege.ghost = ghost; //if you are ghost, you are rendered spoopy style
-        clonege.grist = grist; //everything has it.
         clonege.dead = dead;
         clonege.ghostPacts = ghostPacts; //list of two element array [Ghost, enablingAspect]
         clonege.corrupted = corrupted; //players are corrupted at level 4. will be easier than always checking grimDark level

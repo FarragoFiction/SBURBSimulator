@@ -17,9 +17,6 @@ class Player extends GameEntity{
     CanvasElement firstStatsCanvas;
     bool canSkaia = false; //unlocked by finishing quests or by quest bed god tiering.
 
-    @override
-    num grist = 0; // players do not spawn with grist
-
     //set when you set moon, so you know what your dream self looks like even if you don't have a moon.
     Palette dreamPalette;
 
