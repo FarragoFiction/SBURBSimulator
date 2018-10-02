@@ -828,7 +828,7 @@ class GameEntity extends Object with StatOwner   {
             int derivedValue = getStat(stat).round(); //120 lets say
             ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue})<br>";
         }
-        ret += "Grist: ${getStat(Stats.GRIST)})<br>";
+        ret += "Grist: $grist)<br>";
 
         ret += "</td>";
 

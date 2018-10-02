@@ -660,7 +660,7 @@ class Player extends GameEntity{
             int derivedValue = getStat(stat).round();
             ret += "$stat: ${baseValue} (+ ${derivedValue-baseValue})<br>";
         }
-        ret += "Grist: ${getStat(Stats.GRIST)})<br>";
+        ret += "Grist: $grist)<br>";
 
 
         ret += "</td>";
