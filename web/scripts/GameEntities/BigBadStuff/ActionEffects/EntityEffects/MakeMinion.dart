@@ -31,14 +31,19 @@ class MakeMinion extends EffectEntity {
   @override
   void effectEntities(List<GameEntity> entities) {
       List<GameEntity> renderableTargets = new List<GameEntity>();
+      String text = "";
     entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        SpanElement death = new SpanElement();
         scene.gameEntity.addCompanion(e);
-        String text = "${e.htmlTitle()} agrees to help the ${scene.gameEntity.htmlTitle()} with any future strifes. ";
-        death.setInnerHtml(text);
-        scene.myElement.append(death);
+        text = "$text ${e.htmlTitle()} agrees to help the ${scene.gameEntity.htmlTitle()} with any future strifes. ";
     });
+
+      ButtonElement toggle = new ButtonElement()..text = "Show Details?";
+      scene.myElement.append(toggle);
+
+      DivElement div = new DivElement()..setInnerHtml(text);
+      div.style.display = "none";
+
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);

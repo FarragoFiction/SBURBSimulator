@@ -31,14 +31,19 @@ class PledgeLoyalty extends EffectEntity {
   @override
   void effectEntities(List<GameEntity> entities) {
       List<GameEntity> renderableTargets = new List<GameEntity>();
-    entities.forEach((GameEntity e) {
+      String text = "";
+
+      entities.forEach((GameEntity e) {
         if(e.renderable()) renderableTargets.add(e);
-        SpanElement death = new SpanElement();
         e.addCompanion(scene.gameEntity);
-        String text = "${scene.gameEntity.htmlTitle()} agrees to help the ${e.htmlTitle()} with any future strifes. ";
-        death.setInnerHtml(text);
-        scene.myElement.append(death);
+        text = "$text ${scene.gameEntity.htmlTitle()} agrees to help the ${e.htmlTitle()} with any future strifes. ";
+
     });
+      ButtonElement toggle = new ButtonElement()..text = "Show Details?";
+      scene.myElement.append(toggle);
+
+      DivElement div = new DivElement()..setInnerHtml(text);
+      div.style.display = "none";
     if(renderableTargets.isNotEmpty && !scene.posedAsATeamAlready) {
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         scene.myElement.append(canvasDiv);
