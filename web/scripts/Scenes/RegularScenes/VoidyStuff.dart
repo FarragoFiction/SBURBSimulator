@@ -95,8 +95,8 @@ class VoidyStuff extends Scene {
 				this.ectoBiologyStarted(normalDiv, newDiv);
 				this.endingPhrase(classDiv, newDiv);
 				return;
-		}else if(this.player.getStat(Stats.SANITY) < 5 && !this.player.murderMode && rand.nextDouble() > 0.9){
-			//session.logger.info("AB: flipping shit through voidy stuff");
+		}else if(this.player.getStat(Stats.SANITY) < -200 && !this.player.murderMode && rand.nextDouble() > 0.9){
+			session.logger.info("AB: engaging murder mode through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;

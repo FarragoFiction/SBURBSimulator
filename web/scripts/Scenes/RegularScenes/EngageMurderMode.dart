@@ -29,11 +29,16 @@ class EngageMurderMode extends Scene{
 	}
 	bool flipsShit(){
 		Player diamond = this.player.hasDiamond();
-		num triggerMinimum = -275;
+		num triggerMinimum = -3333;
 
-		if(diamond != null) triggerMinimum += -1*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
+		if(diamond != null) triggerMinimum += -10*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
-		bool ret = (rand.nextDouble() * this.player.getStat(Stats.SANITY) < triggerMinimum);
+		double randomDouble = rand.nextDouble();
+		num sanity = player.getStat(Stats.SANITY);
+		bool ret = (randomDouble * sanity < triggerMinimum);
+		if(ret) {
+			print(" i should flip my shit and go murdermode when the random is $randomDouble and my sanity is $sanity and the minimum is $triggerMinimum");
+		}
 		//if(ret && diamond != null) //session.logger.info("flipping shit even with moirail ${this.session.session_id}");
 		//if(ret) //session.logger.info("flipping shit naturally ${this.session.session_id}");
 		return ret;
@@ -426,6 +431,7 @@ class EngageMurderMode extends Scene{
 	}
 	@override
 	void renderContent(Element div){
+		print("engaging murder mode traditionally");
 		var alt = this.addImportantEvent();
 		if(alt != null && alt.alternateScene(div)){
 			return;

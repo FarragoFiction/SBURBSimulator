@@ -161,7 +161,7 @@ class FreeWillStuff extends Scene {
         List<Player> enemies = player.getEnemiesFromList(findLiving(this.session.players));
         if (player.isActive() && enemies.length > 2 && player.getStat(Stats.SANITY) < 0 && !player.murderMode && rand.nextDouble() > 0.98) {
             return this.becomeMurderMode(player);
-        } else if (enemies.length > 0 && player.getStat(Stats.SANITY) < 0 && rand.nextDouble() > 0.98) {
+        } else if (enemies.length > 0 && player.getStat(Stats.SANITY) < -500 && rand.nextDouble() > 0.98) {
             return this.forceSomeOneElseMurderMode(player);
         }
         return null;
@@ -171,7 +171,7 @@ class FreeWillStuff extends Scene {
         if (!player.murderMode) {
             List<Player> enemies = player.getEnemiesFromList(findLiving(this.session.players));
             if (this.isValidTargets(enemies, player)) {
-                //session.logger.info("chosing to go into murdermode " + this.session.session_id.toString());
+                session.logger.info("chosing to go into murdermode");
                 player.makeMurderMode();
                 player.setStat(Stats.SANITY, -10);
                 session.removeAvailablePlayer(player);
@@ -329,7 +329,7 @@ class FreeWillStuff extends Scene {
 
         if (this.isValidTargets(enemies, player) && patsy != null) {
             if (patsyVal > enemies.length / 2 && patsy.getStat(Stats.SANITY) < 1) {
-                //session.logger.info("manipulating someone to go into murdermode " + this.session.session_id.toString() + " patsyVal = $patsyVal");
+                session.logger.info("manipulating someone to go into murdermode patsyVal = $patsyVal");
                 patsy.makeMurderMode();
                 patsy.setStat(Stats.SANITY, -10);
                 session.removeAvailablePlayer(player);
@@ -612,7 +612,7 @@ class FreeWillStuff extends Scene {
         Player patsy = player.getWorstEnemyFromList(availablePlayers);
         if (patsy != null && !patsy.dead && patsy != murderer && patsy.getStat(Stats.FREE_WILL) < player.getStat(Stats.FREE_WILL)) { //they exist and I don't already control them.
             if (patsy.stateBackup == null) patsy.stateBackup = new MiniSnapShot(patsy);
-            ////session.logger.info(player.title() + " controlling player to kill murderer. " + this.session.session_id)
+            session.logger.info(" controlling player to kill murderer. " );
             patsy.nullAllRelationships();
             Relationship r = patsy.getRelationshipWith(murderer);
             r.value = -100;

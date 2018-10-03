@@ -1060,7 +1060,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void applyStopMechanisms() {
-        print("looking for stop mechanisms to apply, found $playerReactions");
+       // print("looking for stop mechanisms to apply, found $playerReactions");
         if(playerReactions.isEmpty) return;
         for(Player p in session.players) {
             //please don't try to defeat yourself.
