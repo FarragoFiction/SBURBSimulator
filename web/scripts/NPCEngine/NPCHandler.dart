@@ -12,8 +12,6 @@ class NPCHandler
 
     List<GameEntity> allEntities = new List<GameEntity>();
     List<GameEntity> bigBads = new List<BigBad>();
-    //so ab can acurately report to shogun bot
-    List<BigBad> activatedBigBads = new List<BigBad>();
 
     static String JACK = "JACK";
     static String PM = "PM"; //done

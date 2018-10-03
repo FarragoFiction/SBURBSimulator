@@ -82,6 +82,9 @@ class Session {
 
     //stores them.
     Set<GameEntity> _activatedNPCS = new Set<GameEntity>();
+    //    //so ab can acurately report to shogun bot
+    Set<GameEntity> activatedBigBads = new Set<GameEntity>();
+
 
     List<GameEntity> get activatedNPCS {
         UserTag previousTag = createDebugTag("ActivatingNPCs");
@@ -112,7 +115,8 @@ class Session {
         bb.active = true;
         if(!_activatedNPCS.contains(bb)) {
             _activatedNPCS.add(bb);
-            npcHandler.activatedBigBads.add(bb);
+            activatedBigBads.add(bb);
+            //print("after adding $bb to activated big bads its ${activatedBigBads.length} long");
             bb.activateTasks();
         }
 
@@ -125,6 +129,8 @@ class Session {
                 //logger.info("I think that $g just activated as a big bad");
                 _activatedNPCS.add(g);
                 bbRemove.add(g);
+                activatedBigBads.add(g);
+                //print("after adding $g to activated big bads its ${activatedBigBads.length} long");
                 g.activateTasks();
             }
         }
