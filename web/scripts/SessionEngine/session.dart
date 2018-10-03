@@ -70,6 +70,8 @@ class Session {
     Scepter prospitScepter;
     Scepter derseScepter;
 
+
+
     int session_id; //initial seed
     //var sceneRenderingEngine = new SceneRenderingEngine(false); //default is homestuck  //comment this line out if need to run sim without it crashing
     List<Player> players = <Player>[];
@@ -110,6 +112,7 @@ class Session {
         bb.active = true;
         if(!_activatedNPCS.contains(bb)) {
             _activatedNPCS.add(bb);
+            npcHandler.activatedBigBads.add(bb);
             bb.activateTasks();
         }
 
