@@ -159,7 +159,7 @@ class FreeWillStuff extends Scene {
 
     String considerEngagingMurderMode(Player player) {
         List<Player> enemies = player.getEnemiesFromList(findLiving(this.session.players));
-        if (player.isActive() && enemies.length > 2 && player.getStat(Stats.SANITY) < 0 && !player.murderMode && rand.nextDouble() > 0.98) {
+        if (player.isActive() && enemies.length > 2 && player.getStat(Stats.SANITY) < -500 && !player.murderMode && rand.nextDouble() > 0.98) {
             return this.becomeMurderMode(player);
         } else if (enemies.length > 0 && player.getStat(Stats.SANITY) < -500 && rand.nextDouble() > 0.98) {
             return this.forceSomeOneElseMurderMode(player);

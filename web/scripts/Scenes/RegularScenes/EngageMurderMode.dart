@@ -29,7 +29,7 @@ class EngageMurderMode extends Scene{
 	}
 	bool flipsShit(){
 		Player diamond = this.player.hasDiamond();
-		num triggerMinimum = -3333;
+		num triggerMinimum = -2222;
 
 		if(diamond != null) triggerMinimum += -10*(this.player.getRelationshipWith(diamond).value);  //hope you don't hate your moirail
 		if(this.player.moon == "Prospit") triggerMinimum += 100; //easier to flip shit when you see murders in the clouds.
