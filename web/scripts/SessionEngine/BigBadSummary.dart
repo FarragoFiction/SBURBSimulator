@@ -232,6 +232,7 @@ class BigBadSummary {
     Session session;
 
     BigBadSummary(Session this.session) {
+        //print("Making a new big bad summary for session ${this.session.session_id}");
         if(session == null) {
             defaultSession();
         }
@@ -261,6 +262,7 @@ class BigBadSummary {
     void init() {
         //List<GameEntity> npcs = session.activatedNPCS;
         List<GameEntity> npcs = session.bigBads;// for when you dont want to hide any
+        npcs.addAll(session.activatedNPCS);
         for(GameEntity g in npcs) {
             if(g is BigBad){
                 //print("TEST AB WRITING: I am initializing a big bad summary from a real session. the big bad is $g");

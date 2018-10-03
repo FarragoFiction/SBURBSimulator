@@ -518,7 +518,7 @@ class SessionSummary {
     }
 
     static SessionSummary makeSummaryForSession(Session session) {
-        ;
+        //print("making an overall summary for session $session");
         SessionSummary summary = new SessionSummary(session.session_id);
         //TODO turn this back on but for now testing what is fucking AB up
         summary.carapaceSummaryJSON = new CarapaceSummary(session).toJSON();
