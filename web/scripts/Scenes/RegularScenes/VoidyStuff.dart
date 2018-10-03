@@ -96,7 +96,7 @@ class VoidyStuff extends Scene {
 				this.endingPhrase(classDiv, newDiv);
 				return;
 		}else if(this.player.getStat(Stats.SANITY) < -200 && !this.player.murderMode && rand.nextDouble() > 0.9){
-			session.logger.info("AB: engaging murder mode through voidy stuff");
+			//session.logger.info("AB: engaging murder mode through voidy stuff");
 			this.goMurderMode(normalDiv, newDiv);
 			this.endingPhrase(classDiv, newDiv);
 			return;

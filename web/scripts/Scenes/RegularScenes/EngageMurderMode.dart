@@ -36,9 +36,10 @@ class EngageMurderMode extends Scene{
 		double randomDouble = rand.nextDouble();
 		num sanity = player.getStat(Stats.SANITY);
 		bool ret = (randomDouble * sanity < triggerMinimum);
+		/*
 		if(ret) {
 			print(" i should flip my shit and go murdermode when the random is $randomDouble and my sanity is $sanity and the minimum is $triggerMinimum");
-		}
+		}*/
 		//if(ret && diamond != null) //session.logger.info("flipping shit even with moirail ${this.session.session_id}");
 		//if(ret) //session.logger.info("flipping shit naturally ${this.session.session_id}");
 		return ret;

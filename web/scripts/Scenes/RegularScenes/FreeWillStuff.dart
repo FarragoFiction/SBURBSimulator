@@ -171,7 +171,7 @@ class FreeWillStuff extends Scene {
         if (!player.murderMode) {
             List<Player> enemies = player.getEnemiesFromList(findLiving(this.session.players));
             if (this.isValidTargets(enemies, player)) {
-                session.logger.info("chosing to go into murdermode");
+               // session.logger.info("chosing to go into murdermode");
                 player.makeMurderMode();
                 player.setStat(Stats.SANITY, -10);
                 session.removeAvailablePlayer(player);
@@ -329,7 +329,7 @@ class FreeWillStuff extends Scene {
 
         if (this.isValidTargets(enemies, player) && patsy != null) {
             if (patsyVal > enemies.length / 2 && patsy.getStat(Stats.SANITY) < 1) {
-                session.logger.info("manipulating someone to go into murdermode patsyVal = $patsyVal");
+               // session.logger.info("manipulating someone to go into murdermode patsyVal = $patsyVal");
                 patsy.makeMurderMode();
                 patsy.setStat(Stats.SANITY, -10);
                 session.removeAvailablePlayer(player);
