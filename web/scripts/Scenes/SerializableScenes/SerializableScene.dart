@@ -388,6 +388,11 @@ void syncForm() {
       }
       if(triggerConditionsLand.isEmpty) landTargets.clear();
 
+      //if you have conditions you MUSt meet them. period.
+      if(triggerConditionsLiving.isNotEmpty && livingTargets.isEmpty) return false;
+      if(triggerConditionsLand.isNotEmpty && landTargets.isEmpty) return false;
+
+
       return landTargets.isNotEmpty || livingTargets.isNotEmpty;
   }
 }
