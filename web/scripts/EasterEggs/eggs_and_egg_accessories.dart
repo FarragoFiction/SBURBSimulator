@@ -380,6 +380,13 @@ void tricksterMode(Session session){
 
 void debugRoyalRumble(Session session){
 	if(!doNotRender) window.alert("royal rumble!");
+
+	for(GameEntity bb in session.npcHandler.bigBads) {
+		if(bb.name.contains("Empress")) {
+			bb.active = true;
+		}
+	}
+
 	for(num j = 0; j<session.players.length; j++){
 		var p = session.players[j];
 		p.isTroll = true; //only .evel 2 players up
