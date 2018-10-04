@@ -64,13 +64,29 @@ class  SerializableScene extends Scene {
       return ">Shenanigans: ";
   }
 
+  //note from jr 10/04/18, i'm doing this so the troll empress can do a thing to a land if she has an item
+    //i think in MOST cases if you are targeting a land and have a single 'self' target, you wanna ignore it.
+    //but if i'm wrong i can turn this off and all that will happen is the trollempress will go back to
+    //roughing herself up, to get ready for her plan, which isn't like, terrible or anything.
+  void ignoreSelfIfPrimarilyLandFocused() {
+      if(targetOne) {
+          if(livingTargets.length == 1 && livingTargets.first == gameEntity && landTargets.isNotEmpty) {
+              livingTargets.clear();
+          }
+      }
+  }
+
   @override
   void renderContent(Element div) {
       //session.logger.info("TEST BIG BAD: rendering content");
+      ignoreSelfIfPrimarilyLandFocused();
 
       String displayText = "<br>${getHeader()} $flavorText";
       displayText =   displayText.replaceAll("$TARGET", "${getTargetNames()}");
       displayText =   displayText.replaceAll("$SCENE_OWNER", "${gameEntity.htmlTitleWithTip()}");
+
+
+
 
       myElement = new DivElement();
       div.append(myElement);
@@ -379,6 +395,9 @@ void syncForm() {
 
       for(TargetConditionLiving tc in triggerConditionsLiving) {
           livingTargets = new Set<GameEntity>.from(tc.filter(new List<GameEntity>.from(livingTargets)));
+          if(gameEntity.name.contains("Empress")) {
+            print("big bad is $gameEntity and scene is $name and living targets is $livingTargets");
+          }
       }
       if(triggerConditionsLiving.isEmpty) livingTargets.clear();
 
