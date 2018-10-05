@@ -11,6 +11,7 @@ export "EntityTargetConditions/TargetEntityLandContains.dart";
 export "EntityTargetConditions/TargetExtraTitle.dart";
 export "EntityTargetConditions/TargetIsInSessionX.dart";
 export "EntityTargetConditions/TargetIsInSessionMultipleX.dart";
+export "EntityTargetConditions/TargetIsInSessionXEndsWith.dart";
 
 export "EntityTargetConditions/TargetIsFlippingOutAbout.dart";
 
