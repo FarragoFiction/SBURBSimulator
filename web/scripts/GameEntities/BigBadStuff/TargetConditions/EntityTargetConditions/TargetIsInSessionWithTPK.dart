@@ -2,14 +2,14 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class TargetIsFinalPlayer extends TargetConditionLiving {
+class TargetIsInSessionWithTPK extends TargetConditionLiving {
     @override
-    String name = "IsFinalPlayer";
+    String name = "TargetIsInSessionWithTPK";
 
     @override
-    String descText = "<b>Is Final Player:</b><br>Target Entity must be the last player left alive. <br><br>";
+    String descText = "<b>TPK:</b><br>Entity must be in a session where all players are dead. <br><br>";
     @override
-    String notDescText = "<b>Is NOT Final Player:</b><br>Target Entity must NOT be the lone survivor of the Players (could even be not a player). <br><br>";
+    String notDescText = "<b>No TPK:</b><br>Entity must be in a session where at least one plaeyr is alive. <br><br>";
 
 
     @override
@@ -18,14 +18,14 @@ class TargetIsFinalPlayer extends TargetConditionLiving {
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    TargetIsFinalPlayer(SerializableScene scene) : super(scene){
+    TargetIsInSessionWithTPK(SerializableScene scene) : super(scene){
     }
 
 
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new TargetIsFinalPlayer(scene);
+        return new TargetIsInSessionWithTPK(scene);
     }
 
     @override
@@ -46,6 +46,6 @@ class TargetIsFinalPlayer extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         List<GameEntity> living = findLiving(scene.session.players);
-        return !(living.contains(item) && living.length == 1);
+        return !(living.isEmpty);
     }
 }
