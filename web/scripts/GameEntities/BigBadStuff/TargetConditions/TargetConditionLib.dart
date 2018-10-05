@@ -48,6 +48,8 @@ export "EntityTargetConditions/TargetHasKilledAnything.dart";
 export "EntityTargetConditions/TargetHasKilledAPlayer.dart";
 export "EntityTargetConditions/TargetHasEverDied.dart";
 export "EntityTargetConditions/TargetIsFinalPlayer.dart";
+export "EntityTargetConditions/TargetIsInSessionWithTPK.dart";
+
 export "EntityTargetConditions/TargetIsBigBad.dart";
 export "EntityTargetConditions/TargetIsCompanion.dart";
 export "EntityTargetConditions/TargetHasCompanions.dart";
