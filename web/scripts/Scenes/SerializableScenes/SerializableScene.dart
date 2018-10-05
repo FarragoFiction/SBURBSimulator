@@ -396,7 +396,7 @@ void syncForm() {
       for(TargetConditionLiving tc in triggerConditionsLiving) {
           livingTargets = new Set<GameEntity>.from(tc.filter(new List<GameEntity>.from(livingTargets)));
           if(gameEntity.name.contains("Empress")) {
-            print("big bad is $gameEntity and scene is $name and living targets is $livingTargets");
+           // print("big bad is $gameEntity and scene is $name and living targets is $livingTargets");
           }
       }
       if(triggerConditionsLiving.isEmpty) livingTargets.clear();
