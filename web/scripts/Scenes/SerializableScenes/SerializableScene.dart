@@ -90,7 +90,7 @@ class  SerializableScene extends Scene {
 
       myElement = new DivElement();
       div.append(myElement);
-      myElement.setInnerHtml("$displayText");
+      myElement.setInnerHtml("$displayText",treeSanitizer: NodeTreeSanitizer.trusted,validator: new NodeValidatorBuilder()..allowElement("img"));
 
       ImageElement portrait;
 
