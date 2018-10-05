@@ -46,6 +46,7 @@ class TargetIsInSessionWithTPK extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         List<GameEntity> living = findLiving(scene.session.players);
+        print("i think there are ${living.length} living players, will i tell it to filter? ${!(living.isEmpty)}");
         return !(living.isEmpty);
     }
 }
