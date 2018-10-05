@@ -308,7 +308,6 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetStatIsGreaterThanMine(scene));
       ret.add(new MyStatIsGreaterThanValue(scene));
       ret.add(new TargetIsFinalPlayer(scene));
-      ret.add(new TargetIsInSessionWithTPK(scene));
       ret.add(new TargetIsClassPlayer(scene));
       ret.add(new TargetIsAspectPlayer(scene));
       ret.add(new TargetIsPassivePlayer(scene));

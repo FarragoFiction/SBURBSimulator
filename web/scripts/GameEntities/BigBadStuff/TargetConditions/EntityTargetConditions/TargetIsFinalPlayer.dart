@@ -2,6 +2,8 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
+//NOTE FROM 10/5/18 JR, YOU CANT TEST FOR TPK CUZ THAT ENDS A SESSION
+
 class TargetIsFinalPlayer extends TargetConditionLiving {
     @override
     String name = "IsFinalPlayer";
@@ -43,6 +45,7 @@ class TargetIsFinalPlayer extends TargetConditionLiving {
         //nothing to do
     }
 
+    //NOTE FROM 10/5/18 JR, YOU CANT TEST FOR TPK CUZ THAT ENDS A SESSION
     @override
     bool conditionForFilter(GameEntity item) {
         List<GameEntity> living = findLiving(scene.session.players);
