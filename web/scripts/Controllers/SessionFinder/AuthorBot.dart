@@ -39,6 +39,8 @@ abstract class AuthorBot extends SimController {
   }
 
   Future<Null> startSessionThenSummarize(Session session) async{
+    //JR from 10/06/2018 says that aB needs to forget data between sessions, yo
+    setHtml(SimController.instance.storyElement, "");
     checkEasterEgg(session);
     DateTime start = new DateTime.now();
     await session.startSession();

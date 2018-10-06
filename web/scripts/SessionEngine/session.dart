@@ -915,7 +915,7 @@ class Session {
            //keep it from being a concurrent mod if i activate (and thus get removed from list
       List<GameEntity> bb = new List.from(bigBads);
       for(GameEntity g in bb) {
-          if(g is BigBad) {
+          if(g is BigBad && !activatedBigBads.contains(g)) {
               //handles activation and rendering
               g.summonTriggered();
           }
