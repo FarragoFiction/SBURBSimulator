@@ -1,3 +1,4 @@
+2018-10-06: The Nameless Empress is now less common. Whoops.<br><br>Also I MIGHT have tracked down why AB is crashing browsers if you ask her to do too much at once. I'm deploying to test this.
 2018-10-04: The non canon Troll Empress is in, and more common than )(IC.
 2018-10-03: Going through the older big bads and bringing them up to current standards. DQ0N, for example, can finally have his clones be reverted to their normal selves.
 2018-10-02: Particularly <a target="_blank" href = 'index2.html?seed=1025'>canon</a> sessions might find themselves plagued by a giant ass green skeleton. Or a familiar <a target="_blank" href = 'index2.html?seed=612'>fish empress</a>???
