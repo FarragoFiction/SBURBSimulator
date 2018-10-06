@@ -167,7 +167,7 @@ class BigBad extends NPC {
   }
 
   void summonTriggered() {
-      UserTag previousTag = session.createDebugTag("CheckingBigBadSummon");
+      //UserTag previousTag = session.createDebugTag("CheckingBigBadSummon");
 
       //first summon scene to trigger has dibs
       for(SummonScene s in startMechanisms) {
@@ -177,7 +177,7 @@ class BigBad extends NPC {
               return;
           }
       }
-      previousTag.makeCurrent();
+      //previousTag.makeCurrent();
   }
 
 

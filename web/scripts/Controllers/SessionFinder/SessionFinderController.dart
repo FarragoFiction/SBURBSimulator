@@ -263,7 +263,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   SessionSummary summarizeSession(Session session, Duration duration) {
     ////;
     print("summarizing: ${session}, duration is $duration");
-    UserTag previousTag = session.createDebugTag("SummarizingSession");
+    //UserTag previousTag = session.createDebugTag("SummarizingSession");
 
     backup = SimController.instance.storyElement.text;
     //SimController.instance.clearElement(SimController.instance.storyElement);
@@ -307,7 +307,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       //RESETTING the mutator so that wastes can't leak into other sessions
       getMVP(session);
       new SessionMutator(); //will auto set itself to instance, handles resetting whatever needs resetting in other files
-      previousTag.makeCurrent();
+      //previousTag.makeCurrent();
 
       window.requestAnimationFrame((num t){
         Session session = new Session(SimController.instance.initial_seed);
@@ -372,7 +372,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   }
 
   void printStats(List<String> filters, List<SBURBClass> classes, List<Aspect> aspects) {
-    UserTag previousTag = currentSessionForErrors.createDebugTag("PrintingStats");
+    //UserTag previousTag = currentSessionForErrors.createDebugTag("PrintingStats");
 
     MultiSessionSummary mms;
     if(sessionSummariesDisplayed.isEmpty) {
@@ -442,7 +442,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
       }
 
     }
-    previousTag.makeCurrent();
+    //previousTag.makeCurrent();
 
   }
   @override
