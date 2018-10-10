@@ -357,9 +357,9 @@ dynamic loadPlayer(Session session, Player player, String skipInit){
   loadImage(session,Drawing.playerToDreamBody(player),skipInit);
 	loadImage(session,Drawing.playerToGodBody(player),skipInit);
   loadImage(session,Drawing.playerToCowl(player),skipInit);
-	loadImage(session,"${player.aspect}.png",skipInit);
+	loadImage(session,"${player.aspect.symbolImgLocation}",skipInit);
 
-	loadImage(session,"${player.aspect}Big.png",skipInit);
+	loadImage(session,"${player.aspect.bigSymbolImgLocation}",skipInit);
 	loadImage(session,"Hair/hair"+player.hair.toString()+".png",skipInit);
   loadImage(session,"Hair/hair_back"+player.hair.toString()+".png",skipInit);
 

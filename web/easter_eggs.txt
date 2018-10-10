@@ -6,7 +6,8 @@
 
 <p> Hall of Fame is officially closed as of 6/12/17. </p>
 <p>I wonder if any other arc numbers have sessions for them. <span class = 'void'>Like 13? Like 4037???</span></p>
-<p><a href = 'index2.html?tables=guarded'>TG mode</a> all carapaces, all the time</p>
+<p><a href = 'npcTests.html'>NPC Viewer</a> view all carapaces, all big bads, and some test shit for jr</p>
+<p><a href = 'index2.html?tables=guarded'>TG mode</a> all carapaces, all the time, no players</p>
 <p><a href = "index2.html?spacePlayers=screwed">Shogun Hates Space Players, A Saga</a>: Wait. Is JR still adding easter eggs???</p>
 <p><a href = "index2.html?self=cest">Anstus Mode</a>:  It's a refrance, dunkass. Makes all players copies of the leader player. </p>
 
