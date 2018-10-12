@@ -36,17 +36,14 @@ class BigBadEntered extends ImportantEvent {
         var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
 
-        var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
-        Drawing.drawSpriteTurnways(dSpriteBuffer,player);
 
         Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
-        Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, dSpriteBuffer,100,0);
         return true;
     }
 
     @override
     String humanLabel() {
-        return "Stop the ${bigBad.htmlTitle()} permanently.";
+        return "Stop the ${bigBad.htmlTitleBasic()} permanently.";
     }
 }
