@@ -20,7 +20,7 @@ class BigBadEntered extends ImportantEvent {
         }
 
         DivElement narration = new DivElement();
-        narration.setInnerHtml("A ${doomedTimeClone.htmlTitleBasic()} suddenly warps in from the future. They come with a dire warning of a doomed timeline. Something seems...off...about them. But they are adamant that the ${bigBad.htmlTitle()}");
+        narration.setInnerHtml("A ${doomedTimeClone.htmlTitleBasic()} suddenly warps in from the future. They come with a dire warning of a doomed timeline. Something seems...off...about them. But they are adamant that the ${bigBad.htmlTitle()} needs to be defeated, and right the fuck now.   They use all sorts of tips and tricks they have from the future to completely destroy the ${bigBad.htmlTitle()} influence on the session so thoroughly no one even knows if they are dead, trapped in time or merely driven off.  The Doomed ${doomedTimeClone.htmlTitleBasic()} vanishes with in a cloud of gears to join the final battle.");
         div.append(narration);
 
 
