@@ -4,7 +4,7 @@ import 'dart:html';
 
 class BigBadEntered extends ImportantEvent {
     @override
-    int importanceRating = 10;
+    int importanceRating = 13; //not even kidding this probably fucked your session over
     BigBad bigBad;
 
     BigBadEntered(BigBad this.bigBad, Session session, num mvp_value, Player player) : super(session, mvp_value, player);

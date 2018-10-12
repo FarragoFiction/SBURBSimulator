@@ -5,7 +5,7 @@ import 'dart:html';
 class CrownedCarapaceHappened extends ImportantEvent {
     //i literally don't remember if this fucking does anything, oh yeah its for sort
     @override
-    int importanceRating = 9;
+    int importanceRating = 12; //not great, but could be worse
     Carapace carapace;
 
     CrownedCarapaceHappened(Carapace carapace,Session session, num mvp_value, Player player) : super(session, mvp_value, player);

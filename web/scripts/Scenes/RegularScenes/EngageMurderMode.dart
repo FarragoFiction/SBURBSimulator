@@ -426,13 +426,15 @@ class EngageMurderMode extends Scene{
 
 		Drawing.drawChat(canvasDiv, player1, player2, chatText,"discuss_murder.png");
 	}
-	dynamic addImportantEvent(){
+
+    ImportantEvent addImportantEvent(){
 		Player current_mvp = findStrongestPlayer(this.session.players);
 		return this.session.addImportantEvent(new PlayerWentMurderMode(this.session, current_mvp.getStat(Stats.POWER),this.player, null) );
 	}
+
 	@override
 	void renderContent(Element div){
-		print("engaging murder mode traditionally");
+		//print("engaging murder mode traditionally");
 		var alt = this.addImportantEvent();
 		if(alt != null && alt.alternateScene(div)){
 			return;

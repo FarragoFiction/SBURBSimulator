@@ -10,9 +10,18 @@ class SummonScene extends SerializableScene {
     String name = "Summon Scene";
   SummonScene(Session session) : super(session);
 
+    ImportantEvent addImportantEvent(){
+        Player current_mvp = findStrongestPlayer(this.session.players);
+        return this.session.addImportantEvent(new BigBadEntered(gameEntity,this.session, current_mvp.getStat(Stats.POWER), null));
+    }
+
 
     @override
     void renderContent(Element div) {
+        ImportantEvent alt = addImportantEvent();
+        if(alt != null && alt.alternateScene(div)){
+            return;
+        }
         DivElement intro = new DivElement();
         bool debugMode = getParameterByName("debug") == "fuckYes";
         String debug = "";
