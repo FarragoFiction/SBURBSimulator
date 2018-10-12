@@ -11,6 +11,21 @@ class BigBadEntered extends ImportantEvent {
 
     @override
     bool alternateScene(Element div) {
+
+        if(bigBad.name.contains("Shogun")){
+            DivElement narration = new DivElement()..setInnerHtml("You find that the Shogun was here the whole time, and no matter what you do you can't stop from making him be here the whole time. The Doomed ${doomedTimeClone.htmlTitleBasic()} eventually gives up and leaves. ");
+            div.append(narration);
+            CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
+            div.append(canvasDiv);
+
+            var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
+            Drawing.drawSprite(pSpriteBuffer,this.doomedTimeClone);
+
+
+            Drawing.drawTimeGears(canvasDiv);//, this.doomedTimeClone);
+            Drawing.copyTmpCanvasToRealCanvasAtPos(canvasDiv, pSpriteBuffer,-100,0);
+            return false;
+        }
         this.timesCalled ++;
         this.doomedTimeClone.dead = false;
         this.doomedTimeClone.setStat(Stats.CURRENT_HEALTH, this.doomedTimeClone.getStat(Stats.HEALTH));
@@ -44,6 +59,9 @@ class BigBadEntered extends ImportantEvent {
 
     @override
     String humanLabel() {
+        if(bigBad.name.contains("Shogun")) {
+            return "Stop Shogun's Shenanigans, Seriously.";
+        }
         return "Stop the ${bigBad.htmlTitleBasic()} permanently.";
     }
 }
