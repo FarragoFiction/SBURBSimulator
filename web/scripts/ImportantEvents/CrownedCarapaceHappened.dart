@@ -14,6 +14,6 @@ class CrownedCarapaceHappened extends ImportantEvent {
 
     @override
     String humanLabel() {
-        return "Stop";
+        return "Stop the $bigBadName from gaining a Crown.";
     }
 }
