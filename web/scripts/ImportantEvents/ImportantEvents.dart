@@ -79,7 +79,7 @@ abstract class ImportantEvent { //TODO consider making this non abstract and hav
 
 
   static List<ImportantEvent> sortEventsByImportance(List<ImportantEvent> events){
-    return events..sort(ImportantEvent.comparePriority); //TODO how do you do sorting in Dart?
+    return events..sort(ImportantEvent.comparePriority); //cant remember if it shigh to low or low to high
   }
 
 
