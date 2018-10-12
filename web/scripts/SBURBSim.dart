@@ -54,7 +54,7 @@ export "GameEntities/NPCRelationship.dart";
 export "handle_sprites.dart";
 export "Rendering/renderer.dart";
 export "AfterLife.dart";
-export "v2.0/ImportantEvents.dart";
+export "ImportantEvents/ImportantEvents.dart";
 export "Strife.dart";
 export "GameEntities/GameEntity.dart";
 export "GameEntities/NPCS.dart";
