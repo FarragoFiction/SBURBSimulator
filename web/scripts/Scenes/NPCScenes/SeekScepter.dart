@@ -36,6 +36,7 @@ class SeekScepter extends Scene {
 
   }
 
+
     String tryFighting() {
         String oldName = gameEntity.name;
         //assasinate if strong enough, else strife.

@@ -1,6 +1,9 @@
 import '../SBURBSim.dart';
 import 'dart:html';
 
+/*
+JR from 10/16/18 says that none of the crowned scenes are architected in a way that lets me easily
+prevent them. so.....just....don't allow this i guess???
 
 class CrownedCarapaceHappened extends ImportantEvent {
     //i literally don't remember if this fucking does anything, oh yeah its for sort
@@ -54,3 +57,4 @@ class CrownedCarapaceHappened extends ImportantEvent {
         return "Stop the ${carapace.htmlTitleBasic()} from gaining a Crown.";
     }
 }
+*/

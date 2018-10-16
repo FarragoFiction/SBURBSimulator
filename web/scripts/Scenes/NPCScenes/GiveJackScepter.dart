@@ -12,6 +12,11 @@ class GiveJackScepter extends Scene {
 
     bool strifeTime = false;
 
+    ImportantEvent addImportantEvent(){
+        Player current_mvp = findStrongestPlayer(this.session.players);
+        return this.session.addImportantEvent(new CrownedCarapaceHappened(jack, this.session, current_mvp.getStat(Stats.POWER), null));
+    }
+
 
     @override
     void renderContent(Element div) {
@@ -29,6 +34,8 @@ class GiveJackScepter extends Scene {
             strife.startTurn(div);
         }
     }
+
+
 
     String getText() {
         Relationship r = gameEntity.getRelationshipWith(session.npcHandler.jack);

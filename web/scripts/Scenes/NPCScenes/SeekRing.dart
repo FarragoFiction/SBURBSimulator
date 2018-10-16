@@ -35,6 +35,7 @@ class SeekRing extends Scene {
 
   }
 
+
     String tryFighting() {
         String oldName = gameEntity.htmlTitle();
         //assasinate if strong enough, else strife.

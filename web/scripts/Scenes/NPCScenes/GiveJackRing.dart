@@ -15,6 +15,7 @@ class GiveJackRing extends Scene {
 
     @override
     void renderContent(Element div) {
+
         session.logger.info("Ring Test: someone has a ring to give jack");
         DivElement me = new DivElement();
         me.setInnerHtml("<br> ${getText()}");
@@ -30,6 +31,8 @@ class GiveJackRing extends Scene {
             strife.startTurn(div);
         }
     }
+
+
 
     String getText() {
         Relationship r = gameEntity.getRelationshipWith(session.npcHandler.jack);
