@@ -3,7 +3,8 @@ import 'dart:html';
 
 /*
 JR from 10/16/18 says that none of the crowned scenes are architected in a way that lets me easily
-prevent them. so.....just....don't allow this i guess???
+prevent them. so.....just....don't allow this i guess??? (basically just because the scene triggers doesn't mean that the
+carapace ends up with a crown, and the scenes aren't even theonly way to get crowned)
 
 class CrownedCarapaceHappened extends ImportantEvent {
     //i literally don't remember if this fucking does anything, oh yeah its for sort
