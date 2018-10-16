@@ -79,7 +79,7 @@ void printCarapaces(){
 void printBigBads() {
     DivElement bb = new DivElement();
     bb.text = "Big Bads: ";
-    for(GameEntity g in session.bigBads) {
+    for(GameEntity g in session.bigBadsReadOnly) {
         printOneGameEntityWithAI(g,bb);
     }
 

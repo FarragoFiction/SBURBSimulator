@@ -102,7 +102,7 @@ class NPCHandler
     }
 
     void setupBigBads() {
-        //session.logger.info("TEST BULLSHIT: setting up big bads from ${bigBadsFromFile.length} data strings, $bigBadsFromFile");
+        //session.logger.info("TEST BULLSHIT: setting up big bads from ${bigBadsFromFile.length} data strings");
         for(String line in bigBadsFromFile) {
             if(line.isNotEmpty) {
                // session.logger.info("processing $line");

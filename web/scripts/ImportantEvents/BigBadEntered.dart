@@ -44,6 +44,7 @@ class BigBadEntered extends ImportantEvent {
         session.activatedBigBads.remove(bigBad);
         session.npcHandler.bigBads.remove(bigBad);
         session.deactivateNPC(bigBad);
+        print("DebugYard: session removed $bigBad");
 
         CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
         div.append(canvasDiv);

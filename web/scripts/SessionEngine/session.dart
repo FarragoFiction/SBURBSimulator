@@ -77,7 +77,8 @@ class Session {
     List<Player> players = <Player>[];
 
     //these are stable between combos and scratches
-    List<GameEntity> get bigBads => npcHandler.bigBads;
+
+    List<GameEntity> get bigBadsReadOnly => new List<BigBad>.from(npcHandler.bigBads);
     //these are not
 
     //stores them.
@@ -124,9 +125,9 @@ class Session {
 
     void grabActivatedBigBads() {
         List<GameEntity> bbRemove = new List<GameEntity>();
-        for(GameEntity g in bigBads) {
+        for(GameEntity g in bigBadsReadOnly) {
             if(g.active) {
-                //logger.info("I think that $g just activated as a big bad");
+                logger.info("I think that $g just activated as a big bad");
                 _activatedNPCS.add(g);
                 bbRemove.add(g);
                 activatedBigBads.add(g);
@@ -135,7 +136,9 @@ class Session {
             }
         }
         for(GameEntity g in bbRemove) {
-            bigBads.remove(g);
+            print("before removing $g, big bads is $bigBadsReadOnly");
+            bigBadsReadOnly.remove(g);
+            print("after removing $g, big bads is $bigBadsReadOnly");
         }
 
     }
@@ -674,8 +677,10 @@ class Session {
     }
 
     void processBigBadIntros() {
+        print("processing big bad intros");
         checkBigBadTriggers();
-        List<GameEntity> possibleTargets = new List<GameEntity>.from(activatedNPCS);
+        //only check activated big bads for combo purposes, the non activated ones will happen in checkBigBadTriggers
+        List<GameEntity> possibleTargets = new List<GameEntity>.from(activatedBigBads);
         //if you are not a big bad, dead or inactive, remove.
         possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
         for(BigBad bb in possibleTargets) {
@@ -888,6 +893,7 @@ class Session {
         }
 
         //keep it from being a concurrent mod if i activate (and thus get removed from list
+        print("processing scenes");
         checkBigBadTriggers();
         //logger.info("done processing big bads showing up");
         for(Player p in avail) {
@@ -913,7 +919,8 @@ class Session {
 
     void checkBigBadTriggers() {
            //keep it from being a concurrent mod if i activate (and thus get removed from list
-      List<GameEntity> bb = new List.from(bigBads);
+      List<GameEntity> bb = new List.from(bigBadsReadOnly);
+      print("checking big bad trigger for $bb");
       for(GameEntity g in bb) {
           if(g is BigBad && !activatedBigBads.contains(g)) {
               //handles activation and rendering

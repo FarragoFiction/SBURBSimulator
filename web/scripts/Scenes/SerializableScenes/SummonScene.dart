@@ -26,7 +26,7 @@ class SummonScene extends SerializableScene {
         bool debugMode = getParameterByName("debug") == "fuckYes";
         String debug = "";
         if(debugMode) {
-            debug = " (Triggers are: $triggerConditionsLand and $triggerConditionsLiving) Targets are: $landTargets nad $livingTargets. Remaining BigBads are ${session.bigBads}";
+            debug = " (Triggers are: $triggerConditionsLand and $triggerConditionsLiving) Targets are: $landTargets nad $livingTargets. Remaining BigBads are ${session.bigBadsReadOnly}";
         }
         intro.setInnerHtml("<h1>All tremble at the arrival of ${gameEntity.name}. $debug <br>");
         if(!doNotRender) {
@@ -47,6 +47,7 @@ class SummonScene extends SerializableScene {
 
   @override
   void doAction() {
+        //print("activating $gameEntity");
       session.stats.bigBadActive = true;
       gameEntity.active = true;
   }
