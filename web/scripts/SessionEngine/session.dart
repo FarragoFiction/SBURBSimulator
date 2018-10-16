@@ -131,12 +131,14 @@ class Session {
         print("DebugYard: session removed $bigBad from ${npcHandler.bigBads}");
         for(BigBad bb in bigBadsReadOnly) {
             if(bigBad.name == bb.name) {
-                //npcHandler.bigBads.remove(bb);
+                npcHandler.bigBads.remove(bb);
                 print("I think $bb is the same thing as ${bigBad}");
             }else {
                 print("I think $bb is the NOT same thing as ${bigBad}");
             }
         }
+        print("DebugYard: session removed $bigBad from ${npcHandler.bigBads}");
+
     }
 
     void grabActivatedBigBads() {
@@ -309,7 +311,7 @@ class Session {
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
-        //npcHandler.setupNpcs();
+        //npcHandler.setupNpcs(); reinit will handle this
         mutator = new SessionMutator();
         stats.initialGameEntityId = GameEntity.getIDCopy();
         mutator.syncToSession(this);
@@ -931,7 +933,7 @@ class Session {
 
     void checkBigBadTriggers() {
            //keep it from being a concurrent mod if i activate (and thus get removed from list
-      List<GameEntity> bb = new List.from(bigBadsReadOnly);
+      List<GameEntity> bb = bigBadsReadOnly;
       print("checking big bad trigger for $bb");
       for(GameEntity g in bb) {
           if(g is BigBad && !activatedBigBads.contains(g)) {
