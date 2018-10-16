@@ -1,4 +1,4 @@
-2018-10-16: Finally got the Yellow Yard updated to allow preventing Big Bads from spawning. Also spent a fuck ton of time debugging said Yellow Yard.
+2018-10-16: Finally got the Yellow Yard updated to allow preventing Big Bads from spawning. Also spent a fuck ton of time debugging said Yellow Yard.<br><br>irl shit remains bad and keeps stealing my attention, but I am genuinely shooting for a Halloween deploy on main.
 2018-10-06: The Nameless Empress is now less common. Whoops.<br><br>Also I MIGHT have tracked down why AB is crashing browsers if you ask her to do too much at once. I'm deploying to test this.
 2018-10-04: The non canon Troll Empress is in, and more common than )(IC.
 2018-10-03: Going through the older big bads and bringing them up to current standards. DQ0N, for example, can finally have his clones be reverted to their normal selves.
