@@ -120,25 +120,37 @@ class Session {
             //print("after adding $bb to activated big bads its ${activatedBigBads.length} long");
             bb.activateTasks();
         }
+    }
 
+    void makeBigBadIneligible(BigBad bigBad) {
+        bigBad.active = false;
+        activatedBigBads.remove(bigBad);
+        //apparently this doesn't work because reality is inscrutable, do a loop with names instead
+        npcHandler.bigBads.remove(bigBad);
+        deactivateNPC(bigBad);
+        print("DebugYard: session removed $bigBad from ${npcHandler.bigBads}");
+        for(BigBad bb in bigBadsReadOnly) {
+            if(bigBad.name == bb.name) {
+                //npcHandler.bigBads.remove(bb);
+                print("I think $bb is the same thing as ${bigBad}");
+            }else {
+                print("I think $bb is the NOT same thing as ${bigBad}");
+            }
+        }
     }
 
     void grabActivatedBigBads() {
-        List<GameEntity> bbRemove = new List<GameEntity>();
         for(GameEntity g in bigBadsReadOnly) {
             if(g.active) {
                 logger.info("I think that $g just activated as a big bad");
                 _activatedNPCS.add(g);
-                bbRemove.add(g);
                 activatedBigBads.add(g);
                 //print("after adding $g to activated big bads its ${activatedBigBads.length} long");
                 g.activateTasks();
+                print("before removing $g, big bads is $bigBadsReadOnly");
+                npcHandler.bigBads.remove(g);
+                print("after removing $g, big bads is $bigBadsReadOnly");
             }
-        }
-        for(GameEntity g in bbRemove) {
-            print("before removing $g, big bads is $bigBadsReadOnly");
-            bigBadsReadOnly.remove(g);
-            print("after removing $g, big bads is $bigBadsReadOnly");
         }
 
     }
@@ -297,7 +309,7 @@ class Session {
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
         npcHandler = new NPCHandler(this);
-        npcHandler.setupNpcs();
+        //npcHandler.setupNpcs();
         mutator = new SessionMutator();
         stats.initialGameEntityId = GameEntity.getIDCopy();
         mutator.syncToSession(this);
