@@ -695,8 +695,11 @@ class Session {
     void processBigBadIntros() {
         print("processing big bad intros");
         checkBigBadTriggers();
-        DivElement fucked = new DivElement()..setInnerHtml("The PLAYERS are fucked beyond all belief, hailing from a session where any and everyone worth their salt is locked in a neverending struggle for dominance. Good guys, bad guys and explosions, as far as the eye can see.<br><Br>");
-        SimController.instance.storyElement.append(fucked);
+        if(ultimateShowdown) {
+            DivElement fucked = new DivElement()
+                ..setInnerHtml("The PLAYERS are fucked beyond all belief, hailing from a session where any and everyone worth their salt is locked in a neverending struggle for dominance. Good guys, bad guys and explosions, as far as the eye can see.<br><Br>");
+            SimController.instance.storyElement.append(fucked);
+        }
         //only check activated big bads for combo purposes, the non activated ones will happen in checkBigBadTriggers
         List<GameEntity> possibleTargets = new List<GameEntity>.from(activatedBigBads);
         //if you are not a big bad, dead or inactive, remove.
