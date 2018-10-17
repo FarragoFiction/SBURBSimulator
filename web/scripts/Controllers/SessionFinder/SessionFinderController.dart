@@ -282,7 +282,7 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
     var str = sum.generateHTML();
-    debug("<br><hr>${sessionsSimulated.indexOf(session.session_id)}<font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>Combo is ${session.stats.isComboedInto}<br>;" );
+    debug("<br><hr>${sessionsSimulated.indexOf(session.session_id)}<font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font>" );
     debug(str);
     printStats(null,null,null); //no filters here
     numSimulationsDone ++;
