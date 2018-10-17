@@ -50,6 +50,7 @@ class SessionStats {
     bool bigBadActive = false;
     bool sacrificialSlab = false;
     bool hadCombinedSession = false;
+    bool isComboedInto = false;
     bool yellowYard = false;
     bool crashedFromCustomShit = false;
     bool cataclysmCrash = false;

@@ -46,8 +46,10 @@ abstract class AuthorBot extends SimController {
     await session.startSession();
     //print("I think the session stopped!");
     DateTime end = new DateTime.now();
-
-    summarizeSession(session, end.difference(start));
+    //don't accidentally repeat combo sessions here, i don't know why they return here but they do, separately from their parent
+    if(!session.stats.isComboedInto) {
+      summarizeSession(session, end.difference(start));
+    }
    // print("I think i summarized the session!");
   }
 

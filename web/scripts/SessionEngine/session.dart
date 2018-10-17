@@ -1358,6 +1358,7 @@ class Session {
         newSession.addActiveNPCSForCombo(activatedNPCS);
         this.stats.hadCombinedSession = true;
         this.childSession = newSession;
+        newSession.stats.isComboedInto = true;
         //reverse polarity
         //newSession.parentSession = this;
         this.childSession = newSession;
