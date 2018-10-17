@@ -261,7 +261,9 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
   //stripped out tournament stuff, that'll be a different controller.
   @override
   SessionSummary summarizeSession(Session session, Duration duration) {
-    ////;
+    if(session.stats.isComboedInto) {
+      return summarizeNextStep(session, null);
+    }
     print("summarizing: ${session}, duration is $duration");
     //UserTag previousTag = session.createDebugTag("SummarizingSession");
 
@@ -280,12 +282,16 @@ class SessionFinderController extends AuthorBot { //works exactly like Sim unles
     sessionSummariesDisplayed.add(sum);
     //printSummaries();  //this slows things down too much. don't erase and reprint every time.
     var str = sum.generateHTML();
-    debug("<br><hr>${sessionsSimulated.indexOf(session.session_id)}<font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>" );
+    debug("<br><hr>${sessionsSimulated.indexOf(session.session_id)}<font color = 'red'> AB: " + getQuipAboutSession(sum) + "</font><Br>Combo is ${session.stats.isComboedInto}<br>;" );
     debug(str);
     printStats(null,null,null); //no filters here
     numSimulationsDone ++;
     initial_seed = session.rand.nextInt(); //child session
     ////;
+    return summarizeNextStep(session, sum);
+  }
+
+  SessionSummary summarizeNextStep(Session session, SessionSummary sum) {
     if(numSimulationsDone >= numSimulationsToDo){
       round ++;
       (querySelector("#button")as ButtonElement).disabled =false;
