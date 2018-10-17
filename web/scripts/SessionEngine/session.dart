@@ -30,6 +30,7 @@ class Session {
 
     //no players, carapaces only, final destination
     bool tableGuardianMode = false;
+    bool ultimateShowdown = false;
     bool plzStartReckoning = false;
     bool didReckoning = false;
     int numberPlayersOnBattlefield = 0;
@@ -112,6 +113,7 @@ class Session {
         }
     }
 
+    //for use in session customizer and easter eggs
     void activateBigBad(GameEntity bb) {
         bb.active = true;
         if(!_activatedNPCS.contains(bb)) {
@@ -693,13 +695,15 @@ class Session {
     void processBigBadIntros() {
         print("processing big bad intros");
         checkBigBadTriggers();
+        DivElement fucked = new DivElement()..setInnerHtml("The PLAYERS are fucked beyond all belief, hailing from a session where any and everyone worth their salt is locked in a neverending struggle for dominance. Good guys, bad guys and explosions, as far as the eye can see.<br><Br>");
+        SimController.instance.storyElement.append(fucked);
         //only check activated big bads for combo purposes, the non activated ones will happen in checkBigBadTriggers
         List<GameEntity> possibleTargets = new List<GameEntity>.from(activatedBigBads);
         //if you are not a big bad, dead or inactive, remove.
         possibleTargets.removeWhere((GameEntity item) => !(item is BigBad) || item.dead || !item.active);
         for(BigBad bb in possibleTargets) {
             if(bb.prologueText != null && bb.prologueText.isNotEmpty) {
-                DivElement div = new DivElement()..text = bb.prologueText;
+                DivElement div = new DivElement()..setInnerHtml("${bb.prologueText}<Br><Br>");
                 SimController.instance.storyElement.append(div);
             }
         }
@@ -1433,6 +1437,12 @@ class Session {
 
         for(GameEntity g in prospit.associatedEntities) {
             g.active = true;
+        }
+    }
+
+    void activateAllBigBads() {
+        for(BigBad bb in bigBadsReadOnly) {
+            activateBigBad(bb);
         }
     }
 

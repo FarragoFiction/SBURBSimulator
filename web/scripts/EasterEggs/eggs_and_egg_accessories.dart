@@ -111,6 +111,13 @@ void sbahjMode(Session session){
 		session.activateAllCarapaces();
 	}
 
+	//ultimate showdown of ultimate destiny
+	if (getParameterByName("destiny", null) == "ultimate") {
+		session.ultimateShowdown = true;
+		//cant just do it in summon scenes cuz without valid target it might not do a thing
+		session.activateAllBigBads();
+	}
+
 	if (getParameterByName("lollipop", null) == "true") {
 		tricksterMode(session);
 	}
