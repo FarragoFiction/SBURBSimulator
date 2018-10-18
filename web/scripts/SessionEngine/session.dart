@@ -307,8 +307,9 @@ class Session {
     List<Aspect> required_aspects;
     SessionMutator mutator;
 
-    Session(int this.session_id) {
+    Session(int this.session_id, [bool isCombo= false]) {
         globalInit();
+        stats.isComboedInto = isCombo;
         logger = Logger.get("Session: $session_id", false);
         this.rand = new Random(session_id);
         PotentialSprite.initializeAShitTonOfPotentialSprites(this);
@@ -1348,7 +1349,7 @@ class Session {
         this.aliensClonedOnArrival = <Player>[]; //PROBABLY want to do this.
         List<Player> living = findLiving(this.players);
         //nobody is the leader anymore.
-        Session newSession = new Session(this.rand.nextInt()); //Math.seed);  //this is a real session that could have gone on without these new players.
+        Session newSession = new Session(this.rand.nextInt(),true); //Math.seed);  //this is a real session that could have gone on without these new players.
         newSession
             ..currentSceneNum = this.currentSceneNum
             ..afterLife = this.afterLife //afterlife carries over.

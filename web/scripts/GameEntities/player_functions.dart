@@ -10,6 +10,9 @@ why would ANYONE EVER WANT THAT!?????????
 javascript is "WAT"ing me
 because of COURSE "null" == null is fucking false, so my code is like "oh, i must have some players" and then try to fucking parse!!!!!!!!!!!!!!*/
 List<Player> getReplayers(Session session) {
+    //replayers are only for the originating session
+    if(session.stats.isComboedInto) return new List<Player>();
+    print("session $session was comboed into? ${session.stats.isComboedInto}");
     //needed or i can't parse moon data
     if(session.prospit == null) session.setupMoons("getting replayers");
 //	var b = LZString.decompressFromEncodedURIComponent(getRawParameterByName("b"));
