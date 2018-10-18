@@ -914,7 +914,7 @@ class Session {
         }
 
         //keep it from being a concurrent mod if i activate (and thus get removed from list
-        print("processing scenes");
+        //print("processing scenes");
         checkBigBadTriggers();
         //logger.info("done processing big bads showing up");
         for(Player p in avail) {
@@ -941,7 +941,7 @@ class Session {
     void checkBigBadTriggers() {
            //keep it from being a concurrent mod if i activate (and thus get removed from list
       List<GameEntity> bb = bigBadsReadOnly;
-      print("checking big bad trigger for $bb");
+      //print("checking big bad trigger for $bb");
       for(GameEntity g in bb) {
           if(g is BigBad && !activatedBigBads.contains(g)) {
               //handles activation and rendering

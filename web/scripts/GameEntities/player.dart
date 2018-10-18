@@ -1917,7 +1917,7 @@ class Player extends GameEntity{
 
         this.causeOfDrain = replayPlayer.causeOfDrain;
         this.causeOfDeath = replayPlayer.causeOfDeath;
-        print("TEST CUSTOM: replay player's chat handle is ${replayPlayer.chatHandle}");
+        //print("TEST CUSTOM: replay player's chat handle is ${replayPlayer.chatHandle}");
         if (replayPlayer.chatHandle != "") {
             this.chatHandle = replayPlayer.chatHandle;
             this.deriveChatHandle = false;

@@ -341,6 +341,8 @@ dynamic dataBytesAndStringsToPlayer(Session session, String charString, List<Str
   String i1= sanitizeString(Uri.decodeFull(str_arr[2]).trim());
   String i2 = sanitizeString(Uri.decodeFull(str_arr[3]).trim());
   player.chatHandle = sanitizeString(Uri.decodeFull(str_arr[4]).trim());
+  //don't redo this please
+  if(player.chatHandle.isNotEmpty) player.deriveChatHandle = false;
   //for bytes, how to convert uri encoded string into char string into unit8 buffer?
   //holy shit i haven't had this much fun since i did the color replacement engine a million years ago. this is exactlyt he right flavor of challenging.
   ////print("charString is: " + charString);
