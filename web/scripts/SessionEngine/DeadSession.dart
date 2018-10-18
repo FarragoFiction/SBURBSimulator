@@ -506,7 +506,7 @@ class DeadSession extends Session {
         List<Player> living = findLiving(this.players);
         living.add((this as DeadSession).metaPlayer);
         //nobody is the leader anymore.
-        Session newSession = new Session(this.rand.nextInt()); //Math.seed);  //this is a real session that could have gone on without these new players.
+        Session newSession = new Session(this.rand.nextInt(),true); //Math.seed);  //this is a real session that could have gone on without these new players.
         newSession
             ..currentSceneNum = this.currentSceneNum
             ..afterLife = this.afterLife //afterlife carries over.
