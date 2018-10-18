@@ -46,7 +46,6 @@ Future<Null> main() async {
 
 Future<Null> startSession() async {
   Session session = new Session(SimController.instance.initial_seed);
-  checkEasterEgg(session);
   await session.startSession();
   print("I think the session stopped!");
 }

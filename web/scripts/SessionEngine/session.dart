@@ -800,7 +800,7 @@ class Session {
         for(Player p in this.players) {
             p.syncToSessionMoon();
         }
-        await checkEasterEgg(this);
+        await checkEasterEgg(this); //it won't call start directly, so i'll allow it to stay here
         SimController.instance.scratchEasterEggCallBack(this);
     }
 
@@ -831,7 +831,7 @@ class Session {
     Future<Null> restartSessionScratch() async {
         setHtml(SimController.instance.storyElement, '<canvas id="loading" width="1000" height="354"> ');
         window.scrollTo(0, 0);
-        await checkEasterEgg(this);
+        //await checkEasterEgg(this); start sessionw ill do this now, otherwise yellow yards don't work with eggs
         startSession();
     }
 
@@ -1260,7 +1260,9 @@ class Session {
 
     //players should be created before i start
     Future<Session> startSession() async {
+
         logger.info("session is starting");
+        await checkEasterEgg(this);
         //UserTag previousTag = createDebugTag("Session$session_id");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
