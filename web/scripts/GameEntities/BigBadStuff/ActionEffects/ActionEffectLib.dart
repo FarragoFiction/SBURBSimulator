@@ -2,6 +2,7 @@ library ActionEffectLib;
 
 export "ActionEffect.dart";
 export "EntityEffects/InstaKill.dart";
+export "EntityEffects/AbdicateCrown.dart";
 export "EntityEffects/MakeStrifable.dart";
 export "EntityEffects/PickPocket.dart";
 export "EntityEffects/GiveFlipOutReason.dart";

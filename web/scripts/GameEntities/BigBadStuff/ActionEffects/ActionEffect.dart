@@ -221,6 +221,7 @@ abstract class EffectEntity extends ActionEffect {
       ret.add(new GiveMinion(scene));
       ret.add(new GiveFraymotif(scene));
       ret.add(new GiveItem(scene));
+      ret.add(new AbdicateCrown(scene));
       ret.add(new GiveSpecibus(scene));
       ret.add(new GiveAction(scene));
       ret.add(new GiveThisAction(scene));
