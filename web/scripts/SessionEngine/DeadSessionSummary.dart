@@ -116,7 +116,6 @@ class DeadMultiSessionSummary extends MultiSessionSummary {
     setStat("timesAllLived", 0);
     setStat("denizenBeat", 0);
     setStat("queenRejectRing", 0);
-    setStat("democracyStarted", 0);
     setStat("murderMode", 0);
     setStat("grimDark", 0);
 

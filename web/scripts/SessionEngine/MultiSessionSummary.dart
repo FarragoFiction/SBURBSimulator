@@ -535,12 +535,10 @@ class MultiSessionSummary {
             mss.integrateClasses(ss.miniPlayers);
 
             if (ss.getBoolStat("badBreakDeath")) mss.incNumStat("badBreakDeath");
-            if (ss.getBoolStat("mayorEnding")) mss.incNumStat("mayorEnding");
             if (ss.getBoolStat("gnosisEnding")) mss.incNumStat("gnosisEnding");
             if (ss.getBoolStat("loveEnding")) mss.incNumStat("loveEnding");
             if (ss.getBoolStat("hateEnding")) mss.incNumStat("hateEnding");
             if (ss.getBoolStat("monoTheismEnding")) mss.incNumStat("monoTheismEnding");
-            if (ss.getBoolStat("waywardVagabondEnding")) mss.incNumStat("waywardVagabondEnding");
             if (ss.getBoolStat("choseGodTier")) mss.incNumStat("choseGodTier");
             if (ss.getBoolStat("luckyGodTier")) mss.incNumStat("luckyGodTier");
             if (ss.getBoolStat("blackKingDead")) mss.incNumStat("blackKingDead");
@@ -558,15 +556,8 @@ class MultiSessionSummary {
             if (ss.getNumStat("numDead") == 0) mss.incNumStat("timesAllLived");
             if (ss.getBoolStat("ectoBiologyStarted")) mss.incNumStat("ectoBiologyStarted");
             if (ss.getBoolStat("denizenBeat")) mss.incNumStat("denizenBeat");
-            if (ss.getBoolStat("plannedToExileJack")) mss.incNumStat("plannedToExileJack");
-            if (ss.getBoolStat("exiledJack")) mss.incNumStat("exiledJack");
-            if (ss.getBoolStat("exiledQueen")) mss.incNumStat("exiledQueen");
-            if (ss.getBoolStat("jackGotWeapon")) mss.incNumStat("jackGotWeapon");
-            if (ss.getBoolStat("jackRampage")) mss.incNumStat("jackRampage");
-            if (ss.getBoolStat("jackScheme")) mss.incNumStat("jackScheme");
             if (ss.getBoolStat("kingTooPowerful")) mss.incNumStat("kingTooPowerful");
             if (ss.getBoolStat("queenRejectRing")) mss.incNumStat("queenRejectRing");
-            if (ss.getBoolStat("democracyStarted")) mss.incNumStat("democracyStarted");
             if (ss.getBoolStat("murdersHappened")) mss.incNumStat("murdersHappened");
             if (ss.getBoolStat("grimDark")) mss.incNumStat("grimDark");
             if (ss.getBoolStat("hasDiamonds")) mss.incNumStat("hasDiamonds");
