@@ -275,6 +275,8 @@ class Player extends GameEntity{
         if (render) {
             this.renderSelf("changeGrimDark");
         }
+        this.grimDark = Math.min(4,this.grimDark); //don't be higher than 4
+        this.grimDark = Math.max(0,this.grimDark); //don't be lower than 0.
     }
 
     void makeMurderMode() {
