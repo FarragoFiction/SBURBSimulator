@@ -1,3 +1,4 @@
+2018-10-22: Minor polish work like removing deprecated fields from AB and working through my bug report list.
 2018-10-19: Grim Reaper is in, hopefully not insanely rare or so common he's boring? At this point really its just polish and a few more Big Bads to add? We're at the final push.
 2018-10-18: Canon and other easter egg session time players no longer go back in time only to find everything a warped and twisted version of reality anymore.<br>Also I fiddled with some big bad AI stuff to make them more stable and less ridiculous. I'm looking at you, )(IC.
 2018-10-17: I finally managed to explain to AB what combo sessions are. Turns out she was treating combo sessions as their own separate thing, and so was reporting their results as being (quite rightly) different from what you'd see when you'd click on it and see it all native with no invading players.<br><br>Also there are definitely no new Big Bad related easter eggs.
