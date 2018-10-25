@@ -1,6 +1,7 @@
 import "dart:html";
 import "navbar.dart";
 import "SBURBSim.dart";
+import "dart:math" as Math;
 /*
   Though this FEELS like it should take a back burner to the general refactoring effort, the fact
   remains that GameEntities, Players and PlayerSnapshots are all treated as interchangeable
@@ -304,6 +305,51 @@ class Strife {
             if (p is Player) ret.add(p);
         }
         return ret;
+    }
+
+    static String checkDamage(String ret, GameEntity defense, GameEntity offense) {
+        //base damage, don't do negative damage please.
+        num hit = Math.max(1,offense.getStat(Stats.POWER));
+        //use min luck to prevent bad things and max luck to shoot for good things
+        num offenseRoll = offense.rollForLuck(Stats.MAX_LUCK);
+        num defenseRoll = defense.rollForLuck(Stats.MIN_LUCK);
+        //critical/glancing hit odds.
+        if (defenseRoll > offenseRoll * 2) { //glancing blow.
+            //////session.logger.info("Glancing Hit: " + this.session.session_id);
+            hit = hit / 2;
+            ret = "$ret The attack manages to not hit anything too vital. ";
+        } else if (offenseRoll > defenseRoll * 2) {
+            //////session.logger.info("Critical hit.");
+            ////////session.logger.info("Critical Hit: " + this.session.session_id);
+            hit = hit * 2;
+            ret = "$ret Ouch. That's gonna leave a mark. ";
+        } else {
+            //////session.logger.info("a hit.");
+            ret ="$ret A hit! ";
+        }
+        defense.addStat(Stats.CURRENT_HEALTH, -1 * hit);
+        return ret;
+    }
+
+
+        //the defender uses max luck since it would be a good thing if it missed, the offender uses min luck since it would be  bad
+    static String checkLuck(String ret, GameEntity defense, GameEntity offense) {
+        if(defense.getStat(Stats.MAX_LUCK).abs() + offense.getStat(Stats.MIN_LUCK).abs() < 1113)  return null;
+
+        //luck dodge
+        //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
+        //////session.logger.info("gonna roll for luck.");
+        if (defense.rollForLuck(Stats.MAX_LUCK) > offense.rollForLuck(Stats.MIN_LUCK) * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
+            //////session.logger.info("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            ret= "$ret The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!";
+            offense.addStat(Stats.CURRENT_HEALTH, -1 * offense.getStat(Stats.POWER) / 10); //damaged by your own power.
+            //this.processDeaths(div, offense, defense);
+            return ret;
+        } else if (defense.rollForLuck(Stats.MAX_LUCK) > offense.rollForLuck(Stats.MIN_LUCK) * 5 + 100) {
+            // ////session.logger.info("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
+            ret= "$ret The attack misses completely after an unlucky distraction.";
+            return ret;
+        }
     }
 
     //if i don't return anything, assume nothing happened and ignore me

@@ -603,6 +603,7 @@ class GameEntity extends Object with StatOwner   {
 
     void aggrieve(Element div, GameEntity defense) {
         GameEntity offense = this; //easier for now.
+        //the less dom we do the faster it will be, build up the string manually
         String ret = "<br><Br> The ${offense.htmlTitleHP()} targets the ${defense.htmlTitleHP()} with their ${offense.specibus.fullName}. ";
         if(offense.specibus.traits.contains(ItemTraitFactory.CORRUPT)) {
             ret += " Uh. Wow. Should they be using that?";
@@ -613,49 +614,24 @@ class GameEntity extends Object with StatOwner   {
             }
         }
         if (defense.dead) ret = "$ret Apparently their corpse sure is distracting? How luuuuuuuucky for the remaining players!";
-        appendHtml(div, ret);
 
-        //luck dodge
-        //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
-        //////session.logger.info("gonna roll for luck.");
-        if (defense.rollForLuck(Stats.MIN_LUCK) > offense.rollForLuck(Stats.MIN_LUCK) * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
-            //////session.logger.info("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
-            appendHtml(div, "The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!");
-            offense.addStat(Stats.CURRENT_HEALTH, -1 * offense.getStat(Stats.POWER) / 10); //damaged by your own power.
-            //this.processDeaths(div, offense, defense);
-            return;
-        } else if (defense.rollForLuck(Stats.MAX_LUCK) > offense.rollForLuck(Stats.MAX_LUCK) * 5 + 100) {
-           // ////session.logger.info("Luck dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
-            appendHtml(div, "The attack misses completely after an unlucky distraction.");
+        String luckCheck = Strife.checkLuck(ret,defense, offense);
+        if(luckCheck != null) {
+            appendHtml(div, luckCheck);
             return;
         }
-        String mobilityCheck = Strife.checkMobility(ret, defense, offense );
+
+        String mobilityCheck = Strife.checkMobility(ret,defense, offense );
 
         if(mobilityCheck != null) {
             appendHtml(div, mobilityCheck);
             return;
         }
-        //base damage
-        num hit = Math.max(1,offense.getStat(Stats.POWER));
-        num offenseRoll = offense.rollForLuck();
-        num defenseRoll = defense.rollForLuck();
-        //critical/glancing hit odds.
-        if (defenseRoll > offenseRoll * 2) { //glancing blow.
-            //////session.logger.info("Glancing Hit: " + this.session.session_id);
-            hit = hit / 2;
-            appendHtml(div, " The attack manages to not hit anything too vital. ");
-        } else if (offenseRoll > defenseRoll * 2) {
-            //////session.logger.info("Critical hit.");
-            ////////session.logger.info("Critical Hit: " + this.session.session_id);
-            hit = hit * 2;
-            appendHtml(div, " Ouch. That's gonna leave a mark. ");
-        } else {
-            //////session.logger.info("a hit.");
-            appendHtml(div, " A hit! ");
-        }
 
-
-        defense.addStat(Stats.CURRENT_HEALTH, -1 * hit);
+        String hitCheck = Strife.checkDamage(ret,defense, offense );
+        //it will definitely return a string
+        appendHtml(div, hitCheck);
+        //jr from 10/25/18 don't remember why this is commented out. probably fine???
         //this.processDeaths(div, offense, defense);
     }
 
