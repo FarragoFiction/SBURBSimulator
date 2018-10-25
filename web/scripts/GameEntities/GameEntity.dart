@@ -629,24 +629,10 @@ class GameEntity extends Object with StatOwner   {
             appendHtml(div, "The attack misses completely after an unlucky distraction.");
             return;
         }
-        //mobility dodge
-        int r = this.session.rand.nextIntRange(1, 100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;
-        if (defense.getStat(Stats.POWER) > offense.getStat(Stats.POWER) * 10 + 200 && r > 25) {
-            //////session.logger.info("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
-            ret = ("The ${offense.htmlTitleHP()} practically appears to be standing still as they clumsily lunge towards the ${defense.htmlTitleHP()}");
-            if (defense.getStat(Stats.CURRENT_HEALTH) > 0) {
-                ret = "$ret. They miss so hard the ${defense.htmlTitleHP()} has plenty of time to get a counterattack in.";
-                offense.addStat(Stats.CURRENT_HEALTH, -1 * defense.getStat(Stats.POWER));
-            } else {
-                ret = "$ret. They miss pretty damn hard. ";
-            }
-            appendHtml(div, "$ret ");
-            //this.processDeaths(div, offense, defense);
+        String mobilityCheck = Strife.checkMobility(ret, defense, offense );
 
-            return;
-        } else if (defense.getStat(Stats.MOBILITY) > offense.getStat(Stats.MOBILITY) * 5 + 100 && r > 25) {
-            //////session.logger.info("Mobility dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
-            appendHtml(div, " The ${defense.htmlTitleHP()} dodges the attack completely. ");
+        if(mobilityCheck != null) {
+            appendHtml(div, mobilityCheck);
             return;
         }
         //base damage
@@ -672,6 +658,8 @@ class GameEntity extends Object with StatOwner   {
         defense.addStat(Stats.CURRENT_HEALTH, -1 * hit);
         //this.processDeaths(div, offense, defense);
     }
+
+
 
 
     //currently only thing ghost pacts are good for post refactor.
