@@ -4,6 +4,7 @@ export "ActionEffect.dart";
 export "EntityEffects/InstaKill.dart";
 export "EntityEffects/AbdicateCrown.dart";
 export "EntityEffects/MakeStrifable.dart";
+export "EntityEffects/MakeUnStrifable.dart";
 export "EntityEffects/PickPocket.dart";
 export "EntityEffects/GiveFlipOutReason.dart";
 export "EntityEffects/KillSleepingDreamSelf.dart";

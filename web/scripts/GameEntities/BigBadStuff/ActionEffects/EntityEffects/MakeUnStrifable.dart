@@ -3,10 +3,10 @@ import 'dart:html';
 
 //no chance to survive, no strife no anything. it's a red miles situation
 //not really any details, or modifiers
-class MakeStrifable extends EffectEntity {
+class MakeUnStrifable extends EffectEntity {
     @override
-    String name = "MakeStrifable";
-    MakeStrifable(SerializableScene scene) : super(scene);
+    String name = "MakeUnStrifable";
+    MakeUnStrifable(SerializableScene scene) : super(scene);
 
 
   @override
@@ -19,7 +19,7 @@ class MakeStrifable extends EffectEntity {
         setupContainer(divbluh);
         DivElement me = new DivElement();
         container.append(me);
-        me.setInnerHtml("<b>MakeStrifable:</b> <br>now the BB can be strifed normally (if it couldn't before). Will not trigger a strife on its own, though. <br><br>");
+        me.setInnerHtml("<b>MakeUnStrifable:</b> <br>Can no longer be strifed in the final Boss fight, or villain fights, or a few other situations. <br><br>");
         syncToForm();
     }
 
@@ -34,12 +34,12 @@ class MakeStrifable extends EffectEntity {
         if(e.renderable()) renderableTargets.add(e);
         SpanElement death = new SpanElement();
         String text  = "";
-        if(!e.canStrife) {
-            text = "${e.htmlTitle()} can now be strifed in boss fights.";
+        if(e.canStrife) {
+            text = "${e.htmlTitle()} can no longer be strifed in boss fights.";
         }else {
             text = "Nothing actually seems to happen to ${e.htmlTitle()}";
         }
-        e.canStrife = true;
+        e.canStrife = false;
         death.setInnerHtml(text);
         scene.myElement.append(death);
     });
@@ -52,6 +52,6 @@ class MakeStrifable extends EffectEntity {
   }
   @override
   ActionEffect makeNewOfSameType() {
-    return new MakeStrifable(scene);
+    return new MakeUnStrifable(scene);
   }
 }
