@@ -134,17 +134,17 @@ void sbahjMode(Session session){
 		babyStuckMode(session);
 	}
 
-	if(session.session_id == 413){
+	if(session.session_id == 413 || "${session.session_id}".endsWith("413")){
 		session413(session);
-	}else if(session.session_id == 612){
+	}else if(session.session_id == 612 || "${session.session_id}".endsWith("612")){
 		session612(session);
 	}else if(session.session_id == 613){
 		session613(session);
-	}else if(session.session_id == 1025){
+	}else if(session.session_id == 1025 ||"${session.session_id}".endsWith("1025")){
 		session1025(session);
 	}else if(session.session_id == 33){
 		session33(session);
-	}else if(session.session_id == 111111){
+	}else if(session.session_id == 111111 || "${session.session_id}".endsWith("111111")){
 		session111111(session);
 	}else if(session.session_id == 88888888){
 		session88888888(session);
