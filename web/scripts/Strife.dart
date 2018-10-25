@@ -308,13 +308,14 @@ class Strife {
 
     //if i don't return anything, assume nothing happened and ignore me
     static String  checkMobility(String ret, GameEntity defense, GameEntity offense) {
-        //if you aren't at least a LITTLE impressive, don't even bother calculating this
-        if(defense.getStat(Stats.MOBILITY).abs() < 1113 && offense.getStat(Stats.MOBILITY).abs() < 1113) return;
+        //if you aren't together at least a LITTLE impressive, don't even bother calculating this
+        //this way if one of them is impressive and the other isn't it still goes
+        if(defense.getStat(Stats.MOBILITY).abs() + offense.getStat(Stats.MOBILITY).abs() < 1113)  return null;
 
         //mobility dodge
         int r = defense.session.rand.nextIntRange(1, 100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;
 
-        if (defense.getStat(Stats.MOBILITY) > offense.getStat(Stats.MOBILITY) * 10 + 200 && r > 25) {
+        if (defense.getStat(Stats.MOBILITY) > offense.getStat(Stats.MOBILITY) * 10 && r > 25) {
             //////session.logger.info("Mobility counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
             ret = ("The ${offense.htmlTitleHP()} practically appears to be standing still as they clumsily lunge towards the ${defense.htmlTitleHP()}");
             if (defense.getStat(Stats.CURRENT_HEALTH) > 0) {
@@ -326,11 +327,12 @@ class Strife {
             //this.processDeaths(div, offense, defense);
 
             return ret;
-        } else if (defense.getStat(Stats.MOBILITY) > offense.getStat(Stats.MOBILITY) * 5 + 100 && r > 25) {
+        } else if (defense.getStat(Stats.MOBILITY) > offense.getStat(Stats.MOBILITY) * 5 && r > 25) {
             //////session.logger.info("Mobility dodge: ${defense.htmlTitleHP()} ${this.session.session_id}");
             ret = "$ret The ${defense.htmlTitleHP()} dodges the attack completely. ";
             return ret;
         }
+        return null;
     }
 }
 
