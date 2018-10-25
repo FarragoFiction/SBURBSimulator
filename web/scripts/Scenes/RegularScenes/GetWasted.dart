@@ -533,16 +533,19 @@ class GetWasted extends Scene {
         //small boost to space player land leve, for example. maybe some grist for everyone (once that's a thing)
         Player space = findAspectPlayer(this.session.players, Aspects.SPACE);
         if(space == null) return;
-        space.increaseLandLevel(5.0);
-        String ret = "<Br><br>Holy shit, the ${player.htmlTitle()} just figured out how important Frogs are to beating this game. ";
-        if(space == player) {
+        if(!session.fullFrogCheck(space)){
+            space.increaseLandLevel(5.0);
+            String ret = "<Br><br>Holy shit, the ${player.htmlTitle()} just figured out how important Frogs are to beating this game. ";
+            if(space == player) {
             ret += " They waste no time and just fucking DO it. ";
             if(player.class_name == SBURBClassManager.WASTE) ret += " They DO waste some space though. It's only natural. ";
-        }else {
+            }else {
             ret += " They bug and fuss and meddle until the ${space.htmlTitle()} just fucking DOES it. ";
+            ret += "<br><br>";
+            appendHtml(div, ret );
+            }
         }
-        ret += "<br><br>";
-        appendHtml(div, ret );
+
 
     }
 
