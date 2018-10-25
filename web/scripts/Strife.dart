@@ -334,14 +334,20 @@ class Strife {
 
         //the defender uses max luck since it would be a good thing if it missed, the offender uses min luck since it would be  bad
     static String checkLuck(String ret, GameEntity defense, GameEntity offense) {
-        if(defense.getStat(Stats.MAX_LUCK).abs() + offense.getStat(Stats.MIN_LUCK).abs() < 1113)  return null;
+        double total = defense.getStat(Stats.MAX_LUCK).abs() + offense.getStat(Stats.MIN_LUCK).abs();
+        print("total luck is $total");
+        if(total < 3333)  return null;
 
         //luck dodge
         //alert("offense roll is: " + offenseRoll + " and defense roll is: " + defenseRoll);
         //////session.logger.info("gonna roll for luck.");
+        String light = "";
+        if(defense.session.mutator.lightField) {
+            light = "Defense Max Luck: ${defense.getStat(Stats.MAX_LUCK)}, Offense Min Luck: ${ offense.getStat(Stats.MIN_LUCK).abs()}";
+        }
         if (defense.rollForLuck(Stats.MAX_LUCK) > offense.rollForLuck(Stats.MIN_LUCK) * 10 + 200) { //adding 10 to try to keep it happening constantly at low levels
             //////session.logger.info("Luck counter: ${defense.htmlTitleHP()} ${this.session.session_id}");
-            ret= "$ret The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!!";
+            ret= "$ret The attack backfires and causes unlucky damage. The ${defense.htmlTitleHP()} sure is lucky!!!!!!!! $light";
             offense.addStat(Stats.CURRENT_HEALTH, -1 * offense.getStat(Stats.POWER) / 10); //damaged by your own power.
             //this.processDeaths(div, offense, defense);
             return ret;
@@ -356,7 +362,7 @@ class Strife {
     static String  checkMobility(String ret, GameEntity defense, GameEntity offense) {
         //if you aren't together at least a LITTLE impressive, don't even bother calculating this
         //this way if one of them is impressive and the other isn't it still goes
-        if(defense.getStat(Stats.MOBILITY).abs() + offense.getStat(Stats.MOBILITY).abs() < 1113)  return null;
+        if(defense.getStat(Stats.MOBILITY).abs() + offense.getStat(Stats.MOBILITY).abs() < 3333)  return null;
 
         //mobility dodge
         int r = defense.session.rand.nextIntRange(1, 100); //don't dodge EVERY time. oh god, infinite boss fights. on average, fumble a dodge every 4 turns.;

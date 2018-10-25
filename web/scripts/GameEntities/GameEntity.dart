@@ -617,20 +617,23 @@ class GameEntity extends Object with StatOwner   {
 
         String luckCheck = Strife.checkLuck(ret,defense, offense);
         if(luckCheck != null) {
-            appendHtml(div, luckCheck);
+            DivElement tmp = new DivElement()..setInnerHtml(luckCheck);
+            div.append(tmp);
             return;
         }
 
         String mobilityCheck = Strife.checkMobility(ret,defense, offense );
 
         if(mobilityCheck != null) {
-            appendHtml(div, mobilityCheck);
+            DivElement tmp = new DivElement()..setInnerHtml(mobilityCheck);
+            div.append(tmp);
             return;
         }
 
         String hitCheck = Strife.checkDamage(ret,defense, offense );
         //it will definitely return a string
-        appendHtml(div, hitCheck);
+        DivElement tmp = new DivElement()..setInnerHtml(hitCheck);
+        div.append(tmp);
         //jr from 10/25/18 don't remember why this is commented out. probably fine???
         //this.processDeaths(div, offense, defense);
     }
