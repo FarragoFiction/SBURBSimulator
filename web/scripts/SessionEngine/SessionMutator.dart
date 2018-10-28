@@ -193,10 +193,13 @@ class SessionMutator {
             }
         }
 
-        /*
-          TODO:
-          *  once npc update, all npcs are set to "ally" state, even things that are not normally possible.
-       */
+        //JR of 10/28/18 says, oh fuck i forgot to have blood players befriend ALL THE THINGS post npc update
+        if(activatingPlayer.session.activatedNPCS.isNotEmpty) {
+            ret = "$ret The ${activatingPlayer} also gives an inspiring speech that convinces the ${turnArrayIntoHumanSentence(activatingPlayer.session.activatedNPCS)} to help them out.";
+            for(GameEntity g in activatingPlayer.session.activatedNPCS) {
+                activatingPlayer.addCompanion(g);
+            }
+        }
         return ret;
     }
 
