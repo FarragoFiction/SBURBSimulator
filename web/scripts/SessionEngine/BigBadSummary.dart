@@ -282,12 +282,14 @@ class BigBadSummary {
             jsonArray.add(cs.toJSON());
         }
         container["data"] = jsonArray.toString();
+        container["bigBadsActiveNames"] = bigBadsActiveNames;
         return container;
     }
 
     void fromJSON(String jsonString) {
         //  ;
         JSONObject json = new JSONObject.fromJSONString(jsonString);
+        bigBadsActiveNames = json["bigBadsActiveNames"];
         List<dynamic> what = JSON.decode(json["data"]);
         for(dynamic d in what) {
             //;

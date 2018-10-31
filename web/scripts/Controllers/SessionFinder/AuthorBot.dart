@@ -77,6 +77,7 @@ abstract class AuthorBot extends SimController {
     Player strongest = sessionSummary.mvp;
 
     sessionSummary.bigBadSummary = new BigBadSummary(Session.defaultSession)..fromJSON(sessionSummary.bigBadSummaryJSON.toString());
+
     if(sessionSummary.bigBadSummary.bigBadsActiveNames.isNotEmpty) quip = "$quip Oh wow, ${sessionSummary.bigBadSummary.bigBadsActiveNames} sure wrecked up the place. ";
 
 
