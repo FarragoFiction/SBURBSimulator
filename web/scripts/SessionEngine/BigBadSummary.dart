@@ -264,7 +264,7 @@ class BigBadSummary {
         //List<GameEntity> npcs = session.activatedNPCS;
         List<GameEntity> npcs = session.bigBadsReadOnly;// for when you dont want to hide any
         //print("sessions activated big bads are ${session.activatedBigBads}");
-        bigBadsActiveNames = turnArrayIntoHumanSentence(session.activatedBigBads.toList());
+        if(session.activatedBigBads.isNotEmpty) bigBadsActiveNames = turnArrayIntoHumanSentence(session.activatedBigBads.toList(growable: true));
         npcs.addAll(session.activatedBigBads);
         for(GameEntity g in npcs) {
             if(g is BigBad){
