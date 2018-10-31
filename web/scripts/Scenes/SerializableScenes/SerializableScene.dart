@@ -97,7 +97,7 @@ class  SerializableScene extends Scene {
       if(gameEntity is Carapace) {
           if(!doNotRender) {
               String extension = ".png";
-              if(gameEntity.name.contains("Lord English")) extension = ".gif";
+              if(gameEntity.name.contains("Lord English") || gameEntity.name.contains("Hussie")) extension = ".gif";
               portrait = new ImageElement(
                   src: "images/BigBadCards/${(gameEntity as Carapace).initials
                       .toLowerCase()}$extension");
@@ -111,7 +111,7 @@ class  SerializableScene extends Scene {
       }else if(gameEntity is BigBad) {
           if(!doNotRender) {
               String extension = ".png";
-              if(gameEntity.name.contains("Lord English")) extension = ".gif";
+              if(gameEntity.name.contains("Lord English") || gameEntity.name.contains("Hussie")) extension = ".gif";
               portrait = new ImageElement(src: "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}$extension");
 
               portrait.onError.listen((e) {
@@ -128,7 +128,7 @@ class  SerializableScene extends Scene {
       if(gameEntity.name == "Lawgun") {
           if(!doNotRender) {
               String extension = ".png";
-              if(gameEntity.name.contains("Lord English")) extension = ".gif";
+              if(gameEntity.name.contains("Lord English") || gameEntity.name.contains("Hussie")) extension = ".gif";
               portrait.src = "images/BigBadCards/${gameEntity.name.toLowerCase().replaceAll(" ", "_")}$extension";
 
               portrait.onError.listen((e) {

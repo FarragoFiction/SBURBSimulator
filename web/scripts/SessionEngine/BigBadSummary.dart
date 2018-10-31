@@ -120,7 +120,7 @@ class BigBadStats {
         DivElement div = new DivElement();
         div.classes.add("cardPortraitBG");
         String extension = ".png";
-        if(name.contains("Lord English")) extension = ".gif";
+        if(name.contains("Lord English") || name.contains("Hussie")) extension = ".gif";
         ImageElement portrait = new ImageElement(src: "images/BigBadCards/${name.toLowerCase().replaceAll(" ", "_")}_card$extension");
         div.style.backgroundImage = "url(images/BigBadCards/white.png)";
 
