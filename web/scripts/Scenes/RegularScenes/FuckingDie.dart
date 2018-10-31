@@ -27,7 +27,7 @@ class FuckingDie extends Scene {
         
         List<String> deadNames = new List<String>();
         for(Player p in futureCorpses) {
-            session.logger.info("$p died out of nowhere. Specibus is ${p.specibus.fullName} with rank ${p.specibus.rank}. Health was ${p.getStat(Stats.HEALTH)}, buffs are ${p.buffs}");
+            //session.logger.info("$p died out of nowhere. Specibus is ${p.specibus.fullName} with rank ${p.specibus.rank}. Health was ${p.getStat(Stats.HEALTH)}, buffs are ${p.buffs}");
             deadNames.add(p.htmlTitleBasic());
             p.makeDead("Probably Doom Shit, I don't even know.",p);
         }
