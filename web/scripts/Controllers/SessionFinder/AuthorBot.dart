@@ -76,6 +76,9 @@ abstract class AuthorBot extends SimController {
     num dead = sessionSummary.getNumStat("numDead");
     Player strongest = sessionSummary.mvp;
 
+    if(sessionSummary.bigBadSummary.bigBadsActiveNames.isNotEmpty) quip = "$quip Oh wow, ${sessionSummary.bigBadSummary.bigBadsActiveNames} sure wrecked up the place. ";
+
+
     if(sessionSummary.session_id == 33 || getParameterByName("nepeta",null)  == ":33"){
       quip += "Don't expect any of my reports on those cat trolls to be accurate. They are random as fuck. " ;
       if(window.localStorage.containsKey("catTroll")) {
