@@ -48,7 +48,7 @@ class OhShitFuckWheresTheRing extends Scene {
         container.append(div);
         String text = "";
         gameEntity.lootCorpse(target);
-        text = "Oh. Huh. The ${target.htmlTitle()} is already dead? The ${gameEntity.htmlTitleWithTip()} just loots the $ring from their corpse. Easy enough.";
+        text = "Oh. Huh. The ${target.htmlTitleWithTip()} is already dead? The ${gameEntity.htmlTitleWithTip()} just loots the $ring from their corpse. Easy enough.";
         div.setInnerHtml(text);
     }
 

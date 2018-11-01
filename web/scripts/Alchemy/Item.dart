@@ -395,6 +395,7 @@ class Sylladex extends Object with IterableMixin<Item> {
     Item get first => inventory.first;
 
     void remove(Item item) {
+        item.owner = null;
         inventory.remove(item);
     }
 
