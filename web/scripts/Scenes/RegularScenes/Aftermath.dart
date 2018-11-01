@@ -222,13 +222,13 @@ class Aftermath extends Scene {
             ret = "The players stare at the Forge in dismay. Although it has been lit, the two RINGS are not available to fully prepare it for the Ultimate Frog. Shit.";
 
             if(bqowner != null) {
-                ret = "$ret The ${session.derseRing.owner.htmlTitle()} has their grubby mits on the ${session.derseRing}.";
+                ret = "$ret The ${session.derseRing.owner.htmlTitleWithTip()} has their grubby mits on the ${session.derseRing}.";
             }else {
                 ret = "$ret The BLACK RING has already been destroyed in the Forge, ";
             }
 
             if(wqowner != null) {
-                ret = "$ret and the ${session.prospitRing.owner.htmlTitle()} has their grubby mits on the ${session.prospitRing}.";
+                ret = "$ret and the ${session.prospitRing.owner.htmlTitleWithTip()} has their grubby mits on the ${session.prospitRing}.";
             }else {
                 ret = "$ret and the WHITE RING has already been destroyed in the Forge. ";
             }

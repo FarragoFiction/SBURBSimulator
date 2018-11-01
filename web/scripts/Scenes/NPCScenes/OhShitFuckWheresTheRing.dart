@@ -13,7 +13,7 @@ class OhShitFuckWheresTheRing extends Scene {
       div.append(me);
       me.setInnerHtml(getText());
       GameEntity bqowner = session.derseRing == null  ?  null:session.derseRing.owner;
-      GameEntity wqowner =  session.prospitRing == null  ?  null:session.prospitRing.owner;
+      GameEntity wqowner = session.prospitRing == null  ?  null:session.prospitRing.owner;
 
       if(bqowner != null && !bqowner.alliedToPlayers) {
           Element container = new DivElement();
@@ -28,9 +28,7 @@ class OhShitFuckWheresTheRing extends Scene {
           }
       }
 
-
-
-      if(wqowner != null && !wqowner.alliedToPlayers) {
+      if(wqowner != null && !wqowner.alliedToPlayers && wqowner != bqowner) {
           Element container = new DivElement();
           me.append(container);
           GameEntity whiteQueen = session.prospit == null  ?  null:session.prospit.queen;
@@ -60,10 +58,11 @@ class OhShitFuckWheresTheRing extends Scene {
         String text = "";
         text = "<br><br>Well. Fuck. After countless hours spent fruitlessly strifing, the ${gameEntity.htmlTitle()} stares blankly at the ${target.htmlTitle()}. The Players need the Ring, but immortality stops things from progressing as Skaia intended. They finally resolve it via a high stakes game of coin flipping. ${target.htmlTitle()} calls heads. ";
         if(rand.nextBool()) {
-            target.sylladex.add(ring);
+            target.lootCorpse(gameEntity);
             text = "$text The coin lands on heads! The ${target.htmlTitleWithTip()} wins! We all agree this is phenomenally stupid. ";
         }else {
             gameEntity.sylladex.add(ring);
+            target.lootCorpse(gameEntity);
             text = "$text The coin lands on tails! The ${gameEntity.htmlTitleWithTip()} wins! We all agree this is phenomenally stupid. ";
         }
         div.setInnerHtml(text);
