@@ -250,7 +250,8 @@ class GetWasted extends Scene {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
         Sylladex allItemsInParty = new Sylladex(player, new List<Item>()); //sylladex so it stores copies
         for(Player p in session.players) {
-            allItemsInParty.addAll(p.sylladex.inventory);
+            //if i don't make a new list, then you can do concurrent mods here and it crashes
+            allItemsInParty.addAll(new List.from(p.sylladex.inventory));
             allItemsInParty.add(p.specibus);
         }
         allItemsInParty.sort();
