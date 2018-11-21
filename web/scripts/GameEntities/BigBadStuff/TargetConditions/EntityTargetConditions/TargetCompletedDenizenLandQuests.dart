@@ -48,7 +48,7 @@ class TargetCompletedDenizenQuests extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         if(item is Player) {
-            if((item as Player).land.secondCompleted) return false;
+            if((item as Player).land != null && (item as Player).land.secondCompleted) return false;
         }
 
         return true;

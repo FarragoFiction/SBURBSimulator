@@ -48,7 +48,7 @@ class TargetCompletedThirdLandQuests extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         if(item is Player) {
-            if((item as Player).land.thirdCompleted) return false;
+            if((item as Player).land != null && (item as Player).land.thirdCompleted) return false;
         }
 
         return true;

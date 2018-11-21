@@ -48,7 +48,7 @@ class TargetCompletedFirstQuests extends TargetConditionLiving {
     @override
     bool conditionForFilter(GameEntity item) {
         if(item is Player) {
-            if((item as Player).land.firstCompleted) return false;
+            if((item as Player).land != null && (item as Player).land.firstCompleted) return false;
         }
 
         return true;
