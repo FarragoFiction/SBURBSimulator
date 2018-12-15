@@ -1,3 +1,4 @@
+2018-12-15: I really need to get a non-SBURBSim newspost system going, don't I? Well, back in SBURBSim land I'm getting the LAW aspect ready. It's going to heavily rely on the AI engine, and be about banning or forcing behavior on other entities.
 2018-11-21: Combo players no longer crash the session if a helpful carapace offers to breed a frog for them.
 2018-11-08: Dream gnosis doesn't crash anymore. I really need to get a newspost system that isn't just tied to SBURBSim.
 2018-11-01: Minor bug fix, if a ring or scepter manages to get lost it will count as "destroyed" for reckoning purposes.
