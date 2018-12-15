@@ -66,7 +66,7 @@ class TargetHasBannedScene extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity item) {
-        bool ret = !item.extraTitle.toLowerCase().contains(importantWord.toLowerCase());
+        bool ret = !item.bannedScenes.contains(importantWord);
         //print("item is $item and does it NOT contain $importantWord? $ret  (which will be flipped: $not)");
         return ret;
     }

@@ -24,17 +24,17 @@ class Law extends Aspect {
     @override
     AspectPalette palette = new AspectPalette()
         ..accent = "#003300"
-        ..aspect_light = '#0f0f0f'
-        ..aspect_dark = '#0f0f0f'
-        ..shoe_light = '#0f0f0f'
-        ..shoe_dark = '#0f0f0f'
-        ..cloak_light = '#0f0f0f'
-        ..cloak_mid = '#0f0f0f'
-        ..cloak_dark = '#0f0f0f'
-        ..shirt_light = '#0f0f0f'
-        ..shirt_dark = '#0f0f0f'
-        ..pants_light = '#0f0f0f'
-        ..pants_dark = '#0f0f0f';
+        ..aspect_light = '#383838'
+        ..aspect_dark = '#000000'
+        ..shoe_light = '#2b1130'
+        ..shoe_dark = '#130017'
+        ..cloak_light = '#eba900'
+        ..cloak_mid = '#c28900'
+        ..cloak_dark = '#855900'
+        ..shirt_light = '#ffd800'
+        ..shirt_dark = '#d1a900'
+        ..pants_light = '#44244d'
+        ..pants_dark = '#271128';
 
     @override
     List<String> landNames = new List<String>.unmodifiable(<String>["Law", "Courts", "Trials", "Rules", "Edicts","Control","Cones","Order"]);
@@ -61,7 +61,7 @@ class Law extends Aspect {
     List<String> symbolicMcguffins = ["orders","rules", "edicts", "sentences"];
 
     @override
-    List<String> physicalMcguffins = ["gavel","caution tape", "rule book", "dictionary", "wig", "handbook", "lock"];
+    List<String> physicalMcguffins = ["chains","gavel","caution tape", "rule book", "dictionary", "wig", "handbook", "lock"];
 
     @override
     bool deadpan = true; // Ain't havin' none 'o' that trickster shit
