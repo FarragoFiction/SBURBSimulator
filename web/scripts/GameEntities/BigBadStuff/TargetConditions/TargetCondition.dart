@@ -357,6 +357,7 @@ abstract class TargetConditionLiving extends TargetCondition {
 
       ret.add(new TargetExtraTitle(scene));
       ret.add(new TargetHasScene(scene));
+      ret.add(new TargetHasBannedScene(scene));
 
       ret.add(new TargetIsBigBad(scene));
       ret.add(new TargetHasFrog(scene));

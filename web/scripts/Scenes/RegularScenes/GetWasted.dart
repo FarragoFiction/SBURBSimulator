@@ -24,6 +24,8 @@ import "../../navbar.dart";
 typedef DrawingMethod(CanvasElement canvasID, List<Player> players);
 
 class GetWasted extends Scene {
+    @override
+    String name = "GetWasted";
     List<DrawMethodWithParameter> drawingMethods = new List<DrawMethodWithParameter>();
     Player player; //only one player can get wasted at a time.
     int tippingPointBase = 20; //omg if i can balance things where 13 is the best tipping point i will be so fucking amused. (hey, did you know 13 is the SBURBSim arc number???)
