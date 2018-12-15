@@ -15,7 +15,7 @@ class Comedy extends InterestCategory {
     List<String> handles1 = <String>["mischievous", "knavish", "mercurial", "beagle", "sarcastic", "satirical", "mime", "pantomime", "practicing", "pranking", "wokka", "kooky", "haha", "humor", "talkative", "harlequins", "hoho"];
 
     @override
-    List<String> handles2 =<String>["Laugher", "Humorist", "Trickster", "Sellout", "Dummy", "Silly", "Bum", "Huckster", "Raconteur", "Mime", "Leaper", "Vaudevillian", "Baboon", "Boor"];
+    List<String> handles2 =<String>["LaughMaster","Laugher", "Humorist", "Trickster", "Sellout", "Dummy", "Silly", "Bum", "Huckster", "Raconteur", "Mime", "Leaper", "Vaudevillian", "Baboon", "Boor"];
 
     @override
     List<String> levels =  <String>["PRATFALL PRIEST", "BEAGLE PUSS DARTABOUT"];

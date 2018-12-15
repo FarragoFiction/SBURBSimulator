@@ -6119,3 +6119,11 @@ action scenes currently don't load/save right.
 both from a big bad and from the data url itself.
 
 okay, i made it so individual scenes can be loaded, but when i load an entire big bad it still doesn't have it's action scenes, only it's summon scenes and that's so dumb
+
+
+
+
+Alright, time for LAW.
+
+
+

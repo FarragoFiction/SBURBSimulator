@@ -49,7 +49,8 @@ class  SerializableScene extends Scene {
     List<EffectEntity> effectsForLiving = new List<EffectEntity>();
     List<EffectLand> effectsForLands = new List<EffectLand>();
 
-  String name = "Generic Scene";
+    @override
+    String name = "Generic Scene";
 
   SerializableScene(Session session) : super(session);
 

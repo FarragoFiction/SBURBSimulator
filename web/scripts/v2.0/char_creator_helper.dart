@@ -430,6 +430,8 @@ class CharacterCreatorHelper {
     }
 
     String generateAspectHelp(String topic, String specific) {
+        if (specific == "Law")
+            return "Law players are associated with free will, sanity and inflexible movements. Law Players are capapble of banning OR requiring action in those around them, or themselves.";
         if (specific == "Space")
             return "Space players are in charge of breeding the frog, and are associated with the low mobility needed to focus exclusively on their own quests, good alchemy ability, and good health. ";
         if (specific == "Time")

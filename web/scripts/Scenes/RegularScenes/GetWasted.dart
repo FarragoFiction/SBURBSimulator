@@ -235,7 +235,7 @@ class GetWasted extends Scene {
     }
 
     String processTier3(Element div) {
-        if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH) return exploitMobility(div);
+        if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH || player.aspect == Aspects.LAW) return exploitMobility(div);
         if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT) return exploitFate(div);
         if(player.aspect == Aspects.RAGE || player.aspect == Aspects.MIND) return exploitTime(div);
         if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID) return exploitGlitches(div);
@@ -286,6 +286,8 @@ class GetWasted extends Scene {
             ret = " They set up a frankly scandalous series of time shenanigans";
             ret += " , allowing all players to basically spam multiple quests 'at the same time'. ";
 
+        }else if(player.aspect == Aspects.LAW) {
+            ret = " They enforce the rules, requiring all players to do their main quests and not lollygag.";
         }else {
             ret = "";
         }

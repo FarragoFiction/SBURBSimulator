@@ -5,6 +5,7 @@ abstract class Scene {
   Session session;
   //mostly for npcs in new scene system
   GameEntity gameEntity;
+  String name = "???";
 
 
   List<Player> playerList = new List<Player>(); //eventually get rid of this, but not today

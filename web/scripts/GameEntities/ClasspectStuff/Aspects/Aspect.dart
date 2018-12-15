@@ -8,6 +8,7 @@ import "Breath.dart";
 import "Doom.dart";
 import "Heart.dart";
 import "Hope.dart";
+import 'Law.dart';
 import "Life.dart";
 import "Light.dart";
 import "Mind.dart";
@@ -32,6 +33,7 @@ abstract class Aspects {
     static Aspect HOPE;
     static Aspect LIFE;
     static Aspect DREAM;
+    static Aspect LAW;
     static Aspect SAUCE; //just shogun
 
     static Aspect NULL;
@@ -50,6 +52,7 @@ abstract class Aspects {
         HOPE = new Hope(10);
         LIFE = new Life(11);
         DREAM = new Dream(12);
+        LAW = new Law(14);
         SAUCE = new Sauce(13);
 
         NULL = new Aspect(255, "Null", isInternal:true);
