@@ -99,67 +99,60 @@ class Law extends Aspect {
 
     @override
     void initializeThemes() {
-        addTheme(new Theme(<String>["Death", "Endings","Mortality", "Graveyards", "Bones", "Funerals","Skulls", "Skeletons","Cemeteries", "Graves", "Tombstones"])
-            ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
-            ..addFeature(FeatureFactory.ROTSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.WHISTLINGGSOUND, Feature.LOW)
-            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
-            ..addFeature(new DenizenQuestChain("Empty the Graves", [
-                new Quest(" The ${Quest.PLAYER1} learns of a Omni-Lich that has been emptying the graves of the ${Quest.CONSORT}s, who are understandably upset at this disrespect to everything their culture holds dear."),
-                new Quest("The ${Quest.PLAYER1} hunts down the Omni-Lich, only to discover that it cannot be killed without the use of a mystic ${Quest.PHYSICALMCGUFFIN}. The player begins to search for this totally USEFUL and IMPORTANT item. "),
-                new Quest("The ${Quest.PLAYER1} finds the ${Quest.PHYSICALMCGUFFIN}, and slays the Omni-Lich, scattering its bones to the winds, which, according to ${Quest.CONSORT} traditions, should summon its master. Uh. Eventually."),
-                new DenizenFightQuest("FINALLY, the bones of Omni-Lich has summoned it's master, ${Quest.DENIZEN}.","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has won! The ${Quest.CONSORT}s are free to bury their dead in peace once again.","The grave robbing of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
+        addTheme(new Theme(<String>["Scales", "Disorder", "Chaos", "Injustice"])
+            ..addFeature(FeatureFactory.DRAGONCONSORT, Feature.HIGH)
+            ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.FRANTICFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.DECEITSMELL, Feature.LOW)
+            ..addFeature(FeatureFactory.LAUGHINGSOUND, Feature.LOW)
+            ..addFeature(new DenizenQuestChain("Punish the Rebels", [
+                new Quest("The ${Quest.PLAYER1} is told by a worried ${Quest.CONSORT} that a group of underling rebels are causing havoc across the land, breaking laws left and right. They must be stopped! Eventually."),
+                new Quest("The ${Quest.PLAYER1} has located a rebel hideout. The underlings get ready for a battle to the death when the ${Quest.PLAYER1} suddenly breaks out a ${Quest.PHYSICALMCGUFFIN} and starts getting all lawyerly on them. The underlings are all sentenced to 30 years in prison, without parole."),
+                new Quest("The ${Quest.PLAYER1} finds out through interrogating enough of the underling rebels that they have a big mean leader they call the ${Quest.DENIZEN}. Sounds like a challenge. The ${Quest.PLAYER1} cracks their knuckles as they prepare for the biggest case on this side of Skaia."),
+                new DenizenFightQuest("Arriving at the final rebel hideout, ${Quest.PLAYER1} prepares for battle against the ${Quest.DENIZEN}. For their crimes against the ${Quest.CONSORT}s, they're getting the DEATH SENTENCE.","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has won! The ${Quest.CONSORT}s are no longer plagued by the lawbreakers.","The ${Quest.DENIZEN} continues to run their underling crime ring with the defeat of the ${Quest.PLAYER1}.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.HIGH);
-        addTheme(new Theme(<String>["Disaster", "Fire", "Ash", "Armageddon", "Apocalypse", "Radiation", "Blight", "Gas", "Poison", "Chlorine", "Wastelands"])
-            ..addFeature(FeatureFactory.SKELETONCONSORT, Feature.HIGH)
-            ..addFeature(FeatureFactory.ROTSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.SCREAMSSOUND, Feature.WAY_HIGH)
-            ..addFeature(FeatureFactory.GUNPOWDERSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.CHLORINESMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.BLOODSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.ROTSMELL, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.RUSTLINGSOUND, Feature.LOW)
-            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.MEDIUM)
-            ..addFeature(FeatureFactory.DANGEROUSFEELING, Feature.MEDIUM)
 
-            ..addFeature(new DenizenQuestChain("Become the Warlord", [
-                new Quest("The ${Quest.PLAYER1} has found a group of Violent ${Quest.CONSORT}s whose society has long since crumbled. They live in roving bands, willing to kill and maim to gain access to '${Quest.MCGUFFIN}', the fuel their post apocalyptic society runs on. "),
-                new Quest("The ${Quest.PLAYER1} has survived a small assault team of Violent ${Quest.CONSORT}s, and is declared their new leader. They beg and grovel and ${Quest.CONSORTSOUND} and ask that the ${Quest.PLAYER1} help them take back their ${Quest.MCGUFFIN} from a rival gang. "),
-                new Quest("The ${Quest.PLAYER1} is now the warlord of nearly all of the Violent ${Quest.CONSORT}s. There is clearly not enough ${Quest.MCGUFFIN} for everyone, though. It turns out that the ${Quest.DENIZEN} has been hoarding it all to cause scarcity to breed violence and anarchy. What a huge bitch. This cannot stand. "),
-                new DenizenFightQuest("There isn't enough room in this wasteland for the both of them. It's time to take out the ${Quest.DENIZEN}.","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} distributes the hoard of ${Quest.MCGUFFIN} to the Violent ${Quest.CONSORT}s and keeps the hoard of grist for themself. ","The ${Quest.MCGUFFIN} shortage continues with the defeat of the ${Quest.PLAYER1}.")
-            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
+        addTheme(new Theme(<String>["Heroics","Villains","Heroes","Powers","Justice","Metropolises","Comics"])
+            ..addFeature(FeatureFactory.HEROICFEELING, Feature.HIGH)
+            ..addFeature(FeatureFactory.ENERGIZINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.MUSICSOUND, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.HEROICFEELING, Feature.LOW)
+            ..addFeature(FeatureFactory.OILSMELL, Feature.LOW)
+            ..addFeature(new DenizenQuestChain("Become the Villain", [
+                new Quest("The ${Quest.PLAYER1} is taking a walk through one of the land's many cities when they witness a fight break out between an Underling Hero and ${Quest.CONSORT} Villain. One of the Underling Hero's attacks hits the ${Quest.PLAYER1}. They won't be having any of that! The ${Quest.PLAYER1} helps the ${Quest.CONSORT} Villain defeat the Underling Hero, and in turn gets invited to join a league of shady criminals. Sweet."),
+                new Quest("The ${Quest.PLAYER1} teams up with some other villainous ${Quest.CONSORT}s to take down a rival team of Underling Heroes. They won't be having any of this LAW business, certainly. Rules were made to be broken, and that's just what the ${Quest.PLAYER1} is going to do."),
+                new Quest("After defeating yet another league of Underling Heroes, the ${Quest.PLAYER1} and the other ${Quest.CONSORT} Villains feel a cold chill run down their spine. In the distance, lightning strikes a mountain, revealing the headquarters of the  ${Quest.DENIZEN}, leader of the Underling Heroes and the last hope to preserve law. They're going down!"),
+                new DenizenFightQuest("The ${Quest.PLAYER1} arrives at the ${Quest.DENIZEN}'s headquarters, fighting through waves of Underling Heroes before they can finally reach the ${Quest.DENIZEN}. It’s time to end the LAW, once and for all!", "The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The last of the Heroes is no more.  Injustice takes over the land at last.","The ${Quest.PLAYER1} is defeated. The ${Quest.DENIZEN} holds on to the last remnants of justice in the land.")
+            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.WAY_LOW)
 
-            ..addFeature(new DenizenQuestChain("Make This Stupid Planet Habitable", [
-                new Quest("The ${Quest.PLAYER1} is sick of their stupid uninhabitable planet, and so starts to make sections of it habitable through judicious use of alchemy and ${Quest.PHYSICALMCGUFFIN}s alike. "),
-                new Quest("${Quest.CONSORT}s begin to flock to the safe areas that The ${Quest.PLAYER1} constructed, and begin to make tiny villages within the safety of its zones. Precious  ${Quest.PHYSICALMCGUFFIN}s are found in some nearby mines. "),
-                new Quest("The ${Quest.PLAYER1} has straight up established a new consort government in the safe zones. This is so deliriously biznasty it threatens the very existence of anything un-nasty in all possible timelines. Alas, while ${Quest.DENIZEN} remains alive, the safe zone will be temporary at best. "),
-                new DenizenFightQuest("${Quest.DENIZEN} is attacking the safe zones. The ${Quest.PLAYER1} has worked too hard for it all to be lost now. There can be no mercy. ","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} is finally free to continue improving the land. ","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
+            ..addFeature(new DenizenQuestChain("Become the Hero", [
+                new Quest("The ${Quest.PLAYER1} is taking a walk through one of the land's many cities when they witness a fight break out between some ${Quest.CONSORT} Hero and an Underling Villain. Being naturally inclined toward the preservation of order, the ${Quest.PLAYER1} teams up with the ${Quest.CONSORT} Hero and triumphs against the Underling Villain. As a reward, the ${Quest.CONSORT} Hero invites the ${Quest.PLAYER1} to join an elite team of crime fighting good guys! Awesome!"),
+                new Quest("The ${Quest.PLAYER1} works together with some ${Quest.CONSORT} Heroes to take down and arrest some Underling Villains. Slowly but surely, the balance of order and disorder begins to shift in order's favor. The number of villains is getting fewer and fewer."),
+                new Quest("With the last of the Villainous Underlings defeated, the ${Quest.PLAYER1} rejoices, thinking that justice has been served in this land. But what's this? Lightning strikes the ground far away and causes a dark mountain to shoot up into the sky! The lair of the final villain, the ${Quest.DENIZEN}, has been revealed."),
+                new DenizenFightQuest("The ${Quest.PLAYER1} storms the lair of the ${Quest.DENIZEN}, the final villain in all of this land. It's time to bring back KAW, once and for all!", "The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The last of the Villains is no more. Justice is finally preserved in the land at last.","The ${Quest.PLAYER1} is defeated. The ${Quest.DENIZEN} holds on to the last remnants of injustice in the land.")
             ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             , Theme.HIGH);
 
-        addTheme(new Theme(<String>["Prophecy","Prophets","Fate", "Destiny","Rules","Sound","Judgement","Carvings", "Murals", "Etchings"])
-            ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.CREEPYFEELING, Feature.HIGH)
-            ..addFeature(FeatureFactory.WHISPERSOUND, Feature.WAY_HIGH)
-            ..addFeature(FeatureFactory.MUSTSMELL, Feature.LOW)
+        addTheme(new Theme(<String>["Greed", "Poverty", "Discrepancy", "Famine", "Starvation"])
+            ..addFeature(FeatureFactory.OZONESMELL, Feature.HIGH)
+            ..addFeature(FeatureFactory.ROTSMELL, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.NOTHINGFEELING, Feature.MEDIUM)
+            ..addFeature(FeatureFactory.ECHOSOUND, Feature.LOW)
+            ..addFeature(FeatureFactory.SILENCE, Feature.LOW)
+            ..addFeature(new DenizenQuestChain("Bring the Balance", [
+                new Quest("The ${Quest.PLAYER1} looks upon the land and notices how some of the ${Quest.CONSORT}s are low on food and other resources while others live in luxury. Something must be done to fix this!"),
+                new Quest("The ${Quest.PLAYER1} comes up with a plan to bring balance to the land. If there's not enough resources, they'll simply have to cut the ${Quest.CONSORT} population in half. But through murder? No... They need something cleaner. Something more random."),
+                new Quest("The ${Quest.PLAYER1} wanders through a poverty striken ${Quest.CONSORT} village and is told the legend of the ${Quest.DENIZEN}. The ${Quest.DENIZEN} lives in a lair on the other side of the land, where they hoard all of the land's resources. Oh yeah, and they've got this golden ${Quest.PHYSICALMCGUFFIN} that can half the number of ${Quest.CONSORT}s on the land. The ${Quest.PLAYER1} finds this especially interesting. "),
+                new DenizenFightQuest("The ${Quest.PLAYER1} shows up at the ${Quest.DENIZEN}'s lair and asks them to hand over the golden ${Quest.PHYSICALMCGUFFIN}. The ${Quest.DENIZEN} agrees... if the ${Quest.PLAYER1} can defeat them first!","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} uses the golden ${Quest.PHYSICALMCGUFFIN} to cut the ${Quest.CONSORT} population in half. Problem solved. ","The ${Quest.PLAYER1} is defeated and left without the golden ${Quest.PHYSICALMCGUFFIN} they seek.")
+            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.HIGH)
 
-            ..addFeature(new DenizenQuestChain("Learn the Prophecy", [
-                new Quest("The ${Quest.PLAYER1} finds a small dungeon bearing the image of ${Quest.DENIZEN}. At the bottom, they find a switch inside a small hole they can just barely fit their arm inside. When they reach in and flip the switch, they feel something attach to their arm with a loud click. The ${Quest.PLAYER1} pulls out their arm to find attached is some super complicated machinery complete with a timer counting down. That can’t be good."),
-                new Quest("The device continues to count down. After consulting with local ${Quest.CONSORT}s, the ${Quest.PLAYER1} navigates another dungeon in hopes of finding a clue to removing the ominous device from their arm without causing it to go off. Past complicated puzzles involving doomsday dates and scales, they find a small scroll on a pedestal. Written on the scroll is a prophecy that the ${Quest.PLAYER1} will permanently die in an explosion from attempting remove a device on their arm. Well, that’s just great."),
-                new Quest("The timer doesn’t stop from counting lower. The ${Quest.PLAYER1} makes up their mind and decides they’re not going to sit and wait until the timer goes off. They’re going to remove the stupid thing, prophecy or not! They quickly pry it off their arm and throw it away as far as possible. There’s no explosion; the device just breaks. Did the ${Quest.PLAYER1} use their powers to stop it from exploding and break the prophecy, or was this all just a shitty test from ${Quest.DENIZEN}? Either way, the ${Quest.PLAYER1} isn’t very pleased with the ${Quest.DENIZEN}."),
-                new DenizenFightQuest("The ${Quest.PLAYER1} tracks down the location of the ${Quest.DENIZEN} ‘s lair. It’s payback time!", "The ${Quest.DENIZEN} has been thoroughly beaten. Serves them right for playing such a mean trick on the ${Quest.PLAYER1}.","The ${Quest.PLAYER1} couldn’t get their revenge. ${Quest.DENIZEN} has a hearty laugh at their expense.")
-            ], new DenizenReward(), QuestChainFeature.playerIsDestructiveClass), Feature.WAY_LOW)
-
-            ..addFeature(new DenizenQuestChain("Learn the Prophecy", [
-                new Quest("The ${Quest.PLAYER1} learns from one of their ${Quest.CONSORT}s that there is an ancient prophecy of a ${Quest.MCGUFFIN} plague that is due to kill them all any day now."),
-                new Quest("The ${Quest.PLAYER1} gets deep into the nitty gritty of the apocalypse prophecy. They learn that the plague is not technically going to hit the consorts- it's going to hit the bearers of the MAGIC ${Quest.PHYSICALMCGUFFIN}, which currently happens to be the ${Quest.CONSORT}s. "),
-                new Quest("The ${Quest.PLAYER1} goes on a daring series of stupid missions to deliver the MAGIC ${Quest.PHYSICALMCGUFFIN} into an underling camp, thereby redirecting the incoming ${Quest.MCGUFFIN} plague into devastating the underlings instead of the ${Quest.CONSORT}s. The underling army is all but decimated, and ${Quest.DENIZEN}s lair is all but undefended. "),
-                new DenizenFightQuest("The ${Quest.PLAYER1} is finally ready to face the ${Quest.DENIZEN}.", "The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} has won! ","The tyranny of ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
-            ], new DenizenReward(NPCHandler.DP), QuestChainFeature.defaultOption), Feature.WAY_LOW)
-            , Theme.HIGH); // end theme
-
-
+            ..addFeature(new DenizenQuestChain("Create the Balance", [
+            new Quest("The ${Quest.PLAYER1} looks upon the land and notices how some of the ${Quest.CONSORT}s are low on food and other resources while others live in luxury. Something must be done to fix this!"),
+                new Quest("The ${Quest.PLAYER1} comes up with a plan to bring balance to the land. They can force the ${Quest.CONSORT}s who have an abundance of resources to share them with the ${Quest.CONSORT}s who are resource deprived. But when the ${Quest.PLAYER1} tells them this, they get understandably upset. They worked so hard for their resources, why should they share them with others? The ${Quest.PLAYER1} is left stumped."),
+                new Quest("The ${Quest.PLAYER1} wanders through a poverty striken ${Quest.CONSORT} village and is told the legend of the ${Quest.DENIZEN}. The ${Quest.DENIZEN} lives in a lair on the other side of the land, where they hoard all of the land's resources. The ${Quest.PLAYER1} is confused as to why nobody mentioned this before. The solution to the resource problem is obvious now."),
+                new DenizenFightQuest("The ${Quest.PLAYER1} shows up at the ${Quest.DENIZEN}'s lair and asks them to be kind and share their resources with the ${Quest.CONSORT}s. The ${Quest.DENIZEN} agrees... if the ${Quest.PLAYER1} can defeat them first!","The ${Quest.DENIZEN} lies slain by the ${Quest.PLAYER1}'s ${Quest.WEAPON}. The ${Quest.PLAYER1} distributes all of the denizen's resources throughout the land, improving living conditions everywhere.","The horrific inequality maintained by the ${Quest.DENIZEN} continues with the defeat of the ${Quest.PLAYER1}.")
+                ], new DenizenReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
+            , Theme.HIGH);
     }
 }
