@@ -335,7 +335,7 @@ class Strife {
         //the defender uses max luck since it would be a good thing if it missed, the offender uses min luck since it would be  bad
     static String checkLuck(String ret, GameEntity defense, GameEntity offense) {
         double total = defense.getStat(Stats.MAX_LUCK).abs() + offense.getStat(Stats.MIN_LUCK).abs();
-        print("total luck is $total");
+        //print("total luck is $total");
         if(total < 3333)  return null;
 
         //luck dodge
