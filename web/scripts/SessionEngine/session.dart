@@ -632,6 +632,8 @@ class Session {
     }
 
     void resetAvailableClasspects() {
+        //make sure canon state is SET before we actually use it dunkass
+        changeCanonState(this,getParameterByName("canonState",null));
         if(canonLevel == CanonLevel.CANON_ONLY) {
             this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.canon);
             this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.canon);
@@ -641,6 +643,7 @@ class Session {
             this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.fanon);
             this.available_aspects = new List<Aspect>.from(Aspects.fanon);
         }else {
+            print("anything fucking goes");
             this.available_classes_players = new List<SBURBClass>.from(SBURBClassManager.all);
             this.available_classes_guardians = new List<SBURBClass>.from(SBURBClassManager.all);
             this.available_aspects = new List<Aspect>.from(Aspects.all);
@@ -1267,7 +1270,6 @@ class Session {
         //UserTag previousTag = createDebugTag("Session$session_id");
         SimController.instance.currentSessionForErrors = this;
         globalInit(); // initialise classes and aspects if necessary
-        changeCanonState(this,getParameterByName("canonState",null));
         logger.info("session has ${players.length} players");
         /*
         //we await this because of the fan ocs being loaded from file like assholes.
@@ -1461,6 +1463,7 @@ class Session {
             activateAllCarapaces();
         }else{
             resetAvailableClasspects();
+            print("after reseting classpects, got $canonLevel");
             int numPlayers = this.rand.nextIntRange(
                 2, 12); //rand.nextIntRange(2,12);
             double special = rand.nextDouble();

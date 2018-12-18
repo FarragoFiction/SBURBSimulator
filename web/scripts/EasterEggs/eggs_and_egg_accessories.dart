@@ -22,7 +22,10 @@ void changeCanonState(Session session,String state) {
 	//CanonLevel
 	if(state == "canonOnly") session.canonLevel = CanonLevel.CANON_ONLY;
 	if(state == "fanonOnly") session.canonLevel = CanonLevel.FANON_ONLY;
-	if(state == "everythingFuckingGoes") session.canonLevel = CanonLevel.EVERYTHING_FUCKING_GOES;
+
+	if(state == "everythingFuckingGoes") {
+		session.canonLevel = CanonLevel.EVERYTHING_FUCKING_GOES;
+	}
 
 }
 
