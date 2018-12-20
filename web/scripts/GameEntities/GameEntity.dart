@@ -23,7 +23,6 @@ class GameEntity extends Object with StatOwner   {
     bool canStrife = true;
 
     List<String> bannedScenes =<String>[];
-    List<String> requiredScenes = <String>[];
 
     int playerKillCount = 0;
     bool addedSerializableScenes = false;
@@ -241,13 +240,12 @@ class GameEntity extends Object with StatOwner   {
             //if one scene makes you unavailable no future scenes
             //EVEN THE DEAD MUST OBEY THE LAW (i.e. unvailable)
             //also i guess requiring a scene overrides banning a scene???
-            if ((!bannedScenes.contains(s.name) &&(this.available && s.trigger(session.getReadOnlyAvailablePlayers()))) || requiredScenes.contains(s.name)) {
+            if ((!bannedScenes.contains(s.name) &&(this.available && s.trigger(session.getReadOnlyAvailablePlayers())))) {
                 //session.scenesTriggered.add(s);
                 this.session.numScenes ++;
                 s.renderContent(this.session.newScene(s.runtimeType.toString()));
             }
             //no need to keep looping, okay? just stop once you are done.
-            if(!available && requiredScenes.isEmpty) break;
         }
 
         //otherwise will get conconrrent modification error. put at front, new things are important and shiny

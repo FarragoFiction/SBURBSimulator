@@ -11,8 +11,7 @@ export "EntityEffects/KillSleepingDreamSelf.dart";
 export "EntityEffects/Mug.dart";
 export "EntityEffects/BanScene.dart";
 export "EntityEffects/UnBanScene.dart";
-export "EntityEffects/RequireScene.dart";
-export "EntityEffects/UnRequireScene.dart";
+
 
 export "EntityEffects/AntiMug.dart";
 export "EntityEffects/GiveItem.dart";
