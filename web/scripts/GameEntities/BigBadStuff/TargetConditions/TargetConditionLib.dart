@@ -38,6 +38,7 @@ export "EntityTargetConditions/TargetEntityHasItemNamed.dart";
 
 export "EntityTargetConditions/TargetIsSBAHJ.dart";
 export "EntityTargetConditions/TargetHasBannedScene.dart";
+export "EntityTargetConditions/TargetHasRequiredScene.dart";
 export "EntityTargetConditions/TargetIsTrickster.dart";
 export "EntityTargetConditions/TargetIsWasted.dart";
 export "EntityTargetConditions/TargetIsBigBad.dart";
