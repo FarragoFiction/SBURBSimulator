@@ -43,6 +43,8 @@ class GameEntity extends Object with StatOwner   {
     //scenes are no longer singletons owned by the session. except for the reckoning and aftermath
     List<Scene> scenes = new List<Scene>();
     List<Scene> scenesToAdd = new List<Scene>();
+    //just for the action effects that remove shit that might be called on self.
+    List<Scene> scenesToRemove = new List<Scene>();
 
     List<String> serializableSceneStrings = new List<String>();
 
@@ -233,6 +235,9 @@ class GameEntity extends Object with StatOwner   {
             addSerializableScenes();
             addedSerializableScenes = true;
         }
+        //happens before loop cuz don't want it to go one more time
+        handleRemovingScenes();
+
         //can do as many as you want, so long as you haven't been taken out of availibility
         for(Scene s in scenes) {
             s.gameEntity = this;
@@ -253,6 +258,15 @@ class GameEntity extends Object with StatOwner   {
         handleAddingNewScenes();
 
        // previousTag.makeCurrent();
+    }
+
+    //otherwise i risk modifying a concurrent array
+    void handleRemovingScenes() {
+        for(SerializableScene scene in scenesToRemove) {
+            //both places to mimic previous content
+            scenes.remove(scene);
+            scenesToAdd.remove(scene);
+        }
     }
 
     void handleAddingNewScenes() {
@@ -1109,13 +1123,12 @@ class GameEntity extends Object with StatOwner   {
     List<SerializableScene> removeSerializableSceneFromString(String s) {
         SerializableScene ret = new SerializableScene(session)..copyFromDataString(s);
         //print("I want to remove $ret");
-        List<SerializableScene> toRemove = new List<SerializableScene>();
         for(Scene scene in scenes) {
             if(scene is SerializableScene) {
                 SerializableScene ss = scene as SerializableScene;
                 if(ss.toDataString() == s) {
                     //print ("i found $ret in scenes");
-                    toRemove.add(ss);
+                    scenesToRemove.add(ss);
                 }
             }
         }
@@ -1125,22 +1138,16 @@ class GameEntity extends Object with StatOwner   {
                 SerializableScene ss = scene as SerializableScene;
                 if(ss.toDataString() == s) {
                     //print("i found $ret in scenes to add");
-                    toRemove.add(ss);
+                    scenesToRemove.add(ss);
                 }
             }
-        }
-
-        for(SerializableScene ss in toRemove) {
-            //print("I'm trying to remove $ss");
-            scenes.remove(ss);
-            scenesToAdd.remove(ss);
         }
 
         //JR from 9/13/18 says: WHY THE FUCK DID PAST JR REMOVE THE SCENE TWO DIFFERNET WAYS AND THEN JUST ADD IT RIGHT BACK IN
         //a;lsdkfjas;lfjas;dlfj
         //...probably from a copy pasta typo. jessus fuck
         //scenesToAdd.add(ret);
-        return toRemove;
+        return scenesToRemove;
     }
 
 
