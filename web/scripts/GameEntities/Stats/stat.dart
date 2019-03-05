@@ -46,7 +46,7 @@ abstract class Stats {
         ALCHEMY = new Stat("Alchemy", "creative", "boring");
         SBURB_LORE = new Stat("SBURB Lore", "woke", "clueless", pickable: false);
 
-        byName = new Map<String,Stat>.unmodifiable(new Map<String,Stat>.fromIterable(all, key: (Stat s) => s.name, value: (Stat s) => s));
+        byName = new Map<String,Stat>.unmodifiable(new Map<String,Stat>.fromIterable(all, key: (dynamic s) => s.name, value: (dynamic s) => s));
     }
     static bool _initialised = false;
 
@@ -71,10 +71,10 @@ class Stat {
     double coefficient; //hope players can change
     final double associatedGrowth;
 
-    double minBase = double.NEGATIVE_INFINITY;
-    double maxBase = double.INFINITY;
-    double minDerived = double.NEGATIVE_INFINITY;
-    double maxDerived = double.INFINITY;
+    double minBase = double.negativeInfinity;
+    double maxBase = double.infinity;
+    double minDerived = double.negativeInfinity;
+    double maxDerived = double.infinity;
 
     Stat(String this.name, String this.emphaticPositive, String this.emphaticNegative, {double this.coefficient = 1.0, double this.associatedGrowth = 1.0, bool this.pickable = true, bool this.summarise = true, bool this.transient = false}) {
         Stats._list.add(this);
@@ -86,7 +86,7 @@ class Stat {
     String toString() => this.name;
 
     T max<T extends StatObject>(Iterable<T> from) {
-        double n = double.NEGATIVE_INFINITY;
+        double n = double.negativeInfinity;
         T most = null;
         double s;
         for (T h in from) {
@@ -100,7 +100,7 @@ class Stat {
     }
 
     T min<T extends StatObject>(Iterable<T> from) {
-        double n = double.INFINITY;
+        double n = double.infinity;
         T least = null;
         double s;
         for (T h in from) {

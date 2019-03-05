@@ -6,19 +6,19 @@ import 'dart:collection';
 import 'dart:convert';
 
 class JSONObject extends Object with MapMixin<String,String>{
-    Map<String, String> json = new Map<String,String>();
+    Map<String, dynamic> json = new Map<String,dynamic>();
     JSONObject();
 
     JSONObject.fromJSONString(String j){
         //;
         //okay. that's not working. what if i do it opposite to see what a encoded object looks like
-        JSONObject test = new JSONObject();
-        test["HELLO"] = "WORLD ";
-        test["GOODBYE"] = "WORLD BUT A SECOND TIME ";
+        //JSONObject test = new JSONObject();
+        //test["HELLO"] = "WORLD ";
+        //test["GOODBYE"] = "WORLD BUT A SECOND TIME ";
         //;
         //;
 
-        json  = JSON.decode(j);
+        json = jsonDecode(j);
     }
 
     static Set<int> jsonStringToIntSet(String str) {
@@ -88,7 +88,7 @@ class JSONObject extends Object with MapMixin<String,String>{
 
     @override
     String toString() {
-        return JSON.encode(json);
+        return jsonEncode(json);
     }
 
   @override

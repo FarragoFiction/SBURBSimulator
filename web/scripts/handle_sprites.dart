@@ -96,7 +96,7 @@ abstract class Drawing {
     static void sbahjifier(CanvasElement canvas) {
         bool opaque = false;
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        ctx.rotate(getRandomIntNoSeed(0, 10) * Math.PI / 180);
+        ctx.rotate(getRandomIntNoSeed(0, 10) * Math.pi / 180);
         ImageData pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
         List<int> weights = <int>[ -1, -1, -1, -1, 9, -1, -1, -1, -1];
         int side = (Math.sqrt(weights.length)).round();
@@ -1399,7 +1399,7 @@ abstract class Drawing {
         CanvasRenderingContext2D ctx = p1SpriteBuffer.getContext('2d');
         //  drawBG(p1SpriteBuffer, "#ff9999", "#ff00ff");
         //  ctx.translate(canvas.width, 0);
-        //ctx.rotate(90*Math.PI/180);
+        //ctx.rotate(90*Math.pi/180);
         String imageString = "denizoned.png";
         addImageTag(imageString);
         ImageElement img = imageSelector(imageString);
@@ -1521,13 +1521,13 @@ abstract class Drawing {
         ctx.imageSmoothingEnabled = false; //should get rid of orange halo in certain browsers.
         if (!baby && (player.dead)) { //only rotate once
             ctx.translate(canvas.width, 0);
-            ctx.rotate(90 * Math.PI / 180);
+            ctx.rotate(90 * Math.pi / 180);
         }
 
         //they are not dead, only sleeping
         if (!baby && ((player.causeOfDrain != null && !player.causeOfDrain.isEmpty))) { //only rotate once
             ctx.translate(0, 6 * canvas.height / 5);
-            ctx.rotate(270 * Math.PI / 180);
+            ctx.rotate(270 * Math.pi / 180);
         }
 
         if (!baby && player.grimDark > 3) {

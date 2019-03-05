@@ -1818,13 +1818,13 @@ class Player extends GameEntity{
         Map<String, dynamic> j = this.toJSONBrief();
         if (j["class_name"] <= 15 && j["aspect"] <= 15) { //if NEITHER have need of extension, just return size zero;
             builder.appendExpGolomb(0); //for length
-            return BASE64URL.encode(builder.toBuffer().asUint8List());
+            return base64Url.encode(builder.toBuffer().asUint8List());
         }
         builder.appendExpGolomb(2); //for length
         builder.appendByte(j["class_name"]);
         builder.appendByte(j["aspect"]);
-        //String data = UTF8.decode(builder.toBuffer().asUint8List());
-        return BASE64URL.encode(builder.toBuffer().asUint8List());
+        //String data = utf8.decode(builder.toBuffer().asUint8List());
+        return base64Url.encode(builder.toBuffer().asUint8List());
         //return Uri.encodeComponent(data).replaceAll(new RegExp(r"""#""", multiLine:true), '%23').replaceAll(new RegExp(r"""&""", multiLine:true), '%26');
     }
 

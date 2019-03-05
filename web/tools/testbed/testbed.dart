@@ -111,7 +111,7 @@ Future<Null> testAudio() async {
     //AudioElement soundElement = await  Loader.getResource("audio/spiderblood.ogg");
     AudioElement soundElement = await Audio.loadStreamed("audio/spiderblood");
 
-    AudioSourceNode sound = Audio.node(soundElement);
+    MediaElementAudioSourceNode sound = Audio.node(soundElement);
 
     MuffleEffect muffle = new MuffleEffect(1.0);
 
@@ -313,7 +313,7 @@ Future<bool> testDrawing() async {
         //THREE.Material mat = new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(wireframe:true));
         THREE.Material mat = new THREE.MeshStandardMaterial();
         THREE.Mesh mesh = new THREE.Mesh(geom, mat);
-        mesh..rotation.x = Math.PI;
+        mesh..rotation.x = Math.pi;
         mesh..position.x = -50;
 
         scene.add(mesh);
@@ -329,14 +329,14 @@ Future<bool> testDrawing() async {
 }
 
 void checkLABRanges() {
-    double min_l = double.INFINITY;
-    double max_l = double.NEGATIVE_INFINITY;
+    double min_l = double.infinity;
+    double max_l = double.negativeInfinity;
 
-    double min_a = double.INFINITY;
-    double max_a = double.NEGATIVE_INFINITY;
+    double min_a = double.infinity;
+    double max_a = double.negativeInfinity;
 
-    double min_b = double.INFINITY;
-    double max_b = double.NEGATIVE_INFINITY;
+    double min_b = double.infinity;
+    double max_b = double.negativeInfinity;
 
     for (int r = 0; r<256; r++) {
         for (int g = 0; g<256; g++) {

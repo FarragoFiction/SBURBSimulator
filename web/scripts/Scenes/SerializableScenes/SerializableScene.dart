@@ -260,7 +260,7 @@ void syncForm() {
     void loadEffectsLiving(String weirdString) {
       if(weirdString == null) return;
      // print('weird string is $weirdString');
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
       //print('what is $what');
 
       for(dynamic d in what) {
@@ -276,7 +276,7 @@ void syncForm() {
 
     void loadEffectsLand(String weirdString) {
         if(weirdString == null) return;
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();
@@ -290,7 +290,7 @@ void syncForm() {
 
 
     void loadTriggerConditionsLand(String weirdString) {
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
 
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
@@ -304,7 +304,7 @@ void syncForm() {
 
 
     void loadTriggerConditionsLiving(String weirdString) {
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();

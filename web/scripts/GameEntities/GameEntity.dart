@@ -1009,7 +1009,7 @@ class GameEntity extends Object with StatOwner   {
 
     void loadScenes(String weirdString) {
         if(weirdString == null) return;
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing for action scene is is  $d");
             JSONObject j = new JSONObject();
@@ -1025,7 +1025,7 @@ class GameEntity extends Object with StatOwner   {
 
     void loadStopMechanisms(String weirdString) {
         //print("weird string is $weirdString");
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();
@@ -1064,7 +1064,7 @@ class GameEntity extends Object with StatOwner   {
     void loadStats(String weirdString) {
         //print("trying to decode weirdString $weirdString");
         if(weirdString == null) return;
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what){
             JSONObject j = new JSONObject();
             j.json = d;
@@ -1078,7 +1078,7 @@ class GameEntity extends Object with StatOwner   {
     void loadFraymotifs(String weirdString) {
         fraymotifs.clear();
         if(weirdString == null) return;
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what) {
             //print("d is $d");
             JSONObject j = new JSONObject();
@@ -1093,7 +1093,7 @@ class GameEntity extends Object with StatOwner   {
         //print ("weird string is $weirdString");
         sylladex.inventory.clear();
         if(weirdString == null) return;
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what) {
             //print("sylladex d is $d");
             Item ss = new Item("",<ItemTrait>[]);

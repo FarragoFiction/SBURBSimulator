@@ -117,7 +117,7 @@ class RenderJobPassGradient extends RenderJobPass {
         THREE.setUniform(_defaultMaterial, "smoothing", new THREE.ShaderUniform<double>());
         THREE.setUniform(_defaultMaterial, "repeat", new THREE.ShaderUniform<double>());
 
-        _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = PI;
+        _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = pi;
         _scene.add(_mesh);
     }
 }

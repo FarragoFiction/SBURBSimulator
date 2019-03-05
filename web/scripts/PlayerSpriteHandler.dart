@@ -36,13 +36,13 @@ class PlayerSpriteHandler {
         ctx.imageSmoothingEnabled = false; //should get rid of orange halo in certain browsers.
         if (!baby && (player.dead)) { //only rotate once
             ctx.translate(canvas.width, 0);
-            ctx.rotate(90 * Math.PI / 180);
+            ctx.rotate(90 * Math.pi / 180);
         }
 
         //they are not dead, only sleeping
         if (!baby && ((player.causeOfDrain != null && !player.causeOfDrain.isEmpty))) { //only rotate once
             ctx.translate(0, 6 * canvas.height / 5);
-            ctx.rotate(270 * Math.PI / 180);
+            ctx.rotate(270 * Math.pi / 180);
         }
 
         if (!baby && player.grimDark > 3) {

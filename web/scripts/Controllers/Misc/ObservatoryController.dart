@@ -24,7 +24,10 @@ todo:
 
  */
 
-Future<Null> main() async {
+void main() {
+    observatoryInit();
+}
+Future<void> observatoryInit() async {
     await globalInit();
     await Renderer.loadThree();
     await THREE.ScriptLoader.particleSystem();
@@ -496,7 +499,7 @@ class ObservatoryViewer {
         //THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), new THREE.MeshBasicMaterial(new THREE.MeshBasicMaterialProperties(map: this.uiTexture))..transparent = true)
         THREE.Mesh uiObject = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), uiShader)
             ..position.z = 500.0
-            ..rotation.x = Math.PI
+            ..rotation.x = Math.pi
         ;
 
         // render target texture plane
@@ -526,7 +529,7 @@ class ObservatoryViewer {
         
         THREE.Mesh renderPlane = new THREE.Mesh(new THREE.PlaneGeometry(canvasWidth, canvasHeight), postShader)
             ..position.z = 5.0
-            ..rotation.x = Math.PI;
+            ..rotation.x = Math.pi;
         this.renderScene.add(renderPlane);
 
         // camera rig
@@ -629,7 +632,7 @@ class ObservatoryViewer {
 
     void mouseClick(MouseEvent e) {
         if (this.viewingLandDetails) { return; }
-        double dist = double.INFINITY;
+        double dist = double.infinity;
         if (dragStart != null) {
             int dx = e.offset.x - dragStart.x;
             int dy = e.offset.y - dragStart.y;
@@ -878,7 +881,7 @@ class ObservatoryViewer {
 
     ObservatorySession findDetailSession() {
         ObservatorySession nearest = null;
-        double distance = double.INFINITY;
+        double distance = double.infinity;
 
         int x,y;
         double diff;
@@ -1042,7 +1045,7 @@ class ObservatorySession {
 
         this.session = parent.getSession(seed);
 
-        this.initial_rotation = rand.nextDouble(Math.PI * 2);
+        this.initial_rotation = rand.nextDouble(Math.pi * 2);
         this.rotation_speed = rand.nextDouble() * (max_rotation - min_rotation) + min_rotation;
         if (rand.nextBool()) {
             this.rotation_speed *= -1;
@@ -1060,10 +1063,10 @@ class ObservatorySession {
 
     void update([num dt = 0.0]) {
         if (this.model == null) { return; }
-        spin_group.rotation.z = (spin_group.rotation.z + dt * rotation_speed * Math.PI * 2) % (Math.PI * 2 * 8);
+        spin_group.rotation.z = (spin_group.rotation.z + dt * rotation_speed * Math.pi * 2) % (Math.pi * 2 * 8);
 
         for (THREE.Object3D spiro in land_spinners) {
-            spiro.rotation.z = (spiro.rotation.z + dt * rotation_speed * Math.PI * 2 * -8) % (Math.PI * 2);
+            spiro.rotation.z = (spiro.rotation.z + dt * rotation_speed * Math.pi * 2 * -8) % (Math.pi * 2);
         }
 
         this.rotation_uniform.value = spin_group.rotation.z;
@@ -1089,7 +1092,7 @@ class ObservatorySession {
     Future<Null> createModel() async {
         await initGraphics();
 
-        THREE.Object3D group = new THREE.Object3D()..rotation.x = Math.PI;
+        THREE.Object3D group = new THREE.Object3D()..rotation.x = Math.pi;
         THREE.Object3D spinner = new THREE.Object3D();
 
         THREE.ShaderMaterial mat = await THREE.makeShaderMaterial("shaders/basic.vert", "shaders/observatory_session.frag")..transparent = true;
@@ -1109,7 +1112,7 @@ class ObservatorySession {
         this.spin_group = spinner;
 
         int players = this.session.players.length;
-        double angle_inc = (Math.PI * 2) / players;
+        double angle_inc = (Math.pi * 2) / players;
         double landdist = 120.0 * this.session_size - 40;
         double land_extra_dist = 10.0;
         double gate_sep = 15.0 * (0.8 + 0.2 * this.session_size);
@@ -1135,7 +1138,7 @@ class ObservatorySession {
             Land land = player.land;
             THREE.Mesh landmodel = await createLandModel(player, land);
             landmodel.position..x = (skaia_dist + landdist + land_extra_dist) * ux..y = (skaia_dist + landdist + land_extra_dist) * uy;
-            landmodel.rotation..z = -angle + Math.PI;
+            landmodel.rotation..z = -angle + Math.pi;
             spinner.add(landmodel);
         }
 
@@ -1161,7 +1164,7 @@ class ObservatorySession {
         double radius = 50.0 + this.parent.viewRadius * 2;
 
         for (int i=0; i<count; i++) {
-            double angle = this.rand.nextDouble(Math.PI * 2);
+            double angle = this.rand.nextDouble(Math.pi * 2);
             int ox = (Math.sin(angle) * radius).round();
             int oy = (Math.cos(angle) * radius).round();
 
@@ -1323,7 +1326,7 @@ class ObservatoryTentacle {
         this.width = 110.0 + rand.nextDouble(110.0);
         this.length = Math.sqrt(xdiff*xdiff + ydiff*ydiff) * (0.8 + rand.nextDouble(0.4));
 
-        double angle = Math.PI * 0.5 - Math.atan2(ydiff, xdiff);
+        double angle = Math.pi * 0.5 - Math.atan2(ydiff, xdiff);
 
         this.material = await THREE.makeShaderMaterial("shaders/tentacle.vert", "shaders/observatory_tentacle.frag")..transparent = true;
         THREE.setUniform(this.material, "size", new THREE.ShaderUniform<THREE.Vector2>()..value = new THREE.Vector2(this.width, this.length));
@@ -1340,7 +1343,7 @@ class ObservatoryTentacle {
 
         this.mesh = new THREE.Mesh(_geometry, material)..frustumCulled = false
             ..position.x = this.x..position.y = this.y..position.z = -10.0 + rand.nextDouble()
-            ..rotation.x = Math.PI..rotation.z = angle;
+            ..rotation.x = Math.pi..rotation.z = angle;
     }
 }
 
@@ -1358,7 +1361,7 @@ class ShipLogic {
     bool active = false;
 
     THREE.Object3D shipModel;
-    double angle = Math.PI * 1.4;
+    double angle = Math.pi * 1.4;
     THREE.Vector2 pos = new THREE.Vector2(0, 0);
     THREE.Vector2 vel = new THREE.Vector2(0, 0);
     double frictionForward = 0.998;
@@ -1370,8 +1373,8 @@ class ShipLogic {
 
     double angVel = 0.0;
     double angFriction = 0.925;
-    double turnRateStopped = Math.PI / 15.0;
-    double turnRateMax = Math.PI / 2.5;
+    double turnRateStopped = Math.pi / 15.0;
+    double turnRateMax = Math.pi / 2.5;
     double speedForMaxTurn = 250.0;
 
     double drift = 0.0;
@@ -1454,8 +1457,8 @@ class ShipLogic {
         THREE.Vector2 heading = new THREE.Vector2(Math.sin(angle), Math.cos(angle));
         THREE.Vector2 veldir = vel.clone().normalize();
 
-        //double a = Math.atan2(veldir.x, veldir.y) - angle + Math.PI;
-        //double angdiff = (a - (a/(Math.PI*2)).floorToDouble() * Math.PI * 2) - Math.PI;
+        //double a = Math.atan2(veldir.x, veldir.y) - angle + Math.pi;
+        //double angdiff = (a - (a/(Math.pi*2)).floorToDouble() * Math.pi * 2) - Math.pi;
         double angdiff = angleDiff(Math.atan2(veldir.x, veldir.y), angle);
 
         this.angVel -= angdiff * turnfraction * turnfraction * dt * 1.0;
@@ -1568,8 +1571,8 @@ class ShipLogic {
 
         this.shipModel.rotation
             ..z = -this.angle
-            ..y = -sin * Math.PI * 0.5
-            ..x = cos.abs() * Math.PI * 0.03125
+            ..y = -sin * Math.pi * 0.5
+            ..x = cos.abs() * Math.pi * 0.03125
         ;
     }
 }

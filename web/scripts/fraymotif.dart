@@ -94,7 +94,7 @@ class Fraymotif {
 
     void loadEffects(String weirdString) {
       if(weirdString == null) return;
-      List<dynamic> what = JSON.decode(weirdString);
+      List<dynamic> what = jsonDecode(weirdString);
       for(dynamic d in what) {
         FraymotifEffect ss = new FraymotifEffect(null, 0, false);
         JSONObject j = new JSONObject();
@@ -357,7 +357,7 @@ class Fraymotif {
         if (!this.canCast(owner, allies, enemies)) return "";
         List<GameEntity> casters = this.getCasters(owner, allies);
         this.makeCastersUnavailable(casters);
-        List<Player> living = findLiving(allies);
+        List<GameEntity> living = findLiving(allies);
         //;
         //Hope Rides Alone
         if (owner is Player && owner.aspect == Aspects.HOPE && living.length == 1 && owner.rand.nextDouble() > 0.85) {
@@ -423,7 +423,7 @@ class FraymotifCreator {
 
     List<Fraymotif> getUsableFraymotifs(GameEntity owner, List<GameEntity> allies, List<GameEntity> enemies) {
         List<Fraymotif> fraymotifs = owner.fraymotifs;
-        List<dynamic> ret = [];
+        List<Fraymotif> ret = <Fraymotif>[];
         for (num i = 0; i < fraymotifs.length; i++) {
             if (fraymotifs[i].canCast(owner, allies, enemies)) ret.add(fraymotifs[i]);
         }
@@ -433,7 +433,7 @@ class FraymotifCreator {
 
     List<Fraymotif> getUsableFraymotifsMagicalItem(MagicalItem owner, List<GameEntity> allies, List<GameEntity> enemies) {
         List<Fraymotif> fraymotifs = owner.fraymotifs;
-        List<dynamic> ret = [];
+        List<Fraymotif> ret = <Fraymotif>[];
         for (num i = 0; i < fraymotifs.length; i++) {
             if (fraymotifs[i].canCast(owner.owner, allies, enemies)) ret.add(fraymotifs[i]);
         }
@@ -611,7 +611,7 @@ class FraymotifCreator {
         }
 
         String name = this.getFraymotifName(rand, players, tier);
-        List<dynamic> aspects = [];
+        List<Aspect> aspects = <Aspect>[];
         for (num i = 0; i < players.length; i++) {
             aspects.add(players[i].aspect); //allow fraymotifs tht are things like time/time. doomed time clones need love.
         }
