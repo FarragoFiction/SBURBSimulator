@@ -151,7 +151,7 @@ abstract class StringFileFormat<T> extends FileFormat<T,String> {
 
     @override
     Future<String> dataToDataURI(String content) async {
-        return new Uri.dataFromString(content, encoding:utf8, base64:true).toString();
+        return new Uri.dataFromString(content, encoding:UTF8, base64:true).toString();
     }
 
     @override

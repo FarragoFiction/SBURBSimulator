@@ -219,7 +219,7 @@ String capitilizeEachWord(String s) {
 //need to happen ahead of time and have more variety to display on
 //echeladder graphic.  4 interests total
 dynamic getLevelArray(Player player) {
-    List<String> ret = <String>[];
+    List<dynamic> ret = [];
 
     for (int i = 0; i < 16; i++) {
         if (i % 4 == 3 && i > 4) { //dont start with claspects

@@ -121,10 +121,10 @@ List<Vector2> _approximateCommandCoords(List<OT.PathCommand> commands) {
 }
 
 Vector4 _commandBounds(List<OT.PathCommand> commands) {
-    num minx = double.infinity;
-    num miny = double.infinity;
-    num maxx = double.negativeInfinity;
-    num maxy = double.negativeInfinity;
+    num minx = double.INFINITY;
+    num miny = double.INFINITY;
+    num maxx = double.NEGATIVE_INFINITY;
+    num maxy = double.NEGATIVE_INFINITY;
 
     for (OT.PathCommand c in commands) {
         if (c.x != null && c.y != null) {

@@ -90,7 +90,7 @@ class RenderJobPassSprite extends RenderJobPass {
         THREE.setUniform(_defaultMaterial, "size", new THREE.ShaderUniform<THREE.Vector2>());
         THREE.setUniform(_defaultMaterial, "palette", new THREE.ShaderUniform<THREE.TextureBase>()..value=_paletteTexture);
 
-        _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = pi;
+        _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = PI;
         _scene.add(_mesh);
     }
 }

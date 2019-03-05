@@ -14,17 +14,17 @@ import "package:source_maps/source_maps.dart" as SourceMaps;
 import "package:package_resolver/package_resolver.dart";
 
 @JS("Tracer")
-abstract class JSTracer {
+class JSTracer {
     external static void writeTrace(String error, TracerCallback callback);
 }
 
 @JS("Tracer.Container")
-abstract class JSContainer {
+class JSContainer {
     external List<JSFrame> get payload;
 }
 
 @JS("StackTrace.StackFrame")
-abstract class JSFrame {
+class JSFrame {
     external int get columnNumber;
     external int get lineNumber;
     external String get fileName;

@@ -5,7 +5,7 @@ import "../../SBURBSim.dart";
 //known to lesser mortals as God Tier
 class GetTiger extends Scene{
 
-	List<Player> deadPlayersToGodTier = <Player>[];	//doesn't matter if dream self 'cause sacrificial slab.
+	List<dynamic> deadPlayersToGodTier = [];	//doesn't matter if dream self 'cause sacrificial slab.
 	
 
 
@@ -14,7 +14,7 @@ class GetTiger extends Scene{
 	@override
 	bool trigger(List<Player> playerList){
 		this.playerList = playerList;
-		this.deadPlayersToGodTier = <Player>[];
+		this.deadPlayersToGodTier = [];
 		if(this.session.reckoningStarted || this.session.didReckoning){
 			return false; //can't god tier if you are definitely on skaia. (makes king fight too easy)
 		}

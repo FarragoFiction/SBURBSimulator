@@ -1,6 +1,5 @@
 import "dart:html";
 import "../Controllers/Story/StoryController.dart";
-//import "../Controllers/Story/SimIndexController.dart";
 
 import "../SBURBSim.dart";
 

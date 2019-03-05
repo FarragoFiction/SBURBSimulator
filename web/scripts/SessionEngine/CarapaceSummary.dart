@@ -231,7 +231,7 @@ class CarapaceSummary extends BigBadSummary {
     void fromJSON(String jsonString) {
       //  ;
         JSONObject json = new JSONObject.fromJSONString(jsonString);
-        List<dynamic> what = jsonDecode(json["data"]);
+        List<dynamic> what = JSON.decode(json["data"]);
         for(dynamic d in what) {
             //;
             JSONObject j = new JSONObject();

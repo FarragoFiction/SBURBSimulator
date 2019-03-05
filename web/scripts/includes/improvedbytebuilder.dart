@@ -54,7 +54,7 @@ class ImprovedByteBuilder {
 	void appendExpGolomb(int i) {
 		i++;
 
-		int bits = log(i)~/ln2;
+		int bits = log(i)~/LN2;
 
 		for (int i=0; i<bits; i++) {
 			this.appendBit(false);

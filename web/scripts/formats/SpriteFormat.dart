@@ -112,7 +112,7 @@ class SpriteFormat extends BinaryFileFormat<PSprite> {
         // number of bytes for dimensions
         int bigdim = Math.max(sprite.width, sprite.height);
 
-        int bits = (Math.log(bigdim)/Math.ln2).floor() +1;
+        int bits = (Math.log(bigdim)/Math.LN2).floor() +1;
         if (bits > 32) {
             throw new ArgumentError.value(bigdim, "Sprite dimensions may not exceed 2^32 pixels");
         }
@@ -155,7 +155,7 @@ class SpriteFormat extends BinaryFileFormat<PSprite> {
         ByteBuffer bestOutput = null;
         SpriteEncodingFormat bestmethod = null;
 
-        double size = double.infinity;
+        double size = double.INFINITY;
         SpriteEncodingFormat.formats.forEach((int id, SpriteEncodingFormat format) {
             ByteBuffer potential = format.encoder(id, header, data.buffer, sprite);
             int length = potential.lengthInBytes;

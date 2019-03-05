@@ -2,7 +2,7 @@ import "../web/scripts/includes/lz-string.dart";
 import "JRTestSuite.dart";
 
 typedef dynamic Compression(String input);
-typedef String Decompression<T>(T compressed);
+typedef String Decompression(dynamic compressed);
 
 // this one needs to be run via browser because the JS module is illegal in standalone, launch the associated page
 void main() {
@@ -12,9 +12,9 @@ void main() {
 	testCompressionMethod("URI", LZString.compressToEncodedURIComponent, LZString.decompressFromEncodedURIComponent);
 }
 
-void testCompressionMethod<T>(String name, Compression compress, Decompression<T> decompress) {
+void testCompressionMethod(String name, Compression compress, Decompression decompress) {
 	String input = "blah blah blah";
-	T compressed = compress(input);
+	dynamic compressed = compress(input);
 	String decompressed = decompress(compressed);
 	jRAssert(name, decompressed, input);
 }

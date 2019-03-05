@@ -92,7 +92,7 @@ class SessionSummary {
         String idontevenKnow = jsonString;
         //print("jsonstring is $idontevenKnow");
         try {
-            List<dynamic> what = jsonDecode(idontevenKnow);
+            List<dynamic> what = JSON.decode(idontevenKnow);
             for(dynamic d in what) {
                // ;
                 JSONObject j = new JSONObject();

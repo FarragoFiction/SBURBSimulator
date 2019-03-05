@@ -78,8 +78,8 @@ class Land extends Object with FeatureHolder {
         return l;
     }
 
-    String initQuest(List<GameEntity> players) {
-        if(symbolicMcguffin == null) decideMcGuffins(players.first as Player);
+    String initQuest(List<Player> players) {
+        if(symbolicMcguffin == null) decideMcGuffins(players.first);
         if(noMoreQuests) return "";
         //first, do i have a current quest chain?
         if(currentQuestChain == null) currentQuestChain = selectQuestChainFromSource(players, firstQuests);

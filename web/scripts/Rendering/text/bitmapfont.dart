@@ -174,7 +174,7 @@ class BitmapFontData {
 
             logger.debug("Requesting $path");
 
-            Loader.getResource<ImageElement>(path).then((ImageElement img){
+            Loader.getResource(path).then((ImageElement img){
                 BitmapFontData font = new BitmapFontData(img, glyphwidth, glyphheight);
                 _fonts[path] = font;
 

@@ -290,7 +290,7 @@ class BigBadSummary {
         //  ;
         JSONObject json = new JSONObject.fromJSONString(jsonString);
         bigBadsActiveNames = json["bigBadsActiveNames"];
-        List<dynamic> what = jsonDecode(json["data"]);
+        List<dynamic> what = JSON.decode(json["data"]);
         for(dynamic d in what) {
             //;
             JSONObject j = new JSONObject();

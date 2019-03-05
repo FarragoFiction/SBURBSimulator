@@ -85,7 +85,7 @@ class Session {
     //stores them.
     Set<GameEntity> _activatedNPCS = new Set<GameEntity>();
     //    //so ab can acurately report to shogun bot
-    Set<BigBad> activatedBigBads = new Set<BigBad>();
+    Set<GameEntity> activatedBigBads = new Set<GameEntity>();
 
 
     List<GameEntity> get activatedNPCS {
