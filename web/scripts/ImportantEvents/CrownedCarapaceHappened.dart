@@ -1,4 +1,3 @@
-import '../SBURBSim.dart';
 import 'dart:html';
 
 /*
