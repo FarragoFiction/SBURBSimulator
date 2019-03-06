@@ -87,7 +87,7 @@ class OhShitFuckWheresTheRing extends Scene {
 
     void renderGoodguys(Element div){
         num ch = canvasHeight;
-        List<Player> fightingPlayers = this.getGoodGuys();
+        List<GameEntity> fightingPlayers = this.getGoodGuys();
         if(fightingPlayers.length > 6){
             ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
         }

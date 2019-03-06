@@ -6,7 +6,7 @@ import 'dart:html'; //<--needed for loading the file this is fucking bullshit. m
 import "GeneratedFAQ.dart";
 
 
-typedef LoadingCallback(FAQSection s, Element div, GeneratedFAQ);
+typedef void LoadingCallback(FAQSection s, Element div, GeneratedFAQ faq);
 
 ///handles knowing what file it should load, loading it on request, and parsing and distributing the subsections of the file.
 ///i expect class and aspect to creat their own FAQFiles, and GetWasted to handle murder mode and grim dark and (trickster??? and bike faqs!???)
