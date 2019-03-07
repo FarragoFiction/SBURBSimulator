@@ -237,13 +237,13 @@ class GetWasted extends Scene {
     }
 
     String processTier3(Element div) {
-        if(player.aspect == Aspects.TIME || player.aspect == Aspects.BREATH || player.aspect == Aspects.LAW) return exploitMobility(div);
-        if(player.aspect == Aspects.HOPE || player.aspect == Aspects.LIGHT) return exploitFate(div);
-        if(player.aspect == Aspects.RAGE || player.aspect == Aspects.MIND) return exploitTime(div);
-        if(player.aspect == Aspects.SPACE || player.aspect == Aspects.VOID) return exploitGlitches(div);
-        if(player.aspect == Aspects.HEART || player.aspect == Aspects.BLOOD) return exploitFriendship(div);
-        if(player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM) return exploitDoom(div);
-        if(player.aspect == Aspects.DREAM ) return exploitAlchemy(div);
+        if(player.aspect.isThisMe(Aspects.TIME) || player.aspect.isThisMe(Aspects.BREATH) || player.aspect.isThisMe(Aspects.LAW)) return exploitMobility(div);
+        if(player.aspect.isThisMe(Aspects.HOPE) || player.aspect.isThisMe(Aspects.LIGHT)) return exploitFate(div);
+        if(player.aspect.isThisMe(Aspects.RAGE) || player.aspect.isThisMe(Aspects.MIND)) return exploitTime(div);
+        if(player.aspect.isThisMe(Aspects.SPACE) || player.aspect.isThisMe(Aspects.VOID)) return exploitGlitches(div);
+        if(player.aspect.isThisMe(Aspects.HEART) || player.aspect.isThisMe(Aspects.BLOOD)) return exploitFriendship(div);
+        if(player.aspect.isThisMe(Aspects.LIFE) || player.aspect .isThisMe(Aspects.DOOM)) return exploitDoom(div);
+        if(player.aspect.isThisMe(Aspects.DREAM) ) return exploitAlchemy(div);
 
         return "OMFG, THIS WOULD DO SOMETHING IF JR WASN'T A LAZY PIECE OF SHIT.";
     }
@@ -280,15 +280,15 @@ class GetWasted extends Scene {
     //set up teleporters or flying mounts so quests are WAY easier to do
     String exploitMobility(Element div) {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. ";
-        if(player.aspect == Aspects.BREATH) {
+        if(player.aspect.isThisMe(Aspects.BREATH)) {
             ret = "They alchemize a series of game breaking as fuck flying items and pass them out to everyone";
             ret += " , allowing all players to basically ignore their gates entirely and skip all the boring walking parts of their land quests. ";
 
-        }else if(player.aspect == Aspects.TIME) {
+        }else if(player.aspect.isThisMe(Aspects.TIME)) {
             ret = " They set up a frankly scandalous series of time shenanigans";
             ret += " , allowing all players to basically spam multiple quests 'at the same time'. ";
 
-        }else if(player.aspect == Aspects.LAW) {
+        }else if(player.aspect.isThisMe(Aspects.LAW)) {
             ret = " They enforce the rules, requiring all players to do their main quests and not lollygag.";
         }else {
             ret = "";
@@ -320,9 +320,9 @@ class GetWasted extends Scene {
     //auto english tier someone be lucky enough or hopeful enough that it works for EVERYONE
     String exploitFate(Element div) {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.  They know what it takes to reach god tier, and whoever they can't convince, they ambush. ";
-        if(this.player.aspect == Aspects.HOPE) {
+        if(this.player.aspect.isThisMe(Aspects.HOPE)) {
             ret += " They believe with all their heart that this plan will work.  It helps that they don't even have a clue that whole 'god tier destiny' bullshit exists.  ";
-        }else if (this.player.aspect == Aspects.LIGHT){
+        }else if (this.player.aspect.isThisMe(Aspects.LIGHT)){
             ret += " Regardless of what destiny says, they are lucky enough bastards that the plan goes off without a hitch. ";
         }
 
@@ -345,9 +345,9 @@ class GetWasted extends Scene {
     //make doomed timeclone army
     String exploitTime(Element div) {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB. They begin seriously planning to utterly fuck over the timeline. ";
-        if(this.player.aspect == Aspects.RAGE) {
+        if(this.player.aspect.isThisMe(Aspects.RAGE)) {
             ret += " They use their innate sense of ignoring Skaia's wishes to plan to fuck shit up in subtle ways.  No, Skaia, I WON'T be eating that apple when you want me to. Don't like that, don't make me get the god pjs out, I'll do it!";
-        }else if (this.player.aspect == Aspects.MIND){
+        }else if (this.player.aspect.isThisMe(Aspects.MIND)){
             ret += " They use their innate sense of the consequences of actions to fuck up causality entirely. Pardoxes ahoy. ";
         }
         List<Player> timePlayers = findAllAspectPlayers(session.players, Aspects.TIME);
@@ -379,7 +379,7 @@ class GetWasted extends Scene {
     //skaian magicent kinda deal
     String exploitGlitches(Element div) {
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
-        if(player.aspect == Aspects.VOID) {
+        if(player.aspect.isThisMe(Aspects.VOID)) {
             ret += " Uh.  Where did they go? <div class = 'void'> ";
         }
         ret += " They discover a glitchy, half finished area. I didn't even know it was there???  Wow, look at all that grist and fraymotifs they come out with. What the fuck?<br>";
@@ -415,7 +415,7 @@ class GetWasted extends Scene {
     String exploitFriendship(Element div) {
         session.logger.info("AB: friendship tier3 happening.");
         String ret = "The ${player.htmlTitle()} exploits the rules of SBURB.";
-        if(player.aspect == Aspects.BLOOD) {
+        if(player.aspect.isThisMe(Aspects.BLOOD)) {
             ret +=  "They find a fast, repeatable quest and organize everyone into ever-changing adventuring pairs to take advantage of the game's interaction effect bonus. ";
         }else {
             ret +=  "They find something called a 'Shipping Dunegon' and arrange everyone into various 'canon' and 'crackship' speed dates to take advantage of the game's interaction effect bonus. ";
