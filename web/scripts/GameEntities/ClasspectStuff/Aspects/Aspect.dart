@@ -151,7 +151,7 @@ class Aspect {
     }
 
     bool isThisMyName(String other) {
-        return name == this.name;
+        return other == this.name;
     }
 
     // ##################################################################################################

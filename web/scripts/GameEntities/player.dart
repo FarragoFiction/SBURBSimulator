@@ -1986,7 +1986,7 @@ class Player extends GameEntity{
 
     void handleSubAspects() {
         if(aspect is AspectWithSubAspects) {
-
+            (aspect as AspectWithSubAspects).setSubAspectsFromPlayer(this);
         }
     }
 
