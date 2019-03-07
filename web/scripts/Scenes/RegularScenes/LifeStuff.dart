@@ -38,7 +38,7 @@ class LifeStuff extends Scene {
         List<Player> dead = findDeadPlayers(this.session.players); //don't care about availability.;
         for (num i = 0; i < dead.length; i++) {
             Player d = dead[i];
-            if ((d.aspect == Aspects.LIFE || d.aspect == Aspects.DOOM) && d.hasPowers()) {
+            if ((d.aspect.isThisMe(Aspects.LIFE) || d.aspect .isThisMe(Aspects.DOOM)) && d.hasPowers()) {
                 if (d.class_name == SBURBClassManager.THIEF || d.class_name == SBURBClassManager.HEIR) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(d, null)); //gonna revive myself.
                 }
@@ -52,7 +52,7 @@ class LifeStuff extends Scene {
         //for each nonGuide, see if you can do something on your own.
         for (num i = 0; i < nonGuides.length; i++) {
             Player player = nonGuides[i];
-            if ((player.aspect == Aspects.LIFE || player.aspect == Aspects.DOOM && player.hasPowers()) || player.canGhostCommune() != null) {
+            if ((player.aspect.isThisMe(Aspects.LIFE) || player.aspect.isThisMe(Aspects.DOOM) && player.hasPowers()) || player.canGhostCommune() != null) {
                 if (player.class_name != SBURBClassManager.WITCH && player.class_name != SBURBClassManager.SYLPH) {
                     this.enablingPlayerPairs.add(new LifeStuffPair(player, null));
                     removeNonGuides.add(player);
@@ -106,7 +106,7 @@ class LifeStuff extends Scene {
         List<Player> chosenGuides = <Player>[];
         List<Player> chosenSuplicants = <Player>[];
         for (Player possibleGuide in session.getReadOnlyAvailablePlayers()) {
-            if (possibleGuide.aspect == Aspects.DOOM || possibleGuide.aspect == Aspects.LIFE || possibleGuide.canGhostCommune() != null) {
+            if (possibleGuide.aspect.isThisMe(Aspects.DOOM) || possibleGuide.aspect.isThisMe(Aspects.LIFE) || possibleGuide.canGhostCommune() != null) {
                 if (possibleGuide.class_name == SBURBClassManager.SEER || possibleGuide.class_name == SBURBClassManager.SCRIBE || possibleGuide.class_name == SBURBClassManager.PAGE || possibleGuide.class_name == SBURBClassManager.BARD || possibleGuide.class_name == SBURBClassManager.ROGUE || possibleGuide.class_name == SBURBClassManager.MAID) {
                     chosenGuides.add(possibleGuide);
                 }
@@ -117,7 +117,7 @@ class LifeStuff extends Scene {
         for (Player possibleGuide in session.getReadOnlyAvailablePlayers()) {
             if (possibleGuide.class_name == SBURBClassManager.HEIR || possibleGuide.class_name == SBURBClassManager.THIEF || possibleGuide.class_name == SBURBClassManager.PRINCE || possibleGuide.class_name == SBURBClassManager.WITCH || possibleGuide.class_name == SBURBClassManager.SYLPH || possibleGuide.class_name == SBURBClassManager.KNIGHT || possibleGuide.class_name == SBURBClassManager.MAGE) {
                 chosenSuplicants.add(possibleGuide);
-            } else if (possibleGuide.aspect != Aspects.DOOM && possibleGuide.aspect != Aspects.LIFE || possibleGuide.canGhostCommune() == null) {
+            } else if (!possibleGuide.aspect.isThisMe(Aspects.DOOM) && !possibleGuide.aspect.isThisMe(Aspects.LIFE) || possibleGuide.canGhostCommune() == null) {
                 if (!chosenGuides.contains(possibleGuide)) { //can't be both guide and non guide.
                     //////session.logger.info("supplicant is: " + possibleGuide.title());
                     chosenSuplicants.add(possibleGuide);
@@ -361,7 +361,7 @@ class LifeStuff extends Scene {
         } else  {
             player.ghostWisdom.add(ghost); //don't do anything, but keeps repeats from happening.
             String effect = "";
-            if (player.aspect == ghost.aspect && !ghost.fraymotifs.isEmpty && player.id != ghost.id) { //don't just relearn your own fraymotifs.
+            if (player.aspect.isThisMe(ghost.aspect) && !ghost.fraymotifs.isEmpty && player.id != ghost.id) { //don't just relearn your own fraymotifs.
                 //session.logger.info("player learning fraymotifs from a ghost ${this.session.session_id}");
                 player.fraymotifs.addAll(ghost.fraymotifs); //copy not reference
                 effect = "They learn ${turnArrayIntoHumanSentence(ghost.fraymotifs)} from the $ghostName. ";
@@ -493,10 +493,10 @@ class LifeStuff extends Scene {
             ghost.causeOfDrain = player.title();
             CanvasElement canvas = Drawing.drawReviveDead(div, player, ghost, enablingAspect);
             player.makeAlive();
-            if (enablingAspect == Aspects.LIFE) {
+            if (enablingAspect.isThisMe(Aspects.LIFE)) {
                 player.addStat(Stats.CURRENT_HEALTH, 100 * Stats.HEALTH.coefficient); //i won't let you die again.
                 player.addStat(Stats.HEALTH, 100); //i won't let you die again.
-            } else if (enablingAspect == Aspects.DOOM || player.prophecy == ProphecyState.FULLFILLED ) {
+            } else if (enablingAspect.isThisMe(Aspects.DOOM) || player.prophecy == ProphecyState.FULLFILLED ) {
                 player.addStat(Stats.MIN_LUCK, 100); //you've fulfilled the prophecy. you are no longer doomed.
                 str = "${str}The prophecy is fulfilled. ";
             }
