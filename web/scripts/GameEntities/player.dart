@@ -1977,7 +1977,6 @@ class Player extends GameEntity{
     }
 
     void initialize() {
-        this.handleSubAspects();
         this.initializeStats();
         this.initializeSprite();
         if(deriveSpecibus) this.specibus = SpecibusFactory.getRandomSpecibus(session.rand);
@@ -1986,7 +1985,10 @@ class Player extends GameEntity{
 
     void handleSubAspects() {
         if(aspect is AspectWithSubAspects) {
-            (aspect as AspectWithSubAspects).setSubAspectsFromPlayer(this);
+            AspectWithSubAspects subAspectedAspect = aspect as AspectWithSubAspects;
+            if(subAspectedAspect.subAspects == null) {
+                (aspect as AspectWithSubAspects).setSubAspectsFromPlayer(this);
+            }
         }
     }
 
@@ -2070,6 +2072,12 @@ class Player extends GameEntity{
 
     bool hasMoon() {
         return moon != null && !moon.dead;
+    }
+
+    @override
+    void  processScenes() {
+        handleSubAspects(); //so juice players etc never crash shit
+        super.processScenes();
     }
 
     ///not static because who can help me varies based on who i am (space is knight, for example)
