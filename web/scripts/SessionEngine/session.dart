@@ -651,6 +651,24 @@ class Session {
       this.required_aspects = <Aspect>[Aspects.TIME, Aspects.SPACE];
     }
 
+    //what aspects do the plaeyrs have
+    List<Aspect> aspectsIncluded() {
+        List<Aspect> ret = new List<Aspect>();
+        for(Player p in players) {
+            ret.add(p.aspect);
+        }
+        return ret;
+    }
+
+    //what aspects are missing from this session?
+    List<Aspect> aspectsLeftOut() {
+        List<Aspect> ret = new List.from(Aspects.all);
+        for(Player p in players) {
+            ret.remove(p.aspect);
+        }
+        return ret;
+    }
+
     Future<Null> callNextIntro(int player_index) async{
 
         if (player_index >= this.players.length) {

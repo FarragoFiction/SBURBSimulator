@@ -65,6 +65,8 @@ abstract class Aspects {
 
     static Map<int, Aspect> _aspects = <int, Aspect>{};
 
+
+
     static void register(Aspect aspect) {
         if (_aspects.containsKey(aspect.id)) {
             throw "Duplicate aspect id for $aspect: ${aspect.id} is already registered for ${_aspects[aspect.id]}.";
@@ -141,6 +143,16 @@ class Aspect {
     /// Only canon aspects will appear in random sessions.
     final bool isCanon;
     final bool isInternal; //don't let null show up in lists.
+
+    //useful for sauce/juice/rain/etc to override
+
+    bool isThisMe(Aspect other) {
+        return other == this;
+    }
+
+    bool isThisMyName(String other) {
+        return name == this.name;
+    }
 
     // ##################################################################################################
     // Tags
@@ -256,6 +268,7 @@ class Aspect {
     void processCard() {
 
     }
+
 
     void initializeItems() {
         items = new WeightedList<Item>()
@@ -434,4 +447,12 @@ class AspectPalette extends Palette {
     Colour get pants_dark => this[_PANTS_DARK];
 
     void set pants_dark(dynamic c) => this.add(_PANTS_DARK, _handleInput(c), true);
+}
+
+abstract class AspectWithSubAspects extends Aspect {
+    //making this default to nil so it crashes if i forget to init
+    List<Aspect> subAspects;
+    AspectWithSubAspects(int id, String name, {isInternal: true, isCanon: false}) :super(id, name, isInternal: isInternal, isCanon: false);
+
+    void setSubAspectsFromPlayer(Player player);
 }

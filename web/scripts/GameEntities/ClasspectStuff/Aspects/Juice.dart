@@ -4,7 +4,7 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
-class Juice extends Aspect {
+class Juice extends AspectWithSubAspects {
 
     //what sort of quests rewards do I get?
     @override
@@ -14,9 +14,13 @@ class Juice extends Aspect {
     @override
     double companionWeight = 1.00;
 
+    //because juice draws on its friends strength
+    //THIS SHOULD BE SET ON PLAYER INITIALIZATION
+    //and all juice players share this
+
     @override
     AspectPalette palette = new AspectPalette()
-        ..accent = '#BF2236'
+        ..accent = '#E5BB06'
         ..aspect_light = '#FFF775'
         ..aspect_dark = '#E5BB06'
         ..shoe_light = '#508B2D'
@@ -66,6 +70,25 @@ class Juice extends Aspect {
     }
 
     @override
+    bool isThisMe(Aspect other) {
+        //don't call isThisMe on subasepct cuz you'll risk an infinite loop if subaspect is also something weird
+        return other == this ||subAspects.contains(other);
+    }
+
+    @override
+    bool isThisMyName(String other) {
+        if (other == this.name) {
+            return true;
+        }
+        for(Aspect a in subAspects) {
+            if(other == a.name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @override
     List<AssociatedStat> stats = new List<AssociatedStat>.unmodifiable(<AssociatedStat>[
         new AssociatedStat(Stats.SANITY, 2.0, true),
         new AssociatedStat(Stats.MAX_LUCK, 1.0, true),
@@ -85,7 +108,6 @@ class Juice extends Aspect {
     void initializeThemes() {
 
         addTheme(new Theme(<String>["Juice"])
-            ..addFeature(FeatureFactory.DUTTLECONSORT, Feature.HIGH)
             ..addFeature(FeatureFactory.SWEETSMELL, Feature.HIGH)
             ..addFeature(FeatureFactory.CALMFEELING, Feature.HIGH)
             ..addFeature(FeatureFactory.NOTHINGSMELL, Feature.MEDIUM)
@@ -102,4 +124,9 @@ class Juice extends Aspect {
             ,  Theme.HIGH);
     }
 
+  @override
+  void setSubAspectsFromPlayer(Player player) {
+      subAspects = new List.from(player.session.aspectsIncluded());
+
+  }
 }

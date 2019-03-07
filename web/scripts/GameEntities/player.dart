@@ -1977,10 +1977,17 @@ class Player extends GameEntity{
     }
 
     void initialize() {
+        this.handleSubAspects();
         this.initializeStats();
         this.initializeSprite();
         if(deriveSpecibus) this.specibus = SpecibusFactory.getRandomSpecibus(session.rand);
         this.initializeDerivedStuff();
+    }
+
+    void handleSubAspects() {
+        if(aspect is AspectWithSubAspects) {
+
+        }
     }
 
     void initializeDerivedStuff() {

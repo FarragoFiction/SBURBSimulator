@@ -17,6 +17,7 @@ Future<Null> start() async {
     //curSessionGlobalVar = new Session(int.parse(todayToSession()));
     session = new Session(getRandomSeed());
     session.makePlayers();
+    print("session has ${session.aspectsIncluded()} aspects and doens't have ${session.aspectsLeftOut()} aspects");
     session.randomizeEntryOrder();
 
 

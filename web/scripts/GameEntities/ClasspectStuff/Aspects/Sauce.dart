@@ -5,7 +5,7 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 //not  a real aspect, it's just a shitty fucking clone of rage
-class Sauce extends Aspect {
+class Sauce extends AspectWithSubAspects {
 
     //what sort of quests rewards do I get?
     @override
@@ -14,6 +14,10 @@ class Sauce extends Aspect {
     double fraymotifWeight = 13.0;
     @override
     double companionWeight = 13.0;
+    //because sauce exploits its enemies weakness
+    //THIS SHOULD BE SET ON PLAYER INITIALIZATION
+    //and all sauce players share this
+    //making this default to nil so it crashes if i forget to init
 
     @override
     AspectPalette palette = new AspectPalette()
@@ -38,6 +42,24 @@ class Sauce extends Aspect {
     @override
     List<String> handles = new List<String>.unmodifiable(<String>["Shogun"]);
 
+    @override
+    bool isThisMe(Aspect other) {
+        //don't call isThisMe on subasepct cuz you'll risk an infinite loop if subaspect is also something weird
+        return other == this ||subAspects.contains(other);
+    }
+
+    @override
+    bool isThisMyName(String other) {
+        if (other == this.name) {
+            return true;
+        }
+        for(Aspect a in subAspects) {
+            if(other == a.name) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @override
     List<String> fraymotifNames = new List<String>.unmodifiable(<String>["Glitchy","Sauce","Saucey","Sauced","Seinfield Theme","Glitch"]);
@@ -102,4 +124,8 @@ class Sauce extends Aspect {
             ,  Theme.HIGH);
     }
 
+  @override
+  void setSubAspectsFromPlayer(Player player) {
+    subAspects = new List.from(player.session.aspectsLeftOut());
+  }
 }
