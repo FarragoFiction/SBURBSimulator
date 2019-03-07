@@ -454,5 +454,9 @@ abstract class AspectWithSubAspects extends Aspect {
     List<Aspect> subAspects;
     AspectWithSubAspects(int id, String name, {isInternal: true, isCanon: false}) :super(id, name, isInternal: isInternal, isCanon: false);
 
-    void setSubAspectsFromPlayer(Player player);
+    void setSubAspectsFromPlayer(Player player) {
+        if(subAspects == null) {
+            player.handleSubAspects();
+        }
+    }
 }

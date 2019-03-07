@@ -2074,12 +2074,6 @@ class Player extends GameEntity{
         return moon != null && !moon.dead;
     }
 
-    @override
-    void  processScenes() {
-        handleSubAspects(); //so juice players etc never crash shit
-        super.processScenes();
-    }
-
     ///not static because who can help me varies based on who i am (space is knight, for example)
     ///no longer inside a scene because multiple scenes need a consistent result from this
      Player findHelper(List<Player> players) {
