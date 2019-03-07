@@ -222,7 +222,7 @@ Player findAspectPlayer(List<GameEntity> playerList, Aspect aspect) {
         GameEntity g = playerList[i]; //could be a sprite
         if (g is Player) {
             Player p = playerList[i];
-            if (p.aspect == aspect) {
+            if (p.aspect.isThisMe(aspect)) {
                 ////;
                 return p;
             }
@@ -242,7 +242,7 @@ List<Player> findAllAspectPlayers(List<GameEntity> playerList, Aspect aspect) {
         GameEntity g = playerList[i]; //could be a sprite, only work for player
         if (g is Player) {
             Player p = playerList[i];
-            if (p.aspect == aspect) {
+            if (p.aspect.isThisMe(aspect)) {
                 ////;
                 ret.add(p);
             }

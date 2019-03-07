@@ -66,7 +66,7 @@ class PopCulture extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Stop the Villain", [
                 new Quest("The ${Quest.PLAYER1} runs towards an explosion in a local ${Quest.CONSORT} village. As they rush to help the injured, a Mysterious ${Quest.CONSORT} in a mask and cape flees the scene. Who was that? "),
                 new Quest("The Mysterious ${Quest.CONSORT} turns out to be Professor ${Quest.MCGUFFIN}, a notorious consort Villain. They spread chaos and disaster with their ${Quest.MCGUFFIN} ray. The ${Quest.PLAYER1} vows to stop them. "),
-                new Quest(" The ${Quest.PLAYER1} has a dramatic showdown witih Professor ${Quest.MCGUFFIN}, that results in the Villain being knocked unconscious, and taken away by the ${Quest.CONSORT} authorities. ")
+                new Quest(" The ${Quest.PLAYER1} has a dramatic showdown with Professor ${Quest.MCGUFFIN}, that results in the Villain being knocked unconscious, and taken away by the ${Quest.CONSORT} authorities. ")
             ], new RandomReward(), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
