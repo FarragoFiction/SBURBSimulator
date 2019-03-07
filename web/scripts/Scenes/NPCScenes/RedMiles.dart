@@ -71,8 +71,8 @@ class RedMiles extends Scene {
       List<Land> targets = new List<Land>();
       List<Land> spaceTargets = new List<Land>();
       for(Player p in session.players) {
-        if(p.aspect != Aspects.SPACE && p.land != null  && !p.land.dead) targets.add(p.land);
-        if(p.aspect == Aspects.SPACE && p.land != null  && !p.land.dead) spaceTargets.add(p.land);
+        if(!p.aspect.isThisMe(Aspects.SPACE) && p.land != null  && !p.land.dead) targets.add(p.land);
+        if(p.aspect.isThisMe(Aspects.SPACE) && p.land != null  && !p.land.dead) spaceTargets.add(p.land);
 
       }
 
