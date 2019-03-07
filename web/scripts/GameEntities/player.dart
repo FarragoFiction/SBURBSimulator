@@ -878,7 +878,7 @@ class Player extends GameEntity{
 
     bool hasPowers() {
         if(class_name == SBURBClassManager.WASTE || class_name == SBURBClassManager.GRACE) return false;
-        if(aspect == Aspects.TIME) return true;  //they have it in the future after all. and
+        if(aspect.isThisMe(Aspects.TIME)) return true;  //they have it in the future after all. and
         if(godTier) return true; //you just do okay.
         if(land == null) return true;//you're a combo player.
         if(land.firstCompleted) { //you are starting to face your denizen
@@ -2056,7 +2056,7 @@ class Player extends GameEntity{
     }
 
     bool canHelp() {
-        return godTier || isDreamSelf || land == null || land.firstCompleted || (aspect == Aspects.BREATH && hasPowers()) ;
+        return godTier || isDreamSelf || land == null || land.firstCompleted || (aspect.isThisMe(Aspects.BREATH) && hasPowers()) ;
     }
 
     bool canGodTierSomeWay() {

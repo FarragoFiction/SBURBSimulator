@@ -534,7 +534,7 @@ class GameEntity extends Object with StatOwner   {
         List<Fraymotif> usableFraymotifs = this.session.fraymotifCreator.getUsableFraymotifs(this, living_allies, living_enemies);
         if (crowned != null) { //ring/scepter has fraymotifs, too.  (maybe shouldn't let humans get thefraymotifs but what the fuck ever. roxyc could do voidy shit.)
             //jr from 9/25/18 says fuck no past jr, humans aren't allowed fryamotifs from teh rings/scepters.
-            if(this is Carapace || (this is Player && (this as Player).aspect == Aspects.SAUCE)){
+            if(this is Carapace || (this is Player && (this as Player).aspect.isThisMe(Aspects.SAUCE))){
                 usableFraymotifs.addAll(this.session.fraymotifCreator.getUsableFraymotifsMagicalItem(crowned, living_allies, living_enemies));
             }
         }
@@ -701,8 +701,8 @@ class GameEntity extends Object with StatOwner   {
             if (t.getStat(Stats.CURRENT_HEALTH) < getStat(Stats.POWER)) r += 1; //i can kill you in one hit.
             if (t is Player) {
                 Player p = t;
-                if (p.aspect == Aspects.VOID) r += -1; //hard to see
-                if (p.aspect == Aspects.LIGHT) r += 1; //easy to see
+                if (p.aspect.isThisMe(Aspects.VOID)) r += -1; //hard to see
+                if (p.aspect.isThisMe(Aspects.LIGHT)) r += 1; //easy to see
             }
             //////session.logger.info("Added rating of $r to $t");
             ratings.add(r);

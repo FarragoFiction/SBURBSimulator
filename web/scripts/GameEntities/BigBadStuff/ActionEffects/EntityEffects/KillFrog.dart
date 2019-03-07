@@ -42,7 +42,7 @@ class KillFrog extends EffectEntity {
           }
           Player p = e as Player;
           p.landLevel = 0.0;
-          if((e as Player).aspect == Aspects.SPACE) {
+          if((e as Player).aspect.isThisMe(Aspects.SPACE)) {
               SpanElement death = new SpanElement();
               String text = "The ${e.htmlTitleWithTip()} lost the Ultimate Frog? That's bullshit!";
               death.setInnerHtml(text);

@@ -478,16 +478,16 @@ abstract class Drawing {
         //CanvasElement canvasBuffer = getBufferCanvas(SimController.canvasTemplateWidth, SimController.canvasTemplateHeight);
 
         //leave room on left for possible 'guide' player.
-        if (enablingAspect == Aspects.LIFE) {
+        if (enablingAspect.isThisMe(Aspects.LIFE)) {
             drawWhatever(canvas, "afterlife_life.png");
-        } else if (enablingAspect == "Doom") {
+        } else if (enablingAspect.isThisMe(Aspects.DOOM)) {
             drawWhatever(canvas, "afterlife_doom.png");
         }
         copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, 200, 0);
         copyTmpCanvasToRealCanvasAtPos(canvas, gSpriteBuffer, 500, 0);
         if (enablingAspect ==  Aspects.DOOM) {
             drawWhatever(canvas, "life_res.png");
-        } else if (enablingAspect == "Doom") {
+        } else if (enablingAspect.isThisMe(Aspects.DOOM)) {
             drawWhatever(canvas, "doom_res.png");
         }
         return canvas; //so enabling player can draw themselves on top
