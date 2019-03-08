@@ -499,7 +499,7 @@ class Player extends GameEntity{
         }
 
         if(dreamSelf && aspect != Aspects.TIME && aspect != Aspects.SPACE &&  sylladex.containsWord("Juice")) {
-            aspect = Aspects.SAUCE;
+            aspect = Aspects.JUICE;
             session.logger.info("AB: Bluh. One of Shogun's Juice Glitches just triggered. Better tell JR.");
             fraymotifs.add(new Fraymotif("Seinfeld Remix", 13)
                 ..effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true))

@@ -11,6 +11,18 @@ main() {
 
 }
 
+void testJuiceAndSauce() {
+    doNotRender = true;
+    List<String> items = <String>["Juice", "Sauce"];
+    Random rand = new Random();
+    for(Player p in session.players) {
+        String item = "Apple ${rand.pickFrom(items)}";
+        p.sylladex.add(new Item(item,<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CANDY],shogunDesc: "Culinary Perfection",abDesc:"Gross."));
+        p.makeGodTier();
+        print("${p.title()} went god tier with $item");
+    }
+}
+
 Future<Null> start() async {
     await globalInit();
     storyDiv = querySelector("#story");
@@ -19,6 +31,9 @@ Future<Null> start() async {
     session.makePlayers();
     print("session has ${session.aspectsIncluded()} aspects and doens't have ${session.aspectsLeftOut()} aspects");
     session.randomizeEntryOrder();
+    testJuiceAndSauce();
+
+
 
 
 

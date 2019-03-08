@@ -41,6 +41,7 @@ class Domestic extends InterestCategory {
             ..add(new Item("Failed Dish",<ItemTrait>[ItemTraitFactory.POISON],shogunDesc: "Culinary Perfection",abDesc:"Wow you suck at cooking.")) //this is ALSO a refrance. but to what?
             ..add(new Item("Dr Pepper BBQ Sauce",<ItemTrait>[ItemTraitFactory.POISON, ItemTraitFactory.SAUCEY],shogunDesc: "Culinary Perfection",abDesc:"Gross.")) //this is ALSO also a refrance. but to what?
             ..add(new Item("Apple Juice",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CANDY],shogunDesc: "Culinary Perfection",abDesc:"Gross.")) //this is ALSO also a refrance. but to what?
+            ..add(new Item("Apple Sauce",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CANDY],shogunDesc: "Culinary Perfection",abDesc:"Gross.")) //this is ALSO also a refrance. but to what?
             ..add(new Item("Potted Plant",<ItemTrait>[ItemTraitFactory.PRETTY, ItemTraitFactory.CERAMIC, ItemTraitFactory.PLANT],shogunDesc: "Imprisoned Flora, Trapped in Clay for its Sins"))
             ..add(new Item("Chicken Leg",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH, ItemTraitFactory.BONE],shogunDesc: "Thicc Chicken"))
             ..add(new Item("Juicy Steak",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.FLESH],shogunDesc: "Juicy Cow Flesh"))
