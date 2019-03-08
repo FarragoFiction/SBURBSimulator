@@ -95,7 +95,7 @@ class Juice extends AspectWithSubAspects {
         new AssociatedStatRandom(Stats.pickable, -2.0, true)
     ]);
 
-    Juice(int id) :super(id, "Juice", isCanon: false);
+    Juice(int id) :super(id, "Juice", isInternal: true); //secret
 
     @override
     String activateCataclysm(Session s, Player p) {

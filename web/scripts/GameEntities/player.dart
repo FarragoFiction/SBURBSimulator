@@ -497,6 +497,15 @@ class Player extends GameEntity{
                 ..effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true))
                 ..desc = " What the fuck? What even is this? Is it a riddle? I thought JR said it wasn't important... ");
         }
+
+        if(dreamSelf && aspect != Aspects.TIME && aspect != Aspects.SPACE &&  sylladex.containsWord("Juice")) {
+            aspect = Aspects.SAUCE;
+            session.logger.info("AB: Bluh. One of Shogun's Juice Glitches just triggered. Better tell JR.");
+            fraymotifs.add(new Fraymotif("Seinfeld Remix", 13)
+                ..effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true))
+                ..desc = " What the fuck? What even is this? Is it a riddle? I thought JR said it wasn't important... ");
+        }
+
         this.godTier = true;
         this.session.stats.godTier = true;
         this.dreamSelf = false;

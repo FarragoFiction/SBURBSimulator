@@ -31,6 +31,7 @@ class PopCulture extends InterestCategory {
             ..add(new Item("Ghost Busters DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.GHOSTLY],shogunDesc: "Shogunsprite Hunters The Movie", abDesc:  "I refuse to call a bunch of washed up comedians."))
             ..add(new Item("Snow Dogs DVD",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.FUNNY, ItemTraitFactory.COLD, ItemTraitFactory.FUR],shogunDesc: "Snow Buddies Anthology"))
             ..add(new Item("Skateboarding Video Game",<ItemTrait>[ItemTraitFactory.PLASTIC,ItemTraitFactory.COOLK1D],shogunDesc: "Snow Buddies Anthology",abDesc:"All of these glitches are offensive to my robo-sensbilities."))
+            ..add(new Item("Apple Juice",<ItemTrait>[ItemTraitFactory.EDIBLE, ItemTraitFactory.CANDY],shogunDesc: "Culinary Perfection",abDesc:"Gross.")) //this is ALSO also a refrance. but to what?
             ..add(new Item("Movie Poster",<ItemTrait>[ItemTraitFactory.PAPER,ItemTraitFactory.COOLK1D],shogunDesc: "Shogun 2: Electric Shitstorm Poster"))
             ..add(new Item("Audrey II Plush",<ItemTrait>[ItemTraitFactory.PLANT,ItemTraitFactory.COOLK1D,ItemTraitFactory.CLOTH, ItemTraitFactory.SENTIENT],shogunDesc: "World Eating Plant Plush, A Pure Entity"))
             ..add(new Item("Peashooter Toy",<ItemTrait>[ItemTraitFactory.PLANT,ItemTraitFactory.SHOOTY,ItemTraitFactory.COOLK1D, ItemTraitFactory.CLOTH],shogunDesc: "Plants Vs Zombies Peaplant Plush"))
