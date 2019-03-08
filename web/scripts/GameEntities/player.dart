@@ -240,7 +240,7 @@ class Player extends GameEntity{
         for(Item item in sylladex) {
             //;
 
-            if(item is MagicalItem && aspect == Aspects.SAUCE) {
+            if(item is MagicalItem && aspect.isThisMe(Aspects.SAUCE)) {
                 MagicalItem m = item as MagicalItem;
                 //only sauce players can use the ring
                 ret.addAll(m.fraymotifs);
@@ -1031,7 +1031,7 @@ class Player extends GameEntity{
 
         //doom players with an interaction effect also spread doom. this is bad in short term and good in long
         //SHOULD be only bad against enemies, since they don't have revival mechanisms. right???
-        if(hasInteractionEffect() && aspect == Aspects.DOOM && target.prophecy == ProphecyState.NONE) {
+        if(hasInteractionEffect() && aspect.isThisMe(Aspects.DOOM) && target.prophecy == ProphecyState.NONE) {
             ret = "There is a prophecy of the ${target.htmlTitle()}'s death.";
             target.prophecy = ProphecyState.ACTIVE;
         }
@@ -1284,7 +1284,7 @@ class Player extends GameEntity{
     }
 
     void checkBloodBoost(List<Player> players) {
-        if (this.aspect == Aspects.BLOOD) { // TODO: ASPECTS - migrate to per-aspect boost?
+        if (this.aspect.isThisMe(Aspects.BLOOD)) { // TODO: ASPECTS - migrate to per-aspect boost?
             for (num i = 0; i < players.length; i++) {
                 players[i].boostAllRelationships();
             }
@@ -1977,6 +1977,7 @@ class Player extends GameEntity{
     }
 
     void initialize() {
+        handleSubAspects();
         this.initializeStats();
         this.initializeSprite();
         if(deriveSpecibus) this.specibus = SpecibusFactory.getRandomSpecibus(session.rand);
@@ -1986,6 +1987,8 @@ class Player extends GameEntity{
     void handleSubAspects() {
         if(aspect is AspectWithSubAspects) {
             AspectWithSubAspects subAspectedAspect = aspect as AspectWithSubAspects;
+            print ("handling sub aspects for ${title()} with subaspects ${subAspectedAspect.subAspects}");
+
             if(subAspectedAspect.subAspects == null) {
                 (aspect as AspectWithSubAspects).setSubAspectsFromPlayer(this);
             }
@@ -2008,8 +2011,8 @@ class Player extends GameEntity{
             if (this.quirk == null) this.quirk = randomHumanSim(this.session.rand, this);
         }
         moonChance += session.rand.nextDouble() * -33; //different amount of time pre-game start to get in. (can still wake up before entry)
-        if(aspect == Aspects.SPACE) moonChance += 33.0; //huge chance for space players.
-        if(aspect == Aspects.DOOM) prophecy = ProphecyState.ACTIVE; //sorry doom players
+        if(aspect.isThisMe(Aspects.SPACE)) moonChance += 33.0; //huge chance for space players.
+        if(aspect.isThisMe( Aspects.DOOM)) prophecy = ProphecyState.ACTIVE; //sorry doom players
         specibus.modMaxUpgrades(this);
     }
 
@@ -2080,7 +2083,7 @@ class Player extends GameEntity{
         Player helper;
         if(session.mutator.lightField) return session.mutator.inSpotLight;
          //space player can ONLY be helped by knight, and knight prioritizes this
-         if(aspect == Aspects.SPACE){//this shit is so illegal
+         if(aspect.isThisMe(Aspects.SPACE)){//this shit is so illegal
              helper = findClassPlayer(players, SBURBClassManager.KNIGHT);
              //can help others 100% of the time if foreign player. you can like, fly and shit with your end game items.
              if(helper != null && helper.id != this.id && (helper.canHelp())){ //a knight of space can't help themselves.
@@ -2093,7 +2096,7 @@ class Player extends GameEntity{
              }
          }
         //time players often partner up with themselves
-        if(aspect == Aspects.TIME && rand.nextDouble() > .2){
+        if(aspect.isThisMe(Aspects.TIME) && rand.nextDouble() > .2){
             ////;
             //;
 
@@ -2109,7 +2112,7 @@ class Player extends GameEntity{
                     helper = p;
                     //;
                 }
-            }else if(((p.class_name == SBURBClassManager.PAGE || p.aspect == Aspects.BLOOD) && p.id != this.id) && p.canHelp()) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
+            }else if(((p.class_name == SBURBClassManager.PAGE || p.aspect.isThisMe(Aspects.BLOOD)) && p.id != this.id) && p.canHelp()) { //these are GUARANTEED to have helpers. not part of a big stupid if though in case i want to make it just higher odds l8r
                 helper = p;
                // ;
             }

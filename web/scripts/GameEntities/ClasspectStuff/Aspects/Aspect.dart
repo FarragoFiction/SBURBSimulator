@@ -451,12 +451,10 @@ class AspectPalette extends Palette {
 
 abstract class AspectWithSubAspects extends Aspect {
     //making this default to nil so it crashes if i forget to init
-    List<Aspect> subAspects;
-    AspectWithSubAspects(int id, String name, {isInternal: true, isCanon: false}) :super(id, name, isInternal: isInternal, isCanon: false);
+    List<Aspect> subAspects; //todo maybe make this a set?
+    AspectWithSubAspects(int id, String name, {isInternal: false, isCanon: false}) :super(id, name, isInternal: isInternal, isCanon: false);
 
     void setSubAspectsFromPlayer(Player player) {
-        if(subAspects == null) {
-            player.handleSubAspects();
-        }
+
     }
 }

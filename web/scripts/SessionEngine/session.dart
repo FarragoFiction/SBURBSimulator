@@ -694,12 +694,14 @@ class Session {
 
     Future<Null> intro() async {
         //
+
         SimController.instance.initGatherStats();
 
         //advertisePatreon(SimController.instance.storyElement);
         //
         List<String> playerTitlesWithTag = new List<String>();
         for(Player p in this.players) {
+            p.handleSubAspects();
             playerTitlesWithTag.add(p.htmlTitleWithTip());
         }
 

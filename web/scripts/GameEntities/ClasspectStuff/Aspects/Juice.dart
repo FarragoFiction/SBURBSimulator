@@ -128,7 +128,7 @@ class Juice extends AspectWithSubAspects {
   void setSubAspectsFromPlayer(Player player) {
       super.setSubAspectsFromPlayer(player);
 
-      subAspects = new List.from(player.session.aspectsIncluded());
+      subAspects = new List<Aspect>.from(player.session.aspectsIncluded());
 
   }
 }

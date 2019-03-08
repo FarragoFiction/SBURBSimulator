@@ -127,6 +127,6 @@ class Sauce extends AspectWithSubAspects {
   @override
   void setSubAspectsFromPlayer(Player player) {
         super.setSubAspectsFromPlayer(player);
-    subAspects = new List.from(player.session.aspectsLeftOut());
+    subAspects = new List<Aspect>.from(player.session.aspectsLeftOut());
   }
 }

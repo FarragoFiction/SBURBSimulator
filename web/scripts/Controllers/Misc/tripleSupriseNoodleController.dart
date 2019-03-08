@@ -58,7 +58,8 @@ class MysteryController extends AuthorBot {
 //want a spoiler? I'll put the answer all the way on the bottom of the page.
   void checkPasswordAgainstQuip(summary){
     String quip = getQuipAboutSession(summary);
-    if(quip == "Everything went better than expected."){
+    //should make ab less picky about big bads
+    if(quip.contains("Everything went better than expected.")){
       window.alert("!!!");
       loadEasterEggs();
     }else{
