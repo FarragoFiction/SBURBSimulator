@@ -15,7 +15,7 @@ class CharacterEasterEggEngine {
   var creatorCharacters = ["b=E0%12%C2%B8%C3%BE*%00%11%1E%1E%2F&s=,,Drawing distant Lands,Procedural Generation,ParadoxLands"
   , "b=%2B*-%C3%96%C3%B4%5C%00%C3%90%2C%2C%0D&s=,,Arson,Shipping,authorBotJunior","b=%2B*-%06%C3%B4%C2%A3%04%C3%90%2C%2C%0D&s=,,Authoring,Robots,authorBot&x=hjAA","b=%C3%A8%C3%90%C2%99L%C3%BE)%04%17%1C%1C.&s=,,100 Art Projects At Once,Memes,karmicRetribution&x=pmAA","b=%3C%1E%07%C3%86%C3%BE%C2%A3%04%13%18%18%0D&s=,,The AuthorBot,Authoring,jadedResearcher"];
 
-  Map<String, List> ocs = {};
+  Map<String, List<String>> ocs = {};
   //parses the text file as newline seperated and load them into the array.
 
 
@@ -61,7 +61,7 @@ class CharacterEasterEggEngine {
   	//;
     var pool = this.getPoolBasedOnEggs(rand);
     var potentials = this.playerDataStringArrayToURLFormat(session, pool);
-    List<dynamic> ret = [];
+    List<Player> ret = [];
     List<Player> spacePlayers = findAllAspectPlayers(potentials, Aspects.SPACE);
     var space = rand.pickFrom(spacePlayers);
     removeFromArray(space,potentials);
@@ -116,9 +116,9 @@ class CharacterEasterEggEngine {
     await this.loadArrayFromFile(session,"bards","OCs/bards.txt", processForSim);
     await this.loadArrayFromFile(session,"otherFandoms","OCs/otherFandoms.txt", processForSim); //last one in list has callback so I know to do next thing.
   }
-  dynamic getPoolBasedOnEggs(Random rand){
+  List<String> getPoolBasedOnEggs(Random rand){
     //;
-    List<dynamic> pool = [];
+    List<String> pool = [];
     //first, parse url params. for each param you find that's right, append the relevant characters into the array.
     if(getParameterByName("reddit",null)  == "true"){
       pool.addAll(this.ocs["redditCharacters"]);
@@ -214,7 +214,7 @@ class CharacterEasterEggEngine {
     }
     return ret;
   }
-  dynamic getAllReddit(Session session,){
+  List<Player>  getAllReddit(Session session,){
     return this.playerDataStringArrayToURLFormat(session,this.ocs["redditCharacters"]);
   }
 
@@ -224,7 +224,7 @@ class CharacterEasterEggEngine {
 
 
 //TODO shove methods like this into static player methods
-dynamic playersToDataBytes(players){
+String playersToDataBytes(players){
   String ret = "";
   for(num i = 0; i<players.length; i++){
     ////;
@@ -236,7 +236,7 @@ dynamic playersToDataBytes(players){
 
 
 
-dynamic playersToExtensionBytes(players){
+String playersToExtensionBytes(players){
   String ret = "";
   ByteBuilder builder = new ByteBuilder();
   /*
@@ -254,8 +254,8 @@ dynamic playersToExtensionBytes(players){
 
 
 
-dynamic playersToDataStrings(players, includeChatHandle){
-  List<dynamic> ret = [];
+String playersToDataStrings(players, includeChatHandle){
+  List<String> ret = [];
   for(num i = 0; i<players.length; i++){
     ret.add(players[i].toDataStrings(true));
   }
@@ -266,7 +266,7 @@ dynamic playersToDataStrings(players, includeChatHandle){
 
 
 //pair with seed for shareable url for character creator, or pair with nothing for afterlife viewer.
-String generateURLParamsForPlayers(players, includeChatHandle){
+String generateURLParamsForPlayers(List<Player>players, bool includeChatHandle){
   //var json = JSON.stringify(players);  //inside of players handles looking for keys
   ////print(json);
   //if want localStorage , then compressToUTF16  http://pieroxy.net/blog/pages/lz-string/guide.html
