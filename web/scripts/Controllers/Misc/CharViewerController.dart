@@ -77,6 +77,7 @@ class CharViewerController extends SimController {
 
   Future<Null> renderPlayersForEditing(Session session) async{
     easterEggEngine = new CharacterEasterEggEngine();
+    print("trying to render players for editing");
     await easterEggEngine.loadArraysFromFile(session, false);
     callBackForLoadOCsFromFile(session);
   }

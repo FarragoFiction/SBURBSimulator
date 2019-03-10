@@ -37,11 +37,11 @@ class CharacterEasterEggEngine {
 
   //javascript was fine with processForSim being both a method and a bool so long as it was this.process, but dart is not.
   Future<Null> loadArrayFromFile(Session session, arr, String file, p)async{
-   // //print("loading" + file);
+    print("loading" + file);
    // var that = this; //TODO what the hell was i doing here, that comes from a param
     // 4/4/18 is this a sane thing to do? instead of a 'then' should i be doing something else?
     //how does homestuck the moive do it? oh, just like this. okay then.
-    await HttpRequest.getString(file).then((data) {
+    await HttpRequest.getString(file).then((String data) {
       parseFileContentsToArray(arr, data.trim());
       if(p != null) return processForSim(session);
     });
@@ -52,7 +52,9 @@ class CharacterEasterEggEngine {
 
 
   void parseFileContentsToArray(arr, fileContents){
-    this.ocs[arr] = fileContents.split(new RegExp("\n|\r"));
+    this.ocs[arr] = fileContents.split(new RegExp("\n"));
+    //print("after regexp is");
+    //window.console.table(this.ocs[arr]);
     ////print(arr);
     ////print(this[arr]);
   }
@@ -194,6 +196,7 @@ class CharacterEasterEggEngine {
 
 
   List<Player> playerDataStringArrayToURLFormat(Session session, List<String> playerDataStringArray){
+    window.console.table(playerDataStringArray);
     List<Player> ret = new List<Player>();
     String params =  window.location.href.substring(window.location.href.indexOf("?") + 1);
     String base = window.location.href.replaceAll("?$params","");
@@ -202,6 +205,11 @@ class CharacterEasterEggEngine {
       String bs = "${base}?" +playerDataStringArray[i];
       //;
       String b = (getParameterByName("b", bs));
+      window.console.table(b);
+      if(b == null) {
+        throw ("hey why the hell is this null plz");
+        window.console.trace(b);
+      }
       List<String> s = Uri.encodeFull(getParameterByName("s", bs)).split(","); //these are NOT encoded in files, so make sure to encode them
       String x = (getParameterByName("x", bs));
       print ("processing fan oc, bs is $bs and b is $b and s is $s and x is: $x");
