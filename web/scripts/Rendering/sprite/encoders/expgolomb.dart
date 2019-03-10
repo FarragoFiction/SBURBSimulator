@@ -38,7 +38,7 @@ class EncodingExpGolombRLE {
 
 		builder.appendByte(id);
 
-		int bitcount = (log(sprite.paletteNames.length)/LN2).floor() +1;
+		int bitcount = (log(sprite.paletteNames.length)/ln2).floor() +1;
 
 		Uint8List datalist = data.asUint8List();
 
@@ -62,7 +62,7 @@ class EncodingExpGolombRLE {
 	static Uint8List decode(ByteBuffer buffer, int byteoffset, int length, PSprite sprite) {
 		Uint8List data = new Uint8List(length);
 
-		int bitcount = (log(sprite.paletteNames.length)/LN2).floor() +1;
+		int bitcount = (log(sprite.paletteNames.length)/ln2).floor() +1;
 
 		ByteReader reader = new ByteReader(buffer, byteoffset);
 

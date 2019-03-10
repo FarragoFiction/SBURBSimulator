@@ -77,7 +77,7 @@ Future<List<String>> readSource() async {
 
     List<String> sourcelines = <String>[];
     smfile.openRead()
-        .transform(UTF8.decoder)
+        .transform(utf8.decoder)
         .transform(new LineSplitter())
         .listen(sourcelines.add, onDone: () => callback.complete(sourcelines));
 

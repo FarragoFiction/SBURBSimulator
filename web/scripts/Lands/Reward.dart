@@ -6,13 +6,13 @@ import "FeatureTypes/EnemyFeature.dart";
 //there are different sub classes of reward. can get a fraymotif, can get grist, land level, items (post alchemy) minions (post npc).
 //IMPORTANT don't keep state data here.
 class Reward {
-
+    static const String DEFAULT_TEXT = "You get jack shit, asshole!";
 
     static String PLAYER1 = "PLAYER1TAG";
     static String PLAYER2 = "PLAYER2TAG";
     String image = "Rewards/no_reward.png";
     String bgImage = null;
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String text = "You get jack shit, asshole!"]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String text = DEFAULT_TEXT]) {
         p1.increasePower();
         p1.increaseLandLevel();
         if(p2 != null) p2.increasePower(); //interaction effect will be somewhere else
@@ -43,7 +43,7 @@ class Reward {
 class RandomReward extends Reward {
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
 
         WeightedList<Reward> options = new WeightedList<Reward>();
         //if it's an item reward, check land progress before deciding what sort of item to give.
@@ -118,7 +118,7 @@ class FraymotifReward extends Reward
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = "";
         if(t!= null) text = t;
 
@@ -163,7 +163,7 @@ class DenizenReward extends Reward {
     DenizenReward([String this.carapaceHandle]);
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         Item reward = p1.session.rand.pickFrom((p1.aspect.items));
         String text = " The ${Reward.PLAYER1} gains the fraymotif $FRAYMOTIF1, as well as all that sweet sweet grist hoard. Oh, and a ${reward.fullName}, too. ${reward.randomDescription(p1.rand)} ";
         if(p1.class_name == SBURBClassManager.LORD) {
@@ -210,7 +210,7 @@ class BattlefieldReward extends Reward {
     String bgImage = "Rewards/battlefield.png";
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String text]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String text = Reward.DEFAULT_TEXT]) {
         text = " The ${Reward.PLAYER1} is getting pretty familiar with the battlefield. ";
         text = text.replaceAll("${Reward.PLAYER1}", "${p1.htmlTitleBasicNoTip()}");
         super.apply(div, p1, p2, land,text);
@@ -226,7 +226,7 @@ class ConsortReward extends Reward {
     ConsortReward();
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         Consort template = land.consortFeature.makeConsort(p1.session);
         Consort c = Consort.npcForPlayer(template, p1); //will handle picking a title out.
         String text = " The ${Reward.PLAYER1} finds a ${c.sound}ing ${c.name}. They adopt it as their child.";
@@ -252,7 +252,7 @@ class LeprechaunReward extends Reward {
     LeprechaunReward();
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         //snow man is a carapace.
         GameEntity c = Leprechaun.getLeprechaunForPlayer(p1); //will handle picking a name out.
         String text = " The ${Reward.PLAYER1} finds some sort of... ${p1.session.rand.pickFrom(Leprechaun.fakeDesc)}??? They decide to call them ${c.name} and vow to figure out exactly what ${c.name} is good for.";
@@ -322,7 +322,7 @@ class BrainGhostReward extends Reward {
     }
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         //p1.session.logger.info("DEBUG BRAIN:  brain ghost reward applying");
         Player p ;
         String relationship = "friend";
@@ -361,7 +361,7 @@ class ItemReward extends Reward {
     ItemReward(WeightedList<Item> this.items);
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         Item item = p1.session.rand.pickFrom(items);
         String text = " The ${Reward.PLAYER1} finds a ${item.fullName}. ${item.randomDescription(p1.rand)}";
 
@@ -388,7 +388,7 @@ class SpecificCarapaceReward extends Reward {
     SpecificCarapaceReward(String this.carapaceHandle);
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = "";
         carapace = p1.session.npcHandler.getCarapaceWithHandle(carapaceHandle);
         if(carapace == null || carapace.dead) {
@@ -414,7 +414,7 @@ class CodReward extends Reward {
     String image = "/Rewards/sweetCod.png";
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = " It. It's too beautiful for words. The glory of the COD PIECE is nearly blinding. The ${Reward.PLAYER1} will cherish this forever. They alchemize plenty of backups in different colors in case anyone else wants some.";
         if(!p1.godTier) text += " Too bad they'll have to wait to be god tier to TRULY appreciate it.";
         if(bardQuest) text += " Even if someone already found this sacred treasure, the ${Reward.PLAYER1} is glad they journeyed to find it on their own as well. ";
@@ -448,7 +448,7 @@ class FrogReward extends FraymotifReward {
     String image = "Rewards/sweetFrog.png";
     String bgImage = "Rewards/holyShitFrogs.png";
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = "";
         if(p1.grimDark < 3) {
             p1.landLevel = 1.0 * p1.session.goodFrogLevel; //need to be double
@@ -471,7 +471,7 @@ class ImmortalityReward extends Reward {
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = " The ${Reward.PLAYER1} finds a strange clock and destroys it utterly. Where did they even get that crowbar? It doesn't matter.   They are now unconditionally immortal. What will happen? ";
 
         if(!p1.godTier) {
@@ -498,7 +498,7 @@ class PaleRomanceReward extends Reward {
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a tender moment of calmness. It is obvious to everyone that they are now moirails. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
 
         Fraymotif f1;
@@ -548,7 +548,7 @@ class FlushedRomanceReward extends Reward {
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a passionate moment. It is obvious to everyone that they are now matesprits. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
 
         Fraymotif f1;
@@ -599,7 +599,7 @@ class PitchRomanceReward extends Reward {
 
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         String text = " The ${Reward.PLAYER1} and the ${Reward.PLAYER2} find themselves sharing a combatative moment. It is obvious to everyone that they are now Kismesises. They even get the fraymotifs ${FRAYMOTIF1} and ${FRAYMOTIF2} to celebrate! ";
 
         Fraymotif f1;
@@ -642,7 +642,7 @@ class DreamReward extends Reward {
     String bgImage = "Prospit.png";
 
     @override
-    void apply(Element div, Player p1, GameEntity p2, Land land, [String t]) {
+    void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
         if(p1.dreamSelf) {
             if(p1.moon == p1.session.prospit) {
                 applyProspit(div, p1, p2, land);

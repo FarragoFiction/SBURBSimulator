@@ -145,7 +145,7 @@ class BigBad extends NPC {
 
     void loadStartMechanisms(String weirdString) {
       //print("weird string is $weirdString");
-        List<dynamic> what = JSON.decode(weirdString);
+        List<dynamic> what = jsonDecode(weirdString);
         for(dynamic d in what) {
             //print("dynamic json thing is  $d");
             JSONObject j = new JSONObject();

@@ -23,11 +23,11 @@ class Battlefield extends Land {
         this.setThemes(themes);
         this.processThemes(session.rand);
 
-        this.smells = this.getTypedSubList(FeatureCategories.SMELL);
-        this.sounds = this.getTypedSubList(FeatureCategories.SOUND);
-        this.feels = this.getTypedSubList(FeatureCategories.AMBIANCE);
+        this.smells = this.getTypedSubList<SmellFeature>(FeatureCategories.SMELL);
+        this.sounds = this.getTypedSubList<SoundFeature>(FeatureCategories.SOUND);
+        this.feels = this.getTypedSubList<AmbianceFeature>(FeatureCategories.AMBIANCE);
 
-        this.battleFieldQuestChains = this.getTypedSubList(FeatureCategories.SKAIA_QUEST_CHAIN).toList();
+        this.battleFieldQuestChains = this.getTypedSubList<SkaiaQuestChainFeature>(FeatureCategories.SKAIA_QUEST_CHAIN).toList();
         this.processConsort();
     }
 
@@ -81,8 +81,8 @@ class Battlefield extends Land {
 
     ///any quest chain can be done on the moon. Chain itself decides if can be repeated.
     @override
-    String initQuest(List<Player> players) {
-        if(symbolicMcguffin == null) decideMcGuffins(players.first);
+    String initQuest(List<GameEntity> players) {
+        if(symbolicMcguffin == null) decideMcGuffins(players.first as Player);
         //first, do i have a current quest chain?
         if(currentQuestChain == null) {
             //;

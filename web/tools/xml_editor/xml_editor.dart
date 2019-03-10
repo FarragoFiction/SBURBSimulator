@@ -88,7 +88,7 @@ void saveFile([Event event]) {
 
     logger.debug(content);
 
-    Uri datauri = new Uri.dataFromString("$xmlHeader\n${sanitiseQuotes(content)}", encoding: UTF8, mimeType: "text/xml", base64:true);
+    Uri datauri = new Uri.dataFromString("$xmlHeader\n${sanitiseQuotes(content)}", encoding: utf8, mimeType: "text/xml", base64:true);
 
     logger.debug(datauri);
 

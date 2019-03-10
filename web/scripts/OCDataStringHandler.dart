@@ -247,7 +247,7 @@ dynamic playersToExtensionBytes(players){
   for(Player p in players) {
       p.toDataBytesX(builder);
   }
-  return  BASE64URL.encode(builder.toBuffer().asUint8List());
+  return  base64Url.encode(builder.toBuffer().asUint8List());
 }
 
 
@@ -322,7 +322,7 @@ void applyExtensionStringToPlayers(List<Player> players, xbytes){
 
 
 Uint8List stringToByteArray(str){
-  return BASE64URL.decode(str);
+  return base64Url.decode(str);
 }
 
 

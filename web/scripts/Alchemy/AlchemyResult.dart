@@ -50,7 +50,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
         combine();
     }
 
-    String  description(Player p, templates) {
+    String  description(Player p, List<String> templates) {
         templates.addAll(<String>["The ${p.htmlTitleBasicNoTip()} uses Alchemy to combine ${turnArrayIntoHumanSentence(items)} to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
         return p.session.rand.pickFrom(templates);
     }
@@ -78,7 +78,7 @@ abstract class AlchemyResult implements Comparable<AlchemyResult> {
        //
 
         result.numUpgrades ++;
-        String ret = description(p, []); //don't do description earlier or later or will have wrong name.
+        String ret = description(p, <String>[]); //don't do description earlier or later or will have wrong name.
         modified.traits = new Set<ItemTrait>.from(result.traits);
         modified.numUpgrades ++;
 
@@ -121,7 +121,7 @@ class AlchemyResultAND extends AlchemyResult {
   AlchemyResultAND(List<Item> items) : super(items);
 
   @override
-  String  description(Player p, templates) {
+  String  description(Player p, List<String> templates) {
       templates.addAll(<String>["${p.htmlTitleBasicNoTip()} overlaps the punched cards for ${turnArrayIntoHumanSentence(items)} to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
       return super.description(p, templates);
   }
@@ -149,7 +149,7 @@ class AlchemyResultOR extends AlchemyResult {
     AlchemyResultOR(List<Item> items) : super(items);
 
     @override
-    String  description(Player p, templates) {
+    String  description(Player p, List<String> templates) {
         templates.addAll(<String>["${p.htmlTitleBasicNoTip()} carefully punches all holes from ${turnArrayIntoHumanSentence(items)} into one card to get ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
         return super.description(p, templates);
     }
@@ -177,7 +177,7 @@ class AlchemyResultXOR extends AlchemyResult {
     AlchemyResultXOR(List<Item> items) : super(items);
 
     @override
-    String  description(Player p, templates) {
+    String  description(Player p, List<String> templates) {
         templates.addAll(<String>["Wait. What the fuck? Is this cheating? The ${p.htmlTitleBasicNoTip()} figures out how to use a XOR operation to turn ${turnArrayIntoHumanSentence(items)} into a ${result.fullName}. ${result.randomDescription(p.session.rand)}"]);
         return super.description(p, templates);
     }

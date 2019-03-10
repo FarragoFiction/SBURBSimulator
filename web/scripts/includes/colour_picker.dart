@@ -207,7 +207,7 @@ class ColourPicker {
         String selectorFill = this.colour.lab_lightness > 50 ? "#000000" : "#FFFFFF";
         ctx
             ..beginPath()
-            ..arc((x * 255).round(), ((1.0-y) * 255).round(), 5, 0, Math.PI * 2)
+            ..arc((x * 255).round(), ((1.0-y) * 255).round(), 5, 0, Math.pi * 2)
             ..strokeStyle = selectorFill
             ..stroke();
 

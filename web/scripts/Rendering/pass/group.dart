@@ -97,7 +97,7 @@ class GroupPass extends RenderJobPass with RenderPassReceiver {
         THREE.setUniform(_defaultMaterial, "image", new THREE.ShaderUniform<THREE.Texture>());
         THREE.setUniform(_defaultMaterial, "size", new THREE.ShaderUniform<THREE.Vector2>());
 
-        _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = PI;
+        _mesh = new THREE.Mesh(plane, _defaultMaterial)..rotation.x = pi;
         _scene.add(_mesh);
     }
 }
