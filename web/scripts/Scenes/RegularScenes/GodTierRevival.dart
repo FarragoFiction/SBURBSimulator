@@ -4,7 +4,7 @@ import "../../SBURBSim.dart";
 
 class GodTierRevival extends Scene {
 
-	List<dynamic> godsToRevive = [];	
+	List<Player> godsToRevive = <Player>[];
 
 
 	GodTierRevival(Session session): super(session);
@@ -35,8 +35,8 @@ class GodTierRevival extends Scene {
 		}
 		CanvasElement canvasDiv = new CanvasElement(width: canvasWidth, height: canvasHeight);
 		div.append(canvasDiv);
-		List<dynamic> live_players = [];
-		List<dynamic> dead_players = [];
+		List<Player> live_players = <Player>[];
+		List<Player> dead_players = <Player>[];
 		for(num i = 0; i<this.godsToRevive.length; i++){
 			var p = this.godsToRevive[i];
 			if(p.dead == false){

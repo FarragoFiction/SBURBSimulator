@@ -44,7 +44,7 @@ class GameEntity extends Object with StatOwner   {
     List<Scene> scenes = new List<Scene>();
     List<Scene> scenesToAdd = new List<Scene>();
     //just for the action effects that remove shit that might be called on self.
-    List<Scene> scenesToRemove = new List<Scene>();
+    List<SerializableScene> scenesToRemove = new List<SerializableScene>();
 
     List<String> serializableSceneStrings = new List<String>();
 

@@ -27,9 +27,9 @@ class FightKing extends Scene {
 
 		return (this.session.battlefield.blackKing.getStat(Stats.CURRENT_HEALTH) > 0) && !this.session.battlefield.blackKing.dead && queenDefeated && (findLiving(this.session.players).length != 0) ;
 	}
-	dynamic getGoodGuys(){
-	var living = findLiving(this.session.players);
-	var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
+	List<GameEntity> getGoodGuys(){
+	List<GameEntity> living = findLiving<GameEntity>(this.session.players);
+	List<Player> allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
 	for(num i = 0; i<allPlayers.length; i++){
 		living.addAll(allPlayers[i].doomedTimeClones);
@@ -42,7 +42,7 @@ class FightKing extends Scene {
 	void renderGoodguys(Element div){
 		String divID = (div.id) + "_final_boss";
 		num ch = canvasHeight;
-		var fightingPlayers = this.getGoodGuys();
+		List<GameEntity> fightingPlayers = this.getGoodGuys();
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
@@ -62,7 +62,7 @@ class FightKing extends Scene {
 		appendHtml(div,this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
-		var fighting = this.getGoodGuys();
+		List<GameEntity> fighting = this.getGoodGuys();
 		Team pTeam = new Team.withName("The Players", this.session, fighting);
 		pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.battlefield.blackKing]);

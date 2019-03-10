@@ -12,8 +12,8 @@ class FightQueen extends Scene {
 		if(session.mutator.lifeField) return false; //just. no. don't.
 		return (this.session.derse != null && this.session.derse.queen.getStat(Stats.CURRENT_HEALTH) > 0) &&  !this.session.derse.queen.dead&&(findLiving(this.session.players).length != 0) ;
 	}
-	dynamic getGoodGuys(){
-		var living = findLiving(this.session.players);
+	List<GameEntity> getGoodGuys(){
+		List<GameEntity> living = findLiving<GameEntity>(this.session.players);
 		var allPlayers = this.session.players; //anybody can have doomedclones now, not just time players.
 
 		for(num i = 0; i<allPlayers.length; i++){
@@ -29,7 +29,7 @@ class FightQueen extends Scene {
 		num repeatTime = 1000;
 		String divID = (div.id) + "_final_boss";
 		num ch = canvasHeight;
-		List<Player> fightingPlayers = this.getGoodGuys();
+		List<GameEntity> fightingPlayers = this.getGoodGuys();
 		if(fightingPlayers.length > 6){
 			ch = canvasHeight*1.5; //a little bigger than two rows, cause time clones
 		}
@@ -49,7 +49,7 @@ class FightQueen extends Scene {
     appendHtml(div,this.content());
 
 		this.renderGoodguys(div); //pose as a team BEFORE getting your ass handed to you.
-		var fighting = this.getGoodGuys();
+		List<GameEntity> fighting = this.getGoodGuys();
 		Team pTeam = new Team.withName("The Players",this.session, fighting);
     pTeam.canAbscond = false;
 		Team dTeam = new Team(this.session, [this.session.derse.queen]);

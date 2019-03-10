@@ -149,7 +149,7 @@ class MailSideQuest extends Scene {
   }
 
   void continueQuest(Element div) {
-      List<Lambda> questParts = <Lambda>[cantFindRecipient, bullshitDeteor];
+      List<Lambda<Element>> questParts = <Lambda<Element>>[cantFindRecipient, bullshitDeteor];
       return session.rand.pickFrom(questParts)(div);
   }
 

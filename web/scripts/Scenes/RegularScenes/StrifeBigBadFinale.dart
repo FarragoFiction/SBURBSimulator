@@ -19,7 +19,7 @@ class StrifeBigBadFinale extends Scene {
 		//if you aren't fightable, what are you even doing here?
 		possibleTargets.removeWhere((GameEntity item) => !item.canStrife);
 
-		bigBads = possibleTargets;
+		bigBads = new List<BigBad>.from(possibleTargets);
 
 		return bigBads.isNotEmpty && !happenedOnce;
 	}
@@ -39,7 +39,7 @@ class StrifeBigBadFinale extends Scene {
 		return living;
 	}
 	void renderGoodguys(Element div){
-		List<Player> fightingPlayers = this.getGoodGuys();
+		List<GameEntity> fightingPlayers = this.getGoodGuys();
 		int ch = canvasHeight;
 		if(fightingPlayers.length > 6){
 			ch = (canvasHeight*1.5).round(); //a little bigger than two rows, cause time clones
