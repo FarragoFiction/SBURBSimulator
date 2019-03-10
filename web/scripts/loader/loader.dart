@@ -27,16 +27,17 @@ abstract class Loader {
     static Future<T> getResource<T>(String path, {FileFormat<T, dynamic> format, bool bypassManifest = false, bool absoluteRoot = false}) async {
         init();
         if (_resources.containsKey(path)) {
-            Resource<dynamic> res = _resources[path];
-            if (res is Resource<T>) {
+            var res = _resources[path]; // ignore: always_specify_types
+            //print(res.runtimeType);
+            //if (res is Resource<T>) {
                 if (res.object != null) {
                     return res.object;
                 } else {
                     return res.addListener();
                 }
-            } else {
-                throw "Requested resource ($path) is an unexpected type: ${res.object.runtimeType}.";
-            }
+            //} else {
+            //    throw "Requested resource ($path) is an unexpected type: ${res.object.runtimeType}.";
+            //}
         } else {
             if (!bypassManifest) {
                 if (manifest == null) {
