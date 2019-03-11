@@ -11,8 +11,17 @@ import 'dart:async';
 
 ChangeLogMemo memo =  ChangeLogMemo.instance;
 
-void main() {
-  loadNavbar();
+Future<Null> main() async {
+  await loadNavbar();
+  print("navbar loaded, i'm expeting this div to exist plz ${querySelector("#newspostsMain")}");
+  doShit();
+  //new Timer(new Duration(milliseconds: 10), doShit); //its a tear off since it takes no params (auto takes what caller has)
+
+}
+
+void doShit() {
+  print("10ms awaited, i'm expeting this div to exist plz ${querySelector("#newspostsMain")}");
+
   ChangeLogMemo.init();
   createNews();
   window.onScroll.listen((Event event){
@@ -32,6 +41,8 @@ void main() {
 }
 
 Future<Null> createNews() async{
+  window.console.log("going to slurp news");
+
   await renderHeadshots();
   //await ChangeLogMemo.authorBot.slurpNewsposts();
 
@@ -50,6 +61,8 @@ Future<Null> createNews() async{
 
 Future<Null> renderHeadshots() async {
   Element div = querySelector("#newspostsMain");
+  window.console.log("the div is ${div} for rendering headshots");
+
   DivElement container = new DivElement();
   container.classes.add("HeadshotContainer");
 
@@ -61,5 +74,7 @@ Future<Null> renderHeadshots() async {
 
 void renderNews() {
   Element div = querySelector("#newspostsMain");
+  window.console.log("the div is ${div} for rendering news");
+
   memo.render(div);
 }
