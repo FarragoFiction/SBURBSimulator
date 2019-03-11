@@ -1,3 +1,4 @@
+2019-03-10: I got some JUICE in the sim if you know where to look (not where you'd think), and PL upgraded us to Dart 2.0 (which will give us some neat benefits).
 2019-03-02: TG and AW continue to work on the LAW update, and I continue to fix small bugs that are getting in their way.
 2019-02-02: Fixed a tiny typo that was keeping TG from having scenes that targeted a players own land.
 2019-01-10: The main <a href ='http://www.farragofiction.com/newsposts.html'>newspost</a> system has been up for a while, don't forget to check it out! <br><Br>In the mean time I integrated with KR's new carapace designs and got a LAW faq system working so wasted law plaeyrs don't cause quite so much destruction.

@@ -9,7 +9,7 @@ String simulatedParamsGlobalVar = "";
 
 //just loads the navbar.text into the appropriate div.
 void loadNavbar() {
-    globalInit();
+    //globalInit();
     HttpRequest.getString(PathUtils.adjusted("navbar.txt")).then(onNavbarLoaded);
 }
 
