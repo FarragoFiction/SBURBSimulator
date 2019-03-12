@@ -718,6 +718,12 @@ class Player extends GameEntity{
         for(Fraymotif f in fraymotifs) {
             ret += "${f.name}<br>";
         }
+        if(aspect is AspectWithSubAspects) {
+            AspectWithSubAspects sa = aspect as AspectWithSubAspects;
+            for(Aspect a in sa.subAspects) {
+                ret += "Aspectal ${a.name}<br>";
+            }
+        }
 
         ret += "</td><td class = 'toolTipSection'>Relationships<hr>";
         for(Relationship r in relationships) {
