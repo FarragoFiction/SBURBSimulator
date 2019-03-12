@@ -144,8 +144,14 @@ bool printCorruptionMessage(Session session, ErrorEvent e) {
 
     String recomendedAction = "";
     print(session.stats); //why does it think it's not a grim or cataclym when it clear is sometimes?
-    Player space = findAspectPlayer(session.players, Aspects.SPACE);
-    Player time = findAspectPlayer(session.players, Aspects.TIME);
+    bool timeBug = false;
+    bool spacebug = true;
+    if(session.players.length > 1) {
+        Player space = findAspectPlayer(session.players, Aspects.SPACE);
+        spacebug = space == null;
+        Player time = findAspectPlayer(session.players, Aspects.TIME);
+        timeBug = time == null;
+    }
     if (session.stats.crashedFromPlayerActions) {
         appendHtml(story, "<BR>ERROR: SESSION CORRUPTION HAS REACHED UNRECOVERABLE LEVELS. HORRORTERROR INFLUENCE: COMPLETE.");
         recomendedAction = "OMFG JUST STOP CRASHING MY DAMN SESSIONS. FUCKING GRIMDARK PLAYERS. BREAKING SBURB DOES NOT HELP ANYBODY! ${mutatorsInPlay(session)}";
@@ -159,6 +165,10 @@ bool printCorruptionMessage(Session session, ErrorEvent e) {
         appendHtml(story, "<BR>ERROR: HAHA YOUR DEAD SESSION CRASHED, ASSHOLE.");
         recomendedAction = "OH WELL, NOT LIKE IT WAS EVER SUPPOSED TO BE BEATABLE ANYWAYS. ${mutatorsInPlay(session)}";
 
+    }else if((session is DeadSession) && session.players.first.aspect == Aspects.JUICE) {
+        appendHtml(story, "<BR>ERROR: Hey...Are you okay? You know juice players can't play alone, right?");
+        recomendedAction = "You have friends, I promise.${mutatorsInPlay(session)}";
+
     }else if (session.players.isEmpty) {
         appendHtml(story, "<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
         recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE??? THE CARAPACES WOULD SOMEHOW BREED A FROG??? ${mutatorsInPlay(session)}";
@@ -169,11 +179,11 @@ bool printCorruptionMessage(Session session, ErrorEvent e) {
         if (params == window.location.href) params = "";
         url = "$url";
         recomendedAction = "WHOA. IS TODAY THE DAY I LET YOU DO A SPECIAL SNOWFLAKE SINGLE PLAYER SESSION??? <BR><BR><a href = '$url'>PLAY DEAD SESSION?</a><BR><BR>";
-    } else if (time == null) {
+    } else if (timeBug) {
         session.stats.crashedFromSessionBug = true;
         appendHtml(story, "<BR>ERROR: TIME PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED");
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A TIME PLAYER, DUNKASS. ${mutatorsInPlay(session)}";
-    } else if (space == null) {
+    } else if (spacebug) {
         appendHtml(story, "<BR>ERROR: SPACE PLAYER NOT FOUND. HORRORTERROR CORRUPTION SUSPECTED. ${mutatorsInPlay(session)}");
         session.stats.crashedFromSessionBug = true;
         recomendedAction = "SERIOUSLY? NEXT TIME, TRY HAVING A SPACE PLAYER, DUNKASS. ${mutatorsInPlay(session)}";
