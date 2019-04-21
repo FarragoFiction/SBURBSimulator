@@ -161,14 +161,16 @@ bool printCorruptionMessage(Session session, ErrorEvent e) {
     }else if(session.stats.ringWraithCrash) {
         appendHtml(story, "<BR>ERROR: RED MILES TARGETED UNIVERSE. SESSION HAS CRASHED.");
         recomendedAction = "I MEAN. IF IT GOT THIS BAD YOUR SESSION WAS PROBABLY FUCKED ANYWAYS. DON'T LET RING WRAITHS HAPPEN AND YOU'LL BE FINE. ISH.";
-    }else if((session is DeadSession)) {
-        appendHtml(story, "<BR>ERROR: HAHA YOUR DEAD SESSION CRASHED, ASSHOLE.");
-        recomendedAction = "OH WELL, NOT LIKE IT WAS EVER SUPPOSED TO BE BEATABLE ANYWAYS. ${mutatorsInPlay(session)}";
-
     }else if((session is DeadSession) && session.players.first.aspect == Aspects.JUICE) {
         appendHtml(story, "<BR>ERROR: Hey...Are you okay? You know juice players can't play alone, right?");
         recomendedAction = "You have friends, I promise.${mutatorsInPlay(session)}";
 
+    }else if((session is DeadSession)) {
+        appendHtml(
+            story, "<BR>ERROR: HAHA YOUR DEAD SESSION CRASHED, ASSHOLE.");
+        recomendedAction =
+        "OH WELL, NOT LIKE IT WAS EVER SUPPOSED TO BE BEATABLE ANYWAYS. ${mutatorsInPlay(
+            session)}";
     }else if (session.players.isEmpty) {
         appendHtml(story, "<BR>ERROR: USELESS 0 PLAYER SESSION DETECTED.");
         recomendedAction = ":/ REALLY? WHAT DID YOU THINK WAS GOING TO HAPPEN HERE??? THE CARAPACES WOULD SOMEHOW BREED A FROG??? ${mutatorsInPlay(session)}";

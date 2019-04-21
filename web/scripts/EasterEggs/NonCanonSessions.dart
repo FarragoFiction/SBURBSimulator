@@ -19,6 +19,8 @@ abstract class NonCanonSessions {
         ret[404] = session404; //cynicalTeuthida
         ret[212] = session212; //Cipah
         ret[97] = session97; //yogisticDoctor
+        ret[66] = session66; //CD contest winner
+        //RMH wants 117
 
 
         return ret;
@@ -162,6 +164,54 @@ abstract class NonCanonSessions {
         c.getRelationshipWith(vv).value = 20;
 
 
+    }
+
+    static void session66(Session session) {
+        //TODO add a custom big bad that just reveals secrets
+        int numPlayers = 12;
+        makeASessionFromSource(session,session66IndexToPlayer, numPlayers);
+        Player cd  = session.players[0];
+        Player bc2 = session.players[1];
+        Player cs = session.players[2];
+        Player cs2 = session.players[3];
+        Player ss  = session.players[0];
+        Player ss2 = session.players[1];
+        Player dc2 = session.players[2];
+        Player cd2 = session.players[3];
+        Player dc  = session.players[0];
+        Player dd2 = session.players[1];
+        Player bc = session.players[2];
+        Player dd = session.players[3];
+
+        
+        Relationship.makeDiamonds(cd,dd);
+        cd.getRelationshipWith(dd).value = 20;
+        dd.getRelationshipWith(cd).value = 20;
+        Relationship.makeSpades(cd2,cs2);
+        cd2.getRelationshipWith(cs2).value = 15;
+        cs2.getRelationshipWith(cd2).value = 5;
+        Relationship.makeHeart(ss2,dc2);
+        ss2.getRelationshipWith(dc2).value = 20;
+        dc2.getRelationshipWith(ss2).value = 20;
+        Relationship.makeClubs(cd,cs, cd2);
+        cd.getRelationshipWith(cs).value = 10;
+        cs.getRelationshipWith(cd).value = 10;
+        Relationship.makeClubs(cd,cs, cd2);
+        cd.getRelationshipWith(cd2).value = 10;
+        cd2.getRelationshipWith(cd).value = 10;
+        Relationship.makeClubs(cd,cs, cd2);
+        cd2.getRelationshipWith(cs).value = 10;
+        cs.getRelationshipWith(cd2).value = 10;
+        Relationship.makeSpades(bc2,dd2);
+        bc2.getRelationshipWith(dd2).value = 5;
+        dd2.getRelationshipWith(bc2).value = 5;
+        Relationship.makeDiamonds(ss,dc);
+        ss.getRelationshipWith(dc).value = 15;
+        dc.getRelationshipWith(ss).value = 15;
+
+
+
+        session.players.length = numPlayers; //no more, no less.
     }
 
 
@@ -1072,6 +1122,210 @@ abstract class NonCanonSessions {
             player.quirk.prefix = "";
             player.land = player.spawnLand();
             player.quirk.suffix = "";
+        }
+
+    }
+
+
+    //could make this a mapping, but whatever, i like it like this
+    static void session66IndexToPlayer(Session session,Player player, int index){
+        Session s = session;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        if(index == 0){
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BEo%C3%BE%C2%82%00F%05%05%16&s=,,Cooking,Sprite Edits,crimsonDestroyer&x=PvgH");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Stick", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]);
+            player.object_to_prototype = new PotentialSprite("Charizard", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Dragons and Stone";
+            player.land.denizenFeature = new DenizenFeature('Anansi');
+            player.land.consortFeature = new ConsortFeature('Dragon', 'roar');
+
+        }else if (index ==1) {
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%C3%98%C3%B4%C3%93%00C%16%16B&s=,,Knowledge,Script Writing,bonusCitation&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Game", ItemTraitFactory.IRONICFUNNYCOOL, [ ItemTraitFactory.PLASTIC, ItemTraitFactory.ZAP]);
+            player.object_to_prototype = new PotentialSprite("Freddy", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Lead and Loyalty";
+            player.land.denizenFeature = new DenizenFeature('Coeus');
+            player.land.consortFeature = new ConsortFeature('Fox', 'yelp');
+        }else if (index ==2) {
+            player.copyFromOCDataString("b=%00%00%00%16%C3%BE%09%00%0A%01%01.&s=,,Puns,Memes,coolSwagger&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Plushie", ItemTraitFactory.COMFORTABLE, [ ItemTraitFactory.CLOTH, ItemTraitFactory.BLUNT]);
+            player.object_to_prototype = new PotentialSprite("Cozmo", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Queries and Shock";
+            player.land.denizenFeature = new DenizenFeature('Asmodeus');
+            player.land.consortFeature = new ConsortFeature('Crab', 'click');
+        }else if (index ==3) {
+            player.copyFromOCDataString("b=%00%00%003%C3%BEH%00%04..%25&s=,,Wrestling,Fishing,coreSociopath&x=nhgA");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Meta", ItemTraitFactory.POSTIRONIC, [ ItemTraitFactory.CLASSRELATED]);
+            player.object_to_prototype = new PotentialSprite("Imp", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Fishing Rods and Smoke";
+            player.land.denizenFeature = new DenizenFeature('Mixcoatl');
+            player.land.consortFeature = new ConsortFeature('Trout', 'blub');
+        }else if (index ==4) {
+            player.copyFromOCDataString("b=%00%00%00*%C3%BE%18%00%06'%15%40&s=,,Remixes,Scrapbooking,shinyStar&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Art", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD]);
+            player.object_to_prototype = new PotentialSprite("Parrot", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Rotation and Xylophones";
+            player.land.denizenFeature = new DenizenFeature('Baldr');
+            player.land.consortFeature = new ConsortFeature('Clam', 'clack');
+        }else if (index ==5) {
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BFB%C3%BEE%00%40%24%24%3E&s=,,Track and Field,Status,shakySalt&x=phAA");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("FncySnta", ItemTraitFactory.SANTA, [ ItemTraitFactory.IRONICSHITTYFUNNY]);
+            player.object_to_prototype = new PotentialSprite("Boxer", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Confidence and Orbs";
+            player.land.denizenFeature = new DenizenFeature('Hybris');
+            player.land.consortFeature = new ConsortFeature('Dog', 'arf');
+        }else if (index ==6) {
+            player.copyFromOCDataString("b=%00%00%00l%C3%BEH%00%06%2B%2B%3B&s=,,Boxing,Peace,daringConquistador&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Aerosol", ItemTraitFactory.METAL, [ ItemTraitFactory.POISON]);
+            player.object_to_prototype = new PotentialSprite("Pumpkinsnuffle", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Insanity and Cones";
+            player.land.denizenFeature = new DenizenFeature('Morpheus');
+            player.land.consortFeature = new ConsortFeature('Narwhal', 'buzz');
+        }else if (index ==7) {
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%C3%B5%C3%BE%26%00E%15%10%18&s=,,Art,Leadership,creativeDiffraction&x=_i8A");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Mace", ItemTraitFactory.HAMMER, [ ItemTraitFactory.POINTY, ItemTraitFactory.METAL]);
+            player.object_to_prototype = new PotentialSprite("Owl", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Beauty and Feelings";
+            player.land.denizenFeature = new DenizenFeature('Aphrodite');
+            player.land.consortFeature = new ConsortFeature('Axolotl', 'waa');
+        }else if (index ==8) {
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%C2%A1%C3%BE%3D%00%40%01%01%3C&s=,,Dungeon Mastering,Mathematics,dungeonCrafter&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Book", ItemTraitFactory.BOOK, [ ItemTraitFactory.PAPER, ItemTraitFactory.SMART]);
+            player.object_to_prototype = new PotentialSprite("Begger", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Religion and Lines";
+            player.land.denizenFeature = new DenizenFeature('Nero');
+            player.land.consortFeature = new ConsortFeature('Bat', 'chirp');
+        }else if (index ==9) {
+            player.copyFromOCDataString("b=%00%00%00%C3%84%C3%BE%C2%B5%00%0A%1D%1D8&s=,,Business,Abuse,dauntingDeskman&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Suitcase", ItemTraitFactory.BUST, [ ItemTraitFactory.BLUNT, ItemTraitFactory.LEATHER]);
+            player.object_to_prototype = new PotentialSprite("Hexbug", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Business and Night";
+            player.land.denizenFeature = new DenizenFeature('Hawking');
+            player.land.consortFeature = new ConsortFeature('Wolf', 'howl');
+        }else if (index ==10) {
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BE%00%C3%BE%C2%8D%00S%01%012&s=,,Babysitting,Knowledge,bronzeCaretaker&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Axe", ItemTraitFactory.AXE, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
+            player.object_to_prototype = new PotentialSprite("Goldfish", s);
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Rockets and Patience";
+            player.land.denizenFeature = new DenizenFeature('Alpha');
+            player.land.consortFeature = new ConsortFeature('Pony', 'neigh');
+        }else if (index ==11) {
+            player.copyFromOCDataString("b=%00%00%00%C2%8B%C3%BE5%00%0B%01%01E&s=,,Undertale AUs,Depression,dreamDenizen&x=AQ==");
+            player.deriveSprite = false;
+            player.fraymotifs.clear();
+            player.deriveSpecibus = false;
+            player.specibus = new Specibus("Light", ItemTraitFactory.MAGICAL, [ ItemTraitFactory.LIT]);
+            player.object_to_prototype = new PotentialSprite("Yng'fhaeng'tag", s);
+            player.object_to_prototype.disaster = true;
+            player.sprite.addPrototyping(player.object_to_prototype);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            //is this really needed? should be in ocdatastring
+            //player.moon = session.prospit;
+            player.land = player.spawnLand();
+            player.land.name = "Land of Serenity and Crafts";
+            player.land.denizenFeature = new DenizenFeature('Sif');
+            player.land.consortFeature = new ConsortFeature('Mouse', 'squeak');
         }
 
     }
