@@ -680,7 +680,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Lego", s);
             player.specibus = new Specibus("Book", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.BLUNT]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -695,7 +694,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Pup", s);
             player.specibus = new Specibus("Leash", ItemTraitFactory.WHIP, <ItemTrait>[ ItemTraitFactory.EDGED]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -710,7 +708,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Virus", s);
             player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, <ItemTrait>[ ItemTraitFactory.EDGED]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -725,7 +722,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Necro", s);
             player.specibus = new Specibus("Pen", ItemTraitFactory.PEN, <ItemTrait>[ ItemTraitFactory.POINTY]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -750,7 +746,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Lion", s);
             player.specibus = new Specibus("Shield", ItemTraitFactory.SHIELD, <ItemTrait>[ ItemTraitFactory.BLUNT]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -765,7 +760,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Rose", s);
             player.specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -780,7 +774,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Cipher", s);
             player.specibus = new Specibus("Book", ItemTraitFactory.BOOK, <ItemTrait>[ ItemTraitFactory.PAPER]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -795,7 +788,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Pig", s);
             player.specibus = new Specibus("Grapple", ItemTraitFactory.POINTY, <ItemTrait>[ ItemTraitFactory.CLOTH]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -810,7 +802,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Rabbit", s);
             player.specibus = new Specibus("Fist", ItemTraitFactory.FIST, <ItemTrait>[ ItemTraitFactory.BLUNT]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -825,7 +816,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Cat", s);
             player.specibus = new Specibus("Claw", ItemTraitFactory.CLAWS, <ItemTrait>[ ItemTraitFactory.EDGED]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -840,7 +830,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Spider", s);
             player.specibus = new Specibus("Violin", ItemTraitFactory.WOOD, <ItemTrait>[ ItemTraitFactory.MUSICAL]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -855,7 +844,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Ghost", s);
             player.specibus = new Specibus("Flashlight", ItemTraitFactory.ZAP, <ItemTrait>[ ItemTraitFactory.GLOWING]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -870,7 +858,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Dad", s);
             player.specibus = new Specibus("Axe", ItemTraitFactory.AXE, <ItemTrait>[ ItemTraitFactory.EDGED]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -885,7 +872,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Mom", s);
             player.specibus = new Specibus("Microphone", ItemTraitFactory.LOUD, <ItemTrait>[ ItemTraitFactory.ZAP]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -900,7 +886,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Padpardascha", s);
             player.specibus = new Specibus("Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -915,7 +900,6 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Dog", s);
             player.specibus = new Specibus("Magic", ItemTraitFactory.MAGICAL, <ItemTrait>[ ItemTraitFactory.GLOWING]);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -942,7 +926,6 @@ abstract class NonCanonSessions {
             player.aspect = Aspects.TIME;
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Vader", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.hair  =51;
             player.chatHandle = "insipidTestimony";
 
@@ -972,7 +955,6 @@ abstract class NonCanonSessions {
             player.chatHandle = "ViolinKid";
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Violin", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.interest1 = new Interest("Coding", InterestManager.TECHNOLOGY);
             player.interest2 = new Interest("Music", InterestManager.MUSIC);
             player.quirk.capitalization = Quirk.NORMALCAPS;
@@ -999,7 +981,6 @@ abstract class NonCanonSessions {
             player.chatHandle = "nuclearChronosphere";
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Zebra", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.interest1 = new Interest("Knowledge", InterestManager.ACADEMIC);
             player.interest2 = new Interest("Tabletop Roleplaying", InterestManager.SOCIAL);
             player.quirk.capitalization = Quirk.NORMALCAPS;
@@ -1026,7 +1007,6 @@ abstract class NonCanonSessions {
             player.chatHandle = "collectiveAspirant";
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Nemetona", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.interest1 = new Interest("Swimming", InterestManager.ATHLETIC);
             player.interest2 = new Interest("History", InterestManager.ACADEMIC);
             player.quirk.capitalization = Quirk.NORMALCAPS;
@@ -1054,7 +1034,6 @@ abstract class NonCanonSessions {
             player.copyFromOCDataString("b=%C2%80%00%C3%BF%C3%A6%C3%BE9%00%05%1F%1F%16&s=,,Dungeon Mastering,Video Games,gorristerChampion&x=AQ==");
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("David Duchovny", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1068,7 +1047,6 @@ abstract class NonCanonSessions {
             player.copyFromOCDataString("b=%00%C2%80%C3%BF%19%C3%BEc%00%01%08%089&s=,,Social Justice,Writing,grapefruitTwostep&x=AQ==");
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Gillian Anderson", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1091,7 +1069,6 @@ abstract class NonCanonSessions {
             player.copyFromOCDataString("b=%3F%19%04%20%C3%BE%25%00B%14%14F&s=,,Drawing,Death,vengefulKappa&x=AQ==");
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Scandalous Fanart", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1104,7 +1081,6 @@ abstract class NonCanonSessions {
             player.copyFromOCDataString("b=G2%00%C2%85%C3%BE%0B%00T%0A%0A%40&s=,,Puns,Psychology,machiosAvatar&x=AQ==");
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Earthbound", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1116,7 +1092,6 @@ abstract class NonCanonSessions {
             player.copyFromOCDataString("b=8%22%07J%C3%BEM%00G%13%13%1E&s=,,Unicycling,Phylosophy,unicycleKing&x=AQ==");
             player.deriveSprite = false;
             player.object_to_prototype = new PotentialSprite("Zardoz", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1141,7 +1116,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Stick", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]);
             player.object_to_prototype = new PotentialSprite("Charizard", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.NOPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1162,7 +1136,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Game", ItemTraitFactory.IRONICFUNNYCOOL, [ ItemTraitFactory.PLASTIC, ItemTraitFactory.ZAP]);
             player.object_to_prototype = new PotentialSprite("Freddy", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1182,7 +1155,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Plushie", ItemTraitFactory.COMFORTABLE, [ ItemTraitFactory.CLOTH, ItemTraitFactory.BLUNT]);
             player.object_to_prototype = new PotentialSprite("Cozmo", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1202,7 +1174,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Meta", ItemTraitFactory.POSTIRONIC, [ ItemTraitFactory.CLASSRELATED]);
             player.object_to_prototype = new PotentialSprite("Imp", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1222,7 +1193,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Art", ItemTraitFactory.STICK, [ ItemTraitFactory.WOOD]);
             player.object_to_prototype = new PotentialSprite("Parrot", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1242,7 +1212,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("FncySnta", ItemTraitFactory.SANTA, [ ItemTraitFactory.IRONICSHITTYFUNNY]);
             player.object_to_prototype = new PotentialSprite("Boxer", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1262,7 +1231,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Aerosol", ItemTraitFactory.METAL, [ ItemTraitFactory.POISON]);
             player.object_to_prototype = new PotentialSprite("Pumpkinsnuffle", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1282,7 +1250,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Mace", ItemTraitFactory.HAMMER, [ ItemTraitFactory.POINTY, ItemTraitFactory.METAL]);
             player.object_to_prototype = new PotentialSprite("Owl", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1302,7 +1269,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Book", ItemTraitFactory.BOOK, [ ItemTraitFactory.PAPER, ItemTraitFactory.SMART]);
             player.object_to_prototype = new PotentialSprite("Begger", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1322,7 +1288,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Suitcase", ItemTraitFactory.BUST, [ ItemTraitFactory.BLUNT, ItemTraitFactory.LEATHER]);
             player.object_to_prototype = new PotentialSprite("Hexbug", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1342,7 +1307,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("Axe", ItemTraitFactory.AXE, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
             player.object_to_prototype = new PotentialSprite("Goldfish", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1364,7 +1328,6 @@ abstract class NonCanonSessions {
             player.object_to_prototype = new PotentialSprite("Yng'fhaeng'tag", s);
             player.object_to_prototype.disaster = true;
             player.object_to_prototype.corrupted = true;
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1396,7 +1359,6 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.specibus = new Specibus("44.magnum", ItemTraitFactory.SAFE, [ ItemTraitFactory.METAL, ItemTraitFactory.SHOOTY]);
             player.object_to_prototype = new PotentialSprite("Owldad", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1418,7 +1380,6 @@ abstract class NonCanonSessions {
             player.specibus = new Specibus("Iron", ItemTraitFactory.SAFE, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
 
             player.object_to_prototype = new PotentialSprite("Sheepmom", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.ENDPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1440,7 +1401,6 @@ abstract class NonCanonSessions {
             player.specibus = new Specibus("Machete", ItemTraitFactory.BLADE, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
 
             player.object_to_prototype = new PotentialSprite("Crowdad", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.NOPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1470,7 +1430,6 @@ abstract class NonCanonSessions {
 
 
             player.object_to_prototype = new PotentialSprite("Batdad", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.NOPUNC;
             player.quirk.lettersToReplace = [["o","O"]];
@@ -1491,7 +1450,6 @@ abstract class NonCanonSessions {
             player.fraymotifs.clear();
             player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
             player.object_to_prototype = new PotentialSprite("Cricketdad", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
 
@@ -1524,7 +1482,6 @@ abstract class NonCanonSessions {
             f.desc = " The souls of the dead start hassling all enemies. ";
             player.fraymotifs.add(f);
             player.object_to_prototype = new PotentialSprite("Vulturemom", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1547,7 +1504,6 @@ abstract class NonCanonSessions {
             player.specibus = new Specibus("Switchblade", ItemTraitFactory.RAZOR, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
 
             player.object_to_prototype = new PotentialSprite("Eeldad", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1569,7 +1525,6 @@ abstract class NonCanonSessions {
 
             player.moon = session.prospit;
             player.object_to_prototype = new PotentialSprite("Tarantulamom", s);
-            player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.ALLCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
