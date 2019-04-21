@@ -1144,11 +1144,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.NOPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Dragons and Stone";
-            player.land.denizenFeature = new DenizenFeature('Anansi');
+            player.land.denizenFeature = new DenizenFeature('Denizen Anansi');
             player.land.consortFeature = new ConsortFeature('Dragon', 'roar');
 
         }else if (index ==1) {
@@ -1161,11 +1165,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Lead and Loyalty";
-            player.land.denizenFeature = new DenizenFeature('Coeus');
+            player.land.denizenFeature = new DenizenFeature('Denizen Coeus');
             player.land.consortFeature = new ConsortFeature('Fox', 'yelp');
         }else if (index ==2) {
             player.copyFromOCDataString("b=%00%00%00%16%C3%BE%09%00%0A%01%01.&s=,,Puns,Memes,coolSwagger&x=AQ==");
@@ -1177,11 +1185,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Queries and Shock";
-            player.land.denizenFeature = new DenizenFeature('Asmodeus');
+            player.land.denizenFeature = new DenizenFeature('Denizen Asmodeus');
             player.land.consortFeature = new ConsortFeature('Crab', 'click');
         }else if (index ==3) {
             player.copyFromOCDataString("b=%00%00%003%C3%BEH%00%04..%25&s=,,Wrestling,Fishing,coreSociopath&x=nhgA");
@@ -1193,11 +1205,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Fishing Rods and Smoke";
-            player.land.denizenFeature = new DenizenFeature('Mixcoatl');
+            player.land.denizenFeature = new DenizenFeature('Denizen Mixcoatl');
             player.land.consortFeature = new ConsortFeature('Trout', 'blub');
         }else if (index ==4) {
             player.copyFromOCDataString("b=%00%00%00*%C3%BE%18%00%06'%15%40&s=,,Remixes,Scrapbooking,shinyStar&x=AQ==");
@@ -1209,11 +1225,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Rotation and Xylophones";
-            player.land.denizenFeature = new DenizenFeature('Baldr');
+            player.land.denizenFeature = new DenizenFeature('Denizen Baldr');
             player.land.consortFeature = new ConsortFeature('Clam', 'clack');
         }else if (index ==5) {
             player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BFB%C3%BEE%00%40%24%24%3E&s=,,Track and Field,Status,shakySalt&x=phAA");
@@ -1225,11 +1245,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Confidence and Orbs";
-            player.land.denizenFeature = new DenizenFeature('Hybris');
+            player.land.denizenFeature = new DenizenFeature('Denizen Hybris');
             player.land.consortFeature = new ConsortFeature('Dog', 'arf');
         }else if (index ==6) {
             player.copyFromOCDataString("b=%00%00%00l%C3%BEH%00%06%2B%2B%3B&s=,,Boxing,Peace,daringConquistador&x=AQ==");
@@ -1241,11 +1265,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Insanity and Cones";
-            player.land.denizenFeature = new DenizenFeature('Morpheus');
+            player.land.denizenFeature = new DenizenFeature('Denizen Morpheus');
             player.land.consortFeature = new ConsortFeature('Narwhal', 'buzz');
         }else if (index ==7) {
             player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%C3%B5%C3%BE%26%00E%15%10%18&s=,,Art,Leadership,creativeDiffraction&x=_i8A");
@@ -1257,11 +1285,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Beauty and Feelings";
-            player.land.denizenFeature = new DenizenFeature('Aphrodite');
+            player.land.denizenFeature = new DenizenFeature('Denizen Aphrodite');
             player.land.consortFeature = new ConsortFeature('Axolotl', 'waa');
         }else if (index ==8) {
             player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%C2%A1%C3%BE%3D%00%40%01%01%3C&s=,,Dungeon Mastering,Mathematics,dungeonCrafter&x=AQ==");
@@ -1273,11 +1305,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Religion and Lines";
-            player.land.denizenFeature = new DenizenFeature('Nero');
+            player.land.denizenFeature = new DenizenFeature('Denizen Nero');
             player.land.consortFeature = new ConsortFeature('Bat', 'chirp');
         }else if (index ==9) {
             player.copyFromOCDataString("b=%00%00%00%C3%84%C3%BE%C2%B5%00%0A%1D%1D8&s=,,Business,Abuse,dauntingDeskman&x=AQ==");
@@ -1289,11 +1325,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Business and Night";
-            player.land.denizenFeature = new DenizenFeature('Hawking');
+            player.land.denizenFeature = new DenizenFeature('Denizen Hawking');
             player.land.consortFeature = new ConsortFeature('Wolf', 'howl');
         }else if (index ==10) {
             player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BE%00%C3%BE%C2%8D%00S%01%012&s=,,Babysitting,Knowledge,bronzeCaretaker&x=AQ==");
@@ -1305,11 +1345,15 @@ abstract class NonCanonSessions {
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Rockets and Patience";
-            player.land.denizenFeature = new DenizenFeature('Alpha');
+            player.land.denizenFeature = new DenizenFeature('Denizen Alpha');
             player.land.consortFeature = new ConsortFeature('Pony', 'neigh');
         }else if (index ==11) {
             player.copyFromOCDataString("b=%00%00%00%C2%8B%C3%BE5%00%0B%01%01E&s=,,Undertale AUs,Depression,dreamDenizen&x=AQ==");
@@ -1319,14 +1363,19 @@ abstract class NonCanonSessions {
             player.specibus = new Specibus("Light", ItemTraitFactory.MAGICAL, [ ItemTraitFactory.LIT]);
             player.object_to_prototype = new PotentialSprite("Yng'fhaeng'tag", s);
             player.object_to_prototype.disaster = true;
+            player.object_to_prototype.corrupted = true;
             player.sprite.addPrototyping(player.object_to_prototype);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = <String>[];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
             //is this really needed? should be in ocdatastring
             //player.moon = session.prospit;
             player.land = player.spawnLand();
             player.land.name = "Land of Serenity and Crafts";
-            player.land.denizenFeature = new DenizenFeature('Sif');
+            player.land.denizenFeature = new DenizenFeature('Denizen Sif');
             player.land.consortFeature = new ConsortFeature('Mouse', 'squeak');
         }
 
