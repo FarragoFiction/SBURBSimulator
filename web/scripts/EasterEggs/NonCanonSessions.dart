@@ -1597,11 +1597,11 @@ abstract class NonCanonSessions {
             player.deriveSprite = false;
             player.deriveSpecibus = false;
             player.fraymotifs.clear();
-            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
-            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
-            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.specibus = new Specibus("2x3dent", ItemTraitFactory.TRIDENT, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+            player.object_to_prototype = new PotentialSprite("Cob", s);
+            player.quirk.capitalization = Quirk.INVERTCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -1610,32 +1610,15 @@ abstract class NonCanonSessions {
             player.land.denizenFeature = new DenizenFeature('Abuk');
 
         }else if(index == 3){
-            /*
-            Lacius - 2x3dent
-            Upetra - Longbow
-            Elneka - Crossbow
-            Mutyca - Dagger
-                —Sprites—
-            Ledona - Cobsprite
-            Lacius - Ducksprite
-            Upetra - Magpiesprite
-            Elneka - Swiftsprite
-            Mutyca - Hensprite
-                —Quirks—
-            Ledona - Capitalizes Xs and puts Vs after them.
-            Lacius - Reverse caps. (like Tavros, but with regular punctuation)
-        Upetra - Capitalizes Q, U, and W.
-        Elneka - Triples punctuation.
-        Mutyca - All lowercase.*/
             player.copyFromOCDataString("b=%00%00%00%3B%C3%BA%18%11ZA3%3A&s=,,Dance,Peace,cryingCichlid&x=AQ==");
             player.deriveSprite = false;
             player.deriveSpecibus = false;
             player.fraymotifs.clear();
-            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
-            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
+            player.specibus = new Specibus("Longbow", ItemTraitFactory.BOW, [ ItemTraitFactory.WOOD, ItemTraitFactory.POINTY]);
+            player.object_to_prototype = new PotentialSprite("Magpie", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplace = [["q","Q"],["u","U"],["w","W"]];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -1643,16 +1626,17 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Genesis and Heave";
             player.land.denizenFeature = new DenizenFeature('Ārohirohi');
 
-        }else if(index == 4){
+        }else if(index == 4)
             player.copyFromOCDataString("b=%00%00%00%C2%98%C3%B6I%10Q%2F%2F-&s=,,Fitness,Heroes,aztecGroove&x=AQ==");
             player.deriveSprite = false;
             player.deriveSpecibus = false;
             player.fraymotifs.clear();
-            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
-            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
+            player.specibus = new Specibus("Crossbow", ItemTraitFactory.BOW, [ ItemTraitFactory.METAL, ItemTraitFactory.POINTY]);
+            player.object_to_prototype = new PotentialSprite("Magpie", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
-            player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = <String>[];
+            player.quirk.punctuation = Quirk.EXPUNC;
+            player.quirk.favoriteNumber = 3;
+            player.quirk.lettersToReplace = [];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -1661,13 +1645,14 @@ abstract class NonCanonSessions {
             player.land.denizenFeature = new DenizenFeature('Awilix');
 
         }else if(index == 5){
+
             player.copyFromOCDataString("b=%00%00%00%20%C3%B5l%10%1BCC%17&s=,,Equality,Fate,avidAcraeine&x=AQ==");
             player.deriveSprite = false;
             player.deriveSpecibus = false;
             player.fraymotifs.clear();
-            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+            player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
             player.object_to_prototype = new PotentialSprite("Cricketdad", s);
-            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
             player.quirk.lettersToReplaceIgnoreCase = [];
