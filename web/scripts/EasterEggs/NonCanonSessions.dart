@@ -20,7 +20,10 @@ abstract class NonCanonSessions {
         ret[212] = session212; //Cipah
         ret[97] = session97; //yogisticDoctor
         ret[66] = session66; //CD contest winner
+        ret[9] = session9; //CD contest winner
         //RMH wants 117
+        //gnome wants 85
+        //dh wanted 42
 
 
         return ret;
@@ -43,6 +46,12 @@ abstract class NonCanonSessions {
     }
 
 
+    //from contest winner twilightvelvet
+    static void session9(Session session) {
+        int numPlayers = 6;
+        makeASessionFromSource(session,session9IndexToPlayer, numPlayers);
+        session.players.length = numPlayers; //no more, no less.
+    }
 
     //from patron cynicalTeuthida: thanks for your support!!!
     static void session404(Session session) {
@@ -1538,6 +1547,91 @@ abstract class NonCanonSessions {
 
         }
 
+    }
+
+    //could make this a mapping, but whatever, i like it like this
+    static void session9IndexToPlayer(Session session,Player player, int index){
+        Session s = session;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        if(index == 0){
+            player.copyFromOCDataString("b=%00%00%00S%C3%B9s%10%19F6H&s=,,Mermaids,Fan Fiction,theriansAwaken&x=AQ==");
+            player.fraymotifs.clear();
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Lilypads and Surge";
+            player.land.denizenFeature = new DenizenFeature('Ananke');
+        }else if(index == 1){
+            player.copyFromOCDataString("b=%00%00%00%C2%A7%C3%B8!%10%16HH7&s=,,Fine Art,Dance,gisellesAnatidae&x=AQ==");
+            player.fraymotifs.clear();
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Paradise and Pitch";
+            player.land.denizenFeature = new DenizenFeature('Anpao');
+
+        }else if(index == 2){
+            player.copyFromOCDataString("b=%00%00%00%C2%B9%C3%BBE%10U%06%060&s=,,Track and Field,Insults,actinopTrap&x=AQ==");
+            player.fraymotifs.clear();
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Reefs and Roll";
+            player.land.denizenFeature = new DenizenFeature('Abuk');
+
+        }else if(index == 3){
+            player.copyFromOCDataString("b=%00%00%00%3B%C3%BA%18%11ZA3%3A&s=,,Dance,Peace,cryingCichlid&x=AQ==");
+            player.fraymotifs.clear();
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Genesis and Heave";
+            player.land.denizenFeature = new DenizenFeature('Ārohirohi');
+
+        }else if(index == 4){
+            player.copyFromOCDataString("b=%00%00%00%C2%98%C3%B6I%10Q%2F%2F-&s=,,Fitness,Heroes,aztecGroove&x=AQ==");
+            player.fraymotifs.clear();
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Peninsulas and Yaw";
+            player.land.denizenFeature = new DenizenFeature('Awilix');
+
+        }else if(index == 5){
+            player.copyFromOCDataString("b=%00%00%00%20%C3%B5l%10%1BCC%17&s=,,Equality,Fate,avidAcraeine&x=AQ==");
+            player.fraymotifs.clear();
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Frogs and Sway";
+            player.land.denizenFeature = new DenizenFeature('Aparna');
+
+        }
     }
 
 
