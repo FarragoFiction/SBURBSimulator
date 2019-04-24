@@ -49,6 +49,9 @@ abstract class NonCanonSessions {
     //from contest winner twilightvelvet
     static void session9(Session session) {
         int numPlayers = 6;
+        String bb = "Ball of Sin:___ N4IgdghgtgpiBcIBCEA2qAEB7AZhgygJZggA0IAJjAM4DGAToQA4AuhWJiAKgBYwYBVMIQBuMetX4B1CNTAByFhgCyMCGCVcsGJPwAyhANb9ehagDoyIWuvwtGOOInsBXOORdhaHCoTYc0VABPAEkoKCx6FjQEEBw0SStJRjRCAC8IACNUGHxaGDBc+2IAc2pYpPzC8sQAbWAAHXBoGCb4JoA5LHMm0iacVAgRSK4YAA8WNqaAdx4IFnlqDHUMGFoeQgpIRYx44cYWfkysX2DsehKVgB5qJhXaQeolgF4MeWHN+QA+ZYxi2kMGAAjm5qP4wKQ-nwghh6DQmGslGBtHcotg8Jl2KgsCUglcAPS3dRfXpNaIXGAsADyhSmIFcrTIZMYJRK4gAwj4-OwwNQDCJSnT6g0RSBCFAmJFohopJEKCKpqKOviAIIKplKqlcdXtUXxVCSdV9UUANQASiF8ABpNWi3X9BKtUXGpqQWA69Uhahm9QULBQI3q8WSqLqFghDQe0UARnVAF8ALqk+kstn0TlgXzgvm+oVJpkgGA4Ry0FjUABikX5goQTWFouDUrDsvo8rt6pghk2hSCgdFbqdiqaAHFRDBy6hmFSXCwzWpqBw+01zZabVGHQbBxqmo3QxoOi4oJlxOuQAAGeP5vqF4uIitV33UPNNOOQxrNd21kAABRyskZ14DEMIzjJMX7TOoEAYHwED0L8ABWWDGMsxwzhgETIvYMCwNQAD8GAYDcdxgBgDyyC8bwfBQ3wYEEWAuBgfoKCw5joYQqCAr6qystQkKYiw6zmASRJgCSBbkmy1K0l+DLJsUrIcly2bVmAJRCo0DYSk2Mpyqeyq2qSmrau2eqOkuIArtaBm1qZm7mQOp5ej6mb+uZu7SuGkYmU0ACsl5yamimZtyHA5pmz4FkWJZlpW9AqWpX71juWl7iwLZtkOhbrJsAC0kA8PZLSnqOYgTlOM5zrIi7Ouqllrt5cRmTVmkhh5B5HieDUXqKibJlFd6xXoj4Ra+GDvg5X52FgTA9AWQH7KMEx0jwWDTIx2hrBsWyyBgTCEACUKlEsLhMPhRH3I8FHvFgnw-Cw0LrcxUIwDCsEFIosJqJg90vaR6gfTwLhonRDE-TCNgaH89HrLR9HPeD-1KHtB0gxgJ0YNMfg8M9hBwQ8MBiPQkL44TGCTiwLA5LtEDTNQwnEWJ14SZSNKMu0KZuAFhAKemSk8nyog1uzSViilHnpXpqrmR0WqnvqhrNcuFpWXLTWGa6RUNU5vquYroutWGEaTA10Z+T1V7MtzaYZlm-NDeFiUWze0X3nFguqepQZi82ukNZt3awVAT56w5DUleOk5MNOs7ztV6sWcr9WZfLW4uvr2ksO1x70Ke3Uvk7-Wlq79sUE+jsvm+GufuzIQYMeJSwy4s2AYMC2gXSUhzEofqN396C-Mk7AuEs-vbWdImkZdGCvNdt1ULBGAlCcu1-pIj0fcGZw-asYxmIcXj8Lgvwyx0GCD-RI-ZdtrFQDCUDEBQf1PdEyHb94B+sOifyMACYLiKsV9IB00JAzOSsFJKszpLJcSgVebBWUu7BKwsNLJQNjpVsktrJpxlsZZOattwJ1XNZe0jU7Ih01plbWLkAx63cobLymUAAcecQC9RgVbIKttQolwiteQuMUqyIM9i1DOEs-ZXxyiDPKWBjbx1DplcOZUo4VVjmAcydViHqhTm5b2+5DzZ1zv5SKt4i6DWGuXVhCYkgIloIQTIw9YjjSKl+dkgxaYBQgH4MuwtJTEBYEESEMAKBsgoHxDgMAnZwhBLjIJXB6CeLAuzMi7jWFJCCOgCAVAxixFqFY8gOB4lBAiGwHANQQC5KSNEMsOSnHVyaAAUTGAiRgBR8jJhEGgTmX4LysMrh+NmTRvyrRPAWDpqAunsx6aNWpAyQAAAkvr3XaZ02ZUy+kTXZuyIGcJIYLLQEs0ZKy6RrLGlXWZygsCYnJr2Q54zVkV1Of0ukc5BjZg2EwMu14xkTKaCcmZdJ8DqD8Dcr5RzukPP+V+cscJpDsVQMsu5xyIVnLpMoCAu8oCHgwHoFwAIEU-PPMip5X5lDEHFFinFeLbkEr+Sir8KpUDrGwiCpo3z7m9MeRspo+AkACDNEgbFkQAKsrBZM-OVhDgTBCDgLodgHBOBALwX6khYIwxwJEZ6UA+JoW3gKDJxAMBmAwMiDGfA4RQzrvwdVngKCWHIJK8MOAACaNA5WEEcLEUwI9My8WNatViGAQhKCNZhaCsFH4sG0PYCAB0-TTBIrquFniwCsSsHCEoLhBj0GhTiRaLAKjkCYEDJgOQc0lDzQWkAe0wCGDLRWxAVgmD0CwNiDNMB60gEqbBFgqh1hAuoEHGpdL2YLPQNoaFhACil2TPNECS0vzPWNTANaUh8Bn2mDAGATBjhITRkwCg8x+DvxwLjIOGAABaNM+CEB2DkBu3hPDGzAOdEiZEnjT0ojdaiXx7FKAgkse68xVikwNX6FwmQWC4Sg-TYkYCKRSVmdo9hPMbYhV5PFYRqDRG+0yvpaWssGraL1ho1WZC5EUJsk0L0DKxw6LQZ5WRlHCXmy5ihvm3DcwWL4SYgRbsBQe0Sig9OqUxGZRYWneRTHFGR2jpVBcajiOJ00bZBW8c6F6I6jnLqRjuMuzMT6kaeSQBgmmr2uYwgB1lIqXGIAA";
+        BigBad gigglesnort = BigBad.fromDataString(bb,session);
+        session.npcHandler.bigBads.add(gigglesnort);
         makeASessionFromSource(session,session9IndexToPlayer, numPlayers);
         session.players.length = numPlayers; //no more, no less.
     }
@@ -1555,8 +1558,13 @@ abstract class NonCanonSessions {
         player.deriveChatHandle = false;
         player.deriveLand = false;
         if(index == 0){
+
             player.copyFromOCDataString("b=%00%00%00S%C3%B9s%10%19F6H&s=,,Mermaids,Fan Fiction,theriansAwaken&x=AQ==");
+            player.deriveSprite = false;
+            player.deriveSpecibus = false;
             player.fraymotifs.clear();
+            player.specibus = new Specibus("Fan", ItemTraitFactory.CLOTH, [ ItemTraitFactory.BLUNT, ItemTraitFactory.WINGED]);
+            player.object_to_prototype = new PotentialSprite("Gander", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1567,11 +1575,16 @@ abstract class NonCanonSessions {
             player.land.name = "Lilypads and Surge";
             player.land.denizenFeature = new DenizenFeature('Ananke');
         }else if(index == 1){
+
             player.copyFromOCDataString("b=%00%00%00%C2%A7%C3%B8!%10%16HH7&s=,,Fine Art,Dance,gisellesAnatidae&x=AQ==");
+            player.deriveSprite = false;
+            player.deriveSpecibus = false;
             player.fraymotifs.clear();
+            player.specibus = new Specibus("Whip", ItemTraitFactory.WHIP, [ ItemTraitFactory.CLOTH, ItemTraitFactory.EDGED]);
+            player.object_to_prototype = new PotentialSprite("Cob", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
-            player.quirk.lettersToReplace = <String>[];
+            player.quirk.lettersToReplace = [["x","XV"]];
             player.quirk.lettersToReplaceIgnoreCase = [];
             player.quirk.prefix = "";
             player.quirk.suffix = "";
@@ -1581,7 +1594,11 @@ abstract class NonCanonSessions {
 
         }else if(index == 2){
             player.copyFromOCDataString("b=%00%00%00%C2%B9%C3%BBE%10U%06%060&s=,,Track and Field,Insults,actinopTrap&x=AQ==");
+            player.deriveSprite = false;
+            player.deriveSpecibus = false;
             player.fraymotifs.clear();
+            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1593,8 +1610,29 @@ abstract class NonCanonSessions {
             player.land.denizenFeature = new DenizenFeature('Abuk');
 
         }else if(index == 3){
+            /*
+            Lacius - 2x3dent
+            Upetra - Longbow
+            Elneka - Crossbow
+            Mutyca - Dagger
+                —Sprites—
+            Ledona - Cobsprite
+            Lacius - Ducksprite
+            Upetra - Magpiesprite
+            Elneka - Swiftsprite
+            Mutyca - Hensprite
+                —Quirks—
+            Ledona - Capitalizes Xs and puts Vs after them.
+            Lacius - Reverse caps. (like Tavros, but with regular punctuation)
+        Upetra - Capitalizes Q, U, and W.
+        Elneka - Triples punctuation.
+        Mutyca - All lowercase.*/
             player.copyFromOCDataString("b=%00%00%00%3B%C3%BA%18%11ZA3%3A&s=,,Dance,Peace,cryingCichlid&x=AQ==");
+            player.deriveSprite = false;
+            player.deriveSpecibus = false;
             player.fraymotifs.clear();
+            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1607,7 +1645,11 @@ abstract class NonCanonSessions {
 
         }else if(index == 4){
             player.copyFromOCDataString("b=%00%00%00%C2%98%C3%B6I%10Q%2F%2F-&s=,,Fitness,Heroes,aztecGroove&x=AQ==");
+            player.deriveSprite = false;
+            player.deriveSpecibus = false;
             player.fraymotifs.clear();
+            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
@@ -1620,7 +1662,11 @@ abstract class NonCanonSessions {
 
         }else if(index == 5){
             player.copyFromOCDataString("b=%00%00%00%20%C3%B5l%10%1BCC%17&s=,,Equality,Fate,avidAcraeine&x=AQ==");
+            player.deriveSprite = false;
+            player.deriveSpecibus = false;
             player.fraymotifs.clear();
+            player.specibus = new Specibus("Sign", ItemTraitFactory.ROADSIGN, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
