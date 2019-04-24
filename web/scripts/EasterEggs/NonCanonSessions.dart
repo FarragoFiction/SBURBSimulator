@@ -1598,7 +1598,7 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.fraymotifs.clear();
             player.specibus = new Specibus("2x3dent", ItemTraitFactory.TRIDENT, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
-            player.object_to_prototype = new PotentialSprite("Cob", s);
+            player.object_to_prototype = new PotentialSprite("Duck", s);
             player.quirk.capitalization = Quirk.INVERTCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = [];
@@ -1626,13 +1626,14 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Genesis and Heave";
             player.land.denizenFeature = new DenizenFeature('Ārohirohi');
 
-        }else if(index == 4)
+        }else if(index == 4){
+
             player.copyFromOCDataString("b=%00%00%00%C2%98%C3%B6I%10Q%2F%2F-&s=,,Fitness,Heroes,aztecGroove&x=AQ==");
             player.deriveSprite = false;
             player.deriveSpecibus = false;
             player.fraymotifs.clear();
             player.specibus = new Specibus("Crossbow", ItemTraitFactory.BOW, [ ItemTraitFactory.METAL, ItemTraitFactory.POINTY]);
-            player.object_to_prototype = new PotentialSprite("Magpie", s);
+            player.object_to_prototype = new PotentialSprite("Swift", s);
             player.quirk.capitalization = Quirk.NORMALCAPS;
             player.quirk.punctuation = Quirk.EXPUNC;
             player.quirk.favoriteNumber = 3;
@@ -1651,7 +1652,7 @@ abstract class NonCanonSessions {
             player.deriveSpecibus = false;
             player.fraymotifs.clear();
             player.specibus = new Specibus("Dagger", ItemTraitFactory.DAGGER, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
-            player.object_to_prototype = new PotentialSprite("Cricketdad", s);
+            player.object_to_prototype = new PotentialSprite("Hen", s);
             player.quirk.capitalization = Quirk.NOCAPS;
             player.quirk.punctuation = Quirk.PERFPUNC;
             player.quirk.lettersToReplace = <String>[];
