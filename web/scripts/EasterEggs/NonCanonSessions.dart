@@ -21,9 +21,9 @@ abstract class NonCanonSessions {
         ret[97] = session97; //yogisticDoctor
         ret[66] = session66; //CD contest winner
         ret[9] = session9; //CD contest winner
+        ret[42] = session42; //sorry dh i completely forgot to finish this
         //RMH wants 117
         //gnome wants 85
-        //dh wanted 42
 
 
         return ret;
@@ -138,6 +138,32 @@ abstract class NonCanonSessions {
         Relationship.makeHeart(sk,pz);
         pz.getRelationshipWith(sk).value = 20;
         sk.getRelationshipWith(pz).value = 20;
+
+    }
+
+    //from patron deathlyHealer: thanks for your support!!!
+    static void session42(Session session) {
+        int numPlayers = 4;
+        makeASessionFromSource(session,session42IndexToPlayer, numPlayers);
+        session.players.length = numPlayers; //no more, no less.
+        Player dh  = session.players[0];
+        Player bb = session.players[1];
+        Player ww = session.players[2];
+        Player lg = session.players[3];
+        Player cc = session.players[3];
+        /*
+         dh is diamond with  bb, lg
+         */
+
+        Relationship.makeDiamonds(dh,bb);
+        dh.getRelationshipWith(bb).value = 20;
+        dh.getRelationshipWith(bb).value = 20;
+
+
+        Relationship.makeDiamonds(dh,lg);
+        dh.getRelationshipWith(lg).value = 20;
+        dh.getRelationshipWith(lg).value = 20;
+
 
     }
 
@@ -1550,6 +1576,96 @@ abstract class NonCanonSessions {
 
         }
 
+    }
+
+    //could make this a mapping, but whatever, i like it like this
+    static void session42IndexToPlayer(Session session,Player player, int index){
+        Session s = session;
+        player.deriveChatHandle = false;
+        player.deriveLand = false;
+        if(index == 0){
+            player.copyFromOCDataString("b=%C3%97%C2%BA3U%C3%BE1%00%12%13%13H&s=,,Writing,Singing,deathlyHealer&x=AQ==");
+            player.deriveSprite = false;
+            player.deriveSpecibus = false;
+            player.object_to_prototype = new PotentialSprite("Laptop", s);
+            player.fraymotifs.clear();
+            player.specibus = new Specibus("Taser", ItemTraitFactory.ZAP, [ ItemTraitFactory.METAL]);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Music and Daydreams";
+            player.land.denizenFeature = new DenizenFeature('Gagoo’im');
+        }else if(index == 1){
+            player.deriveSprite = true;
+            player.deriveSpecibus = false;
+            player.fraymotifs.clear();
+            player.specibus = new Specibus("Wand", ItemTraitFactory.STICK, [ ItemTraitFactory.MAGICAL, ItemTraitFactory.WOOD]);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Frogs and Honey";
+            player.land.denizenFeature = new DenizenFeature('L’napeitz');
+
+        }else if(index == 2){
+
+            player.copyFromOCDataString("b=%10%07%01%C2%81%C3%BEt%00R%13%13%16&s=,,Ninjas,Football,wanderingWarrior&x=AQ==");
+            player.deriveSprite = true;
+            player.deriveSpecibus = false;
+            player.fraymotifs.clear();
+            player.specibus = new Specibus("ThrowStar", ItemTraitFactory.SHURIKEN, [ ItemTraitFactory.METAL, ItemTraitFactory.POINTY]);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Clocks and Darkness";
+            player.land.denizenFeature = new DenizenFeature('Leeshon');
+
+        }else if(index == 3){
+
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%0B%C3%BE%C3%86%00%12%13%13%14&s=,,Fate,Revolution,lingeringGlacier&x=AQ==");
+            player.deriveSprite = true;
+            player.deriveSpecibus = false;
+            player.fraymotifs.clear();
+            player.specibus = new Specibus("Sword", ItemTraitFactory.SWORD, [ ItemTraitFactory.METAL, ItemTraitFactory.EDGED]);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "==>";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Birds and Whisper";
+            player.land.denizenFeature = new DenizenFeature('Mashkeh');
+
+        }else if(index == 4){
+
+            player.copyFromOCDataString("b=%C3%AE%C3%B27h%C3%BE%C3%90%00R%13%13%10&s=,,History,Comics,chilliChocolate&x=AQ==");
+            player.deriveSprite = true;
+            player.deriveSpecibus = false;
+            player.fraymotifs.clear();
+            player.specibus = new Specibus("Tool", ItemTraitFactory.WRENCH, [ ItemTraitFactory.METAL, ItemTraitFactory.BLUNT]);
+            player.quirk.capitalization = Quirk.NORMALCAPS;
+            player.quirk.punctuation = Quirk.PERFPUNC;
+            player.quirk.lettersToReplace = [];
+            player.quirk.lettersToReplaceIgnoreCase = [];
+            player.quirk.prefix = "";
+            player.quirk.suffix = "";
+            player.land = player.spawnLand();
+            player.land.name = "Land of Rain and Robots";
+            player.land.denizenFeature = new DenizenFeature('Leitzroach');
+
+        }
     }
 
     //could make this a mapping, but whatever, i like it like this

@@ -1278,6 +1278,7 @@ class PotentialSprite extends NPC {
     static initializeAShitTonOfFortuneSprites() {
 //fortune
         PotentialSprite.fortune_objects = <GameEntity>[
+
             new PotentialSprite("Frog", null)
                 ..illegal = true
                 ..stats.setMap(<Stat,num>{Stats.MOBILITY: 100, Stats.POWER: 10})
@@ -1395,6 +1396,18 @@ class PotentialSprite extends NPC {
                     ..effects.add(new FraymotifEffect(Stats.SANITY, 0, true))
                     ..desc =
                         " You are pretty sure it is impossible for Clowns to die. "),
+            new PotentialSprite("Echidna", null)
+                ..stats.setMap(<Stat,num>{Stats.POWER: 20})
+                ..illegal = true
+                ..disaster = true
+                ..corrupted = true
+                ..helpfulness = -1
+                ..fraymotifs.add(new Fraymotif("Odin's Wrath", 3)
+                ..effects.add(new FraymotifEffect(Stats.SANITY, 3, false))
+                ..effects.add(new FraymotifEffect(Stats.SANITY, 3, true))
+                ..desc = "God no.")
+                ..helpPhrase =
+                    "God. No.",
             new PotentialSprite("Puppet", null)
                 ..disaster = true
                 ..stats.setMap(<Stat,num>{

@@ -1,3 +1,4 @@
+2019-04-23: 2.0 is faster now.
 2019-03-10: I got some JUICE in the sim if you know where to look (not where you'd think), and PL upgraded us to Dart 2.0 (which will give us some neat benefits).
 2019-03-02: TG and AW continue to work on the LAW update, and I continue to fix small bugs that are getting in their way.
 2019-02-02: Fixed a tiny typo that was keeping TG from having scenes that targeted a players own land.
