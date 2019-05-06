@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import "../SBURBSim.dart";
 //all static
 typedef void SessionSource(Session session, Player player, int index);
@@ -143,7 +145,7 @@ abstract class NonCanonSessions {
 
     //from patron deathlyHealer: thanks for your support!!!
     static void session42(Session session) {
-        int numPlayers = 4;
+        int numPlayers = 5;
         makeASessionFromSource(session,session42IndexToPlayer, numPlayers);
         session.players.length = numPlayers; //no more, no less.
         Player dh  = session.players[0];
@@ -163,6 +165,7 @@ abstract class NonCanonSessions {
         Relationship.makeDiamonds(dh,lg);
         dh.getRelationshipWith(lg).value = 20;
         dh.getRelationshipWith(lg).value = 20;
+
 
 
     }
@@ -1600,6 +1603,7 @@ abstract class NonCanonSessions {
             player.land.name = "Land of Music and Daydreams";
             player.land.denizenFeature = new DenizenFeature('Gagoo’im');
         }else if(index == 1){
+            player.copyFromOCDataString("b=%C2%84A%0B0%C3%BE%C2%89%00R%13%13%04&s=,,Cooking,Video Games,bemusedBefuddlement&x=AQ==");
             player.deriveSprite = true;
             player.deriveSpecibus = false;
             player.fraymotifs.clear();

@@ -53,7 +53,7 @@ class SeekRing extends Scene {
     String tryStealing() {
         double rollValueLow = gameEntity.rollForLuck(Stats.MIN_LUCK);  //separate it out so that EITHER you are good at avoiding bad shit OR you are good at getting good shit.
         double rollValueHigh = gameEntity.rollForLuck(Stats.MAX_LUCK);
-        if(rollValueHigh <300) {
+        if(rollValueHigh >300) {
             takeRing();
             //session.logger.info("AB: A ring was stolen from a target.");
             return "The ${oldName} sneaks up behind the ${targetOldName} and pick pockets them! They take the $ring and equip it! They are now the ${gameEntity.htmlTitleWithTip()}, and their target becomes the ${target.htmlTitleWithTip()}! ";

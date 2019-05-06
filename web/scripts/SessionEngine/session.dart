@@ -1468,6 +1468,16 @@ class Session {
         }
     }
 
+    void deactivateAllCarapaces() {
+        for(GameEntity g in derse.associatedEntities) {
+            g.active = false;
+        }
+
+        for(GameEntity g in prospit.associatedEntities) {
+            g.active = false;
+        }
+    }
+
     void activateAllBigBads() {
         for(BigBad bb in bigBadsReadOnly) {
             activateBigBad(bb);
