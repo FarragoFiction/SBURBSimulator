@@ -144,6 +144,8 @@ abstract class NonCanonSessions {
     }
 
     //from patron deathlyHealer: thanks for your support!!!
+    //while coding this up i found a hUGE bug that made carpaces have near perfect pick pocket rates
+    // i found it cuz the original way this session went jack got the ring nearly immediately and then shit was just over
     static void session42(Session session) {
         int numPlayers = 5;
         makeASessionFromSource(session,session42IndexToPlayer, numPlayers);
