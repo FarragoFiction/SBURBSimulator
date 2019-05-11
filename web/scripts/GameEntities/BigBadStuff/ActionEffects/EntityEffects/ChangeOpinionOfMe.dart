@@ -69,9 +69,13 @@ class ChangeOpinionOfMe extends EffectEntity {
         List<GameEntity> renderableTargets = new List<GameEntity>();
         entities.forEach((GameEntity e) {
             if(e.renderable()) renderableTargets.add(e);
-            text = "$text ${e.htmlTitle()} $emotion them ${importantInt} more!";
             Relationship r = e.getRelationshipWith(effector);
-            r.changeBy(importantInt);
+            if(r != null) {
+                text = "$text ${e.htmlTitle()} $emotion them ${importantInt} more!";
+                r.changeBy(importantInt);
+            }else {
+                text = "$text ${e.htmlTitle()} wants to $emotion them ${importantInt} more, but they just are too apathetic about them. ";
+            }
         });
 
         ButtonElement toggle = new ButtonElement()..text = "Show Details?";
