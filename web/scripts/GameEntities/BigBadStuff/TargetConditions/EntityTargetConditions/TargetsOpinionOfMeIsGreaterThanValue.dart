@@ -2,10 +2,10 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class MyOpinionOfTargetIsGreaterThanValue extends TargetConditionLiving {
+class TargetsOpinionOfMeIsGreaterThanValue extends TargetConditionLiving {
 
     @override
-    String name = "MyOpinionOfTargetIsGreaterThanValue";
+    String name = "TargetsOpinionOfMeIsGreaterThanValue";
 
     SelectElement selectAmount;
 
@@ -15,14 +15,14 @@ class MyOpinionOfTargetIsGreaterThanValue extends TargetConditionLiving {
 
 
     @override
-    String descText = "<b>My Opinion Is:</b><br>I Like Target More Than Value: <br><br>";
+    String descText = "<b>Target Opinion Is:</b><br>Target Likes Me More Than Value: <br><br>";
     @override
-    String notDescText = "<b>My Opinion IS NOT:</b><br>I do NOT Like Target More Than value:<br><br>";
+    String notDescText = "<b>Target Opinion IS NOT:</b><br>Target Does NOT like Me More Than Value:<br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    MyOpinionOfTargetIsGreaterThanValue(SerializableScene scene) : super(scene){
+    TargetsOpinionOfMeIsGreaterThanValue(SerializableScene scene) : super(scene){
     }
 
     @override
@@ -61,7 +61,7 @@ class MyOpinionOfTargetIsGreaterThanValue extends TargetConditionLiving {
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new MyOpinionOfTargetIsGreaterThanValue(scene);
+        return new TargetsOpinionOfMeIsGreaterThanValue(scene);
     }
 
     @override
@@ -92,7 +92,7 @@ class MyOpinionOfTargetIsGreaterThanValue extends TargetConditionLiving {
 
     @override
     bool conditionForFilter(GameEntity actor, GameEntity item) {
-        Relationship r = actor.getRelationshipWith(item);
+        Relationship r = item.getRelationshipWith(actor);
         if(r == null) {
             return true;  //filter me i don't exist
         }
