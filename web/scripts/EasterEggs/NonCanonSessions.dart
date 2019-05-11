@@ -22,7 +22,7 @@ abstract class NonCanonSessions {
         ret[212] = session212; //Cipah
         ret[97] = session97; //yogisticDoctor
         ret[66] = session66; //CD contest winner
-        ret[9] = session9; //CD contest winner
+        ret[9] = session9; //twilightvelvet contest winner
         ret[42] = session42; //sorry dh i completely forgot to finish this
         ret[48] = session48; //natry
         //RMH wants 117
