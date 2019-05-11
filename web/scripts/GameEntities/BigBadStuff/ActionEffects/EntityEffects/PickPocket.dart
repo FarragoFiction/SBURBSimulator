@@ -28,7 +28,7 @@ class PickPocket extends EffectEntity {
       scene.syncForm();
   }
   @override
-  void effectEntities(List<GameEntity> entities) {
+  void effectEntities(GameEntity effector,List<GameEntity> entities) {
       String text = "";
 
       entities.forEach((GameEntity e) {

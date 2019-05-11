@@ -44,7 +44,7 @@ class GiveFlipOutReason extends EffectEntity {
   }
 
   @override
-  void effectEntities(List<GameEntity> entities) {
+  void effectEntities(GameEntity effector,List<GameEntity> entities) {
       String text = "";
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {

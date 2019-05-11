@@ -30,7 +30,7 @@ class KillSleepingDreamSelf extends EffectEntity {
       scene.syncForm();
   }
   @override
-  void effectEntities(List<GameEntity> entities) {
+  void effectEntities(GameEntity effector,List<GameEntity> entities) {
       List<GameEntity> renderableTargets = new List<GameEntity>();
     entities.forEach((GameEntity e) {
         if(e is Player) {

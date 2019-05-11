@@ -132,9 +132,15 @@ class Relationship {
         }
     }
 
+    void changeBy(int amount) {
+        value += amount;
+    }
+
     void increase() {
         this.value ++;
     }
+
+
 
     void decrease() {
         this.value += -1;

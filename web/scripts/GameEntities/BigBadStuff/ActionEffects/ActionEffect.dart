@@ -349,8 +349,8 @@ abstract class EffectEntity extends ActionEffect {
       }else {
           targets = new List.from(scene.finalLivingTargets);
       }
-      effectEntities(targets);
+      effectEntities(scene.gameEntity,targets);
   }
 
-  void effectEntities(List<GameEntity> entities);
+  void effectEntities(GameEntity effector, List<GameEntity> entities);
 }

@@ -29,7 +29,7 @@ class AntiMug extends EffectEntity {
       scene.syncForm();
   }
   @override
-  void effectEntities(List<GameEntity> entities) {
+  void effectEntities(GameEntity effector,List<GameEntity> entities) {
       String text = "";
       if(scene.gameEntity.sylladex.isNotEmpty) {
           text = "The ${scene.gameEntity

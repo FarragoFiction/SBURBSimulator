@@ -29,7 +29,7 @@ class PledgeLoyalty extends EffectEntity {
       scene.syncForm();
   }
   @override
-  void effectEntities(List<GameEntity> entities) {
+  void effectEntities(GameEntity effector,List<GameEntity> entities) {
       List<GameEntity> renderableTargets = new List<GameEntity>();
       String text = "";
 

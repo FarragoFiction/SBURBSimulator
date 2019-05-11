@@ -44,7 +44,7 @@ class StartStrife extends EffectEntity {
 
 
   @override
-  void effectEntities(List<GameEntity> entities) {
+  void effectEntities(GameEntity effector,List<GameEntity> entities) {
       takeCareOfStrife(entities);
   }
 

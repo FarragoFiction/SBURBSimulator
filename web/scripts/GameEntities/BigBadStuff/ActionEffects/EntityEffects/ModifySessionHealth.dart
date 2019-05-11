@@ -44,7 +44,7 @@ class ModifySessionHealth extends EffectEntity {
   }
 
   @override
-  void effectEntities(List<GameEntity> entities) {
+  void effectEntities(GameEntity effector,List<GameEntity> entities) {
       scene.session.sessionHealth += importantInt;
       DivElement div = new DivElement()..text = "Session Health is now ${scene.session.sessionHealth}";
       scene.myElement.append(div);
