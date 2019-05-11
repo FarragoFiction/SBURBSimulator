@@ -101,6 +101,6 @@ class ChangeOpinionOfMe extends EffectEntity {
     }
     @override
     ActionEffect makeNewOfSameType() {
-        return new ChangeStat(scene);
+        return new ChangeOpinionOfMe(scene);
     }
 }
