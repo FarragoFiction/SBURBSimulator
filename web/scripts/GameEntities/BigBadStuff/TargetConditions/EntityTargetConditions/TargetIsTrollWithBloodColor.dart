@@ -105,7 +105,7 @@ class TargetIsTrollWithBloodColor extends TargetConditionLiving {
   }
 
   @override
-  bool conditionForFilter(GameEntity item) {
+  bool conditionForFilter(GameEntity actor, GameEntity item) {
     if(item is Player) {
       Player p = item as Player;
       if(!p.isTroll) return true;

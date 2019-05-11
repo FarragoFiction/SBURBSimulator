@@ -63,7 +63,7 @@ class TargetEntitySessionHealthIsGreaterThan extends TargetConditionLiving {
 
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         return scene.session.sessionHealth < importantInt;
     }
 }

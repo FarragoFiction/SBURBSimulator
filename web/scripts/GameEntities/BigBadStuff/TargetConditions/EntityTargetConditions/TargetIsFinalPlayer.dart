@@ -47,7 +47,7 @@ class TargetIsFinalPlayer extends TargetConditionLiving {
 
     //NOTE FROM 10/5/18 JR, YOU CANT TEST FOR TPK CUZ THAT ENDS A SESSION
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         List<GameEntity> living = findLiving(scene.session.players);
         return !(living.contains(item) && living.length == 1);
     }

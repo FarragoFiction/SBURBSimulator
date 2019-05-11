@@ -2,28 +2,27 @@ import "../../../../SBURBSim.dart";
 import 'dart:html';
 
 //has no sub form, just exists
-class MyStatIsGreaterThanValue extends TargetConditionLiving {
+class MyOpinionOfTargetIsGreaterThanValue extends TargetConditionLiving {
 
     @override
-    String name = "MyStatIsGreaterThanValue";
+    String name = "TargetStatIsGreaterThanValue";
 
     SelectElement selectAmount;
 
-    SelectElement selectStat;
     Map<int, StatAmount> amounts = StatAmount.getAllStats();
 
     Item crown;
 
 
     @override
-    String descText = "<b>My Stat IS:</b><br>Scene Owner's stat is greater than value: <br><br>";
+    String descText = "<b>My Opinion Is:</b><br>I Like Target More Than Value: <br><br>";
     @override
-    String notDescText = "<b>My Stat IS NOT:</b><br>Scene Owner's stat is less than or equal to value:<br><br>";
+    String notDescText = "<b>My Opinion IS NOT:</b><br>I do NOT Like Target More Than value:<br><br>";
 
     //strongly encouraged for this to be replaced
     //like, "An ominous 'honk' makes the Knight of Rage drop the Juggalo Poster in shock. With growing dread they realize that shit is about to get hella rowdy, as the Mirthful Messiahs have rolled into town.
 
-    MyStatIsGreaterThanValue(SerializableScene scene) : super(scene){
+    MyOpinionOfTargetIsGreaterThanValue(SerializableScene scene) : super(scene){
     }
 
     @override
@@ -35,27 +34,7 @@ class MyStatIsGreaterThanValue extends TargetConditionLiving {
         DivElement me = new DivElement();
         container.append(me);
 
-        selectStat = new SelectElement();
-        me.append(selectStat);
-        List<String> allStatsKnown = new List<String>.from(Stats.byName.keys);
-        for(String stat in allStatsKnown) {
-            OptionElement o = new OptionElement();
-            o.value = stat;
-            o.text = stat;
-            selectStat.append(o);
-            if(stat == importantWord) {
-                print("selecting ${o.value}");
-                o.selected = true;
-            }else {
-                //print("selecting ${o.value} is not ${itemTrait.toString()}");
-            }
 
-        }
-        if(importantWord == null) {
-            importantWord = allStatsKnown.first;
-            selectStat.selectedIndex = 0;
-        }
-        selectStat.onChange.listen((Event e) => syncToForm());
 
 
         selectAmount = new SelectElement();
@@ -64,7 +43,7 @@ class MyStatIsGreaterThanValue extends TargetConditionLiving {
         for(int amount in amounts.keys) {
             OptionElement o = new OptionElement();
             o.value = "$amount";
-            o.text = "${amounts[amount].name}(${amount})";
+            o.text = "${amounts[amount].name}($amount)";
             selectAmount.append(o);
             if(amount == importantInt) {
                 print("selecting ${o.value}");
@@ -77,23 +56,16 @@ class MyStatIsGreaterThanValue extends TargetConditionLiving {
         selectAmount.onChange.listen((Event e) => syncToForm());
         syncFormToMe();
         scene.syncForm();
-
     }
 
 
     @override
     TargetCondition makeNewOfSameType() {
-        return new MyStatIsGreaterThanValue(scene);
+        return new MyOpinionOfTargetIsGreaterThanValue(scene);
     }
 
     @override
     void syncFormToMe() {
-        for(OptionElement o in selectStat.options) {
-            if(o.value == importantWord) {
-                o.selected = true;
-                return;
-            }
-        }
 
         for(OptionElement o in selectAmount.options) {
             if(o.value == "${importantInt}") {
@@ -106,7 +78,6 @@ class MyStatIsGreaterThanValue extends TargetConditionLiving {
 
     @override
     void syncToForm() {
-        importantWord = selectStat.options[selectStat.selectedIndex].value;
         importantInt = int.parse(selectAmount.options[selectAmount.selectedIndex].value);
 
         syncNotFlagToForm();
@@ -115,14 +86,16 @@ class MyStatIsGreaterThanValue extends TargetConditionLiving {
     @override
     void copyFromJSON(JSONObject json) {
         //nothing to do
-        importantWord = json[TargetCondition.IMPORTANTWORD];
         importantInt = int.parse(json[TargetCondition.IMPORTANTINT]);
 
     }
 
     @override
     bool conditionForFilter(GameEntity actor, GameEntity item) {
-        Stat stat = Stats.byName[importantWord];
-        return !(scene.gameEntity.getStat(stat) > importantInt);
+        Relationship r = actor.getRelationshipWith(item);
+        if(r == null) {
+            return true;  //filter me i don't exist
+        }
+        return !(r.value > importantInt);
     }
 }

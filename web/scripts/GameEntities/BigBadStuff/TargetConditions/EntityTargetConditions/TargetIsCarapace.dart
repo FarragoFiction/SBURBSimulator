@@ -103,7 +103,7 @@ class TargetIsCarapace extends TargetConditionLiving {
   }
 
   @override
-  bool conditionForFilter(GameEntity item) {
+  bool conditionForFilter(GameEntity actor, GameEntity item) {
     //print("i am ${scene.gameEntity}, checking for is Carapace for ${item}, carapace initials are $importantWord");
     if(importantWord != ANY) {
         //print("looking for specific carapace");

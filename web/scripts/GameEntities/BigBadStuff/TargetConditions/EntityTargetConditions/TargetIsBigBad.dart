@@ -46,7 +46,7 @@ class TargetIsBigBad extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         return !(item is BigBad);
     }
 }

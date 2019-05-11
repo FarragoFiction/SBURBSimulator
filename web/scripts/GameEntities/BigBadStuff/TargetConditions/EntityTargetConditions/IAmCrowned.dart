@@ -45,7 +45,7 @@ class IAmCrowned extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         return scene.gameEntity.crowned == null;
     }
 }

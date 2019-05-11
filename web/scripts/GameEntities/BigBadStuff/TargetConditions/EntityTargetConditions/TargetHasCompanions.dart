@@ -46,7 +46,7 @@ class TargetHasCompanions extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         return item.companionsCopy.isEmpty;
     }
 }

@@ -66,7 +66,7 @@ class TargetEntityHasCompanionNamed extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         for(GameEntity companion in item.companionsCopy) {
             if(companion.title().toLowerCase().contains(
                 importantWord.toLowerCase())) return false;

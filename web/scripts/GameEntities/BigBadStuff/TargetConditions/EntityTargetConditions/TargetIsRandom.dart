@@ -74,7 +74,7 @@ class TargetIsRandom extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         //reject if it's bigger than important int. if int is small, most will be rejected
         int number = scene.session.rand.nextIntRange(0, 100);
         return number > importantInt;

@@ -45,7 +45,7 @@ class TargetIsFromDerse extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         if(item is Carapace) {
             Carapace c = item as Carapace;
             return c.type != Carapace.DERSE;

@@ -62,7 +62,7 @@ class TargetIsInSessionXEndsWith extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
        // print("session is ${scene.session.session_id} and ends with is ${importantInt} and will i return true? ${"${scene.session.session_id}".endsWith("$importantInt")}");
         return !"${scene.session.session_id}".endsWith("$importantInt");
 

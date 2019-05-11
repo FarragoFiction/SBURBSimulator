@@ -44,7 +44,7 @@ class TargetHasEverDied extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         if(item is Player) {
             if((item as Player).timesDied > 0) return false;
         }

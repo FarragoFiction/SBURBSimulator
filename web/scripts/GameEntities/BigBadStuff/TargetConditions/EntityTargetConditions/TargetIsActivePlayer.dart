@@ -44,7 +44,7 @@ class TargetIsActivePlayer extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         return !(item is Player) && !(item as Player).isActive();
     }
 }

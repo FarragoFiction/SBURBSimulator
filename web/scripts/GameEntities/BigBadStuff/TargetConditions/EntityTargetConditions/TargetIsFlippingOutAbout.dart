@@ -65,7 +65,7 @@ class TargetIsFlippingOutAbout extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         bool ret = true; //reject if not player
         if(item is Player) {
             if(item.flipOutReason != null) {

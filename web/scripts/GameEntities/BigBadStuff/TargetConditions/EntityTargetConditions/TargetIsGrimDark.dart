@@ -46,7 +46,7 @@ class TargetIsGrimDark extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         if (item is Player) {
             if((item as Player).grimDark >=1) {
                 return false; //don't remove if i'm this aspect

@@ -62,7 +62,7 @@ class TargetIsInSessionMultipleX extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         return scene.session.session_id % importantInt != 0;
 
     }

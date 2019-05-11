@@ -138,7 +138,7 @@ class TargetHasItemWithTrait extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity entity) {
+    bool conditionForFilter(GameEntity actor, GameEntity entity) {
         for(Item i in entity.sylladex) {
             bool ret = (i.hasTrait(itemTrait));
             if(ret == true) {

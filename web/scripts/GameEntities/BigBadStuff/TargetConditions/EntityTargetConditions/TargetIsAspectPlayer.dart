@@ -39,7 +39,7 @@ class TargetIsAspectPlayer extends TargetConditionLiving {
 
 
   @override
-  bool conditionForFilter(GameEntity item) {
+  bool conditionForFilter(GameEntity actor, GameEntity item) {
       if (item is Player) {
           //print("TEST BULLSHIT: $item is a player");
           if((item as Player).aspect.isThisMyName(aspectName)) {

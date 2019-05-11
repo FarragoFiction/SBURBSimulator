@@ -67,7 +67,7 @@ class TargetEntityNameContains extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         bool ret = !item.name.toLowerCase().contains(importantWord.toLowerCase());
         //print("item is $item and does it NOT contain $importantWord? $ret  (which will be flipped: $not)");
         return ret;

@@ -65,7 +65,7 @@ class TargetHasScene extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         //print("checking if target has scene, not is $not, entity is ${scene.gameEntity}, target is ${item}");
         List<String> serializedScenes = new List<String>();
         for(Scene s in item.scenes) {

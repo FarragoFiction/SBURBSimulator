@@ -45,7 +45,7 @@ class TargetIsFromProspit extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
        // print("oh, hello there. Is this $item from prospit?");
         if(item is Carapace) {
             Carapace c = item as Carapace;

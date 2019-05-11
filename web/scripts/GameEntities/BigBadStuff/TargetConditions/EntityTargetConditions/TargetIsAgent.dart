@@ -46,7 +46,7 @@ class TargetIsAgent extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         if(item is Carapace) {
             List<String> validInitials = <String>["SS","HB","DD","CD","PS","PI","AD","NB","HD"];
             for(String initial in validInitials) {

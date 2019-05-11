@@ -204,24 +204,24 @@ abstract class TargetCondition {
 abstract class TargetConditionLiving extends TargetCondition {
   TargetConditionLiving(SerializableScene scene) : super(scene);
   //what are we removing?
-  bool conditionForFilter(GameEntity item);
+  bool conditionForFilter(GameEntity actor, GameEntity item);
 
 
   List<GameEntity> filter(List<GameEntity> list) {
       if(not) {
           if(vriska) {
               //reject all if my condition isn't met
-              if(!conditionForFilter(scene.gameEntity)) list.clear();
+              if(!conditionForFilter(scene.gameEntity,scene.gameEntity)) list.clear();
           }else {
-              list.removeWhere((GameEntity item) => !conditionForFilter(item));
+              list.removeWhere((GameEntity item) => !conditionForFilter(scene.gameEntity,item));
           }
 
       }else {
           if(vriska) {
               //reject all if my condition is met
-              if(conditionForFilter(scene.gameEntity)) list.clear();
+              if(conditionForFilter(scene.gameEntity,scene.gameEntity)) list.clear();
           }else {
-              list.removeWhere((GameEntity item) => conditionForFilter(item));
+              list.removeWhere((GameEntity item) => conditionForFilter(scene.gameEntity,item));
           }
       }
       return list;

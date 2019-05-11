@@ -67,7 +67,7 @@ class TargetEntitySpriteNameContains extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         if(item is Player) {
             Player p = item as Player;
             Sprite sprite = p.sprite;

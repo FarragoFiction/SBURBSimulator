@@ -46,7 +46,7 @@ class TargetIsRoyalty extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         if(item is Carapace) {
             return !(item as Carapace).royalty;
         }else if (item is Player) {

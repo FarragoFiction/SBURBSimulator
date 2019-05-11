@@ -44,7 +44,7 @@ class TargetHasKilledAnything extends TargetConditionLiving {
     }
 
     @override
-    bool conditionForFilter(GameEntity item) {
+    bool conditionForFilter(GameEntity actor, GameEntity item) {
         return item.playerKillCount == 0;
     }
 }
