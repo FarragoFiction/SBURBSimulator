@@ -9,7 +9,7 @@ class MyOpinionOfTargetIsGreaterThanValue extends TargetConditionLiving {
 
     SelectElement selectAmount;
 
-    Map<int, StatAmount> amounts = StatAmount.getAllStats();
+    List<int> amounts = <int>[-4000,-40,-20,-10,-5, 5,10,20,40,4000];
 
     Item crown;
 
@@ -40,10 +40,10 @@ class MyOpinionOfTargetIsGreaterThanValue extends TargetConditionLiving {
         selectAmount = new SelectElement();
         me.append(selectAmount);
 
-        for(int amount in amounts.keys) {
+        for(int amount in amounts) {
             OptionElement o = new OptionElement();
             o.value = "$amount";
-            o.text = "${amounts[amount].name}($amount)";
+            o.text = "$amount";
             selectAmount.append(o);
             if(amount == importantInt) {
                 print("selecting ${o.value}");
