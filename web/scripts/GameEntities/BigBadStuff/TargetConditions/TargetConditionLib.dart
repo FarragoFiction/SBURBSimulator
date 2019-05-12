@@ -2,6 +2,11 @@ library TargetConditionLib;
 
 export "TargetCondition.dart";
 export "EntityTargetConditions/TargetIsVillain.dart";
+export "EntityTargetConditions/TargetsOpinionOfMeIsGreaterThanValue.dart";
+export "EntityTargetConditions/TargetHasOpinionOfMe.dart";
+export "EntityTargetConditions/IHaveOpinionOfTarget.dart";
+export "EntityTargetConditions/MyOpinionOfTargetIsGreaterThanValue.dart";
+
 export "EntityTargetConditions/TargetHasTimeClones.dart";
 export "EntityTargetConditions/TargetIsTrollWithBloodColor.dart";
 export "EntityTargetConditions/TargetIsDoomed.dart";

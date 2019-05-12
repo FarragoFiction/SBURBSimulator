@@ -306,6 +306,11 @@ abstract class TargetConditionLiving extends TargetCondition {
       ret.add(new TargetIsPlayer(scene));
       ret.add(new TargetStatIsGreaterThanValue(scene));
       ret.add(new TargetStatIsGreaterThanMine(scene));
+      ret.add(new TargetHasOpinionOfMe(scene));
+      ret.add(new IHaveOpinionOfTarget(scene));
+      ret.add(new TargetsOpinionOfMeIsGreaterThanValue(scene));
+      ret.add(new MyOpinionOfTargetIsGreaterThanValue(scene));
+
       ret.add(new MyStatIsGreaterThanValue(scene));
       ret.add(new TargetIsFinalPlayer(scene));
       ret.add(new TargetIsClassPlayer(scene));
