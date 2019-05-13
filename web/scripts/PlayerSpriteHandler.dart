@@ -402,7 +402,7 @@ class PlayerSpriteHandler {
         if (player.sbahj) {
             Drawing.sbahjifier(canvas);
         }
-        Drawing.aspectSymbol(canvas, player);
+        await Drawing.aspectSymbol(canvas, player);
     }
 
 
