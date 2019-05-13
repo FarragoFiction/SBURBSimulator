@@ -265,13 +265,6 @@ dynamic loadOther(Session session, String skipInit){
 	loadImage(session,"discuss_jack.png",skipInit);
 	loadImage(session,"discuss_murder.png",skipInit);
   loadImage(session,"discuss_raps.png",skipInit);
-	for(int i = 1; i<4; i++){
-		loadImage(session,"Bodies/baby${i}.png",skipInit); //rendering engine will laod
-	}
-
-	for(int i = 1; i<4; i++){
-		loadImage(session,"Bodies/grub${i}.png",skipInit);
-	}
 	return null;
 }
 

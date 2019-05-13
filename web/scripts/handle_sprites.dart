@@ -495,7 +495,7 @@ abstract class Drawing {
 
 
     //leader is an adult, though.
-    static void poseBabiesAsATeam(CanvasElement canvas, Player leader, List<Player> players, List<Player> guardians) {
+    static void poseBabiesAsATeam(CanvasElement canvas, Player leader, List<Player> players, List<Player> guardians) async {
         if (checkSimMode() == true) {
             return;
         }
@@ -505,11 +505,11 @@ abstract class Drawing {
         drawSprite(leaderBuffer, leader);
         for (int i = 0; i < players.length; i++) {
             playerBuffers.add(getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight));
-            drawBabySprite(playerBuffers[i], players[i]); //,repeatTime);
+            await drawBabySprite(playerBuffers[i], players[i]); //,repeatTime);
         }
         for (int i = 0; i < guardians.length; i++) {
             guardianBuffers.add(getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight));
-            drawBabySprite(guardianBuffers[i], guardians[i]); //,repeatTime);
+            await drawBabySprite(guardianBuffers[i], guardians[i]); //,repeatTime);
         }
         //leader on far left, babies arranged to right.
         copyTmpCanvasToRealCanvasAtPos(canvas, leaderBuffer, -100, 0);
@@ -1452,7 +1452,7 @@ abstract class Drawing {
     }
 
 
-    static void drawBabySprite(CanvasElement canvas, Player player) {
+    static void drawBabySprite(CanvasElement canvas, Player player) async{
         if (checkSimMode() == true) {
             return;
         }
@@ -1462,7 +1462,7 @@ abstract class Drawing {
         //don't forget to shrink baby
         ctx.scale(0.5, 0.5);
 
-        drawSpriteFromScratch(canvas, player, ctx, true);
+        await await drawSpriteFromScratch(canvas, player, ctx, true);
     }
 
 
@@ -1506,7 +1506,7 @@ abstract class Drawing {
         canvas.context2D.drawImage(image, 0, 0);
     }
 
-    static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) {
+    static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) async {
 
         if (checkSimMode() == true) {
             return;
@@ -1562,7 +1562,7 @@ abstract class Drawing {
                 robo_face(canvas, player);
             }
         } else {
-            babySprite(canvas, player);
+            await babySprite(canvas, player);
             if (player.baby_stuck && !baby) {
                 bloody_face(canvas, player); //not just for murder mode, because you can kill another player if THEY are murder mode.
                 if (player.murderMode == true) {
@@ -1942,24 +1942,29 @@ abstract class Drawing {
     }
 
 
-    static void babySprite(CanvasElement canvas, Player player) {
+    static void babySprite(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "Bodies/baby${player.baby}.png";
         if (player.isTroll) {
             imageString = "Bodies/grub${player.baby}.png";
         }
-        addImageTag(imageString);
-        ImageElement img = imageSelector(imageString);
-        ctx.drawImage(img, 0, 0);
-        if (player.sbahj) {
-            sbahjifier(canvas);
-        }
-        if (player.isTroll) {
-            swapColors(canvas, ReferenceColours.GRUB, new Colour.fromStyleString(player.bloodColor));
-        } else {
-            swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_light, player.aspect.palette.shirt_light);
-            swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_dark, player.aspect.palette.shirt_dark);
-        }
+        ImageElement img = new ImageElement(src: imageString);
+        Completer<void> completer = new Completer<void>();
+        img.onLoad.listen((Event e) {
+            ctx.drawImage(img, 0, 0);
+            if (player.sbahj) {
+                sbahjifier(canvas);
+            }
+            if (player.isTroll) {
+                swapColors(canvas, ReferenceColours.GRUB, new Colour.fromStyleString(player.bloodColor));
+            } else {
+                swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_light, player.aspect.palette.shirt_light);
+                swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_dark, player.aspect.palette.shirt_dark);
+            }
+            completer.complete;
+        });
+
+        return completer.future;
     }
 
 

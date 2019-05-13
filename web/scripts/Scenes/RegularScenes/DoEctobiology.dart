@@ -22,6 +22,8 @@ class DoEctobiology extends Scene {
 		}
 		return false;
 	}
+
+
 	void drawLeaderPlusBabies(Element div){
 		//alert("drawing babies");
 		num repeatTime = 1000;
