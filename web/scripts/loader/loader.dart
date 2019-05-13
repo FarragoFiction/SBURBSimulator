@@ -30,11 +30,11 @@ abstract class Loader {
             var res = _resources[path]; // ignore: always_specify_types
             //print(res.runtimeType);
             //if (res is Resource<T>) {
-                if (res.object != null) {
-                    return res.object;
-                } else {
-                    return res.addListener();
-                }
+            if (res.object != null) {
+                return res.object;
+            } else {
+                return res.addListener();
+            }
             //} else {
             //    throw "Requested resource ($path) is an unexpected type: ${res.object.runtimeType}.";
             //}

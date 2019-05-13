@@ -356,7 +356,7 @@ abstract class Drawing {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         int num = player.quirk.favoriteNumber;
         //int num = 5;
-        String imageString = "Wings/wing$num.png";
+        String imageString = "images/Wings/wing$num.png";
         await drawWhateverFuture(canvas, imageString);
 
 
@@ -369,9 +369,9 @@ abstract class Drawing {
 
     static void grimDarkHalo(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "grimdark.png";
+        String imageString = "images/grimdark.png";
         if (player.trickster) {
-            imageString = "squiddles_chaos.png";
+            imageString = "images/squiddles_chaos.png";
         }
         await drawWhateverFuture(canvas, imageString);
     }
@@ -380,7 +380,7 @@ abstract class Drawing {
     static void fin1(CanvasElement canvas, Player player) async{
         if (player.bloodColor == "#610061" || player.bloodColor == "#99004d") {
             CanvasRenderingContext2D ctx = canvas.getContext('2d');
-            String imageString = "fin1.png";
+            String imageString = "images/fin1.png";
             await drawWhateverFuture(canvas, imageString);
         }
     }
@@ -388,7 +388,7 @@ abstract class Drawing {
     static void fin2(CanvasElement canvas, Player player) async {
         if (player.bloodColor == "#610061" || player.bloodColor == "#99004d") {
             CanvasRenderingContext2D ctx = canvas.getContext('2d');
-            String imageString = "fin2.png";
+            String imageString = "images/fin2.png";
             await drawWhateverFuture(canvas, imageString);
         }
     }
@@ -405,7 +405,7 @@ abstract class Drawing {
     //same for wings eventually.
     static void leftHorn(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "Horns/left${player.leftHorn}.png";
+        String imageString = "images/Horns/left${player.leftHorn}.png";
         drawWhateverFuture(canvas,imageString);
         ////print("Random number is: " + randNum);
     }
@@ -416,7 +416,7 @@ abstract class Drawing {
         // //;
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
 
-        String imageString = "Horns/right${player.rightHorn}.png";
+        String imageString = "images/Horns/right${player.rightHorn}.png";
         drawWhateverFuture(canvas,imageString);
     }
 
@@ -1411,7 +1411,7 @@ abstract class Drawing {
 
     static void stabs(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "stab.png";
+        String imageString = "images/stab.png";
         drawWhateverFuture(canvas,imageString);
 
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
@@ -1420,7 +1420,7 @@ abstract class Drawing {
 
     static void kingDeath(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "sceptre.png";
+        String imageString = "images/sceptre.png";
         drawWhateverFuture(canvas,imageString);
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
     }
@@ -1428,7 +1428,7 @@ abstract class Drawing {
 
     static void bloodPuddle(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "blood_puddle.png";
+        String imageString = "images/blood_puddle.png";
         await drawWhateverFuture(canvas, imageString);
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
     }
@@ -1495,8 +1495,23 @@ abstract class Drawing {
     }
 
 
-    static Future<Null>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
-        ImageElement image = await Loader.getResource((imageString));
+    //need to figure out why the loader just flat out won't work here because it doesn't return an imageElement (but instead dynamic)
+    //it did this in dolllib too, and pl fixed something, but sburbsim doesn't USE the loader lib that's actually a library
+    //need to convert it to do so but thers too much i dn'tundrestand here
+    static Future<void>  drawWhateverFutureBack(CanvasElement canvas, String imageString) async {
+        CanvasRenderingContext2D ctx = canvas.getContext('2d');
+        ImageElement img = new ImageElement(src: imageString);
+        Completer<void> completer = new Completer<void>();
+        img.onLoad.listen((Event e) {
+            ctx.drawImage(img, 0, 0);
+            completer.complete();
+        });
+        return completer.future;
+    }
+
+    static Future<void>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
+        print("trying to await resource $imageString");
+        ImageElement image = await Loader.getResource<ImageElement>((imageString));
         //;
         canvas.context2D.drawImage(image, 0, 0);
     }
@@ -1574,16 +1589,16 @@ abstract class Drawing {
 
 
         if (ouija) {
-            await drawWhateverFuture(canvas, "/Bodies/pen15.png");
+            await drawWhateverFuture(canvas, "images//Bodies/pen15.png");
         }
 
         if (faceOff) {
             if (random() > .9) {
-                await drawWhateverFuture(canvas, "/Bodies/face4.png");
+                await drawWhateverFuture(canvas, "images//Bodies/face4.png");
 
                 ///spooky wolf easter egg.
             } else {
-                await drawWhateverFuture(canvas, "/Bodies/face${player.baby}.png");
+                await drawWhateverFuture(canvas, "images//Bodies/face${player.baby}.png");
             }
         }
         await hair(canvas, player);
@@ -1661,21 +1676,21 @@ abstract class Drawing {
 
     static void robo_face(CanvasElement canvas, Player player) async{
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "robo_face.png";
+        String imageString = "images/robo_face.png";
         await drawWhateverFuture(canvas, imageString);
     }
 
 
     static void scar_face(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "calm_scratch_face.png";
+        String imageString = "images/calm_scratch_face.png";
         await drawWhateverFuture(canvas, imageString);
     }
 
 
     static void scratch_face(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "scratch_face.png";
+        String imageString = "images/scratch_face.png";
         await drawWhateverFuture(canvas, imageString);
 
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor)); //it's their own blood
@@ -1686,7 +1701,7 @@ abstract class Drawing {
     static void bloody_face(CanvasElement canvas, Player player) async {
         if (player.victimBlood != null) {
             CanvasRenderingContext2D ctx = canvas.getContext('2d');
-            String imageString = "bloody_face.png";
+            String imageString = "images/bloody_face.png";
             await drawWhateverFuture(canvas, imageString);
 
             swapColors(canvas, ReferenceColours.BLOODY_FACE, new Colour.fromStyleString(player.victimBlood)); //it's not their own blood
@@ -1744,7 +1759,7 @@ abstract class Drawing {
 
     static void hairBack(CanvasElement canvas, Player player)async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "Hair/hair_back${player.hair}.png";
+        String imageString = "images/Hair/hair_back${player.hair}.png";
         ////print(imageString);
         await drawWhateverFuture(canvas, imageString);
 
@@ -1763,7 +1778,7 @@ abstract class Drawing {
 
     static void hair(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "Hair/hair${player.hair}.png";
+        String imageString = "images/Hair/hair${player.hair}.png";
         await drawWhateverFuture(canvas, imageString);
         if (player.sbahj) {
             sbahjifier(canvas);
@@ -1827,23 +1842,23 @@ abstract class Drawing {
 
     static String playerToRegularBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "Bodies/reg${(classNameToInt(player.class_name)+1)}.png";
+        return "images/Bodies/reg${(classNameToInt(player.class_name)+1)}.png";
     }
 
     static String playerToCowl(Player player) {
         if (easter_egg) return playerToEggBody(player); //no cowl, just double up on egg.
-        return "Bodies/cowl${(classNameToInt(player.class_name)+1)}.png";
+        return "images/Bodies/cowl${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToDreamBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "Bodies/dream${(classNameToInt(player.class_name)+1)}.png";
+        return "images/Bodies/dream${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToEggBody(Player player) {
-        return "Bodies/egg${(classNameToInt(player.class_name)+1)}.png";
+        return "images/Bodies/egg${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
@@ -1909,7 +1924,7 @@ abstract class Drawing {
         String imageString = playerToGodBody(player);
         await drawWhateverFuture(canvas, imageString);
         if (bardQuest && player.class_name == SBURBClassManager.BARD) {
-            await drawWhateverFuture(canvas, "/Bodies/cod.png");
+            await drawWhateverFuture(canvas, "images//Bodies/cod.png");
         }
         aspectPalletSwap(canvas, player);
         if (player.sbahj) {
@@ -1955,7 +1970,7 @@ abstract class Drawing {
 
     static void dreamSymbol(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "${player.moon}_symbol.png";
+        String imageString = "images/${player.moon}_symbol.png";
         await drawWhateverFuture(canvas, imageString);
     }
 

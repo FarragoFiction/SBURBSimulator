@@ -113,7 +113,7 @@ String escapeId(String toEscape) {
 }
 
 
-dynamic checkDone(Session session, String skipInit){
+void checkDone(Session session, String skipInit){
     if(querySelector("#loading_stats") != null) querySelector("#loading_stats").text = ("Images Loaded: $imagesLoaded");
 	if((imagesLoaded != 0 && imagesWaiting == imagesLoaded) || doNotRender == true){  //if i'm not using images, don't load them, dunkass.
 		//querySelector("#loading").remove(); //not loading anymore
@@ -345,6 +345,7 @@ dynamic loadAllPossiblePlayers(Session session, skipInit){
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
 dynamic loadPlayer(Session session, Player player, String skipInit){
 	if(doNotRender == true) return checkDone(session,skipInit);
+	return null;
   if(player == null) return null;
 	//String imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString);
