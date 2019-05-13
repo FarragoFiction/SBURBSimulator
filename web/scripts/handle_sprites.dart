@@ -1942,11 +1942,14 @@ abstract class Drawing {
     }
 
 
-    static void babySprite(CanvasElement canvas, Player player) async {
+    static Future<void> babySprite(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "Bodies/baby${player.baby}.png";
+        if(player.baby == null) {
+            player.baby = 1;
+        }
+        String imageString = "images/Bodies/baby${player.baby}.png";
         if (player.isTroll) {
-            imageString = "Bodies/grub${player.baby}.png";
+            imageString = "images/Bodies/grub${player.baby}.png";
         }
         ImageElement img = new ImageElement(src: imageString);
         Completer<void> completer = new Completer<void>();
@@ -1961,9 +1964,9 @@ abstract class Drawing {
                 swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_light, player.aspect.palette.shirt_light);
                 swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_dark, player.aspect.palette.shirt_dark);
             }
-            completer.complete;
-        });
 
+            completer.complete();
+        });
         return completer.future;
     }
 
