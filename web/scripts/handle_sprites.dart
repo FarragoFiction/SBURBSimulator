@@ -949,30 +949,26 @@ abstract class Drawing {
     }
 
 
-    static void drawDreamBubble(CanvasElement canvas) {
+    static void drawDreamBubble(CanvasElement canvas) async {
         if (checkSimMode() == true) {
             return;
         }
-        CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "dreambubbles.png";
-        addImageTag(imageString);
-        ImageElement img = imageSelector(imageString);
-        ctx.drawImage(img, 0, 0);
+        await drawWhateverFuture(canvas, imageString);
     }
 
 
-    static void drawHorrorterror(CanvasElement canvas) {
+    static void drawHorrorterror(CanvasElement canvas) async {
         if (checkSimMode() == true) {
             return;
         }
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "horrorterror.png";
-        addImageTag(imageString);
-        ImageElement img = imageSelector(imageString);
-        ctx.drawImage(img, 0, 0);
+        await drawWhateverFuture(canvas, imageString);
+
     }
 
-
+//TODO figure out how to upgrade this to async
     static void drawMoon(CanvasElement canvas, Player player) {
         if (checkSimMode() == true) {
             return;
@@ -1905,7 +1901,6 @@ abstract class Drawing {
 
     static void dreamSprite(CanvasElement canvas, Player player) async {
         String imageString = playerToDreamBody(player);
-        addImageTag(imageString);
         await drawWhateverFuture(canvas, imageString);
         dreamPalletSwap(canvas, player);
     }
@@ -1913,7 +1908,7 @@ abstract class Drawing {
 
     static String playerToGodBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "Bodies/god${(classNameToInt(player.class_name)+1)}.png";
+        return "images/Bodies/god${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
@@ -1924,7 +1919,7 @@ abstract class Drawing {
         String imageString = playerToGodBody(player);
         await drawWhateverFuture(canvas, imageString);
         if (bardQuest && player.class_name == SBURBClassManager.BARD) {
-            await drawWhateverFuture(canvas, "images//Bodies/cod.png");
+            await drawWhateverFuture(canvas, "images/Bodies/cod.png");
         }
         aspectPalletSwap(canvas, player);
         if (player.sbahj) {
