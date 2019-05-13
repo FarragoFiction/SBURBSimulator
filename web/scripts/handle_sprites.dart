@@ -1498,7 +1498,7 @@ abstract class Drawing {
     //need to figure out why the loader just flat out won't work here because it doesn't return an imageElement (but instead dynamic)
     //it did this in dolllib too, and pl fixed something, but sburbsim doesn't USE the loader lib that's actually a library
     //need to convert it to do so but thers too much i dn'tundrestand here
-    static Future<void>  drawWhateverFutureBack(CanvasElement canvas, String imageString) async {
+    static Future<void>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         ImageElement img = new ImageElement(src: imageString);
         Completer<void> completer = new Completer<void>();
@@ -1509,7 +1509,7 @@ abstract class Drawing {
         return completer.future;
     }
 
-    static Future<void>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
+    static Future<void>  drawWhateverFutureBack(CanvasElement canvas, String imageString) async {
         print("trying to await resource $imageString");
         ImageElement image = await Loader.getResource<ImageElement>((imageString));
         //;
