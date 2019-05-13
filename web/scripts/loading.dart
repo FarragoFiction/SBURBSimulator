@@ -6,6 +6,8 @@ num imagesWaiting = 0;
 num imagesLoaded = 0;
 var globalCallBack = null;
 
+//TODO: look at how babies do async graphics plz
+
 dynamic loadFuckingEverything(Session session, String skipInit, cb){
 	if(doNotRender == true) return checkDone(session, skipInit);
 	loadAllImages(session,skipInit);
