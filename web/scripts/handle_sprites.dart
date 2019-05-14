@@ -204,7 +204,6 @@ abstract class Drawing {
 
 
     //work once again gives me inspiration for this sim. thanks, bob!!!
-    //TODO this isn't async yet?
     static void drainedGhostSwap(CanvasElement canvas) {
         if (checkSimMode() == true) {
             return;
@@ -219,8 +218,6 @@ abstract class Drawing {
         CanvasElement rainbow_canvas = getBufferCanvas(SimController.rainbowTemplateWidth, SimController.rainbowTemplateHeight);
         CanvasRenderingContext2D rctx = rainbow_canvas.context2D;
         rctx.drawImage(img, 0, 0);
-        drawWhateverFuture(rainbow_canvas,imageString);
-
         ImageData img_data_rainbow = rctx.getImageData(0, 0, width, height);
         //4 *Math.floor(i/(4000)) is because 1/(width*4) get me the row number (*4 'cause there are 4 elements per pixel). then, when i have the row number, *4 again because first row is 0,1,2,3 and second is 4,5,6,7 and third is 8,9,10,11
         for (int i = 0; i < img_data.data.length; i += 4) {
@@ -346,7 +343,7 @@ abstract class Drawing {
         swapColors(canvas, ReferenceColours.WHITE, ReferenceColours.ROBOT);
     }
 
-    static void wings(CanvasElement canvas, Player player) async {
+    static void wings(CanvasElement canvas, Player player) {
         //blood players have no wings, all other players have wings matching
         //favorite color
         if (!player.aspect.trollWings) {
@@ -356,9 +353,10 @@ abstract class Drawing {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         int num = player.quirk.favoriteNumber;
         //int num = 5;
-        String imageString = "images/Wings/wing$num.png";
-        await drawWhateverFuture(canvas, imageString);
-
+        String imageString = "Wings/wing$num.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0); //,width,height);
 
         Colour blood = new Colour.fromStyleString(player.bloodColor);
         swapColors(canvas, ReferenceColours.RED, blood);
@@ -367,35 +365,41 @@ abstract class Drawing {
 
     }
 
-    static void grimDarkHalo(CanvasElement canvas, Player player) async {
+    static void grimDarkHalo(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/grimdark.png";
+        String imageString = "grimdark.png";
         if (player.trickster) {
-            imageString = "images/squiddles_chaos.png";
+            imageString = "squiddles_chaos.png";
         }
-        await drawWhateverFuture(canvas, imageString);
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
     //TODO, eventually render fin1, then hair, then fin2
-    static void fin1(CanvasElement canvas, Player player) async{
+    static void fin1(CanvasElement canvas, Player player) {
         if (player.bloodColor == "#610061" || player.bloodColor == "#99004d") {
             CanvasRenderingContext2D ctx = canvas.getContext('2d');
-            String imageString = "images/fin1.png";
-            await drawWhateverFuture(canvas, imageString);
+            String imageString = "fin1.png";
+            addImageTag(imageString);
+            ImageElement img = imageSelector(imageString);
+            ctx.drawImage(img, 0, 0);
         }
     }
 
-    static void fin2(CanvasElement canvas, Player player) async {
+    static void fin2(CanvasElement canvas, Player player) {
         if (player.bloodColor == "#610061" || player.bloodColor == "#99004d") {
             CanvasRenderingContext2D ctx = canvas.getContext('2d');
-            String imageString = "images/fin2.png";
-            await drawWhateverFuture(canvas, imageString);
+            String imageString = "fin2.png";
+            addImageTag(imageString);
+            ImageElement img = imageSelector(imageString);
+            ctx.drawImage(img, 0, 0);
         }
     }
 
-    static void horns(CanvasElement canvas, Player player)async  {
-        await leftHorn(canvas, player);
-        await rightHorn(canvas, player);
+    static void horns(CanvasElement canvas, Player player) {
+        leftHorn(canvas, player);
+        rightHorn(canvas, player);
     }
 
 
@@ -403,21 +407,26 @@ abstract class Drawing {
     //position horns on an image as big as the canvas. put the horns directly on the
     //place where the head of every sprite would be.
     //same for wings eventually.
-    static void leftHorn(CanvasElement canvas, Player player) async {
+    static void leftHorn(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/Horns/left${player.leftHorn}.png";
-        drawWhateverFuture(canvas,imageString);
+        String imageString = "Horns/left${player.leftHorn}.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         ////print("Random number is: " + randNum);
     }
 
     //parse horns sprite sheet. render a random right horn.
     //right horn should be at: 120,40
-    static void rightHorn(CanvasElement canvas, Player player) async {
+    static void rightHorn(CanvasElement canvas, Player player) {
         // //;
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
 
-        String imageString = "images/Horns/right${player.rightHorn}.png";
-        drawWhateverFuture(canvas,imageString);
+        String imageString = "Horns/right${player.rightHorn}.png";
+        addImageTag(imageString);
+
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
     static void addImageTag(String url) {
@@ -924,15 +933,6 @@ abstract class Drawing {
         canvas.context2D.drawImage(temp, 0,0);
     }
 
-    static void drawWhateverFutureWithPalleteSwapCallback(CanvasElement canvas, String str, Player player, PaletteSwapCallback palleteSwapCallBack) async {
-        CanvasElement temp = getBufferCanvas(canvas.width, canvas.height);
-
-        await drawWhateverFuture(temp, str);
-        ////;
-        palleteSwapCallBack(temp, player); //regular, trickster, robo, whatever.
-        canvas.context2D.drawImage(temp, 0,0);
-    }
-
     //have i really been too lazy to make this until now
     static void drawWhatever(CanvasElement canvas, String imageString) {
         if (checkSimMode() == true) {
@@ -949,26 +949,30 @@ abstract class Drawing {
     }
 
 
-    static void drawDreamBubble(CanvasElement canvas) async {
+    static void drawDreamBubble(CanvasElement canvas) {
         if (checkSimMode() == true) {
             return;
         }
+        CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "dreambubbles.png";
-        await drawWhateverFuture(canvas, imageString);
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
 
-    static void drawHorrorterror(CanvasElement canvas) async {
+    static void drawHorrorterror(CanvasElement canvas) {
         if (checkSimMode() == true) {
             return;
         }
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = "horrorterror.png";
-        await drawWhateverFuture(canvas, imageString);
-
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
-//TODO figure out how to upgrade this to async
+
     static void drawMoon(CanvasElement canvas, Player player) {
         if (checkSimMode() == true) {
             return;
@@ -1407,25 +1411,30 @@ abstract class Drawing {
 
     static void stabs(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/stab.png";
-        drawWhateverFuture(canvas,imageString);
-
+        String imageString = "stab.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
     }
 
 
     static void kingDeath(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/sceptre.png";
-        drawWhateverFuture(canvas,imageString);
+        String imageString = "sceptre.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
     }
 
 
-    static void bloodPuddle(CanvasElement canvas, Player player) async {
+    static void bloodPuddle(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/blood_puddle.png";
-        await drawWhateverFuture(canvas, imageString);
+        String imageString = "blood_puddle.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor));
     }
 
@@ -1443,6 +1452,10 @@ abstract class Drawing {
     }
 
 
+    //JR: It's 5/13/19 and while getting babies async was easy and stopped some crashes from
+    //preloading too many assets....
+    //two days of effort did NOT make any other aspect of rendering async. it was a hairball
+    //that kept getting worse and worse. please. jsut wait for SBURBSim2.
     static void drawBabySprite(CanvasElement canvas, Player player) async{
         if (checkSimMode() == true) {
             return;
@@ -1491,23 +1504,8 @@ abstract class Drawing {
     }
 
 
-    //need to figure out why the loader just flat out won't work here because it doesn't return an imageElement (but instead dynamic)
-    //it did this in dolllib too, and pl fixed something, but sburbsim doesn't USE the loader lib that's actually a library
-    //need to convert it to do so but thers too much i dn'tundrestand here
-    static Future<void>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
-        CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        ImageElement img = new ImageElement(src: imageString);
-        Completer<void> completer = new Completer<void>();
-        img.onLoad.listen((Event e) {
-            ctx.drawImage(img, 0, 0);
-            completer.complete();
-        });
-        return completer.future;
-    }
-
-    static Future<void>  drawWhateverFutureBack(CanvasElement canvas, String imageString) async {
-        print("trying to await resource $imageString");
-        ImageElement image = await Loader.getResource<ImageElement>((imageString));
+    static Future<Null>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
+        ImageElement image = await Loader.getResource((imageString));
         //;
         canvas.context2D.drawImage(image, 0, 0);
     }
@@ -1537,75 +1535,75 @@ abstract class Drawing {
         }
 
         if (!baby && player.grimDark > 3) {
-            await grimDarkHalo(canvas, player);
+            grimDarkHalo(canvas, player);
         }
 
         //spotlight
-        if (player.session.mutator.hasSpotLight(player)) await drawWhateverFuture(canvas, player.aspect.bigSymbolImgLocation);
+        if (player.session.mutator.hasSpotLight(player)) drawWhatever(canvas, player.aspect.bigSymbolImgLocation);
 
         if (!baby && player.isTroll && player.godTier) { //wings before sprite
-            await wings(canvas, player);
+            wings(canvas, player);
         }
 
         if (!baby && player.dead) {
-            await bloodPuddle(canvas, player);
+            bloodPuddle(canvas, player);
         }
-        await hairBack(canvas, player);
+        hairBack(canvas, player);
         if (player.isTroll) { //wings before sprite
-            await fin2(canvas, player);
+            fin2(canvas, player);
         }
 
         if (!baby && !player.baby_stuck) {
-            await playerToSprite(canvas, player);
-            await bloody_face(canvas, player); //not just for murder mode, because you can kill another player if THEY are murder mode.
+            playerToSprite(canvas, player);
+            bloody_face(canvas, player); //not just for murder mode, because you can kill another player if THEY are murder mode.
             if (player.murderMode == true) {
-                await scratch_face(canvas, player);
+                scratch_face(canvas, player);
             }
             if (player.leftMurderMode == true) {
-                await scar_face(canvas, player);
+                scar_face(canvas, player);
             }
             if (player.robot == true) {
-                await robo_face(canvas, player);
+                robo_face(canvas, player);
             }
         } else {
             await babySprite(canvas, player);
             if (player.baby_stuck && !baby) {
-                await bloody_face(canvas, player); //not just for murder mode, because you can kill another player if THEY are murder mode.
+                bloody_face(canvas, player); //not just for murder mode, because you can kill another player if THEY are murder mode.
                 if (player.murderMode == true) {
-                    await scratch_face(canvas, player);
+                    scratch_face(canvas, player);
                 }
                 if (player.leftMurderMode == true) {
-                    await scar_face(canvas, player);
+                    scar_face(canvas, player);
                 }
                 if (player.robot == true) {
-                    await robo_face(canvas, player);
+                    robo_face(canvas, player);
                 }
             }
         }
 
 
         if (ouija) {
-            await drawWhateverFuture(canvas, "images//Bodies/pen15.png");
+            drawWhatever(canvas, "/Bodies/pen15.png");
         }
 
         if (faceOff) {
             if (random() > .9) {
-                await drawWhateverFuture(canvas, "images//Bodies/face4.png");
+                drawWhatever(canvas, "/Bodies/face4.png");
 
                 ///spooky wolf easter egg.
             } else {
-                await drawWhateverFuture(canvas, "images//Bodies/face${player.baby}.png");
+                drawWhatever(canvas, "/Bodies/face${player.baby}.png");
             }
         }
-        await hair(canvas, player);
+        hair(canvas, player);
         if (player.isTroll) { //wings before sprite
-            await fin1(canvas, player);
+            fin1(canvas, player);
         }
         if (!baby && player.godTier) {
             PaletteSwapCallback callback = aspectPalletSwap;
             if (player.trickster) callback = candyPalletSwap;
             if (player.robot) callback = robotPalletSwap;
-            await drawWhateverFutureWithPalleteSwapCallback(canvas, playerToCowl(player), player, callback);
+            drawWhateverWithPalleteSwapCallback(canvas, playerToCowl(player), player, callback);
         }
 
         if (player.robot == true) {
@@ -1618,13 +1616,13 @@ abstract class Drawing {
             greySkin(canvas); //,player);
         }
         if (player.isTroll) {
-            await horns(canvas, player);
+            horns(canvas, player);
         }
 
         if (!baby && player.dead && player.causeOfDeath == "after being shown too many stabs from Jack") {
-            await stabs(canvas, player);
+            stabs(canvas, player);
         } else if (!baby && player.dead && player.causeOfDeath == "fighting the Black King") {
-            await kingDeath(canvas, player);
+            kingDeath(canvas, player);
         }
 
 
@@ -1641,7 +1639,7 @@ abstract class Drawing {
         if (player.brainGhost){
             ;
             ghostSwap(canvas);
-         }
+        }
 
         if (!baby && player.aspect == Aspects.VOID) {
             voidSwap(canvas, 1 - player.getStat(Stats.POWER) / (2000 * Stats.POWER.coefficient)); //a void player at 2000 power is fully invisible.
@@ -1654,52 +1652,58 @@ abstract class Drawing {
     }
 
 
-    static void playerToSprite(CanvasElement canvas, Player player) async {
+    static void playerToSprite(CanvasElement canvas, Player player) {
         //CanvasRenderingContext2D ctx = canvas.getContext('2d');
         if (player.robot == true) {
-            await robotSprite(canvas, player);
+            robotSprite(canvas, player);
         } else if (player.trickster) {
-            await tricksterSprite(canvas, player);
+            tricksterSprite(canvas, player);
         } else if (player.godTier) {
-            await godTierSprite(canvas, player);
+            godTierSprite(canvas, player);
         } else if (player.isDreamSelf) {
-            await dreamSprite(canvas, player);
+            dreamSprite(canvas, player);
         } else {
-            await regularSprite(canvas, player);
+            regularSprite(canvas, player);
         }
     }
 
 
-    static void robo_face(CanvasElement canvas, Player player) async{
+    static void robo_face(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/robo_face.png";
-        await drawWhateverFuture(canvas, imageString);
+        String imageString = "robo_face.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
 
-    static void scar_face(CanvasElement canvas, Player player) async {
+    static void scar_face(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/calm_scratch_face.png";
-        await drawWhateverFuture(canvas, imageString);
+        String imageString = "calm_scratch_face.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
 
-    static void scratch_face(CanvasElement canvas, Player player) async {
+    static void scratch_face(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/scratch_face.png";
-        await drawWhateverFuture(canvas, imageString);
-
+        String imageString = "scratch_face.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         swapColors(canvas, ReferenceColours.BLOOD_PUDDLE, new Colour.fromStyleString(player.bloodColor)); //it's their own blood
     }
 
 
     //not just murder mode, you could have killed a murder mode player.
-    static void bloody_face(CanvasElement canvas, Player player) async {
+    static void bloody_face(CanvasElement canvas, Player player) {
         if (player.victimBlood != null) {
             CanvasRenderingContext2D ctx = canvas.getContext('2d');
-            String imageString = "images/bloody_face.png";
-            await drawWhateverFuture(canvas, imageString);
-
+            String imageString = "bloody_face.png";
+            addImageTag(imageString);
+            ImageElement img = imageSelector(imageString);
+            ctx.drawImage(img, 0, 0);
             swapColors(canvas, ReferenceColours.BLOODY_FACE, new Colour.fromStyleString(player.victimBlood)); //it's not their own blood
         }
     }
@@ -1753,12 +1757,13 @@ abstract class Drawing {
     }
 
 
-    static void hairBack(CanvasElement canvas, Player player)async {
+    static void hairBack(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/Hair/hair_back${player.hair}.png";
+        String imageString = "Hair/hair_back${player.hair}.png";
         ////print(imageString);
-        await drawWhateverFuture(canvas, imageString);
-
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         if (player.sbahj) {
             sbahjifier(canvas);
         }
@@ -1772,10 +1777,12 @@ abstract class Drawing {
     }
 
 
-    static void hair(CanvasElement canvas, Player player) async {
+    static void hair(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/Hair/hair${player.hair}.png";
-        await drawWhateverFuture(canvas, imageString);
+        String imageString = "Hair/hair${player.hair}.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         if (player.sbahj) {
             sbahjifier(canvas);
         }
@@ -1838,27 +1845,27 @@ abstract class Drawing {
 
     static String playerToRegularBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "images/Bodies/reg${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/reg${(classNameToInt(player.class_name)+1)}.png";
     }
 
     static String playerToCowl(Player player) {
         if (easter_egg) return playerToEggBody(player); //no cowl, just double up on egg.
-        return "images/Bodies/cowl${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/cowl${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToDreamBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "images/Bodies/dream${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/dream${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToEggBody(Player player) {
-        return "images/Bodies/egg${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/egg${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
-    static void robotSprite(CanvasElement canvas, Player player) async {
+    static void robotSprite(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString;
         if (!player.godTier) {
@@ -1866,13 +1873,15 @@ abstract class Drawing {
         } else {
             imageString = playerToGodBody(player);
         }
-        await drawWhateverFuture(canvas, imageString);
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         robotPalletSwap(canvas, player);
         //eeeeeh...could figure out how to color swap symbol, but lazy.
     }
 
 
-    static void tricksterSprite(CanvasElement canvas, Player player) async {
+    static void tricksterSprite(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString;
         if (!player.godTier) {
@@ -1880,17 +1889,20 @@ abstract class Drawing {
         } else {
             imageString = playerToGodBody(player);
         }
-        await drawWhateverFuture(canvas, imageString);
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         candyPalletSwap(canvas, player);
         //aspectSymbol(canvas, player);
     }
 
 
-    static void regularSprite(CanvasElement canvas, Player player) async{
+    static void regularSprite(CanvasElement canvas, Player player) {
         String imageString = playerToRegularBody(player);
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        await drawWhateverFuture(canvas, imageString);
-
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         if (player.sbahj) {
             sbahjifier(canvas);
         }
@@ -1899,74 +1911,85 @@ abstract class Drawing {
     }
 
 
-    static void dreamSprite(CanvasElement canvas, Player player) async {
+    static void dreamSprite(CanvasElement canvas, Player player) {
         String imageString = playerToDreamBody(player);
-        await drawWhateverFuture(canvas, imageString);
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        CanvasRenderingContext2D ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
         dreamPalletSwap(canvas, player);
     }
 
 
     static String playerToGodBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "images/Bodies/god${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/god${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
-    static void godTierSprite(CanvasElement canvas, Player player) async {
+    static void godTierSprite(CanvasElement canvas, Player player) {
         //draw class, then color like aspect, then draw chest icon
         //ctx.drawImage(img,canvas.width/2,canvas.height/2,width,height);
         CanvasRenderingContext2D ctx = canvas.getContext("2d");
         String imageString = playerToGodBody(player);
-        await drawWhateverFuture(canvas, imageString);
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
         if (bardQuest && player.class_name == SBURBClassManager.BARD) {
-            await drawWhateverFuture(canvas, "images/Bodies/cod.png");
+            drawWhatever(canvas, "/Bodies/cod.png");
         }
         aspectPalletSwap(canvas, player);
         if (player.sbahj) {
             sbahjifier(canvas);
         }
-        await aspectSymbol(canvas, player);
+        aspectSymbol(canvas, player);
     }
 
 
-    static void babySprite(CanvasElement canvas, Player player) async {
+    static Future<void> babySprite(CanvasElement canvas, Player player) async {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        if (player.baby == null) {
+        if(player.baby == null) {
             player.baby = 1;
         }
         String imageString = "images/Bodies/baby${player.baby}.png";
         if (player.isTroll) {
             imageString = "images/Bodies/grub${player.baby}.png";
         }
-        await drawWhateverFuture(canvas, imageString);
-        if (player.sbahj) {
-            sbahjifier(canvas);
-        }
-        if (player.isTroll) {
-            swapColors(canvas, ReferenceColours.GRUB,
-                new Colour.fromStyleString(player.bloodColor));
-        } else {
-            swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_light,
-                player.aspect.palette.shirt_light);
-            swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_dark,
-                player.aspect.palette.shirt_dark);
-        }
+        ImageElement img = new ImageElement(src: imageString);
+        Completer<void> completer = new Completer<void>();
+        img.onLoad.listen((Event e) {
+            ctx.drawImage(img, 0, 0);
+            if (player.sbahj) {
+                sbahjifier(canvas);
+            }
+            if (player.isTroll) {
+                swapColors(canvas, ReferenceColours.GRUB, new Colour.fromStyleString(player.bloodColor));
+            } else {
+                swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_light, player.aspect.palette.shirt_light);
+                swapColors(canvas, ReferenceColours.SPRITE_PALETTE.pants_dark, player.aspect.palette.shirt_dark);
+            }
 
+            completer.complete();
+        });
+        return completer.future;
     }
 
 
-    static void aspectSymbol(CanvasElement canvas, Player player) async {
+    static void aspectSymbol(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString = player.aspect.symbolImgLocation;
-        await drawWhateverFuture(canvas, imageString);
-
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
 
-    static void dreamSymbol(CanvasElement canvas, Player player) async {
+    static void dreamSymbol(CanvasElement canvas, Player player) {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
-        String imageString = "images/${player.moon}_symbol.png";
-        await drawWhateverFuture(canvas, imageString);
+        String imageString = "${player.moon}_symbol.png";
+        addImageTag(imageString);
+        ImageElement img = imageSelector(imageString);
+        ctx.drawImage(img, 0, 0);
     }
 
 
