@@ -1,7 +1,7 @@
 import "dart:async";
 import "dart:html";
 import "dart:math" as Math;
-
+import "PlayerSpriteHandler.dart";
 import "SBURBSim.dart";
 
 int asyncNumSprites = 0;
@@ -562,13 +562,14 @@ abstract class Drawing {
     }
 
     ///revives the player mid drawing because that is how the rendering works.
-    static void drawCorpseSmooch(CanvasElement canvas, Player dead_player, Player royalty){
+    static void drawCorpseSmooch(CanvasElement canvas, Player dead_player, Player royalty) async{
         var pSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         Drawing.drawSprite(pSpriteBuffer,royalty);
         dead_player.dead = true;
         dead_player.isDreamSelf = false;  //temporarily show non dream version
         var dSpriteBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
-        Drawing.drawSpriteFromScratch(dSpriteBuffer,dead_player);
+        await PlayerSpriteHandler.drawSpriteFromScratch(canvas, dead_player);
+
 
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer,0,0);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dSpriteBuffer,200,0);
@@ -1452,8 +1453,7 @@ abstract class Drawing {
         ctx.imageSmoothingEnabled = false;
         //don't forget to shrink baby
         ctx.scale(0.5, 0.5);
-
-        await await drawSpriteFromScratch(canvas, player, ctx, true);
+        await PlayerSpriteHandler.drawSpriteFromScratch(canvas, player, ctx, true);
     }
 
 
@@ -1512,7 +1512,7 @@ abstract class Drawing {
         canvas.context2D.drawImage(image, 0, 0);
     }
 
-    static void drawSpriteFromScratch(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) async {
+    static void drawSpriteFromScratchOld(CanvasElement canvas, Player player, [CanvasRenderingContext2D ctx = null, bool baby = false]) async {
 
         if (checkSimMode() == true) {
             return;
@@ -1838,23 +1838,23 @@ abstract class Drawing {
 
     static String playerToRegularBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "images/Bodies/reg${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/reg${(classNameToInt(player.class_name)+1)}.png";
     }
 
     static String playerToCowl(Player player) {
         if (easter_egg) return playerToEggBody(player); //no cowl, just double up on egg.
-        return "images/Bodies/cowl${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/cowl${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToDreamBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "images/Bodies/dream${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/dream${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
     static String playerToEggBody(Player player) {
-        return "images/Bodies/egg${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/egg${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
@@ -1862,9 +1862,9 @@ abstract class Drawing {
         CanvasRenderingContext2D ctx = canvas.getContext('2d');
         String imageString;
         if (!player.godTier) {
-            imageString = playerToRegularBody(player);
+            imageString = await playerToRegularBody(player);
         } else {
-            imageString = playerToGodBody(player);
+            imageString = await playerToGodBody(player);
         }
         await drawWhateverFuture(canvas, imageString);
         robotPalletSwap(canvas, player);
@@ -1908,7 +1908,7 @@ abstract class Drawing {
 
     static String playerToGodBody(Player player) {
         if (easter_egg) return playerToEggBody(player);
-        return "images/Bodies/god${(classNameToInt(player.class_name)+1)}.png";
+        return "Bodies/god${(classNameToInt(player.class_name)+1)}.png";
     }
 
 
@@ -1919,7 +1919,7 @@ abstract class Drawing {
         String imageString = playerToGodBody(player);
         await drawWhateverFuture(canvas, imageString);
         if (bardQuest && player.class_name == SBURBClassManager.BARD) {
-            await drawWhateverFuture(canvas, "images/Bodies/cod.png");
+            await drawWhateverFuture(canvas, "Bodies/cod.png");
         }
         aspectPalletSwap(canvas, player);
         if (player.sbahj) {
@@ -1934,9 +1934,9 @@ abstract class Drawing {
         if (player.baby == null) {
             player.baby = 1;
         }
-        String imageString = "images/Bodies/baby${player.baby}.png";
+        String imageString = "Bodies/baby${player.baby}.png";
         if (player.isTroll) {
-            imageString = "images/Bodies/grub${player.baby}.png";
+            imageString = "Bodies/grub${player.baby}.png";
         }
         await drawWhateverFuture(canvas, imageString);
         if (player.sbahj) {

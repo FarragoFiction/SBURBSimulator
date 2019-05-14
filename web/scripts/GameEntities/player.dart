@@ -20,6 +20,8 @@ class Player extends GameEntity{
     //set when you set moon, so you know what your dream self looks like even if you don't have a moon.
     Palette dreamPalette;
 
+
+
     //if 0, not yet woken up.
     double moonChance = 0.0;
     num pvpKillCount = 0; //for stats.
@@ -1725,24 +1727,25 @@ class Player extends GameEntity{
         }
     }
 
-    void initSpriteCanvas() {
-        if(canvas != null) return;
-       // ;
-        canvas = new CanvasElement(width: 400, height: 300);
-        renderSelf("initSpriteCanvas");
-    }
+
 
     void renderSelf(String caller) {
         if(Drawing.checkSimMode()) return;
-        if (canvas == null) this.initSpriteCanvas();
-        this.clearSelf();
-        //TODO someday tackle the headache that would be needed to make all of rendering async
-        //await PlayerSpriteHandler.drawSpriteFromScratch(canvas, this);
+        Completer<CanvasElement> completer = new Completer<CanvasElement>();
 
-        Drawing.drawSpriteFromScratch(canvas, this);
+        this.clearSelf();
+        listenCanvas(completer);
+        futureCanvas = completer.future;
     }
 
-    void clearSelf() {
+    Future<void> listenCanvas(Completer<CanvasElement> completer) async {
+        CanvasElement canvas = new CanvasElement(width: 400, height: 300);
+        await PlayerSpriteHandler.drawSpriteFromScratch(canvas, this);
+        completer.complete(); //now futureCanvas should be safe???
+    }
+
+    void clearSelf() async {
+        CanvasElement canvas = await futureCanvas;
         canvas.context2D.clearRect(0, 0, canvas.width, canvas.height);
     }
 
@@ -2295,7 +2298,7 @@ class Player extends GameEntity{
     //TODO how do you NORMALLY make deep copies of things when all objects aren't secretly hashes?
     //get rid of thigns doomed time players were using. they are just players. just like this is just a player
     //until ll8r when i bother to make it a mini class of just stats.
-    static Player makeRenderingSnapshot(Player player, [bool saveCanvas = true]) {
+    static Future<Player> makeRenderingSnapshot(Player player, [bool saveCanvas = true]) async {
         Player ret = new Player(player.session, player.class_name, player.aspect, player.object_to_prototype, player.moon, player.godDestiny);
         ret.robot = player.robot;
         ret.specibus = player.specibus.copy();
@@ -2335,20 +2338,22 @@ class Player extends GameEntity{
         ret.stats = player;
         ret.dreamPalette = player.dreamPalette;
         //;
-        if(saveCanvas && player.canvas != null) {
-            ret.canvas = player.canvas; //you're just for rendering
+        CanvasElement canvas = await player.futureCanvas;
+
+        if(saveCanvas && canvas != null) {
+            ret.futureCanvas = player.futureCanvas; //you're just for rendering
         }else if(!saveCanvas) {
            // ;
-            ret.canvas = null; //re render yourself. you're a ghost or a doomed time clone or some shit
+            ret.futureCanvas = null; //re render yourself. you're a ghost or a doomed time clone or some shit
         }
         return ret;
     }
 
 
     //TODO has specific 'doomed time clone' stuff in it, like randomizing state
-    static Player makeDoomedSnapshot(Player doomedPlayer) {
+    static Future<Player> makeDoomedSnapshot(Player doomedPlayer) async {
         Session session = doomedPlayer.session;
-        Player timeClone = Player.makeRenderingSnapshot(doomedPlayer,false);
+        Player timeClone = await Player.makeRenderingSnapshot(doomedPlayer,false);
         timeClone.dead = false;
         timeClone.ectoBiologicalSource = -612; //if they somehow become players, you dn't make babies of them.
         timeClone.prophecy = ProphecyState.ACTIVE;

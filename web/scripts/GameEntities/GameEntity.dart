@@ -113,7 +113,7 @@ class GameEntity extends Object with StatOwner   {
     num renderingType = 0; //0 means default for this sim.
     List<AssociatedStat> associatedStats = <AssociatedStat>[]; //most players will have a 2x, a 1x and a -1x stat.
     //String spriteCanvasID = null; //part of new rendering engine. deprecated 1/24/18 in favor of using a canvas directly
-    CanvasElement canvas;
+    Future<CanvasElement> futureCanvas;
 
     num id;
     bool doomed = false; //if you are doomed, no matter what you are, you are likely to die.

@@ -703,6 +703,7 @@ class Session {
         for(Player p in this.players) {
             p.handleSubAspects();
             playerTitlesWithTag.add(p.htmlTitleWithTip());
+            await p.renderSelf("Session Start From Intro");
         }
 
         List<String> npcsWithTag = new List<String>();

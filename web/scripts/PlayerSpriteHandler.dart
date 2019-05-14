@@ -190,8 +190,10 @@ class PlayerSpriteHandler {
     }
 
     static Future<Null>  drawWhateverFuture(CanvasElement canvas, String imageString) async {
-        ImageElement image = await Loader.getResource("images/$imageString");
-        canvas.context2D.drawImage(image, 0, 0);
+        //loader is borked, do this instead for now
+        await Drawing.drawWhateverFuture(canvas, "images/$imageString");
+        //ImageElement image = await Loader.getResource("images/$imageString");
+        //canvas.context2D.drawImage(image, 0, 0);
     }
 
     static Future<Null> bloodPuddle(CanvasElement canvas, Player player) async {

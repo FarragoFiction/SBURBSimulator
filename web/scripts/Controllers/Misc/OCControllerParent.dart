@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
+import '../../PlayerSpriteHandler.dart';
 import '../../SBURBSim.dart';
 import '../../navbar.dart';
 
@@ -65,7 +66,7 @@ class OCGenerator {
         }
     }
 
-    void drawPlayer(Player p, Element container) {
+    void drawPlayer(Player p, Element container) async {
         //get canvas, draw player from scratch.
         CanvasElement canvas = new CanvasElement(width: canvasWidth, height: canvasHeight);
         Drawing.drawSolidBG(canvas, ReferenceColours.WHITE);
@@ -75,11 +76,11 @@ class OCGenerator {
         CanvasElement dreamBuffer = Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         p.isDreamSelf = false;
         p.godTier = false;
-        Drawing.drawSpriteFromScratch(regBuffer, p);
+        await PlayerSpriteHandler.drawSpriteFromScratch(regBuffer, p);
         p.isDreamSelf = true;
-        Drawing.drawSpriteFromScratch(dreamBuffer, p);
+        await PlayerSpriteHandler.drawSpriteFromScratch(dreamBuffer, p);
         p.godTier = true;
-        Drawing.drawSpriteFromScratch(godBuffer, p);
+        await PlayerSpriteHandler.drawSpriteFromScratch(godBuffer, p);
 
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, godBuffer, 500,0);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, dreamBuffer, 200,0);

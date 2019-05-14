@@ -274,13 +274,13 @@ class CharacterCreatorHelper {
         return str;
     }
 
-    void createSummaryOnCanvas(Player player) {
+    void createSummaryOnCanvas(Player player) async {
         CanvasElement canvas = querySelector("#canvasSummarycanvas${player.id}");
         CanvasRenderingContext2D ctx = canvas.getContext("2d");
         CanvasElement pSpriteBuffer =
         Drawing.getBufferCanvas(SimController.spriteTemplateWidth, SimController.spriteTemplateHeight);
         ctx.clearRect(0, 0, 600, 300);
-        Drawing.drawSpriteFromScratch(pSpriteBuffer, player);
+        await PlayerSpriteHandler.drawSpriteFromScratch(pSpriteBuffer, player);
         Drawing.copyTmpCanvasToRealCanvasAtPos(canvas, pSpriteBuffer, -30, 0);
         num space_between_lines = 25;
         num left_margin = 350;
