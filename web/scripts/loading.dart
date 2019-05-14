@@ -345,7 +345,6 @@ dynamic loadAllPossiblePlayers(Session session, skipInit){
 //load hair, horns, wings, regular sprite, god sprite, fins, aspect symbol, moon symbol for each player
 dynamic loadPlayer(Session session, Player player, String skipInit){
 	if(doNotRender == true) return checkDone(session,skipInit);
-	return null;
   if(player == null) return null;
 	//String imageString = "Horns/right"+player.rightHorn + ".png";
   //addImageTag(imageString);
