@@ -1451,7 +1451,7 @@ class ItemTraitFactory {
 
   static SelectElement drawSelectTraits(Element div, Item owner, Element triggersSection) {
     triggersSection.setInnerHtml("<h3>Item Traits:   First is 'core' if specibus </h3><br>");
-    Set<ItemTrait> traits;
+    Iterable<ItemTrait> traits;
 
     traits = ItemTraitFactory.pureTraits;
 
