@@ -143,10 +143,10 @@ class BuffSpecibus extends Buff {
         this.persistsThroughDeath = true;
     }
 
-  @override
-  Buff copy() {
+    @override
+    Buff copy() {
       return new BuffSpecibus(gameEntity);
-  }
+    }
 
     @override
     double additional(StatHolder holder, Stat stat, double val) {
@@ -163,7 +163,7 @@ class BuffSpecibus extends Buff {
                     return 1.0;
                 }
                 return ret;
-            }else {
+            } else {
                 return val * (1.0 + gameEntity.specibus.rank);
             }
         }

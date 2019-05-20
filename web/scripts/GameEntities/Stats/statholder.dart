@@ -31,8 +31,19 @@ class StatHolder extends Object with IterableMixin<Stat> implements StatObject {
     double operator [](Stat key) => derive(key);
 
     double getBase(Stat key) => _base.containsKey(key) ? _base[key] : 0.0;
-    void setBase(Stat key, num val) => _base[key] = val.toDouble();
-    void addBase(Stat key, num val) => _base[key] = getBase(key) + val.toDouble();
+
+    void setBase(Stat key, num val) {
+        _base[key] = val.toDouble();
+        /*if (_base[key].isNaN) {
+            throw "$key was set to NaN in setBase (val: $val)";
+        }*/
+    }
+    void addBase(Stat key, num val) {
+        _base[key] = getBase(key) + val.toDouble();
+        /*if (_base[key].isNaN) {
+            throw "$key was set to NaN in addBase (val: $val)";
+        }*/
+    }
 
     void setMap(Map<Stat,num> map) {
         for (Stat stat in map.keys) {

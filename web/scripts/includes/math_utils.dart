@@ -22,6 +22,7 @@ double polymax(double a, double b, double diff) {
 
 double smoothCap(double val, double limit, double startval, double divisor) {
     double n = (val - startval)/(limit - startval);
+    n = n.clamp(0.0, 1.0);
 
     double mix = smoothstep(n);
 

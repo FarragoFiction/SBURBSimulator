@@ -95,7 +95,9 @@ class Thief extends SBURBClass {
         num powerBoost = p.getPowerForEffects() / 20;
         powerBoost = 3 * powerBoost; //make up for how shitty your boost is for increasePower, THIS is how you are supposed to level.
         powerBoost = this.modPowerBoostByClass(powerBoost, stat);
-        if(p.session.mutator.bloodField) powerBoost = powerBoost * p.session.mutator.bloodBoost;
+        if(p.session.mutator.bloodField) {
+            powerBoost = powerBoost * p.session.mutator.bloodBoost;
+        }
         target.modifyAssociatedStat((-1 * powerBoost), stat);
         p.modifyAssociatedStat(powerBoost, stat);
     }
