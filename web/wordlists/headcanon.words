@@ -13,7 +13,7 @@ JRheadcanon
     JR is simply the best at #verb_programming@continuous#.: 0.5
     When it comes to  #verb_programming@continuous# #amount# #noun@plural#, JR is simply the best there is.: 0.5
     You simply cannot beat JR at a  #verb_programming@presentThird# off.: 0.3
-    #onceUponATime# #verb_programming@pastThird# a #project# about #noun@plural|var@thing#, and now #attitude# the entire fucking thing.
+    #onceUponATime# #verb_programming@pastThird# a #project# about #noun@plural|var@thing#, and now #attitude# the entire freaking thing.
     #onceUponATime# asked #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
     #onceUponATime# dared #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
 
@@ -59,10 +59,10 @@ project
     tool
     dumb idea
     joke sim
-    bullshit meme
+    stupid meme
     half finished sim
     untested sim
-    bullshit puzzle
+    garbage puzzle
     sadistic puzzle
 
 projectEffect
@@ -71,7 +71,7 @@ projectEffect
     inspired  #noun@plural# being added to the sim
     made sure #noun@plural# would never be added to the sim
     caused rampant chaos until it was fixed
-    broke the fuck out of things till it was fixed
+    broke the flip out of things till it was fixed
     which let the #project@user|var@project# interact with a whole #noun@collective|var@thing# of #noun_animal@plural|var@thing# at once
 
 attitude
@@ -88,7 +88,7 @@ attitude
     adores
     makes fun of
     has plans to destroy
-    has plans to wreck the shit out of
+    has plans to get into with
 
 // amounts
 amount
@@ -120,7 +120,7 @@ amountLarge
     many
 
 amountVeryLarge
-    a fuckton of
-    a shitton of
+    a metric ton of
+    a shedload of
     huge numbers of
     just about all: 0.2
