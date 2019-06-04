@@ -284,10 +284,13 @@ void setAllAspectsTo(Session session,String a){
 		if(session.players[i].aspect != Aspects.TIME && session.players[i].aspect != Aspects.SPACE ) {
 			session.players[i].aspect =
 				aspect; //You can have no space/time in your own sessions, but AB will never do it on purpose.
+			session.players[i].resetFlags();
 			session.players[i].initializeDerivedStuff();
 		}
 		if(session.players[i].guardian.aspect != Aspects.TIME && session.players[i].guardian.aspect != Aspects.SPACE ) {
 			session.players[i].guardian.aspect = aspect;
+			session.players[i].guardian.resetFlags();
+
 			session.players[i].guardian.initializeDerivedStuff();
 
 		}
@@ -302,7 +305,11 @@ void setAllClassesTo(Session session,String c){
 	for(num i = 0; i<session.players.length; i++){
 		session.players[i].class_name = class_name;
 		session.players[i].guardian.class_name = class_name;
+		session.players[i].resetFlags();
 		session.players[i].initializeDerivedStuff();
+
+		session.players[i].guardian.resetFlags();
+		session.players[i].guardian.initializeDerivedStuff();
 	}
 }
 

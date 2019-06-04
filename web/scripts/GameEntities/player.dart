@@ -2010,6 +2010,12 @@ class Player extends GameEntity{
         }
     }
 
+    void resetFlags() {
+        deriveLand = true;
+        deriveChatHandle = true;
+        addedSerializableScenes = false;
+    }
+
     void initializeDerivedStuff() {
         populateInventory();
         populateAi();
