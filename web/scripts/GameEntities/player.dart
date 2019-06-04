@@ -2012,6 +2012,7 @@ class Player extends GameEntity{
 
     void initializeDerivedStuff() {
         populateInventory();
+        populateAi();
 
         if(deriveLand) land = spawnLand();
 
@@ -2029,6 +2030,16 @@ class Player extends GameEntity{
         if(aspect.isThisMe(Aspects.SPACE)) moonChance += 33.0; //huge chance for space players.
         if(aspect.isThisMe( Aspects.DOOM)) prophecy = ProphecyState.ACTIVE; //sorry doom players
         specibus.modMaxUpgrades(this);
+    }
+
+    void populateAi() {
+        //as long as i add them before the first scene, they should show up
+        for(String s in aspect.associatedScenes) {
+            serializableSceneStrings.add(s);
+        }
+        for(String s in class_name.associatedScenes) {
+            serializableSceneStrings.add(s);
+        }
     }
 
     void populateInventory() {

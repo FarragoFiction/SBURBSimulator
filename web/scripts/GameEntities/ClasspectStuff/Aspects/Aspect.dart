@@ -250,6 +250,7 @@ class Aspect {
     List<Buff> statModifiers = <Buff>[];
     //starting items, quest rewards, etc.
     WeightedList<Item> items = new WeightedList<Item>();
+    List<String> associatedScenes = new List<String>();
     // ##################################################################################################
     // Constructor
 
