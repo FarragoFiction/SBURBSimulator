@@ -2012,6 +2012,7 @@ class Player extends GameEntity{
 
     void resetFlags() {
         deriveLand = true;
+        scenesToAdd.clear();
         deriveChatHandle = true;
         addedSerializableScenes = false;
     }
@@ -2040,7 +2041,7 @@ class Player extends GameEntity{
 
     void populateAi() {
         //as long as i add them before the first scene, they should show up
-        print("AI DEBUG: I'm $name and I'm populating my ai. My aspect, ${aspect} has ${aspect.associatedScenes.length} scenes.");
+        print("AI DEBUG: I'm $name and I'm populating my ai. My aspect, ${aspect} has ${aspect.associatedScenes.length} scenes. I already have ${scenesToAdd} added Scenes");
         for(String s in aspect.associatedScenes) {
             serializableSceneStrings.add(s);
         }
