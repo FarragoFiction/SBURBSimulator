@@ -2050,13 +2050,15 @@ class Player extends GameEntity{
             }
         }
         handleRemovingScenes();
-        print("AIDEBUG: I'm $name and I'm populating my ai. My aspect, ${aspect} has ${aspect.associatedScenes.length} scenes. I already have ${scenesToAdd} added Scenes, and my scenes are $scenes");
-        for(String s in aspect.associatedScenes) {
-            serializableSceneStrings.add(s);
-        }
+
         for(String s in class_name.associatedScenes) {
             serializableSceneStrings.add(s);
         }
+        
+        for(String s in aspect.associatedScenes) {
+            serializableSceneStrings.add(s);
+        }
+
     }
 
     void populateInventory() {
