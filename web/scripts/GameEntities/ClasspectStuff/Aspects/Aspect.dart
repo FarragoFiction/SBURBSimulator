@@ -250,7 +250,7 @@ class Aspect {
     List<Buff> statModifiers = <Buff>[];
     //starting items, quest rewards, etc.
     WeightedList<Item> items = new WeightedList<Item>();
-    List<String> associatedScenes = new List<String>();
+    List<String> associatedScenes = <String>["This is Stupid:___ N4IgdghgtgpiBcIAqALAlgZwASawZQBcBXABzQBMQAaEAMwBsIA3AewCckYAPAhEfAMIBRAHJCA+gHkA6mIBK4kQEEAskKwF0YANbY0BbBmJlyWAFZssKCNgIss5e+Ri0IRegQ0wj2emm0wGujYtOxYAO7WnngAEpIAqgAyACJYAEaBGEQAxihYEFgYaFAk9IHZLGDZMCQEAHTUIAQQbADmMASSYHCIrvQYcDQEbGit7WwCleT6aJUYiWhMaGCtfADawAA6IMUk7M1gBNLs5Nvw2yIA9ErbVBeSSGfbfQO32wBqcgCSeADSNwhtsMiDA3uBoKDASAvhglH4mJC7jsSvsIIcvocniAAAzbAC+AF1GsNRuNJmBpgRZmB5mjKIg1kSaC5aDBsgYAGLsBZLFbrJkgFlszncukYfkgPFAA"];
     // ##################################################################################################
     // Constructor
 

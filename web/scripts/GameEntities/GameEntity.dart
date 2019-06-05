@@ -271,7 +271,7 @@ class GameEntity extends Object with StatOwner   {
 
     void handleAddingNewScenes() {
         if(scenesToAdd.isNotEmpty) {
-            //print("adding $scenesToAdd to $this");
+            print("DEBUGAI: adding ${scenesToAdd.length} scenes to $name");
             scenes.insertAll(0,scenesToAdd);
             scenesToAdd.clear();
         }
@@ -1105,6 +1105,7 @@ class GameEntity extends Object with StatOwner   {
     }
 
     void addSerializableScenes() {
+        print("AIDEBUG: adding scene strings  ${serializableSceneStrings.length} for $name");
         //session.logger.info("adding serializable scenes for $this, they are $serializableSceneStrings");
         //don't do this right nwo, but when i do it makes their ai a little harder to predict
         //serializableSceneStrings.shuffle();
