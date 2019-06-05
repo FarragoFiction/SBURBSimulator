@@ -132,7 +132,7 @@ class SBURBClass {
 
     List<String> bureaucraticBullshit = new List<String>();
 
-    List<String> associatedScenes = <String>["This is Stupid But for Classes:___ N4IgdghgtgpiBcIAqALAlgZwASawZQBcBXABzQBMsAhIgrAMwHsAnLAYQBsIMMYMQANCHpcAbiyQwAHgQQh8bAKIA5RQH0A8gHVVAJTXKAggFlFWAujABrbGgLYMxMpQBWrFN3OMs5b+Rj0EEQcdAR89lgcaFYw5ujYTKwA7h50eAASGgCqADIAIlgARrEYRADGKFgQWBhoUCQcsWWMYGUwJAQAdFgajH0CcbgtMADkCSzsOYZ4eIp4WAD0MGCUGBDMZdxQnYIgBOsA5jAEGmBwiIEcvLsEzGgHR8xsLeR2aC0YOWiiaGAHcgBtYAAHRAdRILH2YAIWhY5FB8FBygWhlBAiRGiQCNBl14aNBADVdABJPAAaVRCFBtyIMHx4GgdKpIGJGEMUVETPRYPqkIg0OJ0OxIAADKCAL4AXRudweMCeLzeHxy-PIgOlQgC9BgZXsADEWF8fn91bstTr9YbVfxEADpeKgA"];
+    List<String> associatedScenes = <String>[];
 
     //difficulty of class + aspect results in odds of getting yaldobooger/abraxus equivlent.
     //.5 is normal. .5 + .5 = 1.0, equals 5% chance of  getting either (>95 or < 5)

@@ -2043,12 +2043,14 @@ class Player extends GameEntity{
         //as long as i add them before the first scene, they should show up
         //ANYTHING you alerady know should be cleared (hopefully this doesn't fuck over the session creator)
         scenesToAdd.clear();
+        serializableSceneStrings.clear();
         for(Scene scene in scenes) {
             if(scene is SerializableScene) {
                 scenesToRemove.add(scene);
             }
         }
-        print("AIDEBUG: I'm $name and I'm populating my ai. My aspect, ${aspect} has ${aspect.associatedScenes.length} scenes. I already have ${scenesToAdd} added Scenes");
+        handleRemovingScenes();
+        print("AIDEBUG: I'm $name and I'm populating my ai. My aspect, ${aspect} has ${aspect.associatedScenes.length} scenes. I already have ${scenesToAdd} added Scenes, and my scenes are $scenes");
         for(String s in aspect.associatedScenes) {
             serializableSceneStrings.add(s);
         }
