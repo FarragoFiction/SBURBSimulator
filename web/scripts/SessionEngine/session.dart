@@ -703,7 +703,6 @@ class Session {
         for(Player p in this.players) {
             p.handleSubAspects();
             playerTitlesWithTag.add(p.htmlTitleWithTip());
-            print("AIDEBUG: before the intros starts, $p has these many scene Strings: ${p.serializableSceneStrings.length}");
         }
 
         List<String> npcsWithTag = new List<String>();
@@ -718,7 +717,6 @@ class Session {
     }
 
     void processBigBadIntros() {
-        print("processing big bad intros");
         checkBigBadTriggers();
         if(ultimateShowdown) {
             DivElement fucked = new DivElement()

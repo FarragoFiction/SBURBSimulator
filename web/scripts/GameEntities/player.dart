@@ -2054,7 +2054,7 @@ class Player extends GameEntity{
         for(String s in class_name.associatedScenes) {
             serializableSceneStrings.add(s);
         }
-        
+
         for(String s in aspect.associatedScenes) {
             serializableSceneStrings.add(s);
         }
