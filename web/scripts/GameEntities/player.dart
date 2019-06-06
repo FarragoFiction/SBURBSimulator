@@ -2140,8 +2140,8 @@ class Player extends GameEntity{
                  return null;
              }
          }
-        //time players often partner up with themselves
-        if(aspect.isThisMe(Aspects.TIME) && rand.nextDouble() > .2){
+        //time players often partner up with themselves but not if they have companions
+        if(aspect.isThisMe(Aspects.TIME) && companionsCopy.isNotEmpty && rand.nextDouble() > .2){
             ////;
             //;
 
