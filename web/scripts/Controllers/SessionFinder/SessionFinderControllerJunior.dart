@@ -9,8 +9,10 @@ import "../../SessionEngine/SessionSummaryLib.dart";
 //replaces the poorly named scenario_controller2.js
 SessionFinderControllerJunior self; //want to access myself as more than just a sim controller occasionally
 
-void main() {
+void main() async{
   doNotRender = true;
+  await globalInit();
+
   loadNavbar();
   window.onError.listen((Event event){
     ErrorEvent e = event as ErrorEvent;
