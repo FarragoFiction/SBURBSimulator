@@ -162,19 +162,21 @@ class QuestsAndStuff extends Scene {
         player.land.initQuest([player, helper]);
         String helperText = corruptionIsSpreading(questingParty);
         if(helper != null) {
+            String helperName = "${helper.htmlTitle()} ${helper == player?"(Past or Future???)":""}";
+
             if(helper is Sprite) {
-                helperText = "$helperText ${helper.htmlTitle()} ${(helper as Sprite).helpPhrase}<br><br>";
+                helperText = "$helperText ${helperName} ${(helper as Sprite).helpPhrase}<br><br>";
             }else if(helper is Consort){
                 //session.logger.info("AB: consort helper.");
-                helperText = "$helperText The ${helper.htmlTitle()} is ${(helper as Consort).sound}ing. It's somehow helpful. ";
+                helperText = "$helperText The ${helperName} is ${(helper as Consort).sound}ing. It's somehow helpful. ";
             }else if(helper is Leprechaun){
                 //session.logger.info("AB: leprechaun helper.");
-                helperText = "$helperText The ${helper.htmlTitle()} is using Aspect powers in appropriate ways to clear the lands challenges for their Lord. ";
+                helperText = "$helperText The ${helperName} is using Aspect powers in appropriate ways to clear the lands challenges for their Lord. ";
             }else if(helper is Player && (helper as Player).robot){
                 //session.logger.info("AB: robo helper.");
-                helperText = "$helperText The ${helper.htmlTitle()} is helping way more than an organic would be able to. ";
+                helperText = "$helperText The ${helperName} is helping way more than an organic would be able to. ";
             }else {
-                helperText = "$helperText The ${helper.htmlTitle()} is helping where they can. ";
+                helperText = "$helperText The $helperName is helping where they can. ";
             }
             helperText = "$helperText ${player.interactionEffect(helper)} "; //players always have an effect.
             if(helper == player && player.aspect != Aspects.TIME) session.logger.info("AB: non time player is their own helper: $helperText ");
