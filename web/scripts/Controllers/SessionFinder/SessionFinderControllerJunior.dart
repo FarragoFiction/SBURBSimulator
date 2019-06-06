@@ -69,7 +69,7 @@ class SessionFinderControllerJunior extends SimController {
     void filterSessionsJunior(){
     //;
       int num_players =int.parse((querySelector("#num_players")as InputElement).value);
-      List<dynamic> tmp = [];
+      List<SessionSummaryJunior> tmp = [];
       sessionSummariesDisplayed = [];
       for(int i = 0; i<allSessionsSummaries.length; i++){
         sessionSummariesDisplayed.add(allSessionsSummaries[i]);

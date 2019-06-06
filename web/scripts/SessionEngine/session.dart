@@ -1511,9 +1511,14 @@ class Session {
                     if (special > .6) {
                         players[0].class_name = SBURBClassManager.LORD;
                         players[1].class_name = SBURBClassManager.MUSE;
+                        players[0].initializeDerivedStuff();
+                        players[1].initializeDerivedStuff();
+
                     } else if (special < .3) {
                         players[0].class_name = SBURBClassManager.MUSE;
                         players[1].class_name = SBURBClassManager.LORD;
+                        players[0].initializeDerivedStuff();
+                        players[1].initializeDerivedStuff();
                     }
                 }
             } else {
