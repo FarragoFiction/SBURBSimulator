@@ -85,27 +85,41 @@ class QuestsAndStuff extends Scene {
 
 
     QuestingParty createQuestingParty(Player player) {
-        GameEntity helper = player.findHelper(session.getReadOnlyAvailablePlayers());
-        //pages REQUIRE a helper, so if helper is null, return null.
-        //if either player is grim dark >= 3, then no party. assume grim dark friend actively encourages peoplel they hang out with to not quest
-        if(player.class_name == SBURBClassManager.PAGE && helper == null) return null;
-        if(player.grimDark >=3 || (helper != null && (helper as Player).grimDark >=3)) return null;
-        //it's okay if helper is null.
-        //if(session.rand.nextBool()) helper = null; //don't ALWAYS have friends, yo
-        if(helper != null) {
-            //session.logger.info("Team up!");
-        }
 
+        GameEntity helper;
 
-        //prefer to use sprite if sprite exists.
-        if(helper == null && !player.sprite.dead && session.rand.nextDouble() > .5) {
+        //sprites are for early game
+        if(player.land.firstCompleted && !player.sprite.dead && session.rand.nextDouble() > .5) {
             helper = player.sprite;
         }
+
 
         if(helper == null && player.companionsCopy.isNotEmpty) {
             List<GameEntity> choices = findLiving(player.companionsCopy);
             helper = rand.pickFrom(choices);
         }
+
+
+        if(helper == null || session.rand.nextDouble() > 0.5) {
+            GameEntity playerHelper = player.findHelper(
+                session.getReadOnlyAvailablePlayers());
+            //pages REQUIRE a helper, so if helper is null, return null.
+            //if either player is grim dark >= 3, then no party. assume grim dark friend actively encourages peoplel they hang out with to not quest
+
+            //you aren't that interested in land quests any more, unless you have a friend dragging you along
+            if (player.grimDark >= 3 ||
+                (playerHelper != null && (playerHelper as Player).grimDark >= 3))
+                return null;
+            if(playerHelper != null) {
+                helper = playerHelper;
+            }
+        }
+
+        //if you're a page and you can't find ANY help, just quit while you're ahead
+        if (player.class_name == SBURBClassManager.PAGE && helper == null)
+            return null;
+
+
         return new QuestingParty(session, player, helper);
     }
 

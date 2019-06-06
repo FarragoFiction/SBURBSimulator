@@ -114,7 +114,7 @@ class Lord extends SBURBClass {
 
     @override
     String interactionFlavorText(Player me, GameEntity target, Random rand) {
-        return " The ${me.htmlTitle()} hoardes the benefits of  ${me.aspect.name} while having  ${target.htmlTitle()} shoulder the burdens. ";
+        return " The ${me.htmlTitle()} hoards the benefits of  ${me.aspect.name} while having  ${target.htmlTitle()} shoulder the burdens. ";
     }
 
     //TODO using the existing framework, how would i make it so that regular things matter based on target, too? i want to be lazy here. prefer caring about land update.

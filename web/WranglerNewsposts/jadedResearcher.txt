@@ -1,4 +1,4 @@
-2019-06-05: TG and AW's new classpect AI system is starting to get wired in! It'll really add depth to the classpect system!
+2019-06-05: TG and AW's new classpect AI system is starting to get wired in! It'll really add depth to the classpect system!<br><br>Plus XStuck sessions actually work right, and so do Lord and Muses, and as an added bonus I found an obvious place to NOT have so much timecest???
 2019-05-06: 2.0 is not only EVEN FASTER but while doing Patron deathlyHealer's custom session, I found a HUGE BUG that allowed NEARLY EVERY ATTEMPT AT PICK POCKETING RINGS TO WORK. Whoops.  <br><br>Also, you should totally be following the regular <a href = 'http://www.farragofiction.com/newsposts.html'>news</a> posts. But if you AREN'T check out this <a href = 'https://ldjam.com/events/ludum-dare/44/mahou-shoujo-monster-promised-fate'>game</a> the farrago team made in just 72 hours.
 2019-04-23: 2.0 is faster now.
 2019-03-10: I got some JUICE in the sim if you know where to look (not where you'd think), and PL upgraded us to Dart 2.0 (which will give us some neat benefits).
