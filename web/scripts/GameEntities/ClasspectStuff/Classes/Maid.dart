@@ -45,7 +45,9 @@ class Maid extends SBURBClass {
     bool isHelpful = true;
 
     Maid() : super("Maid", 0, true);
-
+    
+    //TG was here
+    
     @override
     bool highHinit() {
         return true;
