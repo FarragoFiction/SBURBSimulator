@@ -327,7 +327,7 @@ class SessionMutator {
             p.class_name = s.rand.pickFrom(SBURBClassManager.all);
             p.associatedStats = []; //lose everything from your old classpect
             p.aspect.initAssociatedStats(p);
-            ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}. Uh...I wonder how long it will take SBURB to load their new model?";
+            ret += " SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}. Uh...I wonder how long it will take SBURB to load their new model?";
 
 
             if (p.dreamSelf && !p.isDreamSelf) {
@@ -728,7 +728,7 @@ class SessionMutator {
 
     void renderSpaceButton(Element div,Session session) {
         //renders a button. If that button is clicked, resets session.
-        String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. The ${spacePlayer.htmlTitle()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
+        String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. The ${spacePlayer.htmlTitle()} wonders what would happen if we entered the frog through this convenient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
         appendHtml(SimController.instance.storyElement, html);
         querySelector("#husieButton").onClick.listen((Event e) => session.doComboSession(null));
     }
