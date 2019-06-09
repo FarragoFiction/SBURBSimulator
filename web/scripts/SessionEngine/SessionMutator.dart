@@ -152,7 +152,7 @@ class SessionMutator {
             ret += "Skaia decided they couldn't save everyone. That only SOME of their friends were destined to play the game. ";
             ret += " They reject this rule entirely. They find a place in the code where more players exist, but aren't active yet, ";
             ret += " And change things until they are classified as active.  They collaborate with the time player as needed, but they get the ";
-            ret += " copies of the game to their other friends before it's too late. Their friends join. They seem....wrong.  Like Skaia isn't extending them whatever rights real Player have. ";
+            ret += " copies of the game to their other friends before it's too late. Their friends join. They seem....wrong.  Like Skaia isn't extending them whatever rights real Players have. ";
             ret += "Still. It's better than being dead. The ${activatingPlayer.htmlTitle()} sets up various ways to keep people cooperating and sane while they are at it. ";
 
         }else {
