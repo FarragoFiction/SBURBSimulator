@@ -966,7 +966,7 @@ class MetaPlayerHandler {
         player.quirk.capitalization = Quirk.NOCAPS;
         player.quirk.punctuation = Quirk.PERFPUNC;
         player.quirk.lettersToReplace = [];
-        player.quirk.lettersToReplaceIgnoreCase = [["asshole", "dumbguy"], ["fuck", "deng"]];
+        player.quirk.lettersToReplaceIgnoreCase = [["asshole", "dumbguy"], ["fuck", "deng"], ["shit", "shid"]];
 
         player.deriveLand = false;
         player.initialize();
