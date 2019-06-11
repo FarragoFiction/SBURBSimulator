@@ -151,7 +151,7 @@ class DeadMeta extends Scene {
         List<PlusMinusConversationalPair> convo2 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["Hey you, yeah you."], ["..."],["What the fuck?", "Fuck off, I'm busy."]))
             ..add(new PlusMinusConversationalPair(["*GRABS*"], ["..."],["What.", "If this is some roleplay bullshit, count me out."]))
-            ..add(new PlusMinusConversationalPair(["*SLAMS*"], ["..."],["I didn't consent to your shitty roleplay.", "Fuck off."]))
+            ..add(new PlusMinusConversationalPair(["*SLAMS*"], ["..."],["I didn't ask to be a part of this.", "Fuck off."]))
             ..add(new PlusMinusConversationalPair(["You didn't say you dodged. Now you're dead."], ["..."],["Yeah, sure wish I was dead right now.", "Shit. I thought you'd be more helpful."]));
 
         List<Conversation> ret = new List<Conversation>();
@@ -512,15 +512,6 @@ class DeadMeta extends Scene {
             ..add(new PlusMinusConversationalPair(["That enemy you just killed? That's the final boss.", "That item you just saw? That's the final boss.", "That puzzle you just solved? That's the final boss."],["..."],["That doesn't even make any sense, asshole.", "The game isn't even over. What the fuck do you mean?", "This is the tenth time you've called something the final boss. I've been counting."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["I'm being serious you know. Just you wait and see."], ["..."],goodbye));
 
-        List<PlusMinusConversationalPair> convo3 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Let's talk music.","You listen to anything good?", "What's your favorite band and why?", "Hey, do you think you could share some good bands with me?", "Well, it's about time we talked about our favorite bands."], ["..."],fuckOff))
-            ..add(new PlusMinusConversationalPair(["Do you like emo?","Do you like post rock? ","Do you like ambient?", "Do you like shoegaze?", "Do you like alternative rock?", "Do you like punk rock?","Do you like noise?"],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["Do you like emo?","Do you like post rock? ","Do you like ambient?", "Do you like shoegaze?", "Do you like alternative rock?", "Do you like punk rock?","Do you like noise?"],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["Do you like emo?","Do you like post rock? ","Do you like ambient?", "Do you like shoegaze?", "Do you like alternative rock?", "Do you like punk rock?","Do you like noise?"],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["Do you like anything at all?", "Hey, want me to play you one of my favorites?", "It's okay if you don't."],["..."], fuckOff))
-            ..add(new PlusMinusConversationalPair(["Come on, I've got a really great post rock playlist.", "Come on, I've got a really great emo playlist.", "Come on, I've got a really great ambient playlist."],["..."], youAsshole))
-            ..add(new PlusMinusConversationalPair(myGoodbyes,["..."], goodbye));
-
         List<PlusMinusConversationalPair> convo4 = new List<PlusMinusConversationalPair>()
             ..add(new PlusMinusConversationalPair(["This is important, are you listening?", "Hey, I've got something important to tell you.", "Dengue, are you there?"], ["..."],["No. I'm busy.","If this is about the final boss, I don't want to hear it.","I've got a game to play, asshole."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(["...Haha yes."], ["..."],["You piece of shit."]..addAll(youAsshole)))
@@ -532,12 +523,12 @@ class DeadMeta extends Scene {
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
 
         List<PlusMinusConversationalPair> convo6 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["'Open the curtains, singing birds tell me tear the buildings down.'", "'September 9th, 2001. Gary and I were skating at a hospital on top of a huge hill overlooking a valley.'"], ["..."],["What the fuck? Are these song lyrics?","That sounds like the lamest song I've ever heard.","Stop spouting your shitty lyrics and help me."]..addAll(fuckOff)))
-            ..add(new PlusMinusConversationalPair(["'I have been waking up with blood in my mouth most days, choking on the metallic taste that coats my tongue.'","'This last week, I slept eight hours total, I barely sleep.'"], ["..."],["I bet you think you're so deep.","I don't fucking need to hear your shitty music."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["'You felt buried from the start, tearing you apart, constricting the free beating of your heart.'", "'The first sound of a heartbeat, to riots roaring on.'"], ["..."],["What the fuck? Are these song lyrics?","That sounds like the lamest song I've ever heard.","Stop spouting your shitty lyrics and help me."]..addAll(fuckOff)))
+            ..add(new PlusMinusConversationalPair(["'These hearts adore everyone the other beats hardest for.'","'If you can't feel your beating heart, then you are not living.'"], ["..."],["I bet you think you're so deep.","I don't fucking need to hear your shitty music."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
 
         List<PlusMinusConversationalPair> convo7 = new List<PlusMinusConversationalPair>()
-            ..add(new PlusMinusConversationalPair(["Let me tell you about ACE.", "Let me tell you about Children of Dreams"], ["..."],["Is literally all you do talk about your shitty tabletop campaigns?","You've told me this fucking story eighteen times before."]..addAll(youAsshole)))
+            ..add(new PlusMinusConversationalPair(["Let me tell you about Suns Without Nexus.", "Let me tell you about Decay and Regrowth"], ["..."],["Is literally all you do talk about your shitty tabletop campaigns?","You've told me this fucking story eighteen times before."]..addAll(youAsshole)))
             ..add(new PlusMinusConversationalPair(["Hey, come on. They're good campaigns.", "I didn't get to tell you about the final boss!","I was hoping maybe you'd like to play a campaign with me."], ["..."],["I am not and never will be interested. Now fuck off.","Keep talking. I'll be looking for the off button on this thing."]..addAll(fuckOff)))
             ..add(new PlusMinusConversationalPair(myGoodbyes, ["..."],goodbye));
 
