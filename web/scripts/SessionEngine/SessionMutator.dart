@@ -152,7 +152,7 @@ class SessionMutator {
             ret += "Skaia decided they couldn't save everyone. That only SOME of their friends were destined to play the game. ";
             ret += " They reject this rule entirely. They find a place in the code where more players exist, but aren't active yet, ";
             ret += " And change things until they are classified as active.  They collaborate with the time player as needed, but they get the ";
-            ret += " copies of the game to their other friends before it's too late. Their friends join. They seem....wrong.  Like Skaia isn't extending them whatever rights real Player have. ";
+            ret += " copies of the game to their other friends before it's too late. Their friends join. They seem....wrong.  Like Skaia isn't extending them whatever rights real Players have. ";
             ret += "Still. It's better than being dead. The ${activatingPlayer.htmlTitle()} sets up various ways to keep people cooperating and sane while they are at it. ";
 
         }else {
@@ -327,7 +327,7 @@ class SessionMutator {
             p.class_name = s.rand.pickFrom(SBURBClassManager.all);
             p.associatedStats = []; //lose everything from your old classpect
             p.aspect.initAssociatedStats(p);
-            ret += "SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}. Uh...I wonder how long it will take SBURB to load their new model?";
+            ret += " SBURB loses their identity file briefly, and restores it from a corrupt back up.  Now they are the ${p.htmlTitle()}. Uh...I wonder how long it will take SBURB to load their new model?";
 
 
             if (p.dreamSelf && !p.isDreamSelf) {
@@ -728,7 +728,7 @@ class SessionMutator {
 
     void renderSpaceButton(Element div,Session session) {
         //renders a button. If that button is clicked, resets session.
-        String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. The ${spacePlayer.htmlTitle()} wonders what would happen if we entered the frog through this convinient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
+        String html = "<img src='images/hussie.png' id='husieButton'><br>Huh. The ${spacePlayer.htmlTitle()} wonders what would happen if we entered the frog through this convenient fourth wall instead of the normal way. There's no way this could go wrong if a Gnosis4 Space Player is telling you to do it! ";
         appendHtml(SimController.instance.storyElement, html);
         querySelector("#husieButton").onClick.listen((Event e) => session.doComboSession(null));
     }

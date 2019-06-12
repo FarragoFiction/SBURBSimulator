@@ -71,7 +71,7 @@ class Domestic extends InterestCategory {
             ..addFeature(new PreDenizenQuestChain("Bake the Cake", [
                 new Quest("The ${Quest.PLAYER1} enters a competition to bake the single best cake that Paradox Space has ever seen. "),
                 new Quest("The ${Quest.PLAYER1} is trying out recipe after recipe, but nothing really feels right until they try adding a pinch of ${Quest.PHYSICALMCGUFFIN}'. It is incredible how much of a difference it makes! "),
-                new Quest("It's finally time for competition! The Distinguised ${Quest.CONSORT} takes a slow, thoughtful bite of the ${Quest.PLAYER1}'s cake. There is a pause, and then the Distinguished ${Quest.CONSORT} begins ${Quest.CONSORTSOUND}ing up a storm!  The ${Quest.PHYSICALMCGUFFIN} did the trick, ${Quest.PLAYER1}'s cake is immediately declared the winner! A strange carapace is fascinated by the ${Quest.PLAYER1}'s technique."),
+                new Quest("It's finally time for competition! The Distinguished ${Quest.CONSORT} takes a slow, thoughtful bite of the ${Quest.PLAYER1}'s cake. There is a pause, and then the Distinguished ${Quest.CONSORT} begins ${Quest.CONSORTSOUND}ing up a storm!  The ${Quest.PHYSICALMCGUFFIN} did the trick, ${Quest.PLAYER1}'s cake is immediately declared the winner! A strange carapace is fascinated by the ${Quest.PLAYER1}'s technique."),
             ], new SpecificCarapaceReward(NPCHandler.RB), QuestChainFeature.defaultOption), Feature.WAY_LOW)
             ,  Theme.LOW);
 
