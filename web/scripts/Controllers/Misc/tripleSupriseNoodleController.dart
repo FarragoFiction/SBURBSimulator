@@ -79,7 +79,7 @@ class MysteryController extends AuthorBot {
   }
 
   void onEasterEggsLoaded(String data) {
-    querySelector("#easter_eggs").setInnerHtml(data);
+    querySelector("#easter_eggs").setInnerHtml(data, treeSanitizer: NodeTreeSanitizer.trusted);
     querySelector("#pw_container").setInnerHtml("");
     avatarCarousel();
     if(getParameterByName("lollipop", "")  == "true"){
