@@ -394,7 +394,7 @@ class NPCHandler
 
         dersites.add(new Carapace(null, session,Carapace.DERSE, firstNames: <String>["Wayward","Wizardly","Warweary","Wandering"], lastNames: <String>["Vagrant","Villain","Vassal","Villager"], ringFirstNames: <String>["Wicked"], ringLastNames: <String>["Villian"])
             ..specibus = new Specibus("Mayoral Sword", ItemTraitFactory.SWORD, <ItemTrait>[ ItemTraitFactory.EDGED, ItemTraitFactory.POINTY,ItemTraitFactory.METAL])
-            ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session), new SeekScepter(session)] //order of scenes is order of priority
+            ..scenes = <Scene>[new RedMiles(session),new BeDistracted(session)] //order of scenes is order of priority [TG NOTE: i removed seek scepter because that's covered by his AI scenes, and leaving it in was causing some annoying contradictions where he'd give his scepter to a player and then fight to get it back.]
             ..royaltyOpinion = -1000
             ..activationChance = 0.2
             ..companionChance = 0.3
@@ -408,8 +408,7 @@ class NPCHandler
 
             ..description = "Not just another carapacian you can meet on the Battlefield. A rogue Dersite pawn, WV wants democracy - or, at the very least, lack of all-destroying monarchy, and is willing to put the work in to get it."
             ..sylladex.add(new Item("Firefly in Amber",<ItemTrait>[ItemTraitFactory.LEGENDARY, ItemTraitFactory.SENTIENT]))
-            ..serializableSceneStrings.add("Deploy Democracy:___ N4IgdghgtgpiBcIAiMAOAbA9gTwAQqkwGMAnCI7EAGhADN0IA3TEgFRgA8AXBEAZQDCAUQByQgPoB5AOpiASuJEBBALJDcAazCYA7gGdcASy4ByA10OxcXTLjkBJPuoCqABVwQA5hENg9XawALGFxCSBIiQOwAOlxcViU5AHEhVkVVCUkFZTU+XECIAwAjGBgwXExGGBIuQJJdMGjqEC4IEk8YLkkwOEQuEgBXOBp+w08OkgFMMAATY0NpvQAZQ0ZfT14AbWAAHRBLVBZWsC5pFhm9+D2RAHolPapryVZLvdoIdD0YB73IWFeQPY9Ep0KtvtQ9gcjhATvYTgCAAx7AC+VFwu32UEONRhp3OAKUIgAmj8QCJngD3p9wY9wNBwVdAXoBG0IKhyDTIVjobD4Qg9kiQKj0Vzscc8SQLvyyXdSeSXtKqV9SX8GXsABKFAT1HRgUlQnG8riIlFojEG8VnSUA273CFkinS-pDFX0gFAvgwdC0fXcw1cOHG6WC4Xmv2W-HS21yx2MpWcun-aX2JRQbUNGBS2kW3GBk1CgC6zVG42qU1m80WSxhMy2RZoMFotBgRC4egAYiwVmswBtENtRTyJVLGdH7ar3X5WgBpQzodC+sW4kQDKAlEj55H1kCN5utjtdmt6OtCoA")
-            ..distractions = <String>[" WV is distracted eating green objects rather than recruiting for his army. "," WV is distracted planning the civil infrastructure of a city, rather than recruiting for his army."," WV is distracted fantasizing about how great of a mayor he will be. "," WV accidentally tried to recruit carapacians already part of his army. Stupid stupid stupid! "," WV gets distracted freaking out about car safety. "," WV gets distracted freaking out about how evil bad bad bad bad monarchy is. "," WV gets distracted writing a constitution for the new democracy. "]
+            ..distractions = <String>["is eating green objects rather than recruiting for his army. ","is planning the civil infrastructure of a city, rather than recruiting for his army.","is fantasizing about how great of a mayor he will be. ","accidentally tries recruiting carapacians already part of his army. Stupid stupid stupid! "," WV gets distracted freaking out about car safety. ","is freaking out about how evil bad bad bad bad monarchy is. ","is writing a constitution for the new democracy. "]
             ..stats.setMap(<Stat, num>{Stats.MIN_LUCK: -10, Stats.MAX_LUCK: 10, Stats.SANITY: 10, Stats.HEALTH: 10, Stats.FREE_WILL: 0, Stats.POWER: 10})
             ..makeCharming(100)
             ..makeLucky(100)
