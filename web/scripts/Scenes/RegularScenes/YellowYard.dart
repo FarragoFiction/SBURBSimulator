@@ -166,6 +166,7 @@ class YellowYard extends Scene {
 */
    @override
 	void renderContent(Element div, [bool deadMetaJR = false]){
+   		print("http://farragofiction.com/AudioLogs/?passPhrase=jryardspiel");
 		this.session.stats.yellowYard = true;
 		//div.append("<br>"+this.content());
 		////session.logger.info("Yellow yard is happening. " + this.session.session_id);
