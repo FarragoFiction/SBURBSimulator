@@ -66,7 +66,7 @@ class SessionForm {
                     NPCHandler.bigBadsFromFile.add(badArea.value);
                     BigBad bigBad = new BigBad("N/A", session);
                     bigBad.copyFromDataString(badArea.value);
-                    session.bigBadsReadOnly.add(bigBad);
+                    session.npcHandler.bigBads.add(bigBad);
                     window.alert("Added to potential Big Bads!!!");
                 }
 
