@@ -101,16 +101,15 @@ class YellowYard extends Scene {
 			List<Element> radioButtons = querySelectorAll('input[name="decision"]');
 			for (RadioButtonInputElement radioButton in radioButtons) {
 				radioButton.onClick.listen((Event e) {
-					//session.logger.info("a radio button was clicked");
+					session.logger.info("a radio button was clicked, its value is ${radioButton.value}");
+					for (RadioButtonInputElement r in radioButtons) {
+						r.classes.remove("selected");
+					}
 					if (radioButton.checked) {
 						//session.logger.info("the radio button should be selected");
 						radioButton.parent.classes.add("selected");
 					}
-					for (RadioButtonInputElement r in radioButtons) {
-						if (r != radioButton) {
-							r.classes.remove("selected");
-						}
-					}
+
 				});
 			}
 		});
