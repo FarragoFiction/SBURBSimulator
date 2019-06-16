@@ -1424,6 +1424,9 @@ class Session {
         logger.info("DEBUG SESSION CUSTOMIZER: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
         GameEntity.resetNextIdTo(stats.initialGameEntityId);
         plzStartReckoning = false;
+        //was past jr REALLY dumb enough to forget to reset these?
+        numTicks = 0;
+        currentSceneNum = 0;
         npcHandler = new NPCHandler(this);
         npcHandler.setupNpcs();
         _activatedNPCS.clear();
