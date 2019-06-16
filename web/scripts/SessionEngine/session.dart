@@ -1418,6 +1418,7 @@ class Session {
 
     void reinit(String source) {
         //UserTag previousTag = createDebugTag("reiniting");
+        stats = new SessionStats();
         String parent = "";
         if(childSession != null) parent = "${childSession.session_id}";
         logger.info("DEBUG SESSION CUSTOMIZER: reiniting because $source after $numTicks ticks, combined: ${stats.hadCombinedSession}, ${parent}");
