@@ -1183,7 +1183,7 @@ abstract class NonCanonSessions {
             player.land.consortFeature = new ConsortFeature('Dragon', 'roar');
 
         }else if (index ==1) {
-            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%C3%98%C3%B4%C3%93%00C%16%16B&s=,,Knowledge,Script Writing,bonusCitation&x=AQ==");
+            player.copyFromOCDataString("b=%C3%BF%C3%BF%C3%BF%C3%98%C3%BE%C3%93%00C%16%16B&s=,,Knowledge,Script Writing,bonusCitation&x=AQ==");
             player.deriveSprite = false;
             player.fraymotifs.clear();
             player.deriveSpecibus = false;
