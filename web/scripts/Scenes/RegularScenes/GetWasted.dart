@@ -64,6 +64,9 @@ class GetWasted extends Scene {
 
     bool loreReachedTippingPoint(Player p) {
         //wastes modify themselves, graces modify everyone
+        if(p.gnosis < 0) { //hope possibility
+            return true;
+        }
         if(p.gnosis <= 4 && p.class_name == SBURBClassManager.WASTE) {
             if(session.rand.nextDouble() >0.6) return true;
         }else if(p.gnosis <= 4 &&  findClassPlayer(session.players, SBURBClassManager.GRACE) != null) {
@@ -89,6 +92,8 @@ class GetWasted extends Scene {
     void processTier(Element div) {
         if (player.gnosis == 1) {
             tier1(div);
+        } else if (player.gnosis <0) {
+            tiernegativetwo(div);
         } else if (player.gnosis == 2) {
             tier2(div);
         }else if (player.gnosis == 3) {
@@ -527,6 +532,17 @@ class GetWasted extends Scene {
         //find FAQs, like Kanaya did. Will either be quirkless or in a random quirk. MOST things here will be intro effects
         //chance of finding a faq
         findRandomFAQ(div, player); //have to pass player cause async bs means i can't trust instance vars to not change
+    }
+
+    void tiernegativetwo(Element div) {
+        List<String> shenanigans = <String>["${player.htmlTitle()} knows nothing.", "${player.htmlTitle()} refuses to learn anything.", "${player.htmlTitle()} is in a state of absolute innocence. ${player.htmlTitle()} cannot be blamed for anything.", "The ${player.htmlTitle()} is not thinking of a purple panda. "];
+        Random rand = new Random(); //true random, no effect tho, its fine
+        if(player.gnosis < -0.5 || session.rand.nextBool()) { //not true random, it has an effect
+            appendHtml(div, rand.pickFrom(shenanigans));
+        }else {
+            appendHtml(div, "<div class = 'jake'>Something cracks. The shield of anti-knowledge is no longer protecting the ${player.htmlTitle()}. Uh. Fuck. </div>");
+            tier4(div);
+        }
     }
 
     void tier2(Element div) {
