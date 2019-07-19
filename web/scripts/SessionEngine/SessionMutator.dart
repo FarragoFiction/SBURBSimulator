@@ -460,7 +460,7 @@ class SessionMutator {
         effectsInPlay ++;
         if(s.rand.nextBool()) {
             hopePlayer.gnosis = -2;
-            return "The ${hopePlayer.htmlTitle()} begins glowing and...then stops. They refuse this. They believe with all their heart that this doesn't have to happen, and they don't need to cause a cataclsym. They know nothing. And it will be okay.";
+            return "The ${hopePlayer.htmlTitle()} begins glowing and...then <div class = 'jake'>stops</div>. They refuse this. They believe with all their heart that this doesn't have to happen, and they don't need to cause a cataclsym. They know nothing. And it will be okay.";
         }
         hopeField = true;
         List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];

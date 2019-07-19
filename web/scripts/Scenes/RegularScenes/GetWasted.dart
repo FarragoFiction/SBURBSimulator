@@ -538,7 +538,7 @@ class GetWasted extends Scene {
         List<String> shenanigans = <String>["${player.htmlTitle()} knows nothing.", "${player.htmlTitle()} refuses to learn anything.", "${player.htmlTitle()} is in a state of absolute innocence. ${player.htmlTitle()} cannot be blamed for anything.", "The ${player.htmlTitle()} is not thinking of a purple panda. "];
         Random rand = new Random(); //true random, no effect tho, its fine
         if(player.gnosis < -0.5 || session.rand.nextBool()) { //not true random, it has an effect
-            appendHtml(div, rand.pickFrom(shenanigans));
+            appendHtml(div, ">Know Nothing: ${rand.pickFrom(shenanigans)}");
         }else {
             appendHtml(div, "<div class = 'jake'>Something cracks. The shield of anti-knowledge is no longer protecting the ${player.htmlTitle()}. Uh. Fuck. </div>");
             tier4(div);
