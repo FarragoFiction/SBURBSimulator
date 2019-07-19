@@ -541,7 +541,7 @@ class DeadMeta extends Scene {
         List<Conversation> ret = new List<Conversation>();
         ret.add(new Conversation(convo1));
         ret.add(new Conversation(convo2));
-        ret.add(new Conversation(convo3));
+       // ret.add(new Conversation(convo3));
         ret.add(new Conversation(convo4));
         ret.add(new Conversation(convo5));
         ret.add(new Conversation(convo6));
