@@ -535,12 +535,16 @@ class GetWasted extends Scene {
     }
 
     void tiernegativetwo(Element div) {
-        List<String> shenanigans = <String>["${player.htmlTitle()} knows nothing.", "${player.htmlTitle()} refuses to learn anything.", "${player.htmlTitle()} is in a state of absolute innocence. ${player.htmlTitle()} cannot be blamed for anything.", "The ${player.htmlTitle()} is not thinking of a purple panda. "];
+        List<String> shenanigans = <String>["${player.htmlTitleWithTip()} knows nothing.", "${player.htmlTitleWithTip()} refuses to learn anything.", "${player.htmlTitleWithTip()} is in a state of absolute innocence. ${player.htmlTitleWithTip()} cannot be blamed for anything.", "The ${player.htmlTitleWithTip()} is not thinking of a purple panda. "];
         Random rand = new Random(); //true random, no effect tho, its fine
-        if(player.gnosis < -0.5 || session.rand.nextBool()) { //not true random, it has an effect
+        if(player.gnosis > -1 || session.rand.nextBool()) { //not true random, it has an effect
+            if(session.rand.nextDouble()>0.2) {
+                player.gnosis += -1; //sometimes you resist the siren song of progress
+            }
             appendHtml(div, ">Know Nothing: ${rand.pickFrom(shenanigans)}");
         }else {
             appendHtml(div, "<div class = 'jake'>Something cracks. The shield of anti-knowledge is no longer protecting the ${player.htmlTitle()}. Uh. Fuck. </div>");
+            player.gnosis = 13;
             tier4(div);
         }
     }

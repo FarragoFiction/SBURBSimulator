@@ -72,6 +72,9 @@ class Juice extends AspectWithSubAspects {
     @override
     bool isThisMe(Aspect other) {
         //don't call isThisMe on subasepct cuz you'll risk an infinite loop if subaspect is also something weird
+        if(subAspects == null) {
+            return other == this;
+        }
         return other == this ||subAspects.contains(other);
     }
 
