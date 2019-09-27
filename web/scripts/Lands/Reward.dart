@@ -119,8 +119,7 @@ class FraymotifReward extends Reward
 
     @override
     void apply(Element div, Player p1, GameEntity p2, Land land, [String t = Reward.DEFAULT_TEXT]) {
-        String text = "";
-        if(t!= null) text = t;
+        String text = t;
 
         Fraymotif f1;
         Fraymotif f2;
