@@ -959,7 +959,7 @@ class MetaPlayerHandler {
         player.copyFromOCDataString("b=zh%03%C2%85%C3%BE%13%00%40%1F%1FB&s=,,Music,Dungeon Mastering,tableGuardian");
 
         player.deriveSpecibus = false;
-        player.specibus = new Specibus("Fist", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BONE, ItemTraitFactory.BLUNT]);
+        player.specibus = new Specibus("Arms", ItemTraitFactory.FIST, [ ItemTraitFactory.FLESH, ItemTraitFactory.BONE, ItemTraitFactory.BLUNT]);
 
 
         player.land = player.spawnLand();
