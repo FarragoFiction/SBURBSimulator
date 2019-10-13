@@ -1105,8 +1105,14 @@ class GameEntity extends Object with StatOwner   {
 
     void addSerializableScenes() {
         //session.logger.info("adding serializable scenes for $this, they are $serializableSceneStrings");
-        //don't do this right nwo, but when i do it makes their ai a little harder to predict
-        //serializableSceneStrings.shuffle();
+        if(this is Carapace) {
+            //not every carapace is a main character
+            //(otherwise theres too much ai per carapace and older scenes don't trigger.
+            if(session.rand.nextBool()) {
+                serializableSceneStrings.clear();
+                return;
+            }
+        }
         for(String s in serializableSceneStrings) {
             if(s!= null && s.isNotEmpty) addSerializalbeSceneFromString(s);
         }

@@ -2050,7 +2050,11 @@ class Player extends GameEntity{
             }
         }
         handleRemovingScenes();
-
+        //not every player gets their classpect fully realized
+        //(otherwise theres too much ai per player and older scenes don't trigger.
+        if(session.rand.nextBool()) {
+            return;
+        }
         for(String s in class_name.associatedScenes) {
             serializableSceneStrings.add(s);
         }
