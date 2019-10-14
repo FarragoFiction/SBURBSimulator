@@ -1,3 +1,4 @@
+2019-10-13: Minor balance update for AI,making it so that players and carapaces have a 50/50 chance of ignoring their fancy ai so they can focus on the basics
 2019-07-18: dont mind me, just shitposting
 2019-06-16: Smokey won't violate causality by plaguing people BEFORE they spit sick fires post yard, and yards won't cause early reckonings anymore either. <br>Lots of little fixes for various pages, like the classpect viewer, too.
 2019-06-13: Minor bug fixes let testing new big bads be more easy, as well as stopping that confusing ending where you can have more than 100% of a frog and still fail (now it lets you know that the space players land blew up, taking out the forge).
