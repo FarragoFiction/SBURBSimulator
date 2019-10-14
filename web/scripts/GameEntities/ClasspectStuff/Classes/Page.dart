@@ -7,7 +7,10 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Page extends SBURBClass {
-
+    
+    @override
+    String sauceTitle = "Squire";
+    
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.01;
