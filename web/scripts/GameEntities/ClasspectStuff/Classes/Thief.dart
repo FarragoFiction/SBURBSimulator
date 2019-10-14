@@ -5,7 +5,10 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Thief extends SBURBClass {
-
+    
+    @override
+    String sauceTitle = "Vagrant";
+    
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 1.01;
