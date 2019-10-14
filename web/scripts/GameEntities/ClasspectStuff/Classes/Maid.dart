@@ -7,7 +7,10 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Maid extends SBURBClass {
-
+    
+    @override
+    String sauceTitle = "Damsel";
+    
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.51;
