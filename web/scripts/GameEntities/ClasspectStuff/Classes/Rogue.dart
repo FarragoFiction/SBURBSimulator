@@ -6,7 +6,10 @@ import "../../../Lands/Quest.dart";
 
 
 class Rogue extends SBURBClass {
-
+    
+    @override
+    String sauceTitle = "Swindler";
+    
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 1.01;
