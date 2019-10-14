@@ -9,7 +9,7 @@ import "../../../Lands/Quest.dart";
 class Maid extends SBURBClass {
     
     @override
-    String sauceTitle = "Architect";
+    String sauceTitle = "Angel";
     
     //what sort of quests rewards do I get?
     @override
