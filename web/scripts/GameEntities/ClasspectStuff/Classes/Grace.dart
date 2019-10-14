@@ -5,7 +5,10 @@ import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 
 class Grace extends SBURBClass {
-
+    
+    @override
+    String sauceTitle = "Tutor";
+    
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.01;
