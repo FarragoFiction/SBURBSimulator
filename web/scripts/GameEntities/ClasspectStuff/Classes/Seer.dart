@@ -8,6 +8,9 @@ import "../../../Lands/Quest.dart";
 
 class Seer extends SBURBClass {
 
+    @override
+    String sauceTitle = "Sibyl";
+
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.51;
