@@ -9,7 +9,7 @@ import "../../../Lands/Quest.dart";
 class Knight extends SBURBClass {
     
     @override
-    String sauceTitle = "Maestro";
+    String sauceTitle = "Champion";
 
     //what sort of quests rewards do I get?
     @override
