@@ -6,7 +6,10 @@ import "../../../Lands/FeatureTypes/QuestChainFeature.dart";
 import "../../../Lands/Reward.dart";
 import "../../../Lands/Quest.dart";
 class Sage extends SBURBClass {
-
+    
+    @override
+    String sauceTitle = "Savant";
+    
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 1.01;
