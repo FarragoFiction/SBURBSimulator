@@ -8,7 +8,10 @@ import "../../../Lands/Quest.dart";
 
 
 class Sylph extends SBURBClass {
-
+    
+    @override
+    String sauceTitle = "Angel";
+    
     //what sort of quests rewards do I get?
     @override
     double itemWeight = 0.51;
