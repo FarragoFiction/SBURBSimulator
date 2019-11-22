@@ -1,3 +1,4 @@
+2019-11-17: <h1>SBURBSIM Main Update!!!</h1><br><br>Make sure to check the previous newsposts, since they weren't available on main till now. Most of this came from tableGuardian and aspiringWatcher using my AIEngine :)
 2019-10-13: Minor balance update for AI,making it so that players and carapaces have a 50/50 chance of ignoring their fancy ai so they can focus on the basics
 2019-07-18: dont mind me, just shitposting
 2019-06-16: Smokey won't violate causality by plaguing people BEFORE they spit sick fires post yard, and yards won't cause early reckonings anymore either. <br>Lots of little fixes for various pages, like the classpect viewer, too.

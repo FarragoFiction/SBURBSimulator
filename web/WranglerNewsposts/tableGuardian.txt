@@ -1,3 +1,4 @@
+2019-11-17: Welcome to Main Branch, Carapace and Classpect update! May your balance be fair and your simulation times be brief!
 2019-09-25: carapaces are complete!
 2019-07-18: 2019-07-18: Carapace AI updates continue: WV grants his leader some rebellion members as strife allies, while AR grants something similar but in the form of police sidekicks.
 2019-06-11: Muses no longer grant Pluck Tokens to nonplayers. I'd seen them grant pluck tokens to Jack Noir and the Black King before I patched this out. At least it's not like they could use them or anything.

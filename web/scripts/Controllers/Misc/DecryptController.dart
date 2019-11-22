@@ -30,4 +30,23 @@ void makeTextBox() {
       print("error: $e");
     }
   });
+
+  TextAreaElement box2 = new TextAreaElement();
+  div.append(box2);
+  box.cols = 60;
+  box.rows = 10;
+
+  box2.onChange.listen((Event e) {
+    try {
+      DivElement blorp = new DivElement();
+      blorp.style.border = "3px solid black";
+      div.append(blorp);
+      String data = box2.value;
+      blorp.setInnerHtml( "Value is: $data, Encrypted is: <br><br>");
+      blorp.appendText(LZString.compressToEncodedURIComponent(data));
+    }catch(e) {
+      window.alert("error encrypting");
+      print("error: $e");
+    }
+  });
 }

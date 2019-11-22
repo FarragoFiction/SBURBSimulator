@@ -457,11 +457,11 @@ class SessionMutator {
 
     String hope(Session s, Player hopePlayer) {
         s.logger.info("AB: Huh. Looks like a ${hopePlayer.title()} is going at it.");
-        effectsInPlay ++;
         if(s.rand.nextDouble()>0.6) {
             hopePlayer.gnosis = -2;
             return "The ${hopePlayer.htmlTitle()} begins glowing and...then <div class = 'jake'>stops</div>. They refuse this. They believe with all their heart that this doesn't have to happen, and they don't need to cause a cataclsym. They know nothing. And it will be okay.";
         }
+        effectsInPlay ++;
         hopeField = true;
         List<String> jakeisms = ["GADZOOKS!", "BOY HOWDY!", "TALLY HO!", "BY GUM", "HOT DAMN"];
         String scream = hopePlayer.aspect.fontTag() + hopePlayer.rand.pickFrom(jakeisms) + "</font>";
