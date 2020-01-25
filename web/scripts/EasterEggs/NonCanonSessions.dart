@@ -26,6 +26,7 @@ abstract class NonCanonSessions {
         ret[42] = session42; //sorry dh i completely forgot to finish this
         ret[48] = session48; //natry
         ret[85] = session85; //gnome
+        ret[3] = session3; //don't worry about it
         //RMH wants 117
         //gnome wants 85
 
@@ -39,6 +40,10 @@ abstract class NonCanonSessions {
         if (sm.containsKey(id)) {
             sm[id](session);
         }
+    }
+
+    static void session3(Session session) {
+        throw("Bro Code");
     }
 
     //yes, this WILL crash in a regular session, how did you know?
