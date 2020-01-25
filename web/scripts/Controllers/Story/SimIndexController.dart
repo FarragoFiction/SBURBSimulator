@@ -40,7 +40,7 @@ Future<void> main() async {
       AnchorElement a = new AnchorElement(href: "http://www.farragofiction.com/PaldemicSim/login?username=owowhatsthis")..text = "View Report?";
       SimController.instance.storyElement.append(a);
       throw(message);
-    }else if(getParameterByName("seed",null) == "3" || SimController.instance.currentSessionForErrors.session_id==3) {
+    }else if(getParameterByName("seed",null) == "3") {
       String message = "<img src = 'images/mysteriousrogue.png'<br><br></br>The <font color = '#ffcc66'>Rogue of Hope</font> enters the game first. They manage to prototype their kernel sprite with a Sheep pre-entry. They have many INTERESTS, including:<br><br> ERROR: JR here, why don't you leave the poor rogue alone? AB was telling me about ethics last night and it really stuck this time. Its sort of like the bro code, right? Let the man have some privacy.";
       SimController.instance.storyElement.setInnerHtml("$message <br><Br>");
       throw(message);
