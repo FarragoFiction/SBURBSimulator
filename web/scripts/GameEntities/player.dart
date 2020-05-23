@@ -492,6 +492,7 @@ class Player extends GameEntity{
         //i know for a fact this is rare enough that i'll forget i added it.
         if(dreamSelf && aspect != Aspects.TIME && aspect != Aspects.SPACE &&  sylladex.containsWord("Sauce")) {
             aspect = Aspects.SAUCE;
+            handleSubAspects();
             session.logger.info("AB: Bluh. One of Shogun's Sauce Glitches just triggered. Better tell JR.");
             fraymotifs.add(new Fraymotif("Seinfeld Remix", 13)
                 ..effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true))
@@ -500,6 +501,7 @@ class Player extends GameEntity{
 
         if(dreamSelf && aspect != Aspects.TIME && aspect != Aspects.SPACE &&  sylladex.containsWord("Juice")) {
             aspect = Aspects.JUICE;
+            handleSubAspects();
             session.logger.info("AB: Bluh. One of Shogun's Juice Glitches just triggered. Better tell JR.");
             fraymotifs.add(new Fraymotif("Seinfeld Remix", 13)
                 ..effects.add(new FraymotifEffect(Stats.FREE_WILL, 2, true))

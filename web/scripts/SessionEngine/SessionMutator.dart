@@ -999,14 +999,15 @@ class MetaPlayerHandler {
 
         player.deriveSpecibus = false;
         player.specibus = new Specibus("Sauce", ItemTraitFactory.PIGEON, [ ItemTraitFactory.CORRUPT, ItemTraitFactory.OBSCURING]);
-        print("fu has specibus ${player.specibus}");
+        player.sylladex.add(new Item("Sauce Source",<ItemTrait>[ItemTraitFactory.EDIBLE]));
+
         player.quirk = randomHumanQuirk(s.rand);
 
         player.copyFromOCDataString("b=%C2%80%40%009%C3%BEU%04%17%0F%258&s=,,Classism,Genocide,feudalUltimatum&x=nkgA");
         print("Fu's moon is ${player.moon}");
         player.land = player.spawnLand();
         player.land.name = "Land of Dynasties and Taint";
-        player.godTier = true;
+        player.godTier = false; //because he needs to be able to become sauced when he god tiers
         player.deriveChatHandle = false;
 
         player.quirk.capitalization = Quirk.NOCAPS;
@@ -1189,6 +1190,7 @@ class MetaPlayerHandler {
 
         player.deriveSpecibus = false;
         player.specibus = new Specibus("Card", ItemTraitFactory.CARD, [ ItemTraitFactory.PAPER, ItemTraitFactory.WOOD, ItemTraitFactory.LEGENDARY]);
+        player.sylladex.add(new Item("Juice Box",<ItemTrait>[ItemTraitFactory.EDIBLE]));
 
 
         player.hair = 67;
