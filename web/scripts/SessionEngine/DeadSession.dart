@@ -57,7 +57,9 @@ class DeadSession extends Session {
         metaPlayer.setStat(Stats.EXPERIENCE, 1300);
         if(sessionID == 4037) {
             Random rand = new Random(); // true random. want to have both shogun endings available
-            oddsOfSuccess += rand.nextDouble(0.4); //fu almost can't lose. but if he does ;) ;) ;)
+            oddsOfSuccess += rand.nextDouble(0.9); //fu almost can't lose. but if he does ;) ;) ;)
+            print("Whoops its a shogun dead session. odds are $oddsOfSuccess");
+
         }
         makeThemes();
         getPlayersReady();
